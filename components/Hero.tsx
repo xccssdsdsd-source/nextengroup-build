@@ -102,7 +102,7 @@ export default function Hero() {
             STRONY,<br />
             <span
               className="gradient-text"
-              style={{ filter: 'drop-shadow(0 0 20px rgba(0,212,255,0.4))' }}
+              style={{ filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.4))' }}
             >
               KTÓRE
             </span><br />

@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  generateBuildId: async () => null,
+  outputFileTracing: false,
+}
 
-export default nextConfig;
+export default nextConfig

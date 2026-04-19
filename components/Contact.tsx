@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Mail, Instagram } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -47,7 +47,11 @@ export default function Contact() {
                 className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
-                  <Instagram size={18} />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.8" />
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+                    <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+                  </svg>
                 </span>
                 <span>
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Instagram</span>

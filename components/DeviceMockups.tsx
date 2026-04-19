@@ -3,61 +3,67 @@
 import { useEffect, useRef } from 'react'
 
 export default function DeviceMockups() {
-  const laptopWrapRef = useRef<HTMLDivElement>(null)
-  const phoneWrapRef = useRef<HTMLDivElement>(null)
+  const sceneRef = useRef<HTMLDivElement>(null)
   const laptopRef = useRef<HTMLDivElement>(null)
-  const phoneRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const laptopWrap = laptopWrapRef.current
-    const phoneWrap = phoneWrapRef.current
-    const laptopEl = laptopRef.current
-    const phoneEl = phoneRef.current
-    if (!laptopWrap || !phoneWrap || !laptopEl || !phoneEl) return
+    const sceneEl = sceneRef.current
+    if (!sceneEl || !laptopRef.current) return
 
-    let laptopY = 0, phoneY = 0, laptopTarget = 0, phoneTarget = 0
-    let scrollTimer: ReturnType<typeof setTimeout> | null = null
-    let rafId: number
+    let rafId = 0
+    let currentLaptopY = 0
+    let targetLaptopY = 0
+    let maxLift = 0
 
-    const onScroll = () => {
-      if (window.innerWidth > 768) {
-        laptopTarget = window.scrollY * 0.12
-        phoneTarget = window.scrollY * 0.22
+    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
+
+    const measure = () => {
+      const laptopEl = laptopRef.current
+      if (!laptopEl) return
+
+      const sceneRect = sceneEl.getBoundingClientRect()
+      const laptopRect = laptopEl.getBoundingClientRect()
+      maxLift = Math.max(0, laptopRect.top - sceneRect.top)
+    }
+
+    const updateTarget = () => {
+      if (window.innerWidth <= 768) {
+        targetLaptopY = 0
+        return
       }
-      laptopWrap.classList.add('no-float')
-      phoneWrap.classList.add('no-float')
-      if (scrollTimer) clearTimeout(scrollTimer)
-      scrollTimer = setTimeout(() => {
-        laptopWrap.classList.remove('no-float')
-        phoneWrap.classList.remove('no-float')
-      }, 300)
+
+      targetLaptopY = clamp(-window.scrollY * 0.3, -maxLift, 0)
     }
 
     function animate() {
-      if (window.innerWidth > 768) {
-        laptopY += (laptopTarget - laptopY) * 0.07
-        phoneY += (phoneTarget - phoneY) * 0.07
-        laptopEl.style.transform = `perspective(1000px) rotateY(-12deg) rotateX(4deg) translateY(${laptopY}px)`
-        phoneEl.style.transform = `perspective(1000px) rotateY(8deg) rotateX(-2deg) translateY(${phoneY}px)`
-      }
+      const laptopEl = laptopRef.current
+      if (!laptopEl) return
+
+      currentLaptopY += (targetLaptopY - currentLaptopY) * 0.08
+      laptopEl.style.transform = `perspective(1000px) rotateY(-12deg) rotateX(4deg) translateY(${currentLaptopY}px)`
       rafId = requestAnimationFrame(animate)
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    measure()
+    updateTarget()
     rafId = requestAnimationFrame(animate)
+    window.addEventListener('scroll', updateTarget, { passive: true })
+    window.addEventListener('resize', measure)
+    window.addEventListener('resize', updateTarget)
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', updateTarget)
+      window.removeEventListener('resize', measure)
+      window.removeEventListener('resize', updateTarget)
       cancelAnimationFrame(rafId)
-      if (scrollTimer) clearTimeout(scrollTimer)
     }
   }, [])
 
   return (
-    <div className="relative h-full w-full flex items-center justify-center">
+    <div ref={sceneRef} className="relative h-full w-full flex items-center justify-center">
       <div className="devices-group">
 
-        <div ref={laptopWrapRef} className="float-laptop devices-laptop">
+        <div className="float-laptop devices-laptop">
           <div ref={laptopRef} style={{ width: '480px', willChange: 'transform' }}>
             <div style={{
               background: '#1a2744',
@@ -96,8 +102,8 @@ export default function DeviceMockups() {
           </div>
         </div>
 
-        <div ref={phoneWrapRef} className="float-phone devices-phone">
-          <div ref={phoneRef} style={{ width: '160px', height: '300px', willChange: 'transform' }}>
+        <div className="float-phone devices-phone">
+          <div style={{ width: '160px', height: '300px', willChange: 'transform' }}>
             <div style={{
               background: '#1a2744',
               borderRadius: '28px',

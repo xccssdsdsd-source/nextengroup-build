@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import FlowNetwork from './FlowNetwork'
@@ -7,6 +8,8 @@ import FlowNetwork from './FlowNetwork'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
+  const [previewTrigger, setPreviewTrigger] = useState(0)
+
   return (
     <section className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(26,111,255,0.24),transparent_24%),radial-gradient(circle_at_16%_20%,rgba(0,212,255,0.1),transparent_18%)]" />
@@ -36,6 +39,7 @@ export default function Hero() {
           >
             <a
               href="#kontakt"
+              onClick={() => setPreviewTrigger(value => value + 1)}
               className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm"
             >
               Darmowa wizualizacja
@@ -56,7 +60,7 @@ export default function Hero() {
           className="min-w-0"
         >
           <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
-            <FlowNetwork />
+            <FlowNetwork trigger={previewTrigger} />
           </div>
         </motion.div>
       </div>

@@ -1,208 +1,204 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Bot, CheckCircle2, MessagesSquare, Sparkles } from 'lucide-react'
+import { type ReactNode, useEffect, useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { CalendarDays, CircleDollarSign, Mail, UserRound } from 'lucide-react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-export default function FlowNetwork() {
+type FlowNetworkProps = {
+  trigger: number
+}
+
+export default function FlowNetwork({ trigger }: FlowNetworkProps) {
+  const [phase, setPhase] = useState<'idle' | 'incoming' | 'scanning' | 'result'>('idle')
+
+  useEffect(() => {
+    if (!trigger) {
+      return
+    }
+
+    setPhase('incoming')
+
+    const scanTimer = window.setTimeout(() => setPhase('scanning'), 700)
+    const resultTimer = window.setTimeout(() => setPhase('result'), 1700)
+
+    return () => {
+      window.clearTimeout(scanTimer)
+      window.clearTimeout(resultTimer)
+    }
+  }, [trigger])
+
+  const tags = useMemo(
+    () => [
+      {
+        label: 'ANALIZA INTENCJI',
+        className: 'left-1/2 top-3 -translate-x-1/2'
+      },
+      {
+        label: 'KLASYFIKACJA',
+        className: 'left-4 top-1/2 -translate-y-1/2'
+      },
+      {
+        label: 'PRIORYTET',
+        className: 'right-4 top-1/2 -translate-y-1/2'
+      }
+    ],
+    []
+  )
+
   return (
-    <div className="relative h-full overflow-hidden rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(5,14,28,0.98)_0%,rgba(3,9,19,1)_100%)] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_30px_100px_rgba(0,0,0,0.42),0_0_80px_rgba(0,212,255,0.08)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(0,212,255,0.16),transparent_22%),radial-gradient(circle_at_78%_18%,rgba(26,111,255,0.18),transparent_24%),radial-gradient(circle_at_58%_74%,rgba(0,212,255,0.08),transparent_26%)]" />
-      <div className="absolute inset-0 grain-overlay opacity-30" />
-      <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(143,234,255,0.65),transparent)]" />
+    <div className="relative h-full overflow-hidden rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(4,12,24,0.98)_0%,rgba(2,7,16,1)_100%)] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_30px_100px_rgba(0,0,0,0.42),0_0_120px_rgba(0,140,255,0.08)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(61,148,255,0.2),transparent_20%),radial-gradient(circle_at_20%_18%,rgba(130,208,255,0.1),transparent_26%),radial-gradient(circle_at_80%_18%,rgba(11,69,255,0.14),transparent_28%)]" />
+      <div className="absolute inset-0 grain-overlay opacity-25" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(143,234,255,0.4),transparent)]" />
 
-      <div className="relative flex h-full flex-col justify-center p-5 sm:p-7 lg:p-8">
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.34em] text-[#6a88ae]">
-              Live preview
-            </div>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[#edf8ff] sm:text-2xl">
-              Strona przechwytuje kontakt i porządkuje lead
-            </h3>
-          </div>
+      <div className="relative flex h-full flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
+        <h3 className="max-w-[16ch] text-xl font-semibold tracking-[-0.04em] text-[#edf8ff] sm:text-2xl">
+          Strona przechwytuje kontakt i porządkuje lead
+        </h3>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#00d4ff]/20 bg-[#00d4ff]/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#8feaff]">
-            <span className="h-2 w-2 rounded-full bg-[#00d4ff] shadow-[0_0_16px_rgba(0,212,255,0.9)]" />
-            aktywne
-          </div>
-        </div>
+        <div className="relative flex flex-1 items-center justify-center">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(61,148,255,0.12),transparent_18%)]" />
 
-        <div className="grid flex-1 gap-5 lg:grid-cols-[1.02fr_0.66fr_1.02fr] lg:items-center">
-          <motion.article
-            initial={{ opacity: 0, x: -24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease }}
-            className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,18,35,0.96),rgba(5,13,24,0.98))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.35)]"
+          <AnimatePresence>
+            {phase === 'incoming' && (
+              <motion.div
+                key={`mail-${trigger}`}
+                initial={{ opacity: 0, x: 220, scale: 0.8, rotate: -10 }}
+                animate={{ opacity: [0, 1, 1], x: [220, 70, 0], scale: [0.8, 1, 0.55], rotate: [-10, -4, 0] }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.75, ease }}
+                className="absolute left-1/2 top-1/2 z-20 ml-2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] border border-[#87d7ff]/30 bg-[linear-gradient(180deg,rgba(14,28,48,0.96),rgba(7,15,30,0.92))] text-[#ddf6ff] shadow-[0_0_40px_rgba(61,148,255,0.25)]"
+              >
+                <Mail size={24} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <motion.div
+            animate={{
+              scale: phase === 'scanning' ? [1, 1.06, 0.98, 1.04, 1] : [1, 1.025, 1],
+              boxShadow:
+                phase === 'scanning'
+                  ? [
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)',
+                      '0 0 0 1px rgba(126,207,255,0.34), 0 0 90px rgba(61,148,255,0.42), inset 0 0 44px rgba(160,228,255,0.22)',
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)',
+                    ]
+                  : [
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)',
+                      '0 0 0 1px rgba(126,207,255,0.24), 0 0 74px rgba(61,148,255,0.22), inset 0 0 32px rgba(160,228,255,0.18)',
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)',
+                    ],
+            }}
+            transition={{
+              duration: phase === 'scanning' ? 0.55 : 2.8,
+              repeat: phase === 'scanning' ? 1 : Infinity,
+              ease: 'easeInOut'
+            }}
+            className="relative z-10 flex h-[230px] w-[230px] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_35%_30%,rgba(206,240,255,0.32)_0%,rgba(126,207,255,0.2)_16%,rgba(36,92,175,0.18)_34%,rgba(7,17,35,0.82)_63%,rgba(3,9,20,0.96)_100%)] backdrop-blur-md sm:h-[260px] sm:w-[260px]"
           >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-[#6f8fb3]">
-                  Formularz
-                </div>
-                <div className="mt-2 text-lg font-semibold text-[#eff9ff]">
-                  Nowe zapytanie
-                </div>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/16 bg-[#00d4ff]/10 text-[#8fefff]">
-                <MessagesSquare size={18} />
-              </div>
-            </div>
-
-            <div className="mt-5 rounded-[22px] border border-white/8 bg-[#05111f]/90 p-4">
-              <div className="text-sm leading-7 text-[#dbeeff]">
-                Potrzebuję strony, która wygląda premium i daje więcej zapytań.
-              </div>
-
-              <div className="mt-4 space-y-3">
-                <AnimatedBar width="88%" delay={0} />
-                <AnimatedBar width="72%" delay={0.2} />
-                <AnimatedBar width="64%" delay={0.35} />
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {['kontakt', 'nowy lead', 'wysoki priorytet'].map(tag => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#97b3d3]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.article>
-
-          <div className="relative flex h-full items-center justify-center py-4">
-            <svg
-              className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
-              viewBox="0 0 320 520"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path d="M38 140C118 140 108 140 160 220" stroke="rgba(0,212,255,0.16)" strokeWidth="2" />
-              <path d="M160 300C212 380 202 380 282 380" stroke="rgba(52,245,197,0.16)" strokeWidth="2" />
-
-              <motion.circle
-                r="6"
-                fill="#67ecff"
-                animate={{ opacity: [0.25, 1, 0.25] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-              >
-                <animateMotion dur="2s" repeatCount="indefinite" path="M38 140C118 140 108 140 160 220" />
-              </motion.circle>
-
-              <motion.circle
-                r="6"
-                fill="#8affd7"
-                animate={{ opacity: [0.25, 1, 0.25] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear', delay: 1 }}
-              >
-                <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M160 300C212 380 202 380 282 380" />
-              </motion.circle>
-            </svg>
-
+            <div className="absolute inset-[14px] rounded-full border border-white/10" />
+            <div className="absolute inset-[30px] rounded-full border border-[#8be2ff]/10" />
             <motion.div
               animate={{
-                boxShadow: [
-                  '0 0 0 1px rgba(0,212,255,0.18), 0 0 30px rgba(0,212,255,0.12)',
-                  '0 0 0 1px rgba(0,212,255,0.34), 0 0 60px rgba(0,212,255,0.2)',
-                  '0 0 0 1px rgba(0,212,255,0.18), 0 0 30px rgba(0,212,255,0.12)',
-                ],
+                opacity: phase === 'scanning' ? [0.3, 0.8, 0.3] : [0.22, 0.4, 0.22],
+                rotate: [0, 180, 360]
               }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative flex h-[220px] w-[220px] flex-col items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(0,212,255,0.22),rgba(6,19,38,0.96)_58%,rgba(3,10,22,1)_100%)] px-5 text-center"
-            >
-              <div className="absolute inset-[16px] rounded-full border border-[#00d4ff]/10" />
-              <div className="absolute inset-[34px] rounded-full border border-white/6" />
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#00d4ff]/20 bg-[#00d4ff]/10 text-[#93f1ff]">
-                <Bot size={24} />
-              </div>
-              <div className="mt-4 text-[11px] uppercase tracking-[0.28em] text-[#7ea0c7]">
-                NG Engine
-              </div>
-              <div className="mt-2 max-w-[150px] text-lg font-semibold leading-tight text-[#eff9ff]">
-                AI czyści chaos i układa lead
-              </div>
-              <div className="mt-4 space-y-2">
-                {['analiza', 'kwalifikacja', 'przekazanie'].map((item, index) => (
+              transition={{
+                opacity: { duration: phase === 'scanning' ? 0.45 : 2.4, repeat: Infinity, ease: 'easeInOut' },
+                rotate: { duration: phase === 'scanning' ? 0.9 : 9, repeat: Infinity, ease: 'linear' }
+              }}
+              className="absolute inset-[42px] rounded-full border border-dashed border-[#87d7ff]/35"
+            />
+            <motion.div
+              animate={{ opacity: [0.2, 0.45, 0.2], scale: [0.92, 1.04, 0.92] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(199,239,255,0.95)_0%,rgba(107,194,255,0.75)_36%,rgba(61,148,255,0.18)_70%,transparent_100%)] blur-[2px]"
+            />
+
+            <AnimatePresence>
+              {phase === 'scanning' &&
+                tags.map((tag, index) => (
                   <motion.div
-                    key={item}
-                    initial={{ opacity: 0.35, y: 4 }}
-                    animate={{ opacity: [0.35, 1, 0.35], y: [4, 0, 4] }}
-                    transition={{ duration: 1.8, repeat: Infinity, delay: index * 0.2, ease }}
-                    className="rounded-full border border-[#00d4ff]/15 bg-[#051425]/85 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#bbecff]"
+                    key={tag.label}
+                    initial={{ opacity: 0, scale: 0.8, y: 8 }}
+                    animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1, 1, 0.92], y: [8, 0, 0, -8] }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, delay: index * 0.08, ease }}
+                    className={`absolute z-20 rounded-full border border-[#90e9ff]/30 bg-[#071524]/88 px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-[#c8f4ff] shadow-[0_0_24px_rgba(61,148,255,0.2)] ${tag.className}`}
                   >
-                    {item}
+                    {tag.label}
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
-          <motion.article
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.08, ease }}
-            className="rounded-[28px] border border-[#2fe3ff]/18 bg-[linear-gradient(180deg,rgba(10,24,46,0.98)_0%,rgba(6,16,32,0.98)_100%)] p-5 shadow-[0_26px_90px_rgba(0,0,0,0.4)]"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-[#6f8fb3]">
-                  Wynik
-                </div>
-                <div className="mt-2 text-lg font-semibold text-[#eff8ff]">
-                  Lead gotowy
-                </div>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#34f5c5]/18 bg-[#34f5c5]/10 text-[#b4ffe8]">
-                <CheckCircle2 size={18} />
-              </div>
-            </div>
-
-            <div className="mt-5 rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.03)_100%)] p-4">
-              <div className="flex items-center gap-2 text-sm font-semibold text-[#f0fbff]">
-                <Sparkles size={16} className="text-[#8fefff]" />
-                Gotowe do kontaktu
-              </div>
-              <div className="mt-4 text-xl font-semibold text-[#eff9ff]">
-                klient zainteresowany ofertą
-              </div>
-              <div className="mt-2 text-sm leading-7 text-[#9bb7d8]">
-                Strona zbiera kontakt, AI porządkuje treść, a Ty dostajesz czytelny lead.
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <Metric label="status" value="priorytet" />
-                <Metric label="reakcja" value="od razu" />
-              </div>
-            </div>
-          </motion.article>
+          <AnimatePresence>
+            {phase === 'result' && (
+              <>
+                <ResultCard
+                  key={`result-left-${trigger}`}
+                  className="left-[10%] top-1/2 -translate-y-1/2 sm:left-[14%]"
+                  delay={0}
+                  icon={<UserRound size={22} />}
+                  accent={<CircleDollarSign size={34} className="text-[#65f3a4]" />}
+                />
+                <ResultCard
+                  key={`result-right-${trigger}`}
+                  className="right-[10%] top-1/2 -translate-y-1/2 sm:right-[14%]"
+                  delay={0.12}
+                  icon={<CalendarDays size={22} />}
+                  accent={<span className="text-[13px] font-black tracking-[0.24em] text-[#edf8ff]">READY</span>}
+                />
+              </>
+            )}
+          </AnimatePresence>
         </div>
+
+        <motion.div
+          key={trigger}
+          initial={{ opacity: 0.4, y: 10 }}
+          animate={{ opacity: phase === 'result' ? 1 : 0.55, y: 0 }}
+          transition={{ duration: 0.4, ease }}
+          className="pb-2 text-center text-[clamp(22px,3vw,30px)] font-black tracking-[0.16em] text-[#f3fbff]"
+        >
+          AI ZNALAZŁO ZYSK
+        </motion.div>
       </div>
     </div>
   )
 }
 
-function AnimatedBar({ width, delay }: { width: string; delay: number }) {
+function ResultCard({
+  className,
+  delay,
+  icon,
+  accent,
+}: {
+  className: string
+  delay: number
+  icon: ReactNode
+  accent: ReactNode
+}) {
   return (
-    <div className="h-2.5 overflow-hidden rounded-full bg-white/8">
-      <motion.div
-        className="h-full rounded-full bg-[linear-gradient(90deg,#19dfff,#347cff)]"
-        initial={{ width: '0%' }}
-        animate={{ width }}
-        transition={{ duration: 1.2, delay, repeat: Infinity, repeatType: 'reverse', repeatDelay: 1.2, ease }}
-      />
-    </div>
-  )
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-[18px] border border-white/8 bg-[#071423] px-4 py-3">
-      <div className="text-[10px] uppercase tracking-[0.18em] text-[#6988aa]">{label}</div>
-      <div className="mt-2 text-xl font-semibold text-[#eff8ff]">{value}</div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.72, x: 0, y: '-50%' }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        x: className.includes('left') ? -42 : 42,
+        y: '-50%'
+      }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.65, delay, ease }}
+      className={`absolute z-20 flex h-[132px] w-[108px] flex-col items-center justify-center rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(13,25,44,0.92),rgba(6,14,27,0.94))] shadow-[0_18px_60px_rgba(0,0,0,0.34),0_0_30px_rgba(61,148,255,0.12)] backdrop-blur-md ${className}`}
+    >
+      <div className="flex h-14 w-14 items-center justify-center rounded-[20px] border border-[#8feaff]/18 bg-[#0a1b31] text-[#e7f9ff]">
+        {icon}
+      </div>
+      <div className="mt-4 flex items-center justify-center">{accent}</div>
+    </motion.div>
   )
 }

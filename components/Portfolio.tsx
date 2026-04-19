@@ -61,9 +61,6 @@ function ProjectPreview({
             <span className="h-3 w-3 rounded-full bg-white/25" />
             <span className="h-3 w-3 rounded-full bg-white/12" />
           </div>
-          <div className="truncate rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-white/45">
-            {project.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-          </div>
         </div>
 
         <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#020817]">
@@ -81,9 +78,6 @@ function ProjectPreview({
             <h3 className="text-[clamp(22px,3vw,32px)] font-semibold tracking-[-0.04em] text-white">
               {project.name}
             </h3>
-            <p className="mt-1 text-sm uppercase tracking-[0.22em] text-white/50">
-              {project.description}
-            </p>
           </div>
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/[0.07] group-hover:text-white">
             <ArrowUpRight size={18} strokeWidth={1.8} />
@@ -114,12 +108,7 @@ export default function Portfolio() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease }}
         >
-          <span className="section-kicker">Realizacje</span>
-          <h2 className="section-title">Dwa różne brandy, ten sam porządek i ten sam poziom dopracowania.</h2>
-          <p className="section-copy">
-            Pokazujemy tylko to, co rzeczywiście wspiera sprzedaż: klarowną strukturę,
-            mocniejszą prezentację oferty i estetykę premium.
-          </p>
+          <span className="section-kicker">Nasze realizacje</span>
         </motion.div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">

@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import FlowNetwork from './FlowNetwork'
 import { useEffect, useRef, useState } from 'react'
+import FlowNetwork from './FlowNetwork'
 
-const ease: [number,number,number,number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 function CountUp({ to, suffix = '' }: { to: number | string; suffix?: string }) {
   const [val, setVal] = useState(0)
@@ -28,6 +28,7 @@ function CountUp({ to, suffix = '' }: { to: number | string; suffix?: string }) 
         requestAnimationFrame(step)
       }
     }, { threshold: 0.5 })
+
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [to])
@@ -58,37 +59,35 @@ export default function Hero() {
       <div
         className="absolute inset-y-0 pointer-events-none"
         style={{
-          left: '55%',
+          left: '51%',
           width: '1px',
           boxShadow: '0 0 80px 1px rgba(26,111,255,0.15)',
           zIndex: 1,
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center pt-24 pb-16">
-        <div className="w-full lg:w-[55%] flex flex-col gap-7 py-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pb-16 pt-24 lg:flex-row lg:items-center">
+        <div className="flex w-full flex-col gap-7 py-10 lg:w-[42%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
           >
             <span
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-[#00d4ff] tracking-widest uppercase"
+              className="inline-flex items-center gap-2 rounded-full border border-[#00d4ff]/20 px-3.5 py-1.5 text-xs font-medium uppercase tracking-widest text-[#00d4ff]"
               style={{
                 background: 'rgba(0,212,255,0.08)',
-                border: '1px solid rgba(0,212,255,0.2)',
-                borderRadius: '100px',
                 fontFamily: 'var(--font-figtree)',
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
               }}
             >
               <motion.span
-                className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"
+                className="h-1.5 w-1.5 rounded-full bg-[#00d4ff]"
                 animate={{ scale: [1, 1.4, 1] }}
                 transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }}
               />
-              Strony WWW & Automatyzacje AI
+              Strony WWW + system leadów AI
             </span>
           </motion.div>
 
@@ -99,31 +98,54 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease }}
           >
-            STRONY,<br />
+            ZADANIA,
+            <br />
             <span
               className="gradient-text"
               style={{ filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.4))' }}
             >
               KTÓRE
-            </span><br />
-            SPRZEDAJĄ.
+            </span>
+            <br />
+            IDĄ W SYSTEM.
           </motion.h1>
 
           <motion.p
-            className="text-[#4a6080] text-lg leading-[1.7] max-w-md"
+            className="max-w-xl text-lg leading-[1.7] text-[#7f96b6]"
             style={{ fontFamily: 'var(--font-figtree)', fontWeight: 300 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease }}
           >
-            Zamieniamy odwiedziny w zapytania i automatyzujemy to, co zajmuje Twój czas.
+            Sekcja start pokazuje to jak w interfejsie produktu: klient wysyła zadanie, system rozdziela je na akcje, a Ty widzisz gotowy wynik zamiast ręcznej obsługi wszystkiego.
           </motion.p>
+
+          <motion.div
+            className="grid gap-3 sm:grid-cols-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.28, ease }}
+          >
+            {[
+              'Zapytanie wpada z WWW, reklamy albo czatu',
+              'AI odpowiada i kieruje sprawę dalej',
+              'CRM, follow-up i handlowiec dostają kontekst',
+              'Ty widzisz proces, nie bałagan operacyjny',
+            ].map(item => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-[#c8d7ec]"
+              >
+                {item}
+              </div>
+            ))}
+          </motion.div>
 
           <motion.div
             className="flex flex-wrap gap-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease }}
+            transition={{ duration: 0.6, delay: 0.34, ease }}
           >
             <a
               href="#kontakt"
@@ -137,37 +159,37 @@ export default function Hero() {
               className="btn-ghost px-7 py-3.5 text-sm"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: 600 }}
             >
-              Zobacz realizacje
+              Zobacz jak to działa
             </a>
           </motion.div>
 
           <motion.div
-            className="flex items-stretch gap-0 mt-4"
+            className="mt-4 flex items-stretch gap-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease }}
+            transition={{ duration: 0.6, delay: 0.42, ease }}
           >
             {[
-              { num: 78, suffix: '%', label: 'klientów sprawdza Cię online' },
-              { num: 24, suffix: 'h', label: 'czas dostarczenia wizualizacji' },
-              { num: 99, suffix: '+', label: 'firm przeanalizowanych' },
+              { num: 78, suffix: '%', label: 'klientów sprawdza firmę online przed kontaktem' },
+              { num: 24, suffix: 'h', label: 'na pierwszą wizualizację procesu i strony' },
+              { num: 3, suffix: 'x', label: 'mniej ręcznej pracy przy obsłudze leadów' },
             ].map((stat, i) => (
               <div key={i} className="flex items-stretch">
                 {i > 0 && (
                   <div
-                    className="w-px mx-5 my-2"
+                    className="mx-5 my-2 w-px"
                     style={{ background: 'rgba(255,255,255,0.06)' }}
                   />
                 )}
                 <div className="flex flex-col gap-0.5">
                   <span
-                    className="font-barlow text-3xl text-[#00d4ff] leading-none"
+                    className="font-barlow text-3xl leading-none text-[#00d4ff]"
                     style={{ fontWeight: 900 }}
                   >
                     <CountUp to={stat.num} suffix={stat.suffix} />
                   </span>
                   <span
-                    className="text-[11px] text-[#4a6080] leading-tight max-w-[110px]"
+                    className="max-w-[120px] text-[11px] leading-tight text-[#4a6080]"
                     style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
                   >
                     {stat.label}
@@ -179,7 +201,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="w-full lg:w-[45%] h-[420px] lg:h-[540px] px-0 lg:pl-10 mt-8 lg:mt-0"
+          className="mt-2 h-[720px] w-full px-0 sm:h-[760px] lg:mt-0 lg:h-[680px] lg:w-[58%]"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease }}
@@ -188,8 +210,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <a href="#uslugi" className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-[#4a6080] hover:text-[#00d4ff] transition-colors duration-200">
-        <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'var(--font-figtree)' }}>scroll</span>
+      <a href="#uslugi" className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 text-[#4a6080] transition-colors duration-200 hover:text-[#00d4ff]">
+        <span className="text-xs uppercase tracking-widest" style={{ fontFamily: 'var(--font-figtree)' }}>scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}

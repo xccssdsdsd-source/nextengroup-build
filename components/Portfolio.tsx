@@ -12,14 +12,14 @@ const projects = [
     href: 'https://dorimari.pl',
     description: 'sklep premium',
     accent: 'rgba(0,180,216,0.32)',
-    preview: 'https://image.thum.io/get/width/1600/noanimate/https://dorimari.pl',
+    preview: '/portfolio/dorimari-preview.png',
   },
   {
     name: 'PM-Apartments',
     href: 'https://pm-apartments.pl/',
     description: 'apartamenty premium',
     accent: 'rgba(201,169,110,0.3)',
-    preview: 'https://image.thum.io/get/width/1600/noanimate/https://pm-apartments.pl/',
+    preview: '/portfolio/pm-apartments-preview.png',
   },
 ] as const
 

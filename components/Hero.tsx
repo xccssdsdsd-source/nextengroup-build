@@ -18,27 +18,23 @@ export default function Hero() {
     if (!el) return
 
     let ticking = false
-
-    const update = () => {
-      const factor = window.innerWidth <= 768 ? 0.15 : 0.3
-      const translateY = Math.min(window.scrollY * factor, 150)
-      el.style.transform = `translateY(${translateY}px)`
-      ticking = false
-    }
+    let currentY = 0
+    let targetY = 0
 
     const onScroll = () => {
+      targetY = window.scrollY * (window.innerWidth <= 768 ? 0.08 : 0.18)
       if (!ticking) {
-        requestAnimationFrame(update)
+        requestAnimationFrame(() => {
+          currentY += (targetY - currentY) * 0.08
+          el.style.transform = `translateY(${currentY}px)`
+          ticking = false
+        })
         ticking = true
       }
     }
 
-    requestAnimationFrame(update)
     window.addEventListener('scroll', onScroll, { passive: true })
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-    }
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
@@ -111,7 +107,7 @@ export default function Hero() {
           transition={{ duration: 0.82, delay: 0.16, ease }}
           className="min-w-0"
         >
-          <div ref={laptopRef} style={{ willChange: 'transform' }} className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
+          <div ref={laptopRef} style={{ willChange: 'transform', transform: 'translateZ(0)' }} className="laptop-glass mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
             <LaptopShowcase trigger={previewTrigger} />
           </div>
         </motion.div>

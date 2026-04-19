@@ -1,174 +1,95 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { Mail, Link2 } from 'lucide-react'
+import { ArrowRight, Mail, MessageSquareText } from 'lucide-react'
+import { useRef } from 'react'
 
-const ease: [number,number,number,number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Contact() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const [sent, setSent] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSent(true)
-  }
+  const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="kontakt" className="py-28 px-6 relative" ref={ref}>
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(26,111,255,0.08) 0%, transparent 60%)' }}
-      />
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="relative overflow-hidden rounded-2xl"
-          style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            backdropFilter: 'blur(20px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            boxShadow: '0 8px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-10 lg:p-14 flex flex-col gap-8">
-              <div>
-                <span
-                  className="text-xs text-[#00d4ff] tracking-[0.2em] uppercase mb-4 block"
-                  style={{ fontFamily: 'var(--font-figtree)' }}
-                >
-                  Napisz do nas
-                </span>
-                <h2
-                  className="font-barlow text-[clamp(48px,7vw,80px)] uppercase text-[#e8f0ff] leading-[0.9] tracking-[-0.02em]"
-                  style={{ fontWeight: 900 }}
-                >
-                  ZACZNIJMY<br />
-                  <span className="gradient-text">RAZEM</span>
-                </h2>
-              </div>
+    <section id="kontakt" ref={ref} className="section-shell">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(26,111,255,0.14),transparent_32%)]" />
 
-              <p
-                className="text-[#4a6080] text-base leading-[1.7] max-w-sm"
-                style={{ fontFamily: 'var(--font-figtree)', fontWeight: 300 }}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease }}
+        className="glass relative mx-auto max-w-7xl overflow-hidden rounded-[34px] p-7 sm:p-10 lg:p-12"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,212,255,0.12),transparent_22%)]" />
+
+        <div className="relative grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:gap-14">
+          <div className="max-w-2xl">
+            <span className="section-kicker">Kontakt</span>
+            <h2 className="section-title max-w-[10ch]">Zobacz, jak może wyglądać lepsza wersja Twojej strony.</h2>
+            <p className="section-copy max-w-xl">
+              Napisz krótko, czym zajmuje się Twoja firma. Przygotujemy kierunek,
+              który będzie wyglądał profesjonalnie i prowadził użytkownika do kontaktu.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:max-w-md">
+              <a
+                href="mailto:kontakt@nextengroup.pl"
+                className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
               >
-                Napisz do nas, a w ciągu 24h przygotujemy bezpłatną wizualizację Twojej strony. Zero zobowiązań.
-              </p>
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
+                  <Mail size={18} />
+                </span>
+                <span>
+                  <span className="block text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">E-mail</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">kontakt@nextengroup.pl</span>
+                </span>
+              </a>
 
-              <div className="flex flex-col gap-3">
-                {[
-                  { icon: Mail, label: 'kontakt@nextgroup.pl', href: 'mailto:kontakt@nextgroup.pl' },
-                  { icon: Link2, label: '@nextgroup.pl', href: '#' },
-                ].map(({ icon: Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    className="flex items-center gap-3 group"
-                  >
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: 'rgba(0,212,255,0.07)',
-                        border: '1px solid rgba(0,212,255,0.15)',
-                      }}
-                    >
-                      <Icon size={16} color="#00d4ff" />
-                    </div>
-                    <span
-                      className="text-sm text-[#4a6080] group-hover:text-[#e8f0ff] transition-colors duration-200"
-                      style={{ fontFamily: 'var(--font-figtree)' }}
-                    >
-                      {label}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className="p-10 lg:p-14 lg:border-l"
-              style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-            >
-              {sent ? (
-                <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center"
-                    style={{ background: 'rgba(0,212,255,0.1)', border: '1px solid rgba(0,212,255,0.3)' }}
-                  >
-                    <span className="text-2xl">✓</span>
+              <div className="glass rounded-[24px] px-5 py-4">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
+                    <MessageSquareText size={18} />
+                  </span>
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Start współpracy</div>
+                    <p className="mt-2 text-sm leading-7 text-[#dfeeff] sm:text-base">
+                      Opisz firmę, ofertę i cel strony. Resztę porządkujemy już po naszej stronie.
+                    </p>
                   </div>
-                  <h3 className="font-syne text-xl font-bold text-[#e8f0ff]">Wiadomość wysłana!</h3>
-                  <p className="text-[#4a6080] text-sm" style={{ fontFamily: 'var(--font-figtree)' }}>
-                    Odezwiemy się w ciągu 24h z bezpłatną wizualizacją.
-                  </p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  {[
-                    { name: 'name', label: 'Imię i nazwisko', type: 'text', required: true },
-                    { name: 'email', label: 'Adres e-mail', type: 'email', required: true },
-                    { name: 'branza', label: 'Branża / rodzaj firmy', type: 'text', required: false },
-                  ].map(field => (
-                    <div key={field.name} className="flex flex-col gap-1.5">
-                      <label
-                        className="text-xs text-[#4a6080] tracking-wide"
-                        style={{ fontFamily: 'var(--font-figtree)' }}
-                      >
-                        {field.label}
-                      </label>
-                      <input
-                        type={field.type}
-                        required={field.required}
-                        className="w-full px-4 py-3 text-sm text-[#e8f0ff] placeholder-[#4a6080] outline-none transition-[border-color] duration-200 rounded-xl"
-                        style={{
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          fontFamily: 'var(--font-figtree)',
-                        }}
-                        onFocus={e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.35)' }}
-                        onBlur={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
-                      />
-                    </div>
-                  ))}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      className="text-xs text-[#4a6080] tracking-wide"
-                      style={{ fontFamily: 'var(--font-figtree)' }}
-                    >
-                      Wiadomość
-                    </label>
-                    <textarea
-                      rows={4}
-                      className="w-full px-4 py-3 text-sm text-[#e8f0ff] placeholder-[#4a6080] outline-none transition-[border-color] duration-200 rounded-xl resize-none"
-                      style={{
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        fontFamily: 'var(--font-figtree)',
-                      }}
-                      placeholder="Opowiedz nam o swojej firmie i celach..."
-                      onFocus={e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.35)' }}
-                      onBlur={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-primary w-full py-4 text-sm font-semibold mt-1"
-                    style={{ fontFamily: 'var(--font-syne)', fontWeight: 700 }}
-                  >
-                    Wyślij i odbierz bezpłatny projekt
-                  </button>
-                </form>
-              )}
+              </div>
             </div>
           </div>
-        </motion.div>
-      </div>
+
+          <div className="glass rounded-[28px] p-6 sm:p-7">
+            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">
+              Co warto wysłać
+            </div>
+            <div className="mt-5 space-y-4">
+              {[
+                'link do obecnej strony lub profilu firmy',
+                '2-3 zdania o ofercie',
+                'główny cel: więcej zapytań, lepszy wizerunek albo automatyzacja leadów',
+              ].map(item => (
+                <div
+                  key={item}
+                  className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-[#dfeeff]"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="mailto:kontakt@nextengroup.pl?subject=Zapytanie%20o%20stron%C4%99%20WWW"
+              className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm"
+            >
+              Napisz do nas
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

@@ -1,63 +1,113 @@
 'use client'
 
+import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+
+const links = [
+  ['Usługi', '#uslugi'],
+  ['Proces', '#proces'],
+  ['Realizacje', '#portfolio'],
+  ['Opinie', '#opinie'],
+  ['FAQ', '#faq'],
+] as const
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-[background,border-color,backdrop-filter] duration-300"
-      style={scrolled ? {
-        background: 'rgba(2,8,16,0.7)',
-        backdropFilter: 'blur(20px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      } : {}}
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
-            style={{ background: 'linear-gradient(135deg, #00d4ff, #1a6fff)', color: '#020810', fontFamily: 'var(--font-syne)' }}
-          >
-            N
-          </div>
-          <span className="font-syne font-800 text-sm tracking-widest text-[#e8f0ff] uppercase" style={{ fontWeight: 800 }}>
-            Next Group
-          </span>
-        </a>
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
 
-        <div className="hidden md:flex items-center gap-8">
-          {[['Usługi', '#uslugi'], ['Realizacje', '#portfolio'], ['Opinie', '#opinie'], ['FAQ', '#faq']].map(([label, href]) => (
+  return (
+    <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+      <div
+        className={`mx-auto max-w-7xl rounded-[22px] border px-4 py-3 transition-all duration-300 sm:px-5 ${
+          scrolled
+            ? 'border-white/10 bg-[#06101d]/86 shadow-[0_16px_48px_rgba(0,0,0,0.28)] backdrop-blur-xl'
+            : 'border-white/6 bg-[#06101d]/52 backdrop-blur-lg'
+        }`}
+      >
+        <div className="flex items-center justify-between gap-4">
+          <a href="#" className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00d4ff,#1a6fff)] font-sans text-sm font-bold text-[#04111b]">
+              N
+            </div>
+            <div className="min-w-0">
+              <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-white">
+                Nexten Group
+              </div>
+              <div className="truncate text-[11px] uppercase tracking-[0.18em] text-white/38">
+                Web + AI systems
+              </div>
+            </div>
+          </a>
+
+          <div className="hidden items-center gap-7 lg:flex">
+            {links.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="text-sm text-[#8aa3c4] transition-colors duration-200 hover:text-white"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
             <a
-              key={href}
-              href={href}
-              className="text-sm font-figtree text-[#4a6080] hover:text-[#e8f0ff] transition-colors duration-200 relative group"
-              style={{ fontWeight: 400 }}
+              href="#kontakt"
+              className="btn-ghost hidden px-5 py-2.5 text-sm sm:inline-flex"
             >
-              {label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#00d4ff] group-hover:w-full transition-[width] duration-300" />
+              Darmowa wycena
             </a>
-          ))}
+            <button
+              type="button"
+              aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
+              aria-expanded={open}
+              onClick={() => setOpen(prev => !prev)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-white lg:hidden"
+            >
+              {open ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
 
-        <a
-          href="#kontakt"
-          className="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold text-[#00d4ff] border border-[#00d4ff]/40 hover:bg-[#00d4ff]/08 transition-colors duration-200"
-          style={{
-            fontFamily: 'var(--font-syne)',
-            clipPath: 'polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)',
-          }}
-        >
-          Bezpłatny projekt →
-        </a>
+        {open && (
+          <div className="mt-4 rounded-[20px] border border-white/8 bg-[#081322]/96 p-4 lg:hidden">
+            <div className="flex flex-col gap-2">
+              {links.map(([label, href]) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-2xl border border-transparent px-4 py-3 text-sm text-[#dbe9ff] transition-colors duration-200 hover:border-white/8 hover:bg-white/[0.03]"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="#kontakt"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-4 inline-flex w-full justify-center px-5 py-3 text-sm"
+            >
+              Umów rozmowę
+            </a>
+          </div>
+        )}
       </div>
     </nav>
   )

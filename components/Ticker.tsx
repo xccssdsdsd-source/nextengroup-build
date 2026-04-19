@@ -1,30 +1,25 @@
+const items = [
+  'Landing pages',
+  'Automatyzacje AI',
+  'Leady i CRM',
+  'Strony premium',
+  'Copy sprzedażowe',
+  'Analityka i optymalizacja',
+]
+
 export default function Ticker() {
-  const items = 'Strony WWW · Automatyzacje AI · Chatboty AI · Lead Generation · UI/UX Design · Integracje · '
-  const repeated = items.repeat(6)
+  const repeated = [...items, ...items].join('   •   ')
 
   return (
-    <div
-      className="relative overflow-hidden py-4"
-      style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-        background: 'rgba(255,255,255,0.02)',
-      }}
-    >
+    <section className="overflow-hidden border-y border-white/6 bg-white/[0.02] py-4">
       <div className="ticker-track flex whitespace-nowrap" style={{ width: 'max-content' }}>
-        <span
-          className="text-sm text-[#4a6080] tracking-widest uppercase"
-          style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
-        >
+        <span className="px-4 text-[11px] uppercase tracking-[0.28em] text-[#7f98b8] sm:text-xs">
           {repeated}
         </span>
-        <span
-          className="text-sm text-[#4a6080] tracking-widest uppercase"
-          style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
-        >
+        <span className="px-4 text-[11px] uppercase tracking-[0.28em] text-[#7f98b8] sm:text-xs">
           {repeated}
         </span>
       </div>
-    </div>
+    </section>
   )
 }

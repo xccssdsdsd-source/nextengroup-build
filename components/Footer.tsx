@@ -1,44 +1,44 @@
+const footerLinks = [
+  ['Usługi', '#uslugi'],
+  ['Proces', '#proces'],
+  ['Realizacje', '#portfolio'],
+  ['FAQ', '#faq'],
+  ['Kontakt', '#kontakt'],
+] as const
+
 export default function Footer() {
   return (
-    <footer
-      className="px-6 py-8"
-      style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
-    >
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <div
-            className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold"
-            style={{ background: 'linear-gradient(135deg, #00d4ff, #1a6fff)', color: '#020810', fontFamily: 'var(--font-syne)' }}
-          >
+    <footer className="border-t border-white/6 px-6 py-8 sm:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00d4ff,#1a6fff)] font-sans text-sm font-bold text-[#04111b]">
             N
           </div>
-          <span
-            className="font-syne text-xs tracking-widest text-[#4a6080] uppercase"
-            style={{ fontWeight: 700 }}
-          >
-            Next Group
-          </span>
+          <div>
+            <div className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-white">
+              Nexten Group
+            </div>
+            <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-[#6f88ab]">
+              Strony WWW i AI
+            </div>
+          </div>
         </div>
 
-        <p
-          className="text-xs text-[#4a6080]"
-          style={{ fontFamily: 'var(--font-figtree)' }}
-        >
-          © {new Date().getFullYear()} Next Group. Wszelkie prawa zastrzeżone.
-        </p>
-
-        <div className="flex items-center gap-6">
-          {[['Usługi', '#uslugi'], ['Portfolio', '#portfolio'], ['FAQ', '#faq'], ['Kontakt', '#kontakt']].map(([label, href]) => (
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          {footerLinks.map(([label, href]) => (
             <a
               key={href}
               href={href}
-              className="text-xs text-[#4a6080] hover:text-[#e8f0ff] transition-colors duration-200"
-              style={{ fontFamily: 'var(--font-figtree)' }}
+              className="text-sm text-[#8aa3c4] transition-colors duration-200 hover:text-white"
             >
               {label}
             </a>
           ))}
         </div>
+
+        <p className="text-sm text-[#6f88ab]">
+          © {new Date().getFullYear()} Nexten Group. Wszystkie prawa zastrzeżone.
+        </p>
       </div>
     </footer>
   )

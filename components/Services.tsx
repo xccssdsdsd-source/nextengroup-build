@@ -1,134 +1,87 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
+import { Globe, MessagesSquare, Zap } from 'lucide-react'
 import { useRef } from 'react'
-import { Globe, Zap, MessageSquare } from 'lucide-react'
 
-const ease: [number,number,number,number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const services = [
   {
-    num: '01',
     icon: Globe,
-    title: 'Strona WWW',
-    desc: 'Tworzymy strony internetowe, które aktywnie generują zapytania od klientów — nie tylko wyglądają dobrze.',
-    features: ['Projekt UI/UX dopasowany do branży', 'Optymalizacja konwersji (CRO)', 'W pełni responsywna na każde urządzenie', 'Podstawowe SEO i szybkość ładowania'],
+    title: 'Strony, które prowadzą do kontaktu',
+    desc: 'Projekt i wdrożenie strony, która porządkuje ofertę, buduje zaufanie i kieruje użytkownika prosto do działania.',
+    points: ['Design premium', 'Copy sprzedażowe', 'Pełna responsywność'],
   },
   {
-    num: '02',
     icon: Zap,
-    title: 'Automatyzacje AI',
-    desc: 'Systemy, które pracują za Ciebie 24/7 — zbierają leady, odpowiadają na pytania i prowadzą klientów przez ścieżkę zakupu.',
-    features: ['Chatbot AI dostępny całą dobę', 'Automatyczne zbieranie leadów', 'Integracja z CRM i systemami', 'Automatyczne follow-upy'],
+    title: 'Automatyzacje AI dla leadów',
+    desc: 'System przechwytuje zgłoszenia, kwalifikuje kontakt i skraca czas reakcji bez dokładania pracy po Twojej stronie.',
+    points: ['Formularze i integracje', 'Scoring zapytań', 'Logika obsługi leadów'],
   },
   {
-    num: '03',
-    icon: MessageSquare,
-    title: 'Asystent AI',
-    desc: 'Inteligentny asystent obsługi klienta, który zna Twoją ofertę, odpowiada na pytania i umawia wizyty bez Twojego udziału.',
-    features: ['Automatyczna obsługa zapytań', 'Umawianie wizyt i spotkań', 'Rekomendacje w Google Maps', 'Personalizacja odpowiedzi'],
+    icon: MessagesSquare,
+    title: 'Lepsza ścieżka klienta',
+    desc: 'Łączymy UX, komunikację i CTA tak, aby klient szybciej rozumiał ofertę i częściej przechodził do kontaktu.',
+    points: ['Mocniejsze sekcje CTA', 'Lepsza hierarchia treści', 'Większa czytelność'],
   },
-]
+] as const
 
 export default function Services() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-120px' })
 
   return (
-    <section id="uslugi" className="py-28 px-6 relative" ref={ref}>
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(26,111,255,0.06) 0%, transparent 60%)' }}
-      />
-      <div className="max-w-7xl mx-auto">
+    <section id="uslugi" ref={ref} className="section-shell">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,212,255,0.08),transparent_24%)]" />
+
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 24 }}
+          className="section-heading"
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
+          transition={{ duration: 0.75, ease }}
         >
-          <span
-            className="text-xs text-[#00d4ff] tracking-[0.2em] uppercase mb-3 block"
-            style={{ fontFamily: 'var(--font-figtree)' }}
-          >
-            Co robimy
-          </span>
-          <h2
-            className="font-syne text-[clamp(36px,5vw,60px)] font-bold text-[#e8f0ff] tracking-[-0.03em] leading-tight"
-          >
-            Usługi
-          </h2>
+          <span className="section-kicker">Oferta</span>
+          <h2 className="section-title">Skupiamy stronę na sprzedaży, nie na ozdobnikach.</h2>
+          <p className="section-copy">
+            Każdy element ma prowadzić użytkownika dalej: od pierwszego wrażenia,
+            przez zaufanie, aż po jasne wezwanie do kontaktu.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((svc, i) => (
-            <motion.div
-              key={svc.num}
-              initial={{ opacity: 0, y: 30 }}
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <motion.article
+              key={service.title}
+              initial={{ opacity: 0, y: 34 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.1, ease }}
-              className="relative group p-7 flex flex-col gap-5 overflow-hidden"
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
-                borderRadius: '16px',
-              }}
+              transition={{ duration: 0.75, delay: index * 0.1, ease }}
+              className="glass relative overflow-hidden rounded-[28px] p-7"
             >
-              <motion.div
-                className="absolute top-0 left-0 right-0 h-[2px] origin-left"
-                style={{ background: 'linear-gradient(90deg, #00d4ff, #1a6fff)', scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.4, ease }}
-              />
-
-              <span
-                className="absolute top-5 right-6 font-barlow text-[72px] leading-none text-[#e8f0ff] select-none"
-                style={{ fontWeight: 900, opacity: 0.04 }}
-              >
-                {svc.num}
-              </span>
-
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: 'rgba(0,212,255,0.08)',
-                  border: '1px solid rgba(0,212,255,0.2)',
-                }}
-              >
-                <svc.icon size={20} color="#00d4ff" strokeWidth={1.5} />
+              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/16 bg-[#00d4ff]/10 text-[#89efff]">
+                <service.icon size={20} strokeWidth={1.7} />
               </div>
 
-              <div>
-                <h3
-                  className="font-syne text-xl font-bold text-[#e8f0ff] tracking-[-0.02em] mb-2"
-                  style={{ fontWeight: 700 }}
-                >
-                  {svc.title}
-                </h3>
-                <p
-                  className="text-[#4a6080] text-sm leading-[1.7]"
-                  style={{ fontFamily: 'var(--font-figtree)', fontWeight: 300 }}
-                >
-                  {svc.desc}
-                </p>
-              </div>
+              <h3 className="mt-6 text-2xl font-semibold tracking-[-0.04em] text-white">
+                {service.title}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-[#92acce] sm:text-[15px]">
+                {service.desc}
+              </p>
 
-              <ul className="flex flex-col gap-2 mt-auto">
-                {svc.features.map(f => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2.5 text-sm text-[#e8f0ff]/80"
-                    style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
+              <div className="mt-6 flex flex-wrap gap-2">
+                {service.points.map(point => (
+                  <span
+                    key={point}
+                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#cfe6ff]"
                   >
-                    <span className="text-[#00d4ff] mt-0.5 flex-shrink-0">→</span>
-                    {f}
-                  </li>
+                    {point}
+                  </span>
                 ))}
-              </ul>
-            </motion.div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

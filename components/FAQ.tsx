@@ -1,113 +1,95 @@
 'use client'
 
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
+import { Minus, Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { Plus } from 'lucide-react'
 
-const ease: [number,number,number,number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const faqs = [
   {
-    q: 'Ile kosztuje strona WWW?',
-    a: 'Ceny zaczynają się od 1 500 zł za stronę wizytówkową. Dokładna wycena zależy od zakresu projektu, liczby podstron i funkcji. Bezpłatna konsultacja i wizualizacja pozwolą nam dopasować ofertę do Twojego budżetu.',
+    q: 'Ile trwa przygotowanie pierwszego projektu?',
+    a: 'Pierwszą wizualizację pokazujemy zwykle w 24 godziny od zebrania materiałów i ustalenia kierunku.',
   },
   {
-    q: 'Jak szybko dostanę gotową stronę?',
-    a: 'Wizualizację projektu dostarczamy w ciągu 24h od konsultacji. Pełne wdrożenie strony trwa od 5 do 14 dni roboczych w zależności od złożoności projektu.',
+    q: 'Czy pomagacie w treści i strukturze strony?',
+    a: 'Tak. Porządkujemy układ sekcji, skracamy komunikaty i wzmacniamy CTA, żeby całość sprzedawała lepiej.',
   },
   {
-    q: 'Czy AI na mojej stronie wymaga technicznej wiedzy?',
-    a: 'Nie. Całą konfigurację i integrację obsługujemy po naszej stronie. Ty korzystasz z gotowego rozwiązania — bez konieczności znajomości technologii.',
+    q: 'Czy strona będzie dopracowana na telefonie?',
+    a: 'Tak. Projektujemy mobile-first, więc czytelność, spacing i hierarchia treści działają najpierw na małych ekranach.',
   },
   {
-    q: 'Dla jakich branż to działa najlepiej?',
-    a: 'Nasze rozwiązania sprawdzają się szczególnie dobrze w branży remontowej, nieruchomości, turystyce, klinikach i gabinetach kosmetycznych, firmach usługowych oraz wszelkich lokalnych biznesach opartych na zapytaniach od klientów.',
+    q: 'Czy możecie dodać automatyzację AI do obsługi leadów?',
+    a: 'Tak. Możemy połączyć stronę z procesem zbierania i porządkowania zapytań, tak aby kontakt trafiał dalej szybciej.',
   },
-  {
-    q: 'Co zawiera "bezpłatny projekt"?',
-    a: 'Bezpłatny projekt to kompletna wizualizacja Twojej strony przygotowana w ciągu 24h — bez żadnych zobowiązań. Możesz zobaczyć jak będzie wyglądać Twoja strona, zanim podejmiesz decyzję o współpracy.',
-  },
-]
+] as const
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
+  const [open, setOpen] = useState<number | null>(0)
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="faq" className="py-28 px-6" ref={ref}>
-      <div className="max-w-[780px] mx-auto">
+    <section id="faq" ref={ref} className="section-shell">
+      <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-16">
         <motion.div
-          className="mb-14"
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
+          transition={{ duration: 0.75, ease }}
         >
-          <span
-            className="text-xs text-[#00d4ff] tracking-[0.2em] uppercase mb-3 block"
-            style={{ fontFamily: 'var(--font-figtree)' }}
-          >
-            Pytania
-          </span>
-          <h2 className="font-syne text-[clamp(36px,5vw,60px)] font-bold text-[#e8f0ff] tracking-[-0.03em] leading-tight">
-            FAQ
-          </h2>
+          <span className="section-kicker">FAQ</span>
+          <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
+          <p className="section-copy">
+            Jeśli zależy Ci na stronie, która wygląda profesjonalnie i nie rozjeżdża się
+            na mobile, te kwestie pojawiają się najczęściej.
+          </p>
         </motion.div>
 
         <div className="flex flex-col gap-3">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.08, ease }}
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: open === i ? '1px solid rgba(0,212,255,0.2)' : '1px solid rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(20px)',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                transition: 'border-color 0.3s',
-              }}
-            >
-              <button
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span
-                  className="text-[#e8f0ff] text-sm font-semibold"
-                  style={{ fontFamily: 'var(--font-syne)', fontWeight: 700 }}
-                >
-                  {faq.q}
-                </span>
-                <motion.div
-                  animate={{ rotate: open === i ? 45 : 0 }}
-                  transition={{ duration: 0.25, ease }}
-                  className="flex-shrink-0"
-                >
-                  <Plus size={18} color={open === i ? '#00d4ff' : '#4a6080'} />
-                </motion.div>
-              </button>
+          {faqs.map((faq, index) => {
+            const isOpen = open === index
 
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease }}
-                  >
-                    <p
-                      className="px-6 pb-5 text-sm text-[#4a6080] leading-[1.8]"
-                      style={{ fontFamily: 'var(--font-figtree)', fontWeight: 300 }}
+            return (
+              <motion.div
+                key={faq.q}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.65, delay: index * 0.08, ease }}
+                className={`overflow-hidden rounded-[24px] border ${
+                  isOpen ? 'border-[#00d4ff]/20 bg-[#081321]' : 'border-white/8 bg-white/[0.03]'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+                >
+                  <span className="text-sm font-semibold leading-6 text-white sm:text-base">
+                    {faq.q}
+                  </span>
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#8fefff]">
+                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.32, ease }}
                     >
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                      <p className="px-5 pb-5 text-sm leading-7 text-[#9db4d2] sm:px-6 sm:text-[15px]">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

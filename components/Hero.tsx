@@ -11,6 +11,35 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 export default function Hero() {
   const [previewTrigger, setPreviewTrigger] = useState(0)
   const scrollTimerRef = useRef<number | null>(null)
+  const laptopRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = laptopRef.current
+    if (!el) return
+
+    let ticking = false
+
+    const update = () => {
+      const factor = window.innerWidth <= 768 ? 0.15 : 0.3
+      const translateY = Math.min(window.scrollY * factor, 150)
+      el.style.transform = `translateY(${translateY}px)`
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update)
+        ticking = true
+      }
+    }
+
+    requestAnimationFrame(update)
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
 
   useEffect(() => {
     return () => {
@@ -82,7 +111,7 @@ export default function Hero() {
           transition={{ duration: 0.82, delay: 0.16, ease }}
           className="min-w-0"
         >
-          <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
+          <div ref={laptopRef} style={{ willChange: 'transform' }} className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
             <LaptopShowcase trigger={previewTrigger} />
           </div>
         </motion.div>

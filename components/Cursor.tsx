@@ -7,10 +7,15 @@ export default function Cursor() {
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return
+    }
+
     let mouseX = 0
     let mouseY = 0
     let ringX = 0
     let ringY = 0
+    let frameId = 0
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX
@@ -28,12 +33,16 @@ export default function Cursor() {
         ringRef.current.style.left = ringX + 'px'
         ringRef.current.style.top = ringY + 'px'
       }
-      requestAnimationFrame(animate)
+      frameId = requestAnimationFrame(animate)
     }
 
     window.addEventListener('mousemove', onMove)
-    animate()
-    return () => window.removeEventListener('mousemove', onMove)
+    frameId = requestAnimationFrame(animate)
+
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      window.cancelAnimationFrame(frameId)
+    }
   }, [])
 
   return (

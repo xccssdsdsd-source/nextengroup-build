@@ -12,16 +12,14 @@ const projects = [
     href: 'https://dorimari.pl',
     description: 'sklep premium',
     accent: 'rgba(0,180,216,0.32)',
-    preview:
-      'https://image.thum.io/get/width/1600/noanimate/https://dorimari.pl',
+    preview: 'https://image.thum.io/get/width/1600/noanimate/https://dorimari.pl',
   },
   {
     name: 'PM-Apartments',
     href: 'https://pm-apartments.pl/',
     description: 'apartamenty premium',
     accent: 'rgba(201,169,110,0.3)',
-    preview:
-      'https://image.thum.io/get/width/1600/noanimate/https://pm-apartments.pl/',
+    preview: 'https://image.thum.io/get/width/1600/noanimate/https://pm-apartments.pl/',
   },
 ] as const
 
@@ -104,24 +102,27 @@ export default function Portfolio() {
     <section
       id="portfolio"
       ref={ref}
-      className="relative overflow-hidden bg-[#020617] px-6 py-24 sm:px-8"
+      className="section-shell overflow-hidden bg-[#020617]"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,180,216,0.08),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(0,180,216,0.08),transparent_28%)]" />
       <div className="pointer-events-none absolute inset-0 grain-drift opacity-40" />
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div
-          className="mb-12"
+          className="section-heading"
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease }}
         >
-          <span className="inline-flex rounded-full border border-[#00B4D8]/20 bg-[#00B4D8]/8 px-4 py-1.5 text-[11px] uppercase tracking-[0.32em] text-[#8fefff]">
-            Realizacje
-          </span>
+          <span className="section-kicker">Realizacje</span>
+          <h2 className="section-title">Dwa różne brandy, ten sam porządek i ten sam poziom dopracowania.</h2>
+          <p className="section-copy">
+            Pokazujemy tylko to, co rzeczywiście wspiera sprzedaż: klarowną strukturę,
+            mocniejszą prezentację oferty i estetykę premium.
+          </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {projects.map((project, index) => (
             <ProjectPreview
               key={project.name}

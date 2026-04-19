@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Mail } from 'lucide-react'
+import { ArrowRight, Mail, Instagram } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -27,9 +27,9 @@ export default function Contact() {
             <span className="section-kicker">Kontakt</span>
             <h2 className="section-title max-w-[10ch]">Zobacz, jak moze wygladac lepsza wersja Twojej strony.</h2>
 
-            <div className="mt-8 sm:max-w-md">
+            <div className="mt-8 flex flex-col gap-3 sm:max-w-md">
               <a
-                href="mailto:kontakt@nextengroup.pl"
+                href="mailto:digitalagencymail0@gmail.com"
                 className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
@@ -37,7 +37,21 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">E-mail</span>
-                  <span className="mt-1 block text-sm text-white sm:text-base">kontakt@nextengroup.pl</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">digitalagencymail0@gmail.com</span>
+                </span>
+              </a>
+              <a
+                href="https://www.instagram.com/nextengroup/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
+                  <Instagram size={18} />
+                </span>
+                <span>
+                  <span className="block text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Instagram</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">@nextengroup</span>
                 </span>
               </a>
             </div>
@@ -51,17 +65,14 @@ export default function Contact() {
                 '2-3 zdania o ofercie',
                 'glowny cel: wiecej zapytan, lepszy wizerunek albo automatyzacja leadow',
               ].map(item => (
-                <div
-                  key={item}
-                  className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-[#dfeeff]"
-                >
+                <div key={item} className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-[#dfeeff]">
                   {item}
                 </div>
               ))}
             </div>
 
             <a
-              href="mailto:kontakt@nextengroup.pl?subject=Zapytanie%20o%20strone%20WWW"
+              href="mailto:digitalagencymail0@gmail.com?subject=Zapytanie%20o%20strone%20WWW"
               className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm"
             >
               Napisz do nas

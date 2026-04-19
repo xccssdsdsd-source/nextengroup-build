@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import type { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
@@ -9,20 +8,9 @@ import DeviceMockups from './DeviceMockups'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
-  const scrollTimerRef = useRef<number | null>(null)
-
-  useEffect(() => {
-    return () => {
-      if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
-    }
-  }, [])
-
   const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
-    scrollTimerRef.current = window.setTimeout(() => {
-      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 800)
+    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -46,14 +34,36 @@ export default function Hero() {
             sprzedają.
           </motion.h1>
 
+          <motion.p
+            className="mt-6 max-w-xl text-sm leading-7 text-[#9db4d2] sm:text-base"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.62, delay: 0.08, ease }}
+          >
+            Projektujemy strony dla małych firm i usługodawców, które łączą design, copy i
+            automatyzacje AI. Efekt: więcej zapytań i lepiej poukładany proces pozyskiwania
+            leadów.
+          </motion.p>
+
           <motion.div
             className="mt-8 flex flex-col gap-3 sm:flex-row"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.62, delay: 0.12, ease }}
           >
-            <a href="#kontakt" onClick={handlePreviewClick} className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm">Darmowa wizualizacja</a>
-            <a href="#portfolio" className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm">Zobacz realizacje</a>
+            <a
+              href="#kontakt"
+              onClick={handlePreviewClick}
+              className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
+            >
+              Darmowa wizualizacja
+            </a>
+            <a
+              href="#portfolio"
+              className="btn-ghost inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
+            >
+              Zobacz realizacje
+            </a>
           </motion.div>
         </div>
 

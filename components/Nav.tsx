@@ -7,7 +7,6 @@ const links = [
   ['Usługi', '#uslugi'],
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
-  ['Opinie', '#opinie'],
   ['FAQ', '#faq'],
 ] as const
 
@@ -48,7 +47,7 @@ export default function Nav() {
                 Nexten Group
               </div>
               <div className="truncate text-[11px] uppercase tracking-[0.18em] text-white/38">
-                Web + AI systems
+                Strony WWW i automatyzacje AI
               </div>
             </div>
           </a>
@@ -70,7 +69,7 @@ export default function Nav() {
               href="#kontakt"
               className="btn-ghost hidden px-5 py-2.5 text-sm sm:inline-flex"
             >
-              Darmowa wycena
+              Darmowa wizualizacja
             </a>
             <button
               type="button"

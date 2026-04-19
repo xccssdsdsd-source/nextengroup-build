@@ -5,13 +5,14 @@ import { ArrowRight, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const contactEmail = 'kontakt@nextengroup.pl'
 
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="kontakt" ref={ref} className="section-shell">
+    <section id="kontakt" ref={ref} className="section-shell scroll-mt-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(26,111,255,0.14),transparent_32%)]" />
 
       <motion.div
@@ -25,11 +26,11 @@ export default function Contact() {
         <div className="relative grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:gap-14">
           <div className="max-w-2xl">
             <span className="section-kicker">Kontakt</span>
-            <h2 className="section-title max-w-[10ch]">Zobacz, jak moze wygladac lepsza wersja Twojej strony.</h2>
+            <h2 className="section-title max-w-[10ch]">Zobacz, jak może wyglądać lepsza wersja Twojej strony.</h2>
 
             <div className="mt-8 flex flex-col gap-3 sm:max-w-md">
               <a
-                href="mailto:digitalagencymail0@gmail.com"
+                href={`mailto:${contactEmail}`}
                 className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
@@ -37,7 +38,7 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">E-mail</span>
-                  <span className="mt-1 block text-sm text-white sm:text-base">digitalagencymail0@gmail.com</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">{contactEmail}</span>
                 </span>
               </a>
               <a
@@ -62,12 +63,12 @@ export default function Contact() {
           </div>
 
           <div className="glass rounded-[28px] p-6 sm:p-7">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Co warto wyslac</div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Co warto wysłać</div>
             <div className="mt-5 space-y-4">
               {[
                 'link do obecnej strony lub profilu firmy',
                 '2-3 zdania o ofercie',
-                'glowny cel: wiecej zapytan, lepszy wizerunek albo automatyzacja leadow',
+                'główny cel: więcej zapytań, lepszy wizerunek albo automatyzacja leadów',
               ].map(item => (
                 <div key={item} className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-[#dfeeff]">
                   {item}
@@ -76,7 +77,7 @@ export default function Contact() {
             </div>
 
             <a
-              href="mailto:digitalagencymail0@gmail.com?subject=Zapytanie%20o%20strone%20WWW"
+              href={`mailto:${contactEmail}?subject=Zapytanie%20o%20stronę%20WWW`}
               className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm"
             >
               Napisz do nas

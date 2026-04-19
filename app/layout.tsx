@@ -3,6 +3,11 @@ import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
 import './globals.css'
 import Cursor from '@/components/Cursor'
 
+const siteUrl = 'https://nextengroup.pl'
+const siteTitle = 'Nexten Group | Strony WWW i Automatyzacje AI'
+const siteDescription =
+  'Projektujemy strony WWW i automatyzacje AI dla małych firm. Więcej zapytań, szybsza obsługa leadów i darmowa wizualizacja w 24h.'
+
 const syne = Syne({
   subsets: ['latin'],
   weight: ['700', '800'],
@@ -25,9 +30,9 @@ const barlowCondensed = Barlow_Condensed({
 })
 
 export const metadata: Metadata = {
-  title: 'Nexten Group | Strony WWW i Automatyzacje AI',
-  description:
-    'Projektujemy strony WWW i systemy AI, które porządkują leady i zwiększają liczbę zapytań. Darmowa wizualizacja w 24h.',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     'strony www',
     'automatyzacje ai',
@@ -35,6 +40,40 @@ export const metadata: Metadata = {
     'chatbot ai',
     'nexten group',
   ],
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    title: siteTitle,
+    description: siteDescription,
+    siteName: 'Nexten Group',
+    locale: 'pl_PL',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({

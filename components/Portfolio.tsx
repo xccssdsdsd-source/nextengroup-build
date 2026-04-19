@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
@@ -12,14 +13,14 @@ const projects = [
     href: 'https://dorimari.pl',
     description: 'sklep premium',
     accent: 'rgba(0,180,216,0.32)',
-    preview: '/portfolio/dorimari-preview.png',
+    preview: '/portfolio/dorimari-preview.webp',
   },
   {
     name: 'PM-Apartments',
     href: 'https://pm-apartments.pl/',
     description: 'apartamenty premium',
     accent: 'rgba(201,169,110,0.3)',
-    preview: '/portfolio/pm-apartments-preview.png',
+    preview: '/portfolio/pm-apartments-preview.webp',
   },
 ] as const
 
@@ -65,16 +66,23 @@ function ProjectPreview({
 
         <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#020817]">
           <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(2,8,23,0)_0%,rgba(2,8,23,0.08)_62%,rgba(2,8,23,0.42)_100%)]" />
-          <img
+          <Image
             src={project.preview}
-            alt={project.name}
+            alt={`${project.name} – ${project.description}`}
+            width={1600}
+            height={1000}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
             loading="lazy"
+            quality={82}
           />
         </div>
 
         <div className="mt-4 flex items-end justify-between gap-4 px-1">
           <div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">
+              {project.description}
+            </div>
             <h3 className="text-[clamp(22px,3vw,32px)] font-semibold tracking-[-0.04em] text-white">
               {project.name}
             </h3>

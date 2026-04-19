@@ -58,7 +58,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
           Strona przechwytuje kontakt i porządkuje lead
         </h3>
 
-        <div className="relative flex flex-1 items-center justify-center">
+        <div className="relative flex flex-1 items-center justify-center pb-4">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(61,148,255,0.12),transparent_18%)]" />
 
           <AnimatePresence>
@@ -66,7 +66,12 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
               <motion.div
                 key={`mail-${trigger}`}
                 initial={{ opacity: 0, x: 220, scale: 0.8, rotate: -10 }}
-                animate={{ opacity: [0, 1, 1], x: [220, 70, 0], scale: [0.8, 1, 0.55], rotate: [-10, -4, 0] }}
+                animate={{
+                  opacity: [0, 1, 1],
+                  x: [220, 70, 0],
+                  scale: [0.8, 1, 0.55],
+                  rotate: [-10, -4, 0]
+                }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.75, ease }}
                 className="absolute left-1/2 top-1/2 z-20 ml-2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] border border-[#87d7ff]/30 bg-[linear-gradient(180deg,rgba(14,28,48,0.96),rgba(7,15,30,0.92))] text-[#ddf6ff] shadow-[0_0_40px_rgba(61,148,255,0.25)]"
@@ -84,13 +89,13 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
                   ? [
                       '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)',
                       '0 0 0 1px rgba(126,207,255,0.34), 0 0 90px rgba(61,148,255,0.42), inset 0 0 44px rgba(160,228,255,0.22)',
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)',
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)'
                     ]
                   : [
                       '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)',
                       '0 0 0 1px rgba(126,207,255,0.24), 0 0 74px rgba(61,148,255,0.22), inset 0 0 32px rgba(160,228,255,0.18)',
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)',
-                    ],
+                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)'
+                    ]
             }}
             transition={{
               duration: phase === 'scanning' ? 0.55 : 2.8,
@@ -107,8 +112,16 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
                 rotate: [0, 180, 360]
               }}
               transition={{
-                opacity: { duration: phase === 'scanning' ? 0.45 : 2.4, repeat: Infinity, ease: 'easeInOut' },
-                rotate: { duration: phase === 'scanning' ? 0.9 : 9, repeat: Infinity, ease: 'linear' }
+                opacity: {
+                  duration: phase === 'scanning' ? 0.45 : 2.4,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                },
+                rotate: {
+                  duration: phase === 'scanning' ? 0.9 : 9,
+                  repeat: Infinity,
+                  ease: 'linear'
+                }
               }}
               className="absolute inset-[42px] rounded-full border border-dashed border-[#87d7ff]/35"
             />
@@ -124,7 +137,11 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
                   <motion.div
                     key={tag.label}
                     initial={{ opacity: 0, scale: 0.8, y: 8 }}
-                    animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1, 1, 0.92], y: [8, 0, 0, -8] }}
+                    animate={{
+                      opacity: [0, 1, 1, 0],
+                      scale: [0.8, 1, 1, 0.92],
+                      y: [8, 0, 0, -8]
+                    }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1, delay: index * 0.08, ease }}
                     className={`absolute z-20 rounded-full border border-[#90e9ff]/30 bg-[#071524]/88 px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-[#c8f4ff] shadow-[0_0_24px_rgba(61,148,255,0.2)] ${tag.className}`}
@@ -156,16 +173,6 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
             )}
           </AnimatePresence>
         </div>
-
-        <motion.div
-          key={trigger}
-          initial={{ opacity: 0.4, y: 10 }}
-          animate={{ opacity: phase === 'result' ? 1 : 0.55, y: 0 }}
-          transition={{ duration: 0.4, ease }}
-          className="pb-2 text-center text-[clamp(22px,3vw,30px)] font-black tracking-[0.16em] text-[#f3fbff]"
-        >
-          AI ZNALAZŁO ZYSK
-        </motion.div>
       </div>
     </div>
   )

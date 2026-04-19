@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import FlowNetwork from './FlowNetwork'
@@ -9,6 +10,28 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
   const [previewTrigger, setPreviewTrigger] = useState(0)
+  const scrollTimerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (scrollTimerRef.current) {
+        window.clearTimeout(scrollTimerRef.current)
+      }
+    }
+  }, [])
+
+  const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    setPreviewTrigger(value => value + 1)
+
+    if (scrollTimerRef.current) {
+      window.clearTimeout(scrollTimerRef.current)
+    }
+
+    scrollTimerRef.current = window.setTimeout(() => {
+      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 1850)
+  }
 
   return (
     <section className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
@@ -39,7 +62,7 @@ export default function Hero() {
           >
             <a
               href="#kontakt"
-              onClick={() => setPreviewTrigger(value => value + 1)}
+              onClick={handlePreviewClick}
               className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm"
             >
               Darmowa wizualizacja

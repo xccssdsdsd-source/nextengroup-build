@@ -68,7 +68,7 @@ function ProjectPreview({
           <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(2,8,23,0)_0%,rgba(2,8,23,0.08)_62%,rgba(2,8,23,0.42)_100%)]" />
           <Image
             src={project.preview}
-            alt={`${project.name} – ${project.description}`}
+            alt={`${project.name} - ${project.description}`}
             width={1600}
             height={1000}
             sizes="(min-width: 1024px) 50vw, 100vw"

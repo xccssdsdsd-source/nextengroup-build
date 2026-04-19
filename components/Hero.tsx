@@ -107,7 +107,7 @@ export default function Hero() {
           transition={{ duration: 0.82, delay: 0.16, ease }}
           className="min-w-0"
         >
-          <div ref={laptopRef} style={{ willChange: 'transform', transform: 'translateZ(0)' }} className="laptop-glass mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
+          <div ref={laptopRef} style={{ willChange: 'transform' }} className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
             <LaptopShowcase trigger={previewTrigger} />
           </div>
         </motion.div>

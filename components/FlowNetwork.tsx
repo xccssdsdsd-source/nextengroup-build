@@ -6,14 +6,24 @@ import { ArrowRight, ChevronRight, PhoneCall, Sparkles, Zap } from 'lucide-react
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const leadText = 'Potrzebuję instalacji fotowoltaicznej dla domu 200 m2. Budżet: 40 000 PLN. Oddzwoń: 555-123'
+const leadText =
+  'Potrzebuj\u0119 instalacji fotowoltaicznej dla domu 200 m2. Bud\u017cet: 40 000 PLN. Oddzwo\u0144: 555-123'
 
 const analysisLabels = [
   'Analizowanie kontekstu...',
   'Ekstrakcja telefonu...',
   'Lead Score: 98/100',
-  'Pilność: Wysoka',
+  'Pilno\u015b\u0107: wysoka',
 ] as const
+
+const introCopy =
+  'W mniej ni\u017c 5 sekund surowe zapytanie zmienia si\u0119 w gotowy lead dla handlowca.'
+
+const previewCopy =
+  'Kliknij i zobacz, jak AI przechwytuje formularz, rozumie intencj\u0119 i przekazuje handlowcowi gotowego klienta.'
+
+const engineCopy = 'AI porz\u0105dkuje chaos w lead z warto\u015bci\u0105'
+const reactionCopy = 'Reakcja w 5 s zamiast 30 minut r\u0119cznego odpisywania'
 
 export default function FlowNetwork() {
   const [hasStarted, setHasStarted] = useState(false)
@@ -86,9 +96,7 @@ export default function FlowNetwork() {
             <h3 className="mt-3 text-xl font-semibold text-[#edf8ff] sm:text-2xl">
               Zobacz jak zarabiamy dla Ciebie czas
             </h3>
-            <p className="mt-3 max-w-lg text-sm leading-7 text-[#88a3c6] sm:text-[15px]">
-              W mniej niż 5 sekund surowe zapytanie zmienia się w gotowy lead dla handlowca.
-            </p>
+            <p className="mt-3 max-w-lg text-sm leading-7 text-[#88a3c6] sm:text-[15px]">{introCopy}</p>
           </div>
 
           <div className="flex items-center gap-2 rounded-full border border-[#00d4ff]/20 bg-[#00d4ff]/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#8feaff]">
@@ -112,14 +120,12 @@ export default function FlowNetwork() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease }}
-              className="relative z-10 flex flex-col items-center text-center"
+              className="relative z-10 flex max-w-xl flex-col items-center text-center"
             >
               <div className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-[#7ea0c7]">
                 Symulacja procesu leadowego
               </div>
-              <div className="mt-5 max-w-md text-balance text-sm leading-7 text-[#90abc9] sm:text-base">
-                Kliknij i zobacz, jak AI przechwytuje formularz, rozumie intencję i przekazuje handlowcowi gotowego klienta.
-              </div>
+              <div className="mt-5 text-balance text-sm leading-7 text-[#90abc9] sm:text-base">{previewCopy}</div>
               <motion.button
                 type="button"
                 onClick={handleStart}
@@ -140,7 +146,7 @@ export default function FlowNetwork() {
           )}
 
           {hasStarted && (
-            <div className="relative z-10 grid w-full max-w-6xl gap-5 lg:grid-cols-[1.1fr_0.8fr_1.1fr] lg:items-center lg:gap-6">
+            <div className="relative z-10 grid w-full max-w-6xl gap-5 lg:grid-cols-[1.08fr_0.84fr_1.08fr] lg:items-center lg:gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -56 }}
                 animate={{ opacity: formVisible ? 1 : 0, x: formVisible ? 0 : -56 }}
@@ -173,7 +179,7 @@ export default function FlowNetwork() {
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {['Kanał: strona WWW', 'Chaos inputu: wysoki', 'Wymaga pilnej reakcji'].map(tag => (
+                  {['Kana\u0142: strona WWW', 'Chaos inputu: wysoki', 'Wymaga pilnej reakcji'].map(tag => (
                     <span
                       key={tag}
                       className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#97b3d3]"
@@ -197,7 +203,7 @@ export default function FlowNetwork() {
                       : '0 0 0 1px rgba(255,255,255,0.06)',
                   }}
                   transition={{ duration: 1.2, ease: 'easeInOut', repeat: engineActive ? Infinity : 0 }}
-                  className="relative flex h-[230px] w-[230px] flex-col items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(0,212,255,0.2),rgba(5,18,36,0.96)_58%,rgba(3,10,24,1)_100%)] text-center"
+                  className="relative flex h-[230px] w-[230px] flex-col items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(0,212,255,0.2),rgba(5,18,36,0.96)_58%,rgba(3,10,24,1)_100%)] px-4 text-center"
                 >
                   <div className="absolute inset-[16px] rounded-full border border-[#00d4ff]/10" />
                   <div className="absolute inset-[34px] rounded-full border border-white/6" />
@@ -206,7 +212,7 @@ export default function FlowNetwork() {
                   </div>
                   <div className="mt-4 text-[11px] uppercase tracking-[0.3em] text-[#7ea0c7]">NG Engine</div>
                   <div className="mt-2 max-w-[150px] text-balance text-lg font-semibold leading-tight text-[#eff9ff]">
-                    AI porządkuje chaos w lead z wartością
+                    {engineCopy}
                   </div>
 
                   <AnimatePresence>
@@ -252,7 +258,7 @@ export default function FlowNetwork() {
 
                 <div className="mt-5 rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.03)_100%)] p-4">
                   <div className="flex items-center gap-2 text-sm font-semibold text-[#fdf1c8]">
-                    <span className="text-lg">🔥</span>
+                    <span className="text-lg">{'\uD83D\uDD25'}</span>
                     High-Value Lead Discovered
                   </div>
                   <div className="mt-4 text-xl font-semibold text-[#eff9ff]">Jan Kowalski</div>
@@ -278,7 +284,7 @@ export default function FlowNetwork() {
                       Call Now
                     </button>
                     <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#a6c2df]">
-                      Reakcja w 5 s zamiast 30 minut ręcznego odpisywania
+                      {reactionCopy}
                     </div>
                   </div>
                 </div>
@@ -307,7 +313,7 @@ export default function FlowNetwork() {
             <div className="flex flex-wrap gap-2">
               {[
                 activeStep >= 0 ? 'Formularz przechwycony' : 'Czekamy na zapytanie',
-                activeStep >= 1 ? 'AI czyta budżet i telefon' : 'AI w trybie standby',
+                activeStep >= 1 ? 'AI czyta bud\u017cet i telefon' : 'AI w trybie standby',
                 activeStep >= 2 ? 'Handlowiec dostaje lead premium' : 'CRM czeka na wynik',
               ].map(item => (
                 <div

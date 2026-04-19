@@ -7,6 +7,18 @@ import FlowNetwork from './FlowNetwork'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
+const badgeText = 'Strony WWW + system lead\u00f3w AI'
+const headlineAccent = 'KT\u00d3RE'
+const headlineLine3 = 'ID\u0104 W SYSTEM.'
+const heroBody =
+  'Sekcja start pokazuje to jak w interfejsie produktu: klient wysy\u0142a zapytanie, system rozumie tre\u015b\u0107, a Ty dostajesz gotowy lead zamiast r\u0119cznej obs\u0142ugi wszystkiego.'
+
+const heroStats = [
+  { num: 78, suffix: '%', label: 'klient\u00f3w sprawdza firm\u0119 online przed kontaktem' },
+  { num: 24, suffix: 'h', label: 'na pierwsz\u0105 wizualizacj\u0119 procesu i strony' },
+  { num: 3, suffix: 'x', label: 'mniej r\u0119cznej pracy przy obs\u0142udze lead\u00f3w' },
+]
+
 function CountUp({ to, suffix = '' }: { to: number | string; suffix?: string }) {
   const [val, setVal] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
@@ -33,31 +45,37 @@ function CountUp({ to, suffix = '' }: { to: number | string; suffix?: string }) 
     return () => observer.disconnect()
   }, [to])
 
-  return <span ref={ref}>{val}{suffix}</span>
+  return (
+    <span ref={ref}>
+      {val}
+      {suffix}
+    </span>
+  )
 }
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex overflow-hidden">
+    <section className="relative flex min-h-screen overflow-hidden">
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 120% 120% at 80% 50%, #0d2a5e 0%, #071428 50%, transparent 100%),
-            radial-gradient(ellipse 80% 100% at 0% 50%, #020810 60%, #041228 100%)
+            radial-gradient(ellipse 120% 120% at 82% 48%, rgba(13,42,94,0.95) 0%, rgba(7,20,40,0.78) 42%, transparent 100%),
+            radial-gradient(ellipse 90% 100% at 0% 42%, #020810 48%, #041228 100%)
           `,
         }}
       />
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none absolute inset-0"
         style={{
           left: '50%',
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff'/%3E%3C/svg%3E")`,
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\'%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'1\' fill=\'%23ffffff\'/%3E%3C/svg%3E")',
           opacity: 0.06,
         }}
       />
       <div
-        className="absolute inset-y-0 pointer-events-none"
+        className="pointer-events-none absolute inset-y-0 hidden lg:block"
         style={{
           left: '51%',
           width: '1px',
@@ -66,8 +84,8 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pb-16 pt-24 lg:flex-row lg:items-center">
-        <div className="flex w-full flex-col gap-7 py-10 lg:w-[42%]">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 pb-20 pt-24 lg:flex-row lg:items-center lg:gap-14 lg:px-8 lg:pt-28">
+        <div className="flex w-full flex-col gap-8 lg:w-[42%] lg:py-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,13 +105,13 @@ export default function Hero() {
                 animate={{ scale: [1, 1.4, 1] }}
                 transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }}
               />
-              Strony WWW + system leadĂłw AI
+              {badgeText}
             </span>
           </motion.div>
 
           <motion.h1
             className="font-barlow uppercase leading-[0.9] tracking-[-0.02em] text-[#e8f0ff]"
-            style={{ fontSize: 'clamp(72px, 8.5vw, 128px)' }}
+            style={{ fontSize: 'clamp(56px, 8vw, 128px)' }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease }}
@@ -104,20 +122,20 @@ export default function Hero() {
               className="gradient-text"
               style={{ filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.4))' }}
             >
-              KTĂ“RE
+              {headlineAccent}
             </span>
             <br />
-            IDÄ„ W SYSTEM.
+            {headlineLine3}
           </motion.h1>
 
           <motion.p
-            className="max-w-xl text-lg leading-[1.7] text-[#7f96b6]"
+            className="max-w-xl text-base leading-[1.8] text-[#8ca4c4] sm:text-lg"
             style={{ fontFamily: 'var(--font-figtree)', fontWeight: 300 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease }}
           >
-            Sekcja start pokazuje to jak w interfejsie produktu: klient wysyĹ‚a zadanie, system rozdziela je na akcje, a Ty widzisz gotowy wynik zamiast rÄ™cznej obsĹ‚ugi wszystkiego.
+            {heroBody}
           </motion.p>
 
           <motion.div
@@ -131,48 +149,39 @@ export default function Hero() {
               className="btn-primary px-7 py-3.5 text-sm"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: 700 }}
             >
-              Napisz po bezpĹ‚atny projekt
+              Napisz po bezp\u0142atny projekt
             </a>
             <a
               href="#portfolio"
               className="btn-ghost px-7 py-3.5 text-sm"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: 600 }}
             >
-              Zobacz jak to dziaĹ‚a
+              Zobacz jak to dzia\u0142a
             </a>
           </motion.div>
 
           <motion.div
-            className="mt-4 flex items-stretch gap-0"
+            className="mt-2 grid gap-3 sm:grid-cols-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease }}
           >
-            {[
-              { num: 78, suffix: '%', label: 'klientĂłw sprawdza firmÄ™ online przed kontaktem' },
-              { num: 24, suffix: 'h', label: 'na pierwszÄ… wizualizacjÄ™ procesu i strony' },
-              { num: 3, suffix: 'x', label: 'mniej rÄ™cznej pracy przy obsĹ‚udze leadĂłw' },
-            ].map((stat, i) => (
-              <div key={i} className="flex items-stretch">
-                {i > 0 && (
-                  <div
-                    className="mx-5 my-2 w-px"
-                    style={{ background: 'rgba(255,255,255,0.06)' }}
-                  />
-                )}
-                <div className="flex flex-col gap-0.5">
-                  <span
-                    className="font-barlow text-3xl leading-none text-[#00d4ff]"
-                    style={{ fontWeight: 900 }}
-                  >
-                    <CountUp to={stat.num} suffix={stat.suffix} />
-                  </span>
-                  <span
-                    className="max-w-[120px] text-[11px] leading-tight text-[#4a6080]"
-                    style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
-                  >
-                    {stat.label}
-                  </span>
+            {heroStats.map((stat, i) => (
+              <div
+                key={i}
+                className="rounded-[22px] border border-white/8 bg-white/[0.03] px-4 py-4 backdrop-blur-sm"
+              >
+                <span
+                  className="font-barlow text-3xl leading-none text-[#00d4ff]"
+                  style={{ fontWeight: 900 }}
+                >
+                  <CountUp to={stat.num} suffix={stat.suffix} />
+                </span>
+                <div
+                  className="mt-2 max-w-[160px] text-[11px] leading-[1.45] text-[#6f87a7]"
+                  style={{ fontFamily: 'var(--font-figtree)', fontWeight: 400 }}
+                >
+                  {stat.label}
                 </div>
               </div>
             ))}
@@ -180,17 +189,24 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="mt-2 h-[720px] w-full px-0 sm:h-[760px] lg:mt-0 lg:h-[680px] lg:w-[58%]"
+          className="w-full lg:w-[58%]"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease }}
         >
-          <FlowNetwork />
+          <div className="mx-auto h-[760px] w-full max-w-[860px] sm:h-[820px] lg:h-[720px]">
+            <FlowNetwork />
+          </div>
         </motion.div>
       </div>
 
-      <a href="#uslugi" className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 text-[#4a6080] transition-colors duration-200 hover:text-[#00d4ff]">
-        <span className="text-xs uppercase tracking-widest" style={{ fontFamily: 'var(--font-figtree)' }}>scroll</span>
+      <a
+        href="#uslugi"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1.5 text-[#4a6080] transition-colors duration-200 hover:text-[#00d4ff] lg:flex"
+      >
+        <span className="text-xs uppercase tracking-widest" style={{ fontFamily: 'var(--font-figtree)' }}>
+          scroll
+        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}

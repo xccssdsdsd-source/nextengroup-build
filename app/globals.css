@@ -237,6 +237,155 @@ select {
   z-index: 1;
 }
 
+.devices-group {
+  position: relative;
+  width: 520px;
+  height: 440px;
+}
+
+.devices-laptop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.devices-phone {
+  position: absolute;
+  left: 310px;
+  top: 80px;
+  z-index: 2;
+}
+
+@keyframes dm-float-laptop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes dm-float-phone {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+.float-laptop {
+  animation: dm-float-laptop 5s ease-in-out infinite;
+}
+
+.float-phone {
+  animation: dm-float-phone 4s ease-in-out 1s infinite;
+}
+
+.float-laptop.no-float,
+.float-phone.no-float {
+  animation-play-state: paused;
+}
+
+.dmblob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+@keyframes dmblob-l1 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(40px, -30px); }
+  66% { transform: translate(-20px, 35px); }
+}
+
+@keyframes dmblob-l2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-35px, 22px); }
+  66% { transform: translate(28px, -18px); }
+}
+
+@keyframes dmblob-l3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(22px, 28px); }
+}
+
+@keyframes dmblob-p1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(22px, -28px); }
+}
+
+@keyframes dmblob-p2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-16px, 22px); }
+}
+
+.dmblob-l1 {
+  width: 200px;
+  height: 200px;
+  background: rgba(37, 99, 235, 0.4);
+  top: 5%;
+  left: 5%;
+  animation: dmblob-l1 9s ease-in-out infinite;
+}
+
+.dmblob-l2 {
+  width: 180px;
+  height: 180px;
+  background: rgba(56, 189, 248, 0.28);
+  top: 22%;
+  left: 38%;
+  animation: dmblob-l2 11s ease-in-out infinite;
+}
+
+.dmblob-l3 {
+  width: 155px;
+  height: 155px;
+  background: rgba(99, 102, 241, 0.32);
+  top: 48%;
+  left: 12%;
+  animation: dmblob-l3 7s ease-in-out infinite;
+}
+
+.dmblob-p1 {
+  width: 140px;
+  height: 140px;
+  background: rgba(37, 99, 235, 0.45);
+  top: 8%;
+  left: -35%;
+  animation: dmblob-p1 6s ease-in-out infinite;
+}
+
+.dmblob-p2 {
+  width: 120px;
+  height: 120px;
+  background: rgba(56, 189, 248, 0.35);
+  top: 48%;
+  left: 22%;
+  animation: dmblob-p2 5s ease-in-out infinite;
+}
+
+.dmscanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .devices-group {
+    width: 180px;
+    height: 320px;
+  }
+
+  .devices-laptop {
+    display: none;
+  }
+
+  .devices-phone {
+    position: static;
+  }
+}
+
 .grain-overlay,
 .grain-drift {
   background-image:

@@ -1,61 +1,28 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import type { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import LaptopShowcase from './LaptopShowcase'
+import DeviceMockups from './DeviceMockups'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
-  const [previewTrigger, setPreviewTrigger] = useState(0)
   const scrollTimerRef = useRef<number | null>(null)
-  const laptopRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = laptopRef.current
-    if (!el) return
-
-    let ticking = false
-    let currentY = 0
-    let targetY = 0
-
-    const onScroll = () => {
-      targetY = window.scrollY * (window.innerWidth <= 768 ? 0.08 : 0.18)
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          currentY += (targetY - currentY) * 0.08
-          el.style.transform = `translateY(${currentY}px)`
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     return () => {
-      if (scrollTimerRef.current) {
-        window.clearTimeout(scrollTimerRef.current)
-      }
+      if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
     }
   }, [])
 
   const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    setPreviewTrigger(value => value + 1)
-
-    if (scrollTimerRef.current) {
-      window.clearTimeout(scrollTimerRef.current)
-    }
-
+    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
     scrollTimerRef.current = window.setTimeout(() => {
       document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 1850)
+    }, 800)
   }
 
   return (
@@ -85,19 +52,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.62, delay: 0.12, ease }}
           >
-            <a
-              href="#kontakt"
-              onClick={handlePreviewClick}
-              className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm"
-            >
-              Darmowa wizualizacja
-            </a>
-            <a
-              href="#portfolio"
-              className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm"
-            >
-              Zobacz realizacje
-            </a>
+            <a href="#kontakt" onClick={handlePreviewClick} className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm">Darmowa wizualizacja</a>
+            <a href="#portfolio" className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm">Zobacz realizacje</a>
           </motion.div>
         </div>
 
@@ -107,21 +63,15 @@ export default function Hero() {
           transition={{ duration: 0.82, delay: 0.16, ease }}
           className="min-w-0"
         >
-          <div ref={laptopRef} style={{ willChange: 'transform' }} className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
-            <LaptopShowcase trigger={previewTrigger} />
+          <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
+            <DeviceMockups />
           </div>
         </motion.div>
       </div>
 
-      <a
-        href="#uslugi"
-        className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6883a7] transition-colors hover:text-[#8fefff] lg:flex"
-      >
+      <a href="#uslugi" className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6883a7] transition-colors hover:text-[#8fefff] lg:flex">
         <span className="text-[11px] uppercase tracking-[0.24em]">Przewiń</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-        >
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}>
           <ChevronDown size={18} />
         </motion.div>
       </a>

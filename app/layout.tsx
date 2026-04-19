@@ -12,28 +12,42 @@ const syne = Syne({
 
 const figtree = Figtree({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-figtree',
   display: 'swap',
 })
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
-  weight: ['900'],
+  weight: ['700', '900'],
   variable: '--font-barlow',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Next Group — Strony WWW & Automatyzacje AI',
-  description: 'Tworzymy strony internetowe i automatyzacje AI dla polskich firm. Projekt wizualizacji w 24h. Napisz po bezpłatny projekt.',
-  keywords: 'strony www, automatyzacje AI, chatbot AI, web design, Next Group, Polska',
+  title: 'Nexten Group | Strony WWW i Automatyzacje AI',
+  description:
+    'Projektujemy strony WWW i systemy AI, które porządkują leady i zwiększają liczbę zapytań. Darmowa wizualizacja w 24h.',
+  keywords: [
+    'strony www',
+    'automatyzacje ai',
+    'landing page',
+    'chatbot ai',
+    'nexten group',
+  ],
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <html lang="pl" className={`${syne.variable} ${figtree.variable} ${barlowCondensed.variable}`}>
-      <body className="antialiased bg-[#020810] text-[#e8f0ff]">
+    <html
+      lang="pl"
+      className={`${syne.variable} ${figtree.variable} ${barlowCondensed.variable}`}
+    >
+      <body className="bg-[#020810] text-[#e8f0ff] antialiased">
         <Cursor />
         {children}
       </body>

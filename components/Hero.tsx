@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import FlowNetwork from './FlowNetwork'
+import LaptopShowcase from './LaptopShowcase'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -83,7 +83,7 @@ export default function Hero() {
           className="min-w-0"
         >
           <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
-            <FlowNetwork trigger={previewTrigger} />
+            <LaptopShowcase trigger={previewTrigger} />
           </div>
         </motion.div>
       </div>

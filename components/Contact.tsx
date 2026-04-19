@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Mail, MessageSquareText } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -25,13 +25,9 @@ export default function Contact() {
         <div className="relative grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:gap-14">
           <div className="max-w-2xl">
             <span className="section-kicker">Kontakt</span>
-            <h2 className="section-title max-w-[10ch]">Zobacz, jak może wyglądać lepsza wersja Twojej strony.</h2>
-            <p className="section-copy max-w-xl">
-              Napisz krótko, czym zajmuje się Twoja firma. Przygotujemy kierunek,
-              który będzie wyglądał profesjonalnie i prowadził użytkownika do kontaktu.
-            </p>
+            <h2 className="section-title max-w-[10ch]">Zobacz, jak moze wygladac lepsza wersja Twojej strony.</h2>
 
-            <div className="mt-8 grid gap-3 sm:max-w-md">
+            <div className="mt-8 sm:max-w-md">
               <a
                 href="mailto:kontakt@nextengroup.pl"
                 className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-colors duration-200 hover:border-[#00d4ff]/18"
@@ -44,32 +40,16 @@ export default function Contact() {
                   <span className="mt-1 block text-sm text-white sm:text-base">kontakt@nextengroup.pl</span>
                 </span>
               </a>
-
-              <div className="glass rounded-[24px] px-5 py-4">
-                <div className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/18 bg-[#00d4ff]/10 text-[#8fefff]">
-                    <MessageSquareText size={18} />
-                  </span>
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Start współpracy</div>
-                    <p className="mt-2 text-sm leading-7 text-[#dfeeff] sm:text-base">
-                      Opisz firmę, ofertę i cel strony. Resztę porządkujemy już po naszej stronie.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="glass rounded-[28px] p-6 sm:p-7">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">
-              Co warto wysłać
-            </div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">Co warto wyslac</div>
             <div className="mt-5 space-y-4">
               {[
                 'link do obecnej strony lub profilu firmy',
                 '2-3 zdania o ofercie',
-                'główny cel: więcej zapytań, lepszy wizerunek albo automatyzacja leadów',
+                'glowny cel: wiecej zapytan, lepszy wizerunek albo automatyzacja leadow',
               ].map(item => (
                 <div
                   key={item}
@@ -81,7 +61,7 @@ export default function Contact() {
             </div>
 
             <a
-              href="mailto:kontakt@nextengroup.pl?subject=Zapytanie%20o%20stron%C4%99%20WWW"
+              href="mailto:kontakt@nextengroup.pl?subject=Zapytanie%20o%20strone%20WWW"
               className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm"
             >
               Napisz do nas

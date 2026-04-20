@@ -33,14 +33,14 @@ export default function Services() {
 
   return (
     <section id="uslugi" ref={ref} className="section-shell">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,212,255,0.08),transparent_24%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,212,255,0.1),transparent_28%),radial-gradient(ellipse_at_80%_100%,rgba(26,111,255,0.07),transparent_32%)]" />
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="section-heading"
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">Oferta</span>
           <h2 className="section-title">Skupiamy stronę na sprzedaży, nie na ozdobnikach.</h2>
@@ -50,13 +50,13 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3" style={{ perspective: '1200px' }}>
           {services.map((service, index) => (
             <motion.article
               key={service.title}
-              initial={{ opacity: 0, y: 34 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.75, delay: index * 0.1, ease }}
+              initial={{ opacity: 0, y: 44, rotateX: 8, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.82, delay: index * 0.12, ease }}
               className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26),0_0_60px_rgba(0,180,255,0.07)]"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.85),transparent)]" />

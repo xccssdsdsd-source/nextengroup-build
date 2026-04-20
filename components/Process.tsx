@@ -41,9 +41,9 @@ export default function Process() {
       <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="section-heading"
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">Proces</span>
           <h2 className="section-title">Szybko, jasno i bez chaosu po drodze.</h2>
@@ -52,17 +52,17 @@ export default function Process() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4" style={{ perspective: '1200px' }}>
           {steps.map((step, index) => (
             <motion.article
               key={step.num}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: index * 0.08, ease }}
+              initial={{ opacity: 0, y: 36, rotateX: 7, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.82, delay: index * 0.1, ease }}
               className="glass rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-white/16 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
             >
               <div className="flex items-baseline gap-2">
-                <span className="font-syne text-[28px] font-bold leading-none tracking-[-0.04em] text-[#00d4ff]/30">{step.num}</span>
+                <span className="font-syne text-[32px] font-bold leading-none tracking-[-0.04em] text-[#00d4ff]/40 drop-shadow-[0_0_12px_rgba(0,212,255,0.3)]">{step.num}</span>
                 <span className="text-[10px] uppercase tracking-[0.26em] text-[#79edff]">Etap</span>
               </div>
               <h3 className="mt-4 text-xl font-bold tracking-[-0.04em] text-white leading-snug">

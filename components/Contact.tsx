@@ -13,15 +13,17 @@ export default function Contact() {
 
   return (
     <section id="kontakt" ref={ref} className="section-shell scroll-mt-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(26,111,255,0.14),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(26,111,255,0.18),transparent_36%),radial-gradient(ellipse_at_20%_80%,rgba(0,212,255,0.08),transparent_28%)]" />
 
       <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease }}
+        initial={{ opacity: 0, y: 32, filter: 'blur(8px)' }}
+        animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+        transition={{ duration: 0.9, ease }}
         className="glass relative mx-auto max-w-7xl overflow-hidden rounded-[34px] p-7 sm:p-10 lg:p-12"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,212,255,0.12),transparent_22%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,212,255,0.15),transparent_28%),radial-gradient(ellipse_at_bottom_left,rgba(26,111,255,0.1),transparent_32%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.8),transparent)]" />
+        <div className="pulse-glow absolute inset-x-[20%] top-0 h-px blur-sm bg-[rgba(0,212,255,0.5)]" />
 
         <div className="relative grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:gap-14">
           <div className="max-w-2xl">

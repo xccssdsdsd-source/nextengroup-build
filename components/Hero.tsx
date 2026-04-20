@@ -7,6 +7,12 @@ import DeviceMockups from './DeviceMockups'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
+const words = [
+  { text: 'Strony,', cls: 'text-white' },
+  { text: 'które', cls: 'gradient-text' },
+  { text: 'sprzedają.', cls: 'text-white' },
+]
+
 export default function Hero() {
   const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -14,31 +20,39 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(26,111,255,0.24),transparent_24%),radial-gradient(circle_at_16%_20%,rgba(0,212,255,0.1),transparent_18%)]" />
+    <section suppressHydrationWarning className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="aurora-1 absolute -right-[8%] -top-[10%] h-[700px] w-[700px] rounded-full bg-[rgba(26,111,255,0.2)] blur-[130px]" />
+        <div className="aurora-2 absolute left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[rgba(0,212,255,0.1)] blur-[110px]" />
+        <div className="aurora-3 absolute -bottom-[20%] left-[30%] h-[600px] w-[600px] rounded-full bg-[rgba(80,40,220,0.1)] blur-[140px]" />
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_18%,rgba(26,111,255,0.18),transparent_30%),radial-gradient(ellipse_at_16%_20%,rgba(0,212,255,0.08),transparent_24%)]" />
       <div className="pointer-events-none absolute inset-0 grain-drift opacity-30" />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">
         <div className="max-w-2xl">
-          <motion.h1
-            className="max-w-[9ch] font-sans text-[clamp(58px,9vw,128px)] uppercase leading-[0.86] tracking-[-0.06em] text-white"
+          <h1
+            className="max-w-[9ch] font-sans text-[clamp(58px,9vw,128px)] uppercase leading-[0.86] tracking-[-0.06em]"
             style={{ fontFamily: 'var(--font-barlow)' }}
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.72, ease }}
           >
-            Strony,
-            <br />
-            <span className="gradient-text">które</span>
-            <br />
-            sprzedają.
-          </motion.h1>
+            {words.map(({ text, cls }, i) => (
+              <motion.span
+                key={text}
+                className={`block ${cls}`}
+                initial={{ opacity: 0, y: 44 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.13, ease }}
+              >
+                {text}
+              </motion.span>
+            ))}
+          </h1>
 
           <motion.p
             className="mt-6 max-w-xl text-sm leading-7 text-[#9db4d2] sm:text-base"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.62, delay: 0.08, ease }}
+            transition={{ duration: 0.7, delay: 0.44, ease }}
           >
             Projektujemy strony dla małych firm i usługodawców — łącząc design, treść
             i automatyzacje AI. Efekt: więcej zapytań i prostszy proces ich obsługi.
@@ -48,7 +62,7 @@ export default function Hero() {
             className="mt-8 flex flex-col gap-3 sm:flex-row"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.62, delay: 0.12, ease }}
+            transition={{ duration: 0.65, delay: 0.56, ease }}
           >
             <a
               href="#kontakt"
@@ -67,9 +81,9 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.82, delay: 0.16, ease }}
+          transition={{ duration: 1.0, delay: 0.22, ease }}
           className="min-w-0"
         >
           <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
@@ -78,9 +92,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <a href="#uslugi" className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6883a7] transition-colors hover:text-[#8fefff] lg:flex">
+      <a href="#uslugi" className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6883a7] transition-[color,opacity] duration-300 hover:text-[#8fefff] lg:flex">
         <span className="text-[11px] uppercase tracking-[0.24em]">Przewiń</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}>
+        <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
           <ChevronDown size={18} />
         </motion.div>
       </a>

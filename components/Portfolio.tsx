@@ -38,10 +38,10 @@ function ProjectPreview({
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,18,38,0.96),rgba(3,9,20,0.98))] shadow-[0_30px_90px_rgba(0,0,0,0.38)]"
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: 0.15 + index * 0.12, ease }}
+      className="group relative overflow-hidden rounded-[30px] border border-white/12 bg-[linear-gradient(152deg,rgba(10,22,50,0.95),rgba(3,9,20,0.98))] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.1),0_40px_100px_rgba(0,0,0,0.44),0_0_60px_rgba(0,80,180,0.06)] transition-[box-shadow,border-color] duration-300 hover:border-white/18 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.16),0_60px_120px_rgba(0,0,0,0.5),0_0_80px_rgba(0,100,220,0.1)]"
+      initial={{ opacity: 0, y: 56, filter: 'blur(8px)' }}
+      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 0.9, delay: 0.15 + index * 0.14, ease }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
@@ -72,7 +72,7 @@ function ProjectPreview({
             width={1600}
             height={1000}
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
             loading="lazy"
             quality={82}
           />
@@ -87,7 +87,7 @@ function ProjectPreview({
               {project.name}
             </h3>
           </div>
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/[0.07] group-hover:text-white">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] text-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-[border-color,background,transform,color] duration-300 group-hover:border-[#00d4ff]/36 group-hover:bg-[linear-gradient(135deg,rgba(0,212,255,0.14),rgba(0,100,220,0.07))] group-hover:text-[#9ff3ff] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
             <ArrowUpRight size={18} strokeWidth={1.8} />
           </span>
         </div>

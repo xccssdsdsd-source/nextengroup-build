@@ -34,9 +34,9 @@ export default function FAQ() {
     <section id="faq" ref={ref} className="section-shell">
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">FAQ</span>
           <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
@@ -52,9 +52,9 @@ export default function FAQ() {
             return (
               <motion.div
                 key={faq.q}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.65, delay: index * 0.08, ease }}
+                initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+                animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+                transition={{ duration: 0.68, delay: index * 0.09, ease }}
                 className={`overflow-hidden rounded-[24px] border transition-[border-color,background,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-[#00d4ff]/28 bg-[linear-gradient(152deg,rgba(0,40,80,0.72),rgba(3,10,26,0.88))] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.12),inset_0_0_32px_rgba(0,120,220,0.07),0_20px_48px_rgba(0,0,0,0.32)]'

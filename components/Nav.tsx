@@ -33,8 +33,8 @@ export default function Nav() {
       <div
         className={`mx-auto max-w-7xl rounded-[22px] border px-4 py-3 transition-all duration-300 sm:px-5 ${
           scrolled
-            ? 'border-white/10 bg-[#06101d]/86 shadow-[0_16px_48px_rgba(0,0,0,0.28)] backdrop-blur-xl'
-            : 'border-white/6 bg-[#06101d]/52 backdrop-blur-lg'
+            ? 'border-white/12 bg-[#040d1b]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_24px_64px_rgba(0,0,0,0.38),0_6px_18px_rgba(0,0,0,0.22)] backdrop-blur-2xl'
+            : 'border-white/8 bg-[#040d1b]/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl'
         }`}
       >
         <div className="flex items-center justify-between gap-4">
@@ -84,7 +84,7 @@ export default function Nav() {
         </div>
 
         {open && (
-          <div className="mt-4 rounded-[20px] border border-white/8 bg-[#081322]/96 p-4 lg:hidden">
+          <div className="mt-4 rounded-[20px] border border-white/10 bg-[#040e1e]/96 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl lg:hidden">
             <div className="flex flex-col gap-2">
               {links.map(([label, href]) => (
                 <a

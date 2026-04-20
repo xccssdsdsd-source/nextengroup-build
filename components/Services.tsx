@@ -57,10 +57,11 @@ export default function Services() {
               initial={{ opacity: 0, y: 34 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: index * 0.1, ease }}
-              className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/18 hover:shadow-[0_24px_80px_rgba(0,0,0,0.36),0_4px_16px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)]"
+              className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26),0_0_60px_rgba(0,180,255,0.07)]"
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)]" />
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/16 bg-[#00d4ff]/10 text-[#89efff]">
+              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.85),transparent)]" />
+              <div className="absolute inset-x-[30%] top-0 h-px blur-sm bg-[rgba(0,212,255,0.5)]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/22 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#89efff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_16px_rgba(0,180,255,0.14)]">
                 <service.icon size={20} strokeWidth={1.7} />
               </div>
 
@@ -75,7 +76,7 @@ export default function Services() {
                 {service.points.map(point => (
                   <span
                     key={point}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#cfe6ff]"
+                    className="rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#cfe6ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
                   >
                     {point}
                   </span>

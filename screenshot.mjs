@@ -14,7 +14,7 @@ const browser = await puppeteer.launch({
 })
 const page = await browser.newPage()
 await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 })
-await page.goto(url, { waitUntil: 'networkidle0', timeout: 20000 })
+await page.goto(url, { waitUntil: 'load', timeout: 30000 })
 await new Promise(r => setTimeout(r, 2000))
 
 const screenshotDir = join(__dirname, 'temporary screenshots')

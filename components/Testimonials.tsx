@@ -52,7 +52,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.72, delay: index * 0.1, ease }}
-              className="glass rounded-[28px] p-7"
+              className="glass rounded-[28px] p-7 transition-[box-shadow] duration-300 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
             >
               <div className="flex gap-1 text-[#8fefff]">
                 {Array.from({ length: 5 }).map((_, starIndex) => (
@@ -64,7 +64,7 @@ export default function Testimonials() {
                 {item.quote}
               </p>
 
-              <div className="mt-6 border-t border-white/8 pt-5">
+              <div className="mt-6 border-t border-white/10 pt-5">
                 <div className="text-sm font-semibold text-white">{item.name}</div>
                 <div className="mt-1 text-xs uppercase tracking-[0.16em] text-[#7f98b8]">
                   {item.role}

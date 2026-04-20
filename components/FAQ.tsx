@@ -55,8 +55,10 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.65, delay: index * 0.08, ease }}
-                className={`overflow-hidden rounded-[24px] border transition-[border-color,background-color] duration-200 ${
-                  isOpen ? 'border-[#00d4ff]/22 bg-[#071220]' : 'border-white/8 bg-white/[0.03] hover:border-white/12 hover:bg-white/[0.045]'
+                className={`overflow-hidden rounded-[24px] border transition-[border-color,background,box-shadow] duration-200 ${
+                  isOpen
+                    ? 'border-[#00d4ff]/28 bg-[linear-gradient(152deg,rgba(0,40,80,0.72),rgba(3,10,26,0.88))] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.12),inset_0_0_32px_rgba(0,120,220,0.07),0_20px_48px_rgba(0,0,0,0.32)]'
+                    : 'border-white/9 bg-[linear-gradient(152deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-white/14 hover:bg-[linear-gradient(152deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_8px_24px_rgba(0,0,0,0.2)]'
                 }`}
               >
                 <button
@@ -67,7 +69,7 @@ export default function FAQ() {
                   <span className="text-sm font-semibold leading-6 text-[#f0f7ff] sm:text-base">
                     {faq.q}
                   </span>
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#8fefff]">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] text-[#8fefff] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                     {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                   </span>
                 </button>

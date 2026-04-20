@@ -59,7 +59,7 @@ export default function Process() {
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: index * 0.08, ease }}
-              className="glass rounded-[28px] p-7 transition-[border-color] duration-300 hover:border-white/14"
+              className="glass rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-white/16 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
             >
               <div className="flex items-baseline gap-2">
                 <span className="font-syne text-[28px] font-bold leading-none tracking-[-0.04em] text-[#00d4ff]/30">{step.num}</span>

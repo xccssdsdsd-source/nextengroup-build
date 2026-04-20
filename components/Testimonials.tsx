@@ -42,11 +42,7 @@ export default function Testimonials() {
           transition={{ duration: 0.75, ease }}
         >
           <span className="section-kicker">Social proof</span>
-          <h2 className="section-title">Treść i estetyka muszą budzić zaufanie od pierwszych sekund.</h2>
-          <p className="section-copy">
-            Dlatego dopracowujemy nie tylko wygląd, ale też sposób, w jaki oferta jest
-            odbierana przez użytkownika.
-          </p>
+          <h2 className="section-title">Co mówią firmy, które z nami pracowały.</h2>
         </motion.div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">

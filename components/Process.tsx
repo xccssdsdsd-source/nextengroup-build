@@ -48,8 +48,7 @@ export default function Process() {
           <span className="section-kicker">Proces</span>
           <h2 className="section-title">Szybko, jasno i bez chaosu po drodze.</h2>
           <p className="section-copy">
-            Proces jest krótki, bo celem nie jest mnożenie etapów, tylko dowiezienie
-            dopracowanej strony, która dobrze wygląda i dobrze działa.
+            Krótko, konkretnie i bez zbędnych rund. Od rozmowy do gotowej strony.
           </p>
         </motion.div>
 

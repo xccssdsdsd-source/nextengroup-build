@@ -41,8 +41,7 @@ export default function FAQ() {
           <span className="section-kicker">FAQ</span>
           <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
           <p className="section-copy">
-            Jeśli zależy Ci na stronie, która wygląda profesjonalnie i nie rozjeżdża się
-            na mobile, te kwestie pojawiają się najczęściej.
+            To, co najczęściej pada przed startem współpracy.
           </p>
         </motion.div>
 

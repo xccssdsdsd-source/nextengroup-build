@@ -16,13 +16,13 @@ const services = [
   {
     icon: Zap,
     title: 'Automatyzacje AI dla leadów',
-    desc: 'System przechwytuje zgłoszenia, kwalifikuje kontakt i skraca czas reakcji bez dokładania pracy po Twojej stronie.',
+    desc: 'Zbieramy zapytania, porządkujemy kontakty i przyspieszamy odpowiedź — bez dodatkowej pracy z Twojej strony.',
     points: ['Formularze i integracje', 'Scoring zapytań', 'Logika obsługi leadów'],
   },
   {
     icon: MessagesSquare,
     title: 'Lepsza ścieżka klienta',
-    desc: 'Łączymy UX, komunikację i CTA tak, aby klient szybciej rozumiał ofertę i częściej przechodził do kontaktu.',
+    desc: 'Dbamy o to, żeby klient szybko rozumiał ofertę i miał jasną ścieżkę do kontaktu.',
     points: ['Mocniejsze sekcje CTA', 'Lepsza hierarchia treści', 'Większa czytelność'],
   },
 ] as const

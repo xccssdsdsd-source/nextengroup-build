@@ -67,7 +67,7 @@ export default function Nav() {
           <div className="flex items-center gap-2">
             <a
               href="#kontakt"
-              className="btn-ghost hidden px-5 py-2.5 text-sm sm:inline-flex"
+              className="btn-primary hidden px-5 py-2.5 text-sm sm:inline-flex"
             >
               Darmowa wizualizacja
             </a>

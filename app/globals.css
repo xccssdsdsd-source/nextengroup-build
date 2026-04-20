@@ -57,8 +57,9 @@ select {
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
   box-shadow:
-    0 18px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 64px rgba(0, 0, 0, 0.32),
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .section-shell {
@@ -75,13 +76,13 @@ select {
 .section-kicker {
   display: inline-flex;
   border-radius: 9999px;
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  background: rgba(0, 212, 255, 0.08);
-  padding: 0.375rem 1rem;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: rgba(0, 212, 255, 0.09);
+  padding: 0.375rem 1.125rem;
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #8fefff;
+  color: #9ff3ff;
 }
 
 .section-title {
@@ -90,26 +91,28 @@ select {
   font-family: var(--font-syne), sans-serif;
   font-size: clamp(34px, 5vw, 64px);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 1.0;
   letter-spacing: -0.05em;
 }
 
 .section-copy {
-  margin-top: 1.25rem;
-  max-width: 42rem;
-  color: #8aa3c4;
-  font-size: 0.875rem;
+  margin-top: 1.375rem;
+  max-width: 44rem;
+  color: #96afc8;
+  font-size: 0.9375rem;
   line-height: 1.75rem;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #1a6fff, #00d4ff);
   clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-  color: #03101c;
+  color: #02101e;
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  box-shadow: 0 12px 32px rgba(0, 136, 255, 0.28);
+  letter-spacing: 0.05em;
+  box-shadow:
+    0 8px 24px rgba(0, 136, 255, 0.22),
+    0 2px 6px rgba(0, 212, 255, 0.18);
   transition:
     box-shadow 0.25s ease,
     transform 0.25s ease,
@@ -117,9 +120,11 @@ select {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 18px 42px rgba(0, 212, 255, 0.34);
-  filter: brightness(1.03);
-  transform: translateY(-1px);
+  box-shadow:
+    0 16px 40px rgba(0, 136, 255, 0.32),
+    0 4px 12px rgba(0, 212, 255, 0.22);
+  filter: brightness(1.05);
+  transform: translateY(-2px);
 }
 
 .btn-primary:focus-visible {
@@ -128,12 +133,13 @@ select {
 }
 
 .btn-ghost {
-  border: 1px solid rgba(0, 212, 255, 0.28);
+  border: 1px solid rgba(0, 212, 255, 0.32);
   clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   color: #d7f6ff;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(0, 212, 255, 0.04);
   font-family: var(--font-syne), sans-serif;
   font-weight: 600;
+  letter-spacing: 0.02em;
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
@@ -141,9 +147,9 @@ select {
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 212, 255, 0.08);
-  border-color: rgba(0, 212, 255, 0.42);
-  transform: translateY(-1px);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-2px);
 }
 
 .gradient-text {

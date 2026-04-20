@@ -45,7 +45,7 @@ export default function FAQ() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           {faqs.map((faq, index) => {
             const isOpen = open === index
 
@@ -55,8 +55,8 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.65, delay: index * 0.08, ease }}
-                className={`overflow-hidden rounded-[24px] border ${
-                  isOpen ? 'border-[#00d4ff]/20 bg-[#081321]' : 'border-white/8 bg-white/[0.03]'
+                className={`overflow-hidden rounded-[24px] border transition-[border-color,background-color] duration-200 ${
+                  isOpen ? 'border-[#00d4ff]/22 bg-[#071220]' : 'border-white/8 bg-white/[0.03] hover:border-white/12 hover:bg-white/[0.045]'
                 }`}
               >
                 <button
@@ -64,7 +64,7 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
                 >
-                  <span className="text-sm font-semibold leading-6 text-white sm:text-base">
+                  <span className="text-sm font-semibold leading-6 text-[#f0f7ff] sm:text-base">
                     {faq.q}
                   </span>
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#8fefff]">

@@ -50,21 +50,21 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.article
               key={service.title}
               initial={{ opacity: 0, y: 34 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: index * 0.1, ease }}
-              className="glass relative overflow-hidden rounded-[28px] p-7"
+              className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/18 hover:shadow-[0_24px_80px_rgba(0,0,0,0.36),0_4px_16px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)]"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)]" />
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/16 bg-[#00d4ff]/10 text-[#89efff]">
                 <service.icon size={20} strokeWidth={1.7} />
               </div>
 
-              <h3 className="mt-6 text-2xl font-semibold tracking-[-0.04em] text-white">
+              <h3 className="mt-6 text-[1.35rem] font-bold tracking-[-0.04em] text-white leading-snug">
                 {service.title}
               </h3>
               <p className="mt-4 text-sm leading-7 text-[#92acce] sm:text-[15px]">
@@ -75,7 +75,7 @@ export default function Services() {
                 {service.points.map(point => (
                   <span
                     key={point}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#cfe6ff]"
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#cfe6ff]"
                   >
                     {point}
                   </span>

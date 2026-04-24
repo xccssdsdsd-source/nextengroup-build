@@ -39,9 +39,7 @@ export default function Nav() {
       >
         <div className="flex items-center justify-between gap-4">
           <a href="#" className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#00d4ff,#1a6fff)] font-sans text-sm font-bold text-[#04111b]">
-              N
-            </div>
+            <img src="/logo.png" className="h-10 w-10 flex-shrink-0 rounded-xl object-contain" style={{filter:'invert(1)',mixBlendMode:'screen'}} />
             <div className="min-w-0">
               <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-white">
                 Nexten Group

@@ -3,140 +3,141 @@
 import { useEffect, useRef } from 'react'
 
 export default function DeviceMockups() {
-  const sceneRef = useRef<HTMLDivElement>(null)
-  const laptopRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const deviceRef = useRef<HTMLDivElement>(null)
+  const screenContentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const sceneEl = sceneRef.current
-    if (!sceneEl || !laptopRef.current) return
+    const wrapper = wrapperRef.current
+    if (!wrapper) return
+    const section = wrapper.closest('section') as HTMLElement | null
+    if (!section) return
 
     let rafId = 0
-    let currentLaptopY = 0
-    let targetLaptopY = 0
-    let maxLift = 0
+    let tX = 0, tY = 0, cX = 0, cY = 0
+    let tsX = 0, tsY = 0, csX = 0, csY = 0
 
-    const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
-
-    const measure = () => {
-      const laptopEl = laptopRef.current
-      if (!laptopEl) return
-
-      const sceneRect = sceneEl.getBoundingClientRect()
-      const laptopRect = laptopEl.getBoundingClientRect()
-      maxLift = Math.max(0, laptopRect.top - sceneRect.top)
+    const onMove = (e: MouseEvent) => {
+      const r = section.getBoundingClientRect()
+      const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2)
+      const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2)
+      tX = nx * 18; tY = ny * 18
+      tsX = nx * 10; tsY = ny * 10
     }
 
-    const updateTarget = () => {
-      if (window.innerWidth <= 768) {
-        targetLaptopY = 0
-        return
-      }
+    const onLeave = () => { tX = tY = tsX = tsY = 0 }
 
-      targetLaptopY = clamp(-window.scrollY * 0.3, -maxLift, 0)
+    const lerp = (a: number, b: number) => a + (b - a) * 0.08
+
+    const tick = () => {
+      cX = lerp(cX, tX); cY = lerp(cY, tY)
+      csX = lerp(csX, tsX); csY = lerp(csY, tsY)
+      if (deviceRef.current) deviceRef.current.style.transform = `translate(${cX}px,${cY}px)`
+      if (screenContentRef.current) screenContentRef.current.style.transform = `translate(${csX}px,${csY}px)`
+      rafId = requestAnimationFrame(tick)
     }
 
-    function animate() {
-      const laptopEl = laptopRef.current
-      if (!laptopEl) return
-
-      currentLaptopY += (targetLaptopY - currentLaptopY) * 0.08
-      laptopEl.style.transform = `perspective(1000px) rotateY(-12deg) rotateX(4deg) translateY(${currentLaptopY}px)`
-      rafId = requestAnimationFrame(animate)
-    }
-
-    measure()
-    updateTarget()
-    rafId = requestAnimationFrame(animate)
-    window.addEventListener('scroll', updateTarget, { passive: true })
-    window.addEventListener('resize', measure)
-    window.addEventListener('resize', updateTarget)
+    section.addEventListener('mousemove', onMove)
+    section.addEventListener('mouseleave', onLeave)
+    rafId = requestAnimationFrame(tick)
 
     return () => {
-      window.removeEventListener('scroll', updateTarget)
-      window.removeEventListener('resize', measure)
-      window.removeEventListener('resize', updateTarget)
+      section.removeEventListener('mousemove', onMove)
+      section.removeEventListener('mouseleave', onLeave)
       cancelAnimationFrame(rafId)
     }
   }, [])
 
   return (
-    <div ref={sceneRef} className="relative h-full w-full flex items-center justify-center">
-      <div className="devices-group">
+    <div ref={wrapperRef} className="dm-scene relative h-full w-full flex items-center justify-center">
+      <style>{`
+        .dm-scene::before {
+          content: '';
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 400px; height: 400px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+          filter: blur(80px);
+          pointer-events: none;
+        }
+      `}</style>
 
-        <div className="float-laptop devices-laptop">
-          <div ref={laptopRef} style={{ width: '480px', willChange: 'transform' }}>
-            <div style={{
-              background: '#1a2744',
-              borderRadius: '14px 14px 4px 4px',
-              padding: '10px 10px 5px',
-              boxShadow: '0 40px 100px rgba(37,99,235,0.3), inset 0 0 0 1px rgba(255,255,255,0.06)',
-            }}>
+      <div ref={deviceRef} style={{ position: 'relative', zIndex: 1, willChange: 'transform' }}>
+        <div style={{
+          width: '520px',
+          height: '360px',
+          background: '#0d1117',
+          borderRadius: '20px',
+          padding: '14px',
+          boxShadow: '0 0 0 1px rgba(255,255,255,0.07), 0 40px 100px rgba(37,99,235,0.28), 0 20px 60px rgba(0,0,0,0.6)',
+          position: 'relative',
+        }}>
+          <div style={{
+            position: 'absolute', top: '7px', left: '50%',
+            transform: 'translateX(-50%)',
+            width: '6px', height: '6px', borderRadius: '50%',
+            background: '#1c2840',
+          }} />
+
+          <div style={{
+            background: '#0a0f1e',
+            borderRadius: '8px',
+            height: '100%',
+            overflow: 'hidden',
+            position: 'relative',
+            border: '1px solid rgba(255,255,255,0.04)',
+          }}>
+            <div ref={screenContentRef} style={{ position: 'absolute', inset: 0, willChange: 'transform' }}>
               <div style={{
-                background: '#0d1b2e',
-                borderRadius: '6px',
-                height: '290px',
-                position: 'relative',
-                overflow: 'hidden',
-                borderTop: '1px solid rgba(255,255,255,0.08)',
+                height: '28px',
+                background: 'rgba(8,16,34,0.97)',
+                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '0 10px', flexShrink: 0,
               }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 40%, rgba(56,189,248,0.15), transparent 70%)' }} />
-                <div className="dmblob dmblob-l1" />
-                <div className="dmblob dmblob-l2" />
-                <div className="dmblob dmblob-l3" />
-                <div className="dmscanlines" />
+                <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff5f57', opacity: 0.9 }} />
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#febc2e', opacity: 0.9 }} />
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#28c840', opacity: 0.9 }} />
+                </div>
+                <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                  <div style={{ width: '42px', height: '10px', borderRadius: '6px', background: '#1e3a5f', opacity: 0.8 }} />
+                  <div style={{ width: '28px', height: '10px', borderRadius: '6px', background: '#1e3a5f', opacity: 0.8 }} />
+                </div>
               </div>
-            </div>
-            <div style={{
-              background: 'linear-gradient(180deg, #1e2d4e 0%, #111f38 55%, #0d1b2e 100%)',
-              height: '18px',
-              boxShadow: '0 6px 24px rgba(0,0,0,0.45)',
-            }} />
-            <div style={{
-              background: 'linear-gradient(180deg, #0f1d35 0%, #07101f 100%)',
-              borderRadius: '0 0 8px 8px',
-              height: '12px',
-              width: '88%',
-              margin: '0 auto',
-              boxShadow: '0 16px 48px rgba(0,0,0,0.65)',
-            }} />
-          </div>
-        </div>
 
-        <div className="float-phone devices-phone">
-          <div style={{ width: '160px', height: '300px', willChange: 'transform' }}>
-            <div style={{
-              background: '#1a2744',
-              borderRadius: '28px',
-              padding: '8px',
-              height: '100%',
-              boxShadow: '0 60px 120px rgba(37,99,235,0.45), 0 20px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.06)',
-              position: 'relative',
-            }}>
-              <div style={{
-                background: '#0d1b2e',
-                borderRadius: '22px',
-                height: '100%',
-                position: 'relative',
-                overflow: 'hidden',
-                borderTop: '1px solid rgba(255,255,255,0.08)',
-              }}>
+              <div style={{ display: 'flex', height: 'calc(100% - 28px)' }}>
                 <div style={{
-                  position: 'absolute', top: '10px', left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '54px', height: '14px',
-                  background: '#050a14',
-                  borderRadius: '10px',
-                  zIndex: 1,
-                }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 50%, rgba(56,189,248,0.18), transparent 70%)' }} />
-                <div className="dmblob dmblob-p1" />
-                <div className="dmblob dmblob-p2" />
-                <div className="dmscanlines" />
+                  width: '44px',
+                  background: 'rgba(6,12,26,0.98)',
+                  borderRight: '1px solid rgba(255,255,255,0.04)',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  paddingTop: '14px', gap: '8px', flexShrink: 0,
+                }}>
+                  {([0.9, 0.7, 0.7, 0.7] as number[]).map((op, i) => (
+                    <div key={i} style={{ width: '20px', height: '20px', borderRadius: '5px', background: '#1e3a5f', opacity: op }} />
+                  ))}
+                </div>
+
+                <div style={{ flex: 1, padding: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{
+                    flex: 2, borderRadius: '8px',
+                    background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)',
+                    opacity: 0.9, position: 'relative', overflow: 'hidden',
+                  }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: '#00d4ff' }} />
+                  </div>
+                  <div style={{ flex: 1, display: 'flex', gap: '8px' }}>
+                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)', opacity: 0.8 }} />
+                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)', opacity: 0.75 }} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   )

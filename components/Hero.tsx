@@ -84,7 +84,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.0, delay: 0.22, ease }}
-          className="min-w-0"
+          className="hidden lg:block min-w-0"
         >
           <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
             <DeviceMockups />

@@ -3,24 +3,17 @@
 import { useEffect, useRef } from 'react'
 
 export default function DeviceMockups() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
   const screenContentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const wrapper = wrapperRef.current
-    if (!wrapper) return
-    const section = wrapper.closest('section') as HTMLElement | null
-    if (!section) return
-
     let rafId = 0
     let tX = 0, tY = 0, cX = 0, cY = 0
     let tsX = 0, tsY = 0, csX = 0, csY = 0
 
     const onMove = (e: MouseEvent) => {
-      const r = section.getBoundingClientRect()
-      const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2)
-      const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2)
+      const nx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
+      const ny = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2)
       tX = nx * 18; tY = ny * 18
       tsX = nx * 10; tsY = ny * 10
     }
@@ -37,33 +30,19 @@ export default function DeviceMockups() {
       rafId = requestAnimationFrame(tick)
     }
 
-    section.addEventListener('mousemove', onMove)
-    section.addEventListener('mouseleave', onLeave)
+    window.addEventListener('mousemove', onMove)
+    document.addEventListener('mouseleave', onLeave)
     rafId = requestAnimationFrame(tick)
 
     return () => {
-      section.removeEventListener('mousemove', onMove)
-      section.removeEventListener('mouseleave', onLeave)
+      window.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseleave', onLeave)
       cancelAnimationFrame(rafId)
     }
   }, [])
 
   return (
-    <div ref={wrapperRef} className="dm-scene relative h-full w-full flex items-center justify-center">
-      <style>{`
-        .dm-scene::before {
-          content: '';
-          position: absolute;
-          top: 50%; left: 50%;
-          transform: translate(-50%, -50%);
-          width: 400px; height: 400px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
-          filter: blur(80px);
-          pointer-events: none;
-        }
-      `}</style>
-
+    <div className="dm-scene relative h-full w-full flex items-center justify-center">
       <div ref={deviceRef} style={{ position: 'relative', zIndex: 1, willChange: 'transform' }}>
         <div style={{
           width: '520px',

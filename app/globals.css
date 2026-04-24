@@ -522,6 +522,20 @@ select {
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
+.dm-scene::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

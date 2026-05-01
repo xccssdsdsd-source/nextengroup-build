@@ -54,8 +54,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.44, ease }}
           >
-            Projektujemy rozwiązania, które łączą procesy dla firm usługowych — od
-            stron www do agentów AI.
+            Projektujemy rozwiązania, które łączą procesy dla firm usługowych.
           </motion.p>
 
           <motion.div

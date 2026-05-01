@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { Mail } from 'lucide-react'
+import { ArrowUpRight, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -32,8 +32,9 @@ export default function Contact() {
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <a
               href={`mailto:${contactEmail}`}
-              className="glass flex min-h-[180px] flex-col justify-between rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
             >
+              <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                 <Mail size={22} />
               </span>
@@ -41,14 +42,19 @@ export default function Contact() {
                 <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">E-mail</span>
                 <span className="mt-2 block text-lg text-white break-all">{contactEmail}</span>
               </span>
+              <span className="mt-5 flex items-center justify-between text-sm text-[#d8ecff]">
+                <span>Otwórz mail</span>
+                <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </a>
 
             <a
               href="https://www.instagram.com/nextengroup/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass flex min-h-[180px] flex-col justify-between rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
             >
+              <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.8" />
@@ -60,14 +66,19 @@ export default function Contact() {
                 <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Instagram</span>
                 <span className="mt-2 block text-lg text-white">@nextengroup</span>
               </span>
+              <span className="mt-5 flex items-center justify-between text-sm text-[#d8ecff]">
+                <span>Przejdź do profilu</span>
+                <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </a>
 
             <a
               href="https://www.facebook.com/profile.php?id=61588720012257"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass flex min-h-[180px] flex-col justify-between rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
             >
+              <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
@@ -79,6 +90,10 @@ export default function Contact() {
               <span>
                 <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Facebook</span>
                 <span className="mt-2 block text-lg text-white">Nexten Group</span>
+              </span>
+              <span className="mt-5 flex items-center justify-between text-sm text-[#d8ecff]">
+                <span>Przejdź do profilu</span>
+                <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </a>
           </div>

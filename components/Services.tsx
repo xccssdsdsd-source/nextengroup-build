@@ -16,7 +16,7 @@ const services = [
   {
     icon: Zap,
     title: 'Automatyzacje AI dla leadów',
-    desc: 'Zbieramy zapytania, porządkujemy kontakty i przyspieszamy odpowiedź — bez dodatkowej pracy z Twojej strony.',
+    desc: 'Zbieramy zapytania, porządkujemy kontakty i przyspieszamy odpowiedź bez dodatkowej pracy z Twojej strony.',
     points: ['Formularze i integracje', 'Scoring zapytań', 'Logika obsługi leadów'],
   },
   {
@@ -43,10 +43,14 @@ export default function Services() {
           transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">Oferta</span>
-          <h2 className="section-title">Skupiamy stronę na sprzedaży, nie na ozdobnikach.</h2>
+          <h2 className="section-title">Rozwiązanie dopasowane do Ciebie</h2>
           <p className="section-copy">
-            Każdy element ma prowadzić użytkownika dalej: od pierwszego wrażenia,
-            przez zaufanie, aż po jasne wezwanie do kontaktu.
+            Zaczynamy od tego, czego potrzebujesz teraz. Prosty landing, który
+            zaczyna generować zapytania. Pełna strona z automatyzacjami, które
+            zbierają kontakty i porządkują zapytania bez Twojego udziału. Procesy,
+            które działają same, kiedy Ty zajmujesz się robotą. A jeśli chcesz
+            więcej, wdrażamy agentów AI, którzy rozmawiają z klientami i kwalifikują
+            zapytania w czasie rzeczywistym. Twoja firma działa nawet kiedy śpisz.
           </p>
         </motion.div>
 

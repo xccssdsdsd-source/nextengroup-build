@@ -54,8 +54,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.44, ease }}
           >
-            Projektujemy strony dla małych firm i usługodawców — łącząc design, treść
-            i automatyzacje AI. Efekt: więcej zapytań i prostszy proces ich obsługi.
+            Projektujemy rozwiązania, które łączą procesy dla firm usługowych — od
+            stron www do agentów AI.
           </motion.p>
 
           <motion.div

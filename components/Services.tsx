@@ -61,6 +61,7 @@ export default function Services() {
               initial={{ opacity: 0, y: 44, rotateX: 8, filter: 'blur(4px)' }}
               animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
               transition={{ duration: 0.82, delay: index * 0.12, ease }}
+              whileHover={{ y: -7, transition: { duration: 0.28, ease } }}
               className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26),0_0_60px_rgba(0,180,255,0.07)]"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.85),transparent)]" />

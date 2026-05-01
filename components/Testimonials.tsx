@@ -45,15 +45,18 @@ export default function Testimonials() {
           <h2 className="section-title">Co mówią firmy, które z nami pracowały.</h2>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 lg:grid-cols-3" style={{ perspective: '1200px' }}>
           {testimonials.map((item, index) => (
             <motion.article
               key={item.name}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.72, delay: index * 0.1, ease }}
-              className="glass rounded-[28px] p-7 transition-[box-shadow] duration-300 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
+              initial={{ opacity: 0, y: 44, rotateX: 8, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.82, delay: index * 0.1, ease }}
+              whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
+              className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26)]"
             >
+              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.85),transparent)]" />
+              <div className="absolute inset-x-[30%] top-0 h-px blur-sm bg-[rgba(0,212,255,0.5)]" />
               <div className="flex gap-1 text-[#8fefff]">
                 {Array.from({ length: 5 }).map((_, starIndex) => (
                   <Star key={starIndex} size={16} fill="currentColor" strokeWidth={1.3} />

@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion, useInView } from 'framer-motion'
-import { Minus, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -69,9 +69,13 @@ export default function FAQ() {
                   <span className="text-sm font-semibold leading-6 text-[#f0f7ff] sm:text-base">
                     {faq.q}
                   </span>
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] text-[#8fefff] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.24, ease }}
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] text-[#8fefff] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+                  >
+                    <Plus size={16} />
+                  </motion.span>
                 </button>
 
                 <AnimatePresence initial={false}>

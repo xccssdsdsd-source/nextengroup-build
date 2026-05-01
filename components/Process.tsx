@@ -59,12 +59,14 @@ export default function Process() {
               initial={{ opacity: 0, y: 36, rotateX: 7, filter: 'blur(4px)' }}
               animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
               transition={{ duration: 0.82, delay: index * 0.1, ease }}
-              className="glass rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-white/16 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
+              whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
+              className="glass rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/22 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,100,220,0.06),0_40px_80px_rgba(0,0,0,0.38),0_10px_28px_rgba(0,0,0,0.22)]"
             >
               <div className="flex items-baseline gap-2">
                 <span className="font-syne text-[32px] font-bold leading-none tracking-[-0.04em] text-[#00d4ff]/40 drop-shadow-[0_0_12px_rgba(0,212,255,0.3)]">{step.num}</span>
                 <span className="text-[10px] uppercase tracking-[0.26em] text-[#79edff]">Etap</span>
               </div>
+              <div className="mt-2 h-0.5 w-8 rounded-full bg-[linear-gradient(90deg,rgba(0,212,255,0.65),rgba(0,212,255,0.08))]" />
               <h3 className="mt-4 text-xl font-bold tracking-[-0.04em] text-white leading-snug">
                 {step.title}
               </h3>

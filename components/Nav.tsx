@@ -1,7 +1,10 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const links = [
   ['Usługi', '#uslugi'],
@@ -76,35 +79,58 @@ export default function Nav() {
               onClick={() => setOpen(prev => !prev)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-white lg:hidden"
             >
-              {open ? <X size={18} /> : <Menu size={18} />}
+              <AnimatePresence mode="wait" initial={false}>
+                {open ? (
+                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <X size={18} />
+                  </motion.span>
+                ) : (
+                  <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <Menu size={18} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
 
-        {open && (
-          <div className="mt-4 rounded-[20px] border border-white/10 bg-[#040e1e]/96 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl lg:hidden">
-            <div className="flex flex-col gap-2">
-              {links.map(([label, href]) => (
-                <a
-                  key={href}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-2xl border border-transparent px-4 py-3 text-sm text-[#dbe9ff] transition-colors duration-200 hover:border-white/8 hover:bg-white/[0.03]"
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-
-            <a
-              href="#kontakt"
-              onClick={() => setOpen(false)}
-              className="btn-primary mt-4 inline-flex w-full justify-center px-5 py-3 text-sm"
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.32, ease }}
+              className="overflow-hidden lg:hidden"
             >
-              Umów rozmowę
-            </a>
-          </div>
-        )}
+              <div className="mt-4 rounded-[20px] border border-white/10 bg-[#040e1e]/96 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl">
+                <div className="flex flex-col gap-2">
+                  {links.map(([label, href], i) => (
+                    <motion.a
+                      key={href}
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.22, delay: i * 0.055, ease }}
+                      className="rounded-2xl border border-transparent px-4 py-3 text-sm text-[#dbe9ff] transition-colors duration-200 hover:border-white/8 hover:bg-white/[0.03]"
+                    >
+                      {label}
+                    </motion.a>
+                  ))}
+                </div>
+
+                <a
+                  href="#kontakt"
+                  onClick={() => setOpen(false)}
+                  className="btn-primary mt-4 inline-flex w-full justify-center px-5 py-3 text-sm"
+                >
+                  Umów rozmowę
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )

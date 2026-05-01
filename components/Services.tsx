@@ -62,12 +62,12 @@ export default function Services() {
               animate={inView ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
               transition={{ duration: 0.82, delay: index * 0.12, ease }}
               whileHover={{ y: -7, transition: { duration: 0.28, ease } }}
-              className="glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26),0_0_60px_rgba(0,180,255,0.07)]"
+              className="group glass relative overflow-hidden rounded-[28px] p-7 transition-[border-color,box-shadow] duration-300 hover:border-[#00d4ff]/28 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.22),inset_0_0_40px_rgba(0,160,255,0.08),0_48px_96px_rgba(0,0,0,0.42),0_12px_32px_rgba(0,0,0,0.26),0_0_60px_rgba(0,180,255,0.07)]"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.85),transparent)]" />
               <div className="absolute inset-x-[30%] top-0 h-px blur-sm bg-[rgba(0,212,255,0.5)]" />
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/22 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#89efff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_16px_rgba(0,180,255,0.14)]">
-                <service.icon size={20} strokeWidth={1.7} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00d4ff]/22 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#89efff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_16px_rgba(0,180,255,0.14)] transition-[transform,box-shadow] duration-300 group-hover:scale-110 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_4px_24px_rgba(0,212,255,0.3)]">
+                <service.icon size={20} strokeWidth={1.7} className="transition-transform duration-300 group-hover:rotate-6" />
               </div>
 
               <h3 className="mt-6 text-[1.35rem] font-bold tracking-[-0.04em] text-white leading-snug">

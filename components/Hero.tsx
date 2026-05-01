@@ -1,7 +1,7 @@
 'use client'
 
 import type { MouseEvent } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import DeviceMockups from './DeviceMockups'
 
@@ -14,6 +14,11 @@ const words = [
 ]
 
 export default function Hero() {
+  const { scrollY } = useScroll()
+  const y1 = useTransform(scrollY, [0, 700], [0, -90])
+  const y2 = useTransform(scrollY, [0, 700], [0, -45])
+  const y3 = useTransform(scrollY, [0, 700], [0, 60])
+
   const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -22,9 +27,9 @@ export default function Hero() {
   return (
     <section suppressHydrationWarning className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="aurora-1 absolute -right-[8%] -top-[10%] h-[700px] w-[700px] rounded-full bg-[rgba(26,111,255,0.2)] blur-[130px]" />
-        <div className="aurora-2 absolute left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[rgba(0,212,255,0.1)] blur-[110px]" />
-        <div className="aurora-3 absolute -bottom-[20%] left-[30%] h-[600px] w-[600px] rounded-full bg-[rgba(80,40,220,0.1)] blur-[140px]" />
+        <motion.div style={{ y: y1 }} className="aurora-1 absolute -right-[8%] -top-[10%] h-[700px] w-[700px] rounded-full bg-[rgba(26,111,255,0.2)] blur-[130px]" />
+        <motion.div style={{ y: y2 }} className="aurora-2 absolute left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[rgba(0,212,255,0.1)] blur-[110px]" />
+        <motion.div style={{ y: y3 }} className="aurora-3 absolute -bottom-[20%] left-[30%] h-[600px] w-[600px] rounded-full bg-[rgba(80,40,220,0.1)] blur-[140px]" />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_18%,rgba(26,111,255,0.18),transparent_30%),radial-gradient(ellipse_at_16%_20%,rgba(0,212,255,0.08),transparent_24%)]" />
       <div className="pointer-events-none absolute inset-0 grain-drift opacity-30" />
@@ -63,19 +68,21 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.56, ease }}
           >
-            <a
+            <motion.a
               href="#kontakt"
               onClick={handlePreviewClick}
+              whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
               Darmowa wizualizacja
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#portfolio"
+              whileTap={{ scale: 0.96 }}
               className="btn-ghost inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
               Zobacz realizacje
-            </a>
+            </motion.a>
           </motion.div>
         </div>
 

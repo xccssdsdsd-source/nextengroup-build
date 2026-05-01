@@ -7,6 +7,9 @@ import { useRef } from 'react'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'digitalagencymail0@gmail.com'
 
+const cardCls = 'glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]'
+const iconCls = 'flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] transition-[transform,box-shadow] duration-300 group-hover:scale-110 group-hover:shadow-[0_4px_24px_rgba(0,212,255,0.28)]'
+
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
@@ -18,7 +21,7 @@ export default function Contact() {
       <motion.div
         initial={{ opacity: 0, y: 32, filter: 'blur(8px)' }}
         animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-        transition={{ duration: 0.9, ease }}
+        transition={{ duration: 0.75, ease }}
         className="glass relative mx-auto max-w-7xl overflow-hidden rounded-[34px] p-7 sm:p-10 lg:p-12"
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,212,255,0.15),transparent_28%),radial-gradient(ellipse_at_bottom_left,rgba(26,111,255,0.1),transparent_32%)]" />
@@ -30,12 +33,17 @@ export default function Contact() {
           <h2 className="section-title">Porozmawiajmy o Twojej firmie</h2>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <a
+            <motion.a
               href={`mailto:${contactEmail}`}
-              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
+              initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.62, delay: 0.5, ease }}
+              whileHover={{ y: -6 }}
+              whileTap={{ scale: 0.97 }}
+              className={cardCls}
             >
               <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <span className={iconCls}>
                 <Mail size={22} />
               </span>
               <span>
@@ -46,16 +54,21 @@ export default function Contact() {
                 <span>Otwórz mail</span>
                 <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="https://www.instagram.com/nextengroup/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
+              initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.62, delay: 0.64, ease }}
+              whileHover={{ y: -6 }}
+              whileTap={{ scale: 0.97 }}
+              className={cardCls}
             >
               <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <span className={iconCls}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.8" />
                   <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
@@ -70,21 +83,23 @@ export default function Contact() {
                 <span>Przejdź do profilu</span>
                 <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="https://www.facebook.com/profile.php?id=61588720012257"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass group relative flex min-h-[180px] cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] px-6 py-6 transition-[border-color,box-shadow,transform,background-color] duration-200 hover:-translate-y-1.5 hover:border-[#00d4ff]/40 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.2),inset_0_0_32px_rgba(0,140,255,0.08),0_20px_48px_rgba(0,0,0,0.3)]"
+              initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.62, delay: 0.78, ease }}
+              whileHover={{ y: -6 }}
+              whileTap={{ scale: 0.97 }}
+              className={cardCls}
             >
               <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.7),transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <span className={iconCls}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M13.5 20V12.8H16L16.4 10H13.5V8.2C13.5 7.4 13.8 6.8 15 6.8H16.5V4.3C16.2 4.2 15.3 4 14.2 4C11.8 4 10.2 5.4 10.2 8V10H8V12.8H10.2V20H13.5Z"
-                    fill="currentColor"
-                  />
+                  <path d="M13.5 20V12.8H16L16.4 10H13.5V8.2C13.5 7.4 13.8 6.8 15 6.8H16.5V4.3C16.2 4.2 15.3 4 14.2 4C11.8 4 10.2 5.4 10.2 8V10H8V12.8H10.2V20H13.5Z" fill="currentColor" />
                 </svg>
               </span>
               <span>
@@ -95,7 +110,7 @@ export default function Contact() {
                 <span>Przejdź do profilu</span>
                 <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-            </a>
+            </motion.a>
           </div>
         </div>
       </motion.div>

@@ -30,24 +30,25 @@ export default function Contact() {
             <span className="section-kicker">Kontakt</span>
             <h2 className="section-title max-w-[10ch]">Zobacz, jak może wyglądać lepsza wersja Twojej strony.</h2>
 
-            <div className="mt-8 flex flex-col gap-3 sm:max-w-md">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               <a
                 href={`mailto:${contactEmail}`}
-                className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+                className="glass flex min-h-[132px] flex-col justify-between rounded-[24px] px-5 py-5 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                   <Mail size={18} />
                 </span>
                 <span>
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">E-mail</span>
-                  <span className="mt-0.5 block text-sm text-white sm:text-base">{contactEmail}</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base break-all">{contactEmail}</span>
                 </span>
               </a>
+
               <a
                 href="https://www.instagram.com/nextengroup/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass flex items-center gap-4 rounded-[24px] px-5 py-4 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+                className="glass flex min-h-[132px] flex-col justify-between rounded-[24px] px-5 py-5 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -58,7 +59,27 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Instagram</span>
-                  <span className="mt-0.5 block text-sm text-white sm:text-base">@nextengroup</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">@nextengroup</span>
+                </span>
+              </a>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61588720012257"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass flex min-h-[132px] flex-col justify-between rounded-[24px] px-5 py-5 transition-[border-color,box-shadow] duration-200 hover:border-[#00d4ff]/30 hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.18),inset_0_0_28px_rgba(0,140,255,0.07),0_16px_40px_rgba(0,0,0,0.28)]"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00d4ff]/24 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(0,100,220,0.08))] text-[#9ff3ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M13.5 20V12.8H16L16.4 10H13.5V8.2C13.5 7.4 13.8 6.8 15 6.8H16.5V4.3C16.2 4.2 15.3 4 14.2 4C11.8 4 10.2 5.4 10.2 8V10H8V12.8H10.2V20H13.5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span>
+                  <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Facebook</span>
+                  <span className="mt-1 block text-sm text-white sm:text-base">Nexten Group</span>
                 </span>
               </a>
             </div>
@@ -72,7 +93,10 @@ export default function Contact() {
                 '2-3 zdania o ofercie',
                 'główny cel: więcej zapytań, lepszy wizerunek albo automatyzacja leadów',
               ].map(item => (
-                <div key={item} className="rounded-[18px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025))] px-4 py-3.5 text-sm leading-7 text-[#e4f0ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.09)]">
+                <div
+                  key={item}
+                  className="rounded-[18px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025))] px-4 py-3.5 text-sm leading-7 text-[#e4f0ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.09)]"
+                >
                   {item}
                 </div>
               ))}

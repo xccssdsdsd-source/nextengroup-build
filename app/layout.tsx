@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import type { Metadata } from 'next'
 import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
 import './globals.css'

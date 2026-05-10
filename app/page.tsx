@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Ticker from '@/components/Ticker'

@@ -31,16 +31,20 @@ export default function FAQ() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <motion.section
+    <section
       id="faq"
       ref={ref}
-      className="section-shell bg-[#F7F8FA]"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="section-shell relative"
+      style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)' }}
     >
-      <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-16">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(14,165,233,0.05) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+      <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -53,7 +57,7 @@ export default function FAQ() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2">
           {faqs.map((faq, index) => {
             const isOpen = open === index
 
@@ -65,24 +69,24 @@ export default function FAQ() {
                 transition={{ duration: 0.68, delay: index * 0.09, ease }}
                 className={`overflow-hidden rounded-xl border bg-white transition-[border-color,box-shadow] duration-200 ${
                   isOpen
-                    ? 'border-[#0EA5E9] shadow-[0_0_0_1px_rgba(14,165,233,0.15),0_4px_16px_rgba(14,165,233,0.08)]'
-                    : 'border-neutral-200 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-neutral-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]'
+                    ? 'border-[#0EA5E9]/40 shadow-[0_0_0_1px_rgba(14,165,233,0.08),0_4px_16px_rgba(14,165,233,0.06),0_12px_32px_rgba(0,0,0,0.04)]'
+                    : 'border-black/[0.07] shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-black/[0.12] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]'
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
-                  <span className="text-sm font-semibold leading-6 text-[#0A0A0A] sm:text-base">
+                  <span className="text-[15px] font-semibold leading-snug text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.24, ease }}
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-[#0EA5E9] shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
+                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${isOpen ? 'border-[#0EA5E9]/30 bg-[#0EA5E9]/8 text-[#0EA5E9]' : 'border-black/[0.08] bg-neutral-50 text-[#9CA3AF]'}`}
                   >
-                    <Plus size={16} />
+                    <Plus size={15} strokeWidth={2.2} />
                   </motion.span>
                 </button>
 
@@ -94,7 +98,8 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <p className="px-5 pb-5 text-sm leading-7 text-[#6B7280] sm:px-6 sm:text-[15px]">
+                      <div className="mx-6 mb-5 h-px bg-neutral-100" />
+                      <p className="px-6 pb-6 text-[15px] leading-7 text-[#6B7280]">
                         {faq.a}
                       </p>
                     </motion.div>
@@ -105,6 +110,6 @@ export default function FAQ() {
           })}
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

@@ -36,22 +36,29 @@ function ProjectPreview({
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.05),0_4px_16px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-lg hover:shadow-neutral-200/60"
-      initial={{ opacity: 0, y: 56 }}
+      className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white"
+      style={{
+        boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06), 0 32px 64px rgba(0,0,0,0.04)',
+        transition: 'box-shadow 0.35s ease, transform 0.2s ease',
+      }}
+      initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.15 + index * 0.14, ease }}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      whileHover={{ y: -6 }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.1), 0 48px 96px rgba(0,0,0,0.07)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06), 0 32px 64px rgba(0,0,0,0.04)' }}
     >
-      <div className="relative p-4 sm:p-5">
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <span className="h-3 w-3 rounded-full bg-neutral-300" />
-            <span className="h-3 w-3 rounded-full bg-neutral-200" />
-            <span className="h-3 w-3 rounded-full bg-neutral-100" />
+      <div className="p-5 pb-4">
+        <div className="mb-4 flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+          <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-3 py-1 text-[11px] text-neutral-400 truncate">
+            {project.href.replace('https://', '')}
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-xl border border-neutral-100 bg-neutral-50">
+        <div className="relative overflow-hidden rounded-xl border border-black/[0.06] bg-neutral-50">
           <Image
             src={project.preview}
             alt={`${project.name} - ${project.description}`}
@@ -59,24 +66,25 @@ function ProjectPreview({
             height={1000}
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-            loading="lazy"
-            quality={82}
+            loading="eager"
+            quality={85}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>
+      </div>
 
-        <div className="mt-4 flex items-end justify-between gap-4 px-1">
-          <div>
-            <div className="text-[11px] uppercase tracking-[0.18em] text-[#0EA5E9]">
-              {project.description}
-            </div>
-            <h3 className="text-[clamp(22px,3vw,32px)] font-semibold tracking-[-0.04em] text-[#0A0A0A]">
-              {project.name}
-            </h3>
+      <div className="flex items-end justify-between gap-4 border-t border-black/[0.05] px-6 py-4">
+        <div>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0EA5E9]">
+            {project.description}
           </div>
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 bg-white text-[#6B7280] transition-[border-color,background,color] duration-300 group-hover:border-[#0EA5E9] group-hover:bg-[#0EA5E9] group-hover:text-white">
-            <ArrowUpRight size={18} strokeWidth={1.8} />
-          </span>
+          <h3 className="mt-1 text-[1.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>
+            {project.name}
+          </h3>
         </div>
+        <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-[background,color,transform] duration-300 group-hover:border-[#0EA5E9] group-hover:bg-[#0EA5E9] group-hover:text-white group-hover:shadow-[0_4px_12px_rgba(14,165,233,0.3)]">
+          <ArrowUpRight size={17} strokeWidth={2} />
+        </span>
       </div>
     </motion.a>
   )
@@ -87,15 +95,16 @@ export default function Portfolio() {
   const inView = useInView(ref, { once: true, margin: '-120px' })
 
   return (
-    <motion.section
+    <section
       id="portfolio"
       ref={ref}
       className="section-shell overflow-hidden bg-white"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(14,165,233,0.05) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(99,102,241,0.04) 0%, transparent 60%)' }}
+      />
+
       <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="section-heading"
@@ -117,6 +126,6 @@ export default function Portfolio() {
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

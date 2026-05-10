@@ -4,7 +4,7 @@ import './globals.css'
 import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'GetBuild | Strony WWW i Automatyzacje AI'
+const siteTitle = 'Getbuild.pl | Strony WWW & Automatyzacje'
 const siteDescription =
   'Projektujemy strony WWW i automatyzacje AI dla małych firm. Więcej zapytań, szybsza obsługa leadów i darmowa wizualizacja w 24h.'
 
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: siteTitle,
     description: siteDescription,
-    siteName: 'GetBuild',
+    siteName: 'Getbuild.pl',
     locale: 'pl_PL',
     images: [
       {

@@ -49,8 +49,8 @@ export default function Nav() {
             <a href="#" className="flex min-w-0 items-center gap-3">
               <img src="/logo.png" className="h-10 w-10 flex-shrink-0 rounded-xl object-contain" style={{ filter: 'invert(1)', mixBlendMode: 'screen' }} />
               <div className="min-w-0">
-                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-white">Nexten Group</div>
-                <div className="truncate text-[11px] uppercase tracking-[0.18em] text-white/38">Strony WWW i automatyzacje AI</div>
+                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-white">Getbuild.pl</div>
+                <div className="truncate text-[11px] uppercase tracking-[0.18em] text-white/38">Strony WWW & Automatyzacje</div>
               </div>
             </a>
 

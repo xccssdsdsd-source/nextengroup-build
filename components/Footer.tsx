@@ -17,10 +17,10 @@ export default function Footer() {
           <img src="/logo.png" className="h-10 w-10 rounded-xl object-contain" style={{filter:'invert(1)',mixBlendMode:'screen'}} />
           <div>
             <div className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-white">
-              Nexten Group
+              Getbuild.pl
             </div>
             <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-[#7f98b8]">
-              Strony WWW i AI
+              Strony WWW & Automatyzacje
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-[#7f98b8]">
-          © {new Date().getFullYear()} Nexten Group. Wszystkie prawa zastrzeżone.
+          © {new Date().getFullYear()} Getbuild.pl. Wszystkie prawa zastrzeżone.
         </p>
       </div>
     </footer>

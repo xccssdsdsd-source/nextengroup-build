@@ -8,15 +8,15 @@ const items = [
 ]
 
 export default function Ticker() {
-  const repeated = [...items, ...items].join('   •   ')
+  const repeated = [...items, ...items].join('   ·   ')
 
   return (
-    <section className="overflow-hidden border-y border-neutral-100 bg-neutral-50 py-4" aria-label="Zakres usług">
+    <section className="overflow-hidden border-y border-black/[0.06] bg-[#F8FAFC] py-4" aria-label="Zakres usług">
       <div className="ticker-track flex whitespace-nowrap" style={{ width: 'max-content' }}>
-        <span className="px-4 text-[11px] uppercase tracking-[0.28em] text-[#6B7280] sm:text-xs">
+        <span className="px-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#9CA3AF]">
           {repeated}
         </span>
-        <span aria-hidden="true" className="px-4 text-[11px] uppercase tracking-[0.28em] text-[#6B7280] sm:text-xs">
+        <span aria-hidden="true" className="px-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#9CA3AF]">
           {repeated}
         </span>
       </div>

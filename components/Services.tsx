@@ -49,14 +49,14 @@ export default function Services() {
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div
-          className="section-heading text-center"
+          className="section-heading"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.78, ease }}
         >
-          <span className="section-kicker mx-auto justify-center">Oferta</span>
+          <span className="section-kicker">Oferta</span>
           <h2 className="section-title">Rozwiązanie dopasowane do Ciebie</h2>
-          <p className="section-copy mx-auto text-center">
+          <p className="section-copy">
             Zaczynamy od tego, czego potrzebujesz teraz. Prosty landing, który
             zaczyna generować zapytania. Pełna strona z automatyzacjami, które
             zbierają kontakty i porządkują zapytania bez Twojego udziału. Procesy,

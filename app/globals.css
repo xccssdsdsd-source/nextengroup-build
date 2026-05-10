@@ -3,18 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark: #020810;
-  --bg-left: #06111f;
-  --bg-right: #0b2141;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-strong: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.115);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --cyan: #00d4ff;
-  --blue: #1a6fff;
-  --text: #e8f0ff;
-  --muted: #8aa3c4;
-  --muted-strong: #a9bfd9;
+  --accent: #0EA5E9;
+  --accent-hover: #0284C7;
+  --surface: #FFFFFF;
+  --border: #e5e7eb;
+  --text: #0A0A0A;
+  --muted: #6B7280;
 }
 
 *,
@@ -29,11 +23,7 @@ html {
 
 body {
   min-width: 320px;
-  background:
-    radial-gradient(ellipse at 82% 6%, rgba(26, 111, 255, 0.22), transparent 30%),
-    radial-gradient(ellipse at 14% 8%, rgba(0, 212, 255, 0.11), transparent 24%),
-    radial-gradient(ellipse at 50% 60%, rgba(10, 30, 80, 0.6), transparent 50%),
-    linear-gradient(180deg, #05101f 0%, var(--bg-dark) 30%, #030a14 70%, #020710 100%);
+  background: #FFFFFF;
   color: var(--text);
   font-family: var(--font-figtree), sans-serif;
   overflow-x: hidden;
@@ -48,27 +38,16 @@ select {
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.24);
-  color: #f7fbff;
+  background: rgba(14, 165, 233, 0.18);
+  color: #0A0A0A;
 }
 
 .glass {
-  background: linear-gradient(
-    152deg,
-    rgba(255, 255, 255, 0.076) 0%,
-    rgba(8, 22, 54, 0.58) 52%,
-    rgba(3, 10, 26, 0.82) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.115);
-  backdrop-filter: blur(28px) saturate(210%) brightness(1.03);
-  -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(1.03);
+  background: #FFFFFF;
+  border: 1px solid #e5e7eb;
   box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.22),
-    inset 0 0 44px rgba(0, 110, 230, 0.055),
-    0 48px 96px rgba(0, 0, 0, 0.38),
-    0 12px 32px rgba(0, 0, 0, 0.22),
-    0 3px 8px rgba(0, 0, 0, 0.16);
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .section-shell {
@@ -85,23 +64,18 @@ select {
 .section-kicker {
   display: inline-flex;
   border-radius: 9999px;
-  border: 1px solid rgba(0, 212, 255, 0.26);
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.13) 0%, rgba(0, 130, 200, 0.07) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  background: rgba(14, 165, 233, 0.08);
   padding: 0.375rem 1.125rem;
   font-size: 11px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #9ff3ff;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 0 20px rgba(0, 212, 255, 0.09);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  color: #0EA5E9;
 }
 
 .section-title {
   margin-top: 1.25rem;
-  color: #f5f9ff;
+  color: #0A0A0A;
   font-family: var(--font-syne), sans-serif;
   font-size: clamp(34px, 5vw, 64px);
   font-weight: 700;
@@ -112,45 +86,41 @@ select {
 .section-copy {
   margin-top: 1.375rem;
   max-width: 44rem;
-  color: #96afc8;
+  color: #6B7280;
   font-size: 0.9375rem;
   line-height: 1.75rem;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #1a6fff, #00d4ff);
-  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-  color: #02101e;
+  background: #0EA5E9;
+  border-radius: 9999px;
+  color: #FFFFFF;
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  box-shadow:
-    0 8px 24px rgba(0, 136, 255, 0.22),
-    0 2px 6px rgba(0, 212, 255, 0.18);
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
   transition:
     box-shadow 0.25s ease,
     transform 0.25s ease,
-    filter 0.25s ease;
+    background 0.25s ease;
 }
 
 .btn-primary:hover {
-  box-shadow:
-    0 16px 40px rgba(0, 136, 255, 0.32),
-    0 4px 12px rgba(0, 212, 255, 0.22);
-  filter: brightness(1.05);
+  background: #0284C7;
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
   transform: translateY(-2px);
 }
 
 .btn-primary:focus-visible {
-  outline: 2px solid rgba(0, 212, 255, 0.8);
+  outline: 2px solid rgba(14, 165, 233, 0.8);
   outline-offset: 3px;
 }
 
 .btn-ghost {
-  border: 1px solid rgba(0, 212, 255, 0.32);
-  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
-  color: #d7f6ff;
-  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  color: #0A0A0A;
+  background: transparent;
   font-family: var(--font-syne), sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -161,30 +131,16 @@ select {
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 212, 255, 0.1);
-  border-color: rgba(0, 212, 255, 0.5);
+  background: #F7F8FA;
+  border-color: #9ca3af;
   transform: translateY(-2px);
 }
 
 .gradient-text {
-  background: linear-gradient(
-    135deg,
-    #f4fbff 0%,
-    #75ecff 28%,
-    #3ab8ff 52%,
-    #75ecff 76%,
-    #f4fbff 100%
-  );
-  background-size: 220% auto;
+  background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shimmer 5s linear infinite;
-}
-
-@keyframes gradient-shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 220% center; }
 }
 
 @keyframes aurora-1 {
@@ -209,12 +165,8 @@ select {
 .aurora-3 { animation: aurora-3 19s ease-in-out infinite; }
 
 @keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .ticker-track {
@@ -226,39 +178,21 @@ select {
 }
 
 @keyframes grain-drift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  25% {
-    transform: translate3d(-2%, 2%, 0);
-  }
-  50% {
-    transform: translate3d(1.5%, -1.5%, 0);
-  }
-  75% {
-    transform: translate3d(2%, 1%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-2%, 2%, 0); }
+  50% { transform: translate3d(1.5%, -1.5%, 0); }
+  75% { transform: translate3d(2%, 1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 @keyframes dash-flow {
-  to {
-    stroke-dashoffset: -100;
-  }
+  to { stroke-dashoffset: -100; }
 }
 
 @keyframes laptop-float {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 .flow-line {
@@ -460,7 +394,7 @@ select {
   position: fixed;
   width: 6px;
   height: 6px;
-  background: #00d4ff;
+  background: #0EA5E9;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 99999;
@@ -471,7 +405,7 @@ select {
   position: fixed;
   width: 32px;
   height: 32px;
-  border: 1.5px solid rgba(0, 212, 255, 0.45);
+  border: 1.5px solid rgba(14, 165, 233, 0.45);
   border-radius: 9999px;
   pointer-events: none;
   z-index: 99998;
@@ -498,7 +432,7 @@ select {
   left: 0;
   width: 100%;
   height: 1.5px;
-  background: linear-gradient(90deg, #1a6fff, #00d4ff);
+  background: #0EA5E9;
   border-radius: 9999px;
   transform: scaleX(0);
   transform-origin: right center;

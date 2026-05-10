@@ -31,11 +31,19 @@ export default function FAQ() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="faq" ref={ref} className="section-shell">
+    <motion.section
+      id="faq"
+      ref={ref}
+      className="section-shell bg-[#F7F8FA]"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
-          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">FAQ</span>
@@ -52,13 +60,13 @@ export default function FAQ() {
             return (
               <motion.div
                 key={faq.q}
-                initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
-                animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.68, delay: index * 0.09, ease }}
-                className={`overflow-hidden rounded-[24px] border transition-[border-color,background,box-shadow] duration-200 ${
+                className={`overflow-hidden rounded-xl border bg-white transition-[border-color,box-shadow] duration-200 ${
                   isOpen
-                    ? 'border-[#00d4ff]/28 bg-[linear-gradient(152deg,rgba(0,40,80,0.72),rgba(3,10,26,0.88))] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.12),inset_0_0_32px_rgba(0,120,220,0.07),0_20px_48px_rgba(0,0,0,0.32)]'
-                    : 'border-white/9 bg-[linear-gradient(152deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-white/14 hover:bg-[linear-gradient(152deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_8px_24px_rgba(0,0,0,0.2)]'
+                    ? 'border-[#0EA5E9] shadow-[0_0_0_1px_rgba(14,165,233,0.15),0_4px_16px_rgba(14,165,233,0.08)]'
+                    : 'border-neutral-200 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-neutral-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]'
                 }`}
               >
                 <button
@@ -66,13 +74,13 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
                 >
-                  <span className="text-sm font-semibold leading-6 text-[#f0f7ff] sm:text-base">
+                  <span className="text-sm font-semibold leading-6 text-[#0A0A0A] sm:text-base">
                     {faq.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.24, ease }}
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] text-[#8fefff] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-[#0EA5E9] shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
                   >
                     <Plus size={16} />
                   </motion.span>
@@ -86,7 +94,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <p className="px-5 pb-5 text-sm leading-7 text-[#9db4d2] sm:px-6 sm:text-[15px]">
+                      <p className="px-5 pb-5 text-sm leading-7 text-[#6B7280] sm:px-6 sm:text-[15px]">
                         {faq.a}
                       </p>
                     </motion.div>
@@ -97,6 +105,6 @@ export default function FAQ() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

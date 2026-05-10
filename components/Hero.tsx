@@ -8,9 +8,9 @@ import DeviceMockups from './DeviceMockups'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const words = [
-  { text: 'Strony,', cls: 'text-white' },
+  { text: 'Strony,', cls: 'text-[#0A0A0A]' },
   { text: 'które', cls: 'gradient-text' },
-  { text: 'sprzedają.', cls: 'text-white' },
+  { text: 'sprzedają.', cls: 'text-[#0A0A0A]' },
 ]
 
 export default function Hero() {
@@ -25,14 +25,16 @@ export default function Hero() {
   }
 
   return (
-    <section suppressHydrationWarning className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24">
+    <section
+      suppressHydrationWarning
+      className="relative overflow-hidden px-6 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-24"
+      style={{ background: 'linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 50%, #FFFFFF 100%)' }}
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div style={{ y: y1 }} className="aurora-1 absolute -right-[8%] -top-[10%] h-[700px] w-[700px] rounded-full bg-[rgba(26,111,255,0.2)] blur-[130px]" />
-        <motion.div style={{ y: y2 }} className="aurora-2 absolute left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[rgba(0,212,255,0.1)] blur-[110px]" />
-        <motion.div style={{ y: y3 }} className="aurora-3 absolute -bottom-[20%] left-[30%] h-[600px] w-[600px] rounded-full bg-[rgba(80,40,220,0.1)] blur-[140px]" />
+        <motion.div style={{ y: y1 }} className="aurora-1 absolute -right-[8%] -top-[10%] h-[700px] w-[700px] rounded-full bg-[rgba(14,165,233,0.12)] blur-[130px]" />
+        <motion.div style={{ y: y2 }} className="aurora-2 absolute left-[10%] top-[20%] h-[500px] w-[500px] rounded-full bg-[rgba(99,102,241,0.08)] blur-[110px]" />
+        <motion.div style={{ y: y3 }} className="aurora-3 absolute -bottom-[20%] left-[30%] h-[600px] w-[600px] rounded-full bg-[rgba(14,165,233,0.06)] blur-[140px]" />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_18%,rgba(26,111,255,0.18),transparent_30%),radial-gradient(ellipse_at_16%_20%,rgba(0,212,255,0.08),transparent_24%)]" />
-      <div className="pointer-events-none absolute inset-0 grain-drift opacity-30" />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">
         <div className="max-w-2xl">
@@ -54,7 +56,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-sm leading-7 text-[#9db4d2] sm:text-base"
+            className="mt-6 max-w-xl text-sm leading-7 text-[#6B7280] sm:text-base"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.44, ease }}
@@ -91,6 +93,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.0, delay: 0.22, ease }}
           className="hidden lg:block min-w-0"
+          style={{ filter: 'drop-shadow(0 24px 48px rgba(14,165,233,0.18)) drop-shadow(0 8px 16px rgba(0,0,0,0.10))' }}
         >
           <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px]">
             <DeviceMockups />
@@ -98,7 +101,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <a href="#uslugi" className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6883a7] transition-[color,opacity] duration-300 hover:text-[#8fefff] lg:flex">
+      <a href="#uslugi" className="mx-auto mt-10 hidden w-fit flex-col items-center gap-1 text-[#6B7280] transition-[color,opacity] duration-300 hover:text-[#0EA5E9] lg:flex">
         <span className="text-[11px] uppercase tracking-[0.24em]">Przewiń</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
           <ChevronDown size={18} />

@@ -57,7 +57,7 @@ export default function Contact() {
             </motion.a>
 
             <motion.a
-              href="https://www.instagram.com/nextengroup/"
+              href="https://www.instagram.com/getbuild/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
@@ -77,7 +77,7 @@ export default function Contact() {
               </span>
               <span>
                 <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Instagram</span>
-                <span className="mt-2 block text-lg text-white">@nextengroup</span>
+                <span className="mt-2 block text-lg text-white">@getbuild</span>
               </span>
               <span className="mt-5 flex items-center justify-between text-sm text-[#d8ecff]">
                 <span>Przejdź do profilu</span>
@@ -104,7 +104,7 @@ export default function Contact() {
               </span>
               <span>
                 <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8aa3c4]">Facebook</span>
-                <span className="mt-2 block text-lg text-white">Nexten Group</span>
+                <span className="mt-2 block text-lg text-white">GetBuild</span>
               </span>
               <span className="mt-5 flex items-center justify-between text-sm text-[#d8ecff]">
                 <span>Przejdź do profilu</span>

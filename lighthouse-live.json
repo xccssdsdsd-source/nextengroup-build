@@ -1,9 +1,9 @@
 {
   "lighthouseVersion": "13.1.0",
-  "requestedUrl": "https://nextengroup.vercel.app/",
-  "mainDocumentUrl": "https://nextengroup.vercel.app/",
-  "finalDisplayedUrl": "https://nextengroup.vercel.app/",
-  "finalUrl": "https://nextengroup.vercel.app/",
+  "requestedUrl": "https://getbuild.pl/",
+  "mainDocumentUrl": "https://getbuild.pl/",
+  "finalDisplayedUrl": "https://getbuild.pl/",
+  "finalUrl": "https://getbuild.pl/",
   "fetchTime": "2026-04-19T15:58:59.205Z",
   "gatherMode": "navigation",
   "runWarnings": [
@@ -207,7 +207,7 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/",
+            "url": "https://getbuild.pl/",
             "responseTime": 32
           }
         ],
@@ -388,25 +388,25 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/",
+            "url": "https://getbuild.pl/",
             "total": 2133.0359999999996,
             "scripting": 12.111999999999995,
             "scriptParseCompile": 11.759999999999998
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "url": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "total": 694.0080000000011,
             "scripting": 267.176000000001,
             "scriptParseCompile": 42.123999999999995
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "total": 669.2240000000004,
             "scripting": 507.61200000000036,
             "scriptParseCompile": 30.924
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "url": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "total": 434.8920000000004,
             "scripting": 308.00800000000044,
             "scriptParseCompile": 46.304
@@ -521,7 +521,7 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/",
+            "url": "https://getbuild.pl/",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 0,
@@ -538,7 +538,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/437e5f23c97e320c-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/437e5f23c97e320c-s.p.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 398.401000007987,
@@ -556,7 +556,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/67d60655232d436d-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/67d60655232d436d-s.p.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 399.68800000846386,
@@ -574,7 +574,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/8a1d8947e5852e30-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/8a1d8947e5852e30-s.p.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 400.1899999976158,
@@ -592,7 +592,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/de42cfb9a3b980ae-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/de42cfb9a3b980ae-s.p.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 400.5420000106096,
@@ -610,7 +610,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css",
+            "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 400.8780000060797,
@@ -627,7 +627,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/webpack-26ddf021d7c364ca.js",
+            "url": "https://getbuild.pl/_next/static/chunks/webpack-26ddf021d7c364ca.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 401.2199999988079,
@@ -645,7 +645,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "url": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 401.48200000822544,
@@ -662,7 +662,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 401.85999999940395,
@@ -679,7 +679,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/main-app-2dcde4753ea0d175.js",
+            "url": "https://getbuild.pl/_next/static/chunks/main-app-2dcde4753ea0d175.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 402.64000000059605,
@@ -696,7 +696,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "url": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 403.10300001502037,
@@ -713,7 +713,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/app/page-77ac3a327dd025bf.js",
+            "url": "https://getbuild.pl/_next/static/chunks/app/page-77ac3a327dd025bf.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 403.3930000066757,
@@ -730,7 +730,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/app/layout-942026fe94f94498.js",
+            "url": "https://getbuild.pl/_next/static/chunks/app/layout-942026fe94f94498.js",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 403.6270000040531,
@@ -763,7 +763,7 @@
             "experimentalFromMainFrame": true
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/3352fdb488e19d84-s.woff2",
+            "url": "https://getbuild.pl/_next/static/media/3352fdb488e19d84-s.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 606.0580000132322,
@@ -780,7 +780,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
+            "url": "https://getbuild.pl/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 624.8750000149012,
@@ -797,7 +797,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/680a7121f7a85e3f-s.woff2",
+            "url": "https://getbuild.pl/_next/static/media/680a7121f7a85e3f-s.woff2",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 713.7870000004768,
@@ -814,7 +814,7 @@
             "entity": "vercel.app"
           },
           {
-            "url": "https://nextengroup.vercel.app/favicon.ico",
+            "url": "https://getbuild.pl/favicon.ico",
             "sessionTargetType": "page",
             "protocol": "h2",
             "rendererStartTime": 1441.209000006318,
@@ -837,91 +837,91 @@
           "initiators": [
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 309
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 427
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 545
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 663
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 756
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 865
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 938
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 1015
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 1097
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 1173
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 1255
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/",
+              "url": "https://getbuild.pl/",
               "lineNumber": 0,
               "columnNumber": 1339
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css"
+              "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css"
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css"
+              "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css"
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css"
+              "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css"
             },
             {
               "type": "parser",
-              "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css"
+              "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css"
             }
           ]
         }
@@ -953,7 +953,7 @@
         ],
         "items": [
           {
-            "origin": "https://nextengroup.vercel.app",
+            "origin": "https://getbuild.pl",
             "rtt": 18.885
           }
         ],
@@ -988,7 +988,7 @@
         ],
         "items": [
           {
-            "origin": "https://nextengroup.vercel.app",
+            "origin": "https://getbuild.pl",
             "serverResponseTime": 237.25900000000001
           }
         ],
@@ -1342,17 +1342,17 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/",
+            "url": "https://getbuild.pl/",
             "duration": 588,
             "startTime": 1341.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "url": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "duration": 334,
             "startTime": 2487.259
           },
           {
-            "url": "https://nextengroup.vercel.app/",
+            "url": "https://getbuild.pl/",
             "duration": 182,
             "startTime": 1159.259
           },
@@ -1362,27 +1362,27 @@
             "startTime": 987.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "url": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "duration": 125,
             "startTime": 3163.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "url": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "duration": 118,
             "startTime": 2187.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "duration": 101,
             "startTime": 2919.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "duration": 91,
             "startTime": 3020.259
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "duration": 52,
             "startTime": 3111.259
           }
@@ -1396,11 +1396,11 @@
         "debugData": {
           "type": "debugdata",
           "urls": [
-            "https://nextengroup.vercel.app/",
-            "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "https://getbuild.pl/",
+            "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "Unattributable",
-            "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
-            "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js"
+            "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js"
           ],
           "tasks": [
             {
@@ -1541,7 +1541,7 @@
         "type": "treemap-data",
         "nodes": [
           {
-            "name": "https://nextengroup.vercel.app/",
+            "name": "https://getbuild.pl/",
             "resourceBytes": 10018,
             "encodedBytes": 478,
             "children": [
@@ -1578,43 +1578,43 @@
             ]
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/webpack-26ddf021d7c364ca.js",
+            "name": "https://getbuild.pl/_next/static/chunks/webpack-26ddf021d7c364ca.js",
             "resourceBytes": 4157,
             "encodedBytes": 0,
             "unusedBytes": 352
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "name": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "resourceBytes": 147583,
             "encodedBytes": 50669,
             "unusedBytes": 79250
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/app/page-77ac3a327dd025bf.js",
+            "name": "https://getbuild.pl/_next/static/chunks/app/page-77ac3a327dd025bf.js",
             "resourceBytes": 24520,
             "encodedBytes": 0,
             "unusedBytes": 668
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/main-app-2dcde4753ea0d175.js",
+            "name": "https://getbuild.pl/_next/static/chunks/main-app-2dcde4753ea0d175.js",
             "resourceBytes": 461,
             "encodedBytes": 0,
             "unusedBytes": 0
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "name": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "resourceBytes": 124364,
             "encodedBytes": 32995,
             "unusedBytes": 50050
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "name": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "resourceBytes": 172834,
             "encodedBytes": 37710,
             "unusedBytes": 70959
           },
           {
-            "name": "https://nextengroup.vercel.app/_next/static/chunks/app/layout-942026fe94f94498.js",
+            "name": "https://getbuild.pl/_next/static/chunks/app/layout-942026fe94f94498.js",
             "resourceBytes": 1744,
             "encodedBytes": 0,
             "unusedBytes": 300
@@ -2473,43 +2473,43 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
+            "url": "https://getbuild.pl/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js",
             "totalBytes": 55314
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "url": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "totalBytes": 50817
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/8a1d8947e5852e30-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/8a1d8947e5852e30-s.p.woff2",
             "totalBytes": 34851
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "totalBytes": 33217
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/de42cfb9a3b980ae-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/de42cfb9a3b980ae-s.p.woff2",
             "totalBytes": 20377
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/437e5f23c97e320c-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/437e5f23c97e320c-s.p.woff2",
             "totalBytes": 15110
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/680a7121f7a85e3f-s.woff2",
+            "url": "https://getbuild.pl/_next/static/media/680a7121f7a85e3f-s.woff2",
             "totalBytes": 14849
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/67d60655232d436d-s.p.woff2",
+            "url": "https://getbuild.pl/_next/static/media/67d60655232d436d-s.p.woff2",
             "totalBytes": 14125
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
+            "url": "https://getbuild.pl/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
             "totalBytes": 10408
           },
           {
-            "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css",
+            "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css",
             "totalBytes": 9873
           }
         ],
@@ -2660,7 +2660,7 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/78-e183fc891dab1e2d.js",
+            "url": "https://getbuild.pl/_next/static/chunks/78-e183fc891dab1e2d.js",
             "totalBytes": 50669,
             "wastedBytes": 27209,
             "wastedPercent": 53.69859672184466
@@ -3258,7 +3258,7 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+            "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
             "wastedBytes": 11695,
             "subItems": {
               "type": "subitems",
@@ -3267,7 +3267,7 @@
                   "signal": "Array.prototype.at",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 1273
@@ -3277,7 +3277,7 @@
                   "signal": "Array.prototype.flat",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 661
@@ -3287,7 +3287,7 @@
                   "signal": "Array.prototype.flatMap",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 774
@@ -3297,7 +3297,7 @@
                   "signal": "Object.fromEntries",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 1150
@@ -3307,7 +3307,7 @@
                   "signal": "Object.hasOwn",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 1408
@@ -3317,7 +3317,7 @@
                   "signal": "String.prototype.trimEnd",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 403
@@ -3327,7 +3327,7 @@
                   "signal": "String.prototype.trimStart",
                   "location": {
                     "type": "source-location",
-                    "url": "https://nextengroup.vercel.app/_next/static/chunks/117-4f5b424f20efdcae.js",
+                    "url": "https://getbuild.pl/_next/static/chunks/117-4f5b424f20efdcae.js",
                     "urlProvider": "network",
                     "line": 0,
                     "column": 318
@@ -3390,32 +3390,32 @@
               "type": "network-tree",
               "chains": {
                 "535449D3D24F5DE0692E754F4329AC64": {
-                  "url": "https://nextengroup.vercel.app/",
+                  "url": "https://getbuild.pl/",
                   "navStartToEndTime": 419,
                   "transferSize": 9574,
                   "isLongest": true,
                   "children": {
                     "7524.6": {
-                      "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css",
+                      "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css",
                       "navStartToEndTime": 480,
                       "transferSize": 9873,
                       "isLongest": true,
                       "children": {
                         "7524.36": {
-                          "url": "https://nextengroup.vercel.app/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
+                          "url": "https://getbuild.pl/_next/static/media/d9fef5bf2f64cf9a-s.woff2",
                           "navStartToEndTime": 1412,
                           "transferSize": 10408,
                           "isLongest": true,
                           "children": {}
                         },
                         "7524.31": {
-                          "url": "https://nextengroup.vercel.app/_next/static/media/680a7121f7a85e3f-s.woff2",
+                          "url": "https://getbuild.pl/_next/static/media/680a7121f7a85e3f-s.woff2",
                           "navStartToEndTime": 1397,
                           "transferSize": 14849,
                           "children": {}
                         },
                         "7524.45": {
-                          "url": "https://nextengroup.vercel.app/_next/static/media/3352fdb488e19d84-s.woff2",
+                          "url": "https://getbuild.pl/_next/static/media/3352fdb488e19d84-s.woff2",
                           "navStartToEndTime": 1151,
                           "transferSize": 9508,
                           "children": {}
@@ -3483,7 +3483,7 @@
         ],
         "items": [
           {
-            "url": "https://nextengroup.vercel.app/_next/static/css/cac6804fb7fc8858.css",
+            "url": "https://getbuild.pl/_next/static/css/cac6804fb7fc8858.css",
             "totalBytes": 9873,
             "wastedMs": 150
           }
@@ -4408,7 +4408,7 @@
     {
       "name": "vercel.app",
       "origins": [
-        "https://nextengroup.vercel.app"
+        "https://getbuild.pl"
       ],
       "isFirstParty": true,
       "isUnrecognized": true

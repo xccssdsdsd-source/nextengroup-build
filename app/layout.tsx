@@ -3,8 +3,8 @@ import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
 import './globals.css'
 import Cursor from '@/components/Cursor'
 
-const siteUrl = 'https://nextengroup.pl'
-const siteTitle = 'Nexten Group | Strony WWW i Automatyzacje AI'
+const siteUrl = 'https://getbuild.pl'
+const siteTitle = 'GetBuild | Strony WWW i Automatyzacje AI'
 const siteDescription =
   'Projektujemy strony WWW i automatyzacje AI dla małych firm. Więcej zapytań, szybsza obsługa leadów i darmowa wizualizacja w 24h.'
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     'automatyzacje ai',
     'landing page',
     'chatbot ai',
-    'nexten group',
+    'getbuild',
   ],
   alternates: {
     canonical: siteUrl,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: siteTitle,
     description: siteDescription,
-    siteName: 'Nexten Group',
+    siteName: 'GetBuild',
     locale: 'pl_PL',
     images: [
       {

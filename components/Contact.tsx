@@ -17,20 +17,20 @@ export default function Contact() {
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-gray-900/10 bg-gray-950 p-8 sm:p-12 lg:p-14"
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-gray-200/30 bg-white p-8 sm:p-12 lg:p-14"
       >
         <div
           className="pointer-events-none absolute inset-0 rounded-3xl"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)',
             backgroundSize: '36px 36px',
           }}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
         <div className="relative">
           <span className="section-kicker text-blue-400">Kontakt</span>
-          <h2 className="section-title text-white">Porozmawiajmy o Twojej firmie</h2>
+          <h2 className="section-title text-gray-900">Porozmawiajmy o Twojej firmie</h2>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
@@ -81,21 +81,21 @@ export default function Contact() {
                 transition={{ duration: 0.62, delay: card.delay, ease }}
                 whileHover={{ y: -5 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/8 bg-white/5 p-6 transition-all duration-200"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-all duration-200"
                 style={{
                   minHeight: '180px',
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255, 255, 255, 0.1)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(0, 0, 0, 0.03)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(0, 0, 0, 0.02)' }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                   {card.icon}
                 </div>
                 <div className="mt-4">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">{card.label}</div>
-                  <div className="mt-1.5 text-[15px] font-semibold text-white break-all leading-snug">{card.value}</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">{card.label}</div>
+                  <div className="mt-1.5 text-[15px] font-semibold text-gray-900 break-all leading-snug">{card.value}</div>
                 </div>
-                <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-[13px] font-medium text-blue-400">
+                <div className="mt-5 flex items-center justify-between border-t border-gray-200 pt-4 text-[13px] font-medium text-blue-600">
                   <span>{card.cta}</span>
                   <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>

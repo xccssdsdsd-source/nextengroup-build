@@ -34,17 +34,16 @@ export default function Nav() {
   return (
     <>
       <motion.div
-        className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[#0EA5E9] via-[#6366F1] to-[#0EA5E9]"
+        className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[#0055FF] via-[#001AFF] to-[#0055FF]"
         style={{ scaleX }}
       />
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 ${
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-xl transition-all duration-200 ${
             scrolled
-              ? 'border-black/[0.08] bg-white/96 shadow-[0_4px_6px_rgba(0,0,0,0.04),0_12px_32px_rgba(0,0,0,0.07)] backdrop-blur-xl'
-              : 'border-black/[0.05] bg-white/80 shadow-[0_2px_4px_rgba(0,0,0,0.03),0_8px_20px_rgba(0,0,0,0.04)] backdrop-blur-md'
+              ? 'border-gray-100/80 bg-white/80 shadow-[0_4px_6px_rgba(0,0,0,0.04),0_12px_32px_rgba(0,0,0,0.07)]'
+              : 'border-gray-100/80 bg-white/80 shadow-[0_2px_4px_rgba(0,0,0,0.03),0_8px_20px_rgba(0,0,0,0.04)]'
           }`}
-          style={{ transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease' }}
         >
           <div className="flex items-center justify-between gap-4">
             <a href="#" className="flex min-w-0 items-center gap-3">

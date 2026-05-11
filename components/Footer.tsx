@@ -8,19 +8,14 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#0A0A0A] px-6 py-14 sm:px-8 sm:py-16">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(14,165,233,0.08) 0%, transparent 60%)' }}
-      />
+    <footer className="relative overflow-hidden bg-gray-950 px-6 py-14 sm:px-8 sm:py-16 border-t border-white/6">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0EA5E9]/40 to-transparent" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-3">

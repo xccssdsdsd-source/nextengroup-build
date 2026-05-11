@@ -13,30 +13,24 @@ export default function Contact() {
 
   return (
     <section id="kontakt" ref={ref} className="section-shell scroll-mt-32 relative bg-white">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(14,165,233,0.07) 0%, transparent 60%)' }}
-      />
-
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-black/[0.06] bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-8 sm:p-12 lg:p-14"
-        style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06), 0 32px 80px rgba(0,0,0,0.04)' }}
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-gray-900/10 bg-gray-950 p-8 sm:p-12 lg:p-14"
       >
         <div
           className="pointer-events-none absolute inset-0 rounded-3xl"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(14,165,233,0.06) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
             backgroundSize: '36px 36px',
           }}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#0EA5E9]/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
         <div className="relative">
-          <span className="section-kicker">Kontakt</span>
-          <h2 className="section-title">Porozmawiajmy o Twojej firmie</h2>
+          <span className="section-kicker text-blue-400">Kontakt</span>
+          <h2 className="section-title text-white">Porozmawiajmy o Twojej firmie</h2>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
@@ -87,23 +81,21 @@ export default function Contact() {
                 transition={{ duration: 0.62, delay: card.delay, ease }}
                 whileHover={{ y: -5 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-6"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/8 bg-white/5 p-6 transition-all duration-200"
                 style={{
                   minHeight: '180px',
-                  boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05)',
-                  transition: 'box-shadow 0.3s ease, transform 0.2s ease',
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05)' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255, 255, 255, 0.1)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)' }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#EFF6FF] to-[#E0F2FE] text-[#0EA5E9] transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white transition-transform duration-300 group-hover:scale-110">
                   {card.icon}
                 </div>
                 <div className="mt-4">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">{card.label}</div>
-                  <div className="mt-1.5 text-[15px] font-semibold text-[#0A0A0A] break-all leading-snug">{card.value}</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">{card.label}</div>
+                  <div className="mt-1.5 text-[15px] font-semibold text-white break-all leading-snug">{card.value}</div>
                 </div>
-                <div className="mt-5 flex items-center justify-between border-t border-neutral-100 pt-4 text-[13px] font-medium text-[#0EA5E9]">
+                <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-[13px] font-medium text-blue-400">
                   <span>{card.cta}</span>
                   <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>

@@ -34,8 +34,7 @@ export default function FAQ() {
     <section
       id="faq"
       ref={ref}
-      className="section-shell relative"
-      style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)' }}
+      className="section-shell relative bg-white"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -67,10 +66,10 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.68, delay: index * 0.09, ease }}
-                className={`overflow-hidden rounded-xl border bg-white transition-[border-color,box-shadow] duration-200 ${
+                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
                   isOpen
-                    ? 'border-[#0EA5E9]/40 shadow-[0_0_0_1px_rgba(14,165,233,0.08),0_4px_16px_rgba(14,165,233,0.06),0_12px_32px_rgba(0,0,0,0.04)]'
-                    : 'border-black/[0.07] shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-black/[0.12] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]'
+                    ? 'border-blue-100 bg-blue-50 shadow-[0_4px_16px_rgba(0,85,255,0.08)]'
+                    : 'border-transparent bg-gray-50 shadow-none hover:border-gray-200'
                 }`}
               >
                 <button
@@ -84,7 +83,7 @@ export default function FAQ() {
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.24, ease }}
-                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${isOpen ? 'border-[#0EA5E9]/30 bg-[#0EA5E9]/8 text-[#0EA5E9]' : 'border-black/[0.08] bg-neutral-50 text-[#9CA3AF]'}`}
+                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-sm transition-all duration-200 group-hover:bg-blue-600 group-hover:text-white ${isOpen ? 'bg-blue-600 text-white' : 'bg-white text-gray-400'}`}
                   >
                     <Plus size={15} strokeWidth={2.2} />
                   </motion.span>

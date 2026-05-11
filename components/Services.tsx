@@ -12,27 +12,27 @@ const services = [
     title: 'Strony, które prowadzą do kontaktu',
     desc: 'Projekt i wdrożenie strony, która porządkuje ofertę, buduje zaufanie i kieruje użytkownika prosto do działania.',
     points: ['Design premium', 'Copy sprzedażowe', 'Pełna responsywność'],
-    color: 'from-[#0EA5E9]/10 to-[#6366F1]/10',
-    iconColor: 'text-[#0EA5E9]',
-    accent: '#0EA5E9',
+    color: 'from-blue-50 to-blue-50',
+    iconColor: 'text-[#0055FF]',
+    accent: '#0055FF',
   },
   {
     icon: Zap,
     title: 'Automatyzacje AI dla leadów',
     desc: 'Zbieramy zapytania, porządkujemy kontakty i przyspieszamy odpowiedź bez dodatkowej pracy z Twojej strony.',
     points: ['Formularze i integracje', 'Scoring zapytań', 'Logika obsługi leadów'],
-    color: 'from-[#6366F1]/10 to-[#8B5CF6]/10',
-    iconColor: 'text-[#6366F1]',
-    accent: '#6366F1',
+    color: 'from-blue-50 to-blue-50',
+    iconColor: 'text-[#0055FF]',
+    accent: '#0055FF',
   },
   {
     icon: MessagesSquare,
     title: 'Lepsza ścieżka klienta',
     desc: 'Dbamy o to, żeby klient szybko rozumiał ofertę i miał jasną ścieżkę do kontaktu.',
     points: ['Mocniejsze sekcje CTA', 'Lepsza hierarchia treści', 'Większa czytelność'],
-    color: 'from-[#0EA5E9]/10 to-[#06B6D4]/10',
-    iconColor: 'text-[#0EA5E9]',
-    accent: '#0EA5E9',
+    color: 'from-blue-50 to-blue-50',
+    iconColor: 'text-[#0055FF]',
+    accent: '#0055FF',
   },
 ] as const
 
@@ -44,7 +44,7 @@ export default function Services() {
     <section id="uslugi" ref={ref} className="section-shell relative bg-white">
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(14,165,233,0.06) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(0,85,255,0.06) 0%, transparent 60%)' }}
       />
 
       <div className="relative mx-auto max-w-7xl">
@@ -76,21 +76,26 @@ export default function Services() {
             <motion.article
               key={service.title}
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-7"
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group relative overflow-hidden rounded-[20px] border border-[#EBEBEB] bg-white p-7 transition-all duration-300"
               style={{
-                boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.03)',
-                transition: 'box-shadow 0.3s ease, transform 0.2s ease',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.08), 0 32px 64px rgba(0,0,0,0.05)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.03)' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,85,255,0.1)';
+                (e.currentTarget as HTMLElement).style.borderColor = '#CCDAFF';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
+                (e.currentTarget as HTMLElement).style.borderColor = '#EBEBEB';
+              }}
             >
               <div
                 className="absolute inset-x-0 top-0 h-[3px]"
                 style={{ background: `linear-gradient(90deg, ${service.accent}, ${service.accent}99)` }}
               />
 
-              <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${service.color} ${service.iconColor} transition-transform duration-300 group-hover:scale-110`}>
+              <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 ${service.iconColor} transition-transform duration-300 group-hover:scale-110`}>
                 <service.icon size={20} strokeWidth={1.7} />
               </div>
 
@@ -105,7 +110,7 @@ export default function Services() {
                 {service.points.map(point => (
                   <span
                     key={point}
-                    className="rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#6B7280] ring-1 ring-inset ring-black/[0.06]"
+                    className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium uppercase tracking-[0.12em] text-gray-500"
                   >
                     {point}
                   </span>

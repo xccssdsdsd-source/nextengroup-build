@@ -5,7 +5,7 @@ import { ArrowUpRight, Mail } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const contactEmail = 'digitalagencymail0@gmail.com'
+const contactEmail = 'getbuild.pl@gmail.com'
 
 export default function Contact() {
   const ref = useRef(null)

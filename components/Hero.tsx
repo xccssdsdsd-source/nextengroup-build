@@ -59,7 +59,7 @@ export default function Hero() {
           </motion.div>
 
           <h1
-            className="max-w-[9ch] font-sans text-[clamp(58px,9vw,128px)] uppercase leading-[0.86] tracking-[-0.06em]"
+            className="font-sans text-[clamp(24px,7vw,128px)] uppercase leading-[0.86] tracking-[-0.06em]"
             style={{ fontFamily: 'var(--font-barlow)' }}
           >
             {words.map(({ text, cls }, i) => (

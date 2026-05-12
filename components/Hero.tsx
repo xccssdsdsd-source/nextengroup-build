@@ -27,7 +27,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-hidden px-6 pb-24 pt-36 sm:px-8 sm:pt-40 lg:pb-28 bg-white"
+      className="relative overflow-hidden px-6 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40 bg-white"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -59,7 +59,7 @@ export default function Hero() {
           </motion.div>
 
           <h1
-            className="font-sans text-[clamp(24px,7vw,128px)] uppercase leading-[0.86] tracking-[-0.06em]"
+            className="font-sans text-[clamp(28px,8vw,128px)] uppercase leading-[0.86] tracking-[-0.06em]"
             style={{ fontFamily: 'var(--font-barlow)' }}
           >
             {words.map(({ text, cls }, i) => (
@@ -108,7 +108,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-10 flex items-center gap-6 border-t border-neutral-100 pt-8"
+            className="mt-10 grid gap-6 border-t border-neutral-100 pt-8 sm:flex sm:items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.72, ease }}
@@ -116,10 +116,10 @@ export default function Hero() {
             {[['24h', 'Pierwsza wizualizacja'], ['100%', 'Mobile-first'], ['AI', 'Automatyzacje']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-6">
                 <div>
-                  <div className="text-4xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
+                  <div className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
                   <div className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#6B7280]">{label}</div>
                 </div>
-                {i < 2 && <div className="h-10 w-px bg-gray-200" />}
+                {i < 2 && <div className="hidden sm:block h-10 w-px bg-gray-200" />}
               </div>
             ))}
           </motion.div>

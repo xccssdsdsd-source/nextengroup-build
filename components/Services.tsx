@@ -18,8 +18,8 @@ const services = [
   },
   {
     icon: Zap,
-    title: 'Automatyzacje AI dla leadów',
-    desc: 'Zbieramy zapytania, porządkujemy kontakty i przyspieszamy odpowiedź bez dodatkowej pracy z Twojej strony.',
+    title: 'Automatyzacje AI',
+    desc: 'Błyskawiczna analiza i odpowiedź na zapytania, zautomatyzowana ścieżka klienta oraz eliminacja powtarzalnej pracy bezpośrednio z Twojej strony.',
     points: ['Formularze i integracje', 'Scoring zapytań', 'Logika obsługi leadów'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',

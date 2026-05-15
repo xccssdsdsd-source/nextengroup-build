@@ -123,7 +123,7 @@ export default function Hero() {
             {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-6">
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
+                  <div className="text-lg sm:text-xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
                   {label && <div className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#6B7280]">{label}</div>}
                 </div>
                 {i < 2 && <div className="hidden sm:block h-10 w-px bg-gray-200" />}

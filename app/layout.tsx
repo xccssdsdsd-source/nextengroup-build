@@ -4,9 +4,9 @@ import './globals.css'
 import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Getbuild | Agencja Web Services i SEO dla firm B2B | Trójmiasto'
+const siteTitle = 'Getbuild | Strony WWW, Automatyzacje AI, Agenci AI | Trójmiasto'
 const siteDescription =
-  'Tworzymy strony www, sklepy i wdrażamy SEO dla firm B2B w całej Polsce. Agencja z Trójmiasta. Bezpłatna konsultacja i wycena projektu.'
+  'Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI, którzy pracują za Ciebie. Agencja z Trójmiasta.'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [
     'agencja web services',
-    'strony www dla firm',
-    'SEO dla firm B2B',
-    'sklepy internetowe',
-    'audyt SEO',
+    'strony www',
+    'automatyzacje AI',
+    'agenci AI',
+    'rozwiązania IT',
     'getbuild',
     'Trójmiasto',
   ],
@@ -102,7 +102,7 @@ export default function RootLayout({
           'url': 'https://getbuild.pl',
           'logo': 'https://getbuild.pl/logo.png',
           'image': 'https://getbuild.pl/og-image.jpg',
-          'description': 'Agencja web services i SEO dla firm B2B w Polsce. Tworzymy strony www, sklepy internetowe, wdrożenia SEO i automatyzacje biznesowe.',
+          'description': 'Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący 24/7.',
           'address': {
             '@type': 'PostalAddress',
             'addressLocality': 'Trójmiasto',
@@ -114,11 +114,10 @@ export default function RootLayout({
             'name': 'Polska'
           },
           'serviceType': [
-            'Tworzenie stron internetowych',
-            'Tworzenie sklepów internetowych',
-            'SEO i pozycjonowanie',
-            'Audyt SEO',
-            'Automatyzacja procesów biznesowych'
+            'Tworzenie stron WWW',
+            'Automatyzacje AI',
+            'Agenci AI',
+            'Rozwiązania IT'
           ],
           'priceRange': '$$',
           'sameAs': [

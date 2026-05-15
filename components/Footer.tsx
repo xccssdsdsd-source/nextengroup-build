@@ -33,7 +33,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-[12px] leading-5 text-white/40">
-            Agencja web services specjalizująca się w tworzeniu stron www, SEO i e-commerce dla firm B2B w Polsce.
+            Projektujemy i wdrażamy rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący dla Twojego biznesu.
           </p>
         </div>
 

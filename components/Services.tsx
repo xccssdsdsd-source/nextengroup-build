@@ -9,27 +9,27 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const services = [
   {
     icon: Globe,
-    title: 'Strony internetowe dla firm',
-    desc: 'Tworzymy profesjonalne strony www dla firm B2B, które budują wiarygodność, porządkują ofertę i kierują klientów do bezpośredniego kontaktu. Dostosowujemy każdy element do Twojej branży.',
-    points: ['Mobilne i responsywne', 'Szybkie ładowanie i SEO', 'Integracje z CRM i lead tracking'],
+    title: 'Strony WWW',
+    desc: 'Tworzymy profesjonalne strony internetowe, które budują wiarygodność Twojej firmy, porządkują ofertę i kierują klientów do bezpośredniego kontaktu. Dostosowujemy każdy element do Twoich potrzeb.',
+    points: ['Mobilne i responsywne', 'Szybkie ładowanie', 'Integracje z systemami'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
   },
   {
     icon: Zap,
-    title: 'SEO i pozycjonowanie',
-    desc: 'Strategie SEO dla firm B2B, które przekładają się na wyższą widoczność w Google i więcej kwalifikowanych zapytań. Audyt SEO, optymalizacja on-page, link building i monitoring rankingów.',
-    points: ['Audyt SEO', 'Optymalizacja techniczna', 'Link building dla firm'],
+    title: 'Automatyzacje AI',
+    desc: 'Automatyzujemy procesy biznesowe przy użyciu sztucznej inteligencji. Od obsługi zapytań klientów po zarządzanie danymi — oszczędzaj czas, redukuj błędy i zwiększaj efektywność.',
+    points: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i reporting'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
   },
   {
     icon: MessagesSquare,
-    title: 'Sklepy i platformy e-commerce',
-    desc: 'Wdrażamy sklepy internetowe i platformy B2B, które obsługują zarówno klientów detalicznych, jak i biznesowych. Pełna integracja z systemami logistycznymi i rozliczeniowymi.',
-    points: ['E-commerce B2B i B2C', 'Integracja płatności', 'Zarządzanie katalogiem i zamówieniami'],
+    title: 'Agenci AI',
+    desc: 'Wdrażamy agentów AI, którzy pracują za Ciebie 24/7. Obsługują zapytania, przetwarzają dane i wspomagają decyzje biznesowe bez ludzkiej interwencji.',
+    points: ['Agenci AI 24/7', 'Integracje z CRM', 'Monitoring i statystyki'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
@@ -55,9 +55,9 @@ export default function Services() {
           transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">Oferta</span>
-          <h2 className="section-title">Usługi dla firm B2B w Polsce</h2>
+          <h2 className="section-title">Rozwiązania IT dla Twojego biznesu</h2>
           <p className="section-copy">
-            Oferujemy kompleksowe rozwiązania web services dla przedsiębiorstw szukających profesjonalnej agencji. Tworzymy strony internetowe dla firm, które generują zapytania ofertowe. Wdrażamy strategie SEO dla firm B2B w Google. Budujemy platformy e-commerce i sklepy internetowe dla producentów i dostawców. Każde rozwiązanie jest dostosowane do potrzeb Twojej branży i Twoich celów biznesowych.
+            Oferujemy kompleksowe rozwiązania dostosowane do Twojego biznesu. Tworzymy strony WWW, które generują zapytania i budują wiarygodność. Wdrażamy automatyzacje AI, które oszczędzają czas i redukują koszty. Stawiamy agentów AI, którzy pracują za Ciebie 24/7. Każde rozwiązanie jest skrojone pod Twoje potrzeby.
           </p>
         </motion.div>
 

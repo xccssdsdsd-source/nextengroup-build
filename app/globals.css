@@ -470,8 +470,36 @@ select {
   .aurora-1, .aurora-2, .aurora-3,
   .dmblob-l1, .dmblob-l2, .dmblob-l3,
   .dmblob-p1, .dmblob-p2,
-  .float-laptop, .float-phone {
+  .float-laptop, .float-phone,
+  .ticker-track {
     animation: none !important;
+  }
+  .grain-drift {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .ticker-track {
+    animation: ticker 28s linear infinite;
+  }
+  .dm-scene::before {
+    width: 250px;
+    height: 250px;
+  }
+  .pulse-glow {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

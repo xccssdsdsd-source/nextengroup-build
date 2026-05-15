@@ -1,10 +1,12 @@
 'use client'
 
 import type { MouseEvent } from 'react'
+import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import DeviceMockups from './DeviceMockups'
 import { useEffect, useState } from 'react'
+
+const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: true })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 

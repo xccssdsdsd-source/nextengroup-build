@@ -8,9 +8,9 @@ import DeviceMockups from './DeviceMockups'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const words = [
-  { text: 'Strony,', cls: 'text-[#0A0A0A]' },
-  { text: 'które', cls: 'gradient-text' },
-  { text: 'sprzedają.', cls: 'text-[#0A0A0A]' },
+  { text: 'Agencja web', cls: 'text-[#0A0A0A]' },
+  { text: 'services dla', cls: 'gradient-text' },
+  { text: 'firm B2B', cls: 'text-[#0A0A0A]' },
 ]
 
 export default function Hero() {
@@ -81,7 +81,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
-            Twoja strona zaczyna przysyłać zapytania zanim skończy się dzień roboczy.
+            Getbuild to agencja web services z Trójmiasta, która tworzy strony internetowe, sklepy i wdraża SEO dla firm B2B w całej Polsce. Pomagamy spółkom, producentom, dostawcom usług i firmom technologicznym budować obecność online, która przekłada się na realne zapytania ofertowe.
           </motion.p>
 
           <motion.div

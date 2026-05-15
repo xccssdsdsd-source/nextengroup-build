@@ -46,3 +46,4 @@ top\nextengroup-build\.next\cache\webpack\client-development-fallback\0.pack.gz_
 }
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\1.pack.gz'
  ✓ Compiled in 5.5s (1830 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\3.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\3.pack.gz'

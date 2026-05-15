@@ -123,7 +123,7 @@ export default function RootLayout({
             'https://www.linkedin.com/company/getbuild',
             'https://www.instagram.com/getbuild'
           ]
-        })} />}
+        })}} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="bg-[#020810] text-[#e8f0ff] antialiased">

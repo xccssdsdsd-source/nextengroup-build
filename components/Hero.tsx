@@ -9,9 +9,9 @@ import { useEffect, useState } from 'react'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const words = [
-  { text: 'Agencja web', cls: 'text-[#0A0A0A]' },
-  { text: 'services dla', cls: 'gradient-text' },
-  { text: 'firm B2B', cls: 'text-[#0A0A0A]' },
+  { text: 'Rozwiązania IT', cls: 'text-[#0A0A0A]' },
+  { text: 'dopasowane do', cls: 'gradient-text' },
+  { text: 'Ciebie', cls: 'text-[#0A0A0A]' },
 ]
 
 export default function Hero() {
@@ -88,7 +88,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
-            Getbuild to agencja web services z Trójmiasta, która tworzy strony internetowe, sklepy i wdraża SEO dla firm B2B w całej Polsce. Pomagamy spółkom, producentom, dostawcom usług i firmom technologicznym budować obecność online, która przekłada się na realne zapytania ofertowe.
+            Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Strony WWW, automatyzacje procesów i agenci AI, którzy pracują za Ciebie.
           </motion.p>
 
           <motion.div
@@ -120,11 +120,11 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.72, ease }}
           >
-            {[['24h', 'Pierwsza wizualizacja'], ['100%', 'Mobile-first'], ['AI', 'Automatyzacje']].map(([val, label], i) => (
+            {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-6">
                 <div>
                   <div className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#6B7280]">{label}</div>
+                  {label && <div className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#6B7280]">{label}</div>}
                 </div>
                 {i < 2 && <div className="hidden sm:block h-10 w-px bg-gray-200" />}
               </div>

@@ -19,7 +19,7 @@ export default function Footer() {
 
       <div className="relative mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Getbuild.pl" className="h-9 w-9 rounded-lg object-contain" style={{ filter: 'invert(1)', mixBlendMode: 'screen' }} />
+          <img src="/logo.png" alt="Getbuild.pl" className="h-9 w-9 rounded-lg object-contain" />
           <div>
             <div className="text-sm font-bold uppercase tracking-[0.2em] text-white" style={{ fontFamily: 'var(--font-syne)' }}>
               Getbuild.pl

@@ -1,8 +1,7 @@
 const items = [
-  'Landing pages',
+  'Strony premium',
   'Automatyzacje AI',
   'Leady i CRM',
-  'Strony premium',
   'Copy sprzedażowe',
   'Analityka i optymalizacja',
 ]

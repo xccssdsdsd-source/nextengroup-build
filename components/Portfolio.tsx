@@ -11,7 +11,7 @@ const projects = [
   {
     name: 'Dorimari.pl',
     href: 'https://dorimari.pl',
-    description: 'sklep premium',
+    description: 'turystyka premium',
     preview: '/portfolio/dorimari-preview.webp',
   },
   {

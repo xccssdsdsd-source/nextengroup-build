@@ -23,6 +23,14 @@ const faqs = [
     q: 'Czy możecie dodać automatyzację AI do obsługi leadów?',
     a: 'Tak. Możemy połączyć stronę z procesem zbierania i porządkowania zapytań, tak aby kontakt trafiał dalej szybciej.',
   },
+  {
+    q: 'Ile kosztuje strona?',
+    a: 'Wycena zależy od zakresu projektu. Skontaktuj się z nami — przygotujemy ofertę dopasowaną do Twojego budżetu.',
+  },
+  {
+    q: 'Co jeśli nie będę zadowolony?',
+    a: 'Pracujemy iteracyjnie. Pierwsza wizualizacja powstaje w 24h i wprowadzamy poprawki aż będziesz zadowolony przed startem.',
+  },
 ] as const
 
 export default function FAQ() {

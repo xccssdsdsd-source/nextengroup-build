@@ -31,6 +31,7 @@ export default function Contact() {
         <div className="relative">
           <span className="section-kicker text-blue-400">Kontakt</span>
           <h2 className="section-title text-gray-900">Porozmawiajmy o Twojej firmie</h2>
+          <p className="mt-4 max-w-2xl text-lg text-gray-600">Rozwiązania dopasowane do Ciebie i Twoich problemów</p>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[

@@ -65,8 +65,8 @@ function ProjectPreview({
             height={1000}
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-            loading="eager"
-            quality={85}
+            loading="lazy"
+            quality={80}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>

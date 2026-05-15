@@ -467,6 +467,12 @@ select {
   .cursor-ring {
     display: none;
   }
+  .aurora-1, .aurora-2, .aurora-3,
+  .dmblob-l1, .dmblob-l2, .dmblob-l3,
+  .dmblob-p1, .dmblob-p2,
+  .float-laptop, .float-phone {
+    animation: none !important;
+  }
 }
 
 @keyframes pulse-glow {

@@ -1,13 +1,16 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
+  const [isDesktop, setIsDesktop] = useState(false)
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+    const check = window.matchMedia('(hover: hover) and (pointer: fine)')
+    setIsDesktop(check.matches)
+    if (!check.matches) return
 
     let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, frameId = 0
 
@@ -70,6 +73,8 @@ export default function Cursor() {
       cancelAnimationFrame(frameId)
     }
   }, [])
+
+  if (!isDesktop) return null
 
   return (
     <>

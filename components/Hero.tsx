@@ -4,6 +4,7 @@ import type { MouseEvent } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import DeviceMockups from './DeviceMockups'
+import { useEffect, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -14,10 +15,16 @@ const words = [
 ]
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(true)
   const { scrollY } = useScroll()
   const y1 = useTransform(scrollY, [0, 700], [0, -90])
   const y2 = useTransform(scrollY, [0, 700], [0, -45])
   const y3 = useTransform(scrollY, [0, 700], [0, 60])
+
+  useEffect(() => {
+    const check = window.matchMedia('(min-width: 1024px)')
+    setIsMobile(!check.matches)
+  }, [])
 
   const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -125,17 +132,19 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.22, ease }}
-          className="hidden lg:block min-w-0 relative"
-        >
-          <div className="absolute inset-0 rounded-full w-[500px] h-[500px] bg-blue-500/10 blur-[100px]" />
-          <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px] relative z-10" style={{ boxShadow: '0 40px 80px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)' }}>
-            <DeviceMockups />
-          </div>
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 0.22, ease }}
+            className="hidden lg:block min-w-0 relative"
+          >
+            <div className="absolute inset-0 rounded-full w-[500px] h-[500px] bg-blue-500/10 blur-[100px]" />
+            <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px] relative z-10" style={{ boxShadow: '0 40px 80px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <DeviceMockups />
+            </div>
+          </motion.div>
+        )}
       </div>
 
       <a href="#uslugi" className="mx-auto mt-12 hidden w-fit flex-col items-center gap-1.5 text-[#9CA3AF] transition-[color,opacity] duration-300 hover:text-[#0055FF] lg:flex">

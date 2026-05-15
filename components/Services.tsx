@@ -75,7 +75,7 @@ export default function Services() {
           {services.map((service) => (
             <motion.article
               key={service.title}
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
+              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="group relative overflow-hidden rounded-[20px] border border-[#EBEBEB] bg-white p-7 transition-all duration-300"
               style={{

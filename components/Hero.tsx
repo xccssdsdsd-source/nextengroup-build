@@ -32,7 +32,7 @@ export default function Hero() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 65% 0%, rgba(0,85,255,0.07), transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 50% at 0% 0%, rgba(240,244,255,0.25), transparent 70%)',
         }}
       />
       <div
@@ -66,9 +66,9 @@ export default function Hero() {
               <motion.span
                 key={text}
                 className={`block ${cls}`}
-                initial={{ opacity: 0, y: 44 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: i * 0.13, ease }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
               >
                 {text}
               </motion.span>
@@ -77,18 +77,18 @@ export default function Hero() {
 
           <motion.p
             className="mt-7 max-w-xl text-base leading-[1.8] text-[#6B7280]"
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.44, ease }}
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
             Twoja strona zaczyna przysyłać zapytania zanim skończy się dzień roboczy.
           </motion.p>
 
           <motion.div
             className="mt-9 flex flex-col gap-3 sm:flex-row"
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.56, ease }}
+            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           >
             <motion.a
               href="#kontakt"

@@ -70,7 +70,7 @@ export default function Process() {
           {steps.map((step) => (
             <motion.article
               key={step.num}
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
+              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-7"
               style={{

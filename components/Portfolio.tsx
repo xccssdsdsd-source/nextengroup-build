@@ -36,14 +36,14 @@ function ProjectPreview({
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white transition-all duration-300"
+      className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white"
       style={{
         boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
       }}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.15 + index * 0.14, ease }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: 'easeOut' } }}
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,0,0,0.12)' }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)' }}
     >

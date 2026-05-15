@@ -64,7 +64,7 @@ function ProjectPreview({
             width={1600}
             height={1000}
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+            className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
             loading="eager"
             quality={85}
           />

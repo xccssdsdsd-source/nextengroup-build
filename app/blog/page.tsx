@@ -4,15 +4,15 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Blog | Getbuild - Artykuły o SEO i web services',
-  description: 'Blog Getbuild - artykuły o SEO dla firm B2B, tworzeniu stron www, e-commerce i marketingu dla firm. Porady i case studies.',
-  keywords: ['blog', 'artykuły SEO', 'poradniki', 'web services', 'e-commerce'],
+  title: 'Blog | Getbuild - Artykuły o SEO i stronach WWW',
+  description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i marketingu internetowym.',
+  keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'e-commerce'],
   alternates: {
     canonical: 'https://getbuild.pl/blog',
   },
   openGraph: {
-    title: 'Blog | Getbuild - Artykuły o SEO i web services',
-    description: 'Blog Getbuild - artykuły o SEO dla firm B2B, tworzeniu stron www, e-commerce i marketingu dla firm.',
+    title: 'Blog | Getbuild - Artykuły o SEO i stronach WWW',
+    description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i marketingu internetowym.',
     url: 'https://getbuild.pl/blog',
     type: 'website',
     locale: 'pl_PL',
@@ -22,36 +22,36 @@ export const metadata: Metadata = {
 const articles = [
   {
     slug: 'ile-kosztuje-strona-internetowa-dla-firmy-b2b',
-    title: 'Ile kosztuje strona internetowa dla firmy B2B w 2026',
-    excerpt: 'Przegląd cen projektowania i tworzenia stron www dla firm B2B. Jakie są koszty, co wpływa na cenę, kiedy warto zainwestować.',
+    title: 'Ile kosztuje strona internetowa dla firmy B2B w 2026 roku',
+    excerpt: 'Przegląd cen projektowania i tworzenia stron WWW dla firm B2B. Od czego zależy cena i kiedy inwestycja ma sens.',
     date: '2026-05-15',
     readTime: 8,
   },
   {
     slug: 'jak-wybrac-agencje-seo-dla-firmy-b2b',
     title: 'Jak wybrać agencję SEO dla firmy B2B',
-    excerpt: 'Poradnik - na co zwrócić uwagę przy wyborze agencji SEO dla Twojej firmy. Pytania, które powinieneś zadać, czerwone flagi.',
+    excerpt: 'Na co zwrócić uwagę przy wyborze agencji SEO, jakie pytania zadać i jakie sygnały ostrzegawcze warto wychwycić.',
     date: '2026-05-10',
     readTime: 10,
   },
   {
     slug: 'strona-internetowa-dla-producenta-krok-po-kroku',
     title: 'Strona internetowa dla producenta krok po kroku',
-    excerpt: 'Kompletny przewodnik - jak stwierdzić czy producent potrzebuje strony www, co powinna zawierać, jak ją wdrożyć.',
+    excerpt: 'Przewodnik po tym, kiedy producent potrzebuje nowej strony WWW, co powinna zawierać i jak wygląda wdrożenie.',
     date: '2026-05-05',
     readTime: 12,
   },
   {
     slug: 'seo-dla-firm-b2b-czy-warto-investowac',
-    title: 'SEO dla firm B2B czy warto inwestować',
-    excerpt: 'Analiza - czy SEO to dobra inwestycja dla firmy B2B? ROI, czasy oczekiwania na rezultaty, alternatywy.',
+    title: 'SEO dla firm B2B: czy warto inwestować',
+    excerpt: 'Analiza opłacalności SEO w B2B: zwrot z inwestycji, czas oczekiwania na efekty i możliwe alternatywy.',
     date: '2026-04-28',
     readTime: 9,
   },
   {
     slug: 'audyt-seo-co-zawiera-ile-kosztuje',
-    title: 'Audyt SEO co zawiera i ile kosztuje',
-    excerpt: 'Przewodnik po audycie SEO - co zawiera profesjonalny audyt, ile on kosztuje, jakie rezultaty można oczekiwać.',
+    title: 'Audyt SEO: co zawiera i ile kosztuje',
+    excerpt: 'Co obejmuje profesjonalny audyt SEO, ile kosztuje i jakich efektów można po nim oczekiwać.',
     date: '2026-04-20',
     readTime: 7,
   },
@@ -68,7 +68,7 @@ export default function Blog() {
             Blog
           </h1>
           <p className="text-lg leading-7 text-[#6B7280] mb-8">
-            Artykuły o SEO dla firm B2B, tworzeniu stron www, e-commerce i strategiach marketingowych. Poradniki i case studies z naszych projektów.
+            Artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i strategiach marketingowych. Praktyczne poradniki i wnioski z projektów.
           </p>
         </div>
       </section>

@@ -9,23 +9,25 @@
 
  ✓ Starting...
  ✓ Ready in 4.9s
- ○ Compiling / ...
- ✓ Compiled / in 18.8s (1506 modules)
-Image with src "/portfolio/dorimari-preview.webp" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-Image with src "/portfolio/pm-apartments-preview.webp" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
- GET / 200 in 21034ms
- ✓ Compiled in 2.7s (693 modules)
- GET / 200 in 700ms
- ✓ Compiled in 5.3s (1479 modules)
-Image with src "/portfolio/dorimari-preview.webp" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+ ○ Compiling /_not-found ...
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled /_not-found in 1357.2s (582 modules)
+ ○ Compiling /_error ...
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz'
+ ✓ Compiled /_error in 17.3s (887 modules)
+ GET /__remotion_config 404 in 1001ms
+onfig will be required starting in Next.js 16.
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
 Image with src "/portfolio/pm-apartments-preview.webp" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
  GET / 200 in 911ms
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz'
-top\nextengroup-build\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development-fallback\0.pack.gz'
+ ✓ Compiled in 4.3s (1479 modules)
+ ✓ Compiled in 2.2s (1479 modules)
+ ✓ Compiled in 3.7s (1479 modules)
+ ✓ Compiled in 2.2s (1465 modules)
+ ○ Compiling /_not-found ...
+ck.gz'
 [Error: ENOENT: no such file or directory, stat 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\1.pack.gz'] {
   errno: -4058,
   code: 'ENOENT',
@@ -47,3 +49,13 @@ top\nextengroup-build\.next\cache\webpack\client-development-fallback\0.pack.gz_
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\1.pack.gz'
  ✓ Compiled in 5.5s (1830 modules)
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\3.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\3.pack.gz'
+ ✓ Compiled in 2.7s (952 modules)
+ ✓ Compiled in 583ms (844 modules)
+ ✓ Compiled in 2s (844 modules)
+ ✓ Compiled in 2.1s (938 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz'
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 19.3s (1261 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\0.pack.gz'
+ GET /__remotion_config 404 in 347ms

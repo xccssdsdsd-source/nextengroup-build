@@ -4,9 +4,9 @@ import './globals.css'
 import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Getbuild | Strony WWW, Automatyzacje AI, Agenci AI | Trójmiasto'
+const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI | Trójmiasto'
 const siteDescription =
-  'Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI, którzy pracują za Ciebie. Agencja z Trójmiasta.'
+  'Getbuild projektuje i wdraża rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających sprzedaż i obsługę procesów.'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -34,12 +34,11 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   keywords: [
-    'agencja web services',
     'strony www',
     'automatyzacje AI',
     'agenci AI',
     'rozwiązania IT',
-    'getbuild',
+    'Getbuild',
     'Trójmiasto',
   ],
   alternates: {
@@ -96,44 +95,44 @@ export default function RootLayout({
         <meta property="og:image" content="https://getbuild.pl/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script dangerouslySetInnerHTML={{__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KVGVGL8M');`}} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KVGVGL8M');` }} />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ"></script>
-        <script dangerouslySetInnerHTML={{__html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6D0PC33PCQ');`}} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6D0PC33PCQ');` }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'ProfessionalService',
           '@id': 'https://getbuild.pl/#organization',
-          'name': 'Getbuild',
-          'url': 'https://getbuild.pl',
-          'logo': 'https://getbuild.pl/logo.png',
-          'image': 'https://getbuild.pl/og-image.jpg',
-          'description': 'Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący 24/7.',
-          'address': {
+          name: 'Getbuild',
+          url: 'https://getbuild.pl',
+          logo: 'https://getbuild.pl/logo.png',
+          image: 'https://getbuild.pl/og-image.jpg',
+          description: 'Getbuild projektuje i wdraża rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających rozwój firm.',
+          address: {
             '@type': 'PostalAddress',
-            'addressLocality': 'Trójmiasto',
-            'addressRegion': 'Pomorskie',
-            'addressCountry': 'PL'
+            addressLocality: 'Trójmiasto',
+            addressRegion: 'Pomorskie',
+            addressCountry: 'PL',
           },
-          'areaServed': {
+          areaServed: {
             '@type': 'Country',
-            'name': 'Polska'
+            name: 'Polska',
           },
-          'serviceType': [
+          serviceType: [
             'Tworzenie stron WWW',
             'Automatyzacje AI',
             'Agenci AI',
-            'Rozwiązania IT'
+            'Rozwiązania IT',
           ],
-          'priceRange': '$$',
-          'sameAs': [
+          priceRange: '$$',
+          sameAs: [
             'https://www.linkedin.com/company/getbuild',
-            'https://www.instagram.com/getbuild'
-          ]
-        })}} />
+            'https://www.instagram.com/getbuild',
+          ],
+        }) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="bg-[#020810] text-[#e8f0ff] antialiased">
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVGVGL8M" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVGVGL8M" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
         <Cursor />
         {children}
       </body>

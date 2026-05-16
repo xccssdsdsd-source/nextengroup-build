@@ -9,27 +9,27 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const faqs = [
   {
     q: 'Ile trwa przygotowanie pierwszego projektu?',
-    a: 'Pierwszą wizualizację pokazujemy zwykle w 24 godziny od zebrania materiałów i ustalenia kierunku.',
+    a: 'Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku.',
   },
   {
     q: 'Czy pomagacie w treści i strukturze strony?',
-    a: 'Tak. Porządkujemy układ sekcji, skracamy komunikaty i wzmacniamy CTA, żeby całość sprzedawała lepiej.',
+    a: 'Tak. Porządkujemy układ sekcji, skracamy komunikaty i wzmacniamy CTA, żeby całość skuteczniej sprzedawała.',
   },
   {
     q: 'Czy strona będzie dopracowana na telefonie?',
-    a: 'Tak. Projektujemy mobile-first, więc czytelność, spacing i hierarchia treści działają najpierw na małych ekranach.',
+    a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach.',
   },
   {
-    q: 'Czy możecie dodać automatyzację AI do obsługi leadów?',
-    a: 'Tak. Możemy połączyć stronę z procesem zbierania i porządkowania zapytań, tak aby kontakt trafiał dalej szybciej.',
+    q: 'Czy możecie dodać automatyzację AI do obsługi zapytań?',
+    a: 'Tak. Możemy połączyć stronę z procesem zbierania i porządkowania zapytań, tak aby kontakt szybciej trafiał do właściwej osoby.',
   },
   {
     q: 'Ile kosztuje strona?',
-    a: 'Wycena zależy od zakresu projektu. Skontaktuj się z nami — przygotujemy ofertę dopasowaną do Twojego budżetu.',
+    a: 'Wycena zależy od zakresu projektu. Skontaktuj się z nami, a przygotujemy ofertę dopasowaną do Twojego budżetu.',
   },
   {
     q: 'Co jeśli nie będę zadowolony?',
-    a: 'Pracujemy iteracyjnie. Pierwsza wizualizacja powstaje w 24h i wprowadzamy poprawki aż będziesz zadowolony przed startem.',
+    a: 'Pracujemy iteracyjnie. Pierwsza wizualizacja powstaje w 24 godziny, a poprawki wprowadzamy tak długo, aż efekt będzie zgodny z ustalonym kierunkiem.',
   },
 ] as const
 
@@ -60,7 +60,7 @@ export default function FAQ() {
           <span className="section-kicker">FAQ</span>
           <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
           <p className="section-copy">
-            To, co najczęściej pada przed startem współpracy.
+            To pytania, które najczęściej słyszymy przed rozpoczęciem współpracy.
           </p>
         </motion.div>
 

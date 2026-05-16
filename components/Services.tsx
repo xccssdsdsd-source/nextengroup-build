@@ -10,8 +10,8 @@ const services = [
   {
     icon: Globe,
     title: 'Strony WWW',
-    desc: 'Tworzymy profesjonalne strony internetowe, które budują wiarygodność Twojej firmy, porządkują ofertę i kierują klientów do bezpośredniego kontaktu. Dostosowujemy każdy element do Twoich potrzeb.',
-    points: ['Mobilne i responsywne', 'Szybkie ładowanie', 'Integracje z systemami'],
+    desc: 'Tworzymy profesjonalne strony internetowe, które budują wiarygodność Twojej firmy, porządkują ofertę i kierują klientów do kontaktu. Każdy element dopasowujemy do Twoich celów biznesowych.',
+    points: ['Responsywność', 'Szybkie ładowanie', 'Integracje z systemami'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
@@ -19,8 +19,8 @@ const services = [
   {
     icon: Zap,
     title: 'Automatyzacje AI',
-    desc: 'Automatyzujemy procesy biznesowe przy użyciu sztucznej inteligencji. Od obsługi zapytań klientów po zarządzanie danymi — oszczędzaj czas, redukuj błędy i zwiększaj efektywność.',
-    points: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i reporting'],
+    desc: 'Automatyzujemy procesy biznesowe przy użyciu sztucznej inteligencji. Od obsługi zapytań po pracę na danych: mniej błędów, mniej ręcznej pracy i większa efektywność.',
+    points: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i raportowanie'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
@@ -28,7 +28,7 @@ const services = [
   {
     icon: MessagesSquare,
     title: 'Agenci AI',
-    desc: 'Wdrażamy agentów AI, którzy pracują za Ciebie 24/7. Obsługują zapytania, przetwarzają dane i wspomagają decyzje biznesowe bez ludzkiej interwencji.',
+    desc: 'Wdrażamy agentów AI, którzy pracują za Ciebie przez całą dobę. Obsługują zapytania, porządkują dane i wspierają decyzje biznesowe.',
     points: ['Agenci AI 24/7', 'Integracje z CRM', 'Monitoring i statystyki'],
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
@@ -57,7 +57,7 @@ export default function Services() {
           <span className="section-kicker">Oferta</span>
           <h2 className="section-title">Rozwiązania IT dla Twojego biznesu</h2>
           <p className="section-copy">
-            Oferujemy kompleksowe rozwiązania dostosowane do Twojego biznesu. Tworzymy strony WWW, które generują zapytania i budują wiarygodność. Wdrażamy automatyzacje AI, które oszczędzają czas i redukują koszty. Stawiamy agentów AI, którzy pracują za Ciebie 24/7. Każde rozwiązanie jest skrojone pod Twoje potrzeby.
+            Oferujemy kompleksowe rozwiązania dopasowane do Twojego biznesu. Tworzymy strony WWW, które generują zapytania i budują wiarygodność. Wdrażamy automatyzacje AI, które oszczędzają czas i obniżają koszty. Budujemy też agentów AI dopasowanych do konkretnych procesów.
           </p>
         </motion.div>
 
@@ -77,12 +77,12 @@ export default function Services() {
                 boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,85,255,0.1)';
-                (e.currentTarget as HTMLElement).style.borderColor = '#CCDAFF';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,85,255,0.1)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#CCDAFF'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
-                (e.currentTarget as HTMLElement).style.borderColor = '#EBEBEB';
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#EBEBEB'
               }}
             >
               <div

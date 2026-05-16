@@ -22,18 +22,18 @@ export default function Footer() {
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-3 mb-6">
-            <img src="/logo.png" alt="Getbuild agencja web services" className="h-9 w-9 rounded-lg object-contain" />
+            <img src="/logo.png" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
             <div>
               <div className="text-sm font-bold uppercase tracking-[0.2em] text-white" style={{ fontFamily: 'var(--font-syne)' }}>
                 Getbuild
               </div>
               <div className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-white/30">
-                Agencja Web Services
+                Agencja usług cyfrowych
               </div>
             </div>
           </div>
           <p className="text-[12px] leading-5 text-white/40">
-            Projektujemy i wdrażamy rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący dla Twojego biznesu.
+            Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
           </p>
         </div>
 
@@ -57,9 +57,6 @@ export default function Footer() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt</p>
               <p className="text-[13px] text-white/40 mb-2">
                 Trójmiasto, Polska
-              </p>
-              <p className="text-[13px] text-white/40 mb-4">
-                NIP: [Twój NIP]
               </p>
               <div className="space-y-2">
                 {footerLinks.slice(5).map(([label, href]) => (

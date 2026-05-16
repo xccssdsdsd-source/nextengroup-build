@@ -13,12 +13,12 @@ const testimonials = [
     role: 'PM-Apartments',
   },
   {
-    quote: 'Największa różnica była w tym, że komunikat stał się prosty i klienci szybciej przechodzili do kontaktu.',
+    quote: 'Największa różnica była taka, że komunikacja stała się prostsza, a klienci szybciej przechodzili do kontaktu.',
     name: 'Anna K.',
     role: 'Branża beauty',
   },
   {
-    quote: 'Dostaliśmy projekt szybko, a cały landing był znacznie czytelniejszy i bardziej profesjonalny.',
+    quote: 'Projekt dostaliśmy szybko, a cały landing był znacznie czytelniejszy i bardziej profesjonalny.',
     name: 'Marcin R.',
     role: 'Usługi lokalne',
   },
@@ -46,7 +46,7 @@ export default function Testimonials() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease }}
         >
-          <span className="section-kicker">Social proof</span>
+          <span className="section-kicker">Opinie</span>
           <h2 className="section-title">Co mówią firmy, które z nami pracowały.</h2>
         </motion.div>
 

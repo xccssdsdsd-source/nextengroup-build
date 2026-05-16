@@ -26,9 +26,9 @@ export default function PolitykaPrywatnosci() {
               Ostatnia aktualizacja: 15 maja 2026
             </p>
 
-            <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">1. Administratorem danych</h2>
+            <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">1. Administrator danych</h2>
             <p className="text-[#6B7280] mb-6">
-              Administratorem Twoich danych osobowych jest spółka Getbuild, z siedzibą w Trójmieście, Polska.
+              Administratorem Twoich danych osobowych jest Getbuild z siedzibą w Trójmieście, Polska.
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">2. Jakie dane zbieramy</h2>
@@ -38,33 +38,33 @@ export default function PolitykaPrywatnosci() {
               <li>Adres e-mail</li>
               <li>Numer telefonu</li>
               <li>Nazwa firmy</li>
-              <li>Informacje dotyczące Twojego pytania lub zapytania</li>
-              <li>Dane z cookies i Web Analytics</li>
+              <li>Informacje dotyczące Twojej wiadomości lub zapytania</li>
+              <li>Dane z plików cookie i narzędzi analitycznych</li>
             </ul>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">3. Cel przetwarzania danych</h2>
-            <p className="text-[#6B7280] mb-4">Dane są przetwarzane w następujących celach:</p>
+            <p className="text-[#6B7280] mb-4">Dane przetwarzamy w następujących celach:</p>
             <ul className="list-disc list-inside mb-6 text-[#6B7280] space-y-2">
-              <li>Udzielenia odpowiedzi na Twoje zapytanie</li>
+              <li>Odpowiedzi na Twoje zapytanie</li>
               <li>Nawiązania kontaktu biznesowego</li>
-              <li>Wysyłania informacji o naszych usługach</li>
-              <li>Analityki ruchu strony (Google Analytics)</li>
+              <li>Przekazywania informacji o naszych usługach</li>
+              <li>Analityki ruchu na stronie</li>
               <li>Poprawy jakości naszych usług</li>
             </ul>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">4. Podstawa prawna</h2>
             <p className="text-[#6B7280] mb-6">
-              Przetwarzanie Twoich danych odbywa się na podstawie Twojej dobrowolnej zgody (Art. 6 ust. 1 lit. a RODO) oraz naszych uzasadnionych interesów biznesowych (Art. 6 ust. 1 lit. f RODO).
+              Przetwarzanie Twoich danych odbywa się na podstawie Twojej zgody (art. 6 ust. 1 lit. a RODO) oraz naszego uzasadnionego interesu biznesowego (art. 6 ust. 1 lit. f RODO).
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">5. Udostępnianie danych</h2>
             <p className="text-[#6B7280] mb-6">
-              Twoje dane nie są udostępniane stronom trzecim bez Twojej zgody, z wyjątkiem dostawców usług (hostingu, Google Analytics), którzy przetwarzają dane na naszą polecenie.
+              Twoje dane nie są udostępniane osobom trzecim bez podstawy prawnej, z wyjątkiem podmiotów wspierających nas technicznie, takich jak hosting czy narzędzia analityczne.
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">6. Przechowywanie danych</h2>
             <p className="text-[#6B7280] mb-6">
-              Dane osobowe przechowywane są przez okres niezbędny do realizacji celu, dla którego zostały zebrane, nie dłużej niż 3 lata od ostatniego kontaktu.
+              Dane osobowe przechowujemy przez okres niezbędny do realizacji celu, dla którego zostały zebrane, nie dłużej niż 3 lata od ostatniego kontaktu.
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">7. Twoje prawa</h2>
@@ -72,30 +72,29 @@ export default function PolitykaPrywatnosci() {
             <ul className="list-disc list-inside mb-6 text-[#6B7280] space-y-2">
               <li>Dostępu do swoich danych osobowych</li>
               <li>Sprostowania swoich danych</li>
-              <li>Usunięcia swoich danych (prawo do bycia zapomnianym)</li>
+              <li>Usunięcia swoich danych</li>
               <li>Ograniczenia przetwarzania</li>
               <li>Przenoszenia danych</li>
-              <li>Sprzeciwienia się przetwarzaniu</li>
+              <li>Wniesienia sprzeciwu wobec przetwarzania</li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">8. Cookies</h2>
+            <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">8. Pliki cookie</h2>
             <p className="text-[#6B7280] mb-6">
-              Nasze strony używają cookies dla poprawy doświadczenia użytkownika i analityki. Możesz zarządzać ustawieniami cookies w przeglądarce. Google Analytics zbiera dane o Twoim zachowaniu na stronie (anonimowo).
+              Strona korzysta z plików cookie w celu poprawy działania serwisu i prowadzenia analityki. Ustawieniami plików cookie możesz zarządzać w swojej przeglądarce.
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">9. Kontakt</h2>
             <p className="text-[#6B7280] mb-6">
-              W przypadku pytań dotyczących naszej polityki prywatności skontaktuj się z nami:
+              W przypadku pytań dotyczących polityki prywatności skontaktuj się z nami:
             </p>
             <p className="text-[#6B7280] mb-6">
-              Email: [Twój email]<br />
-              Telefon: [Twój telefon]<br />
+              E-mail: getbuild.pl@gmail.com<br />
               Adres: Trójmiasto, Polska
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">10. Zmiany w polityce</h2>
             <p className="text-[#6B7280]">
-              Zastrzegamy sobie prawo do zmian w tej polityce prywatności. Zmiany będą publikowane na tej stronie. Kontynuowanie korzystania ze strony po zmianach oznacza akceptację nowej polityki.
+              Zastrzegamy sobie prawo do wprowadzania zmian w polityce prywatności. Aktualna wersja będzie zawsze publikowana na tej stronie.
             </p>
           </div>
         </div>

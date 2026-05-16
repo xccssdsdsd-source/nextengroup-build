@@ -52,7 +52,9 @@ export default function Hero() {
         }}
       />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute right-[20%] top-0 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px]" />
+        <motion.div style={{ y: y1 }} className="absolute right-[20%] top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px]" />
+        <motion.div style={{ y: y2 }} className="absolute left-[-10%] top-[20%] h-[280px] w-[280px] rounded-full bg-sky-200/20 blur-[90px]" />
+        <motion.div style={{ y: y3 }} className="absolute bottom-[-8%] right-[8%] h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[80px]" />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">
@@ -64,7 +66,7 @@ export default function Hero() {
             transition={{ duration: 0.6, ease }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#0055FF]" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0055FF]">Strony WWW & Automatyzacje</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0055FF]">Strony WWW i automatyzacje</span>
           </motion.div>
 
           <h1
@@ -90,7 +92,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
-            Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Strony WWW, automatyzacje procesów i agenci AI, którzy pracują za Ciebie.
+            Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
           </motion.p>
 
           <motion.div
@@ -141,7 +143,7 @@ export default function Hero() {
             transition={{ duration: 1.0, delay: 0.22, ease }}
             className="hidden lg:block min-w-0 relative"
           >
-            <div className="absolute inset-0 rounded-full w-[500px] h-[500px] bg-blue-500/10 blur-[100px]" />
+            <div className="absolute inset-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px]" />
             <div className="mx-auto h-[520px] w-full max-w-[900px] sm:h-[600px] lg:h-[680px] relative z-10" style={{ boxShadow: '0 40px 80px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <DeviceMockups />
             </div>

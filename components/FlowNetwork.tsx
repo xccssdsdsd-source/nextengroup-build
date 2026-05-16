@@ -55,7 +55,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
 
       <div className="relative flex h-full flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
         <h3 className="max-w-[16ch] text-xl font-semibold tracking-[-0.04em] text-[#edf8ff] sm:text-2xl">
-          Strona przechwytuje kontakt i porządkuje lead
+          Strona przechwytuje kontakt i porządkuje zapytania
         </h3>
 
         <div className="relative flex flex-1 items-center justify-center pb-4">

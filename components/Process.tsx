@@ -19,7 +19,7 @@ const steps = [
   {
     num: '03',
     title: 'Wdrożenie i dopracowanie',
-    desc: 'Składamy design, copy, CTA i technikę w jeden spójny system.',
+    desc: 'Składamy design, copy, CTA i warstwę techniczną w jeden spójny system.',
   },
   {
     num: '04',

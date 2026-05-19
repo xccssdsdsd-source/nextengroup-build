@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-hidden px-6 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40 bg-white"
+      className="relative overflow-hidden px-5 pb-16 pt-24 sm:px-8 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40 bg-white"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -60,17 +60,17 @@ export default function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">
         <div className="max-w-2xl">
           <motion.div
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#0055FF]/20 bg-[#0055FF]/[0.06] px-4 py-2"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#0055FF]/20 bg-[#0055FF]/[0.06] px-3 py-1.5 sm:px-4 sm:py-2"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#0055FF]" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0055FF]">Strony WWW i automatyzacje</span>
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0055FF]">Strony WWW i automatyzacje</span>
           </motion.div>
 
           <h1
-            className="font-sans text-[clamp(20px,5vw,90px)] uppercase leading-[0.86] tracking-[-0.06em]"
+            className="font-sans text-[clamp(44px,11.5vw,90px)] uppercase leading-[0.88] tracking-[-0.05em] sm:leading-[0.86] sm:tracking-[-0.06em]"
             style={{ fontFamily: 'var(--font-barlow)' }}
           >
             {words.map(({ text, cls }, i) => (
@@ -87,7 +87,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="mt-7 max-w-xl text-base leading-[1.8] text-[#6B7280]"
+            className="mt-5 sm:mt-7 max-w-xl text-[15px] sm:text-base leading-[1.75] text-[#6B7280]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -96,7 +96,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
+            className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
@@ -119,15 +119,15 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-10 grid gap-6 border-t border-neutral-100 pt-8 sm:flex sm:items-center"
+            className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-neutral-100 pt-6 sm:pt-8 sm:flex sm:items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.72, ease }}
           >
             {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
-              <div key={val} className="flex items-center gap-6">
+              <div key={val} className="flex items-center gap-4 sm:gap-6">
                 <div>
-                  <div className="text-lg sm:text-xl font-black tracking-[-0.04em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
+                  <div className="text-[13px] sm:text-xl font-black tracking-[-0.03em] text-[#0A0A0A] leading-tight" style={{ fontFamily: 'var(--font-syne)' }}>{val}</div>
                   {label && <div className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#6B7280]">{label}</div>}
                 </div>
                 {i < 2 && <div className="hidden sm:block h-10 w-px bg-gray-200" />}

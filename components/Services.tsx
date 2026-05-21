@@ -70,8 +70,8 @@ export default function Services() {
           {services.map((service) => (
             <motion.article
               key={service.title}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              variants={{ hidden: { opacity: 0, y: 32, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease } } }}
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
               className="group relative overflow-hidden rounded-[20px] border border-[#EBEBEB] bg-white p-7 transition-all duration-300"
               style={{
                 boxShadow: '0 2px 20px rgba(0,0,0,0.06)',

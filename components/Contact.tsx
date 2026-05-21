@@ -83,7 +83,7 @@ function CalendlyWidget({ url }: { url: string }) {
     document.head.appendChild(script)
   }, [url])
 
-  return <div ref={containerRef} style={{ minWidth: '320px', height: '700px' }} />
+  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(560px, 70vh, 700px)' }} />
 }
 
 export default function Contact() {

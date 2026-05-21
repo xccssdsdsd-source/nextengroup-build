@@ -111,7 +111,7 @@ export default function Portfolio() {
         <div className="mt-12 relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <button
             onClick={() => go(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
             style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
             aria-label="Poprzednia realizacja"
           >
@@ -119,7 +119,7 @@ export default function Portfolio() {
           </button>
           <button
             onClick={() => go(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-24 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
             style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
             aria-label="Następna realizacja"
           >
@@ -129,10 +129,10 @@ export default function Portfolio() {
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: 'easeInOut' }}
+              initial={{ opacity: 0, y: 12, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.99 }}
+              transition={{ duration: 0.5, ease }}
             >
               <a
                 href={project.href}
@@ -159,9 +159,9 @@ export default function Portfolio() {
                       height={1000}
                       sizes="(min-width: 1024px) 60vw, 100vw"
                       className="w-full h-auto object-contain group-hover:scale-[1.015]"
-                      style={{ transition: 'transform 0.6s cubic-bezier(0.22,1,0.36,1)' }}
-                      loading="lazy"
-                      quality={80}
+                      style={{ transition: 'transform 0.6s cubic-bezier(0.22,1,0.36,1)', willChange: 'transform' }}
+                      loading={current === 0 ? 'eager' : 'lazy'}
+                      quality={75}
                     />
                   </div>
                 </div>

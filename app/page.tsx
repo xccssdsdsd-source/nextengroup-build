@@ -3,7 +3,6 @@ import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import TrustBar from '@/components/TrustBar'
 
-const AboutMe = dynamic(() => import('@/components/AboutMe'))
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
@@ -20,7 +19,6 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <Ticker />
-      <AboutMe />
       <Process />
       <Portfolio />
       <Services />

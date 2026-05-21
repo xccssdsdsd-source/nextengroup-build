@@ -114,6 +114,20 @@ export default function Services() {
             </motion.article>
           ))}
         </motion.div>
+
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease, delay: 0.4 }}
+        >
+          <a
+            href="#kontakt"
+            className="inline-flex items-center gap-3 rounded-full bg-[#0055FF] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#0044DD] hover:shadow-[0_8px_28px_rgba(0,85,255,0.38)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            Umów spotkanie
+          </a>
+        </motion.div>
       </div>
     </section>
   )

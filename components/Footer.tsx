@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-3 mb-6">
-            <img src="/logo.png" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
+            <img src="/logo.webp" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
             <div>
               <div className="text-sm font-bold uppercase tracking-[0.2em] text-white" style={{ fontFamily: 'var(--font-syne)' }}>
                 Getbuild

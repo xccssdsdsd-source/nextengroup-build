@@ -16,10 +16,10 @@ export default function Home() {
       <Nav />
       <Hero />
       <Ticker />
-      <Services />
       <Process />
       <Portfolio />
       <FAQ />
+      <Services />
       <Contact />
       <Footer />
     </main>

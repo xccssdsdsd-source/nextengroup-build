@@ -102,9 +102,9 @@ export default function Portfolio() {
   const project = projects[current]
 
   const variants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80, scale: 0.97, filter: 'blur(4px)' }),
-    center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' },
-    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80, scale: 0.97, filter: 'blur(4px)' }),
+    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
   }
 
   return (
@@ -133,6 +133,21 @@ export default function Portfolio() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
+          <button
+            onClick={() => go(-1)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 hidden lg:flex h-14 w-14 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-[background,color,box-shadow,transform] duration-200 hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] hover:-translate-x-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            aria-label="Poprzednia realizacja"
+          >
+            <ChevronLeft size={22} strokeWidth={2} />
+          </button>
+          <button
+            onClick={() => go(1)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 hidden lg:flex h-14 w-14 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] transition-[background,color,box-shadow,transform] duration-200 hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] hover:translate-x-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            aria-label="Następna realizacja"
+          >
+            <ChevronRight size={22} strokeWidth={2} />
+          </button>
+
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
@@ -206,48 +221,16 @@ export default function Portfolio() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-8 flex items-center justify-between">
-            <div className="flex gap-2 items-center">
-              {projects.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }}
-                  className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
-                  style={{ width: i === current ? 32 : 8, background: i === current ? 'transparent' : 'rgba(0,0,0,0.12)', transition: 'width 0.35s cubic-bezier(0.25,0.46,0.45,0.94), background 0.3s' }}
-                  aria-label={`Przejdź do realizacji ${i + 1}`}
-                >
-                  {i === current && !paused && (
-                    <motion.span
-                      className="absolute inset-y-0 left-0 bg-[#0055FF] rounded-full"
-                      initial={{ width: '0%' }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: INTERVAL / 1000, ease: 'linear' }}
-                      key={current}
-                    />
-                  )}
-                  {i === current && paused && (
-                    <span className="absolute inset-0 bg-[#0055FF] rounded-full" />
-                  )}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={() => go(-1)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-[background,color,transform] duration-200 hover:border-[#0055FF] hover:bg-[#0055FF] hover:text-white hover:shadow-[0_4px_12px_rgba(0,85,255,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
-                aria-label="Poprzednia realizacja"
-              >
-                <ChevronLeft size={18} strokeWidth={2} />
-              </button>
-              <button
-                onClick={() => go(1)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-[background,color,transform] duration-200 hover:border-[#0055FF] hover:bg-[#0055FF] hover:text-white hover:shadow-[0_4px_12px_rgba(0,85,255,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
-                aria-label="Następna realizacja"
-              >
-                <ChevronRight size={18} strokeWidth={2} />
-              </button>
-            </div>
+          <div className="mt-5 flex justify-center gap-2 items-center lg:hidden">
+            <button onClick={() => go(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-[background,color] duration-200 hover:bg-[#0055FF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]" aria-label="Poprzednia realizacja">
+              <ChevronLeft size={18} strokeWidth={2} />
+            </button>
+            {projects.map((_, i) => (
+              <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }} className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none" style={{ width: i === current ? 24 : 6, background: i === current ? '#0055FF' : 'rgba(0,0,0,0.12)', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
+            ))}
+            <button onClick={() => go(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-[background,color] duration-200 hover:bg-[#0055FF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]" aria-label="Następna realizacja">
+              <ChevronRight size={18} strokeWidth={2} />
+            </button>
           </div>
         </div>
       </div>

@@ -2,11 +2,11 @@
 
 import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: true })
+const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -18,10 +18,6 @@ const words = [
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(true)
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 700], [0, -90])
-  const y2 = useTransform(scrollY, [0, 700], [0, -45])
-  const y3 = useTransform(scrollY, [0, 700], [0, 60])
 
   useEffect(() => {
     const check = window.matchMedia('(min-width: 1024px)')
@@ -52,9 +48,9 @@ export default function Hero() {
         }}
       />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div style={{ y: y1 }} className="absolute right-[20%] top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px]" />
-        <motion.div style={{ y: y2 }} className="absolute left-[-10%] top-[20%] h-[280px] w-[280px] rounded-full bg-sky-200/20 blur-[90px]" />
-        <motion.div style={{ y: y3 }} className="absolute bottom-[-8%] right-[8%] h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[80px]" />
+        <div className="absolute right-[20%] top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px]" />
+        <div className="absolute left-[-10%] top-[20%] h-[280px] w-[280px] rounded-full bg-sky-200/20 blur-[90px]" />
+        <div className="absolute bottom-[-8%] right-[8%] h-[220px] w-[220px] rounded-full bg-blue-100/30 blur-[80px]" />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">

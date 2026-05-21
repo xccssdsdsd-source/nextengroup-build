@@ -10,29 +10,30 @@ export default function DeviceMockups() {
     let rafId = 0
     let tX = 0, tY = 0, cX = 0, cY = 0
     let tsX = 0, tsY = 0, csX = 0, csY = 0
+    let active = false
 
     const onMove = (e: MouseEvent) => {
       const nx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
       const ny = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2)
       tX = nx * 18; tY = ny * 18
       tsX = nx * 10; tsY = ny * 10
+      if (!active) { active = true; rafId = requestAnimationFrame(tick) }
     }
 
     const onLeave = () => { tX = tY = tsX = tsY = 0 }
 
-    const lerp = (a: number, b: number) => a + (b - a) * 0.08
-
     const tick = () => {
-      cX = lerp(cX, tX); cY = lerp(cY, tY)
-      csX = lerp(csX, tsX); csY = lerp(csY, tsY)
-      if (deviceRef.current) deviceRef.current.style.transform = `translate(${cX}px,${cY}px)`
-      if (screenContentRef.current) screenContentRef.current.style.transform = `translate(${csX}px,${csY}px)`
+      cX += (tX - cX) * 0.08; cY += (tY - cY) * 0.08
+      csX += (tsX - csX) * 0.08; csY += (tsY - csY) * 0.08
+      if (deviceRef.current) deviceRef.current.style.transform = `translate(${cX.toFixed(2)}px,${cY.toFixed(2)}px)`
+      if (screenContentRef.current) screenContentRef.current.style.transform = `translate(${csX.toFixed(2)}px,${csY.toFixed(2)}px)`
+      const settled = Math.abs(tX - cX) < 0.05 && Math.abs(tY - cY) < 0.05
+      if (settled) { active = false; return }
       rafId = requestAnimationFrame(tick)
     }
 
-    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mousemove', onMove, { passive: true })
     document.addEventListener('mouseleave', onLeave)
-    rafId = requestAnimationFrame(tick)
 
     return () => {
       window.removeEventListener('mousemove', onMove)

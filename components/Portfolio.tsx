@@ -7,6 +7,8 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
+type LighthouseScore = { label: string; value: number }
+
 const projects = [
   {
     name: 'PM Apartments',
@@ -14,13 +16,13 @@ const projects = [
     href: 'https://pm-apartments.pl/',
     preview: '/portfolio/pm-apartments-preview.webp',
     body: 'Klient miał firmę bez obecności w sieci. Teraz ma stronę, która prezentuje ofertę i sama odbiera zapytania. Nowi klienci trafiają bezpośrednio do kalendarza.',
-    deliverables: [
-      'Zbudowaliśmy stronę z sekcjami O nas, Usługi, Realizacje, Kontakt',
-      'Wdrożyliśmy formularz z automatycznym potwierdzeniem na maila',
-      'Dodaliśmy sekcję umawiania spotkań z linkami do social media',
-    ],
     time: '72h',
-    result: 'Działająca strona gotowa do zbierania zapytań',
+    lighthouse: [
+      { label: 'Wydajność', value: 96 },
+      { label: 'Dostępność', value: 93 },
+      { label: 'Best Practices', value: 100 },
+      { label: 'SEO', value: 100 },
+    ] as LighthouseScore[],
   },
   {
     name: 'Dorimari',
@@ -28,13 +30,13 @@ const projects = [
     href: 'https://dorimari.pl',
     preview: '/portfolio/dorimari-preview.webp',
     body: 'Klient prowadzi butikowe wycieczki premium i potrzebował miejsca, które sprzeda klimat, nie tylko trasę. Strona pokazuje ofertę i galerię zdjęć. Formularz kontaktowy działa od razu.',
-    deliverables: [
-      'Zbudowaliśmy stronę z sekcjami O nas, Wycieczki, Transfer, Kontakt',
-      'Dodaliśmy galerię zdjęć z wycieczek budującą zaufanie',
-      'Wdrożyliśmy formularz kontaktowy do zbierania zapytań',
-    ],
     time: 'tydzień',
-    result: 'Wzrost widoczności w sieci i więcej wyświetleń strony',
+    lighthouse: [
+      { label: 'Wydajność', value: 97 },
+      { label: 'Dostępność', value: 96 },
+      { label: 'Best Practices', value: 96 },
+      { label: 'SEO', value: 100 },
+    ] as LighthouseScore[],
   },
   {
     name: 'MS Design Studio',
@@ -42,15 +44,40 @@ const projects = [
     href: 'https://msdesignstudio.pl/',
     preview: '/portfolio/msdesignstudio-preview.webp',
     body: 'Klientka tworzy wizualizacje 3D i potrzebowała portfolio, które mówi samo za siebie. Strona pokazuje projekty, ofertę i umożliwia kontakt. Wdrożona w jeden dzień.',
-    deliverables: [
-      'Zbudowaliśmy stronę z sekcjami O mnie, Portfolio, Oferta, Kontakt',
-      'Dodaliśmy galerię projektów jako główny argument sprzedażowy',
-      'Wdrożyliśmy formularz kontaktowy do pozyskiwania klientów',
-    ],
     time: '24h',
-    result: 'Wzrost widoczności i więcej wyświetleń strony',
+    lighthouse: [
+      { label: 'Wydajność', value: 97 },
+      { label: 'Dostępność', value: 93 },
+      { label: 'Best Practices', value: 100 },
+      { label: 'SEO', value: 100 },
+    ] as LighthouseScore[],
   },
 ]
+
+function ScoreRing({ value, label }: LighthouseScore) {
+  const r = 20
+  const circ = 2 * Math.PI * r
+  const offset = circ * (1 - value / 100)
+  const color = value >= 90 ? '#0cce6b' : value >= 50 ? '#ffa400' : '#ff4e42'
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r={r} fill="none" stroke="#e5e7eb" strokeWidth="3.5" />
+        <circle
+          cx="26" cy="26" r={r} fill="none"
+          stroke={color} strokeWidth="3.5"
+          strokeDasharray={circ} strokeDashoffset={offset}
+          strokeLinecap="round"
+          transform="rotate(-90 26 26)"
+        />
+        <text x="26" y="26" dominantBaseline="middle" textAnchor="middle" fontSize="11" fontWeight="700" fill={color}>
+          {value}
+        </text>
+      </svg>
+      <span className="text-[10px] text-[#9CA3AF] text-center leading-tight max-w-[52px]">{label}</span>
+    </div>
+  )
+}
 
 const INTERVAL = 5000
 
@@ -151,20 +178,29 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                <div className="px-5 pb-5 pt-1 grid sm:grid-cols-[1fr_auto] gap-4 items-end">
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0055FF] mb-1">{project.tagline}</p>
-                    <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0A] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>
-                      {project.name}
-                    </h3>
-                    <p className="text-[13px] leading-[1.6] text-[#6B7280] max-w-xl">{project.body}</p>
-                  </div>
-                  <div className="flex sm:flex-col gap-2 sm:items-end shrink-0">
-                    <div className="rounded-lg border border-black/[0.07] bg-neutral-50 px-3 py-2 text-center min-w-[80px]">
+                <div className="px-5 pb-5 pt-2">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0055FF] mb-1">{project.tagline}</p>
+                      <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0A] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>
+                        {project.name}
+                      </h3>
+                      <p className="text-[13px] leading-[1.6] text-[#6B7280] max-w-xl">{project.body}</p>
+                    </div>
+                    <div className="rounded-lg border border-black/[0.07] bg-neutral-50 px-3 py-2 text-center shrink-0">
                       <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">Wdrożenie</div>
                       <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{project.time}</div>
                     </div>
                   </div>
+
+                  {project.lighthouse && (
+                    <div className="mt-4 flex items-center gap-1 border-t border-black/[0.05] pt-4">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#9CA3AF] mr-3 shrink-0">Lighthouse</span>
+                      <div className="flex gap-4">
+                        {project.lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </a>
             </motion.div>

@@ -98,12 +98,13 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           >
             <motion.a
-              href="#kontakt"
-              onClick={handlePreviewClick}
+              href="https://calendly.com/getbuild"
+              target="_blank"
+              rel="noopener noreferrer"
               whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
-              Darmowa wizualizacja
+              Zarezerwuj 15 min rozmowę
             </motion.a>
             <motion.a
               href="#portfolio"
@@ -113,6 +114,15 @@ export default function Hero() {
               Zobacz realizacje
             </motion.a>
           </motion.div>
+
+          <motion.p
+            className="mt-4 text-[13px] text-[#9CA3AF]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+          >
+            Realizacja w 24 do 72h. Wdrożenie pod klucz. Wsparcie po starcie.
+          </motion.p>
 
           <motion.div
             className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-neutral-100 pt-6 sm:pt-8 sm:flex sm:items-center"

@@ -31,6 +31,18 @@ const faqs = [
     q: 'Co jeśli nie będę zadowolony?',
     a: 'Pracujemy iteracyjnie. Pierwsza wizualizacja powstaje w 24 godziny, a poprawki wprowadzamy tak długo, aż efekt będzie zgodny z ustalonym kierunkiem.',
   },
+  {
+    q: 'Czy dajesz gwarancję?',
+    a: 'Tak. Poprawki i drobne zmiany po wdrożeniu są bezpłatne przez 30 dni. Pracujesz ze mną bezpośrednio, więc nie ma ryzyka, że ktoś zgubi Twój temat.',
+  },
+  {
+    q: 'Co jeśli nie mam treści ani zdjęć?',
+    a: 'Nie ma problemu. Pomagam ułożyć treści na podstawie krótkiej rozmowy. Jeśli brakuje zdjęć, korzystamy z dobrej jakości stocków pasujących do branży.',
+  },
+  {
+    q: 'Jak wygląda płatność?',
+    a: 'Płatność w dwóch ratach: 50% na start, 50% po wdrożeniu. Bez ukrytych kosztów. Wszystko ustalamy przed rozpoczęciem pracy.',
+  },
 ] as const
 
 const faqSchema = {

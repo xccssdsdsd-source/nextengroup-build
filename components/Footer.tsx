@@ -4,7 +4,11 @@ const footerLinks = [
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],
   ['Kontakt', '#kontakt'],
+] as const
+
+const footerLegal = [
   ['Polityka prywatności', '/polityka-prywatnosci'],
+  ['Regulamin', '/regulamin'],
   ['LinkedIn', 'https://www.linkedin.com/company/getbuild'],
 ] as const
 
@@ -42,7 +46,7 @@ export default function Footer() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Nawigacja</p>
               <div className="space-y-2">
-                {footerLinks.slice(0, 5).map(([label, href]) => (
+                {footerLinks.map(([label, href]) => (
                   <a
                     key={href}
                     href={href}
@@ -54,12 +58,10 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt</p>
-              <p className="text-[13px] text-white/40 mb-2">
-                Polska
-              </p>
-<div className="space-y-2">
-                {footerLinks.slice(5).map(([label, href]) => (
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt i prawne</p>
+              <p className="text-[13px] text-white/40 mb-2">Polska</p>
+              <div className="space-y-2">
+                {footerLegal.map(([label, href]) => (
                   <a
                     key={href}
                     href={href}
@@ -70,6 +72,10 @@ export default function Footer() {
                     {label}
                   </a>
                 ))}
+              </div>
+              <div className="mt-4 space-y-1">
+                <p className="text-[11px] text-white/25">NIP: [WPISZ NIP]</p>
+                <p className="text-[11px] text-white/25">REGON: [WPISZ REGON]</p>
               </div>
             </div>
           </div>

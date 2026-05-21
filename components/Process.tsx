@@ -10,21 +10,25 @@ const steps = [
     num: '01',
     title: 'Rozmowa i kierunek',
     desc: 'Ustalamy ofertę, priorytety i to, co realnie ma sprzedawać.',
+    time: 'Dzień 1',
   },
   {
     num: '02',
     title: 'Wizualizacja w 24h',
     desc: 'Pokazujemy pierwszą koncepcję bez przeciągania procesu.',
+    time: 'Dzień 1-2',
   },
   {
     num: '03',
     title: 'Wdrożenie i dopracowanie',
     desc: 'Składamy design, copy, CTA i warstwę techniczną w jeden spójny system.',
+    time: 'Dzień 3-5',
   },
   {
     num: '04',
     title: 'Start i optymalizacja',
     desc: 'Publikujemy stronę i porządkujemy kolejne usprawnienia.',
+    time: 'Dzień 6+',
   },
 ] as const
 
@@ -92,6 +96,9 @@ export default function Process() {
               <p className="mt-3 text-[14px] leading-7 text-[#6B7280]">
                 {step.desc}
               </p>
+              <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#0EA5E9]/10 px-3 py-1">
+                <span className="text-[11px] font-semibold text-[#0EA5E9]">{step.time}</span>
+              </div>
             </motion.article>
           ))}
         </motion.div>

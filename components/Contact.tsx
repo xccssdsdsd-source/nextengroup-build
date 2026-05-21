@@ -63,27 +63,21 @@ function CalendlyWidget() {
     const el = containerRef.current
     if (!el) return
 
-    if ((window as any).Calendly) {
-      ;(window as any).Calendly.initInlineWidget({
-        url: 'https://calendly.com/getbuild-pl/30min',
+    const init = () => {
+      ;(window as any).Calendly?.initInlineWidget({
+        url: 'https://calendly.com/getbuild-pl/30min?locale=pl',
         parentElement: el,
         prefill: {},
         utm: {},
       })
-      return
     }
+
+    if ((window as any).Calendly) { init(); return }
 
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
-    script.onload = () => {
-      ;(window as any).Calendly?.initInlineWidget({
-        url: 'https://calendly.com/getbuild-pl/30min',
-        parentElement: el,
-        prefill: {},
-        utm: {},
-      })
-    }
+    script.onload = init
     document.head.appendChild(script)
   }, [])
 
@@ -106,19 +100,21 @@ export default function Contact() {
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#0055FF]/20 to-transparent" />
 
-        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
-          <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col gap-8">
-            <div>
-              <span className="section-kicker text-blue-400">Kontakt</span>
-              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-gray-900">
-                Porozmawiajmy o&nbsp;Twojej firmie
-              </h2>
-              <p className="mt-3 text-[14px] leading-[1.75] text-[#6B7280]">
-                Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie po prawej.
-              </p>
+        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12 lg:items-stretch">
+          <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <span className="section-kicker text-blue-400">Kontakt</span>
+                <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-gray-900">
+                  Porozmawiajmy o&nbsp;Twojej firmie
+                </h2>
+                <p className="mt-3 text-[14px] leading-[1.75] text-[#6B7280]">
+                  Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.
+                </p>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="mt-6 flex flex-col gap-3 flex-1">
               {socials.map((s, i) => (
                 <motion.a
                   key={s.label}
@@ -130,8 +126,8 @@ export default function Contact() {
                   transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
-                  style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s' }}
+                  className="flex flex-1 items-center gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 px-4 py-0 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                  style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s', minHeight: '72px' }}
                 >
                   <span className="flex-shrink-0">{s.icon}</span>
                   <div className="min-w-0">
@@ -141,12 +137,27 @@ export default function Contact() {
                   <svg className="ml-auto flex-shrink-0 text-[#D1D5DB]" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </motion.a>
               ))}
+
+              <motion.a
+                href="#calendly-widget"
+                onClick={e => { e.preventDefault(); document.getElementById('calendly-widget')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}
+                initial={{ opacity: 0, x: -16 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.5, ease }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#0055FF] px-4 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                style={{ minHeight: '72px', boxShadow: '0 4px 20px rgba(0,85,255,0.28)', transition: 'transform 0.2s, box-shadow 0.2s' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" stroke="white" strokeWidth="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                <span className="text-[14px] font-semibold">Umów spotkanie</span>
+              </motion.a>
             </div>
           </div>
 
-          <div className="w-full flex-1 min-w-0">
+          <div id="calendly-widget" className="w-full flex-1 min-w-0 flex flex-col">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-gray-100" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
+            <div className="rounded-2xl overflow-hidden border border-gray-100 flex-1" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
               <CalendlyWidget />
             </div>
           </div>

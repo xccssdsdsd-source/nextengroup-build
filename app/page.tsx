@@ -4,6 +4,7 @@ import Hero from '@/components/Hero'
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
+const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
@@ -15,6 +16,7 @@ export default function Home() {
 <Ticker />
       <Process />
       <Services />
+      <Portfolio />
       <FAQ />
       <Contact />
       <Footer />

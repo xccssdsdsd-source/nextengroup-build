@@ -20,6 +20,12 @@ const projects = [
     description: 'apartamenty premium',
     preview: '/portfolio/pm-apartments-preview.webp',
   },
+  {
+    name: 'MS Design Studio',
+    href: 'https://msdesignstudio.pl/',
+    description: 'wizualizacje 3D wnętrz',
+    preview: '/portfolio/msdesignstudio-preview.webp',
+  },
 ] as const
 
 function ProjectPreview({

@@ -118,19 +118,6 @@ export default function Services() {
                 ))}
               </div>
 
-              <div className="mt-5 border-t border-neutral-100 pt-4">
-                <a
-                  href={service.exampleHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0055FF] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
-                >
-                  Zobacz przykład: {service.exampleLabel}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M1.5 10.5L10.5 1.5M10.5 1.5H4.5M10.5 1.5v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </div>
             </motion.article>
           ))}
         </motion.div>

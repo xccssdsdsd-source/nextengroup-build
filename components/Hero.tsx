@@ -105,7 +105,7 @@ export default function Hero() {
               Zarezerwuj 15 min rozmowę
             </motion.a>
             <motion.a
-              href="#kontakt"
+              href="/realizacje"
               whileTap={{ scale: 0.96 }}
               className="btn-ghost inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >

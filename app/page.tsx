@@ -11,7 +11,7 @@ const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
-const StickyCta = dynamic(() => import('@/components/StickyCta'), { ssr: false })
+const StickyCta = dynamic(() => import('@/components/StickyCta'))
 
 export default function Home() {
   return (

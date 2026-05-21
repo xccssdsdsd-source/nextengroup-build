@@ -7,8 +7,6 @@ const Process = dynamic(() => import('@/components/Process'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
-const StickyCta = dynamic(() => import('@/components/StickyCta'))
-
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
@@ -20,7 +18,6 @@ export default function Home() {
       <FAQ />
       <Contact />
       <Footer />
-      <StickyCta />
     </main>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -55,10 +55,7 @@ const socials = [
   },
 ]
 
-const durations = [
-  { label: '15 min', url: 'https://calendly.com/getbuild-pl/15min?locale=pl' },
-  { label: '30 min', url: 'https://calendly.com/getbuild-pl/30min?locale=pl' },
-]
+const calendlyUrl = 'https://calendly.com/getbuild-pl/30min?locale=pl'
 
 function CalendlyWidget({ url }: { url: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -92,7 +89,6 @@ function CalendlyWidget({ url }: { url: string }) {
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
-  const [activeUrl, setActiveUrl] = useState(durations[1].url)
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative bg-white">
@@ -144,41 +140,13 @@ export default function Contact() {
                 </motion.a>
               ))}
 
-              <motion.a
-                href="#calendly-widget"
-                onClick={e => { e.preventDefault(); document.getElementById('calendly-widget')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}
-                initial={{ opacity: 0, x: -16 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.55, delay: 0.5, ease }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#0055FF] px-4 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
-                style={{ minHeight: '72px', boxShadow: '0 4px 20px rgba(0,85,255,0.28)', transition: 'transform 0.2s, box-shadow 0.2s' }}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3" stroke="white" strokeWidth="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></svg>
-                <span className="text-[14px] font-semibold">Umów spotkanie</span>
-              </motion.a>
             </div>
           </div>
 
           <div id="calendly-widget" className="w-full flex-1 min-w-0 flex flex-col">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">Zarezerwuj termin spotkania</p>
-              <div className="flex items-center gap-1 rounded-xl bg-gray-100 p-1">
-                {durations.map(d => (
-                  <button
-                    key={d.url}
-                    onClick={() => setActiveUrl(d.url)}
-                    className={`rounded-lg px-3 py-1 text-[12px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] ${activeUrl === d.url ? 'bg-white text-gray-900 shadow-sm' : 'text-[#9CA3AF] hover:text-gray-700'}`}
-                    style={{ transition: 'background 0.15s, color 0.15s' }}
-                  >
-                    {d.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Zarezerwuj termin spotkania</p>
             <div className="rounded-2xl overflow-hidden border border-gray-100 flex-1" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
-              <CalendlyWidget url={activeUrl} />
+              <CalendlyWidget url={calendlyUrl} />
             </div>
           </div>
         </div>

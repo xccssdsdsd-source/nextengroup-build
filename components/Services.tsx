@@ -15,8 +15,6 @@ const services = [
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
-    exampleHref: 'https://pm-apartments.pl/',
-    exampleLabel: 'PM Apartments',
   },
   {
     icon: Zap,
@@ -26,8 +24,6 @@ const services = [
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
-    exampleHref: 'https://getbuild.pl/',
-    exampleLabel: 'Getbuild.pl',
   },
   {
     icon: MessagesSquare,
@@ -37,8 +33,6 @@ const services = [
     color: 'from-blue-50 to-blue-50',
     iconColor: 'text-[#0055FF]',
     accent: '#0055FF',
-    exampleHref: 'https://getbuild.pl/',
-    exampleLabel: 'Getbuild.pl',
   },
 ] as const
 

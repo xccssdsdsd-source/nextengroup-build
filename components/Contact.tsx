@@ -12,7 +12,7 @@ const socials = [
     sub: contactEmail,
     href: `mailto:${contactEmail}`,
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
         <path fill="#4285F4" d="M4 8h40l-20 18L4 8z" />
         <path fill="#EA4335" d="M2 10v28l12-14L2 10z" />
         <path fill="#34A853" d="M46 10v28L34 24l12-14z" />
@@ -26,7 +26,7 @@ const socials = [
     sub: '@getbuild.pl',
     href: 'https://www.instagram.com/getbuild.pl/',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
         <defs>
           <radialGradient id="ig-c" cx="30%" cy="107%" r="130%">
             <stop offset="0%" stopColor="#fdf497" />
@@ -48,7 +48,7 @@ const socials = [
     sub: 'Getbuild.pl',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
         <rect width="48" height="48" rx="10" fill="#1877F2" />
         <path fill="white" d="M32 24h-5v-3c0-1.4.3-2 2.2-2H32v-5h-4c-5 0-7 3-7 7v3h-4v5h4v14h5V29h4.5l.5-5z" />
       </svg>
@@ -57,21 +57,37 @@ const socials = [
 ]
 
 function CalendlyWidget() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+
+    if ((window as any).Calendly) {
+      ;(window as any).Calendly.initInlineWidget({
+        url: 'https://calendly.com/getbuild-pl/30min',
+        parentElement: el,
+        prefill: {},
+        utm: {},
+      })
+      return
+    }
+
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
-    document.body.appendChild(script)
-    return () => { document.body.removeChild(script) }
+    script.onload = () => {
+      ;(window as any).Calendly?.initInlineWidget({
+        url: 'https://calendly.com/getbuild-pl/30min',
+        parentElement: el,
+        prefill: {},
+        utm: {},
+      })
+    }
+    document.head.appendChild(script)
   }, [])
 
-  return (
-    <div
-      className="calendly-inline-widget w-full rounded-2xl overflow-hidden"
-      data-url="https://calendly.com/getbuild-pl/30min"
-      style={{ minWidth: '320px', height: '700px' }}
-    />
-  )
+  return <div ref={containerRef} style={{ minWidth: '320px', height: '700px' }} />
 }
 
 export default function Contact() {
@@ -84,29 +100,25 @@ export default function Contact() {
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-gray-200/60 bg-white p-8 sm:p-12 lg:p-16"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-gray-200/60 bg-white p-8 sm:p-10 lg:p-14"
         style={{ boxShadow: '0 4px 6px rgba(0,0,0,0.03), 0 24px 64px rgba(0,85,255,0.06)' }}
       >
-        <div
-          className="pointer-events-none absolute inset-0 rounded-3xl"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)',
-            backgroundSize: '36px 36px',
-          }}
-        />
+        <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#0055FF]/20 to-transparent" />
 
-        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
-          <div className="w-full lg:w-[340px] flex-shrink-0 flex flex-col justify-between">
+        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
+          <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col gap-8">
             <div>
               <span className="section-kicker text-blue-400">Kontakt</span>
-              <h2 className="section-title text-gray-900 mt-2">Porozmawiajmy o Twojej firmie</h2>
-              <p className="mt-4 text-[15px] leading-[1.75] text-[#6B7280]">
+              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-gray-900">
+                Porozmawiajmy o&nbsp;Twojej firmie
+              </h2>
+              <p className="mt-3 text-[14px] leading-[1.75] text-[#6B7280]">
                 Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie po prawej.
               </p>
             </div>
 
-            <div className="mt-10 flex flex-col gap-3">
+            <div className="flex flex-col gap-3">
               {socials.map((s, i) => (
                 <motion.a
                   key={s.label}
@@ -118,22 +130,22 @@ export default function Contact() {
                   transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-gray-50/60 px-5 py-4 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                  className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
                   style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s' }}
                 >
                   <span className="flex-shrink-0">{s.icon}</span>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[13px] font-semibold text-gray-900">{s.label}</p>
-                    <p className="text-[12px] text-[#9CA3AF]">{s.sub}</p>
+                    <p className="text-[11px] text-[#9CA3AF] truncate">{s.sub}</p>
                   </div>
-                  <svg className="ml-auto text-[#D1D5DB]" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg className="ml-auto flex-shrink-0 text-[#D1D5DB]" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </motion.a>
               ))}
             </div>
           </div>
 
           <div className="w-full flex-1 min-w-0">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">Zarezerwuj termin spotkania</p>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Zarezerwuj termin spotkania</p>
             <div className="rounded-2xl overflow-hidden border border-gray-100" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
               <CalendlyWidget />
             </div>

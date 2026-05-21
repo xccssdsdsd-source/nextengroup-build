@@ -51,9 +51,9 @@ export default function Portfolio() {
   const project = projects[current]
 
   const variants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
-    center: { opacity: 1, x: 0 },
-    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
+    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80, scale: 0.97, filter: 'blur(4px)' }),
+    center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80, scale: 0.97, filter: 'blur(4px)' }),
   }
 
   return (
@@ -94,7 +94,7 @@ export default function Portfolio() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.45, ease }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="group block border border-black/[0.08] bg-white rounded-2xl"
                 style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,0,0,0.12)' }}
@@ -143,14 +143,28 @@ export default function Portfolio() {
           </div>
 
           <div className="mt-6 flex items-center justify-between">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               {projects.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }}
-                  className={`h-1.5 rounded-full transition-[width,background] duration-300 ${i === current ? 'w-6 bg-[#0055FF]' : 'w-1.5 bg-black/15'}`}
+                  className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+                  style={{ width: i === current ? 32 : 8, background: i === current ? 'transparent' : 'rgba(0,0,0,0.12)', transition: 'width 0.35s cubic-bezier(0.25,0.46,0.45,0.94), background 0.3s' }}
                   aria-label={`Przejdź do realizacji ${i + 1}`}
-                />
+                >
+                  {i === current && !paused && (
+                    <motion.span
+                      className="absolute inset-y-0 left-0 bg-[#0055FF] rounded-full"
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: INTERVAL / 1000, ease: 'linear' }}
+                      key={current}
+                    />
+                  )}
+                  {i === current && paused && (
+                    <span className="absolute inset-0 bg-[#0055FF] rounded-full" />
+                  )}
+                </button>
               ))}
             </div>
 

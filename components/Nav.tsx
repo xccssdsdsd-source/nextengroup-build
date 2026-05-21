@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const links = [
-  ['Usługi', '#uslugi'],
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],
+  ['Oferta', '#uslugi'],
 ] as const
 
 export default function Nav() {
@@ -68,7 +68,7 @@ export default function Nav() {
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary hidden px-5 py-2.5 text-[13px] sm:inline-flex"
               >
-                Darmowa wizualizacja
+                Umów spotkanie
               </motion.a>
               <button
                 type="button"

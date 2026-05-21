@@ -126,6 +126,7 @@ export default function Portfolio() {
           transition={{ duration: 0.75, ease }}
         >
           <span className="section-kicker">Nasze realizacje</span>
+          <h2 className="section-title">Nasze strony internetowe</h2>
         </motion.div>
 
         <div

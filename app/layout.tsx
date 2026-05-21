@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
 import './globals.css'
-import dynamic from 'next/dynamic'
-const Cursor = dynamic(() => import('@/components/Cursor'), { ssr: false })
+import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI'

@@ -33,12 +33,24 @@ const faqs = [
   },
 ] as const
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <section
       id="faq"
       ref={ref}
@@ -118,5 +130,6 @@ export default function FAQ() {
         </div>
       </div>
     </section>
+    </>
   )
 }

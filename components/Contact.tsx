@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { ArrowUpRight, Mail } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -37,38 +37,60 @@ export default function Contact() {
             {[
               {
                 href: `mailto:${contactEmail}`,
-                icon: <Mail size={22} />,
+                icon: (
+                  <svg width="26" height="20" viewBox="0 0 52 40" aria-hidden="true">
+                    <path fill="#4285F4" d="M2 0h48l-24 22L2 0z" />
+                    <path fill="#EA4335" d="M0 2v36l14-18L0 2z" />
+                    <path fill="#34A853" d="M52 2v36L38 20 52 2z" />
+                    <path fill="#FBBC05" d="M2 38h48L38 20 26 31 14 20 2 38z" />
+                    <path fill="#EA4335" d="M2 0L26 22 50 0H2z" />
+                  </svg>
+                ),
                 label: 'E-mail',
                 value: contactEmail,
                 cta: 'Napisz do nas',
+                iconBg: 'bg-white',
                 delay: 0.5,
               },
               {
                 href: 'https://www.instagram.com/getbuild.pl/',
                 target: '_blank',
                 icon: (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.8" />
-                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
-                    <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+                  <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="ig-grad" cx="30%" cy="107%" r="130%">
+                        <stop offset="0%" stopColor="#fdf497" />
+                        <stop offset="5%" stopColor="#fdf497" />
+                        <stop offset="45%" stopColor="#fd5949" />
+                        <stop offset="60%" stopColor="#d6249f" />
+                        <stop offset="90%" stopColor="#285AEB" />
+                      </radialGradient>
+                    </defs>
+                    <rect width="48" height="48" rx="12" fill="url(#ig-grad)" />
+                    <rect x="13" y="13" width="22" height="22" rx="6" fill="none" stroke="white" strokeWidth="2.5" />
+                    <circle cx="24" cy="24" r="6" fill="none" stroke="white" strokeWidth="2.5" />
+                    <circle cx="31.5" cy="16.5" r="1.5" fill="white" />
                   </svg>
                 ),
                 label: 'Instagram',
                 value: '@getbuild.pl',
                 cta: 'Przejdź do profilu',
+                iconBg: 'bg-white',
                 delay: 0.64,
               },
               {
                 href: 'https://www.facebook.com/profile.php?id=61588720012257',
                 target: '_blank',
                 icon: (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M13.5 20V12.8H16L16.4 10H13.5V8.2C13.5 7.4 13.8 6.8 15 6.8H16.5V4.3C16.2 4.2 15.3 4 14.2 4C11.8 4 10.2 5.4 10.2 8V10H8V12.8H10.2V20H13.5Z" fill="currentColor" />
+                  <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
+                    <rect width="48" height="48" rx="10" fill="#1877F2" />
+                    <path fill="white" d="M32 24h-5v-3c0-1.4.3-2 2.2-2H32v-5h-4c-5 0-7 3-7 7v3h-4v5h4v14h5V29h4.5l.5-5z" />
                   </svg>
                 ),
                 label: 'Facebook',
                 value: 'GetBuild',
                 cta: 'Przejdź do profilu',
+                iconBg: 'bg-white',
                 delay: 0.78,
               },
             ].map((card) => (
@@ -89,7 +111,7 @@ export default function Contact() {
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(0, 0, 0, 0.03)' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(0, 0, 0, 0.02)' }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 transition-transform duration-300 group-hover:scale-110">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${(card as any).iconBg ?? 'bg-blue-100'} transition-transform duration-300 group-hover:scale-110`}>
                   {card.icon}
                 </div>
                 <div className="mt-4">

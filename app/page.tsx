@@ -6,7 +6,6 @@ import TrustBar from '@/components/TrustBar'
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
-const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
@@ -20,7 +19,6 @@ export default function Home() {
       <TrustBar />
       <Ticker />
       <Process />
-      <Portfolio />
       <Services />
       <FAQ />
       <Contact />

@@ -4,7 +4,7 @@ import './globals.css'
 import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI | Trójmiasto'
+const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI'
 const siteDescription =
   'Getbuild projektuje i wdraża rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających sprzedaż i obsługę procesów.'
 
@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     'agenci AI',
     'rozwiązania IT',
     'Getbuild',
-    'Trójmiasto',
   ],
   alternates: {
     canonical: siteUrl,
@@ -109,8 +108,6 @@ export default function RootLayout({
           description: 'Getbuild projektuje i wdraża rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających rozwój firm.',
           address: {
             '@type': 'PostalAddress',
-            addressLocality: 'Trójmiasto',
-            addressRegion: 'Pomorskie',
             addressCountry: 'PL',
           },
           areaServed: {

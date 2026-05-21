@@ -56,9 +56,9 @@ export default function Footer() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt</p>
               <p className="text-[13px] text-white/40 mb-2">
-                Trójmiasto, Polska
+                Polska
               </p>
-              <div className="space-y-2">
+<div className="space-y-2">
                 {footerLinks.slice(5).map(([label, href]) => (
                   <a
                     key={href}

@@ -89,7 +89,7 @@ export default function PolitykaPrywatnosci() {
             </p>
             <p className="text-[#6B7280] mb-6">
               E-mail: getbuild.pl@gmail.com<br />
-              Adres: Trójmiasto, Polska
+              Adres: Polska
             </p>
 
             <h2 className="text-2xl font-bold text-[#0A0A0A] mt-8 mb-4">10. Zmiany w polityce</h2>

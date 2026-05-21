@@ -62,7 +62,7 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          className="mt-16 grid gap-5 lg:grid-cols-3"
+          className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}

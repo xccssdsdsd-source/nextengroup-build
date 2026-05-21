@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -13,11 +13,10 @@ const socials = [
     href: `mailto:${contactEmail}`,
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
-        <path fill="#4285F4" d="M4 8h40l-20 18L4 8z" />
-        <path fill="#EA4335" d="M2 10v28l12-14L2 10z" />
-        <path fill="#34A853" d="M46 10v28L34 24l12-14z" />
-        <path fill="#FBBC05" d="M4 38h40L34 24 24 33 14 24 4 38z" />
-        <path fill="#EA4335" d="M4 8l20 18L44 8H4z" />
+        <rect width="48" height="48" rx="10" fill="#EA4335" />
+        <path fill="white" d="M10 14h28a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" />
+        <path fill="#EA4335" d="M8 16l16 12 16-12" stroke="#EA4335" strokeWidth="0" />
+        <polyline points="8,16 24,28 40,16" fill="none" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -56,16 +55,22 @@ const socials = [
   },
 ]
 
-function CalendlyWidget() {
+const durations = [
+  { label: '15 min', url: 'https://calendly.com/getbuild-pl/15min?locale=pl' },
+  { label: '30 min', url: 'https://calendly.com/getbuild-pl/30min?locale=pl' },
+]
+
+function CalendlyWidget({ url }: { url: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
+    el.innerHTML = ''
 
     const init = () => {
       ;(window as any).Calendly?.initInlineWidget({
-        url: 'https://calendly.com/getbuild-pl/30min?locale=pl',
+        url,
         parentElement: el,
         prefill: {},
         utm: {},
@@ -79,7 +84,7 @@ function CalendlyWidget() {
     script.async = true
     script.onload = init
     document.head.appendChild(script)
-  }, [])
+  }, [url])
 
   return <div ref={containerRef} style={{ minWidth: '320px', height: '700px' }} />
 }
@@ -87,6 +92,7 @@ function CalendlyWidget() {
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
+  const [activeUrl, setActiveUrl] = useState(durations[1].url)
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative bg-white">
@@ -156,9 +162,23 @@ export default function Contact() {
           </div>
 
           <div id="calendly-widget" className="w-full flex-1 min-w-0 flex flex-col">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Zarezerwuj termin spotkania</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF]">Zarezerwuj termin spotkania</p>
+              <div className="flex items-center gap-1 rounded-xl bg-gray-100 p-1">
+                {durations.map(d => (
+                  <button
+                    key={d.url}
+                    onClick={() => setActiveUrl(d.url)}
+                    className={`rounded-lg px-3 py-1 text-[12px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] ${activeUrl === d.url ? 'bg-white text-gray-900 shadow-sm' : 'text-[#9CA3AF] hover:text-gray-700'}`}
+                    style={{ transition: 'background 0.15s, color 0.15s' }}
+                  >
+                    {d.label}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="rounded-2xl overflow-hidden border border-gray-100 flex-1" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
-              <CalendlyWidget />
+              <CalendlyWidget url={activeUrl} />
             </div>
           </div>
         </div>

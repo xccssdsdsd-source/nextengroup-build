@@ -147,7 +147,7 @@ export default function Hero() {
         )}
       </div>
 
-      <a href="#uslugi" className="mx-auto mt-12 hidden w-fit flex-col items-center gap-1.5 text-[#9CA3AF] transition-[color,opacity] duration-300 hover:text-[#0055FF] lg:flex">
+      <a href="#proces" className="mx-auto mt-12 hidden w-fit flex-col items-center gap-1.5 text-[#9CA3AF] transition-[color,opacity] duration-300 hover:text-[#0055FF] lg:flex">
         <span className="text-[10px] uppercase tracking-[0.28em]">Przewiń</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
           <ChevronDown size={16} />

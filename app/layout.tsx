@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
 import './globals.css'
-import Cursor from '@/components/Cursor'
+import dynamic from 'next/dynamic'
+const Cursor = dynamic(() => import('@/components/Cursor'), { ssr: false })
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI'
@@ -95,8 +96,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KVGVGL8M');` }} />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ"></script>
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6D0PC33PCQ');` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'ProfessionalService',
@@ -123,7 +122,7 @@ export default function RootLayout({
           priceRange: '$$',
           sameAs: [
             'https://www.linkedin.com/company/getbuild',
-            'https://www.instagram.com/getbuild',
+            'https://www.instagram.com/getbuild.pl/',
           ],
         }) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />

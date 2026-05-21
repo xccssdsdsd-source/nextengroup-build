@@ -9,6 +9,7 @@ const contactEmail = 'getbuild.pl@gmail.com'
 const socials = [
   {
     label: 'Gmail',
+    sub: contactEmail,
     href: `mailto:${contactEmail}`,
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
@@ -22,6 +23,7 @@ const socials = [
   },
   {
     label: 'Instagram',
+    sub: '@getbuild.pl',
     href: 'https://www.instagram.com/getbuild.pl/',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
@@ -43,6 +45,7 @@ const socials = [
   },
   {
     label: 'Facebook',
+    sub: 'Getbuild.pl',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
@@ -93,41 +96,47 @@ export default function Contact() {
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#0055FF]/20 to-transparent" />
 
-        <div className="relative">
-          <div className="text-center mb-10">
-            <span className="section-kicker text-blue-400">Kontakt</span>
-            <h2 className="section-title text-gray-900">Porozmawiajmy o Twojej firmie</h2>
-            <p className="mt-4 text-[15px] leading-[1.75] text-[#6B7280]">
-              Napisz, zadzwoń lub znajdź mnie w social media. Odpowiem tego samego dnia.
-            </p>
+        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+          <div className="w-full lg:w-[340px] flex-shrink-0 flex flex-col justify-between">
+            <div>
+              <span className="section-kicker text-blue-400">Kontakt</span>
+              <h2 className="section-title text-gray-900 mt-2">Porozmawiajmy o Twojej firmie</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-[#6B7280]">
+                Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie po prawej.
+              </p>
+            </div>
 
-            <div className="mt-8 flex items-center justify-center gap-8">
+            <div className="mt-10 flex flex-col gap-3">
               {socials.map((s, i) => (
                 <motion.a
                   key={s.label}
                   href={s.href}
                   target={s.href.startsWith('mailto') ? undefined : '_blank'}
                   rel={s.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  aria-label={s.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease }}
-                  whileHover={{ y: -5, scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex flex-col items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                  whileHover={{ x: 4 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-gray-50/60 px-5 py-4 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                  style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s' }}
                 >
-                  {s.icon}
-                  <span className="text-[12px] font-medium text-[#9CA3AF]">{s.label}</span>
+                  <span className="flex-shrink-0">{s.icon}</span>
+                  <div>
+                    <p className="text-[13px] font-semibold text-gray-900">{s.label}</p>
+                    <p className="text-[12px] text-[#9CA3AF]">{s.sub}</p>
+                  </div>
+                  <svg className="ml-auto text-[#D1D5DB]" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </motion.a>
               ))}
             </div>
           </div>
 
-          <div className="mt-10">
-            <p className="text-center text-[13px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">
-              Zarezerwuj termin spotkania
-            </p>
-            <CalendlyWidget />
+          <div className="w-full flex-1 min-w-0">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-4">Zarezerwuj termin spotkania</p>
+            <div className="rounded-2xl overflow-hidden border border-gray-100" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
+              <CalendlyWidget />
+            </div>
           </div>
         </div>
       </motion.div>

@@ -9,8 +9,8 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const links = [
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
-  ['FAQ', '#faq'],
   ['Oferta', '#uslugi'],
+  ['FAQ', '#faq'],
 ] as const
 
 export default function Nav() {

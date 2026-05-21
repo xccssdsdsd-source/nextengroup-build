@@ -44,7 +44,7 @@ const faqSchema = {
 }
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0)
+  const [open, setOpen] = useState<number | null>(null)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -95,7 +95,7 @@ export default function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                  className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left sm:px-5"
                 >
                   <span className="text-[15px] font-semibold leading-snug text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
@@ -117,8 +117,8 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <div className="mx-6 mb-5 h-px bg-neutral-100" />
-                      <p className="px-6 pb-6 text-[15px] leading-7 text-[#6B7280]">
+                      <div className="mx-4 mb-3 h-px bg-neutral-100 sm:mx-5" />
+                      <p className="px-4 pb-4 text-[14px] leading-6 text-[#6B7280] sm:px-5 sm:pb-5">
                         {faq.a}
                       </p>
                     </motion.div>

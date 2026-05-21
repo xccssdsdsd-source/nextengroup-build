@@ -18,8 +18,8 @@ export default function Home() {
       <Ticker />
       <Process />
       <Portfolio />
-      <FAQ />
       <Services />
+      <FAQ />
       <Contact />
       <Footer />
     </main>

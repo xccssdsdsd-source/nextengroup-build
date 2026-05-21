@@ -1,8 +1,6 @@
 import dynamic from 'next/dynamic'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import TrustBar from '@/components/TrustBar'
-
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
@@ -16,8 +14,7 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Nav />
       <Hero />
-      <TrustBar />
-      <Ticker />
+<Ticker />
       <Process />
       <Services />
       <FAQ />

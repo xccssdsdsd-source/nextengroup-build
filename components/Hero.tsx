@@ -98,16 +98,14 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           >
             <motion.a
-              href="https://calendly.com/getbuild"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#kontakt"
               whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
               Zarezerwuj 15 min rozmowę
             </motion.a>
             <motion.a
-              href="#portfolio"
+              href="#kontakt"
               whileTap={{ scale: 0.96 }}
               className="btn-ghost inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >

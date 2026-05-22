@@ -8,23 +8,23 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const steps = [
   {
     num: '01',
-    title: 'Rozmowa i kierunek',
-    desc: 'Analizujemy Twoją markę, konkurencję i cele biznesowe. Agenci AI przygotowują rekomendacje wstępne.',
+    title: 'Rozmowa i dostosowanie',
+    desc: 'Poznajemy Twoją markę, cele i potrzeby. Razem definiujemy kierunek projektu dostosowany do biznesu.',
   },
   {
     num: '02',
-    title: 'Wizualizacja i strategie',
-    desc: 'Tworzymy concept strony z użyciem automatycznych narzędzi AI. Przygotowujemy wstępne kopie i strukturę konwersji.',
+    title: 'Projekt i strategia',
+    desc: 'Tworzymy design i strategię konwersji. Każdy element zaplanowany z myślą o wyniku.',
   },
   {
     num: '03',
-    title: 'Wdrożenie i optymalizacja',
-    desc: 'Łączymy design, copywriting, AI-wspomagane testy A/B i technologię w spójny system. Agenci AI ciągle optymalizują.',
+    title: 'Wdrożenie',
+    desc: 'Budujemy stronę, optymalizujemy SEO i integrujemy narzędzia. Gotowo i bezpiecznie.',
   },
   {
     num: '04',
-    title: 'Start i ciągłe usprawnienia',
-    desc: 'Publikujemy stronę z automatyzacją SEO i monitoringiem AI. Systematyczne ulepszenia bez interwencji.',
+    title: 'Opieka i wsparcie',
+    desc: 'Wspieramy Cię po starcie. Aktualizacje, poprawki i ciągłe ulepszenia.',
   },
 ] as const
 
@@ -33,18 +33,10 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section
-      id="proces"
-      ref={ref}
-      className="section-shell relative"
-      style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}
-    >
+    <section id="proces" ref={ref} className="section-shell bg-white">
       <div
         className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(6,182,212,0.08) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(0,85,255,0.06) 0%, transparent 60%)' }}
       />
 
       <div className="relative mx-auto max-w-7xl">
@@ -54,15 +46,15 @@ export default function Process() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.78, ease }}
         >
-          <span className="section-kicker" style={{ color: '#06B6D4' }}>Proces</span>
-          <h2 className="section-title" style={{ color: '#F1F5F9' }}>Wspomagane przez AI, zautomatyzowane na całej długości.</h2>
-          <p className="section-copy" style={{ color: '#CBD5E1' }}>
-            Nasze agenty AI pracują na każdym etapie — od analizy do optymalizacji. Bez ręcznych błędów, bez opóźnień.
+          <span className="section-kicker">Proces</span>
+          <h2 className="section-title">Prosto od konsultacji do wsparcia</h2>
+          <p className="section-copy">
+            Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
           </p>
         </motion.div>
 
         <motion.div
-          className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+          className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
@@ -70,26 +62,34 @@ export default function Process() {
           {steps.map((step) => (
             <motion.article
               key={step.num}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="relative overflow-hidden rounded-2xl border border-[#06B6D4]/30 bg-[#1E293B] p-7"
+              variants={{ hidden: { opacity: 0, y: 32, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease } } }}
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
+              className="group relative overflow-hidden rounded-[20px] border border-[#EBEBEB] bg-white p-7 transition-all duration-300"
               style={{
-                boxShadow: '0 1px 2px rgba(6,182,212,0.1), 0 4px 12px rgba(6,182,212,0.05)',
-                transition: 'box-shadow 0.3s ease, transform 0.2s ease',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(6,182,212,0.2), 0 12px 28px rgba(6,182,212,0.15)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(6,182,212,0.1), 0 4px 12px rgba(6,182,212,0.05)' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,85,255,0.1)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#CCDAFF'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#EBEBEB'
+              }}
             >
-              <div className="absolute left-0 top-0 h-full w-[3px] rounded-l-2xl bg-gradient-to-b from-[#06B6D4] to-[#06B6D4]/20" />
+              <div
+                className="absolute inset-x-0 top-0 h-[3px]"
+                style={{ background: 'linear-gradient(90deg, #0055FF, #0055FF99)' }}
+              />
 
-              <div className="flex items-baseline gap-2 pl-1">
-                <span className="font-bold leading-none tracking-[-0.06em] text-[#06B6D4]" style={{ fontFamily: 'var(--font-syne)', fontSize: '2.8rem' }}>{step.num}</span>
+              <div className="text-[2.4rem] font-black tracking-[-0.06em] text-[#0055FF]" style={{ fontFamily: 'var(--font-syne)' }}>
+                {step.num}
               </div>
-              <div className="mt-3 h-px w-10 bg-gradient-to-r from-[#06B6D4]/50 to-transparent" />
-              <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#F1F5F9] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+
+              <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0A] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
                 {step.title}
               </h3>
-              <p className="mt-3 text-[14px] leading-7 text-[#64748B]">
+              <p className="mt-3 text-[15px] leading-7 text-[#6B7280]">
                 {step.desc}
               </p>
             </motion.article>

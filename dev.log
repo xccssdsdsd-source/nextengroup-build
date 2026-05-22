@@ -1,0 +1,14 @@
+
+> getbuild-build@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.129.79:3000
+
+ ✓ Starting...
+ ✓ Ready in 8.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 10.1s (1506 modules)
+ GET / 200 in 11112ms
+ ✓ Compiled in 1214ms (693 modules)

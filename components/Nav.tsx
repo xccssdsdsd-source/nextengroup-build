@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -18,6 +18,12 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
+
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setOpen(false)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -56,7 +62,7 @@ export default function Nav() {
 
             <div className="hidden items-center gap-8 lg:flex">
               {links.map(([label, href]) => (
-                <a key={href} href={href} className="nav-link text-[13px] font-medium text-[#6B7280] transition-colors duration-200 hover:text-[#0A0A0A]">
+                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[#6B7280] transition-colors duration-200 hover:text-[#0A0A0A]">
                   {label}
                 </a>
               ))}
@@ -65,6 +71,7 @@ export default function Nav() {
             <div className="flex items-center gap-3">
               <motion.a
                 href="#kontakt"
+                onClick={(e) => handleAnchorClick(e, 'kontakt')}
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary hidden px-5 py-2.5 text-[13px] sm:inline-flex"
               >
@@ -107,7 +114,7 @@ export default function Nav() {
                       <motion.a
                         key={href}
                         href={href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => handleAnchorClick(e, href.slice(1))}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.22, delay: i * 0.055, ease }}
@@ -120,7 +127,7 @@ export default function Nav() {
                   <div className="mt-2 border-t border-neutral-100 pt-2">
                     <motion.a
                       href="#kontakt"
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => handleAnchorClick(e, 'kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"
                     >

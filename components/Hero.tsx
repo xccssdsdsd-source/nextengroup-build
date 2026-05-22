@@ -24,9 +24,14 @@ export default function Hero() {
     setIsMobile(!check.matches)
   }, [])
 
-  const handlePreviewClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleProcessClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    document.getElementById('proces')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -99,6 +104,7 @@ export default function Hero() {
           >
             <motion.a
               href="#kontakt"
+              onClick={handleContactClick}
               whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
@@ -155,7 +161,7 @@ export default function Hero() {
         )}
       </div>
 
-      <a href="#proces" className="mx-auto mt-12 hidden w-fit flex-col items-center gap-1.5 text-[#9CA3AF] transition-[color,opacity] duration-300 hover:text-[#0055FF] lg:flex">
+      <a href="#proces" onClick={handleProcessClick} className="mx-auto mt-12 hidden w-fit flex-col items-center gap-1.5 text-[#9CA3AF] transition-[color,opacity] duration-300 hover:text-[#0055FF] lg:flex">
         <span className="text-[10px] uppercase tracking-[0.28em]">Przewiń</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
           <ChevronDown size={16} />

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { Globe, MessagesSquare, Zap } from 'lucide-react'
-import { useRef } from 'react'
+import { useRef, type MouseEvent } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -39,6 +39,11 @@ const services = [
 export default function Services() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
+
+  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <section id="uslugi" ref={ref} className="section-shell relative bg-white">
@@ -124,6 +129,7 @@ export default function Services() {
         >
           <a
             href="#kontakt"
+            onClick={handleContactClick}
             className="inline-flex items-center gap-3 rounded-full bg-[#0055FF] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#0044DD] hover:shadow-[0_8px_28px_rgba(0,85,255,0.38)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2 active:translate-y-0"
           >
             Umów spotkanie

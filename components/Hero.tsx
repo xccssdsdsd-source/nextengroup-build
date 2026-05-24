@@ -13,7 +13,7 @@ const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 const words = [
   { text: 'ROZWIĄZANIA IT', cls: 'text-[#0A0A0F]' },
   { text: 'DOPASOWANE DO', cls: 'text-[#2563EB]' },
-  { text: 'CIEBIE', cls: 'text-[#0A0A0F]' },
+  { text: 'CIEBIE', cls: 'text-[#2563EB]' },
 ]
 
 export default function Hero() {
@@ -37,6 +37,12 @@ export default function Hero() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.6), transparent 60%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
           background: 'radial-gradient(ellipse 55% 60% at 72% 50%, rgba(37,99,235,0.08), transparent)',
         }}
       />
@@ -50,24 +56,32 @@ export default function Hero() {
 
       <ContainerScroll
         titleComponent={
-          <div className="max-w-xl w-full text-left" style={{ textAlign: 'left' }}>
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full mb-8 bg-white"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0, ease }}
-            >
-              <span className="text-xs uppercase tracking-[0.16em] text-[#6b7280] font-medium">● Strony WWW i automatyzacje</span>
-            </motion.div>
+          <div className="max-w-xl w-full text-left pb-8" style={{ textAlign: 'left' }}>
 
             <h1
-              className="font-sans text-[clamp(40px,6vw,80px)] uppercase leading-[1.05] tracking-[-0.03em]"
-              style={{ fontFamily: 'var(--font-syne)', fontWeight: '800' }}
+              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden"
+              style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 8vw, 2.6rem)' }}
             >
               {words.map(({ text, cls }, i) => (
                 <motion.span
                   key={text}
-                  className={`block ${cls}`}
+                  className={`block ${cls} ${i >= 1 ? 'whitespace-nowrap' : ''}`}
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: (i + 1) * 0.12, ease }}
+                >
+                  {text}
+                </motion.span>
+              ))}
+            </h1>
+            <h1
+              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block"
+              style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)' }}
+            >
+              {words.map(({ text, cls }, i) => (
+                <motion.span
+                  key={text}
+                  className={`block ${cls} ${i >= 1 ? 'whitespace-nowrap' : ''}`}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: (i + 1) * 0.12, ease }}
@@ -78,7 +92,7 @@ export default function Hero() {
             </h1>
 
             <motion.p
-              className="mt-6 sm:mt-8 max-w-lg text-[15px] sm:text-base leading-[1.7] text-[#6b7280]"
+              className="mt-6 sm:mt-8 max-w-md text-base leading-[1.7] text-[#374151]"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.36, ease }}
@@ -96,14 +110,14 @@ export default function Hero() {
                 href="#kontakt"
                 onClick={handleContactClick}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm w-auto"
+                className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
               >
                 Umów 15 min rozmowę
               </motion.a>
               <motion.a
                 href="/realizacje"
                 whileTap={{ scale: 0.96 }}
-                className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-auto"
+                className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
               >
                 Zobacz realizacje
               </motion.a>

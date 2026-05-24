@@ -27,8 +27,8 @@ export default function Hero() {
     setIsMounted(true)
   }, [])
 
-  const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '67vh'])
-  const cardYMobile = useTransform(scrollYProgress, [0, 0.5], ['100vh', '72vh'])
+  const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '45vh'])
+  const cardYMobile = useTransform(scrollYProgress, [0, 0.5], ['100vh', '50vh'])
   const titleOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.6])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -70,7 +70,7 @@ export default function Hero() {
         <div className="w-full text-center">
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', maxWidth: '95vw' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '700', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -86,7 +86,7 @@ export default function Hero() {
           </h1>
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block mx-auto"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '95vw' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '700', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span

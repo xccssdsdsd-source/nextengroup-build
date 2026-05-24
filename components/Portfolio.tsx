@@ -73,30 +73,15 @@ function ScoreRing({ value, label }: LighthouseScore) {
 
 export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const scroll = useCallback((dir: number) => {
-    if (!scrollRef.current) return
-    const container = scrollRef.current
-    const cardWidth = container.querySelector('[data-card]')?.getBoundingClientRect().width || 0
-    const gap = 24
-    const scrollAmount = cardWidth + gap
-    container.scrollBy({
-      left: dir * scrollAmount,
-      behavior: 'smooth',
-    })
+  const nextProject = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length)
   }, [])
 
-  const handleScroll = useCallback(() => {
-    if (!scrollRef.current) return
-    const container = scrollRef.current
-    const cardWidth = container.querySelector('[data-card]')?.getBoundingClientRect().width || 0
-    const gap = 24
-    const scrollAmount = cardWidth + gap
-    const newIndex = Math.round(container.scrollLeft / scrollAmount)
-    setCurrentIndex(newIndex)
+  const prevProject = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
   }, [])
 
   return (
@@ -115,103 +100,112 @@ export default function Portfolio() {
         </motion.div>
 
         <div className="mt-12 relative">
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
-            style={{ scrollBehavior: 'smooth' }}
-          >
-            {projects.map((project, i) => (
-              <a
-                key={i}
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                data-card
-                className="flex-shrink-0 w-full lg:w-[calc(50%-12px)] snap-start group block bg-white rounded-[16px] border border-[#e5e7eb] overflow-hidden"
-                style={{
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
-                  transition: 'box-shadow 0.3s',
-                }}
-              >
-                <div className="p-4 pb-3">
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-                    <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-3 py-1 text-[11px] text-neutral-400 truncate">{project.href.replace('https://', '')}</div>
-                    <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
-                      <ArrowUpRight size={13} strokeWidth={2} />
-                    </span>
+          <div className="relative">
+            <motion.a
+              key={currentIndex}
+              href={projects[currentIndex].href}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="group block bg-white rounded-[16px] border border-[#e5e7eb] overflow-hidden"
+              style={{
+                boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
+              }}
+            >
+              <div className="p-4 pb-3">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+                  <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-3 py-1 text-[11px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
+                  <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
+                    <ArrowUpRight size={13} strokeWidth={2} />
+                  </span>
+                </div>
+                <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/10' }}>
+                  <Image
+                    src={projects[currentIndex].preview}
+                    alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
+                    fill
+                    sizes="100vw"
+                    className="object-cover group-hover:scale-[1.02]"
+                    style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
+                    quality={75}
+                  />
+                </div>
+              </div>
+
+              <div className="px-5 pb-5 pt-2">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2563EB] mb-1">{projects[currentIndex].tagline}</p>
+                    <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0F] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
+                    <p className="text-[13px] leading-[1.6] text-[#6b7280] max-w-xl">{projects[currentIndex].body}</p>
                   </div>
-                  <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/10' }}>
-                    <Image
-                      src={project.preview}
-                      alt={`${project.name} - ${project.tagline}`}
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-[1.02]"
-                      style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                      quality={75}
-                    />
+                  <div className="rounded-lg border border-[#e5e7eb] bg-[#f5f7fa] px-3 py-2 text-center shrink-0">
+                    <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Wdrożenie</div>
+                    <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
                   </div>
                 </div>
 
-                <div className="px-5 pb-5 pt-2">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2563EB] mb-1">{project.tagline}</p>
-                      <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0F] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
-                      <p className="text-[13px] leading-[1.6] text-[#6b7280] max-w-xl">{project.body}</p>
-                    </div>
-                    <div className="rounded-lg border border-[#e5e7eb] bg-[#f5f7fa] px-3 py-2 text-center shrink-0">
-                      <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Wdrożenie</div>
-                      <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.time}</div>
+                {projects[currentIndex].lighthouse && (
+                  <div className="mt-4 flex items-center gap-1 border-t border-[#e5e7eb] pt-4">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6b7280] mr-3 shrink-0">Lighthouse</span>
+                    <div className="flex gap-4">
+                      {projects[currentIndex].lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
                     </div>
                   </div>
+                )}
+              </div>
+            </motion.a>
 
-                  {project.lighthouse && (
-                    <div className="mt-4 flex items-center gap-1 border-t border-[#e5e7eb] pt-4">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6b7280] mr-3 shrink-0">Lighthouse</span>
-                      <div className="flex gap-4">
-                        {project.lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </a>
-            ))}
+            <button
+              onClick={prevProject}
+              className="absolute left-6 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg"
+              style={{ transition: 'all 0.2s' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB'
+                ;(e.currentTarget as HTMLButtonElement).style.color = '#2563EB'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb'
+                ;(e.currentTarget as HTMLButtonElement).style.color = '#6b7280'
+              }}
+              aria-label="Poprzednia realizacja"
+            >
+              <ChevronLeft size={24} strokeWidth={2} />
+            </button>
+
+            <button
+              onClick={nextProject}
+              className="absolute right-6 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg"
+              style={{ transition: 'all 0.2s' }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB'
+                ;(e.currentTarget as HTMLButtonElement).style.color = '#2563EB'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb'
+                ;(e.currentTarget as HTMLButtonElement).style.color = '#6b7280'
+              }}
+              aria-label="Następna realizacja"
+            >
+              <ChevronRight size={24} strokeWidth={2} />
+            </button>
           </div>
 
-          <button
-            onClick={() => scroll(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280]"
-            style={{ transition: 'border-color 0.2s' }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }}
-            aria-label="Poprzednia realizacja"
-          >
-            <ChevronLeft size={18} strokeWidth={2} />
-          </button>
-
-          <button
-            onClick={() => scroll(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280]"
-            style={{ transition: 'border-color 0.2s' }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }}
-            aria-label="Następna realizacja"
-          >
-            <ChevronRight size={18} strokeWidth={2} />
-          </button>
-
-          <div className="mt-6 flex justify-center items-center gap-2 lg:hidden">
-            <button onClick={() => scroll(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280]" style={{ transition: 'border-color 0.2s' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }} aria-label="Poprzednia"><ChevronLeft size={18} strokeWidth={2} /></button>
+          <div className="mt-6 flex justify-center items-center gap-3">
             {projects.map((_, i) => (
-              <button key={i} className="relative h-2 rounded-full focus-visible:outline-none" style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className="relative h-2 rounded-full focus-visible:outline-none"
+                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db', transition: 'width 0.3s, background 0.3s' }}
+                aria-label={`Realizacja ${i + 1}`}
+              />
             ))}
-            <button onClick={() => scroll(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280]" style={{ transition: 'border-color 0.2s' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }} aria-label="Następna"><ChevronRight size={18} strokeWidth={2} /></button>
           </div>
         </div>
       </div>

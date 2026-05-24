@@ -108,7 +108,7 @@ export default function Contact() {
               <div>
                 <span className="section-kicker">Kontakt</span>
                 <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
-                  Porozmawiajmy o&nbsp;Twojej firmie
+                  Kontakt
                 </h2>
                 <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
                   Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.

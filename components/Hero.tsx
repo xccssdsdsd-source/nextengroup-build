@@ -12,8 +12,7 @@ const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const words = [
   { text: 'Rozwiązania IT', cls: 'text-[#0A0A0F]' },
-  { text: 'dopasowane do', cls: 'gradient-text' },
-  { text: 'Ciebie', cls: 'text-[#0A0A0F]' },
+  { text: 'dla Ciebie', cls: 'gradient-text' },
 ]
 
 export default function Hero() {

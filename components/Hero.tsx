@@ -25,8 +25,8 @@ export default function Hero() {
     setIsMobile(!check.matches)
   }, [])
 
-  const cardY = useTransform(scrollYProgress, [0, 0.5], ['80vh', '40vh'])
-  const cardYMobile = useTransform(scrollYProgress, [0, 0.35], ['80vh', '55vh'])
+  const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '67vh'])
+  const cardYMobile = useTransform(scrollYProgress, [0, 0.5], ['100vh', '72vh'])
   const titleOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.6])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -39,7 +39,7 @@ export default function Hero() {
       ref={sectionRef}
       suppressHydrationWarning
       className="relative bg-white"
-      style={{ minHeight: '130vh' }}
+      style={{ minHeight: '170vh' }}
     >
       <div
         className="pointer-events-none fixed inset-0 z-0"
@@ -68,7 +68,7 @@ export default function Hero() {
         <div className="w-full text-left">
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 3.8vw, 3.5rem)', maxWidth: '700px' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', maxWidth: '600px' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -84,7 +84,7 @@ export default function Hero() {
           </h1>
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '700px' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '600px' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -152,15 +152,14 @@ export default function Hero() {
 
       <motion.div
         style={{ y: isMobile ? cardYMobile : cardY }}
-        className={`${isMobile ? 'absolute' : 'sticky'} bottom-0 left-0 right-0 z-20`}
+        className="sticky bottom-0 left-0 right-0 z-20"
       >
         <div
           className="w-[90%] max-w-[1000px] mx-auto"
           style={{
             borderRadius: '20px 20px 0 0',
             backgroundColor: '#0d1117',
-            height: isMobile ? '50vh' : '55vh',
-            maxHeight: '55vh',
+            height: isMobile ? '45vh' : '55vh',
             boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
             overflow: 'hidden',
           }}

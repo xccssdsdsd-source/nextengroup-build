@@ -18,11 +18,13 @@ const words = [
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
   const { scrollYProgress } = useScroll({ target: sectionRef })
 
   useEffect(() => {
     const check = window.matchMedia('(min-width: 768px)')
     setIsMobile(!check.matches)
+    setIsMounted(true)
   }, [])
 
   const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '67vh'])
@@ -62,13 +64,13 @@ export default function Hero() {
       />
 
       <motion.div
-        style={{ opacity: titleOpacity, overflowX: 'hidden' }}
-        className="sticky top-0 z-10 h-screen flex items-center justify-start px-6 md:px-12"
+        style={isMounted ? { opacity: titleOpacity, overflowX: 'hidden' } : { overflowX: 'hidden' }}
+        className="sticky top-0 z-10 h-screen flex items-center justify-center px-6 md:px-12"
       >
-        <div className="w-full text-left">
+        <div className="w-full text-center">
           <h1
-            className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', maxWidth: '600px' }}
+            className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -83,8 +85,8 @@ export default function Hero() {
             ))}
           </h1>
           <h1
-            className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '600px' }}
+            className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block mx-auto"
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -100,7 +102,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="mt-6 sm:mt-8 max-w-md text-base leading-[1.7] text-[#374151]"
+            className="mt-6 sm:mt-8 max-w-md mx-auto text-base leading-[1.7] text-[#374151]"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease }}
@@ -109,7 +111,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row"
+            className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease }}
@@ -132,7 +134,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-gray-100 pt-6 sm:pt-8 sm:flex sm:items-center"
+            className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-gray-100 pt-6 sm:pt-8 sm:flex sm:items-center sm:justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.72, ease }}
@@ -151,7 +153,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        style={{ y: isMobile ? cardYMobile : cardY }}
+        style={isMounted ? { y: isMobile ? cardYMobile : cardY } : { y: 0 }}
         className="sticky bottom-0 left-0 right-0 z-20"
       >
         <div

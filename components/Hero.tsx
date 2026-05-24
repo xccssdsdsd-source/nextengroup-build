@@ -11,7 +11,9 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const words = [
-  { text: 'Rozwiązania IT dostosowane do Twoich potrzeb', cls: 'text-[#0A0A0F]' },
+  { text: 'ROZWIĄZANIA IT', cls: 'text-[#0A0A0F]' },
+  { text: 'DOPASOWANE DO', cls: 'text-[#2563EB]' },
+  { text: 'CIEBIE', cls: 'text-[#0A0A0F]' },
 ]
 
 export default function Hero() {
@@ -48,9 +50,18 @@ export default function Hero() {
 
       <ContainerScroll
         titleComponent={
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-xl w-full text-left" style={{ textAlign: 'left' }}>
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full mb-8 bg-white"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0, ease }}
+            >
+              <span className="text-xs uppercase tracking-[0.16em] text-[#6b7280] font-medium">● Strony WWW i automatyzacje</span>
+            </motion.div>
+
             <h1
-              className="font-sans text-[clamp(36px,9vw,64px)] uppercase leading-[1.08] tracking-[-0.03em]"
+              className="font-sans text-[clamp(40px,6vw,80px)] uppercase leading-[1.05] tracking-[-0.03em]"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: '800' }}
             >
               {words.map(({ text, cls }, i) => (
@@ -59,7 +70,7 @@ export default function Hero() {
                   className={`block ${cls}`}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.12, ease }}
+                  transition={{ duration: 0.6, delay: (i + 1) * 0.12, ease }}
                 >
                   {text}
                 </motion.span>
@@ -67,10 +78,10 @@ export default function Hero() {
             </h1>
 
             <motion.p
-              className="mt-5 sm:mt-7 max-w-xl text-[15px] sm:text-base leading-[1.7] text-[#6b7280]"
+              className="mt-6 sm:mt-8 max-w-lg text-[15px] sm:text-base leading-[1.7] text-[#6b7280]"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.24, ease }}
+              transition={{ duration: 0.6, delay: 0.36, ease }}
             >
               Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
             </motion.p>
@@ -79,20 +90,20 @@ export default function Hero() {
               className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.36, ease }}
+              transition={{ duration: 0.6, delay: 0.48, ease }}
             >
               <motion.a
                 href="#kontakt"
                 onClick={handleContactClick}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
+                className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm w-auto"
               >
                 Umów 15 min rozmowę
               </motion.a>
               <motion.a
                 href="/realizacje"
                 whileTap={{ scale: 0.96 }}
-                className="btn-ghost inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
+                className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-auto"
               >
                 Zobacz realizacje
               </motion.a>
@@ -102,7 +113,7 @@ export default function Hero() {
               className="mt-4 text-[13px] text-[#6b7280]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.48, ease }}
+              transition={{ duration: 0.6, delay: 0.60, ease }}
             >
               Realizacja w 24 do 72h. Wdrożenie pod klucz. Wsparcie po starcie.
             </motion.p>
@@ -111,7 +122,7 @@ export default function Hero() {
               className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-gray-100 pt-6 sm:pt-8 sm:flex sm:items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.60, ease }}
+              transition={{ duration: 0.6, delay: 0.72, ease }}
             >
               {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
                 <div key={val} className="flex items-center gap-4 sm:gap-6">

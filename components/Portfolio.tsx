@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useCallback } from 'react'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
@@ -71,33 +71,39 @@ function ScoreRing({ value, label }: LighthouseScore) {
   )
 }
 
-const INTERVAL = 5500
-
 export default function Portfolio() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
-  const [current, setCurrent] = useState(0)
-  const [, setDirection] = useState(1)
-  const [paused, setPaused] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const go = useCallback((dir: number) => {
-    setDirection(dir)
-    setCurrent(prev => (prev + dir + projects.length) % projects.length)
+  const scroll = useCallback((dir: number) => {
+    if (!scrollRef.current) return
+    const container = scrollRef.current
+    const cardWidth = container.querySelector('[data-card]')?.getBoundingClientRect().width || 0
+    const gap = 24
+    const scrollAmount = cardWidth + gap
+    container.scrollBy({
+      left: dir * scrollAmount,
+      behavior: 'smooth',
+    })
   }, [])
 
-  useEffect(() => {
-    if (paused) return
-    const id = setInterval(() => go(1), INTERVAL)
-    return () => clearInterval(id)
-  }, [paused, go])
-
-  const project = projects[current]
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current) return
+    const container = scrollRef.current
+    const cardWidth = container.querySelector('[data-card]')?.getBoundingClientRect().width || 0
+    const gap = 24
+    const scrollAmount = cardWidth + gap
+    const newIndex = Math.round(container.scrollLeft / scrollAmount)
+    setCurrentIndex(newIndex)
+  }, [])
 
   return (
     <section id="portfolio" ref={ref} className="section-shell overflow-hidden bg-white">
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(0,85,255,0.05) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(0,85,255,0.04) 0%, transparent 60%)' }} />
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="section-heading"
           initial={{ opacity: 0, y: 32 }}
@@ -108,38 +114,25 @@ export default function Portfolio() {
           <h2 className="section-title">Nasze strony internetowe</h2>
         </motion.div>
 
-        <div className="mt-12 relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-          <button
-            onClick={() => go(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 8px 20px rgba(37,99,235,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
-            style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
-            aria-label="Poprzednia realizacja"
+        <div className="mt-12 relative">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            style={{ scrollBehavior: 'smooth' }}
           >
-            <ChevronLeft size={20} strokeWidth={2} />
-          </button>
-          <button
-            onClick={() => go(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-24 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 8px 20px rgba(37,99,235,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
-            style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
-            aria-label="Następna realizacja"
-          >
-            <ChevronRight size={20} strokeWidth={2} />
-          </button>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 12, scale: 0.99 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.99 }}
-              transition={{ duration: 0.5, ease }}
-            >
+            {projects.map((project, i) => (
               <a
+                key={i}
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group block border border-[#e5e7eb] bg-white rounded-2xl overflow-hidden shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.10)]"
-                style={{ transition: 'box-shadow 0.3s' }}
+                data-card
+                className="flex-shrink-0 w-full lg:w-[calc(50%-12px)] snap-start group block bg-white rounded-[16px] border border-[#e5e7eb] overflow-hidden"
+                style={{
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
+                  transition: 'box-shadow 0.3s',
+                }}
               >
                 <div className="p-4 pb-3">
                   <div className="mb-3 flex items-center gap-2">
@@ -147,20 +140,19 @@ export default function Portfolio() {
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
                     <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-3 py-1 text-[11px] text-neutral-400 truncate">{project.href.replace('https://', '')}</div>
-                    <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]" style={{ transition: 'background 0.2s, color 0.2s, border-color 0.2s' }}>
+                    <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
                       <ArrowUpRight size={13} strokeWidth={2} />
                     </span>
                   </div>
-                  <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]">
+                  <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/10' }}>
                     <Image
                       src={project.preview}
                       alt={`${project.name} - ${project.tagline}`}
-                      width={1600}
-                      height={1000}
-                      sizes="(min-width: 1024px) 60vw, 100vw"
-                      className="w-full h-auto object-contain group-hover:scale-[1.02]"
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-[1.02]"
                       style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
-                      loading={current === 0 ? 'eager' : 'lazy'}
+                      loading={i === 0 ? 'eager' : 'lazy'}
                       quality={75}
                     />
                   </div>
@@ -189,15 +181,37 @@ export default function Portfolio() {
                   )}
                 </div>
               </a>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="mt-5 flex justify-center gap-2 items-center lg:hidden">
-            <button onClick={() => go(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06)] hover:bg-[#2563EB] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Poprzednia realizacja"><ChevronLeft size={18} strokeWidth={2} /></button>
-            {projects.map((_, i) => (
-              <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }} className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none" style={{ width: i === current ? 24 : 6, background: i === current ? '#2563EB' : '#d1d5db', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
             ))}
-            <button onClick={() => go(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06)] hover:bg-[#2563EB] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Następna realizacja"><ChevronRight size={18} strokeWidth={2} /></button>
+          </div>
+
+          <button
+            onClick={() => scroll(-1)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280]"
+            style={{ transition: 'border-color 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }}
+            aria-label="Poprzednia realizacja"
+          >
+            <ChevronLeft size={18} strokeWidth={2} />
+          </button>
+
+          <button
+            onClick={() => scroll(1)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280]"
+            style={{ transition: 'border-color 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }}
+            aria-label="Następna realizacja"
+          >
+            <ChevronRight size={18} strokeWidth={2} />
+          </button>
+
+          <div className="mt-6 flex justify-center items-center gap-2 lg:hidden">
+            <button onClick={() => scroll(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280]" style={{ transition: 'border-color 0.2s' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }} aria-label="Poprzednia"><ChevronLeft size={18} strokeWidth={2} /></button>
+            {projects.map((_, i) => (
+              <button key={i} className="relative h-2 rounded-full focus-visible:outline-none" style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
+            ))}
+            <button onClick={() => scroll(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280]" style={{ transition: 'border-color 0.2s' }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB' }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#e5e7eb' }} aria-label="Następna"><ChevronRight size={18} strokeWidth={2} /></button>
           </div>
         </div>
       </div>

@@ -7,10 +7,11 @@ import { useEffect, useState, type MouseEvent } from 'react'
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const links = [
+  ['Usługi', '#uslugi'],
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
-  ['Oferta', '#uslugi'],
   ['FAQ', '#faq'],
+  ['Kontakt', '#kontakt'],
 ] as const
 
 export default function Nav() {

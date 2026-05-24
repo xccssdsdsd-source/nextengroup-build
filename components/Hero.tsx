@@ -94,7 +94,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex w-full items-center justify-center px-7 py-4 text-sm sm:w-auto"
             >
-              Zarezerwuj 15 min rozmowę
+              Umów 15 min rozmowę
             </motion.a>
             <motion.a
               href="/realizacje"

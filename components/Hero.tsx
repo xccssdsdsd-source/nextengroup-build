@@ -62,10 +62,10 @@ export default function Hero() {
       />
 
       <motion.div
-        style={{ opacity: titleOpacity, overflowX: 'hidden' }}
-        className="sticky top-0 z-10 h-screen flex items-center justify-start px-6 md:px-12"
+        style={{ opacity: titleOpacity, overflow: 'hidden' }}
+        className="sticky top-0 z-10 h-screen flex items-center justify-center px-6 md:px-12"
       >
-        <div className="w-full text-left">
+        <div className="w-full text-center">
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 3.8vw, 3.5rem)', maxWidth: '700px', margin: '0 auto' }}

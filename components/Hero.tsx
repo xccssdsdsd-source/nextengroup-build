@@ -84,7 +84,7 @@ export default function Hero() {
           </h1>
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 3.8vw, 3.5rem)', maxWidth: '700px' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '700px' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span

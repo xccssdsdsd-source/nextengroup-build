@@ -16,19 +16,19 @@ import puppeteer from 'puppeteer';
   await page.screenshot({ path: './temporary screenshots/scroll-0-percent.png' });
   console.log('Saved screenshot at 0% scroll');
 
-  // Scroll to 50% of hero section
+  // Scroll to 40% of hero section
   await page.evaluate(() => {
     const heroSection = document.querySelector('section');
     if (heroSection) {
       const scrollHeight = heroSection.scrollHeight;
-      window.scrollTo(0, scrollHeight * 0.5);
+      window.scrollTo(0, scrollHeight * 0.4);
     }
   });
   await new Promise(r => setTimeout(r, 800));
 
-  // Screenshot at 50% scroll
-  await page.screenshot({ path: './temporary screenshots/scroll-50-percent.png' });
-  console.log('Saved screenshot at 50% scroll');
+  // Screenshot at 40% scroll
+  await page.screenshot({ path: './temporary screenshots/scroll-40-percent.png' });
+  console.log('Saved screenshot at 40% scroll');
 
   await browser.close();
 })();

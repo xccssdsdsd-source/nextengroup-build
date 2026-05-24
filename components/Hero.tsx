@@ -25,9 +25,9 @@ export default function Hero() {
     setIsMobile(!check.matches)
   }, [])
 
-  const cardY = useTransform(scrollYProgress, [0, 0.6], ['60vh', '0vh'])
-  const cardYMobile = useTransform(scrollYProgress, [0, 0.6], ['50vh', '10vh'])
-  const titleOpacity = useTransform(scrollYProgress, [0.3, 0.7], [1, 0.4])
+  const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '67vh'])
+  const cardYMobile = useTransform(scrollYProgress, [0, 0.5], ['100vh', '72vh'])
+  const titleOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.6])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -39,7 +39,7 @@ export default function Hero() {
       ref={sectionRef}
       suppressHydrationWarning
       className="relative bg-white"
-      style={{ minHeight: isMobile ? '160vh' : '200vh' }}
+      style={{ minHeight: '170vh' }}
     >
       <div
         className="pointer-events-none fixed inset-0 z-0"
@@ -62,18 +62,18 @@ export default function Hero() {
       />
 
       <motion.div
-        style={{ opacity: titleOpacity }}
-        className="sticky top-0 z-10 h-screen flex items-center justify-start px-5 sm:px-8 lg:px-10"
+        style={{ opacity: titleOpacity, overflowX: 'hidden' }}
+        className="sticky top-0 z-10 h-screen flex items-center justify-start px-6 md:px-12"
       >
-        <div className="max-w-xl w-full text-left">
+        <div className="w-full text-left">
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 8vw, 2.6rem)' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', maxWidth: '600px' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
                 key={text}
-                className={`block ${cls} ${i >= 1 ? 'whitespace-nowrap' : ''}`}
+                className={`block ${cls}`}
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: (i + 1) * 0.12, ease }}
@@ -84,12 +84,12 @@ export default function Hero() {
           </h1>
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)', maxWidth: '600px' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
                 key={text}
-                className={`block ${cls} ${i >= 1 ? 'whitespace-nowrap' : ''}`}
+                className={`block ${cls}`}
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: (i + 1) * 0.12, ease }}
@@ -152,14 +152,14 @@ export default function Hero() {
 
       <motion.div
         style={{ y: isMobile ? cardYMobile : cardY }}
-        className="absolute bottom-0 left-0 right-0 z-20 px-5 sm:px-8"
+        className="sticky bottom-0 left-0 right-0 z-20"
       >
         <div
-          className="w-[85%] max-w-[1100px] mx-auto"
+          className="w-[90%] max-w-[1000px] mx-auto"
           style={{
-            borderRadius: '24px 24px 0 0',
+            borderRadius: '20px 20px 0 0',
             backgroundColor: '#0d1117',
-            minHeight: isMobile ? '45vh' : '55vh',
+            height: isMobile ? '45vh' : '55vh',
             boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
             overflow: 'hidden',
           }}

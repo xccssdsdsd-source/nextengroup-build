@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
 
 const socials = [
@@ -96,21 +96,21 @@ export default function Contact() {
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-gray-200/60 bg-white p-8 sm:p-10 lg:p-14"
-        style={{ boxShadow: '0 4px 6px rgba(0,0,0,0.03), 0 24px 64px rgba(0,85,255,0.06)' }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-8 sm:p-10 lg:p-14"
+        style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10)' }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#0055FF]/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#2563EB]/20 to-transparent" />
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12 lg:items-stretch">
           <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <span className="section-kicker text-blue-400">Kontakt</span>
-                <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-gray-900">
+                <span className="section-kicker">Kontakt</span>
+                <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
                   Porozmawiajmy o&nbsp;Twojej firmie
                 </h2>
-                <p className="mt-3 text-[14px] leading-[1.75] text-[#6B7280]">
+                <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
                   Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.
                 </p>
               </div>
@@ -128,15 +128,15 @@ export default function Contact() {
                   transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex flex-1 items-center gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 px-4 py-0 hover:border-[#0055FF]/20 hover:bg-[#0055FF]/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:ring-offset-2"
+                  className="flex flex-1 items-center gap-3 rounded-2xl border border-[#e5e7eb] bg-white px-4 py-0 hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
                   style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s', minHeight: '72px' }}
                 >
                   <span className="flex-shrink-0">{s.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-[13px] font-semibold text-gray-900">{s.label}</p>
-                    <p className="text-[11px] text-[#9CA3AF] truncate">{s.sub}</p>
+                    <p className="text-[13px] font-semibold text-[#0A0A0F]">{s.label}</p>
+                    <p className="text-[11px] text-[#6b7280] truncate">{s.sub}</p>
                   </div>
-                  <svg className="ml-auto flex-shrink-0 text-[#D1D5DB]" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg className="ml-auto flex-shrink-0 text-[#d1d5db]" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </motion.a>
               ))}
 
@@ -144,8 +144,8 @@ export default function Contact() {
           </div>
 
           <div id="calendly-widget" className="w-full flex-1 min-w-0 flex flex-col">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-gray-100 flex-1" style={{ boxShadow: '0 2px 24px rgba(0,85,255,0.06)' }}>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Zarezerwuj termin spotkania</p>
+            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] flex-1" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
               <CalendlyWidget url={calendlyUrl} />
             </div>
           </div>

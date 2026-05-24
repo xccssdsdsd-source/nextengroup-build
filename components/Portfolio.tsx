@@ -5,7 +5,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useEffect, useCallback } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 type LighthouseScore = { label: string; value: number }
 
@@ -111,7 +111,7 @@ export default function Portfolio() {
         <div className="mt-12 relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <button
             onClick={() => go(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 8px 20px rgba(37,99,235,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
             style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
             aria-label="Poprzednia realizacja"
           >
@@ -119,7 +119,7 @@ export default function Portfolio() {
           </button>
           <button
             onClick={() => go(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-24 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-black/[0.08] text-[#6B7280] shadow-[0_4px_20px_rgba(0,0,0,0.10)] hover:bg-[#0055FF] hover:text-white hover:border-[#0055FF] hover:shadow-[0_8px_28px_rgba(0,85,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-24 z-10 hidden lg:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 8px 20px rgba(37,99,235,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
             style={{ transition: 'background 0.2s, color 0.2s, box-shadow 0.2s' }}
             aria-label="Następna realizacja"
           >
@@ -138,7 +138,7 @@ export default function Portfolio() {
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group block border border-black/[0.08] bg-white rounded-2xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.09)] hover:shadow-[0_20px_56px_rgba(0,0,0,0.13)]"
+                className="group block border border-[#e5e7eb] bg-white rounded-2xl overflow-hidden shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)] hover:shadow-[0 1px 2px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.10)]"
                 style={{ transition: 'box-shadow 0.3s' }}
               >
                 <div className="p-4 pb-3">
@@ -151,15 +151,15 @@ export default function Portfolio() {
                       <ArrowUpRight size={13} strokeWidth={2} />
                     </span>
                   </div>
-                  <div className="relative overflow-hidden rounded-xl border border-black/[0.06] bg-neutral-50">
+                  <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]">
                     <Image
                       src={project.preview}
                       alt={`${project.name} - ${project.tagline}`}
                       width={1600}
                       height={1000}
                       sizes="(min-width: 1024px) 60vw, 100vw"
-                      className="w-full h-auto object-contain group-hover:scale-[1.015]"
-                      style={{ transition: 'transform 0.6s cubic-bezier(0.22,1,0.36,1)', willChange: 'transform' }}
+                      className="w-full h-auto object-contain group-hover:scale-[1.02]"
+                      style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
                       loading={current === 0 ? 'eager' : 'lazy'}
                       quality={75}
                     />
@@ -169,19 +169,19 @@ export default function Portfolio() {
                 <div className="px-5 pb-5 pt-2">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0055FF] mb-1">{project.tagline}</p>
-                      <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0A] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
-                      <p className="text-[13px] leading-[1.6] text-[#6B7280] max-w-xl">{project.body}</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2563EB] mb-1">{project.tagline}</p>
+                      <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0F] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                      <p className="text-[13px] leading-[1.6] text-[#6b7280] max-w-xl">{project.body}</p>
                     </div>
-                    <div className="rounded-lg border border-black/[0.07] bg-neutral-50 px-3 py-2 text-center shrink-0">
-                      <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">Wdrożenie</div>
-                      <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>{project.time}</div>
+                    <div className="rounded-lg border border-[#e5e7eb] bg-[#f5f7fa] px-3 py-2 text-center shrink-0">
+                      <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Wdrożenie</div>
+                      <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.time}</div>
                     </div>
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-4 flex items-center gap-1 border-t border-black/[0.05] pt-4">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#9CA3AF] mr-3 shrink-0">Lighthouse</span>
+                    <div className="mt-4 flex items-center gap-1 border-t border-[#e5e7eb] pt-4">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6b7280] mr-3 shrink-0">Lighthouse</span>
                       <div className="flex gap-4">
                         {project.lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
                       </div>
@@ -193,11 +193,11 @@ export default function Portfolio() {
           </AnimatePresence>
 
           <div className="mt-5 flex justify-center gap-2 items-center lg:hidden">
-            <button onClick={() => go(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:bg-[#0055FF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Poprzednia realizacja"><ChevronLeft size={18} strokeWidth={2} /></button>
+            <button onClick={() => go(-1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06)] hover:bg-[#2563EB] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Poprzednia realizacja"><ChevronLeft size={18} strokeWidth={2} /></button>
             {projects.map((_, i) => (
-              <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }} className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none" style={{ width: i === current ? 24 : 6, background: i === current ? '#0055FF' : 'rgba(0,0,0,0.12)', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
+              <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i) }} className="relative h-1 rounded-full overflow-hidden focus-visible:outline-none" style={{ width: i === current ? 24 : 6, background: i === current ? '#2563EB' : '#d1d5db', transition: 'width 0.3s, background 0.3s' }} aria-label={`Realizacja ${i + 1}`} />
             ))}
-            <button onClick={() => go(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF] shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:bg-[#0055FF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Następna realizacja"><ChevronRight size={18} strokeWidth={2} /></button>
+            <button onClick={() => go(1)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#6b7280] shadow-[0 1px 2px rgba(0,0,0,0.06)] hover:bg-[#2563EB] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]" style={{ transition: 'background 0.2s, color 0.2s' }} aria-label="Następna realizacja"><ChevronRight size={18} strokeWidth={2} /></button>
           </div>
         </div>
       </div>

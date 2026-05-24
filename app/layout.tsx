@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Syne, Figtree, Barlow_Condensed } from 'next/font/google'
+import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
 import Cursor from '@/components/Cursor'
 
@@ -15,17 +15,10 @@ const syne = Syne({
   display: 'swap',
 })
 
-const figtree = Figtree({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-figtree',
-  display: 'swap',
-})
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['700', '900'],
-  variable: '--font-barlow',
+  weight: ['400', '500'],
+  variable: '--font-dm-sans',
   display: 'swap',
 })
 
@@ -84,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${syne.variable} ${figtree.variable} ${barlowCondensed.variable}`}
+      className={`${syne.variable} ${dmSans.variable}`}
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
@@ -126,7 +119,7 @@ export default function RootLayout({
         }) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
-      <body className="bg-[#020810] text-[#e8f0ff] antialiased">
+      <body className="bg-white text-[#0A0A0F] antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVGVGL8M" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#0055FF] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
         <Cursor />

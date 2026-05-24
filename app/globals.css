@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --accent: #0055FF;
-  --accent-hover: #001AFF;
-  --surface: #FFFFFF;
-  --border: rgba(0,0,0,0.07);
-  --text: #0A0A0A;
-  --muted: #6B7280;
+  --blue: #2563EB;
+  --blue-light: #eff6ff;
+  --blue-glow: #2563eb18;
+  --bg: #ffffff;
+  --bg-soft: #f5f7fa;
+  --text: #0A0A0F;
+  --muted: #6b7280;
 }
 
 *,
@@ -23,9 +24,9 @@ html {
 
 body {
   min-width: 320px;
-  background: #FFFFFF;
+  background: #ffffff;
   color: var(--text);
-  font-family: var(--font-figtree), sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   overflow-x: hidden;
 }
 
@@ -75,7 +76,7 @@ select {
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #0055FF;
+  color: #2563EB;
   font-weight: 700;
   font-family: var(--font-syne), sans-serif;
 }
@@ -85,7 +86,7 @@ select {
   display: inline-block;
   width: 18px;
   height: 2px;
-  background: #0055FF;
+  background: #2563EB;
   border-radius: 1px;
   flex-shrink: 0;
 }
@@ -109,23 +110,23 @@ select {
 }
 
 .btn-primary {
-  background: #0055FF;
+  background: #2563EB;
   border-radius: 11px;
   color: #FFFFFF;
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
   letter-spacing: 0.03em;
-  box-shadow: 0 4px 20px rgba(0, 85, 255, 0.3);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10);
   transition: all 0.2s ease-out;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 30px rgba(0, 85, 255, 0.4);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 32px rgba(37,99,235,0.15);
   transform: translateY(-2px);
 }
 
 .btn-primary:focus-visible {
-  outline: 2px solid rgba(0, 85, 255, 0.6);
+  outline: 2px solid rgba(37, 99, 235, 0.6);
   outline-offset: 3px;
 }
 
@@ -153,7 +154,7 @@ select {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #0055FF 0%, #001AFF 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -399,7 +400,7 @@ select {
   position: fixed;
   width: 6px;
   height: 6px;
-  background: #0055FF;
+  background: #2563EB;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 99999;
@@ -410,7 +411,7 @@ select {
   position: fixed;
   width: 32px;
   height: 32px;
-  border: 1.5px solid rgba(0, 85, 255, 0.45);
+  border: 1.5px solid rgba(37, 99, 235, 0.45);
   border-radius: 9999px;
   pointer-events: none;
   z-index: 99998;
@@ -437,7 +438,7 @@ select {
   left: 0;
   width: 100%;
   height: 1.5px;
-  background: #0055FF;
+  background: #2563EB;
   border-radius: 9999px;
   transform: scaleX(0);
   transform-origin: right center;
@@ -447,6 +448,23 @@ select {
 .nav-link:hover::after {
   transform: scaleX(1);
   transform-origin: left center;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563EB;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
 }
 
 @media (hover: hover) and (pointer: fine) {

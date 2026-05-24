@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const faqs = [
   {
@@ -71,7 +71,7 @@ export default function FAQ() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(14,165,233,0.05) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.025) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
       />
@@ -95,13 +95,14 @@ export default function FAQ() {
             return (
               <motion.div
                 key={faq.q}
+                layout
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.68, delay: index * 0.09, ease }}
-                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+                transition={{ duration: 0.6, delay: index * 0.08, ease }}
+                className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-200 ${
                   isOpen
-                    ? 'border-blue-100 bg-blue-50 shadow-[0_4px_16px_rgba(0,85,255,0.08)]'
-                    : 'border-transparent bg-gray-50 shadow-none hover:border-gray-200'
+                    ? 'border-l-[#2563EB] bg-[#f5f7fa] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.08)]'
+                    : 'border-l-transparent bg-white shadow-[0 1px 2px rgba(0,0,0,0.06)]'
                 }`}
               >
                 <button
@@ -109,13 +110,13 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left sm:px-5"
                 >
-                  <span className="text-[15px] font-semibold leading-snug text-[#0A0A0A]" style={{ fontFamily: 'var(--font-syne)' }}>
+                  <span className="text-[15px] font-medium leading-snug text-[#0A0A0F]" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                     {faq.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.24, ease }}
-                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-sm transition-all duration-200 group-hover:bg-blue-600 group-hover:text-white ${isOpen ? 'bg-blue-600 text-white' : 'bg-white text-gray-400'}`}
+                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#2563EB] text-white' : 'bg-white text-[#9CA3AF] border border-[#e5e7eb]'}`}
                   >
                     <Plus size={15} strokeWidth={2.2} />
                   </motion.span>
@@ -129,8 +130,8 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <div className="mx-4 mb-3 h-px bg-neutral-100 sm:mx-5" />
-                      <p className="px-4 pb-4 text-[14px] leading-6 text-[#6B7280] sm:px-5 sm:pb-5">
+                      <div className="mx-4 mb-3 h-px bg-[#e5e7eb] sm:mx-5" />
+                      <p className="px-4 pb-4 text-[14px] leading-[1.6] text-[#6b7280] sm:px-5 sm:pb-5">
                         {faq.a}
                       </p>
                     </motion.div>

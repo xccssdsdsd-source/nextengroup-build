@@ -2,24 +2,10 @@
 > getbuild-build@0.1.0 dev
 > next dev
 
+ ⚠ Port 3000 is in use by process 19924, using available port 3002 instead.
    ▲ Next.js 15.5.18
-   - Local:        http://localhost:3000
-   - Network:      http://169.254.129.79:3000
+   - Local:        http://localhost:3002
+   - Network:      http://169.254.129.79:3002
 
  ✓ Starting...
- ✓ Ready in 8.8s
- ○ Compiling / ...
- ✓ Compiled / in 10.1s (1506 modules)
- GET / 200 in 11112ms
- ✓ Compiled in 1214ms (693 modules)
- ✓ Compiled in 799ms (693 modules)
- ✓ Compiled in 507ms (693 modules)
- ✓ Compiled in 323ms (693 modules)
- ○ Compiling / ...
- ✓ Compiled / in 2.3s (786 modules)
- GET / 200 in 8567ms
- GET / 200 in 400ms
- GET / 200 in 664ms
- GET / 200 in 566ms
- GET / 200 in 234ms
-[?25h
+ ✓ Ready in 3.7s

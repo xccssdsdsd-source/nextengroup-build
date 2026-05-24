@@ -2,8 +2,8 @@
 
 import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
@@ -16,20 +16,11 @@ const words = [
 ]
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
-  const { scrollYProgress } = useScroll({ target: sectionRef })
 
   useEffect(() => {
-    const check = window.matchMedia('(min-width: 768px)')
-    setIsMobile(!check.matches)
     setIsMounted(true)
   }, [])
-
-  const cardY = useTransform(scrollYProgress, [0, 0.5], ['100vh', '45vh'])
-  const cardYMobile = useTransform(scrollYProgress, [0, 0.5], ['100vh', '50vh'])
-  const titleOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.6])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -38,10 +29,8 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white"
-      style={{ minHeight: '170vh' }}
+      className="relative bg-white py-12 md:py-20"
     >
       <div
         className="pointer-events-none fixed inset-0 z-0"
@@ -63,14 +52,11 @@ export default function Hero() {
         }}
       />
 
-      <motion.div
-        style={isMounted ? { opacity: titleOpacity, overflowX: 'hidden' } : { overflowX: 'hidden' }}
-        className="sticky top-0 z-10 h-screen flex items-center justify-center px-6 md:px-12"
-      >
+      <div className="relative z-10 px-6 md:px-12">
         <div className="w-full text-center">
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '700', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -86,7 +72,7 @@ export default function Hero() {
           </h1>
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block mx-auto"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '700', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
               <motion.span
@@ -150,25 +136,27 @@ export default function Hero() {
             ))}
           </motion.div>
         </div>
-      </motion.div>
 
-      <motion.div
-        style={isMounted ? { y: isMobile ? cardYMobile : cardY } : { y: 0 }}
-        className="sticky bottom-0 left-0 right-0 z-20"
-      >
-        <div
-          className="w-[90%] max-w-[1000px] mx-auto"
-          style={{
-            borderRadius: '20px 20px 0 0',
-            backgroundColor: '#0d1117',
-            height: isMobile ? '45vh' : '55vh',
-            boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
-            overflow: 'hidden',
-          }}
+        <motion.div
+          className="mt-12 md:mt-16 flex justify-center"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.84, ease }}
         >
-          {!isMobile && <DeviceMockups />}
-        </div>
-      </motion.div>
+          <div
+            className="w-[90%] max-w-[1000px]"
+            style={{
+              borderRadius: '20px',
+              backgroundColor: '#0d1117',
+              height: 'auto',
+              boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
+              overflow: 'hidden',
+            }}
+          >
+            {isMounted && <DeviceMockups />}
+          </div>
+        </motion.div>
+      </div>
     </section>
   )
 }

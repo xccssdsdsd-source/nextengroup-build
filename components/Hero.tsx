@@ -20,13 +20,17 @@ export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end center'] })
-  const deviceY = useTransform(scrollYProgress, [0, 0.5], [0, 120])
-  const deviceRotation = useTransform(scrollYProgress, [0, 0.6], [0, -8])
-  const deviceOpacity = useTransform(scrollYProgress, [0.4, 1], [1, 0.2])
-  const deviceScale = useTransform(scrollYProgress, [0.4, 1], [1, 0.8])
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.3])
-  const headingScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.92])
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
+  const deviceY = useTransform(scrollYProgress, [0, 0.7], [0, 300])
+  const deviceRotation = useTransform(scrollYProgress, [0, 0.5], [0, -12])
+  const deviceOpacity = useTransform(scrollYProgress, [0.5, 1], [1, 0])
+  const deviceScale = useTransform(scrollYProgress, [0.5, 1], [1, 0.7])
+  const statsY = useTransform(scrollYProgress, [0.3, 0.7], [60, 0])
+  const statsOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
+  const descOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0.4])
+  const buttonsOpacity = useTransform(scrollYProgress, [0.15, 0.35], [1, 0.4])
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0.2])
+  const headingScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.88])
 
   useEffect(() => {
     setIsMounted(true)
@@ -102,6 +106,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
+            style={{ opacity: descOpacity }}
           >
             Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
           </motion.p>
@@ -111,6 +116,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
+            style={{ opacity: buttonsOpacity }}
           >
             <motion.a
               href="#kontakt"
@@ -134,6 +140,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
+            style={{ y: statsY, opacity: statsOpacity }}
           >
             {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-4 sm:gap-6">

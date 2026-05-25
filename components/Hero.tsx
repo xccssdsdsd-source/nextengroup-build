@@ -19,12 +19,14 @@ export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const { scrollY } = useScroll()
-  const deviceY = useTransform(scrollY, [0, 1000], [0, 150])
-  const deviceOpacity = useTransform(scrollY, [500, 1200], [1, 0.3])
-  const deviceScale = useTransform(scrollY, [500, 1200], [1, 0.85])
-  const headingOpacity = useTransform(scrollY, [200, 800], [1, 0.4])
-  const headingScale = useTransform(scrollY, [200, 800], [1, 0.9])
+  const deviceRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end center'] })
+  const deviceY = useTransform(scrollYProgress, [0, 0.5], [0, 120])
+  const deviceRotation = useTransform(scrollYProgress, [0, 0.6], [0, -8])
+  const deviceOpacity = useTransform(scrollYProgress, [0.4, 1], [1, 0.2])
+  const deviceScale = useTransform(scrollYProgress, [0.4, 1], [1, 0.8])
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.3])
+  const headingScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.92])
 
   useEffect(() => {
     setIsMounted(true)
@@ -146,11 +148,12 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
+          ref={deviceRef}
           className="mt-12 md:mt-16 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.72, ease: easeOut }}
-          style={{ y: deviceY, opacity: deviceOpacity, scale: deviceScale }}
+          style={{ y: deviceY, opacity: deviceOpacity, scale: deviceScale, rotateZ: deviceRotation }}
         >
           <div
             className="w-[90%] max-w-[1000px]"

@@ -7,8 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
-const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1]
-const easeInOut: [number, number, number, number] = [0.4, 0, 0.2, 1]
+const easeOut = 'easeOut'
 
 const words = [
   { text: 'ROZWIĄZANIA IT', cls: 'text-[#0A0A0F]' },
@@ -60,9 +59,9 @@ export default function Hero() {
               <motion.span
                 key={text}
                 className={`block ${cls}`}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.15, ease: easeOut }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: easeOut }}
               >
                 {text}
               </motion.span>
@@ -76,9 +75,9 @@ export default function Hero() {
               <motion.span
                 key={text}
                 className={`block ${cls}`}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.15, ease: easeOut }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: easeOut }}
               >
                 {text}
               </motion.span>
@@ -87,18 +86,18 @@ export default function Hero() {
 
           <motion.p
             className="mt-6 sm:mt-8 max-w-md mx-auto text-base leading-[1.7] text-[#374151]"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45, ease: easeOut }}
+            transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
           >
             Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
           </motion.p>
 
           <motion.div
             className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
+            transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
           >
             <motion.a
               href="#kontakt"
@@ -119,9 +118,9 @@ export default function Hero() {
 
           <motion.div
             className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 border-t border-gray-100 pt-6 sm:pt-8 sm:flex sm:items-center sm:justify-center"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.72, ease: easeOut }}
+            transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
           >
             {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-4 sm:gap-6">
@@ -137,9 +136,9 @@ export default function Hero() {
 
         <motion.div
           className="mt-12 md:mt-16 flex justify-center"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.84, ease: easeOut }}
+          transition={{ duration: 0.7, delay: 0.72, ease: easeOut }}
           style={{ y: deviceY }}
         >
           <div

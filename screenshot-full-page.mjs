@@ -12,11 +12,11 @@ const browser = await puppeteer.launch({
 })
 
 const page = await browser.newPage()
-await page.setViewport({ width: 375, height: 667, deviceScaleFactor: 2 })
+await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 })
 await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded', timeout: 60000 })
 await new Promise(r => setTimeout(r, 3000))
 
-const outPath = join(__dirname, 'temporary screenshots', 'mobile-hero.png')
-await page.screenshot({ path: outPath, fullPage: false })
+const outPath = join(__dirname, 'temporary screenshots', 'full-page.png')
+await page.screenshot({ path: outPath, fullPage: true })
 await browser.close()
 console.log('Saved:', outPath)

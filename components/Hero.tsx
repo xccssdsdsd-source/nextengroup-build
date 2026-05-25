@@ -2,8 +2,8 @@
 
 import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
@@ -17,6 +17,9 @@ const words = [
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll()
+  const deviceY = useTransform(scrollY, [0, 600], [0, 80])
 
   useEffect(() => {
     setIsMounted(true)
@@ -29,8 +32,9 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white py-16 md:py-28 lg:py-32"
+      className="relative bg-white py-16 md:py-24 lg:py-32 overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -135,6 +139,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.48, ease }}
+          style={{ y: deviceY }}
         >
           <div
             className="w-[90%] max-w-[1000px]"
@@ -142,6 +147,7 @@ export default function Hero() {
               borderRadius: '20px',
               backgroundColor: '#0d1117',
               height: 'auto',
+              maxHeight: 'clamp(300px, 60vh, 800px)',
               boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
               overflow: 'hidden',
             }}

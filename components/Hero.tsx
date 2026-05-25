@@ -20,9 +20,11 @@ export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
-  const deviceY = useTransform(scrollY, [0, 600], [0, 80])
-  const headingOpacity = useTransform(scrollY, [200, 600], [1, 0.5])
-  const headingScale = useTransform(scrollY, [200, 600], [1, 0.95])
+  const deviceY = useTransform(scrollY, [0, 1000], [0, 150])
+  const deviceOpacity = useTransform(scrollY, [500, 1200], [1, 0.3])
+  const deviceScale = useTransform(scrollY, [500, 1200], [1, 0.85])
+  const headingOpacity = useTransform(scrollY, [200, 800], [1, 0.4])
+  const headingScale = useTransform(scrollY, [200, 800], [1, 0.9])
 
   useEffect(() => {
     setIsMounted(true)
@@ -148,7 +150,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.72, ease: easeOut }}
-          style={{ y: deviceY }}
+          style={{ y: deviceY, opacity: deviceOpacity, scale: deviceScale }}
         >
           <div
             className="w-[90%] max-w-[1000px]"
@@ -156,7 +158,7 @@ export default function Hero() {
               borderRadius: '20px',
               backgroundColor: '#0d1117',
               height: 'auto',
-              maxHeight: 'clamp(300px, 60vh, 800px)',
+              maxHeight: 'clamp(400px, 70vh, 900px)',
               boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
               overflow: 'hidden',
             }}

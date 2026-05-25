@@ -15,8 +15,8 @@ export default function DeviceMockups() {
     const onMove = (e: MouseEvent) => {
       const nx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
       const ny = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2)
-      tX = nx * 18; tY = ny * 18
-      tsX = nx * 10; tsY = ny * 10
+      tX = nx * 24; tY = ny * 24
+      tsX = nx * 14; tsY = ny * 14
       if (!active) { active = true; rafId = requestAnimationFrame(tick) }
     }
 
@@ -46,8 +46,8 @@ export default function DeviceMockups() {
     <div className="dm-scene relative h-full w-full flex items-center justify-center">
       <div ref={deviceRef} style={{ position: 'relative', zIndex: 1, willChange: 'transform' }}>
         <div style={{
-          width: '520px',
-          height: '360px',
+          width: '680px',
+          height: '480px',
           background: '#0d1117',
           borderRadius: '20px',
           padding: '14px',

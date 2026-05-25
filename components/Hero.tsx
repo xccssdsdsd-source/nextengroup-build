@@ -21,15 +21,9 @@ export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
-  const deviceRotate = useTransform(scrollYProgress, [0, 0.6], [isMobile ? 12 : 25, 0])
-  const deviceScale = useTransform(scrollYProgress, [0, 0.6], [0.9, 1])
-  const statsY = useTransform(scrollYProgress, [0.3, 0.7], [80, 0])
-  const statsOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
-  const descOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0.4])
-  const buttonsOpacity = useTransform(scrollYProgress, [0.15, 0.35], [1, 0.4])
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0.15])
-  const headingScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.85])
+  const { scrollYProgress } = useScroll({ target: sectionRef })
+  const deviceRotate = useTransform(scrollYProgress, [0, 0.4], [isMobile ? 15 : 20, 0])
+  const deviceScale = useTransform(scrollYProgress, [0, 0.4], [0.85, 1])
 
   useEffect(() => {
     setIsMounted(true)
@@ -48,7 +42,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white py-16 md:py-24 lg:py-32 overflow-hidden"
+      className="relative bg-white py-20 md:py-32 lg:py-48 overflow-hidden min-h-[200vh]"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -64,10 +58,8 @@ export default function Hero() {
       />
 
       <div className="relative z-10 px-6 md:px-12">
-        <motion.div
-          ref={contentRef}
+        <div
           className="w-full text-center"
-          style={{ opacity: headingOpacity, scale: headingScale }}
         >
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
@@ -109,7 +101,6 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
-            style={{ opacity: descOpacity }}
           >
             Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
           </motion.p>
@@ -119,7 +110,6 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
-            style={{ opacity: buttonsOpacity }}
           >
             <motion.a
               href="#kontakt"
@@ -143,7 +133,6 @@ export default function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
-            style={{ y: statsY, opacity: statsOpacity }}
           >
             {[['Strony WWW', ''], ['Automatyzacje AI', ''], ['Agenci AI', '']].map(([val, label], i) => (
               <div key={val} className="flex items-center gap-4 sm:gap-6">
@@ -155,7 +144,7 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.div
           className="mt-12 md:mt-16 flex justify-center"

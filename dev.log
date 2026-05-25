@@ -49,3 +49,13 @@
  GET / 200 in 833ms
  GET / 200 in 302ms
  GET / 200 in 281ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1330ms (1477 modules)
+ GET / 404 in 1757ms
+ GET / 200 in 424ms
+ ✓ Compiled in 850ms (1477 modules)
+ ✓ Compiled in 413ms (1477 modules)
+ ✓ Compiled in 562ms (1477 modules)
+ ✓ Compiled in 450ms (1477 modules)
+ ✓ Compiled in 555ms (1472 modules)
+ ✓ Compiled in 554ms (1472 modules)

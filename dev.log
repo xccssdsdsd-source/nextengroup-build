@@ -1,15 +1,26 @@
 
 > getbuild-build@0.1.0 dev
-> next dev
+> next dev -p 3000
 
- ⚠ Port 3000 is in use by process 25900, using available port 3009 instead.
    ▲ Next.js 15.5.18
-   - Local:        http://localhost:3009
-   - Network:      http://169.254.129.79:3009
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.129.79:3000
 
  ✓ Starting...
- ✓ Ready in 2.2s
+ ✓ Ready in 3.6s
  ○ Compiling / ...
- ✓ Compiled / in 4.6s (1490 modules)
- ✓ Compiled in 1667ms (689 modules)
- GET / 200 in 6330ms
+ ✓ Compiled / in 11.5s (1490 modules)
+ ✓ Compiled in 8.4s (689 modules)
+ GET / 200 in 19967ms
+ ✓ Compiled in 12.8s (689 modules)
+ ✓ Compiled in 2.6s (689 modules)
+ ✓ Compiled in 1984ms (689 modules)
+ ✓ Compiled in 11.3s (689 modules)
+ ✓ Compiled in 1223ms (689 modules)
+ ✓ Compiled in 1070ms (689 modules)
+ ✓ Compiled in 1455ms (689 modules)
+ ✓ Compiled in 1054ms (689 modules)
+ ✓ Compiled in 1279ms (689 modules)
+ ✓ Compiled / in 426ms (783 modules)
+ GET / 200 in 1181ms
+ GET / 200 in 381ms

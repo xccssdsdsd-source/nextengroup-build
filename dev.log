@@ -34,3 +34,5 @@
  GET / 200 in 213ms
  GET / 200 in 522ms
  GET / 200 in 269ms
+ GET / 200 in 695ms
+ GET / 200 in 228ms

@@ -17,12 +17,13 @@ const words = [
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
-  const deviceRotate = useTransform(scrollYProgress, [0, 0.6], [25, 0])
-  const deviceScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1])
+  const deviceRotate = useTransform(scrollYProgress, [0, 0.6], [isMobile ? 12 : 25, 0])
+  const deviceScale = useTransform(scrollYProgress, [0, 0.6], [0.9, 1])
   const statsY = useTransform(scrollYProgress, [0.3, 0.7], [80, 0])
   const statsOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
   const descOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0.4])
@@ -32,6 +33,10 @@ export default function Hero() {
 
   useEffect(() => {
     setIsMounted(true)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -164,12 +169,13 @@ export default function Hero() {
             style={{ rotateX: deviceRotate, scale: deviceScale }}
           >
           <div
-            className="w-[90%] max-w-[1000px]"
+            className="w-[90%]"
             style={{
               borderRadius: '20px',
               backgroundColor: '#0d1117',
               height: 'auto',
-              maxHeight: 'clamp(400px, 70vh, 900px)',
+              maxWidth: isMobile ? '100%' : '1000px',
+              maxHeight: isMobile ? 'clamp(250px, 50vh, 400px)' : 'clamp(400px, 70vh, 900px)',
               boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
               overflow: 'hidden',
             }}

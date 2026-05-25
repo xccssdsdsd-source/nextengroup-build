@@ -46,8 +46,8 @@ export default function DeviceMockups() {
     <div className="dm-scene relative h-full w-full flex items-center justify-center">
       <div ref={deviceRef} style={{ position: 'relative', zIndex: 1, willChange: 'transform' }}>
         <div style={{
-          width: '680px',
-          height: '480px',
+          width: 'clamp(300px, 85vw, 680px)',
+          height: 'clamp(210px, 60vw, 480px)',
           background: '#0d1117',
           borderRadius: '20px',
           padding: '14px',

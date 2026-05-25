@@ -2,7 +2,7 @@
 
 import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
@@ -18,8 +18,11 @@ const words = [
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const deviceY = useTransform(scrollY, [0, 600], [0, 80])
+  const headingOpacity = useTransform(scrollY, [200, 600], [1, 0.5])
+  const headingScale = useTransform(scrollY, [200, 600], [1, 0.95])
 
   useEffect(() => {
     setIsMounted(true)
@@ -50,7 +53,11 @@ export default function Hero() {
       />
 
       <div className="relative z-10 px-6 md:px-12">
-        <div className="w-full text-center">
+        <motion.div
+          ref={contentRef}
+          className="w-full text-center"
+          style={{ opacity: headingOpacity, scale: headingScale }}
+        >
           <h1
             className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
@@ -59,9 +66,9 @@ export default function Hero() {
               <div key={text} className="overflow-hidden">
                 <motion.span
                   className={`block ${cls}`}
-                  initial={{ y: 40 }}
+                  initial={{ y: 120 }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 0.8, delay: i * 0.15, ease: easeOut }}
+                  transition={{ duration: 1, delay: i * 0.15, ease: easeOut }}
                 >
                   {text}
                 </motion.span>
@@ -76,9 +83,9 @@ export default function Hero() {
               <div key={text} className="overflow-hidden">
                 <motion.span
                   className={`block ${cls}`}
-                  initial={{ y: 40 }}
+                  initial={{ y: 120 }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 0.8, delay: i * 0.15, ease: easeOut }}
+                  transition={{ duration: 1, delay: i * 0.15, ease: easeOut }}
                 >
                   {text}
                 </motion.span>
@@ -134,7 +141,7 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           className="mt-12 md:mt-16 flex justify-center"

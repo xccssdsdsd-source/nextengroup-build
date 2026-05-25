@@ -56,15 +56,16 @@ export default function Hero() {
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
-              <motion.span
-                key={text}
-                className={`block ${cls}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.12, ease: easeOut }}
-              >
-                {text}
-              </motion.span>
+              <div key={text} className="overflow-hidden">
+                <motion.span
+                  className={`block ${cls}`}
+                  initial={{ y: 40 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.8, delay: i * 0.15, ease: easeOut }}
+                >
+                  {text}
+                </motion.span>
+              </div>
             ))}
           </h1>
           <h1
@@ -72,15 +73,16 @@ export default function Hero() {
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
           >
             {words.map(({ text, cls }, i) => (
-              <motion.span
-                key={text}
-                className={`block ${cls}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.12, ease: easeOut }}
-              >
-                {text}
-              </motion.span>
+              <div key={text} className="overflow-hidden">
+                <motion.span
+                  className={`block ${cls}`}
+                  initial={{ y: 40 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.8, delay: i * 0.15, ease: easeOut }}
+                >
+                  {text}
+                </motion.span>
+              </div>
             ))}
           </h1>
 

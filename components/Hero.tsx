@@ -49,7 +49,7 @@ export default function Hero() {
       <section
         ref={sectionRef}
         suppressHydrationWarning
-        className={`relative bg-white overflow-hidden ${isMobile ? 'py-12' : 'py-20 md:py-32 lg:py-40 min-h-[280vh]'}`}
+        className={`relative bg-white overflow-hidden ${isMobile ? 'py-8' : 'py-16 md:py-20 lg:py-28 min-h-[280vh]'}`}
       >
         <div
           className="pointer-events-none absolute inset-0 z-0"
@@ -111,7 +111,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center"
+              className="mt-6 sm:mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
@@ -154,7 +154,7 @@ export default function Hero() {
 
           {!isMobile && (
             <motion.div
-              className="mt-16 lg:mt-20 flex justify-center"
+              className="mt-8 lg:mt-12 flex justify-center"
               style={{ perspective: '1200px' }}
             >
               <motion.div
@@ -184,7 +184,7 @@ export default function Hero() {
       </section>
 
       {isMobile && (
-        <section className="bg-white px-6 py-12 border-t border-gray-100">
+        <section className="bg-white px-6 py-8 border-t border-gray-100">
           <div className="flex flex-col gap-4">
             {services.map(({ title, path }) => (
               <motion.a

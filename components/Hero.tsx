@@ -21,16 +21,14 @@ export default function Hero() {
   const contentRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
-  const deviceY = useTransform(scrollYProgress, [0, 0.7], [0, 300])
-  const deviceRotation = useTransform(scrollYProgress, [0, 0.5], [0, -12])
-  const deviceOpacity = useTransform(scrollYProgress, [0.5, 1], [1, 0])
-  const deviceScale = useTransform(scrollYProgress, [0.5, 1], [1, 0.7])
-  const statsY = useTransform(scrollYProgress, [0.3, 0.7], [60, 0])
+  const deviceRotate = useTransform(scrollYProgress, [0, 0.6], [25, 0])
+  const deviceScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1])
+  const statsY = useTransform(scrollYProgress, [0.3, 0.7], [80, 0])
   const statsOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
   const descOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0.4])
   const buttonsOpacity = useTransform(scrollYProgress, [0.15, 0.35], [1, 0.4])
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0.2])
-  const headingScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.88])
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0.15])
+  const headingScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.85])
 
   useEffect(() => {
     setIsMounted(true)
@@ -155,13 +153,16 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          ref={deviceRef}
           className="mt-12 md:mt-16 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.72, ease: easeOut }}
-          style={{ y: deviceY, opacity: deviceOpacity, scale: deviceScale, rotateZ: deviceRotation }}
+          style={{ perspective: '1200px' }}
         >
+          <motion.div
+            ref={deviceRef}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.72, ease: easeOut }}
+            style={{ rotateX: deviceRotate, scale: deviceScale }}
+          >
           <div
             className="w-[90%] max-w-[1000px]"
             style={{
@@ -175,6 +176,7 @@ export default function Hero() {
           >
             {isMounted && <DeviceMockups />}
           </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

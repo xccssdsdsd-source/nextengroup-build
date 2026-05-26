@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, type MouseEvent } from 'react'
 import FolderServices from '@/components/ui/folder-services'
+import BackgroundPathsServices from './BackgroundPathsServices'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
@@ -17,6 +18,7 @@ export default function Services() {
 
   return (
     <section id="uslugi" ref={ref} className="section-shell relative bg-white">
+      <BackgroundPathsServices />
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 60%)' }}

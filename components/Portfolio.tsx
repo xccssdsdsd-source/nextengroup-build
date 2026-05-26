@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback } from 'react'
+import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
@@ -85,7 +86,8 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell overflow-hidden bg-white">
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden bg-white">
+      <BackgroundPathsPortfolio />
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(0,85,255,0.05) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(0,85,255,0.04) 0%, transparent 60%)' }} />
 
       <div className="relative mx-auto max-w-7xl">

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import BackgroundPathsProcess from './BackgroundPathsProcess'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
@@ -33,7 +34,8 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="proces" ref={ref} className="section-shell bg-white">
+    <section id="proces" ref={ref} className="section-shell relative bg-white">
+      <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 60%)' }}

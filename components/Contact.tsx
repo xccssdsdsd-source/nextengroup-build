@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import BackgroundPathsContact from './BackgroundPathsContact'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -92,6 +93,7 @@ export default function Contact() {
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative bg-white">
+      <BackgroundPathsContact />
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}

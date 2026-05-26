@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
+import BackgroundPathsFAQ from './BackgroundPathsFAQ'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
@@ -60,6 +61,7 @@ export default function FAQ() {
       ref={ref}
       className="section-shell relative bg-white"
     >
+      <BackgroundPathsFAQ />
       <div
         className="pointer-events-none absolute inset-0"
         style={{

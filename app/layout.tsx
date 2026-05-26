@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: ['/logo.png'],
+    images: [`${siteUrl}/logo.png`],
   },
   icons: {
     icon: '/favicon.ico',

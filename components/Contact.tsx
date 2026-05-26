@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import BackgroundPathsContact from './BackgroundPathsContact'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
@@ -9,21 +9,8 @@ const contactEmail = 'getbuild.pl@gmail.com'
 
 const socials = [
   {
-    label: 'Gmail',
-    sub: contactEmail,
-    href: `mailto:${contactEmail}`,
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
-        <rect width="48" height="48" rx="10" fill="#EA4335" />
-        <path fill="white" d="M10 14h28a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" />
-        <path fill="#EA4335" d="M8 16l16 12 16-12" stroke="#EA4335" strokeWidth="0" />
-        <polyline points="8,16 24,28 40,16" fill="none" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
     label: 'Instagram',
-    sub: '@getbuild.pl',
+    fullName: 'Instagram',
     href: 'https://www.instagram.com/getbuild.pl/',
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
@@ -45,7 +32,7 @@ const socials = [
   },
   {
     label: 'Facebook',
-    sub: 'Getbuild.pl',
+    fullName: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
@@ -84,12 +71,19 @@ function CalendlyWidget({ url }: { url: string }) {
     document.head.appendChild(script)
   }, [url])
 
-  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(560px, 70vh, 700px)' }} />
+  return <div ref={containerRef} className="w-full" style={{ height: '560px' }} />
 }
 
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(contactEmail)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative bg-white">
@@ -104,50 +98,66 @@ export default function Contact() {
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#2563EB]/20 to-transparent" />
 
-        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12 lg:items-stretch">
+        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
           <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <span className="section-kicker">Kontakt</span>
-                <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
-                  Kontakt
-                </h2>
-                <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
-                  Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.
-                </p>
-              </div>
+            <div>
+              <span className="section-kicker">Kontakt</span>
+              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Kontakt
+              </h2>
+              <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
+                Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.
+              </p>
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 flex-1">
-              {socials.map((s, i) => (
-                <motion.a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={s.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease }}
-                  whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex flex-1 items-center gap-3 rounded-2xl border border-[#e5e7eb] bg-white px-4 py-0 hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
-                  style={{ transition: 'background 0.2s, border-color 0.2s, transform 0.2s', minHeight: '72px' }}
+            <div className="mt-8 flex flex-col gap-4">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Email</p>
+                <motion.button
+                  onClick={copyEmail}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.55, delay: 0.15, ease }}
+                  className="w-full px-4 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all"
                 >
-                  <span className="flex-shrink-0">{s.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-[13px] font-semibold text-[#0A0A0F]">{s.label}</p>
-                    <p className="text-[11px] text-[#6b7280] truncate">{s.sub}</p>
-                  </div>
-                  <svg className="ml-auto flex-shrink-0 text-[#d1d5db]" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </motion.a>
-              ))}
+                  <p className="text-[13px] font-semibold text-[#0A0A0F] break-all">{contactEmail}</p>
+                  <p className="text-[11px] text-[#2563EB] mt-1 font-medium">{copied ? 'Skopiowane!' : 'Kliknij aby skopiować'}</p>
+                </motion.button>
+              </div>
 
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Media społecznościowe</p>
+                <div className="flex gap-3">
+                  {socials.map((s, i) => (
+                    <motion.a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.4, delay: 0.2 + i * 0.1, ease }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center justify-center rounded-xl hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all"
+                      title={s.fullName}
+                    >
+                      {s.icon}
+                    </motion.a>
+                  ))}
+                </div>
+                <div className="flex gap-3 mt-3 text-[11px] text-[#6b7280]">
+                  {socials.map(s => (
+                    <span key={s.label}>{s.fullName}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div id="calendly-widget" className="w-full flex-1 min-w-0 flex flex-col">
+          <div id="calendly-widget" className="w-full flex-1 min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] flex-1" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
               <CalendlyWidget url={calendlyUrl} />
             </div>
           </div>

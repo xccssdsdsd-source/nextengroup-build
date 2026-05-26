@@ -122,14 +122,14 @@ export default function Hero() {
                 href="#kontakt"
                 onClick={handleContactClick}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
+                className="btn btn-primary inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
               >
                 Umów 15 min rozmowę
               </motion.a>
               <motion.a
                 href="/realizacje"
                 whileTap={{ scale: 0.96 }}
-                className="btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
+                className="btn btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
               >
                 Zobacz realizacje
               </motion.a>

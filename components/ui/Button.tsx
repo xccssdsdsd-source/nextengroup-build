@@ -15,7 +15,7 @@ export default function Button({ children, variant = 'primary', className = '', 
     <button
       type={type}
       onClick={onClick}
-      className={`${variant === 'primary' ? 'btn-primary' : 'btn-ghost'} px-7 py-3.5 text-sm font-semibold tracking-wide ${className}`}
+      className={`btn ${variant === 'primary' ? 'btn-primary' : 'btn-ghost'} text-sm font-semibold tracking-wide ${className}`}
     >
       {children}
     </button>

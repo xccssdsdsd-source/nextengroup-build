@@ -49,7 +49,7 @@ export default function Hero() {
       <section
         ref={sectionRef}
         suppressHydrationWarning
-        className={`relative bg-white overflow-hidden ${isMobile ? 'py-8' : 'py-16 md:py-20 lg:py-28 min-h-[280vh]'}`}
+        className={`relative bg-white overflow-hidden ${isMobile ? 'pt-20 pb-8' : 'py-16 md:py-20 lg:py-28 min-h-[280vh]'}`}
       >
         <div
           className="pointer-events-none absolute inset-0 z-0"
@@ -67,25 +67,8 @@ export default function Hero() {
         <div className="relative z-10 px-6 md:px-12">
           <div className="w-full text-center">
             <h1
-              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] lg:hidden mx-auto"
-              style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', maxWidth: '95vw' }}
-            >
-              {words.map(({ text, cls }, i) => (
-                <div key={text} className="overflow-hidden">
-                  <motion.span
-                    className={`block ${cls}`}
-                    initial={{ y: 120 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 1, delay: i * 0.15, ease: easeOut }}
-                  >
-                    {text}
-                  </motion.span>
-                </div>
-              ))}
-            </h1>
-            <h1
-              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] hidden lg:block mx-auto"
-              style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
+              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] mx-auto"
+              style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: isMobile ? 'clamp(1.2rem, 5vw, 1.8rem)' : 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
             >
               {words.map(({ text, cls }, i) => (
                 <div key={text} className="overflow-hidden">
@@ -102,12 +85,12 @@ export default function Hero() {
             </h1>
 
             <motion.p
-              className="mt-6 sm:mt-8 max-w-md mx-auto text-base leading-[1.7] text-[#374151]"
+              className="mt-6 sm:mt-8 max-w-2xl mx-auto text-base leading-[1.7] text-[#374151]"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
             >
-              Getbuild projektuje i wdraża rozwiązania IT skrojone pod Twój biznes. Tworzymy strony WWW, automatyzujemy procesy i wdrażamy agentów AI, którzy realnie odciążają zespół.
+              Getbuild to zespół doświadczonych specjalistów, którzy projektują i wdrażają kompleksowe rozwiązania IT skrojone dokładnie pod potrzeby Twojego biznesu. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe oraz wdrażamy inteligentnych agentów AI, którzy realnie odciążają Twój zespół i zwiększają efektywność operacyjną.
             </motion.p>
 
             <motion.div

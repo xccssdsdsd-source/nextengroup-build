@@ -10,7 +10,7 @@ const services = [
   {
     icon: Globe,
     title: 'Strony WWW',
-    desc: 'Tworzymy profesjonalne strony internetowe, które budują wiarygodność Twojej firmy, porządkują ofertę i kierują klientów do kontaktu. Każdy element dopasowujemy do Twoich celów biznesowych.',
+    desc: 'Tworzymy nowoczesne, profesjonalne strony internetowe, które budują wiarygodność Twojej firmy, jasno prezentują ofertę i aktywnie kierują potencjalnych klientów do kontaktu. Każdy element dopasowujemy do Twoich celów biznesowych i docelowej grupy odbiorcy.',
     points: ['Responsywność', 'Szybkie ładowanie', 'Integracje z systemami'],
     iconColor: 'text-[#2563EB]',
     accent: '#2563EB',
@@ -18,7 +18,7 @@ const services = [
   {
     icon: Zap,
     title: 'Automatyzacje AI',
-    desc: 'Automatyzujemy procesy biznesowe przy użyciu sztucznej inteligencji. Od obsługi zapytań po pracę na danych: mniej błędów, mniej ręcznej pracy i większa efektywność.',
+    desc: 'Automatyzujemy procesy biznesowe przy użyciu sztucznej inteligencji i zaawansowanych systemów. Od obsługi zapytań klientów po pracę z danymi: mniej błędów, mniej ręcznej pracy i znacznie większa efektywność operacyjna.',
     points: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i raportowanie'],
     iconColor: 'text-[#2563EB]',
     accent: '#2563EB',
@@ -26,7 +26,7 @@ const services = [
   {
     icon: MessagesSquare,
     title: 'Agenci AI',
-    desc: 'Wdrażamy agentów AI, którzy pracują za Ciebie przez całą dobę. Obsługują zapytania, porządkują dane i wspierają decyzje biznesowe.',
+    desc: 'Wdrażamy zaawansowanych agentów AI, którzy pracują za Ciebie przez całą dobę bez przestojów. Obsługują zapytania klientów, porządkują dane biznesowe i wspierają decyzje oparte na analizie danych.',
     points: ['Agenci AI 24/7', 'Integracje z CRM', 'Monitoring i statystyki'],
     iconColor: 'text-[#2563EB]',
     accent: '#2563EB',
@@ -59,7 +59,7 @@ export default function Services() {
           <span className="section-kicker">Oferta</span>
           <h2 className="section-title">Rozwiązania IT dla Twojego biznesu</h2>
           <p className="section-copy">
-            Oferujemy kompleksowe rozwiązania dopasowane do Twojego biznesu. Tworzymy strony WWW, które generują zapytania i budują wiarygodność. Wdrażamy automatyzacje AI, które oszczędzają czas i obniżają koszty. Budujemy też agentów AI dopasowanych do konkretnych procesów.
+            Oferujemy kompleksowe rozwiązania IT dopasowane dokładnie do Twojego biznesu i branży. Tworzymy nowoczesne strony internetowe, które generują zapytania od potencjalnych klientów i budują wiarygodność marki. Wdrażamy zaawansowane automatyzacje oparte na sztucznej inteligencji, które oszczędzają czas zespołu i obniżają koszty operacyjne. Budujemy też inteligentnych agentów AI dopasowanych do konkretnych procesów biznesowych.
           </p>
         </motion.div>
 

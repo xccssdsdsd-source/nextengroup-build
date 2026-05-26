@@ -20,14 +20,6 @@ export default function BackgroundPathsServices() {
         className="w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <style>{`
-          @keyframes flowPath {
-            0% { stroke-dashoffset: 1500; opacity: 0; }
-            15% { opacity: 1; }
-            85% { opacity: 1; }
-            100% { stroke-dashoffset: 0; opacity: 0; }
-          }
-        `}</style>
         {paths.map((p, i) => (
           <path
             key={i}
@@ -36,11 +28,6 @@ export default function BackgroundPathsServices() {
             stroke={p.color}
             strokeWidth={p.width}
             strokeLinecap="round"
-            strokeDasharray={1500}
-            strokeDashoffset={1500}
-            style={{
-              animation: `flowPath ${p.dur}s ease-in-out ${p.delay}s infinite`,
-            }}
           />
         ))}
       </svg>

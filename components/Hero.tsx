@@ -67,7 +67,7 @@ export default function Hero() {
         <div className="relative z-10 px-6 md:px-12">
           <div className="w-full text-center">
             <h1
-              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] mx-auto"
+              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] mx-auto mt-12"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: isMobile ? 'clamp(1.2rem, 5vw, 1.8rem)' : 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
             >
               {words.map(({ text, cls }, i) => (

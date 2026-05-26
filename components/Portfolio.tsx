@@ -124,13 +124,13 @@ export default function Portfolio() {
                     <ArrowUpRight size={13} strokeWidth={2} />
                   </span>
                 </div>
-                <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/10' }}>
+                <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/12' }}>
                   <Image
                     src={projects[currentIndex].preview}
                     alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
                     fill
                     sizes="100vw"
-                    className="object-cover group-hover:scale-[1.02]"
+                    className="object-contain group-hover:scale-[1.02]"
                     style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
                     quality={75}
                   />

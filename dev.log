@@ -1,95 +1,11 @@
 
 > getbuild-build@0.1.0 dev
-> next dev -p 3000
+> next dev
 
+ ⚠ Port 3000 is in use by process 25692, using available port 3006 instead.
    ▲ Next.js 15.5.18
-   - Local:        http://localhost:3000
-   - Network:      http://169.254.129.79:3000
+   - Local:        http://localhost:3006
+   - Network:      http://169.254.129.79:3006
 
  ✓ Starting...
- ✓ Ready in 3.6s
- ○ Compiling / ...
- ✓ Compiled / in 11.5s (1490 modules)
- ✓ Compiled in 8.4s (689 modules)
- GET / 200 in 19967ms
- ✓ Compiled in 12.8s (689 modules)
- ✓ Compiled in 2.6s (689 modules)
- ✓ Compiled in 1984ms (689 modules)
- ✓ Compiled in 11.3s (689 modules)
- ✓ Compiled in 1223ms (689 modules)
- ✓ Compiled in 1070ms (689 modules)
- ✓ Compiled in 1455ms (689 modules)
- ✓ Compiled in 1054ms (689 modules)
- ✓ Compiled in 1279ms (689 modules)
- ✓ Compiled / in 426ms (783 modules)
- GET / 200 in 1181ms
- GET / 200 in 381ms
- GET / 200 in 809ms
- ✓ Compiled in 3.3s (1472 modules)
- ✓ Compiled in 1993ms (1472 modules)
- ✓ Compiled in 1711ms (1472 modules)
- ✓ Compiled in 1310ms (1472 modules)
- GET / 200 in 773ms
- ✓ Compiled in 435ms (1472 modules)
- GET / 200 in 213ms
- GET / 200 in 522ms
- GET / 200 in 269ms
- GET / 200 in 695ms
- GET / 200 in 228ms
- GET / 200 in 232ms
- GET / 200 in 299ms
- HEAD / 200 in 433ms
- GET / 200 in 701ms
- ✓ Compiled in 2.7s (1472 modules)
- ✓ Compiled in 611ms (1472 modules)
- ✓ Compiled in 430ms (1472 modules)
- ✓ Compiled in 896ms (1472 modules)
- ✓ Compiled in 931ms (1472 modules)
- ✓ Compiled in 1486ms (1472 modules)
- GET / 200 in 833ms
- GET / 200 in 302ms
- GET / 200 in 281ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 1330ms (1477 modules)
- GET / 404 in 1757ms
- GET / 200 in 424ms
- ✓ Compiled in 850ms (1477 modules)
- ✓ Compiled in 413ms (1477 modules)
- ✓ Compiled in 562ms (1477 modules)
- ✓ Compiled in 450ms (1477 modules)
- ✓ Compiled in 555ms (1472 modules)
- ✓ Compiled in 554ms (1472 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\3.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\3.pack.gz'
- ✓ Compiled in 3.3s (1472 modules)
- ✓ Compiled in 2s (1472 modules)
- ✓ Compiled in 672ms (1472 modules)
- ✓ Compiled in 437ms (1472 modules)
- ✓ Compiled in 477ms (1472 modules)
- ⨯ ./components/Hero.tsx
-Error:   [31mx[0m Expected '</', got 'jsx text (
-  [31m|[0m
-  [31m|[0m         )'
-     ,-[[36;1;4mC:\Users\kajet\Desktop\nextengroup-build\components\Hero.tsx[0m:144:1]
- [2m141[0m |                   </div>
- [2m142[0m |                 ))}
- [2m143[0m |               </motion.div>
- [2m144[0m | [35;1m,[0m[35;1m-[0m[35;1m>[0m         </div>
- [2m145[0m | [35;1m|[0m   
- [2m146[0m | [35;1m`[0m[35;1m-[0m[35;1m>[0m         <motion.div
- [2m147[0m |               className="mt-12 md:mt-16 flex justify-center"
- [2m148[0m |               initial={{ opacity: 0, y: 20 }}
- [2m148[0m |               animate={{ opacity: 1, y: 0 }}
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/Hero.tsx
-./app/page.tsx
- ✓ Compiled in 591ms (1472 modules)
- ✓ Compiled in 2.4s (1472 modules)
- ✓ Compiled in 595ms (1472 modules)
- ✓ Compiled in 819ms (1472 modules)
- ✓ Compiled in 980ms (1472 modules)
- ✓ Compiled in 883ms (1472 modules)
+ ✓ Ready in 2.4s

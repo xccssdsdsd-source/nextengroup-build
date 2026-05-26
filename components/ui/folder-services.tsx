@@ -167,12 +167,13 @@ export default function FolderServices() {
         animate={{ opacity: 1 }}
         className="text-sm text-gray-500 font-medium"
       >
-        {isOpen ? 'Kliknij kartę, by dowiedzieć się więcej' : 'Kliknij, by zobaczyć usługi'}
+        {isOpen && !activeService ? 'Kliknij kartę, by dowiedzieć się więcej' : isOpen && activeService !== null ? 'Kliknij, by wrócić' : 'Kliknij, by zobaczyć usługi'}
       </motion.p>
 
-      <AnimatePresence>
-        {isOpen && (
+      <AnimatePresence mode="wait">
+        {isOpen && activeService === null && (
           <motion.div
+            key="cards"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
@@ -185,8 +186,8 @@ export default function FolderServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.08, duration: 0.35 }}
-                onClick={() => setActiveService(activeService === i ? null : i)}
-                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+                onClick={() => setActiveService(i)}
+                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
                 <div className="text-3xl mb-3">{service.icon}</div>
@@ -204,6 +205,52 @@ export default function FolderServices() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        )}
+        {isOpen && activeService !== null && (
+          <motion.div
+            key="expanded"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="w-full max-w-2xl"
+          >
+            <motion.div
+              onClick={() => setActiveService(null)}
+              className="cursor-pointer rounded-3xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-8 shadow-lg"
+              style={{
+                borderTop: `6px solid ${services[activeService].color}`,
+                boxShadow: `0 20px 60px -10px ${services[activeService].color}20`
+              }}
+            >
+              <motion.div
+                className="text-6xl mb-6"
+                animate={{ scale: 1 }}
+                initial={{ scale: 0.8 }}
+                transition={{ delay: 0.1 }}
+              >
+                {services[activeService].icon}
+              </motion.div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">{services[activeService].title}</h2>
+              <p className="text-lg text-gray-700 leading-relaxed mb-8">{services[activeService].description}</p>
+              <div className="flex flex-wrap gap-2.5">
+                {services[activeService].tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-2 rounded-full border font-medium text-sm uppercase tracking-wide"
+                    style={{
+                      borderColor: services[activeService].color,
+                      color: services[activeService].color,
+                      backgroundColor: `${services[activeService].color}08`
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm text-gray-500 mt-8 pt-6 border-t border-gray-200">Kliknij, by wrócić do listy</p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

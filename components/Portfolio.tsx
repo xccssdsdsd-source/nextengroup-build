@@ -99,7 +99,7 @@ export default function Portfolio() {
           <h2 className="section-title">Nasze strony internetowe</h2>
         </motion.div>
 
-        <div className="mt-12 relative">
+        <div className="mt-8 relative">
           <div className="relative">
             <motion.a
               key={currentIndex}
@@ -109,22 +109,22 @@ export default function Portfolio() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="group block bg-white rounded-[16px] border border-[#e5e7eb] overflow-hidden"
+              className="group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden"
               style={{
                 boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
               }}
             >
-              <div className="p-4 pb-3">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-                  <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-3 py-1 text-[11px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
-                  <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
-                    <ArrowUpRight size={13} strokeWidth={2} />
+              <div className="p-3 pb-2">
+                <div className="mb-2 flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
+                  <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
+                  <span className="h-2 w-2 rounded-full bg-[#28C840]" />
+                  <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-2 py-0.5 text-[10px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
+                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
+                    <ArrowUpRight size={12} strokeWidth={2} />
                   </span>
                 </div>
-                <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/12' }}>
+                <div className="relative overflow-hidden rounded-lg border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/9' }}>
                   <Image
                     src={projects[currentIndex].preview}
                     alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
@@ -137,23 +137,23 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="px-5 pb-5 pt-2">
-                <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="px-4 pb-4 pt-2">
+                <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2563EB] mb-1">{projects[currentIndex].tagline}</p>
-                    <h3 className="text-xl font-black tracking-[-0.03em] text-[#0A0A0F] mb-1.5" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
-                    <p className="text-[13px] leading-[1.6] text-[#6b7280] max-w-xl">{projects[currentIndex].body}</p>
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#2563EB] mb-0.5">{projects[currentIndex].tagline}</p>
+                    <h3 className="text-lg font-black tracking-[-0.03em] text-[#0A0A0F] mb-1" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
+                    <p className="text-[12px] leading-[1.5] text-[#6b7280] max-w-xl">{projects[currentIndex].body}</p>
                   </div>
-                  <div className="rounded-lg border border-[#e5e7eb] bg-[#f5f7fa] px-3 py-2 text-center shrink-0">
-                    <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Wdrożenie</div>
-                    <div className="text-base font-black tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
+                  <div className="rounded-md border border-[#e5e7eb] bg-[#f5f7fa] px-2.5 py-1.5 text-center shrink-0">
+                    <div className="text-[8px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Wdrożenie</div>
+                    <div className="text-sm font-black tracking-[-0.02em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
                   </div>
                 </div>
 
                 {projects[currentIndex].lighthouse && (
-                  <div className="mt-4 flex items-center gap-1 border-t border-[#e5e7eb] pt-4">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6b7280] mr-3 shrink-0">Lighthouse</span>
-                    <div className="flex gap-4">
+                  <div className="mt-3 flex items-center gap-1 border-t border-[#e5e7eb] pt-3">
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] mr-2 shrink-0">Lighthouse</span>
+                    <div className="flex gap-3">
                       {projects[currentIndex].lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
                     </div>
                   </div>

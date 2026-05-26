@@ -4,16 +4,11 @@ import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import BackgroundPaths from './BackgroundPaths'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
 const easeOut = 'easeOut'
-
-const words = [
-  { text: 'ROZWIĄZANIA IT', cls: 'text-[#0A0A0F]' },
-  { text: 'DOPASOWANE DO', cls: 'bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent' },
-  { text: 'TWOJEJ FIRMY', cls: 'bg-gradient-to-r from-[#1e40af] to-[#2563EB] bg-clip-text text-transparent' },
-]
 
 const services = [
   { title: 'Strony WWW', path: '/strony-internetowe-dla-firm' },
@@ -24,12 +19,14 @@ const services = [
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [titleNumber, setTitleNumber] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef })
   const deviceRotate = useTransform(scrollYProgress, [0, 0.5], [28, 0])
   const deviceScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1])
   const deviceY = useTransform(scrollYProgress, [0, 0.4], [200, 0])
+  const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
 
   useEffect(() => {
     setIsMounted(true)
@@ -38,6 +35,13 @@ export default function Hero() {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setTitleNumber(prev => prev === titles.length - 1 ? 0 : prev + 1)
+    }, 2000)
+    return () => clearTimeout(id)
+  }, [titleNumber])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -63,25 +67,40 @@ export default function Hero() {
             background: 'radial-gradient(ellipse 55% 60% at 72% 50%, rgba(37,99,235,0.05), transparent)',
           }}
         />
+        <BackgroundPaths />
 
         <div className="relative z-10 px-6 md:px-12">
           <div className="w-full text-center">
             <h1
-              className="font-sans uppercase leading-[0.95] tracking-[-0.04em] mx-auto mt-12"
+              className="font-sans leading-[0.95] tracking-[-0.04em] mx-auto mt-12 text-[#0A0A0F]"
               style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: isMobile ? 'clamp(1.2rem, 5vw, 1.8rem)' : 'clamp(1.4rem, 3.5vw, 2.8rem)', maxWidth: '95vw' }}
             >
-              {words.map(({ text, cls }, i) => (
-                <div key={text} className="overflow-hidden">
+              <div className="overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: 120 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1, delay: 0, ease: easeOut }}
+                >
+                  Budujemy Twój biznes przez
+                </motion.span>
+              </div>
+              <div className="relative h-[1.2em] overflow-hidden mt-2">
+                {titles.map((title, i) => (
                   <motion.span
-                    className={`block ${cls}`}
-                    initial={{ y: 120 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 1, delay: i * 0.15, ease: easeOut }}
+                    key={i}
+                    className="absolute block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent w-full"
+                    initial={{ y: 150, opacity: 0 }}
+                    animate={{
+                      y: i === titleNumber ? 0 : i < titleNumber ? -150 : 150,
+                      opacity: i === titleNumber ? 1 : 0,
+                    }}
+                    transition={{ type: 'spring', stiffness: 50 }}
                   >
-                    {text}
+                    {title}
                   </motion.span>
-                </div>
-              ))}
+                ))}
+              </div>
             </h1>
 
             <motion.p
@@ -90,7 +109,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
             >
-              Getbuild to zespół doświadczonych specjalistów, którzy projektują i wdrażają kompleksowe rozwiązania IT skrojone dokładnie pod potrzeby Twojego biznesu. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe oraz wdrażamy inteligentnych agentów AI, którzy realnie odciążają Twój zespół i zwiększają efektywność operacyjną.
+              Getbuild to rozwiązania IT dokładnie dopasowane do Twojego biznesu. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe oraz wdrażamy inteligentnych agentów AI, którzy realnie odciążają Twój zespół i zwiększają efektywność operacyjną.
             </motion.p>
 
             <motion.div

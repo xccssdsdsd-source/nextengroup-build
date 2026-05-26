@@ -2,10 +2,27 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, type MouseEvent } from 'react'
-import FolderServices from '@/components/ui/folder-services'
 import BackgroundPathsServices from './BackgroundPathsServices'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+
+const services = [
+  {
+    icon: '🌐',
+    title: 'Strony WWW',
+    desc: 'Nowoczesne strony, które budują wiarygodność firmy i aktywnie kierują klientów do kontaktu. Każdy element dopasowany do Twoich celów biznesowych.',
+  },
+  {
+    icon: '⚡',
+    title: 'Automatyzacje AI',
+    desc: 'Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność.',
+  },
+  {
+    icon: '🤖',
+    title: 'Agenci AI',
+    desc: 'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
+  },
+]
 
 export default function Services() {
   const ref = useRef(null)
@@ -39,12 +56,39 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          className="mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease }}
+          className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
         >
-          <FolderServices />
+          {services.map((service, idx) => (
+            <motion.article
+              key={idx}
+              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
+              whileHover={{ y: -4, transition: { duration: 0.25, ease } }}
+              className="group relative overflow-hidden rounded-2xl border border-[#e5e7eb] bg-white p-7 transition-all duration-300"
+              style={{
+                boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.06), 0 12px 24px rgba(37,99,235,0.12)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#2563EB'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#e5e7eb'
+              }}
+            >
+              <div className="text-[2.4rem]">{service.icon}</div>
+
+              <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+                {service.title}
+              </h3>
+              <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">
+                {service.desc}
+              </p>
+            </motion.article>
+          ))}
         </motion.div>
 
         <motion.div

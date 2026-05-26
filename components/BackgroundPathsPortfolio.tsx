@@ -20,9 +20,9 @@ export default function BackgroundPathsPortfolio() {
             0% { stroke-dashoffset: 2000; }
             100% { stroke-dashoffset: 0; }
           }
-          .path-0 { animation: flowPath 22s linear infinite; opacity: 0.6; }
-          .path-1 { animation: flowPath 26s linear infinite; opacity: 0.5; }
-          .path-2 { animation: flowPath 24s linear infinite; opacity: 0.6; }
+          .path-0 { animation: flowPath 22s linear infinite; opacity: 0.25; }
+          .path-1 { animation: flowPath 26s linear infinite; opacity: 0.2; }
+          .path-2 { animation: flowPath 24s linear infinite; opacity: 0.25; }
         `}</style>
         {paths.map((p, i) => (
           <path

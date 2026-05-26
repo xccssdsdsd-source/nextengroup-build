@@ -49,7 +49,7 @@ export default function Hero() {
       <section
         ref={sectionRef}
         suppressHydrationWarning
-        className={`relative bg-white overflow-hidden ${isMobile ? 'pt-20 pb-8' : 'py-16 md:py-20 lg:py-28 min-h-[280vh]'}`}
+        className={`relative bg-white overflow-hidden ${isMobile ? 'pt-20 pb-8' : 'py-12 md:py-16 lg:py-20 min-h-screen'}`}
       >
         <div
           className="pointer-events-none absolute inset-0 z-0"

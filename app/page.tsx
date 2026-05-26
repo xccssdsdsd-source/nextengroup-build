@@ -14,8 +14,8 @@ export default function Home() {
       <Nav />
       <Hero />
 <Ticker />
-      <Process />
       <Services />
+      <Process />
       <Portfolio />
       <FAQ />
       <Contact />

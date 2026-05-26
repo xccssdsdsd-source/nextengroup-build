@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { ArrowUpRight, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import { useRef, useState, useCallback } from 'react'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
@@ -75,13 +75,16 @@ export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const nextProject = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % projects.length)
+    setIsExpanded(false)
   }, [])
 
   const prevProject = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    setIsExpanded(false)
   }, [])
 
   return (
@@ -100,70 +103,96 @@ export default function Portfolio() {
         </motion.div>
 
         <div className="mt-8 relative">
-          <div className="relative">
-            <motion.a
-              key={currentIndex}
-              href={projects[currentIndex].href}
-              target="_blank"
-              rel="noreferrer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden"
-              style={{
-                boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
-              }}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${currentIndex}-${isExpanded}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="p-3 pb-2">
-                <div className="mb-2 flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
-                  <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
-                  <span className="h-2 w-2 rounded-full bg-[#28C840]" />
-                  <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-2 py-0.5 text-[10px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
-                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
-                    <ArrowUpRight size={12} strokeWidth={2} />
-                  </span>
-                </div>
-                <div className="relative overflow-hidden rounded-lg border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/9' }}>
-                  <Image
-                    src={projects[currentIndex].preview}
-                    alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
-                    fill
-                    sizes="100vw"
-                    className="object-contain group-hover:scale-[1.02]"
-                    style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
-                    quality={75}
-                  />
-                </div>
-              </div>
-
-              <div className="px-4 pb-4 pt-2">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div className="min-w-0">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#2563EB] mb-0.5">{projects[currentIndex].tagline}</p>
-                    <h3 className="text-lg font-black tracking-[-0.03em] text-[#0A0A0F] mb-1" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
-                    <p className="text-[12px] leading-[1.5] text-[#6b7280] max-w-xl">{projects[currentIndex].body}</p>
+              <motion.button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="relative w-full group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden text-left"
+                style={{
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)',
+                }}
+              >
+                <div className="p-3 pb-2">
+                  <div className="mb-2 flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
+                    <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
+                    <span className="h-2 w-2 rounded-full bg-[#28C840]" />
+                    <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-2 py-0.5 text-[10px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
+                    <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
+                      <ArrowUpRight size={12} strokeWidth={2} />
+                    </span>
                   </div>
-                  <div className="rounded-md border border-[#e5e7eb] bg-[#f5f7fa] px-2.5 py-1.5 text-center shrink-0">
-                    <div className="text-[8px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Wdrożenie</div>
-                    <div className="text-sm font-black tracking-[-0.02em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
+                  <div className="relative overflow-hidden rounded-lg border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/9' }}>
+                    <Image
+                      src={projects[currentIndex].preview}
+                      alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
+                      fill
+                      sizes="100vw"
+                      className="object-contain group-hover:scale-[1.02]"
+                      style={{ transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.25,1)', willChange: 'transform' }}
+                      quality={75}
+                    />
                   </div>
                 </div>
 
-                {projects[currentIndex].lighthouse && (
-                  <div className="mt-3 flex items-center gap-1 border-t border-[#e5e7eb] pt-3">
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] mr-2 shrink-0">Lighthouse</span>
-                    <div className="flex gap-3">
-                      {projects[currentIndex].lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.a>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-t border-[#e5e7eb]" />
+                      <div className="px-4 py-4">
+                        <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                          <div className="min-w-0">
+                            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#2563EB] mb-0.5">{projects[currentIndex].tagline}</p>
+                            <h3 className="text-lg font-black tracking-[-0.03em] text-[#0A0A0F] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
+                            <p className="text-[12px] leading-[1.6] text-[#6b7280]">{projects[currentIndex].body}</p>
+                          </div>
+                          <div className="rounded-md border border-[#e5e7eb] bg-[#f5f7fa] px-2.5 py-1.5 text-center shrink-0">
+                            <div className="text-[8px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Wdrożenie</div>
+                            <div className="text-sm font-black tracking-[-0.02em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
+                          </div>
+                        </div>
+
+                        {projects[currentIndex].lighthouse && (
+                          <div className="flex items-center gap-2 border-t border-[#e5e7eb] pt-4">
+                            <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] shrink-0">Lighthouse</span>
+                            <div className="flex gap-3">
+                              {projects[currentIndex].lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute right-4 top-3 text-[#6b7280]"
+                >
+                  <ChevronDown size={16} strokeWidth={2} />
+                </motion.div>
+              </motion.button>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="relative mt-4">
 
             <button
               onClick={prevProject}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg -ml-7"
               style={{ transition: 'all 0.2s' }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB'
@@ -180,7 +209,7 @@ export default function Portfolio() {
 
             <button
               onClick={nextProject}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg -mr-7"
               style={{ transition: 'all 0.2s' }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = '#2563EB'

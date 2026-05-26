@@ -28,6 +28,9 @@ body {
   color: var(--text);
   font-family: var(--font-dm-sans), sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a,
@@ -99,6 +102,8 @@ select {
   font-weight: 700;
   line-height: 1.0;
   letter-spacing: -0.05em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .section-copy {
@@ -107,6 +112,8 @@ select {
   color: #6B7280;
   font-size: 1rem;
   line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .btn-primary {
@@ -177,9 +184,9 @@ select {
   50% { transform: translate(45px, 65px) scale(1.22); }
 }
 
-.aurora-1 { animation: aurora-1 22s ease-in-out infinite; }
-.aurora-2 { animation: aurora-2 28s ease-in-out infinite; }
-.aurora-3 { animation: aurora-3 19s ease-in-out infinite; }
+.aurora-1 { animation: aurora-1 22s ease-in-out infinite; will-change: transform; }
+.aurora-2 { animation: aurora-2 28s ease-in-out infinite; will-change: transform; }
+.aurora-3 { animation: aurora-3 19s ease-in-out infinite; will-change: transform; }
 
 @keyframes ticker {
   0% { transform: translateX(0); }
@@ -330,6 +337,8 @@ select {
   top: 5%;
   left: 5%;
   animation: dmblob-l1 9s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .dmblob-l2 {
@@ -339,6 +348,8 @@ select {
   top: 22%;
   left: 38%;
   animation: dmblob-l2 11s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .dmblob-l3 {
@@ -348,6 +359,8 @@ select {
   top: 48%;
   left: 12%;
   animation: dmblob-l3 7s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .dmblob-p1 {
@@ -357,6 +370,8 @@ select {
   top: 8%;
   left: -35%;
   animation: dmblob-p1 6s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .dmblob-p2 {
@@ -366,6 +381,8 @@ select {
   top: 48%;
   left: 22%;
   animation: dmblob-p2 5s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .dmscanlines {
@@ -396,17 +413,6 @@ select {
   }
 }
 
-.cursor-dot {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: #2563EB;
-  border-radius: 9999px;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-}
-
 .cursor-ring {
   position: fixed;
   width: 32px;
@@ -417,14 +423,11 @@ select {
   z-index: 99998;
   transform: translate(-50%, -50%);
   transition:
-    width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.22s ease,
-    background 0.22s ease;
-}
-
-.cursor-dot {
-  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    width 0.15s ease,
+    height 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+  will-change: left, top;
 }
 
 .nav-link {

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
   const [isDesktop, setIsDesktop] = useState(false)
-  const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -17,10 +16,6 @@ export default function Cursor() {
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
-      if (dotRef.current) {
-        dotRef.current.style.left = mouseX + 'px'
-        dotRef.current.style.top = mouseY + 'px'
-      }
     }
 
     const animate = () => {
@@ -40,10 +35,6 @@ export default function Cursor() {
         ringRef.current.style.height = '54px'
         ringRef.current.style.borderColor = 'rgba(0,212,255,0.72)'
         ringRef.current.style.background = 'rgba(0,212,255,0.04)'
-        ringRef.current.style.mixBlendMode = 'screen'
-      }
-      if (dotRef.current) {
-        dotRef.current.style.transform = 'translate(-50%,-50%) scale(1.6)'
       }
     }
 
@@ -54,10 +45,6 @@ export default function Cursor() {
         ringRef.current.style.height = '32px'
         ringRef.current.style.borderColor = 'rgba(0,212,255,0.45)'
         ringRef.current.style.background = ''
-        ringRef.current.style.mixBlendMode = ''
-      }
-      if (dotRef.current) {
-        dotRef.current.style.transform = 'translate(-50%,-50%) scale(1)'
       }
     }
 
@@ -76,10 +63,5 @@ export default function Cursor() {
 
   if (!isDesktop) return null
 
-  return (
-    <>
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className="cursor-ring" />
-    </>
-  )
+  return <div ref={ringRef} className="cursor-ring" />
 }

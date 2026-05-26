@@ -173,7 +173,7 @@ export default function FolderServices() {
       <AnimatePresence mode="wait">
         {isOpen && activeService === null && (
           <motion.div
-            key="cards"
+            key="tiles"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
@@ -187,22 +187,11 @@ export default function FolderServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.08, duration: 0.35 }}
                 onClick={() => setActiveService(i)}
-                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 h-[140px] flex flex-col items-center justify-center"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
-                <div className="text-3xl mb-3">{service.icon}</div>
-                <h3 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">{service.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[11px] font-medium px-2 py-0.5 rounded-full border border-gray-200 text-gray-500 uppercase tracking-wide"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <div className="text-4xl mb-3">{service.icon}</div>
+                <h3 className="text-sm font-semibold text-gray-900 text-center">{service.title}</h3>
               </motion.div>
             ))}
           </motion.div>

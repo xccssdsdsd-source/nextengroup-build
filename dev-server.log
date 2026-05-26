@@ -156,3 +156,157 @@
  GET / 200 in 72ms
  ✓ Compiled in 784ms (1830 modules)
  GET / 200 in 91ms
+ ✓ Compiled in 2.1s (1826 modules)
+ GET / 200 in 261ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app-paths-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages-manifest.json'
+}
+ GET / 500 in 4372ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 900ms (1817 modules)
+ GET / 404 in 1140ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 159ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 69ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 116ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 68ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 105ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 104ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 131ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 202ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\pages\_document.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\pages\\_document.js'
+}
+ GET / 500 in 197ms
+ GET / 404 in 38ms
+ GET / 200 in 390ms

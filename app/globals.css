@@ -194,7 +194,8 @@ select {
 }
 
 .ticker-track {
-  animation: ticker 24s linear infinite;
+  animation: ticker 28s linear infinite;
+  will-change: transform;
 }
 
 .ticker-track:hover {
@@ -222,11 +223,13 @@ select {
 .flow-line {
   stroke-dasharray: 6 10;
   stroke-dashoffset: 0;
-  animation: dash-flow 2s linear infinite;
+  animation: dash-flow 3s linear infinite;
+  will-change: stroke-dashoffset;
 }
 
 .laptop-float {
   animation: laptop-float 8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .laptop-glass {
@@ -285,11 +288,13 @@ select {
 }
 
 .float-laptop {
-  animation: dm-float-laptop 5s ease-in-out infinite;
+  animation: dm-float-laptop 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .float-phone {
-  animation: dm-float-phone 4s ease-in-out 1s infinite;
+  animation: dm-float-phone 5s ease-in-out 1s infinite;
+  will-change: transform;
 }
 
 .float-laptop.no-float,
@@ -530,7 +535,8 @@ select {
 }
 
 .pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+  animation: pulse-glow 5s ease-in-out infinite;
+  will-change: opacity, transform;
 }
 
 .dm-scene::before {
@@ -545,6 +551,7 @@ select {
   background: radial-gradient(circle, rgba(0,85,255,0.25) 0%, transparent 70%);
   filter: blur(80px);
   pointer-events: none;
+  will-change: filter;
 }
 
 .ticker-wrap {
@@ -583,7 +590,8 @@ select {
 }
 
 .grain-drift {
-  animation: grain-drift 22s linear infinite;
+  animation: grain-drift 28s linear infinite;
+  will-change: transform;
 }
 
 @layer utilities {

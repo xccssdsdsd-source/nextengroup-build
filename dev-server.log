@@ -82,3 +82,61 @@
  GET / 200 in 251ms
  ✓ Compiled in 2.1s (1484 modules)
  GET / 200 in 372ms
+ ✓ Compiled in 826ms (1484 modules)
+ GET / 200 in 259ms
+ ✓ Compiled in 1024ms (1484 modules)
+ GET / 200 in 200ms
+ ✓ Compiled in 462ms (1484 modules)
+ GET / 200 in 227ms
+ ✓ Compiled in 648ms (1484 modules)
+ GET / 200 in 224ms
+ ✓ Compiled in 606ms (1484 modules)
+ GET / 200 in 126ms
+ ✓ Compiled in 1168ms (1484 modules)
+ GET / 200 in 195ms
+ ✓ Compiled /_not-found in 478ms (1475 modules)
+ GET / 404 in 863ms
+ GET / 200 in 568ms
+ GET / 200 in 327ms
+ GET / 200 in 276ms
+ ✓ Compiled in 670ms (1489 modules)
+ GET / 200 in 166ms
+ ✓ Compiled in 655ms (1484 modules)
+ GET / 200 in 209ms
+ ✓ Compiled in 328ms (1484 modules)
+ GET / 200 in 144ms
+ ✓ Compiled in 767ms (1484 modules)
+ GET / 200 in 217ms
+ ✓ Compiled in 708ms (1484 modules)
+ GET / 200 in 218ms
+ ✓ Compiled in 601ms (1484 modules)
+ GET / 200 in 170ms
+ ✓ Compiled /_not-found in 395ms (1475 modules)
+ GET / 404 in 650ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 3.5s (1821 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ GET / 404 in 4399ms
+ GET / 500 in 2254ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ GET / 500 in 289ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\kajet\Desktop\nextengroup-build\.next\server\app\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kajet\\Desktop\\nextengroup-build\\.next\\server\\app\\page.js',
+  page: '/'
+}
+ GET / 500 in 304ms

@@ -63,17 +63,18 @@ export default function CookieConsent() {
     setConsent(false)
   }
 
-  if (consent === true) return null
+  // hide banner once user made a choice (accepted or rejected)
+  if (consent !== null) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">
       <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg p-4 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1 text-sm text-gray-700">
-          Ta strona korzysta z plików cookie i narzędzi analitycznych (np. Google Analytics). Aby włączyć pełne działanie usług analitycznych, zaakceptuj politykę prywatności.
+          Korzystamy z plików cookie w celu prawidłowego działania serwisu oraz obsługi formularzy kontaktowych. Możesz zaakceptować lub odrzucić użycie dodatkowych narzędzi śledzących.
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={reject} className="px-3 py-2 text-sm text-gray-700 bg-gray-100 rounded-md">Odrzuć</button>
-          <button onClick={accept} className="px-3 py-2 text-sm text-white bg-[#0055FF] rounded-md">Akceptuję</button>
+          <button onClick={reject} className="btn btn-ghost">Odrzuć</button>
+          <button onClick={accept} className="btn btn-primary">Akceptuję</button>
           <a href="/polityka-prywatnosci" className="text-sm text-gray-600 underline">Polityka prywatności</a>
         </div>
       </div>

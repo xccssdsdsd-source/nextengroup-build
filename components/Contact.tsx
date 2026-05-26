@@ -78,6 +78,7 @@ export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const [copied, setCopied] = useState(false)
+  const [showCalendly, setShowCalendly] = useState(false)
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
@@ -157,8 +158,20 @@ export default function Contact() {
 
           <div id="calendly-widget" className="w-full flex-1 min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
-              <CalendlyWidget url={calendlyUrl} />
+            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+              {!showCalendly ? (
+                <div className="flex flex-col items-start gap-3">
+                  <p className="text-[14px] text-[#0A0A0F]">Wczytaj kalendarz, aby zarezerwować termin.</p>
+                  <button
+                    onClick={() => setShowCalendly(true)}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#2563EB] text-white rounded-2xl hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                  >
+                    Otwórz kalendarz
+                  </button>
+                </div>
+              ) : (
+                <CalendlyWidget url={calendlyUrl} />
+              )}
             </div>
           </div>
         </div>

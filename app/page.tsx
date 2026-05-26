@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import Nav from '@/components/Nav'
-import Hero from '@/components/Hero'
+const Nav = dynamic(() => import('@/components/Nav'))
+const Hero = dynamic(() => import('@/components/Hero'))
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))

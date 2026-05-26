@@ -321,3 +321,1265 @@
  GET / 200 in 711ms
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\11.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\server-development\11.pack.gz'
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\2.pack.gz_' -> 'C:\Users\kajet\Desktop\nextengroup-build\.next\cache\webpack\client-development\2.pack.gz'
+ ✓ Compiled in 795ms (1826 modules)
+ ⚠ ./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+ ⚠ ./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Contact.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/Contact.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Contact.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/FAQ.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/FAQ.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'useTransform' is not exported from 'motion' (imported as 'useTransform').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Hero.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Hero.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useScroll' is not exported from 'motion' (imported as 'useScroll').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'useSpring' is not exported from 'motion' (imported as 'useSpring').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'AnimatePresence' is not exported from 'motion' (imported as 'AnimatePresence').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Nav.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Nav.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Portfolio.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Portfolio.tsx
+
+./components/Process.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Process.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Process.tsx
+
+./components/Services.tsx
+Attempted import error: 'useInView' is not exported from 'motion' (imported as 'useInView').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+
+./components/Services.tsx
+Attempted import error: 'motion' is not exported from 'motion' (imported as 'motion').
+
+Import trace for requested module:
+./components/Services.tsx
+ ✓ Compiled in 1859ms (1826 modules)
+ ✓ Compiled in 235ms (845 modules)
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m `ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+   ,-[[36;1;4mC:\Users\kajet\Desktop\nextengroup-build\app\page.tsx[0m:2:1]
+ [2m1[0m | import dynamic from 'next/dynamic'
+ [2m2[0m | const Nav = dynamic(() => import('@/components/Nav'), { ssr: false })
+   : [35;1m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+ [2m3[0m | const Hero = dynamic(() => import('@/components/Hero'), { ssr: false })
+ [2m4[0m | const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
+ [2m5[0m | const Services = dynamic(() => import('@/components/Services'))
+   `----
+  [31mx[0m `ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+   ,-[[36;1;4mC:\Users\kajet\Desktop\nextengroup-build\app\page.tsx[0m:3:1]
+ [2m1[0m | import dynamic from 'next/dynamic'
+ [2m2[0m | const Nav = dynamic(() => import('@/components/Nav'), { ssr: false })
+ [2m3[0m | const Hero = dynamic(() => import('@/components/Hero'), { ssr: false })
+   : [35;1m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+ [2m4[0m | const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
+ [2m5[0m | const Services = dynamic(() => import('@/components/Services'))
+ [2m6[0m | const Process = dynamic(() => import('@/components/Process'))
+   `----
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 918ms (1826 modules)
+ ✓ Compiled in 750ms (1826 modules)

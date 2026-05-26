@@ -310,3 +310,6 @@
  GET / 500 in 197ms
  GET / 404 in 38ms
  GET / 200 in 390ms
+ GET / 200 in 91ms
+ HEAD / 200 in 85ms
+ GET / 200 in 160ms

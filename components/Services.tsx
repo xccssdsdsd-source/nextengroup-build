@@ -8,17 +8,14 @@ const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const services = [
   {
-    icon: '🌐',
     title: 'Strony WWW',
     desc: 'Nowoczesne strony, które budują wiarygodność firmy i aktywnie kierują klientów do kontaktu. Każdy element dopasowany do Twoich celów biznesowych.',
   },
   {
-    icon: '⚡',
     title: 'Automatyzacje AI',
     desc: 'Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność.',
   },
   {
-    icon: '🤖',
     title: 'Agenci AI',
     desc: 'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
   },
@@ -79,9 +76,7 @@ export default function Services() {
                 ;(e.currentTarget as HTMLElement).style.borderColor = '#e5e7eb'
               }}
             >
-              <div className="text-[2.4rem]">{service.icon}</div>
-
-              <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h3 className="text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
                 {service.title}
               </h3>
               <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">

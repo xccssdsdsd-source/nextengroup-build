@@ -313,3 +313,4 @@
  GET / 200 in 91ms
  HEAD / 200 in 85ms
  GET / 200 in 160ms
+ GET / 200 in 380ms

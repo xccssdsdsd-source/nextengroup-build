@@ -48,6 +48,11 @@ export default function Hero() {
     document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const handlePortfolioClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <>
       <section
@@ -127,7 +132,8 @@ export default function Hero() {
                 Umów 15 min rozmowę
               </motion.a>
               <motion.a
-                href="/realizacje"
+                href="#portfolio"
+                onClick={handlePortfolioClick}
                 whileTap={{ scale: 0.96 }}
                 className="btn btn-ghost inline-flex items-center justify-center px-7 py-4 text-sm w-full sm:w-auto"
               >

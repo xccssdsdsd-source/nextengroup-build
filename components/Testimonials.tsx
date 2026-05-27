@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -56,42 +56,44 @@ export default function Testimonials() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {testimonials.map((item) => (
-            <motion.article
-              key={item.name}
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-7"
-              style={{
-                boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.03)',
-                transition: 'box-shadow 0.3s ease, transform 0.2s ease',
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.08), 0 32px 64px rgba(0,0,0,0.05)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.03)' }}
-            >
-              <div className="flex gap-0.5 text-[#FBBF24]">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={15} fill="currentColor" strokeWidth={0} />
-                ))}
-              </div>
-
-              <p className="mt-5 text-[15px] leading-[1.8] text-[#374151]">
-                "{item.quote}"
-              </p>
-
-              <div className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0EA5E9]/15 to-[#6366F1]/15 text-[11px] font-bold text-[#0EA5E9]" style={{ fontFamily: 'var(--font-syne)' }}>
-                  {item.name.charAt(0)}
-                </div>
-                <div>
-                  <div className="text-[13px] font-semibold text-[#0A0A0A]">{item.name}</div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-[#9CA3AF]">{item.role}</div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+          {testimonials.map((item) => <TestimonialCard key={item.name} item={item} ease={ease} />)}
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function TestimonialCard({ item, ease }: { item: typeof testimonials[0], ease: [number, number, number, number] }) {
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <motion.article
+      variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } } }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-300 ${
+        isHovered ? 'border-black/[0.07] shadow-[0_4px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(0,0,0,0.08),_0_32px_64px_rgba(0,0,0,0.05)]' : 'border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04),_0_4px_12px_rgba(0,0,0,0.05),_0_20px_40px_rgba(0,0,0,0.03)]'
+      }`}
+    >
+      <div className="flex gap-0.5 text-[#FBBF24]">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star key={i} size={15} fill="currentColor" strokeWidth={0} />
+        ))}
+      </div>
+
+      <p className="mt-5 text-[15px] leading-[1.8] text-[#374151]">
+        "{item.quote}"
+      </p>
+
+      <div className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0EA5E9]/15 to-[#6366F1]/15 text-[11px] font-bold text-[#0EA5E9]" style={{ fontFamily: 'var(--font-syne)' }}>
+          {item.name.charAt(0)}
+        </div>
+        <div>
+          <div className="text-[13px] font-semibold text-[#0A0A0A]">{item.name}</div>
+          <div className="text-[11px] uppercase tracking-[0.14em] text-[#9CA3AF]">{item.role}</div>
+        </div>
+      </div>
+    </motion.article>
   )
 }

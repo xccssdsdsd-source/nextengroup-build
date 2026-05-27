@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
@@ -61,38 +61,35 @@ export default function Process() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {steps.map((step) => (
-            <motion.article
-              key={step.num}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
-              whileHover={{ y: -4, transition: { duration: 0.25, ease } }}
-              className="group relative overflow-hidden rounded-2xl border border-[#e5e7eb] bg-white p-7 transition-all duration-300"
-              style={{
-                boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.06), 0 12px 24px rgba(37,99,235,0.12)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = '#2563EB'
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = '#e5e7eb'
-              }}
-            >
-              <div className="text-[2.4rem] font-black tracking-[-0.03em] text-[#2563EB]" style={{ fontFamily: 'var(--font-syne)' }}>
-                {step.num}
-              </div>
-
-              <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
-                {step.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">
-                {step.desc}
-              </p>
-            </motion.article>
-          ))}
+          {steps.map((step) => <StepCard key={step.num} step={step} ease={ease} />)}
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function StepCard({ step, ease }: { step: typeof steps[0], ease: [number, number, number, number] }) {
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <motion.article
+      variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
+      whileHover={{ y: -4, transition: { duration: 0.25, ease } }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`group relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-300 ${
+        isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
+      }`}
+    >
+      <div className="text-[2.4rem] font-black tracking-[-0.03em] text-[#2563EB]" style={{ fontFamily: 'var(--font-syne)' }}>
+        {step.num}
+      </div>
+
+      <h3 className="mt-4 text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+        {step.title}
+      </h3>
+      <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">
+        {step.desc}
+      </p>
+    </motion.article>
   )
 }

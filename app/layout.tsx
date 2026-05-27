@@ -4,9 +4,9 @@ import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Getbuild | Strony WWW, automatyzacje AI i agenci AI'
+const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
 const siteDescription =
-  'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną.'
+  'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla małych i średnich firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
 
 const syne = Syne({
   subsets: ['latin'],

@@ -73,10 +73,6 @@ export default function Footer() {
                   </a>
                 ))}
               </div>
-              <div className="mt-4 space-y-1">
-                <p className="text-[11px] text-white/25">NIP: [WPISZ NIP]</p>
-                <p className="text-[11px] text-white/25">REGON: [WPISZ REGON]</p>
-              </div>
             </div>
           </div>
         </div>

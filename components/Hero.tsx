@@ -9,11 +9,11 @@ import BackgroundPaths from './BackgroundPaths'
 const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
 const easeOut = 'easeOut'
-
+const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
 const services = [
-  { title: 'Strony WWW', path: '/strony-internetowe-dla-firm' },
-  { title: 'Automatyzacje AI', path: '/seo-dla-firm' },
-  { title: 'Agenci AI', path: '/audyt-seo' },
+  { title: 'Strony WWW', path: '/strony-www' },
+  { title: 'Automatyzacje AI', path: '/automatyzacje-ai' },
+  { title: 'Agenci AI', path: '/agenci-ai' },
 ]
 
 export default function Hero() {
@@ -26,7 +26,6 @@ export default function Hero() {
   const deviceRotate = useTransform(scrollYProgress, [0, 0.5], [28, 0])
   const deviceScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1])
   const deviceY = useTransform(scrollYProgress, [0, 0.4], [200, 0])
-  const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
 
   useEffect(() => {
     setIsMounted(true)
@@ -37,20 +36,22 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      setTitleNumber(prev => prev === titles.length - 1 ? 0 : prev + 1)
-    }, 2000)
-    return () => clearTimeout(id)
-  }, [titleNumber])
+    const timer = setInterval(() => {
+      setTitleNumber(prev => (prev + 1) % titles.length)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [])
 
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById('kontakt')
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const handlePortfolioClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById('portfolio')
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (

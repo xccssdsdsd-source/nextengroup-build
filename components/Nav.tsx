@@ -8,6 +8,9 @@ const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const links = [
   ['Usługi', '#uslugi'],
+  ['Strony WWW', '/strony-www'],
+  ['Automatyzacje AI', '/automatyzacje-ai'],
+  ['Agenci AI', '/agenci-ai'],
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],

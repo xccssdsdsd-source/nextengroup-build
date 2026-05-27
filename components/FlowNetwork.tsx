@@ -83,23 +83,10 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
 
           <motion.div
             animate={{
-              scale: phase === 'scanning' ? [1, 1.06, 0.98, 1.04, 1] : [1, 1.025, 1],
-              boxShadow:
-                phase === 'scanning'
-                  ? [
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)',
-                      '0 0 0 1px rgba(126,207,255,0.34), 0 0 90px rgba(61,148,255,0.42), inset 0 0 44px rgba(160,228,255,0.22)',
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 50px rgba(61,148,255,0.18), inset 0 0 28px rgba(160,228,255,0.14)'
-                    ]
-                  : [
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)',
-                      '0 0 0 1px rgba(126,207,255,0.24), 0 0 74px rgba(61,148,255,0.22), inset 0 0 32px rgba(160,228,255,0.18)',
-                      '0 0 0 1px rgba(126,207,255,0.18), 0 0 42px rgba(61,148,255,0.14), inset 0 0 24px rgba(160,228,255,0.12)'
-                    ]
+              scale: phase === 'scanning' ? 1.02 : 1,
             }}
             transition={{
-              duration: phase === 'scanning' ? 0.55 : 2.8,
-              repeat: phase === 'scanning' ? 1 : Infinity,
+              duration: 0.3,
               ease: 'easeInOut'
             }}
             className="relative z-10 flex h-[230px] w-[230px] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_35%_30%,rgba(206,240,255,0.32)_0%,rgba(126,207,255,0.2)_16%,rgba(36,92,175,0.18)_34%,rgba(7,17,35,0.82)_63%,rgba(3,9,20,0.96)_100%)] backdrop-blur-md sm:h-[260px] sm:w-[260px]"
@@ -108,17 +95,11 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
             <div className="absolute inset-[30px] rounded-full border border-[#8be2ff]/10" />
             <motion.div
               animate={{
-                opacity: phase === 'scanning' ? [0.3, 0.8, 0.3] : [0.22, 0.4, 0.22],
-                rotate: [0, 180, 360]
+                rotate: [0, 360]
               }}
               transition={{
-                opacity: {
-                  duration: phase === 'scanning' ? 0.45 : 2.4,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                },
                 rotate: {
-                  duration: phase === 'scanning' ? 0.9 : 9,
+                  duration: 8,
                   repeat: Infinity,
                   ease: 'linear'
                 }
@@ -126,8 +107,8 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
               className="absolute inset-[42px] rounded-full border border-dashed border-[#87d7ff]/35"
             />
             <motion.div
-              animate={{ opacity: [0.2, 0.45, 0.2], scale: [0.92, 1.04, 0.92] }}
-              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+              animate={{ opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               className="h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(199,239,255,0.95)_0%,rgba(107,194,255,0.75)_36%,rgba(61,148,255,0.18)_70%,transparent_100%)] blur-[2px]"
             />
 

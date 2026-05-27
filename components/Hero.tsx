@@ -53,7 +53,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white overflow-hidden pt-12 sm:pt-14 md:pt-16 lg:pt-24 pb-6 md:pb-10 lg:pb-16"
+      className="relative bg-white overflow-hidden pt-4 sm:pt-12 md:pt-16 lg:pt-24 pb-2 sm:pb-6 md:pb-10 lg:pb-16"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="w-full text-center">
           <h1
             className="font-sans leading-tight tracking-[-0.03em] mx-auto text-[#0A0A0F]"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.5rem, 4.5vw, 3rem)', lineHeight: '1.15' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.25rem, 6vw, 3rem)', lineHeight: '1.1' }}
           >
             <div className="overflow-hidden">
               <motion.span
@@ -85,17 +85,17 @@ export default function Hero() {
                 Budujemy Twój biznes przez
               </motion.span>
             </div>
-            <div className="relative overflow-hidden mt-0.5" style={{ height: '1.2em' }}>
+            <div className="relative overflow-hidden mt-0" style={{ height: '1.2em' }}>
               {titles.map((title, i) => (
                 <motion.span
                   key={i}
-                  className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                  className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent will-change-transform"
                   initial={{ y: 150, opacity: 0 }}
                   animate={{
                     y: i === titleNumber ? 0 : i < titleNumber ? -150 : 150,
                     opacity: i === titleNumber ? 1 : 0,
                   }}
-                  transition={{ type: 'spring', stiffness: 50 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
                 >
                   {title}
                 </motion.span>
@@ -104,7 +104,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-[#374151] px-2"
+            className="mt-1 sm:mt-3 max-w-2xl mx-auto text-xs sm:text-base leading-tight sm:leading-relaxed text-[#374151] px-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
@@ -113,7 +113,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-4 sm:mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-2"
+            className="mt-2 sm:mt-4 flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-4 px-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
@@ -121,7 +121,7 @@ export default function Hero() {
             <a
               href="#kontakt"
               onClick={handleContactClick}
-              className="btn btn-primary inline-flex items-center justify-center px-6 py-3 sm:px-7 sm:py-4 text-sm sm:text-sm w-full sm:w-auto"
+              className="btn btn-primary inline-flex items-center justify-center px-4 py-2 sm:px-7 sm:py-4 text-xs sm:text-sm w-full sm:w-auto"
               style={{ cursor: 'pointer' }}
             >
               Umów 15 min rozmowę
@@ -129,7 +129,7 @@ export default function Hero() {
             <a
               href="#portfolio"
               onClick={handlePortfolioClick}
-              className="btn btn-ghost inline-flex items-center justify-center px-6 py-3 sm:px-7 sm:py-4 text-sm sm:text-sm w-full sm:w-auto"
+              className="btn btn-ghost inline-flex items-center justify-center px-4 py-2 sm:px-7 sm:py-4 text-xs sm:text-sm w-full sm:w-auto"
               style={{ cursor: 'pointer' }}
             >
               Zobacz realizacje

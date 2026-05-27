@@ -1,22 +1,19 @@
 import puppeteer from 'puppeteer'
-import { join } from 'path'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import fs from 'fs'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-const browser = await puppeteer.launch({
-  headless: true,
-  executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-})
-
+const browser = await puppeteer.launch()
 const page = await browser.newPage()
-await page.setViewport({ width: 375, height: 667, deviceScaleFactor: 2 })
-await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded', timeout: 60000 })
-await new Promise(r => setTimeout(r, 3000))
+await page.setViewport({ width: 375, height: 667 })
+await page.goto('http://localhost:3009', { waitUntil: 'networkidle2' })
 
-const outPath = join(__dirname, 'temporary screenshots', 'mobile-hero.png')
-await page.screenshot({ path: outPath, fullPage: false })
+const heroBox = await page.$eval('section', el => {
+  const box = el.getBoundingClientRect()
+  return { height: box.height, top: box.top }
+})
+console.log('Mobile hero:', heroBox)
+
+await fs.promises.mkdir('screenshots', { recursive: true })
+await page.screenshot({ path: 'screenshots/mobile-viewport.png', fullPage: false })
+await page.screenshot({ path: 'screenshots/mobile-full.png', fullPage: true })
+console.log('Mobile screenshots saved')
 await browser.close()
-console.log('Saved:', outPath)

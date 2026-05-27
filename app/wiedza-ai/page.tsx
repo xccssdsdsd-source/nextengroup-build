@@ -9,8 +9,9 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Czym jest automatyzacja AI i agent AI? Wiedza o AI dla firm | Getbuild',
+  title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
   description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie i kiedy warto zacząć. Getbuild — doradztwo i wdrożenia AI dla polskich firm.',
+  keywords: ['automatyzacja AI', 'agent AI', 'wiedza AI', 'AI dla firm', 'wdrożenia AI', 'sztuczna inteligencja', 'automatyzacje biznesowe'],
   alternates: {
     canonical: `${siteUrl}/wiedza-ai`,
   },
@@ -21,10 +22,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: `${siteUrl}/wiedza-ai`,
-    title: 'Czym jest automatyzacja AI i agent AI? Wiedza o AI dla firm | Getbuild',
+    title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
     description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie i kiedy warto zacząć.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
+    images: [
+      {
+        url: `${siteUrl}/logo-opt.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
+    description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie.',
+    images: [`${siteUrl}/logo-opt.png`],
   },
 }
 

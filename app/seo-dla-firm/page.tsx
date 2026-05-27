@@ -4,18 +4,33 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'SEO dla firm B2B w Polsce | Getbuild',
-  description: 'Pozycjonowanie firm B2B w Google. Strategie SEO, audyt SEO i link building dla firm w całej Polsce.',
-  keywords: ['SEO dla firm', 'pozycjonowanie firm B2B', 'audyt SEO', 'agencja SEO', 'SEO dla firm B2B'],
+  metadataBase: new URL('https://getbuild.pl'),
+  title: 'SEO dla firm B2B w Polsce | Getbuild - Pozycjonowanie w Google',
+  description: 'Pozycjonowanie firm B2B w Google. Strategie SEO, audyt SEO i link building dla firm w całej Polsce. Getbuild — wdrożenia SEO dla polskich firm B2B.',
+  keywords: ['SEO dla firm', 'pozycjonowanie firm B2B', 'audyt SEO', 'agencja SEO', 'SEO dla firm B2B', 'link building', 'wdrożenia SEO', 'strategie SEO'],
   alternates: {
     canonical: 'https://getbuild.pl/seo-dla-firm',
   },
   openGraph: {
-    title: 'SEO dla firm B2B w Polsce | Getbuild',
+    title: 'SEO dla firm B2B w Polsce | Getbuild - Pozycjonowanie w Google',
     description: 'Pozycjonowanie firm B2B w Google. Strategie SEO, audyt SEO i link building dla firm w całej Polsce.',
     url: 'https://getbuild.pl/seo-dla-firm',
     type: 'website',
     locale: 'pl_PL',
+    images: [
+      {
+        url: 'https://getbuild.pl/logo-opt.png',
+        width: 1200,
+        height: 630,
+        alt: 'SEO dla firm B2B w Polsce | Getbuild',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO dla firm B2B w Polsce | Getbuild - Pozycjonowanie w Google',
+    description: 'Pozycjonowanie firm B2B w Google. Strategie SEO, audyt SEO i link building.',
+    images: ['https://getbuild.pl/logo-opt.png'],
   },
 }
 

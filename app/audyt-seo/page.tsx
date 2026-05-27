@@ -5,8 +5,8 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Bezpłatny audyt SEO dla firm B2B | Getbuild',
-  description: 'Darmowy audyt SEO Twojej strony internetowej. Kompleksowa analiza SEO, konkurencji i linków wraz z rekomendacjami dla firmy.',
-  keywords: ['audyt SEO', 'audyt SEO dla firm', 'analiza SEO', 'bezpłatny audyt'],
+  description: 'Darmowy audyt SEO Twojej strony internetowej. Kompleksowa analiza SEO, konkurencji i linków wraz z rekomendacjami dla firmy. Wdrożenia SEO dla firm B2B w Polsce.',
+  keywords: ['audyt SEO', 'audyt SEO dla firm', 'analiza SEO', 'bezpłatny audyt', 'SEO dla firm', 'pozycjonowanie', 'audyt strony'],
   alternates: {
     canonical: 'https://getbuild.pl/audyt-seo',
   },
@@ -16,6 +16,20 @@ export const metadata: Metadata = {
     url: 'https://getbuild.pl/audyt-seo',
     type: 'website',
     locale: 'pl_PL',
+    images: [
+      {
+        url: 'https://getbuild.pl/logo-opt.png',
+        width: 1200,
+        height: 630,
+        alt: 'Bezpłatny audyt SEO dla firm B2B | Getbuild',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bezpłatny audyt SEO dla firm B2B | Getbuild',
+    description: 'Darmowy audyt SEO Twojej strony internetowej. Kompleksowa analiza SEO.',
+    images: ['https://getbuild.pl/logo-opt.png'],
   },
 }
 

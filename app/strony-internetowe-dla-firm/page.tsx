@@ -4,18 +4,33 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Strony internetowe dla firm B2B | Getbuild',
-  description: 'Tworzymy profesjonalne strony WWW dla firm B2B, producentów i dostawców usług. Projekty nastawione na sprzedaż i pozyskiwanie zapytań.',
-  keywords: ['strony internetowe dla firm', 'strony www B2B', 'tworzenie stron dla producentów', 'strony dla spółek', 'strony dla firm'],
+  metadataBase: new URL('https://getbuild.pl'),
+  title: 'Strony internetowe dla firm B2B | Getbuild - Profesjonalne projekty',
+  description: 'Tworzymy profesjonalne strony WWW dla firm B2B, producentów i dostawców usług. Projekty nastawione na sprzedaż, pozyskiwanie zapytań i wzrost efektywności biznesu.',
+  keywords: ['strony internetowe dla firm', 'strony www B2B', 'tworzenie stron dla producentów', 'strony dla spółek', 'strony dla firm', 'projektowanie stron', 'strony z SEO', 'strony B2B'],
   alternates: {
     canonical: 'https://getbuild.pl/strony-internetowe-dla-firm',
   },
   openGraph: {
-    title: 'Strony internetowe dla firm B2B | Getbuild',
+    title: 'Strony internetowe dla firm B2B | Getbuild - Profesjonalne projekty',
     description: 'Tworzymy profesjonalne strony WWW dla firm B2B, producentów i dostawców usług. Projekty nastawione na sprzedaż i pozyskiwanie zapytań.',
     url: 'https://getbuild.pl/strony-internetowe-dla-firm',
     type: 'website',
     locale: 'pl_PL',
+    images: [
+      {
+        url: 'https://getbuild.pl/logo-opt.png',
+        width: 1200,
+        height: 630,
+        alt: 'Strony internetowe dla firm B2B | Getbuild',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Strony internetowe dla firm B2B | Getbuild - Profesjonalne projekty',
+    description: 'Tworzymy profesjonalne strony WWW dla firm B2B, producentów i dostawców usług.',
+    images: ['https://getbuild.pl/logo-opt.png'],
   },
 }
 

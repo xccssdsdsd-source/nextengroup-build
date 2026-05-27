@@ -4,18 +4,33 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Blog | Getbuild - Artykuły o SEO i stronach WWW',
-  description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i marketingu internetowym.',
-  keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'e-commerce'],
+  metadataBase: new URL('https://getbuild.pl'),
+  title: 'Blog | Getbuild - Artykuły o SEO i stronach internetowych',
+  description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i marketingu internetowym. Praktyczne poradniki i wnioski z projektów.',
+  keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'e-commerce', 'marketing internetowy', 'tworzenie stron', 'automatyzacje AI'],
   alternates: {
     canonical: 'https://getbuild.pl/blog',
   },
   openGraph: {
-    title: 'Blog | Getbuild - Artykuły o SEO i stronach WWW',
-    description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i marketingu internetowym.',
+    title: 'Blog | Getbuild - Artykuły o SEO i stronach internetowych',
+    description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i marketingu internetowym.',
     url: 'https://getbuild.pl/blog',
     type: 'website',
     locale: 'pl_PL',
+    images: [
+      {
+        url: 'https://getbuild.pl/logo-opt.png',
+        width: 1200,
+        height: 630,
+        alt: 'Blog Getbuild - Artykuły o SEO i stronach internetowych',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Getbuild - Artykuły o SEO i stronach internetowych',
+    description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW i automatyzacjach AI.',
+    images: ['https://getbuild.pl/logo-opt.png'],
   },
 }
 

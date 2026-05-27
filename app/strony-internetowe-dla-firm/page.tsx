@@ -43,7 +43,7 @@ export default function StronyInternetoweDlaFirm() {
       <Nav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-      <section className="px-6 py-20 bg-white sm:px-8 lg:py-28">
+      <section className="px-6 pt-28 sm:pt-32 md:pt-40 lg:pt-44 pb-20 bg-white sm:px-8 lg:pb-28">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] mb-6" style={{ fontFamily: 'var(--font-barlow)' }}>
             Strony internetowe dla firm B2B

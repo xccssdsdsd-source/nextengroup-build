@@ -85,7 +85,7 @@ export default function Hero() {
                 Budujemy Twój biznes przez
               </motion.span>
             </div>
-            <div className="relative overflow-hidden mt-0.5" style={{ height: '1.2em' }}>
+            <div className="relative overflow-hidden mt-4" style={{ height: '1.2em' }}>
               {titles.map((title, i) => (
                 <motion.span
                   key={i}
@@ -95,7 +95,7 @@ export default function Hero() {
                     y: i === titleNumber ? 0 : i < titleNumber ? -150 : 150,
                     opacity: i === titleNumber ? 1 : 0,
                   }}
-                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
                 >
                   {title}
                 </motion.span>

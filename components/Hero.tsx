@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import BackgroundPaths from './BackgroundPaths'
 
-const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
+const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
 const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']

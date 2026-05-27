@@ -1,0 +1,77 @@
+{
+  "navigationTiming": {
+    "domInteractive": 158.60000000149012,
+    "domContentLoaded": 158.89999999850988,
+    "loadEventEnd": 254.70000000298023,
+    "domainLookupTime": 0,
+    "connectTime": 25,
+    "requestTime": 5,
+    "responseTime": 8.600000001490116,
+    "renderTime": 116.10000000149012,
+    "domInteractiveTime": 0.29999999701976776
+  },
+  "paintTiming": [
+    {
+      "name": "first-paint",
+      "time": 528
+    },
+    {
+      "name": "first-contentful-paint",
+      "time": 528
+    }
+  ],
+  "resourceCount": 17,
+  "totalResourceSize": 219197,
+  "largestResources": [
+    {
+      "name": "http://localhost:3000/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "size": 54658,
+      "duration": 130.39999999850988
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/699-b4107f5d299c3e48.js",
+      "size": 47681,
+      "duration": 150.39999999850988
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/255-4f84124391a7dac4.js",
+      "size": 46635,
+      "duration": 130.69999999552965
+    },
+    {
+      "name": "http://localhost:3000/favicon.ico",
+      "size": 33805,
+      "duration": 4.600000001490116
+    },
+    {
+      "name": "http://localhost:3000/_next/image?url=%2Fportfolio%2Fpm-apartments-preview.webp&w=828&q=75",
+      "size": 14212,
+      "duration": 3.5
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/339-2814067533bd8b8f.js",
+      "size": 5953,
+      "duration": 131.60000000149012
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/247-4757755573b8c27e.js",
+      "size": 4435,
+      "duration": 132.79999999701977
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/133-1d67afd27c5ba017.js",
+      "size": 3760,
+      "duration": 135.10000000149012
+    },
+    {
+      "name": "http://localhost:3000/logo.webp",
+      "size": 2336,
+      "duration": 20.700000002980232
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/webpack-4c0a23fe1f21438c.js",
+      "size": 2085,
+      "duration": 117.29999999701977
+    }
+  ]
+}

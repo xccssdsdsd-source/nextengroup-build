@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo.png`,
+        url: `${siteUrl}/logo-opt.png`,
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -56,12 +56,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [`${siteUrl}/logo.png`],
+    images: [`${siteUrl}/logo-opt.png`],
   },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/logo.png',
+    apple: '/logo-opt.png',
   },
   robots: {
     index: true,
@@ -81,10 +81,10 @@ export default function RootLayout({
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/png" href="/logo.png" sizes="any" />
+        <link rel="icon" type="image/png" href="/logo-opt.png" sizes="any" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-        <meta property="og:image" content="https://getbuild.pl/logo.png" />
+        <link rel="apple-touch-icon" href="/logo-opt.png" />
+        <meta property="og:image" content="https://getbuild.pl/logo.webp" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -106,7 +106,7 @@ export default function RootLayout({
           '@id': 'https://getbuild.pl/#organization',
           name: 'Getbuild',
           url: 'https://getbuild.pl',
-          logo: 'https://getbuild.pl/logo.png',
+          logo: 'https://getbuild.pl/logo-opt.png',
           image: 'https://getbuild.pl/og-image.jpg',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną.',
           email: 'kontakt@getbuild.pl',

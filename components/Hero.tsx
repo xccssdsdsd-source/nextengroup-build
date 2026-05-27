@@ -53,7 +53,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white overflow-hidden pt-28 sm:pt-32 md:pt-40 lg:pt-48 pb-8 md:pb-16 lg:pb-20 lg:min-h-screen"
+      className="relative bg-white overflow-hidden pt-12 sm:pt-14 md:pt-16 lg:pt-24 pb-6 md:pb-10 lg:pb-16"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="w-full text-center">
           <h1
             className="font-sans leading-tight tracking-[-0.03em] mx-auto text-[#0A0A0F]"
-            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.75rem, 5vw, 3.5rem)' }}
+            style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.5rem, 4.5vw, 3rem)', lineHeight: '1.15' }}
           >
             <div className="overflow-hidden">
               <motion.span
@@ -85,7 +85,7 @@ export default function Hero() {
                 Budujemy Twój biznes przez
               </motion.span>
             </div>
-            <div className="relative min-h-[1.1em] overflow-hidden mt-1">
+            <div className="relative overflow-hidden mt-0.5" style={{ height: '1.2em' }}>
               {titles.map((title, i) => (
                 <motion.span
                   key={i}
@@ -104,7 +104,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="mt-6 sm:mt-8 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-[#374151] px-2"
+            className="mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-[#374151] px-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.36, ease: easeOut }}
@@ -113,7 +113,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-8 sm:mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-2"
+            className="mt-4 sm:mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
@@ -140,7 +140,7 @@ export default function Hero() {
 
         {!isMobile && (
           <motion.div
-            className="mt-12 lg:mt-16 flex justify-center"
+            className="mt-4 flex justify-center"
             style={{ perspective: '1200px' }}
           >
             <motion.div
@@ -155,10 +155,11 @@ export default function Hero() {
                   borderRadius: '20px',
                   backgroundColor: '#0d1117',
                   height: 'auto',
-                  maxWidth: '1200px',
-                  maxHeight: 'clamp(400px, 75vh, 950px)',
+                  maxWidth: '1100px',
+                  maxHeight: '380px',
                   boxShadow: '0 -8px 60px rgba(37,99,235,0.15), 0 -2px 0 rgba(255,255,255,0.06)',
                   overflow: 'hidden',
+                  willChange: 'transform',
                 }}
               >
                 {isMounted && <DeviceMockups />}

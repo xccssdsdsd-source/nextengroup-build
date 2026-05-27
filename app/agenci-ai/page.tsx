@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
   description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji. Getbuild — agenci AI dla biznesu.',
+  keywords: ['agenci AI', 'chatbot AI', 'obsługa klienta AI', 'agent AI', 'sztuczna inteligencja', 'customer service bot', 'AI dla firmy'],
   alternates: {
     canonical: `${siteUrl}/agenci-ai`,
   },
@@ -18,12 +19,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${siteUrl}/agenci-ai`,
     title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
-    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji. Getbuild — agenci AI dla biznesu.',
+    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo.png`,
+        url: `${siteUrl}/logo-opt.png`,
         width: 1200,
         height: 630,
         alt: 'Agenci AI dla Firm | Getbuild',
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
     description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
-    images: [`${siteUrl}/logo.png`],
+    images: [`${siteUrl}/logo-opt.png`],
   },
 }
 

@@ -58,13 +58,14 @@ export default function StronyInternetoweDlaFirm() {
       <Nav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-      <section className="px-6 pt-28 sm:pt-32 md:pt-40 lg:pt-44 pb-20 bg-white sm:px-8 lg:pb-28">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] mb-6" style={{ fontFamily: 'var(--font-barlow)' }}>
+      <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.4), transparent 60%)' }} />
+        <div className="mx-auto max-w-3xl relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Strony internetowe dla firm B2B
           </h1>
-          <p className="text-lg leading-7 text-[#6B7280] mb-8">
-            Tworzymy strony internetowe dla firm B2B, które budują wiarygodność, porządkują ofertę i pomagają pozyskiwać realne zapytania ofertowe.
+          <p className="text-lg leading-[1.7] text-[#374151] mb-8">
+            Tworzymy strony internetowe dla firm B2B, które budują wiarygodność, porządkują ofertę i pomagają pozyskiwać realne zapytania ofertowe od potencjalnych klientów.
           </p>
         </div>
       </section>

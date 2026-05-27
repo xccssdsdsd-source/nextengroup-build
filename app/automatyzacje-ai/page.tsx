@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
   description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność. Wdrożenia automatyzacji AI dla firm — Getbuild.',
+  keywords: ['automatyzacje AI', 'automatyzacje biznesowe', 'AI dla firm', 'RPA', 'wdrożenia AI', 'procesy biznesowe', 'inteligencja sztuczna'],
   alternates: {
     canonical: `${siteUrl}/automatyzacje-ai`,
   },
@@ -18,12 +19,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${siteUrl}/automatyzacje-ai`,
     title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
-    description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność. Wdrożenia automatyzacji AI dla firm — Getbuild.',
+    description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo.png`,
+        url: `${siteUrl}/logo-opt.png`,
         width: 1200,
         height: 630,
         alt: 'Automatyzacje AI dla Firm | Getbuild',
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
     description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
-    images: [`${siteUrl}/logo.png`],
+    images: [`${siteUrl}/logo-opt.png`],
   },
 }
 

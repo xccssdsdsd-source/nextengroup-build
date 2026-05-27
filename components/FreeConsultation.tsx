@@ -91,7 +91,6 @@ function BenefitCard({ benefit, ease }: { benefit: typeof benefits[0], ease: [nu
   return (
     <motion.article
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
-      whileHover={false}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`group relative overflow-hidden rounded-2xl border bg-white p-6 transition-all duration-200 will-change-auto ${

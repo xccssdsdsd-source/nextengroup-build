@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Strony WWW dla Firm | Nowoczesne Strony Internetowe | Getbuild',
   description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO. Sprawdź ofertę Getbuild.',
+  keywords: ['strony www', 'strony internetowe', 'tworzenie stron', 'strony dla firm', 'web design', 'nowoczesne strony', 'strony responsywne', 'SEO'],
   alternates: {
     canonical: `${siteUrl}/strony-www`,
   },
@@ -18,12 +19,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${siteUrl}/strony-www`,
     title: 'Strony WWW dla Firm | Nowoczesne Strony Internetowe | Getbuild',
-    description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO. Sprawdź ofertę Getbuild.',
+    description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo.png`,
+        url: `${siteUrl}/logo-opt.png`,
         width: 1200,
         height: 630,
         alt: 'Strony WWW dla Firm | Getbuild',
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Strony WWW dla Firm | Nowoczesne Strony Internetowe | Getbuild',
     description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO.',
-    images: [`${siteUrl}/logo.png`],
+    images: [`${siteUrl}/logo-opt.png`],
   },
 }
 

@@ -63,12 +63,11 @@ export default function Testimonials() {
   )
 }
 
-function TestimonialCard({ item, ease }: { item: typeof testimonials[0], ease: [number, number, number, number] }) {
+function TestimonialCard({ item, ease }: { item: (typeof testimonials)[number], ease: [number, number, number, number] }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <motion.article
       variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
-      whileHover={false}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-200 will-change-auto ${

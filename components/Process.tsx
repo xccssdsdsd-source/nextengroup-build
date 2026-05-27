@@ -68,12 +68,11 @@ export default function Process() {
   )
 }
 
-function StepCard({ step, ease }: { step: typeof steps[0], ease: [number, number, number, number] }) {
+function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number, number, number, number] }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <motion.article
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
-      whileHover={false}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`group relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-200 will-change-auto ${

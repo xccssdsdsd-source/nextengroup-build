@@ -77,13 +77,14 @@ export default function Blog() {
     <main className="overflow-x-hidden">
       <Nav />
 
-      <section className="px-6 py-20 bg-white sm:px-8 lg:py-28">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] mb-6" style={{ fontFamily: 'var(--font-barlow)' }}>
-            Blog
+      <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.4), transparent 60%)' }} />
+        <div className="mx-auto max-w-3xl relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+            Blog Getbuild
           </h1>
-          <p className="text-lg leading-7 text-[#6B7280] mb-8">
-            Artykuły o SEO dla firm B2B, tworzeniu stron WWW, e-commerce i strategiach marketingowych. Praktyczne poradniki i wnioski z projektów.
+          <p className="text-lg leading-[1.7] text-[#374151] mb-8">
+            Artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i strategiach marketingowych. Praktyczne poradniki i wnioski z naszych projektów.
           </p>
         </div>
       </section>

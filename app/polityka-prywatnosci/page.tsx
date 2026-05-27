@@ -17,7 +17,7 @@ export default function PolitykaPrywatnosci() {
 
       <section className="px-6 py-20 bg-white sm:px-8 lg:py-28">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] mb-8" style={{ fontFamily: 'var(--font-barlow)' }}>
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
             Polityka prywatności
           </h1>
 

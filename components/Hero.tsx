@@ -85,7 +85,7 @@ export default function Hero() {
                 Budujemy Twój biznes przez
               </motion.span>
             </div>
-            <div className="relative min-h-[1.3em] overflow-hidden mt-3">
+            <div className="relative min-h-[1.1em] overflow-hidden mt-1">
               {titles.map((title, i) => (
                 <motion.span
                   key={i}
@@ -118,22 +118,22 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: easeOut }}
           >
-            <motion.a
+            <a
               href="#kontakt"
               onClick={handleContactClick}
-              whileTap={{ scale: 0.95 }}
               className="btn btn-primary inline-flex items-center justify-center px-6 py-3 sm:px-7 sm:py-4 text-sm sm:text-sm w-full sm:w-auto"
+              style={{ cursor: 'pointer' }}
             >
               Umów 15 min rozmowę
-            </motion.a>
-            <motion.a
+            </a>
+            <a
               href="#portfolio"
               onClick={handlePortfolioClick}
-              whileTap={{ scale: 0.96 }}
               className="btn btn-ghost inline-flex items-center justify-center px-6 py-3 sm:px-7 sm:py-4 text-sm sm:text-sm w-full sm:w-auto"
+              style={{ cursor: 'pointer' }}
             >
               Zobacz realizacje
-            </motion.a>
+            </a>
           </motion.div>
 
         </div>

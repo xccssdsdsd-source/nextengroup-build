@@ -4,6 +4,7 @@ const Hero = dynamic(() => import('@/components/Hero'))
 const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
+const FreeConsultation = dynamic(() => import('@/components/FreeConsultation'))
 const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
@@ -13,9 +14,10 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Nav />
       <Hero />
-<Ticker />
+      <Ticker />
       <Services />
       <Process />
+      <FreeConsultation />
       <Portfolio />
       <FAQ />
       <Contact />

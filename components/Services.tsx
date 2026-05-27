@@ -6,20 +6,7 @@ import BackgroundPathsServices from './BackgroundPathsServices'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
-const services = [
-  {
-    title: 'Strony WWW',
-    desc: 'Nowoczesne strony, które budują wiarygodność firmy i aktywnie kierują klientów do kontaktu. Każdy element dopasowany do Twoich celów biznesowych.',
-  },
-  {
-    title: 'Automatyzacje AI',
-    desc: 'Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność.',
-  },
-  {
-    title: 'Agenci AI',
-    desc: 'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
-  },
-]
+const services = []
 
 export default function Services() {
   const ref = useRef(null)

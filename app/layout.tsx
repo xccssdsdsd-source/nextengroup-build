@@ -110,7 +110,10 @@ export default function RootLayout({
           image: 'https://getbuild.pl/og-image.jpg',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną.',
           email: 'kontakt@getbuild.pl',
-          areaServed: ['Polska', 'Trójmiasto', 'Gdańsk', 'Gdynia', 'Sopot'],
+          areaServed: {
+            '@type': 'Country',
+            name: 'Polska',
+          },
           priceRange: 'od 150 zł/miesiąc',
           address: {
             '@type': 'PostalAddress',

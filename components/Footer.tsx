@@ -9,6 +9,7 @@ const footerLinks = [
 const footerLegal = [
   ['Polityka prywatności', '/polityka-prywatnosci'],
   ['Regulamin', '/regulamin'],
+  ['Wiedza o AI', '/wiedza-ai'],
   ['LinkedIn', 'https://www.linkedin.com/company/getbuild'],
 ] as const
 

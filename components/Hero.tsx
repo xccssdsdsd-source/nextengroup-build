@@ -10,11 +10,6 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'), { ssr: false })
 
 const easeOut = 'easeOut'
 const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
-const services = [
-  { title: 'Strony WWW', path: '/strony-www' },
-  { title: 'Automatyzacje AI', path: '/automatyzacje-ai' },
-  { title: 'Agenci AI', path: '/agenci-ai' },
-]
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -142,23 +137,6 @@ export default function Hero() {
               </motion.a>
             </motion.div>
 
-            {!isMobile && (
-              <motion.div
-                className="mt-8 sm:mt-10 hidden md:flex items-center justify-center border-t border-gray-100 pt-6 sm:pt-8"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
-              >
-                {services.map(({ title }, i) => (
-                  <div key={title} className="flex items-center gap-6">
-                    <div>
-                      <div className="text-xl font-black tracking-[-0.03em] text-[#0A0A0F] leading-tight" style={{ fontFamily: 'var(--font-syne)' }}>{title}</div>
-                    </div>
-                    {i < services.length - 1 && <div className="h-10 w-px bg-gray-100" />}
-                  </div>
-                ))}
-              </motion.div>
-            )}
           </div>
 
           {!isMobile && (
@@ -192,24 +170,6 @@ export default function Hero() {
         </div>
       </section>
 
-      {isMobile && (
-        <section className="bg-white px-6 py-8 border-t border-gray-100">
-          <div className="flex flex-col gap-4">
-            {services.map(({ title, path }) => (
-              <motion.a
-                key={title}
-                href={path}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: easeOut }}
-                className="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
-              >
-                <div className="text-lg font-black tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{title}</div>
-              </motion.a>
-            ))}
-          </div>
-        </section>
-      )}
     </>
   )
 }

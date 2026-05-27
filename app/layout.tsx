@@ -89,6 +89,19 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Getbuild',
+          url: 'https://getbuild.pl',
+          description: 'Nowoczesne strony WWW, automatyzacje AI i agenci AI dla polskich firm.',
+          inLanguage: 'pl',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://getbuild.pl/?q={search_term_string}',
+            'query-input': 'required name=search_term_string'
+          }
+        }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
           '@type': 'ProfessionalService',
           '@id': 'https://getbuild.pl/#organization',
           name: 'Getbuild',
@@ -96,24 +109,50 @@ export default function RootLayout({
           logo: 'https://getbuild.pl/logo.png',
           image: 'https://getbuild.pl/og-image.jpg',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną.',
+          email: 'kontakt@getbuild.pl',
+          areaServed: ['Polska', 'Trójmiasto', 'Gdańsk', 'Gdynia', 'Sopot'],
+          priceRange: 'od 150 zł/miesiąc',
           address: {
             '@type': 'PostalAddress',
             addressCountry: 'PL',
           },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Polska',
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Usługi Getbuild',
+            itemListElement: [
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Strony WWW dla firm',
+                  description: 'Nowoczesne, responsywne strony internetowe dla małych i średnich firm. Bezpłatny projekt przed wdrożeniem. Opieka 24/7.',
+                  url: 'https://getbuild.pl/strony-www'
+                }
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Automatyzacje AI',
+                  description: 'Automatyzacje procesów biznesowych dopasowane do konkretnej firmy. Analiza procesu przed wdrożeniem.',
+                  url: 'https://getbuild.pl/automatyzacje-ai'
+                }
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Agenci AI',
+                  description: 'Inteligentni agenci AI pracujący 24/7. Obsługa zapytań, kwalifikacja leadów, wsparcie decyzji.',
+                  url: 'https://getbuild.pl/agenci-ai'
+                }
+              }
+            ]
           },
-          serviceType: [
-            'Tworzenie stron WWW',
-            'Automatyzacje AI',
-            'Agenci AI',
-            'Rozwiązania IT',
-          ],
-          priceRange: '$$',
           sameAs: [
             'https://www.linkedin.com/company/getbuild',
             'https://www.instagram.com/getbuild.pl/',
+            'https://www.facebook.com/profile.php?id=61588720012257',
           ],
         }) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />

@@ -10,14 +10,17 @@ const services = [
   {
     title: 'Strony WWW dla firm',
     desc: 'Nowoczesne, responsywne strony internetowe, które generują zapytania od klientów. Projektujemy pod SEO, wdrażamy szybko i wspieramy po starcie.',
+    href: '/strony-www',
   },
   {
     title: 'Automatyzacje AI',
     desc: 'Automatyzujemy procesy biznesowe — obsługę zapytań, raporty, integrację systemów. Mniej błędów, mniej ręcznej pracy, więcej czasu dla zespołu.',
+    href: '/automatyzacje-ai',
   },
   {
     title: 'Agenci AI',
     desc: 'Inteligentni agenci pracujący 24/7. Obsługa zapytań, kwalifikacja leadów, wsparcie decyzji — dopasowani do Twojego biznesu.',
+    href: '/agenci-ai',
   },
 ]
 
@@ -80,14 +83,15 @@ export default function Services() {
   )
 }
 
-function ServiceCard({ service, ease }: { service: typeof services[0], ease: [number, number, number, number] }) {
+function ServiceCard({ service, ease }: { service: (typeof services)[number], ease: [number, number, number, number] }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <motion.article
+    <motion.a
+      href={service.href}
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-200 will-change-auto ${
+      className={`group relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-200 will-change-auto cursor-pointer ${
         isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
       }`}
     >
@@ -97,6 +101,6 @@ function ServiceCard({ service, ease }: { service: typeof services[0], ease: [nu
       <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">
         {service.desc}
       </p>
-    </motion.article>
+    </motion.a>
   )
 }

@@ -30,29 +30,22 @@ function injectGtm() {
 }
 
 export default function CookieConsent() {
-  const [consent, setConsent] = useState<boolean | null>(null)
+  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     try {
       const stored = localStorage.getItem(CONSENT_KEY)
       if (stored === 'accepted') {
-        setConsent(true)
         injectGtm()
-      } else if (stored === 'rejected') {
-        setConsent(false)
-      } else {
-        setConsent(null)
       }
-    } catch (e) {
-      setConsent(null)
-    }
+    } catch (e) {}
   }, [])
 
   function accept() {
     try {
       localStorage.setItem(CONSENT_KEY, 'accepted')
     } catch (e) {}
-    setConsent(true)
+    setDismissed(true)
     injectGtm()
   }
 
@@ -60,11 +53,10 @@ export default function CookieConsent() {
     try {
       localStorage.setItem(CONSENT_KEY, 'rejected')
     } catch (e) {}
-    setConsent(false)
+    setDismissed(true)
   }
 
-  // hide banner once user made a choice (accepted or rejected)
-  if (consent !== null) return null
+  if (dismissed) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">

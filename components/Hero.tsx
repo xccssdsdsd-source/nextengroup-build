@@ -2,7 +2,7 @@
 
 import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import BackgroundPaths from './BackgroundPaths'
 
@@ -37,16 +37,21 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.scrollY - 88
+    window.scrollTo({ top: y, behavior: 'smooth' })
+  }
+
   const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    const el = document.getElementById('kontakt')
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollToSection('kontakt')
   }
 
   const handlePortfolioClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    const el = document.getElementById('portfolio')
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollToSection('portfolio')
   }
 
   return (
@@ -75,17 +80,23 @@ export default function Hero() {
             className="font-sans tracking-[-0.03em] mx-auto text-[#0A0A0F] mb-4 sm:mb-5"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.75rem, 6.5vw, 3rem)', lineHeight: '1.2' }}
           >
-            <div className="font-semibold mb-4 sm:mb-6 leading-tight" style={{ color: '#0A0A0F', fontSize: 'clamp(2rem, 5.5vw, 2.8rem)' }}>
+            <div className="font-semibold mb-3 sm:mb-5 leading-tight" style={{ color: '#0A0A0F', fontSize: 'clamp(1.9rem, 5.5vw, 2.8rem)' }}>
               Budujemy Twój biznes przez
             </div>
-            <motion.span
-              className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: easeOut }}
-            >
-              {titles[titleNumber]}
-            </motion.span>
+            <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(2.5rem, 8vw, 4rem)' }}>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={titleNumber}
+                  className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.38, ease: easeOut }}
+                >
+                  {titles[titleNumber]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </h1>
 
           <motion.p

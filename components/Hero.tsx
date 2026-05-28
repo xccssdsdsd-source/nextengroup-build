@@ -1,8 +1,7 @@
 'use client'
 
-import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import BackgroundPaths from './BackgroundPaths'
 
@@ -37,23 +36,11 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
-  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    const el = document.getElementById('kontakt')
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const handlePortfolioClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    const el = document.getElementById('portfolio')
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
   return (
     <section
       ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white overflow-hidden pt-8 sm:pt-14 md:pt-20 lg:pt-28 pb-2 sm:pb-8 md:pb-12 lg:pb-16"
+      className="relative bg-white overflow-hidden pt-28 sm:pt-28 md:pt-28 lg:pt-32 pb-2 sm:pb-8 md:pb-12 lg:pb-16"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -75,17 +62,23 @@ export default function Hero() {
             className="font-sans tracking-[-0.03em] mx-auto text-[#0A0A0F] mb-4 sm:mb-5"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.75rem, 6.5vw, 3rem)', lineHeight: '1.2' }}
           >
-            <div className="font-semibold mb-4 sm:mb-6 leading-tight" style={{ color: '#0A0A0F', fontSize: 'clamp(2rem, 5.5vw, 2.8rem)' }}>
+            <div className="font-semibold mb-3 sm:mb-5 leading-tight" style={{ color: '#0A0A0F', fontSize: 'clamp(1.9rem, 5.5vw, 2.8rem)' }}>
               Budujemy Twój biznes przez
             </div>
-            <motion.span
-              className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: easeOut }}
-            >
-              {titles[titleNumber]}
-            </motion.span>
+            <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(2.5rem, 8vw, 4rem)' }}>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={titleNumber}
+                  className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.38, ease: easeOut }}
+                >
+                  {titles[titleNumber]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </h1>
 
           <motion.p
@@ -105,17 +98,13 @@ export default function Hero() {
           >
             <a
               href="#kontakt"
-              onClick={handleContactClick}
               className="btn btn-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
-              style={{ cursor: 'pointer' }}
             >
               Umów 15 min rozmowę
             </a>
             <a
               href="#portfolio"
-              onClick={handlePortfolioClick}
               className="btn btn-ghost inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
-              style={{ cursor: 'pointer' }}
             >
               Zobacz realizacje
             </a>

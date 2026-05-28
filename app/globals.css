@@ -58,6 +58,7 @@ select {
 .section-shell {
   position: relative;
   padding: 1.5rem 1.5rem;
+  scroll-margin-top: 90px;
 }
 
 @media (min-width: 640px) {

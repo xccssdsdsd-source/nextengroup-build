@@ -24,7 +24,7 @@ export default function TrustBar() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease }}
-          className="mb-6 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]"
+          className="mb-6 text-[15px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]"
         >
           Ostatnie realizacje:
         </motion.p>

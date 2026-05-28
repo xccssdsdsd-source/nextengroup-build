@@ -15,7 +15,7 @@ const footerLegal = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gray-950 px-6 py-14 sm:px-8 sm:py-16 border-t border-white/6">
+    <footer className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
       <div
         className="pointer-events-none absolute inset-0"
         style={{

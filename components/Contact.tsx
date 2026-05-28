@@ -71,7 +71,7 @@ function CalendlyWidget({ url }: { url: string }) {
     document.head.appendChild(script)
   }, [url])
 
-  return <div ref={containerRef} className="w-full" style={{ height: '560px' }} />
+  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(400px, 80vh, 600px)' }} />
 }
 
 export default function Contact() {
@@ -93,7 +93,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-8 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-10 lg:p-14"
         style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10)' }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />

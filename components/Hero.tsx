@@ -53,7 +53,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       suppressHydrationWarning
-      className="relative bg-white overflow-hidden pt-12 sm:pt-14 md:pt-20 lg:pt-28 pb-4 sm:pb-8 md:pb-12 lg:pb-16"
+      className="relative bg-white overflow-hidden pt-8 sm:pt-14 md:pt-20 lg:pt-28 pb-2 sm:pb-8 md:pb-12 lg:pb-16"
     >
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -106,7 +106,7 @@ export default function Hero() {
             <a
               href="#kontakt"
               onClick={handleContactClick}
-              className="btn btn-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm w-full sm:w-auto"
+              className="btn btn-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
               style={{ cursor: 'pointer' }}
             >
               Umów 15 min rozmowę
@@ -114,7 +114,7 @@ export default function Hero() {
             <a
               href="#portfolio"
               onClick={handlePortfolioClick}
-              className="btn btn-ghost inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm w-full sm:w-auto"
+              className="btn btn-ghost inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
               style={{ cursor: 'pointer' }}
             >
               Zobacz realizacje

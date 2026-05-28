@@ -114,7 +114,7 @@ export default function Portfolio() {
               className="group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden"
               style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)' }}
             >
-              <div className="p-2 pb-1.5">
+              <div className="p-3 sm:p-2 pb-2 sm:pb-1.5">
                 <div className="mb-1.5 flex items-center gap-1">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#FF5F57]" />
                   <span className="h-1.5 w-1.5 rounded-full bg-[#FEBC2E]" />
@@ -136,7 +136,7 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="px-3 pb-3 pt-1.5">
+              <div className="px-4 pb-4 pt-2.5 sm:px-3 sm:pb-3 sm:pt-1.5">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="min-w-0">
                     <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-[#2563EB] mb-0.5">{projects[currentIndex].tagline}</p>
@@ -162,7 +162,7 @@ export default function Portfolio() {
 
             <button
               onClick={prevProject}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg -ml-7 hover:border-[#2563EB] hover:text-[#2563EB] transition-all"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -ml-7"
               aria-label="Poprzednia realizacja"
             >
               <ChevronLeft size={24} strokeWidth={2} />
@@ -170,7 +170,7 @@ export default function Portfolio() {
 
             <button
               onClick={nextProject}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg -mr-7 hover:border-[#2563EB] hover:text-[#2563EB] transition-all"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -mr-7"
               aria-label="Następna realizacja"
             >
               <ChevronRight size={24} strokeWidth={2} />

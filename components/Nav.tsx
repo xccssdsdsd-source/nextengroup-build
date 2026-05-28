@@ -7,14 +7,14 @@ import { useEffect, useState, type MouseEvent } from 'react'
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 const links = [
-  ['Usługi', '#uslugi'],
+  ['Usługi', '/#uslugi'],
   ['Strony WWW', '/strony-www'],
   ['Automatyzacje AI', '/automatyzacje-ai'],
   ['Agenci AI', '/agenci-ai'],
-  ['Proces', '#proces'],
-  ['Realizacje', '#portfolio'],
-  ['FAQ', '#faq'],
-  ['Kontakt', '#kontakt'],
+  ['Proces', '/#proces'],
+  ['Realizacje', '/#portfolio'],
+  ['FAQ', '/#faq'],
+  ['Kontakt', '/#kontakt'],
 ] as const
 
 export default function Nav() {
@@ -24,8 +24,11 @@ export default function Nav() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
 
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-    event.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (el) {
+      event.preventDefault()
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
     setOpen(false)
   }
 
@@ -56,7 +59,7 @@ export default function Nav() {
           }`}
         >
           <div className="flex items-center justify-between gap-4">
-            <a href="#" className="flex min-w-0 items-center gap-3">
+            <a href="/" className="flex min-w-0 items-center gap-3">
               <img src="/logo.webp" alt="Getbuild.pl" className="h-9 w-9 flex-shrink-0 rounded-lg object-contain" />
               <div className="min-w-0">
                 <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
@@ -66,7 +69,12 @@ export default function Nav() {
 
             <div className="hidden items-center gap-8 lg:flex">
               {links.map(([label, href]) => (
-                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]">
+                <a
+                  key={href}
+                  href={href}
+                  onClick={href.startsWith('/#') ? (e) => handleAnchorClick(e, href.slice(2)) : () => setOpen(false)}
+                  className="nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]"
+                >
                   {label}
                 </a>
               ))}
@@ -74,7 +82,7 @@ export default function Nav() {
 
             <div className="flex items-center gap-3">
               <motion.a
-                href="#kontakt"
+                href="/#kontakt"
                 onClick={(e) => handleAnchorClick(e, 'kontakt')}
                 whileTap={{ scale: 0.95 }}
                 className="btn btn-primary hidden px-5 py-2.5 text-[13px] lg:inline-flex"
@@ -118,7 +126,7 @@ export default function Nav() {
                       <motion.a
                         key={href}
                         href={href}
-                        onClick={(e) => handleAnchorClick(e, href.slice(1))}
+                        onClick={href.startsWith('/#') ? (e) => handleAnchorClick(e, href.slice(2)) : () => setOpen(false)}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.22, delay: i * 0.055, ease }}
@@ -130,7 +138,7 @@ export default function Nav() {
                   </div>
                   <div className="mt-2 border-t border-[#e5e7eb] pt-2">
                     <motion.a
-                      href="#kontakt"
+                      href="/#kontakt"
                       onClick={(e) => handleAnchorClick(e, 'kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"

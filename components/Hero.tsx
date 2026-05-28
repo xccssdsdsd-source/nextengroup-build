@@ -75,7 +75,7 @@ export default function Hero() {
             className="font-sans tracking-[-0.03em] mx-auto text-[#0A0A0F] mb-4 sm:mb-5"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: '900', fontSize: 'clamp(1.75rem, 6.5vw, 3rem)', lineHeight: '1.2' }}
           >
-            <div className="text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 leading-tight" style={{ color: '#0A0A0F' }}>
+            <div className="text-base sm:text-lg md:text-xl font-semibold mb-1.5 sm:mb-2 leading-tight" style={{ color: '#0A0A0F' }}>
               Budujemy Twój biznes przez
             </div>
             <motion.span

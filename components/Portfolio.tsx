@@ -76,6 +76,7 @@ export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
   const [currentIndex, setCurrentIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
 
   const nextProject = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % projects.length)
@@ -84,6 +85,19 @@ export default function Portfolio() {
   const prevProject = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
   }, [])
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) nextProject()
+      else prevProject()
+    }
+    touchStartX.current = null
+  }
 
   return (
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden bg-white">
@@ -102,7 +116,7 @@ export default function Portfolio() {
         </motion.div>
 
         <div className="mt-8 relative">
-          <div className="relative">
+          <div className="relative" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             <motion.a
               key={currentIndex}
               href={projects[currentIndex].href}
@@ -129,9 +143,10 @@ export default function Portfolio() {
                     src={projects[currentIndex].preview}
                     alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
                     fill
-                    sizes="100vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
                     className="object-contain"
                     quality={75}
+                    priority={currentIndex === 0}
                   />
                 </div>
               </div>
@@ -177,17 +192,22 @@ export default function Portfolio() {
             </button>
           </div>
 
-          <div className="mt-6 flex justify-center items-center gap-3">
+          <div className="mt-6 flex justify-center items-center gap-1">
             {projects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className="relative h-2 rounded-full focus-visible:outline-none transition-all"
-                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
+                className="relative flex h-11 items-center justify-center px-2 focus-visible:outline-none"
                 aria-label={`Realizacja ${i + 1}`}
-              />
+              >
+                <span
+                  className="block h-2 rounded-full transition-all"
+                  style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
+                />
+              </button>
             ))}
           </div>
+          <p className="mt-2 text-center text-[11px] text-[#9CA3AF] sm:hidden">Przesuń palcem, aby zobaczyć kolejne realizacje</p>
         </div>
       </div>
     </section>

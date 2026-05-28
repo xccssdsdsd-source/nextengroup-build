@@ -71,7 +71,7 @@ function CalendlyWidget({ url }: { url: string }) {
     document.head.appendChild(script)
   }, [url])
 
-  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(400px, 80vh, 600px)' }} />
+  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(560px, 75vh, 720px)', minHeight: 560 }} />
 }
 
 export default function Contact() {
@@ -175,7 +175,7 @@ export default function Contact() {
 
           <div id="calendly-widget" className="w-full flex-1 min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white p-3 sm:p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
               {!showCalendly ? (
                 <div className="flex flex-col items-start gap-3">
                   <p className="text-[14px] text-[#0A0A0F]">Wczytaj kalendarz, aby zarezerwować termin.</p>

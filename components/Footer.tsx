@@ -1,9 +1,9 @@
 const footerLinks = [
-  ['Usługi', '#uslugi'],
-  ['Proces', '#proces'],
-  ['Realizacje', '#portfolio'],
-  ['FAQ', '#faq'],
-  ['Kontakt', '#kontakt'],
+  ['Usługi', '/#uslugi'],
+  ['Proces', '/#proces'],
+  ['Realizacje', '/#portfolio'],
+  ['FAQ', '/#faq'],
+  ['Kontakt', '/#kontakt'],
 ] as const
 
 const footerLegal = [

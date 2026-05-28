@@ -23,21 +23,17 @@ export default function Nav() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    const y = el.getBoundingClientRect().top + window.scrollY - 88
-    window.scrollTo({ top: y, behavior: 'smooth' })
-  }
-
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith('#')) {
       setOpen(false)
       return
     }
     event.preventDefault()
+    const id = href.slice(1)
     setOpen(false)
-    scrollToSection(href.slice(1))
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
   }
 
   useEffect(() => {

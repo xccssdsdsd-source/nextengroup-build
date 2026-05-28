@@ -1,6 +1,5 @@
 'use client'
 
-import type { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
@@ -36,23 +35,6 @@ export default function Hero() {
     }, 2500)
     return () => clearInterval(timer)
   }, [])
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    const y = el.getBoundingClientRect().top + window.scrollY - 88
-    window.scrollTo({ top: y, behavior: 'smooth' })
-  }
-
-  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    scrollToSection('kontakt')
-  }
-
-  const handlePortfolioClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    scrollToSection('portfolio')
-  }
 
   return (
     <section
@@ -116,17 +98,13 @@ export default function Hero() {
           >
             <a
               href="#kontakt"
-              onClick={handleContactClick}
               className="btn btn-primary inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
-              style={{ cursor: 'pointer' }}
             >
               Umów 15 min rozmowę
             </a>
             <a
               href="#portfolio"
-              onClick={handlePortfolioClick}
               className="btn btn-ghost inline-flex items-center justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-sm w-full sm:w-auto"
-              style={{ cursor: 'pointer' }}
             >
               Zobacz realizacje
             </a>

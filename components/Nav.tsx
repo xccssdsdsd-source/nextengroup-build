@@ -23,9 +23,13 @@ export default function Nav() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
 
-  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) {
+      setOpen(false)
+      return
+    }
     event.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     setOpen(false)
   }
 
@@ -47,6 +51,13 @@ export default function Nav() {
         className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[#2563EB] via-[#1d4ed8] to-[#2563EB]"
         style={{ scaleX }}
       />
+      {open && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
           className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-200 ${
@@ -66,7 +77,7 @@ export default function Nav() {
 
             <div className="hidden items-center gap-8 lg:flex">
               {links.map(([label, href]) => (
-                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]">
+                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href)} className="nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]">
                   {label}
                 </a>
               ))}
@@ -75,7 +86,7 @@ export default function Nav() {
             <div className="flex items-center gap-3">
               <motion.a
                 href="#kontakt"
-                onClick={(e) => handleAnchorClick(e, 'kontakt')}
+                onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
                 className="btn btn-primary hidden px-5 py-2.5 text-[13px] sm:inline-flex"
               >
@@ -118,7 +129,7 @@ export default function Nav() {
                       <motion.a
                         key={href}
                         href={href}
-                        onClick={(e) => handleAnchorClick(e, href.slice(1))}
+                        onClick={(e) => handleAnchorClick(e, href)}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.22, delay: i * 0.055, ease }}
@@ -131,7 +142,7 @@ export default function Nav() {
                   <div className="mt-2 border-t border-[#e5e7eb] pt-2">
                     <motion.a
                       href="#kontakt"
-                      onClick={(e) => handleAnchorClick(e, 'kontakt')}
+                      onClick={(e) => handleAnchorClick(e, '#kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"
                     >

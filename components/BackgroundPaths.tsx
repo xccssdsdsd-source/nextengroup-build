@@ -9,7 +9,7 @@ const paths = [
 
 export default function BackgroundPaths() {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       <svg
         viewBox="0 0 1200 600"
         preserveAspectRatio="xMidYMid slice"

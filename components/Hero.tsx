@@ -82,7 +82,7 @@ export default function Hero() {
               className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: easeOut }}
+              transition={{ duration: 0.8, ease: easeOut }}
             >
               {titles[titleNumber]}
             </motion.span>

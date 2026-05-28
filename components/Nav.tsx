@@ -44,29 +44,33 @@ export default function Nav() {
   return (
     <>
       <motion.div
-        className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[#2563EB] via-[#1d4ed8] to-[#2563EB]"
+        className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-dark)] to-[var(--accent)]"
         style={{ scaleX }}
       />
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-200 ${
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-280 ${
             scrolled
-              ? 'border-[#e5e7eb] bg-white/85 shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)]'
-              : 'border-transparent bg-white/30 shadow-none'
+              ? 'shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_20px_rgba(15,23,42,0.08)]'
+              : 'border-transparent shadow-none'
           }`}
+          style={{
+            borderColor: scrolled ? 'var(--border)' : 'transparent',
+            background: scrolled ? 'rgba(255, 255, 255, 0.88)' : 'rgba(255, 255, 255, 0.25)'
+          }}
         >
           <div className="flex items-center justify-between gap-4">
             <a href="#" className="flex min-w-0 items-center gap-3">
               <img src="/logo.webp" alt="Getbuild.pl" className="h-9 w-9 flex-shrink-0 rounded-lg object-contain" />
               <div className="min-w-0">
-                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
-                <div className="truncate text-[10px] uppercase tracking-[0.18em] text-[#6b7280]">Strony WWW & Automatyzacje</div>
+                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
+                <div className="truncate text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">Strony WWW & Automatyzacje</div>
               </div>
             </a>
 
             <div className="hidden items-center gap-8 lg:flex">
               {links.map(([label, href]) => (
-                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]">
+                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[var(--text-secondary)] transition-colors duration-240">
                   {label}
                 </a>
               ))}

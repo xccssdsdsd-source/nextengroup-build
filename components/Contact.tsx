@@ -87,17 +87,21 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontakt" ref={ref} className="section-shell relative bg-white">
+    <section id="kontakt" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
       <BackgroundPathsContact />
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-10 lg:p-14"
-        style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10)' }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border p-6 sm:p-10 lg:p-14"
+        style={{
+          background: 'var(--bg-card)',
+          borderColor: 'var(--border)',
+          boxShadow: '0 1px 3px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(59, 130, 246, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+        }}
       >
-        <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[#2563EB]/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[var(--accent)]/15 to-transparent" />
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
           <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">

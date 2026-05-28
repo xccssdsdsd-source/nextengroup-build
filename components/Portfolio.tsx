@@ -59,15 +59,15 @@ function ScoreRing({ value, label }: LighthouseScore) {
   const r = 20
   const circ = 2 * Math.PI * r
   const offset = circ * (1 - value / 100)
-  const color = value >= 90 ? '#0cce6b' : value >= 50 ? '#ffa400' : '#ff4e42'
+  const color = value >= 90 ? '#10b981' : value >= 50 ? '#f59e0b' : '#ef4444'
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-1.5">
       <svg width="52" height="52" viewBox="0 0 52 52">
-        <circle cx="26" cy="26" r={r} fill="none" stroke="#e5e7eb" strokeWidth="3.5" />
+        <circle cx="26" cy="26" r={r} fill="none" stroke="var(--border)" strokeWidth="3.5" />
         <circle cx="26" cy="26" r={r} fill="none" stroke={color} strokeWidth="3.5" strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" transform="rotate(-90 26 26)" />
         <text x="26" y="26" dominantBaseline="middle" textAnchor="middle" fontSize="11" fontWeight="700" fill={color}>{value}</text>
       </svg>
-      <span className="text-[10px] text-[#9CA3AF] text-center leading-tight max-w-[52px]">{label}</span>
+      <span className="text-[10px] text-[var(--muted)] text-center leading-tight max-w-[52px]">{label}</span>
     </div>
   )
 }
@@ -86,9 +86,9 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden bg-white">
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ background: 'var(--bg)' }}>
       <BackgroundPathsPortfolio />
-      <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(0,85,255,0.05) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(0,85,255,0.04) 0%, transparent 60%)' }} />
+      <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div

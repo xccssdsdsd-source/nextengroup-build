@@ -59,13 +59,14 @@ export default function FAQ() {
     <section
       id="faq"
       ref={ref}
-      className="section-shell relative bg-white"
+      className="section-shell relative"
+      style={{ background: 'var(--bg)' }}
     >
       <BackgroundPathsFAQ />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.025) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
       />
@@ -93,26 +94,27 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.08, ease }}
-                className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-200 ${
+                className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-280 ${
                   isOpen
-                    ? 'border-l-[#2563EB] bg-[#f5f7fa] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.08)]'
-                    : 'border-l-transparent bg-white shadow-[0 1px 2px rgba(0,0,0,0.06)]'
+                    ? 'border-l-[var(--accent)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_16px_rgba(59,130,246,0.08)]'
+                    : 'border-l-transparent shadow-[0_1px_3px_rgba(15,23,42,0.06)]'
                 }`}
+                style={{ background: isOpen ? 'var(--bg-soft)' : 'var(--bg-card)' }}
               >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left sm:px-5"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                 >
-                  <span className="text-[15px] font-medium leading-snug text-[#0A0A0F]" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+                  <span className="text-[15px] font-medium leading-snug text-[var(--text)]" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                     {faq.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.24, ease }}
-                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isOpen ? 'bg-[#2563EB] text-white' : 'bg-white text-[#9CA3AF] border border-[#e5e7eb]'}`}
+                    transition={{ duration: 0.28, ease }}
+                    className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-all duration-280 ${isOpen ? 'bg-[var(--accent)] text-white' : 'bg-[var(--bg-card)] text-[var(--muted)] border border-[var(--border)]'}`}
                   >
-                    <Plus size={15} strokeWidth={2.2} />
+                    <Plus size={16} strokeWidth={2} />
                   </motion.span>
                 </button>
 
@@ -124,8 +126,8 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <div className="mx-4 mb-3 h-px bg-[#e5e7eb] sm:mx-5" />
-                      <p className="px-4 pb-4 text-[14px] leading-[1.6] text-[#6b7280] sm:px-5 sm:pb-5">
+                      <div className="mx-5 mb-4 h-px bg-[var(--border)]" />
+                      <p className="px-5 pb-5 text-[14.5px] leading-[1.65] text-[var(--text-secondary)]">
                         {faq.a}
                       </p>
                     </motion.div>

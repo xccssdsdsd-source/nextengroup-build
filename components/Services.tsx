@@ -34,11 +34,11 @@ export default function Services() {
   }
 
   return (
-    <section id="uslugi" ref={ref} className="section-shell relative bg-white">
+    <section id="uslugi" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
       <BackgroundPathsServices />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
       />
 
       <div className="relative mx-auto max-w-7xl">
@@ -73,7 +73,7 @@ export default function Services() {
           <a
             href="#kontakt"
             onClick={handleContactClick}
-            className="inline-flex items-center gap-3 rounded-xl bg-[#2563EB] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0 8px 24px rgba(37,99,235,0.20)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:translate-y-0"
+            className="btn btn-primary"
           >
             Umów spotkanie
           </a>
@@ -91,14 +91,15 @@ function ServiceCard({ service, ease }: { service: (typeof services)[number], ea
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-5 sm:p-7 transition-all duration-200 will-change-auto cursor-pointer ${
-        isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
+      className={`group relative overflow-hidden rounded-2xl border p-6 sm:p-8 transition-all duration-280 will-change-auto cursor-pointer ${
+        isHovered ? 'border-[rgba(59,130,246,0.4)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_16px_32px_rgba(59,130,246,0.10)]' : 'border-[var(--border)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_4px_12px_rgba(15,23,42,0.04)]'
       }`}
+      style={{ background: 'var(--bg-card)' }}
     >
-      <h3 className="text-[1.1rem] font-bold tracking-[-0.03em] text-[#0A0A0F] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="text-[1.15rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {service.title}
       </h3>
-      <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280]">
+      <p className="mt-4 text-[15px] leading-[1.7] text-[var(--text-secondary)]">
         {service.desc}
       </p>
     </motion.a>

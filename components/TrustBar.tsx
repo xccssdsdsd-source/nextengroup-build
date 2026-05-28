@@ -18,7 +18,7 @@ export default function TrustBar() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section ref={ref} className="bg-white px-5 pb-14 sm:px-8">
+    <section ref={ref} className="bg-white px-5 pb-8 sm:pb-14 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.p
           initial={{ opacity: 0, y: 12 }}

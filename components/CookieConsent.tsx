@@ -31,30 +31,20 @@ function injectGtm() {
 
 export default function CookieConsent() {
   const [mounted, setMounted] = useState(false)
-  const [consent, setConsent] = useState<boolean | null>(null)
+  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     setMounted(true)
     try {
-      const stored = localStorage.getItem(CONSENT_KEY)
-      if (stored === 'accepted') {
-        setConsent(true)
-        injectGtm()
-      } else if (stored === 'rejected') {
-        setConsent(false)
-      } else {
-        setConsent(null)
-      }
-    } catch (e) {
-      setConsent(null)
-    }
+      if (localStorage.getItem(CONSENT_KEY) === 'accepted') injectGtm()
+    } catch (e) {}
   }, [])
 
   function accept() {
     try {
       localStorage.setItem(CONSENT_KEY, 'accepted')
     } catch (e) {}
-    setConsent(true)
+    setDismissed(true)
     injectGtm()
   }
 
@@ -62,10 +52,10 @@ export default function CookieConsent() {
     try {
       localStorage.setItem(CONSENT_KEY, 'rejected')
     } catch (e) {}
-    setConsent(false)
+    setDismissed(true)
   }
 
-  if (!mounted || consent !== null) return null
+  if (!mounted || dismissed) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">

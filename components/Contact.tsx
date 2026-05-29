@@ -54,10 +54,13 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
+  const [showCalendly, setShowCalendly] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
+    if (!showCalendly) return
+
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
@@ -76,7 +79,7 @@ export default function Contact() {
         document.body.removeChild(script)
       }
     }
-  }, [])
+  }, [showCalendly])
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
@@ -207,7 +210,19 @@ export default function Contact() {
 
             <div className="flex flex-col gap-8">
               <div className="flex justify-center">
-                <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[#e5e7eb]" style={{ minHeight: '500px' }} />
+                {!showCalendly ? (
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.55, delay: 0.2, ease }}
+                    onClick={() => setShowCalendly(true)}
+                    className="px-8 py-4 rounded-2xl bg-[#2563EB] text-white font-semibold text-[15px] hover:bg-[#1d4ed8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all"
+                  >
+                    Umów spotkanie w dogodnym dla Ciebie czasie
+                  </motion.button>
+                ) : (
+                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[#e5e7eb]" style={{ minHeight: '500px' }} />
+                )}
               </div>
 
               <div className="flex flex-col items-center">

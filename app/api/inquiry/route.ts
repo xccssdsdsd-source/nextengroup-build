@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const runtime = 'edge'
+
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK_URL
 
 export async function POST(req: NextRequest) {

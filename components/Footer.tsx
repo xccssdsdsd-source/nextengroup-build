@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 const footerLinks = [
   ['Usługi', '#uslugi'],
@@ -21,11 +20,8 @@ const footerLegal = [
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Footer() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
-    <footer ref={ref} className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
+    <footer className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -37,7 +33,7 @@ export default function Footer() {
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
           <div className="flex items-center gap-3 mb-6">
@@ -59,7 +55,7 @@ export default function Footer() {
         <motion.div
           className="lg:col-span-2"
           initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12, ease }}
         >
           <div className="grid gap-8 sm:grid-cols-2">
@@ -71,7 +67,7 @@ export default function Footer() {
                     key={href}
                     href={href}
                     initial={{ opacity: 0, x: -8 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.18 + i * 0.06, ease }}
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
@@ -91,7 +87,7 @@ export default function Footer() {
                     target={label === 'LinkedIn' ? '_blank' : undefined}
                     rel={label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
                     initial={{ opacity: 0, x: -8 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
@@ -107,7 +103,7 @@ export default function Footer() {
       <motion.div
         className="relative mx-auto max-w-7xl border-t border-white/10 mt-10 pt-6"
         initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease }}
       >
         <p className="text-[12px] text-white/25">

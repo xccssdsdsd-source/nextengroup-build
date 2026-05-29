@@ -1,10 +1,10 @@
 'use client'
 
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -39,10 +39,13 @@ const mobileLinkClass = 'rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280]
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [ctaOpen, setCtaOpen] = useState(false)
+  const ctaRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
   const pathname = usePathname()
   const isHome = pathname === '/'
+  const ctaOptions = ['Umów spotkanie', 'Kontakt', 'Pomoc w procesach']
 
   const scrollToSection = (id: string) => {
     setOpen(false)
@@ -77,6 +80,18 @@ export default function Nav() {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+  useEffect(() => {
+    const handleClickOutside = (e: Event) => {
+      if (ctaRef.current && !ctaRef.current.contains(e.target as Node)) {
+        setCtaOpen(false)
+      }
+    }
+    if (ctaOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [ctaOpen])
 
   return (
     <>
@@ -128,14 +143,44 @@ export default function Nav() {
             </div>
 
             <div className="flex items-center gap-3">
-              <motion.a
-                href={anchorHref('#kontakt')}
-                onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex"
-              >
-                Umów spotkanie
-              </motion.a>
+              <div className="relative" ref={ctaRef}>
+                <motion.button
+                  onClick={() => setCtaOpen(!ctaOpen)}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5"
+                >
+                  Umów spotkanie
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${ctaOpen ? 'rotate-180' : ''}`} />
+                </motion.button>
+                <AnimatePresence>
+                  {ctaOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl border border-[#e5e7eb] shadow-lg overflow-hidden z-50"
+                    >
+                      {ctaOptions.map((option, i) => (
+                        <motion.a
+                          key={option}
+                          href={anchorHref('#kontakt')}
+                          onClick={(e) => {
+                            handleAnchorClick(e, '#kontakt')
+                            setCtaOpen(false)
+                          }}
+                          className="block px-4 py-3 text-sm text-[#0A0A0F] hover:bg-[#f5f7fa] transition-colors border-b border-[#e5e7eb] last:border-b-0"
+                          initial={{ opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.05, duration: 0.15 }}
+                        >
+                          {option}
+                        </motion.a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <button
                 type="button"
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}

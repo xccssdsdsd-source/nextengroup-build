@@ -125,6 +125,16 @@ export default function Hero() {
             Nowoczesne strony, automatyzacje procesów i agenci AI — rozwiązania IT skrojone pod Twój biznes.
           </motion.p>
 
+          {/* Value promise */}
+          <motion.p
+            className="mt-4 sm:mt-5 max-w-lg mx-auto text-sm text-[#2563EB] font-medium px-2"
+            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.38, ease: easeOut }}
+          >
+            Zobacz projekt za darmo, płacisz dopiero gdy działa.
+          </motion.p>
+
           {/* CTA buttons */}
           <motion.div
             className="mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"

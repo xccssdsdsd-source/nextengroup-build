@@ -180,6 +180,9 @@ export default function FreeConsultation() {
                 >
                   Umów bezpłatną konsultację
                 </button>
+                <p className="text-center text-[13px] text-[#6b7280] mt-4">
+                  Całe ryzyko jest po naszej stronie, nie po Twojej.
+                </p>
               </form>
             )}
           </div>

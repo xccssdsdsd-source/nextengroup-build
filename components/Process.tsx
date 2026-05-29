@@ -10,22 +10,22 @@ const steps = [
   {
     num: '01',
     title: 'Rozmowa i dostosowanie',
-    desc: 'Poznajemy Twoją markę, cele biznesowe i konkretne potrzeby. Razem definiujemy kierunek projektu, docelową grupę odbiorcy oraz mierniki sukcesu dostosowane do Twojego biznesu. To jest fundament całego procesu.',
+    desc: 'Poznajemy Twoją markę, cele biznesowe i konkretne potrzeby. Razem definiujemy kierunek projektu, docelową grupę odbiorcy oraz mierniki sukcesu dostosowane do Twojego biznesu. To jest fundament całego procesu. Dzięki temu wiemy dokładnie co budować.',
   },
   {
     num: '02',
     title: 'Projekt i strategia',
-    desc: 'Tworzymy nowoczesny design interfejsu oraz strategię konwersji opartą na dobrych praktykach UX/UI. Każdy element zaplanowany z myślą o wyniku biznesowym i doświadczeniu użytkownika.',
+    desc: 'Projektujemy stronę tak żeby klienci rzeczywiście podejmowali działania. Każdy przycisk, każdy tekst, każde zdjęcie ma być na miejscu. Działa to.',
   },
   {
     num: '03',
     title: 'Wdrożenie',
-    desc: 'Budujemy responsywną stronę na najnowszych technologiach, optymalizujemy SEO, integrujemy niezbędne narzędzia i systemy. Gotowo, bezpiecznie i z pełną dokumentacją.',
+    desc: 'Budujemy stronę szybką, na każdym urządzeniu, i wszystko ustawiamy żeby znalazł Cię Google. Powiązujemy to ze swoimi narzędziami. Gotowo, bezpiecznie i z pełną dokumentacją.',
   },
   {
     num: '04',
     title: 'Opieka i wsparcie',
-    desc: 'Wspieramy Cię po starcie projektu. Regularne aktualizacje, poprawki bezpieczeństwa i ciągłe ulepszenia oparte na analizie danych użytkowników.',
+    desc: 'Wspieramy Cię po starcie projektu. Regularne aktualizacje, poprawki bezpieczeństwa i ciągłe ulepszenia oparte na tym jak rzeczywiście działa Twój biznes.',
   },
 ] as const
 

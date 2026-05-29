@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import BackgroundPathsFAQ from './BackgroundPathsFAQ'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const faqs = [
   {
@@ -89,11 +89,11 @@ export default function FAQ() {
             return (
               <motion.div
                 key={faq.q}
-                layout
+                layout="position"
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.08, ease }}
-                className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-200 ${
+                transition={{ duration: 0.5, delay: index * 0.06, ease }}
+                className={`overflow-hidden rounded-2xl border-l-4 transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#2563EB] bg-[#f5f7fa] shadow-[0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.08)]'
                     : 'border-l-transparent bg-white shadow-[0 1px 2px rgba(0,0,0,0.06)]'

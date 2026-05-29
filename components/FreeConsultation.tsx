@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const benefits = [
   {
@@ -93,7 +93,7 @@ function BenefitCard({ benefit, ease }: { benefit: typeof benefits[0], ease: [nu
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-4 sm:p-6 transition-all duration-200 will-change-auto ${
+      className={`group relative overflow-hidden rounded-2xl border bg-white p-4 sm:p-6 transition-[border-color,box-shadow] duration-200 ${
         isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
       }`}
     >

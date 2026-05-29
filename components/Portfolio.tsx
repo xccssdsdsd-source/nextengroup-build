@@ -6,7 +6,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback } from 'react'
 import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const slideVariants = {
   enter: (dir: number) => ({ opacity: 0, x: dir * 60 }),
@@ -147,6 +147,7 @@ export default function Portfolio() {
           <div className="relative">
             <div
               className="overflow-hidden rounded-[12px]"
+              style={{ touchAction: 'pan-y' }}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}

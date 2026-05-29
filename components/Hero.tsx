@@ -36,9 +36,7 @@ export default function Hero() {
   }, [isMounted])
 
   const scrollToSection = (id: string) => {
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 50)
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const handleAnchorClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {

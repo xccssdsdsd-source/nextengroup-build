@@ -136,7 +136,7 @@ export default function Contact() {
                 Umów bezpłatną konsultację
               </h2>
               <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
-                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną 15-minutową rozmowę i sprawdź, jak rozwiązania IT oraz AI mogą rzeczywiście wspomóc Twój biznes.
+                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź jaka ścieżka będzie dla Ciebie najlepsza.
               </p>
             </div>
 

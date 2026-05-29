@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
+import Link from 'next/link'
 const CONSENT_KEY = 'getbuild_cookie_consent_v1'
 const GTM_ID = 'GTM-KVGVGL8M'
 
@@ -30,9 +30,11 @@ function injectGtm() {
 }
 
 export default function CookieConsent() {
+  const [mounted, setMounted] = useState(false)
   const [consent, setConsent] = useState<boolean | null>(null)
 
   useEffect(() => {
+    setMounted(true)
     try {
       const stored = localStorage.getItem(CONSENT_KEY)
       if (stored === 'accepted') {
@@ -63,7 +65,7 @@ export default function CookieConsent() {
     setConsent(false)
   }
 
-  // hide banner once user made a choice (accepted or rejected)
+  if (!mounted) return null
   if (consent !== null) return null
 
   return (
@@ -75,7 +77,7 @@ export default function CookieConsent() {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 whitespace-nowrap">
           <button onClick={reject} className="btn btn-ghost text-sm">Odrzuć</button>
           <button onClick={accept} className="btn btn-primary text-sm">Akceptuję</button>
-          <a href="/polityka-prywatnosci" className="text-xs sm:text-sm text-gray-600 hover:text-gray-900 underline text-center sm:text-left">Polityka prywatności</a>
+          <Link href="/polityka-prywatnosci" className="text-xs sm:text-sm text-gray-600 hover:text-gray-900 underline text-center sm:text-left">Polityka prywatności</Link>
         </div>
       </div>
     </div>

@@ -115,7 +115,7 @@ export default function Nav() {
                 href="#kontakt"
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary hidden px-5 py-2.5 text-[13px] sm:inline-flex"
+                className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex"
               >
                 Umów spotkanie
               </motion.a>

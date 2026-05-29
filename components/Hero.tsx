@@ -34,11 +34,12 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
+    if (!isMounted || isMobile) return
     const timer = setInterval(() => {
       setTitleNumber(prev => (prev + 1) % titles.length)
     }, 2500)
     return () => clearInterval(timer)
-  }, [])
+  }, [isMobile, isMounted])
 
   const scrollToSection = (id: string) => {
     setTimeout(() => {
@@ -73,7 +74,7 @@ export default function Hero() {
         {/* Availability badge */}
         <motion.div
           className="flex justify-center mb-5 sm:mb-7"
-          initial={{ opacity: 0, y: -10 }}
+          initial={isMobile || !isMounted ? false : { opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: easeOut }}
         >
@@ -103,25 +104,31 @@ export default function Hero() {
           >
             <span className="block mb-2 sm:mb-3">Budujemy Twój biznes przez</span>
             <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(3rem, 9vw, 5rem)' }}>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={titleNumber}
-                  className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 22 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -22 }}
-                  transition={{ duration: 0.38, ease: easeOut }}
-                >
-                  {titles[titleNumber]}
-                </motion.span>
-              </AnimatePresence>
+              {isMobile || !isMounted ? (
+                <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
+                  {titles[0]}
+                </span>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={titleNumber}
+                    className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                    initial={{ opacity: 0, y: 22 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -22 }}
+                    transition={{ duration: 0.38, ease: easeOut }}
+                  >
+                    {titles[titleNumber]}
+                  </motion.span>
+                </AnimatePresence>
+              )}
             </span>
           </h1>
 
           {/* Description */}
           <motion.p
             className="mt-0 sm:mt-2 max-w-lg mx-auto text-sm sm:text-base leading-relaxed text-[#6B7280] px-2"
-            initial={{ opacity: 0, y: 8 }}
+            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
           >
@@ -131,7 +138,7 @@ export default function Hero() {
           {/* CTA buttons */}
           <motion.div
             className="mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
-            initial={{ opacity: 0, y: 8 }}
+            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.42, ease: easeOut }}
           >
@@ -154,7 +161,7 @@ export default function Hero() {
           {/* Trust stats */}
           <motion.div
             className="mt-10 sm:mt-12 flex justify-center"
-            initial={{ opacity: 0 }}
+            initial={isMobile || !isMounted ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.58, ease: easeOut }}
           >
@@ -178,7 +185,7 @@ export default function Hero() {
         <motion.div
           className="mt-12 sm:mt-14 flex justify-center pb-0"
           style={!isMobile ? { perspective: '1400px' } : {}}
-          initial={{ opacity: 0, y: 24 }}
+          initial={isMobile || !isMounted ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.68, ease: easeOut }}
         >

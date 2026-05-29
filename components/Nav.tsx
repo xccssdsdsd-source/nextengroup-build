@@ -45,7 +45,11 @@ export default function Nav() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const ctaOptions = ['Umów spotkanie', 'Kontakt', 'Pomoc w procesach']
+  const ctaOptions = [
+  { label: 'Umów spotkanie', href: '#kontakt' },
+  { label: 'Kontakt', href: '#kontakt' },
+  { label: 'Pomoc w procesach', href: '#proces' }
+]
 
   const scrollToSection = (id: string) => {
     setOpen(false)
@@ -163,10 +167,10 @@ export default function Nav() {
                     >
                       {ctaOptions.map((option, i) => (
                         <motion.a
-                          key={option}
-                          href={anchorHref('#kontakt')}
+                          key={option.href}
+                          href={anchorHref(option.href)}
                           onClick={(e) => {
-                            handleAnchorClick(e, '#kontakt')
+                            handleAnchorClick(e, option.href)
                             setCtaOpen(false)
                           }}
                           className="block px-4 py-3 text-sm text-[#0A0A0F] hover:bg-[#f5f7fa] transition-colors border-b border-[#e5e7eb] last:border-b-0"
@@ -174,7 +178,7 @@ export default function Nav() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.05, duration: 0.15 }}
                         >
-                          {option}
+                          {option.label}
                         </motion.a>
                       ))}
                     </motion.div>

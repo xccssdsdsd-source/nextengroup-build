@@ -1,0 +1,22 @@
+{
+  "name": "Getbuild - Strony WWW, Automatyzacje AI, Agenci AI",
+  "short_name": "Getbuild",
+  "description": "Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący 24/7.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020810",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "689x689",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

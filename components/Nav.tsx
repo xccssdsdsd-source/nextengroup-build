@@ -80,10 +80,10 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-200 ${
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-all duration-200 ${
             scrolled
-              ? 'border-[#e5e7eb] bg-white/85 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)]'
-              : 'border-transparent bg-white/30 shadow-none'
+              ? 'border-[#e5e7eb] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)]'
+              : 'border-transparent bg-white shadow-none'
           }`}
         >
           <div className="flex items-center justify-between gap-4">

@@ -10,12 +10,6 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 const easeOut = 'easeOut'
 const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
 
-const stats = [
-  { value: '40+', label: 'projektów' },
-  { value: '5 ★', label: 'opinie Google' },
-  { value: '100%', label: 'zadowolenia' },
-]
-
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -70,25 +64,6 @@ export default function Hero() {
       <BackgroundPaths />
 
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
-
-        {/* Availability badge */}
-        <motion.div
-          className="flex justify-center mb-5 sm:mb-7"
-          initial={isMobile || !isMounted ? false : { opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: easeOut }}
-        >
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-semibold text-blue-600"
-            style={{ fontFamily: 'var(--font-syne)', letterSpacing: '0.04em' }}
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
-            </span>
-            Przyjmujemy nowe projekty na 2025
-          </div>
-        </motion.div>
 
         {/* Headline */}
         <div className="w-full text-center">
@@ -156,28 +131,6 @@ export default function Hero() {
             >
               Zobacz realizacje
             </a>
-          </motion.div>
-
-          {/* Trust stats */}
-          <motion.div
-            className="mt-10 sm:mt-12 flex justify-center"
-            initial={isMobile || !isMounted ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.58, ease: easeOut }}
-          >
-            <div className="inline-flex items-center divide-x divide-[#E5E7EB] rounded-2xl border border-[#E5E7EB] bg-white/80 backdrop-blur-sm px-2 py-2 shadow-sm">
-              {stats.map(({ value, label }) => (
-                <div key={label} className="flex flex-col items-center px-5 sm:px-7 py-1">
-                  <span
-                    className="text-base sm:text-lg font-bold text-[#0A0A0F]"
-                    style={{ fontFamily: 'var(--font-syne)' }}
-                  >
-                    {value}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-[#9CA3AF] mt-0.5 whitespace-nowrap">{label}</span>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
 

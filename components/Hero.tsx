@@ -115,7 +115,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38, ease: easeOut }}
           >
-            Zobacz projekt za darmo, płacisz dopiero gdy działa.
+            Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
           </motion.p>
 
           {/* CTA buttons */}

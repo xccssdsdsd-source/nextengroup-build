@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState, type MouseEvent } from 'react'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const anchorLinks = [
   ['Usługi', '#uslugi'],
@@ -39,7 +39,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
 
   const scrollToSection = (id: string) => {
     setOpen(false)
@@ -80,9 +80,9 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-all duration-200 ${
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300 ${
             scrolled
-              ? 'border-[#e5e7eb] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)]'
+              ? 'border-[#e5e7eb] bg-white/95 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md'
               : 'border-transparent bg-white shadow-none'
           }`}
         >

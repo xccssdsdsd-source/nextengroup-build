@@ -4,18 +4,26 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import BackgroundPathsContact from './BackgroundPathsContact'
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string }) => void
+    }
+  }
+}
+
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
+const calendlyUrl = 'https://calendly.com/getbuild'
 
 const socials = [
   {
     label: 'Instagram',
-    fullName: 'Instagram',
     href: 'https://www.instagram.com/getbuild.pl/',
     icon: (
-      <svg width="56" height="56" viewBox="0 0 48 48" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
         <defs>
-          <radialGradient id="ig-c" cx="30%" cy="107%" r="130%">
+          <radialGradient id="ig-c2" cx="30%" cy="107%" r="130%">
             <stop offset="0%" stopColor="#fdf497" />
             <stop offset="5%" stopColor="#fdf497" />
             <stop offset="45%" stopColor="#fd5949" />
@@ -23,7 +31,7 @@ const socials = [
             <stop offset="90%" stopColor="#285AEB" />
           </radialGradient>
         </defs>
-        <rect width="48" height="48" rx="12" fill="url(#ig-c)" />
+        <rect width="48" height="48" rx="12" fill="url(#ig-c2)" />
         <rect x="13" y="13" width="22" height="22" rx="6" fill="none" stroke="white" strokeWidth="2.5" />
         <circle cx="24" cy="24" r="6" fill="none" stroke="white" strokeWidth="2.5" />
         <circle cx="31.5" cy="16.5" r="1.5" fill="white" />
@@ -32,10 +40,9 @@ const socials = [
   },
   {
     label: 'Facebook',
-    fullName: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
     icon: (
-      <svg width="56" height="56" viewBox="0 0 48 48" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
         <rect width="48" height="48" rx="10" fill="#1877F2" />
         <path fill="white" d="M32 24h-5v-3c0-1.4.3-2 2.2-2H32v-5h-4c-5 0-7 3-7 7v3h-4v5h4v14h5V29h4.5l.5-5z" />
       </svg>
@@ -43,19 +50,53 @@ const socials = [
   },
 ]
 
-const consultationTopics = [
-  { value: 'strony-www', label: 'Strony WWW dla firm' },
-  { value: 'automatyzacje-ai', label: 'Automatyzacje AI' },
-  { value: 'agenci-ai', label: 'Agenci AI' },
-  { value: 'inne', label: 'Inne' },
+const contactTopics = [
+  { value: 'strony-www', label: 'Strony WWW', icon: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  )},
+  { value: 'automatyzacje-ai', label: 'Automatyzacje AI', icon: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  )},
+  { value: 'agenci-ai', label: 'Agenci AI', icon: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/>
+      <path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/>
+    </svg>
+  )},
+  { value: 'inne', label: 'Inne', icon: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  )},
 ]
 
 export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const [copied, setCopied] = useState(false)
-  const [formData, setFormData] = useState({ topic: '', name: '', email: '', phone: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [topic, setTopic] = useState('')
+  const [name, setName] = useState('')
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const link = document.createElement('link')
+    link.href = 'https://assets.calendly.com/assets/external/widget.css'
+    link.rel = 'stylesheet'
+    document.head.appendChild(link)
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.head.appendChild(script)
+    return () => {
+      if (document.head.contains(link)) document.head.removeChild(link)
+      if (document.head.contains(script)) document.head.removeChild(script)
+    }
+  }, [])
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
@@ -63,26 +104,21 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  const openCalendly = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (typeof window !== 'undefined' && window.Calendly) {
+      window.Calendly.initPopupWidget({ url: calendlyUrl })
+    } else {
+      window.open(calendlyUrl, '_blank', 'noopener,noreferrer')
+    }
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    try {
-      const response = await fetch('/api/consultation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-      if (response.ok) {
-        setSubmitted(true)
-        setFormData({ topic: '', name: '', email: '', phone: '' })
-        setTimeout(() => setSubmitted(false), 4000)
-      }
-    } catch (error) {
-      console.error('Form submission failed:', error)
-    }
+    const topicLabel = contactTopics.find(t => t.value === topic)?.label ?? topic
+    const subject = encodeURIComponent(`Zapytanie: ${topicLabel}`)
+    const body = encodeURIComponent(`Imię: ${name}\nTemat: ${topicLabel}\n\nWiadomość:\n${message}`)
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
   }
 
   return (
@@ -98,166 +134,227 @@ export default function Contact() {
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[var(--accent)]/15 to-transparent" />
 
-        <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
-          <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
-            <div>
-              <span className="section-kicker">Kontakt</span>
-              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
-                Umów bezpłatną konsultację
-              </h2>
-              <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
-                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną 15-minutową rozmowę i sprawdź, jak rozwiązania IT oraz AI mogą rzeczywiście wspomóc Twój biznes.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-4">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Email</p>
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.55, delay: 0.15, ease }}
-                  className="flex gap-2"
-                >
-                  <a
-                    href={`mailto:${contactEmail}`}
-                    className="flex-1 px-4 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-between"
-                  >
-                    <span className="text-[13px] font-semibold text-[#0A0A0F] break-all">{contactEmail}</span>
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    className="px-3 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
-                    title={copied ? 'Skopiowane!' : 'Skopiuj email'}
-                  >
-                    {copied ? (
-                      <span className="text-[12px] font-semibold text-[#2563EB]">Skopiowane!</span>
-                    ) : (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#0A0A0F]">
-                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                      </svg>
-                    )}
-                  </button>
-                </motion.div>
-              </div>
-
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Media społecznościowe</p>
-                <div className="flex gap-3">
-                  {socials.map((s, i) => (
-                    <motion.a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: 0.2 + i * 0.1, ease }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center justify-center rounded-xl hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all"
-                      title={s.fullName}
-                    >
-                      {s.icon}
-                    </motion.a>
-                  ))}
-                </div>
-                <div className="flex gap-3 mt-3 text-[11px] text-[#6b7280]">
-                  {socials.map(s => (
-                    <span key={s.label}>{s.fullName}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className="relative">
+          {/* Header */}
+          <div className="mb-10">
+            <span className="section-kicker">Kontakt</span>
+            <h2 className="mt-2 text-[28px] sm:text-[34px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
+              Zacznijmy rozmawiać
+            </h2>
+            <p className="mt-3 text-[15px] leading-[1.7] text-[#6b7280] max-w-xl">
+              Umów bezpłatną rozmowę lub napisz wiadomość – odpowiemy w ciągu 24 godzin.
+            </p>
           </div>
 
-          <div className="w-full flex-1 min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Umów konsultację</p>
-            <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
-              {submitted ? (
-                <div className="text-center py-8">
-                  <div className="mb-4 text-4xl">✓</div>
-                  <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
-                  <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+          {/* Two cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* Card 1: Calendly booking */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1, ease }}
+              className="relative flex flex-col rounded-2xl border border-[#e5e7eb] overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #1e40af 100%)' }}
+            >
+              {/* Decorative dots */}
+              <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+              {/* Glow */}
+              <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full" style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.18) 0%, transparent 70%)' }} />
+
+              <div className="relative flex flex-col flex-1 p-7 sm:p-9">
+                {/* Calendar icon */}
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+
+                <h3 className="text-[22px] font-bold text-white leading-tight mb-3" style={{ fontFamily: 'var(--font-syne)' }}>
+                  Zarezerwuj rozmowę
+                </h3>
+                <p className="text-[14px] text-blue-200 leading-[1.75] mb-8 flex-1">
+                  Bezpłatna 15-minutowa konsultacja. Sprawdź, jak rozwiązania IT i AI mogą wspomóc Twój biznes. Zero zobowiązań.
+                </p>
+
+                {/* Mini time slots visual */}
+                <div className="flex gap-2 flex-wrap mb-8">
+                  {['Pon–Pt', '9:00–17:00', '15 min'].map((item) => (
+                    <span key={item} className="px-3 py-1.5 rounded-full text-[12px] font-medium text-blue-100" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  onClick={openCalendly}
+                  className="group flex items-center justify-center gap-2.5 w-full py-4 px-6 rounded-xl font-bold text-[15px] text-[#0f172a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: 'linear-gradient(135deg, #ffffff 0%, #dbeafe 100%)', boxShadow: '0 4px 14px rgba(0,0,0,0.25)' }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  Zarezerwuj rozmowę
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Contact form → Gmail */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2, ease }}
+              className="flex flex-col rounded-2xl border border-[#e5e7eb] bg-white"
+              style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(37,99,235,0.06)' }}
+            >
+              <div className="flex flex-col flex-1 p-7 sm:p-9">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[#eff6ff] border border-[#bfdbfe]">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+
+                <h3 className="text-[22px] font-bold text-[#0A0A0F] leading-tight mb-3" style={{ fontFamily: 'var(--font-syne)' }}>
+                  Napisz do nas
+                </h3>
+                <p className="text-[14px] text-[#6b7280] leading-[1.7] mb-6">
+                  Wypełnij formularz, a my odpowiemy na Twoje pytania.
+                </p>
+
+                <form onSubmit={handleContactSubmit} className="flex flex-col flex-1 gap-5">
+                  {/* Topic chips */}
                   <div>
-                    <label htmlFor="topic" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
-                      Czego dotyczy konsultacja? *
+                    <label className="block text-[12px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">
+                      Temat
                     </label>
-                    <select
-                      id="topic"
-                      name="topic"
-                      value={formData.topic}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
-                    >
-                      <option value="">Wybierz temat...</option>
-                      {consultationTopics.map(topic => (
-                        <option key={topic.value} value={topic.value}>{topic.label}</option>
+                    <div className="grid grid-cols-2 gap-2">
+                      {contactTopics.map((t) => (
+                        <button
+                          key={t.value}
+                          type="button"
+                          onClick={() => setTopic(t.value)}
+                          className={`flex items-center gap-2 px-3.5 py-3 rounded-xl border text-[13px] font-semibold transition-all duration-150 text-left ${
+                            topic === t.value
+                              ? 'border-[#2563EB] bg-[#eff6ff] text-[#2563EB]'
+                              : 'border-[#e5e7eb] bg-white text-[#374151] hover:border-[#93c5fd] hover:bg-[#f8faff]'
+                          }`}
+                        >
+                          <span className={topic === t.value ? 'text-[#2563EB]' : 'text-[#9ca3af]'}>
+                            {t.icon}
+                          </span>
+                          {t.label}
+                        </button>
                       ))}
-                    </select>
+                    </div>
                   </div>
+
+                  {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
-                      Imię i nazwisko *
+                    <label htmlFor="contact-name" className="block text-[12px] font-semibold uppercase tracking-widest text-[#6b7280] mb-2">
+                      Imię i nazwisko
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       required
                       placeholder="Jan Kowalski"
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/40 focus:border-[#2563EB] transition-all"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
-                      Email *
+
+                  {/* Message */}
+                  <div className="flex-1">
+                    <label htmlFor="contact-msg" className="block text-[12px] font-semibold uppercase tracking-widest text-[#6b7280] mb-2">
+                      Wiadomość
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                    <textarea
+                      id="contact-msg"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       required
-                      placeholder="jan@example.com"
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                      rows={4}
+                      placeholder="Opowiedz nam o swoim projekcie..."
+                      className="w-full px-4 py-3 rounded-xl border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/40 focus:border-[#2563EB] transition-all resize-none"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
-                      Telefon
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+48 123 456 789"
-                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
-                    />
-                  </div>
+
                   <button
                     type="submit"
-                    className="w-full btn btn-primary py-3"
+                    className="group flex items-center justify-center gap-2.5 w-full btn btn-primary py-3.5 text-[15px] font-bold"
                   >
-                    Umów bezpłatną konsultację
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Wyślij wiadomość
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
                   </button>
-                  <p className="text-center text-[13px] text-[#6b7280] mt-4">
-                    Całe ryzyko jest po naszej stronie, nie po Twojej.
+                  <p className="text-center text-[12px] text-[#9ca3af]">
+                    Otworzy Gmail z wypełnioną wiadomością
                   </p>
                 </form>
-              )}
-            </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Bottom: email + socials */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.35, ease }}
+            className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          >
+            <div className="flex flex-col gap-1">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280]">Email bezpośredni</p>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="text-[14px] font-semibold text-[#0A0A0F] hover:text-[#2563EB] transition-colors"
+                >
+                  {contactEmail}
+                </a>
+                <button
+                  onClick={copyEmail}
+                  className="px-2.5 py-1.5 rounded-lg border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] transition-all text-[12px] font-semibold text-[#6b7280] hover:text-[#2563EB]"
+                  title="Skopiuj email"
+                >
+                  {copied ? 'Skopiowane!' : 'Kopiuj'}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280]">Media społecznościowe</p>
+              <div className="flex items-center gap-3">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                    title={s.label}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

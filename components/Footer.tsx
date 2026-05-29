@@ -1,3 +1,8 @@
+'use client'
+
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+
 const footerLinks = [
   ['Usługi', '#uslugi'],
   ['Proces', '#proces'],
@@ -13,9 +18,14 @@ const footerLegal = [
   ['LinkedIn', 'https://www.linkedin.com/company/getbuild'],
 ] as const
 
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
 export default function Footer() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
   return (
-    <footer className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
+    <footer ref={ref} className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -25,7 +35,11 @@ export default function Footer() {
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease }}
+        >
           <div className="flex items-center gap-3 mb-6">
             <img src="/logo.webp" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
             <div>
@@ -40,21 +54,29 @@ export default function Footer() {
           <p className="text-[12px] leading-5 text-white/40">
             Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="lg:col-span-2">
+        <motion.div
+          className="lg:col-span-2"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.12, ease }}
+        >
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Nawigacja</p>
               <div className="space-y-2">
-                {footerLinks.map(([label, href]) => (
-                  <a
+                {footerLinks.map(([label, href], i) => (
+                  <motion.a
                     key={href}
                     href={href}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.45, delay: 0.18 + i * 0.06, ease }}
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
                     {label}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -62,28 +84,36 @@ export default function Footer() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt i prawne</p>
               <p className="text-[13px] text-white/40 mb-2">Polska</p>
               <div className="space-y-2">
-                {footerLegal.map(([label, href]) => (
-                  <a
+                {footerLegal.map(([label, href], i) => (
+                  <motion.a
                     key={href}
                     href={href}
                     target={label === 'LinkedIn' ? '_blank' : undefined}
                     rel={label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
                     {label}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="relative mx-auto max-w-7xl border-t border-white/10 mt-10 pt-6">
+      <motion.div
+        className="relative mx-auto max-w-7xl border-t border-white/10 mt-10 pt-6"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.5, ease }}
+      >
         <p className="text-[12px] text-white/25">
           © {new Date().getFullYear()} Getbuild. Wszystkie prawa zastrzeżone.
         </p>
-      </div>
+      </motion.div>
     </footer>
   )
 }

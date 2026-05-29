@@ -2,11 +2,27 @@
 
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState, type MouseEvent } from 'react'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const links = [
+const anchorLinks = [
+  ['Usługi', '#uslugi'],
+  ['Proces', '#proces'],
+  ['Realizacje', '#portfolio'],
+  ['FAQ', '#faq'],
+  ['Kontakt', '#kontakt'],
+] as const
+
+const pageLinks = [
+  ['Strony WWW', '/strony-www'],
+  ['Automatyzacje AI', '/automatyzacje-ai'],
+  ['Agenci AI', '/agenci-ai'],
+] as const
+
+const allLinks: readonly (readonly [string, string])[] = [
   ['Usługi', '#uslugi'],
   ['Strony WWW', '/strony-www'],
   ['Automatyzacje AI', '/automatyzacje-ai'],
@@ -15,24 +31,45 @@ const links = [
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],
   ['Kontakt', '#kontakt'],
-] as const
+]
+
+const linkClass = 'nav-link text-[12px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]'
+const mobileLinkClass = 'rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280] transition-colors duration-150 hover:bg-[#f5f7fa] hover:text-[#0A0A0F]'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 180, damping: 28, restDelta: 0.001 })
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
-  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-    event.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const scrollToSection = (id: string) => {
     setOpen(false)
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
+  }
+
+  // Anchor links work as smooth-scroll on the page that contains the target
+  // section, and navigate to the home page anchor (/#section) otherwise.
+  const anchorHref = (href: string) => (isHome ? href : `/${href}`)
+
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const id = href.slice(1)
+    if (typeof document !== 'undefined' && document.getElementById(id)) {
+      event.preventDefault()
+      scrollToSection(id)
+    } else {
+      // Section is not on the current page — allow navigation to /#section.
+      setOpen(false)
+    }
   }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -47,12 +84,26 @@ export default function Nav() {
         className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-dark)] to-[var(--accent)]"
         style={{ scaleX }}
       />
+      {open && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
+<<<<<<< HEAD
           className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-280 ${
             scrolled
               ? 'shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_20px_rgba(15,23,42,0.08)]'
               : 'border-transparent shadow-none'
+=======
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300 ${
+            scrolled
+              ? 'border-[#e5e7eb] bg-white/95 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md'
+              : 'border-transparent bg-white shadow-none'
+>>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
           }`}
           style={{
             borderColor: scrolled ? 'var(--border)' : 'transparent',
@@ -60,7 +111,7 @@ export default function Nav() {
           }}
         >
           <div className="flex items-center justify-between gap-4">
-            <a href="#" className="flex min-w-0 items-center gap-3">
+            <a href="/" className="flex min-w-0 items-center gap-3">
               <img src="/logo.webp" alt="Getbuild.pl" className="h-9 w-9 flex-shrink-0 rounded-lg object-contain" />
               <div className="min-w-0">
                 <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
@@ -68,20 +119,36 @@ export default function Nav() {
               </div>
             </a>
 
+<<<<<<< HEAD
             <div className="hidden items-center gap-8 lg:flex">
               {links.map(([label, href]) => (
                 <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[var(--text-secondary)] transition-colors duration-240">
                   {label}
                 </a>
               ))}
+=======
+            {/* Desktop nav */}
+            <div className="hidden items-center gap-5 lg:flex">
+              {allLinks.map(([label, href]) =>
+                href.startsWith('#') ? (
+                  <a key={href} href={anchorHref(href)} onClick={(e) => handleAnchorClick(e, href)} className={linkClass}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={href} href={href} className={linkClass}>
+                    {label}
+                  </Link>
+                )
+              )}
+>>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
             </div>
 
             <div className="flex items-center gap-3">
               <motion.a
-                href="#kontakt"
-                onClick={(e) => handleAnchorClick(e, 'kontakt')}
+                href={anchorHref('#kontakt')}
+                onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary hidden px-5 py-2.5 text-[13px] sm:inline-flex"
+                className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex"
               >
                 Umów spotkanie
               </motion.a>
@@ -90,7 +157,7 @@ export default function Nav() {
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
                 aria-expanded={open}
                 onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#e5e7eb] bg-white text-[#0A0A0F] shadow-[0 1px 2px rgba(0,0,0,0.06)] lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#e5e7eb] bg-white text-[#0A0A0F] shadow-[0_1px_2px_rgba(0,0,0,0.06)] lg:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
@@ -107,35 +174,47 @@ export default function Nav() {
             </div>
           </div>
 
+          {/* Mobile menu */}
           <AnimatePresence>
             {open && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.32, ease }}
+                transition={{ duration: 0.26, ease }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="mt-3 rounded-xl border border-[#e5e7eb] bg-white p-3 shadow-[0 4px 12px rgba(0,0,0,0.08)]">
+                <div className="mt-3 rounded-xl border border-[#e5e7eb] bg-white p-3 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
                   <div className="flex flex-col gap-1">
-                    {links.map(([label, href], i) => (
-                      <motion.a
-                        key={href}
-                        href={href}
-                        onClick={(e) => handleAnchorClick(e, href.slice(1))}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.22, delay: i * 0.055, ease }}
-                        className="rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280] transition-colors duration-150 hover:bg-[#f5f7fa] hover:text-[#0A0A0F]"
-                      >
-                        {label}
-                      </motion.a>
-                    ))}
+                    {allLinks.map(([label, href], i) =>
+                      href.startsWith('#') ? (
+                        <motion.a
+                          key={href}
+                          href={anchorHref(href)}
+                          onClick={(e) => handleAnchorClick(e, href)}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.22, delay: i * 0.055, ease }}
+                          className={mobileLinkClass}
+                        >
+                          {label}
+                        </motion.a>
+                      ) : (
+                        <Link
+                          key={href}
+                          href={href}
+                          onClick={() => setOpen(false)}
+                          className={mobileLinkClass}
+                        >
+                          {label}
+                        </Link>
+                      )
+                    )}
                   </div>
                   <div className="mt-2 border-t border-[#e5e7eb] pt-2">
                     <motion.a
-                      href="#kontakt"
-                      onClick={(e) => handleAnchorClick(e, 'kontakt')}
+                      href={anchorHref('#kontakt')}
+                      onClick={(e) => handleAnchorClick(e, '#kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"
                     >

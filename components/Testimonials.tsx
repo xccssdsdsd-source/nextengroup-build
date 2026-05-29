@@ -70,7 +70,7 @@ function TestimonialCard({ item, ease }: { item: (typeof testimonials)[number], 
       variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border bg-white p-7 transition-all duration-200 will-change-auto ${
+      className={`relative overflow-hidden rounded-2xl border bg-white p-7 transition-[box-shadow] duration-200 ${
         isHovered ? 'border-black/[0.07] shadow-[0_4px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(0,0,0,0.08),_0_32px_64px_rgba(0,0,0,0.05)]' : 'border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04),_0_4px_12px_rgba(0,0,0,0.05),_0_20px_40px_rgba(0,0,0,0.03)]'
       }`}
     >

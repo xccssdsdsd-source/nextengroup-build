@@ -5,36 +5,44 @@ import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import BackgroundPathsFAQ from './BackgroundPathsFAQ'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const faqs = [
   {
-    q: 'Ile trwa przygotowanie pierwszego projektu?',
-    a: 'Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku.',
+    q: 'W czym dokładnie możecie nam pomóc?',
+    a: 'Tworzymy nowoczesne strony WWW dla firm, wdrażamy automatyzacje oparte na AI oraz budujemy agentów AI. Jedno źródło dla strony, która generuje zapytania, i dla rozwiązań, które odciążają zespół z powtarzalnej pracy.',
   },
   {
-    q: 'Czy pomagacie w treści i strukturze strony?',
-    a: 'Tak. Porządkujemy układ sekcji, skracamy komunikaty i wzmacniamy CTA, żeby całość skuteczniej sprzedawała.',
+    q: 'Czy strona będzie zoptymalizowana pod SEO?',
+    a: 'Tak. Każdą stronę projektujemy pod SEO — czysty kod, szybkie ładowanie, poprawna struktura nagłówków, metadane i dane strukturalne. Dzięki temu Google łatwiej indeksuje treść, a Ty zyskujesz ruch z wyszukiwarki bez płacenia za każde kliknięcie.',
+  },
+  {
+    q: 'Czym jest agent AI i co może robić w mojej firmie?',
+    a: 'Agent AI to inteligentny asystent pracujący 24/7. Odpowiada na zapytania klientów, kwalifikuje leady, umawia spotkania i wspiera decyzje. Budujemy go pod konkretne procesy w Twojej firmie, więc działa w Twoim języku i zna Twoją ofertę.',
+  },
+  {
+    q: 'Jakie procesy możecie zautomatyzować dzięki AI?',
+    a: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów (CRM, e-mail, arkusze). Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
+  },
+  {
+    q: 'Czy automatyzacje i agenta AI da się połączyć z moją stroną i narzędziami?',
+    a: 'Tak. Łączymy stronę, formularze i agenta AI z narzędziami, których już używasz, tak aby zapytanie od razu trafiało do właściwej osoby lub systemu. Wszystko działa jako jeden spójny proces, a nie osobne wyspy.',
+  },
+  {
+    q: 'Ile trwa przygotowanie pierwszego projektu?',
+    a: 'Pierwszą wizualizację strony pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku. Przy automatyzacjach i agentach AI najpierw mapujemy proces, a działające demo dostajesz w kilka dni.',
   },
   {
     q: 'Czy strona będzie dopracowana na telefonie?',
-    a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach.',
+    a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
   },
   {
-    q: 'Czy możecie dodać automatyzację AI do obsługi zapytań?',
-    a: 'Tak. Możemy połączyć stronę z procesem zbierania i porządkowania zapytań, tak aby kontakt szybciej trafiał do właściwej osoby.',
-  },
-  {
-    q: 'Ile kosztuje strona?',
-    a: 'Wycena zależy od zakresu projektu. Skontaktuj się z nami, a przygotujemy ofertę dopasowaną do Twojego budżetu.',
-  },
-  {
-    q: 'Co jeśli nie będę zadowolony?',
-    a: 'Pracujemy iteracyjnie. Pierwsza wizualizacja powstaje w 24 godziny, a poprawki wprowadzamy tak długo, aż efekt będzie zgodny z ustalonym kierunkiem.',
+    q: 'Ile kosztuje współpraca?',
+    a: 'Wycena zależy od zakresu — od samej strony, przez automatyzacje, po pełne wdrożenie agenta AI. Skontaktuj się z nami, a po krótkiej rozmowie przygotujemy ofertę dopasowaną do Twoich celów i budżetu.',
   },
   {
     q: 'Co jeśli nie mam treści ani zdjęć?',
-    a: 'Nie ma problemu. Pomagam ułożyć treści na podstawie krótkiej rozmowy. Jeśli brakuje zdjęć, korzystamy z dobrej jakości stocków pasujących do branży.',
+    a: 'Nie ma problemu. Pomagamy ułożyć treści i strukturę strony na podstawie krótkiej rozmowy, wzmacniamy komunikaty i CTA. Jeśli brakuje zdjęć, korzystamy z dobrej jakości stocków pasujących do branży.',
   },
 ] as const
 
@@ -90,11 +98,16 @@ export default function FAQ() {
             return (
               <motion.div
                 key={faq.q}
-                layout
+                layout="position"
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
+<<<<<<< HEAD
                 transition={{ duration: 0.6, delay: index * 0.08, ease }}
                 className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-280 ${
+=======
+                transition={{ duration: 0.5, delay: index * 0.06, ease }}
+                className={`overflow-hidden rounded-2xl border-l-4 transition-[border-color,background-color,box-shadow] duration-200 ${
+>>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
                   isOpen
                     ? 'border-l-[var(--accent)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_16px_rgba(59,130,246,0.08)]'
                     : 'border-l-transparent shadow-[0_1px_3px_rgba(15,23,42,0.06)]'

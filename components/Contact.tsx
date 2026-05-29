@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import BackgroundPathsContact from './BackgroundPathsContact'
 
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
 
 const socials = [
@@ -90,6 +90,7 @@ export default function Contact() {
     <section id="kontakt" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
       <BackgroundPathsContact />
       <motion.div
+<<<<<<< HEAD
         initial={{ opacity: 0, y: 32 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.75, ease }}
@@ -99,6 +100,13 @@ export default function Contact() {
           borderColor: 'var(--border)',
           boxShadow: '0 1px 3px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(59, 130, 246, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
         }}
+=======
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+        transition={{ duration: 0.85, ease }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-10 lg:p-14"
+        style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10)' }}
+>>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[var(--accent)]/15 to-transparent" />

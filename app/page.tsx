@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 const Nav = dynamic(() => import('@/components/Nav'))
 const Hero = dynamic(() => import('@/components/Hero'))
-const Ticker = dynamic(() => import('@/components/Ticker'), { loading: () => null })
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
 const FreeConsultation = dynamic(() => import('@/components/FreeConsultation'))
@@ -14,7 +13,6 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
-      <Ticker />
       <Services />
       <Process />
       <FreeConsultation />

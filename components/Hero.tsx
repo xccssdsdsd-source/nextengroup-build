@@ -60,7 +60,7 @@ export default function Hero() {
       suppressHydrationWarning
       className="relative bg-white overflow-x-hidden pt-36 sm:pt-40 md:pt-48"
     >
-      <style>{`
+      <style suppressHydrationWarning>{`
         @keyframes slideInCta {
           from { transform: translateX(-16px); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
@@ -136,7 +136,7 @@ export default function Hero() {
               href="#kontakt"
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
               className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
-              style={{ minWidth: 'fit-content' }}
+              style={{ minWidth: '220px' }}
             >
               <span key={ctaIndex} className="cta-text inline-block">{ctaLabels[ctaIndex]}</span>
             </a>

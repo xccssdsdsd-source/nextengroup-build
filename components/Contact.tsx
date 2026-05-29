@@ -43,36 +43,12 @@ const socials = [
   },
 ]
 
-const calendlyUrl = 'https://calendly.com/getbuild-pl/30min?locale=pl'
-
-function CalendlyWidget({ url }: { url: string }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    el.innerHTML = ''
-
-    const init = () => {
-      ;(window as any).Calendly?.initInlineWidget({
-        url,
-        parentElement: el,
-        prefill: {},
-        utm: {},
-      })
-    }
-
-    if ((window as any).Calendly) { init(); return }
-
-    const script = document.createElement('script')
-    script.src = 'https://assets.calendly.com/assets/external/widget.js'
-    script.async = true
-    script.onload = init
-    document.head.appendChild(script)
-  }, [url])
-
-  return <div ref={containerRef} className="w-full" style={{ height: 'clamp(400px, 80vh, 600px)' }} />
-}
+const consultationTopics = [
+  { value: 'strony-www', label: 'Strony WWW dla firm' },
+  { value: 'automatyzacje-ai', label: 'Automatyzacje AI' },
+  { value: 'agenci-ai', label: 'Agenci AI' },
+  { value: 'inne', label: 'Inne' },
+]
 
 export default function Contact() {
   const ref = useRef(null)

@@ -97,9 +97,15 @@ export default function Contact() {
         body: JSON.stringify(formData),
       })
       if (response.ok) {
+        const data = await response.json()
         setSubmitted(true)
         setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setSubmitted(false), 4000)
+        setTimeout(() => {
+          if (data.redirectUrl) {
+            window.open(data.redirectUrl, '_blank')
+          }
+          setSubmitted(false)
+        }, 2000)
       }
     } catch (error) {
       console.error('Form submission failed:', error)

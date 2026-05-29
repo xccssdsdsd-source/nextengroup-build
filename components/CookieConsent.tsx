@@ -66,7 +66,6 @@ export default function CookieConsent() {
   }
 
   if (!mounted) return null
-  if (consent !== null) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">
@@ -77,7 +76,7 @@ export default function CookieConsent() {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 whitespace-nowrap">
           <button onClick={reject} className="btn btn-ghost text-sm">Odrzuć</button>
           <button onClick={accept} className="btn btn-primary text-sm">Akceptuję</button>
-          {consent === true && (<Link href="/polityka-prywatnosci" className="text-xs sm:text-sm text-gray-600 hover:text-gray-900 underline text-center sm:text-left">Polityka prywatności</Link>)}
+          <Link href="/polityka-prywatnosci" className="text-xs sm:text-sm text-gray-600 hover:text-gray-900 underline text-center sm:text-left">Polityka prywatności</Link>
         </div>
       </div>
     </div>

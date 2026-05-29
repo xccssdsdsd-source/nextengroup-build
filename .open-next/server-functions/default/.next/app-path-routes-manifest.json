@@ -1,0 +1,19 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/consultation/route": "/api/consultation",
+  "/api/inquiry/route": "/api/inquiry",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/robots.txt/route": "/robots.txt",
+  "/page": "/",
+  "/agenci-ai/page": "/agenci-ai",
+  "/realizacje/page": "/realizacje",
+  "/blog/page": "/blog",
+  "/automatyzacje-ai/page": "/automatyzacje-ai",
+  "/polityka-prywatnosci/page": "/polityka-prywatnosci",
+  "/seo-dla-firm/page": "/seo-dla-firm",
+  "/strony-www/page": "/strony-www",
+  "/realizacje/pm-apartments/page": "/realizacje/pm-apartments",
+  "/audyt-seo/page": "/audyt-seo",
+  "/strony-internetowe-dla-firm/page": "/strony-internetowe-dla-firm",
+  "/wiedza-ai/page": "/wiedza-ai"
+}

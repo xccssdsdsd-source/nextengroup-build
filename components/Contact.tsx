@@ -57,21 +57,25 @@ export default function Contact() {
   const calendlyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (showCalendly && calendlyRef.current) {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
-      script.onload = () => {
-        const w = window as CalendlyScriptWindow
-        if (w.Calendly) {
-          w.Calendly.initInlineWidget({
-            url: 'https://calendly.com/getbuild-pl/30min',
-            parentElement: calendlyRef.current!,
-          })
-        }
+    if (!showCalendly || !calendlyRef.current) return
+
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    script.onload = () => {
+      const w = window as CalendlyScriptWindow
+      if (w.Calendly) {
+        w.Calendly.initInlineWidget({
+          url: 'https://calendly.com/getbuild-pl/30min',
+          parentElement: calendlyRef.current!,
+        })
       }
-      document.body.appendChild(script)
-      return () => document.body.removeChild(script)
+    }
+    document.body.appendChild(script)
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
     }
   }, [showCalendly])
 

@@ -167,7 +167,7 @@ export default function Nav() {
                     >
                       {ctaOptions.map((option, i) => (
                         <motion.a
-                          key={option.href}
+                          key={i}
                           href={anchorHref(option.href)}
                           onClick={(e) => {
                             handleAnchorClick(e, option.href)

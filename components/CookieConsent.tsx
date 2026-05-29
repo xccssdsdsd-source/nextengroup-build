@@ -66,7 +66,7 @@ export default function CookieConsent() {
   }
 
   if (!mounted) return null
-  if (consent === false) return null
+  if (consent !== null) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">

@@ -23,6 +23,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 export default function Footer() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const consent = typeof window !== 'undefined' && localStorage.getItem('getbuild_cookie_consent_v1') === 'accepted';
 
   return (
     <footer ref={ref} className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
@@ -84,20 +85,23 @@ export default function Footer() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt i prawne</p>
               <p className="text-[13px] text-white/40 mb-2">Polska</p>
               <div className="space-y-2">
-                {footerLegal.map(([label, href], i) => (
-                  <motion.a
-                    key={href}
-                    href={href}
-                    target={label === 'LinkedIn' ? '_blank' : undefined}
-                    rel={label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
-                    className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
-                  >
-                    {label}
-                  </motion.a>
-                ))}
+                {footerLegal.map(([label, href], i) => {
+                  if (label === 'Polityka prywatności' && !consent) return null;
+                  return (
+                    <motion.a
+                      key={href}
+                      href={href}
+                      target={label === 'LinkedIn' ? '_blank' : undefined}
+                      rel={label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
+                      className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
+                    >
+                      {label}
+                    </motion.a>
+                  );
+                })}
               </div>
             </div>
           </div>

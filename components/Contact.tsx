@@ -103,10 +103,10 @@ export default function Contact() {
             <div>
               <span className="section-kicker">Kontakt</span>
               <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
-                Kontakt
+                Umów bezpłatną konsultację
               </h2>
               <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
-                Odpowiem tego samego dnia. Wybierz wygodny sposób kontaktu lub zarezerwuj spotkanie.
+                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną 15-minutową rozmowę i sprawdź, jak rozwiązania IT oraz AI mogą rzeczywiście wspomóc Twój biznes.
               </p>
             </div>
 

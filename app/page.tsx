@@ -11,7 +11,7 @@ const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main>
       <Nav />
       <Hero />
       <Ticker />

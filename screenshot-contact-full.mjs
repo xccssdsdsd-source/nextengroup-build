@@ -4,7 +4,7 @@ const [, , url = 'http://localhost:3006'] = process.argv
 
 const browser = await puppeteer.launch({ headless: 'new' })
 const page = await browser.newPage()
-await page.setViewport({ width: 1440, height: 1200 })
+await page.setViewport({ width: 1440, height: 2000 })
 await page.goto(url, { waitUntil: 'networkidle2' })
 
 // Scroll to kontakt section
@@ -15,11 +15,11 @@ await page.evaluate(() => {
   }
 })
 
-// Wait a bit for any dynamic content
-await new Promise(r => setTimeout(r, 2000))
+// Wait for Calendly to load
+await new Promise(r => setTimeout(r, 3000))
 
-const screenshotPath = './temporary screenshots/screenshot-contact.png'
-await page.screenshot({ path: screenshotPath, fullPage: false })
+const screenshotPath = './temporary screenshots/screenshot-contact-full.png'
+await page.screenshot({ path: screenshotPath, fullPage: true })
 
-console.log('Saved contact screenshot')
+console.log('Saved full contact screenshot')
 await browser.close()

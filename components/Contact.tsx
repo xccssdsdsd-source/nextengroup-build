@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, type FormEvent } from 'react'
 import BackgroundPathsContact from './BackgroundPathsContact'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -53,21 +53,20 @@ export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const [copied, setCopied] = useState(false)
-  const [showCalendly, setShowCalendly] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    if (!showCalendly || !calendlyRef.current) return
-
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
     script.onload = () => {
       const w = window as CalendlyScriptWindow
-      if (w.Calendly) {
+      if (w.Calendly && calendlyRef.current) {
         w.Calendly.initInlineWidget({
           url: 'https://calendly.com/getbuild-pl/30min',
-          parentElement: calendlyRef.current!,
+          parentElement: calendlyRef.current,
         })
       }
     }
@@ -77,12 +76,34 @@ export default function Contact() {
         document.body.removeChild(script)
       }
     }
-  }, [showCalendly])
+  }, [])
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setSubmitted(false), 4000)
+      }
+    } catch (error) {
+      console.error('Form submission failed:', error)
+    }
   }
 
   return (
@@ -172,30 +193,82 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="w-full flex-1 min-w-0 flex flex-col items-center justify-center">
-            <button
-              onClick={() => setShowCalendly(true)}
-              className="btn btn-primary py-4 px-8 text-lg"
-            >
-              Umów spotkanie
-            </button>
-            {showCalendly && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                <div className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden">
-                  <button
-                    onClick={() => setShowCalendly(false)}
-                    className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
-                    aria-label="Zamknij"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                  <div ref={calendlyRef} className="calendly-widget" style={{ minHeight: '700px' }} />
+          <div className="w-full flex-1 min-w-0 flex flex-col">
+            <div className="text-center mb-8">
+              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#0A0A0F] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
+              <p className="text-[14px] text-[#6b7280]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
+            </div>
+
+            <div className="flex flex-col gap-8">
+              <div className="flex justify-center">
+                <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[#e5e7eb]" style={{ minHeight: '500px' }} />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-full max-w-xl">
+                  <div className="text-center mb-6">
+                    <h4 className="text-[16px] font-bold text-[#0A0A0F] mb-2">Lub wyślij nam zapytanie</h4>
+                    <p className="text-[13px] text-[#6b7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+                    {submitted ? (
+                      <div className="text-center py-8">
+                        <div className="mb-4 text-4xl">✓</div>
+                        <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
+                        <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                          <label htmlFor="name" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Imię i nazwisko *</label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="Jan Kowalski"
+                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="email" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Email *</label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="jan@example.com"
+                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="message" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Wiadomość *</label>
+                          <textarea
+                            id="message"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            placeholder="Twoja wiadomość..."
+                            rows={4}
+                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all resize-none"
+                          />
+                        </div>
+
+                        <button type="submit" className="w-full btn btn-primary py-3">Wyślij wiadomość</button>
+                      </form>
+                    )}
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </motion.div>

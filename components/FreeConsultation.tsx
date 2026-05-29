@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState, type MouseEvent } from 'react'
+import { useRef, useState, type MouseEvent, type FormEvent } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -28,13 +28,39 @@ const benefits = [
   },
 ]
 
+const consultationTopics = [
+  { value: 'strony-www', label: 'Strony WWW dla firm' },
+  { value: 'automatyzacje-ai', label: 'Automatyzacje AI' },
+  { value: 'agenci-ai', label: 'Agenci AI' },
+  { value: 'inne', label: 'Inne' },
+]
+
 export default function FreeConsultation() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
+  const [formData, setFormData] = useState({ topic: '', name: '', email: '', phone: '' })
+  const [submitted, setSubmitted] = useState(false)
 
-  const handleContactClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ topic: '', name: '', email: '', phone: '' })
+        setTimeout(() => setSubmitted(false), 4000)
+      }
+    } catch (error) {
+      console.error('Form submission failed:', error)
+    }
   }
 
   return (
@@ -68,18 +94,95 @@ export default function FreeConsultation() {
         </motion.div>
 
         <motion.div
-          className="mt-12 flex justify-center"
+          className="mt-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease, delay: 0.3 }}
         >
-          <a
-            href="#kontakt"
-            onClick={handleContactClick}
-            className="btn btn-primary"
-          >
-            Umów bezpłatną konsultację
-          </a>
+          <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6 sm:p-8" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.06)' }}>
+            {submitted ? (
+              <div className="text-center py-8">
+                <div className="mb-4 text-4xl">✓</div>
+                <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
+                <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label htmlFor="topic" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                    Czego dotyczy konsultacja? *
+                  </label>
+                  <select
+                    id="topic"
+                    name="topic"
+                    value={formData.topic}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                  >
+                    <option value="">Wybierz temat...</option>
+                    {consultationTopics.map(topic => (
+                      <option key={topic.value} value={topic.value}>{topic.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="name" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                    Imię i nazwisko *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Jan Kowalski"
+                    className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="jan@example.com"
+                    className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                    Telefon
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+48 123 456 789"
+                    className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full btn btn-primary py-3"
+                >
+                  Umów bezpłatną konsultację
+                </button>
+              </form>
+            )}
+          </div>
         </motion.div>
       </div>
     </section>

@@ -4,7 +4,6 @@ const Hero = dynamic(() => import('@/components/Hero'))
 const ValueProps = dynamic(() => import('@/components/ValueProps'))
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
-const FreeConsultation = dynamic(() => import('@/components/FreeConsultation'))
 const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
@@ -18,7 +17,6 @@ export default function Home() {
       <ValueProps />
       <Services />
       <Process />
-      <FreeConsultation />
       <Portfolio />
       <FAQ />
       <Contact />

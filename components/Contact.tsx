@@ -54,12 +54,35 @@ export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const [copied, setCopied] = useState(false)
-  const [showCalendly, setShowCalendly] = useState(false)
+  const [formData, setFormData] = useState({ topic: '', name: '', email: '', phone: '' })
+  const [submitted, setSubmitted] = useState(false)
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ topic: '', name: '', email: '', phone: '' })
+        setTimeout(() => setSubmitted(false), 4000)
+      }
+    } catch (error) {
+      console.error('Form submission failed:', error)
+    }
   }
 
   return (
@@ -149,21 +172,89 @@ export default function Contact() {
             </div>
           </div>
 
-          <div id="calendly-widget" className="w-full flex-1 min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Zarezerwuj termin spotkania</p>
-            <div className="rounded-2xl overflow-hidden border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
-              {!showCalendly ? (
-                <div className="flex flex-col items-start gap-3">
-                  <p className="text-[14px] text-[#0A0A0F]">Wczytaj kalendarz, aby zarezerwować termin.</p>
-                  <button
-                    onClick={() => setShowCalendly(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#2563EB] text-white rounded-2xl hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
-                  >
-                    Otwórz kalendarz
-                  </button>
+          <div className="w-full flex-1 min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Umów konsultację</p>
+            <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="mb-4 text-4xl">✓</div>
+                  <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
+                  <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
                 </div>
               ) : (
-                <CalendlyWidget url={calendlyUrl} />
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <label htmlFor="topic" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                      Czego dotyczy konsultacja? *
+                    </label>
+                    <select
+                      id="topic"
+                      name="topic"
+                      value={formData.topic}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                    >
+                      <option value="">Wybierz temat...</option>
+                      {consultationTopics.map(topic => (
+                        <option key={topic.value} value={topic.value}>{topic.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="name" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                      Imię i nazwisko *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="Jan Kowalski"
+                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="jan@example.com"
+                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">
+                      Telefon
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+48 123 456 789"
+                      className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full btn btn-primary py-3"
+                  >
+                    Umów bezpłatną konsultację
+                  </button>
+                  <p className="text-center text-[13px] text-[#6b7280] mt-4">
+                    Całe ryzyko jest po naszej stronie, nie po Twojej.
+                  </p>
+                </form>
               )}
             </div>
           </div>

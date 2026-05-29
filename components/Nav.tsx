@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState, type MouseEvent } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -40,6 +41,8 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   const scrollToSection = (id: string) => {
     setOpen(false)
@@ -48,9 +51,19 @@ export default function Nav() {
     }, 50)
   }
 
+  // Anchor links work as smooth-scroll on the page that contains the target
+  // section, and navigate to the home page anchor (/#section) otherwise.
+  const anchorHref = (href: string) => (isHome ? href : `/${href}`)
+
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    event.preventDefault()
-    scrollToSection(href.slice(1))
+    const id = href.slice(1)
+    if (typeof document !== 'undefined' && document.getElementById(id)) {
+      event.preventDefault()
+      scrollToSection(id)
+    } else {
+      // Section is not on the current page — allow navigation to /#section.
+      setOpen(false)
+    }
   }
 
   useEffect(() => {
@@ -99,7 +112,7 @@ export default function Nav() {
             <div className="hidden items-center gap-5 lg:flex">
               {allLinks.map(([label, href]) =>
                 href.startsWith('#') ? (
-                  <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href)} className={linkClass}>
+                  <a key={href} href={anchorHref(href)} onClick={(e) => handleAnchorClick(e, href)} className={linkClass}>
                     {label}
                   </a>
                 ) : (
@@ -112,7 +125,7 @@ export default function Nav() {
 
             <div className="flex items-center gap-3">
               <motion.a
-                href="#kontakt"
+                href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
                 className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex"
@@ -157,7 +170,7 @@ export default function Nav() {
                       href.startsWith('#') ? (
                         <motion.a
                           key={href}
-                          href={href}
+                          href={anchorHref(href)}
                           onClick={(e) => handleAnchorClick(e, href)}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -180,7 +193,7 @@ export default function Nav() {
                   </div>
                   <div className="mt-2 border-t border-[#e5e7eb] pt-2">
                     <motion.a
-                      href="#kontakt"
+                      href={anchorHref('#kontakt')}
                       onClick={(e) => handleAnchorClick(e, '#kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"

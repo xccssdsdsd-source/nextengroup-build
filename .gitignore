@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# build artifacts
+.open-next/
+.wrangler/
+dist/
+
+# screenshots & tests
+screenshots/
+temporary\ screenshots/
+test-screenshot.mjs

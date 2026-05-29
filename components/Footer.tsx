@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 const footerLinks = [
   ['Usługi', '#uslugi'],
@@ -23,7 +23,11 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 export default function Footer() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const consent = typeof window !== 'undefined' && localStorage.getItem('getbuild_cookie_consent_v1') === 'accepted';
+  const [consent, setConsent] = useState(false)
+
+  useEffect(() => {
+    setConsent(localStorage.getItem('getbuild_cookie_consent_v1') === 'accepted')
+  }, [])
 
   return (
     <footer ref={ref} className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">

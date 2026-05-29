@@ -11,12 +11,13 @@ export async function POST(req: NextRequest) {
     }
 
     if (DISCORD_WEBHOOK) {
-      const topicLabel = {
+      const topicLabels: Record<string, string> = {
         'strony-www': 'Strony WWW dla firm',
         'automatyzacje-ai': 'Automatyzacje AI',
         'agenci-ai': 'Agenci AI',
         'inne': 'Inne',
-      }[topic] || topic
+      }
+      const topicLabel = topicLabels[topic] || topic
 
       await fetch(DISCORD_WEBHOOK, {
         method: 'POST',

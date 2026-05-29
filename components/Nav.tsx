@@ -41,19 +41,14 @@ const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesa
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [ctaOpen, setCtaOpen] = useState(false)
   const [ctaIndex, setCtaIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-  const ctaRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const ctaOptions = [
-  { label: 'Umów spotkanie', href: '#kontakt' },
-  { label: 'Kontakt', href: '#kontakt' },
-  { label: 'Pomoc w procesach', href: '#proces' }
-]
 
   const scrollToSection = (id: string) => {
     setOpen(false)
@@ -87,37 +82,55 @@ export default function Nav() {
 
   useEffect(() => {
     if (!isMounted) return
-    const timer = setInterval(() => {
-      setCtaIndex(prev => (prev + 1) % ctaLabels.length)
-    }, 2500)
-    return () => clearInterval(timer)
-  }, [isMounted])
+    const currentText = ctaLabels[ctaIndex]
+    
+    let timer: NodeJS.Timeout
+    
+    if (isDeleting) {
+      if (displayText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayText(prev => prev.slice(0, -1))
+        }, 40)
+      } else {
+        setIsDeleting(false)
+        setCtaIndex(prev => (prev + 1) % ctaLabels.length)
+      }
+    } else {
+      if (displayText.length < currentText.length) {
+        timer = setTimeout(() => {
+          setDisplayText(currentText.slice(0, displayText.length + 1))
+        }, 70)
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true)
+        }, 2000)
+      }
+    }
+    
+    return () => clearTimeout(timer)
+  }, [displayText, isDeleting, ctaIndex, isMounted])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  useEffect(() => {
-    const handleClickOutside = (e: Event) => {
-      if (ctaRef.current && !ctaRef.current.contains(e.target as Node)) {
-        setCtaOpen(false)
-      }
-    }
-    if (ctaOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [ctaOpen])
-
   return (
     <>
       <style suppressHydrationWarning>{`
-        @keyframes slideInCtaNav {
-          from { transform: translateX(-16px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
-        .cta-text-nav { animation: slideInCtaNav 0.4s ease-out; }
+        .typing-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1.1em;
+          background-color: currentColor;
+          margin-left: 2px;
+          vertical-align: middle;
+          animation: blink 0.8s step-end infinite;
+        }
       `}</style>
       <motion.div
         className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-dark)] to-[var(--accent)]"
@@ -167,45 +180,22 @@ export default function Nav() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="relative" ref={ctaRef}>
-                <motion.button
-                  onClick={() => setCtaOpen(!ctaOpen)}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5 overflow-hidden"
-                  style={{ minWidth: '180px', justifyContent: 'center' }}
-                >
-                  {isMounted ? <span key={ctaIndex} className="cta-text-nav inline-block">{ctaLabels[ctaIndex]}</span> : <span>{ctaLabels[0]}</span>}
-                  <ChevronDown size={14} className={`transition-transform duration-200 ${ctaOpen ? 'rotate-180' : ''} flex-shrink-0`} />
-                </motion.button>
-                <AnimatePresence>
-                  {ctaOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl border border-[#e5e7eb] shadow-lg overflow-hidden z-50"
-                    >
-                      {ctaOptions.map((option, i) => (
-                        <motion.a
-                          key={i}
-                          href={anchorHref(option.href)}
-                          onClick={(e) => {
-                            handleAnchorClick(e, option.href)
-                            setCtaOpen(false)
-                          }}
-                          className="block px-4 py-3 text-sm text-[#0A0A0F] hover:bg-[#f5f7fa] transition-colors border-b border-[#e5e7eb] last:border-b-0"
-                          initial={{ opacity: 0, x: -8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.05, duration: 0.15 }}
-                        >
-                          {option.label}
-                        </motion.a>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              <motion.a
+                href={anchorHref('#kontakt')}
+                onClick={(e) => handleAnchorClick(e, '#kontakt')}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5"
+                style={{ minWidth: '200px', justifyContent: 'center' }}
+              >
+                {isMounted ? (
+                  <span className="inline-flex items-center">
+                    {displayText}
+                    <span className="typing-cursor" />
+                  </span>
+                ) : (
+                  <span>{ctaLabels[0]}</span>
+                )}
+              </motion.a>
               <button
                 type="button"
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}

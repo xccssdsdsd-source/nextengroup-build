@@ -7,6 +7,7 @@ const FreeConsultation = dynamic(() => import('@/components/FreeConsultation'))
 const Portfolio = dynamic(() => import('@/components/Portfolio'))
 const FAQ = dynamic(() => import('@/components/FAQ'))
 const Contact = dynamic(() => import('@/components/Contact'))
+const InquiryForm = dynamic(() => import('@/components/InquiryForm'))
 const Footer = dynamic(() => import('@/components/Footer'))
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Portfolio />
       <FAQ />
       <Contact />
+      <InquiryForm />
       <Footer />
     </main>
   )

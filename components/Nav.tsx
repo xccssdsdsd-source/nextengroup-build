@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -45,8 +45,7 @@ export default function Nav() {
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
+
   const pathname = usePathname()
   const isHome = pathname === '/'
 
@@ -132,10 +131,7 @@ export default function Nav() {
           animation: blink 0.8s step-end infinite;
         }
       `}</style>
-      <motion.div
-        className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-dark)] to-[var(--accent)]"
-        style={{ scaleX }}
-      />
+
       {open && (
         <div
           className="fixed inset-0 z-40"

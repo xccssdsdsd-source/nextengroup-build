@@ -28,12 +28,12 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    if (!isMounted || isMobile) return
+    if (!isMounted) return
     const timer = setInterval(() => {
       setTitleNumber(prev => (prev + 1) % titles.length)
     }, 2500)
     return () => clearInterval(timer)
-  }, [isMobile, isMounted])
+  }, [isMounted])
 
   const scrollToSection = (id: string) => {
     setTimeout(() => {
@@ -79,7 +79,7 @@ export default function Hero() {
           >
             <span className="block mb-2 sm:mb-3">Budujemy Twój biznes przez</span>
             <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(3rem, 9vw, 5rem)' }}>
-              {isMobile || !isMounted ? (
+              {!isMounted ? (
                 <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
                   {titles[0]}
                 </span>

@@ -1,8 +1,8 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState, type MouseEvent } from 'react'
 import BackgroundPaths from './BackgroundPaths'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
@@ -14,11 +14,6 @@ export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: sectionRef })
-  const deviceRotate = useTransform(scrollYProgress, [0, 0.5], [18, 0])
-  const deviceScale = useTransform(scrollYProgress, [0, 0.5], [1.04, 1])
-
   useEffect(() => {
     setIsMounted(true)
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -46,7 +41,6 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       suppressHydrationWarning
       className="relative bg-white overflow-x-hidden pt-36 sm:pt-40 md:pt-48"
     >
@@ -152,7 +146,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.68, ease: easeOut }}
         >
           <motion.div
-            style={!isMobile ? { rotateX: deviceRotate, scale: deviceScale } : {}}
+            initial={isMobile || !isMounted ? false : { rotateX: 18, scale: 1.04, opacity: 0 }}
+            animate={{ rotateX: 0, scale: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.7, ease: easeOut }}
             className="w-full"
           >
             <div

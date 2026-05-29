@@ -1,12 +1,18 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback } from 'react'
 import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+
+const slideVariants = {
+  enter: (dir: number) => ({ opacity: 0, x: dir * 60 }),
+  center: { opacity: 1, x: 0 },
+  exit: (dir: number) => ({ opacity: 0, x: -(dir * 60) }),
+}
 
 type LighthouseScore = { label: string; value: number }
 
@@ -76,13 +82,49 @@ export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-120px' })
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  const touchStartX = useRef(0)
+  const touchStartY = useRef(0)
+  const isSwiping = useRef(false)
 
   const nextProject = useCallback(() => {
+    setDirection(1)
     setCurrentIndex((prev) => (prev + 1) % projects.length)
   }, [])
 
   const prevProject = useCallback(() => {
+    setDirection(-1)
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+  }, [])
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+    touchStartY.current = e.touches[0].clientY
+    isSwiping.current = false
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartX.current)
+    const dy = Math.abs(e.touches[0].clientY - touchStartY.current)
+    if (dx > dy && dx > 8) isSwiping.current = true
+  }, [])
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    if (isSwiping.current && Math.abs(dx) > 50) {
+      if (dx < 0) nextProject()
+      else prevProject()
+    } else {
+      isSwiping.current = false
+    }
+  }, [nextProject, prevProject])
+
+  const handleCardClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isSwiping.current) {
+      e.preventDefault()
+      isSwiping.current = false
+    }
   }, [])
 
   return (
@@ -103,14 +145,25 @@ export default function Portfolio() {
 
         <div className="mt-8 relative">
           <div className="relative">
+            <div
+              className="overflow-hidden rounded-[12px]"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
             <motion.a
               key={currentIndex}
               href={projects[currentIndex].href}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease }}
+              onClick={handleCardClick}
               className="group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden"
               style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)' }}
             >
@@ -159,6 +212,8 @@ export default function Portfolio() {
                 )}
               </div>
             </motion.a>
+            </AnimatePresence>
+            </div>
 
             <button
               onClick={prevProject}
@@ -181,8 +236,11 @@ export default function Portfolio() {
             {projects.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentIndex(i)}
-                className="relative h-2 rounded-full focus-visible:outline-none transition-all"
+                onClick={() => {
+                  setDirection(i > currentIndex ? 1 : -1)
+                  setCurrentIndex(i)
+                }}
+                className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
                 style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
                 aria-label={`Realizacja ${i + 1}`}
               />

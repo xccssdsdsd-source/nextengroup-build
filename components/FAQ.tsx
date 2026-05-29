@@ -101,13 +101,8 @@ export default function FAQ() {
                 layout="position"
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-<<<<<<< HEAD
-                transition={{ duration: 0.6, delay: index * 0.08, ease }}
-                className={`overflow-hidden rounded-2xl border-l-4 transition-all duration-280 ${
-=======
                 transition={{ duration: 0.5, delay: index * 0.06, ease }}
                 className={`overflow-hidden rounded-2xl border-l-4 transition-[border-color,background-color,box-shadow] duration-200 ${
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
                   isOpen
                     ? 'border-l-[var(--accent)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_16px_rgba(59,130,246,0.08)]'
                     : 'border-l-transparent shadow-[0_1px_3px_rgba(15,23,42,0.06)]'

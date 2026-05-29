@@ -41,11 +41,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-<<<<<<< HEAD
   transition: background-color 300ms ease;
-=======
   overscroll-behavior-y: none;
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
 }
 
 a,
@@ -146,15 +143,10 @@ select {
   user-select: none;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-<<<<<<< HEAD
-  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 280ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 240ms ease, opacity 200ms ease, color 240ms ease;
-  will-change: transform, box-shadow;
-=======
   transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), background-color 200ms ease, opacity 180ms ease;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
 }
 
 .btn:active {
@@ -243,10 +235,9 @@ select {
   50% { transform: translate(45px, 65px) scale(1.22); opacity: 0.55; }
 }
 
-<<<<<<< HEAD
-.aurora-1 { animation: aurora-1 26s ease-in-out infinite; will-change: transform, opacity; }
-.aurora-2 { animation: aurora-2 32s ease-in-out infinite; will-change: transform, opacity; }
-.aurora-3 { animation: aurora-3 24s ease-in-out infinite; will-change: transform, opacity; }
+.aurora-1 { animation: aurora-1 22s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
+.aurora-2 { animation: aurora-2 28s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
+.aurora-3 { animation: aurora-3 19s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
 
 @keyframes ticker {
   0% { transform: translateX(0); }
@@ -261,11 +252,6 @@ select {
 .ticker-track:hover {
   animation-play-state: paused;
 }
-=======
-.aurora-1 { animation: aurora-1 22s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
-.aurora-2 { animation: aurora-2 28s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
-.aurora-3 { animation: aurora-3 19s ease-in-out infinite; will-change: transform; backface-visibility: hidden; }
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
 
 @media (prefers-reduced-motion: reduce) {
   .btn, .btn-primary, .btn-ghost {

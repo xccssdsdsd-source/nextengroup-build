@@ -93,13 +93,8 @@ function BenefitCard({ benefit, ease }: { benefit: typeof benefits[0], ease: [nu
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-<<<<<<< HEAD
-      className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-6 transition-all duration-280 will-change-auto ${
-        isHovered ? 'border-[rgba(59,130,246,0.4)] shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_12px_24px_rgba(59,130,246,0.10)]' : 'border-[var(--border)] shadow-[0_1px_3px_rgba(15,23,42,0.06),_0_2px_8px_rgba(15,23,42,0.04)]'
-=======
       className={`group relative overflow-hidden rounded-2xl border bg-white p-4 sm:p-6 transition-[border-color,box-shadow] duration-200 ${
         isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
       }`}
       style={{ background: 'var(--bg-card)' }}
     >

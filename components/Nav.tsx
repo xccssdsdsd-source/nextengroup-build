@@ -93,17 +93,10 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-<<<<<<< HEAD
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 backdrop-blur-[16px] transition-all duration-280 ${
-            scrolled
-              ? 'shadow-[0_1px_3px_rgba(15,23,42,0.08),_0_8px_20px_rgba(15,23,42,0.08)]'
-              : 'border-transparent shadow-none'
-=======
           className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300 ${
             scrolled
               ? 'border-[#e5e7eb] bg-white/95 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md'
               : 'border-transparent bg-white shadow-none'
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
           }`}
           style={{
             borderColor: scrolled ? 'var(--border)' : 'transparent',
@@ -119,14 +112,6 @@ export default function Nav() {
               </div>
             </a>
 
-<<<<<<< HEAD
-            <div className="hidden items-center gap-8 lg:flex">
-              {links.map(([label, href]) => (
-                <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href.slice(1))} className="nav-link text-[13px] font-medium text-[var(--text-secondary)] transition-colors duration-240">
-                  {label}
-                </a>
-              ))}
-=======
             {/* Desktop nav */}
             <div className="hidden items-center gap-5 lg:flex">
               {allLinks.map(([label, href]) =>
@@ -140,7 +125,6 @@ export default function Nav() {
                   </Link>
                 )
               )}
->>>>>>> ffb54fec28aee0d95c37f740e9dc1bd8b299b7ce
             </div>
 
             <div className="flex items-center gap-3">

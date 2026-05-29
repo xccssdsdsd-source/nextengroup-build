@@ -9,13 +9,11 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
 const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
-const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
-  const [ctaIndex, setCtaIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef })
   const deviceRotate = useTransform(scrollYProgress, [0, 0.5], [18, 0])
@@ -37,14 +35,6 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [isMounted])
 
-  useEffect(() => {
-    if (!isMounted) return
-    const timer = setInterval(() => {
-      setCtaIndex(prev => (prev + 1) % ctaLabels.length)
-    }, 2500)
-    return () => clearInterval(timer)
-  }, [isMounted])
-
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -60,13 +50,6 @@ export default function Hero() {
       suppressHydrationWarning
       className="relative bg-white overflow-x-hidden pt-36 sm:pt-40 md:pt-48"
     >
-      <style suppressHydrationWarning>{`
-        @keyframes slideInCta {
-          from { transform: translateX(-16px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        .cta-text { animation: slideInCta 0.4s ease-out; }
-      `}</style>
       {/* Background gradients */}
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -148,7 +131,7 @@ export default function Hero() {
               className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
               style={{ minWidth: '220px' }}
             >
-              <span key={ctaIndex} className="cta-text inline-block">{ctaLabels[ctaIndex]}</span>
+              Kontakt
             </a>
             <a
               href="#portfolio"

@@ -36,10 +36,14 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]'
 const mobileLinkClass = 'rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280] transition-colors duration-150 hover:bg-[#f5f7fa] hover:text-[#0A0A0F]'
 
+const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [ctaOpen, setCtaOpen] = useState(false)
+  const [ctaIndex, setCtaIndex] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
   const ctaRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.0005 })
@@ -74,11 +78,20 @@ export default function Nav() {
   }
 
   useEffect(() => {
+    setIsMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+    const timer = setInterval(() => {
+      setCtaIndex(prev => (prev + 1) % ctaLabels.length)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [isMounted])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -99,6 +112,13 @@ export default function Nav() {
 
   return (
     <>
+      <style suppressHydrationWarning>{`
+        @keyframes slideInCtaNav {
+          from { transform: translateX(-16px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        .cta-text-nav { animation: slideInCtaNav 0.4s ease-out; }
+      `}</style>
       <motion.div
         className="fixed inset-x-0 top-0 z-[9999] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-dark)] to-[var(--accent)]"
         style={{ scaleX }}
@@ -151,10 +171,11 @@ export default function Nav() {
                 <motion.button
                   onClick={() => setCtaOpen(!ctaOpen)}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5"
+                  className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5 overflow-hidden"
+                  style={{ minWidth: '180px', justifyContent: 'center' }}
                 >
-                  Umów spotkanie
-                  <ChevronDown size={14} className={`transition-transform duration-200 ${ctaOpen ? 'rotate-180' : ''}`} />
+                  {isMounted ? <span key={ctaIndex} className="cta-text-nav inline-block">{ctaLabels[ctaIndex]}</span> : <span>{ctaLabels[0]}</span>}
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${ctaOpen ? 'rotate-180' : ''} flex-shrink-0`} />
                 </motion.button>
                 <AnimatePresence>
                   {ctaOpen && (

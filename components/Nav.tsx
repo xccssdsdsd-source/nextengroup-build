@@ -32,7 +32,7 @@ const allLinks: readonly (readonly [string, string])[] = [
   ['Kontakt', '#kontakt'],
 ]
 
-const linkClass = 'nav-link text-[13px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]'
+const linkClass = 'nav-link text-[12px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]'
 const mobileLinkClass = 'rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280] transition-colors duration-150 hover:bg-[#f5f7fa] hover:text-[#0A0A0F]'
 
 export default function Nav() {
@@ -96,7 +96,7 @@ export default function Nav() {
             </a>
 
             {/* Desktop nav */}
-            <div className="hidden items-center gap-8 lg:flex">
+            <div className="hidden items-center gap-5 lg:flex">
               {allLinks.map(([label, href]) =>
                 href.startsWith('#') ? (
                   <a key={href} href={href} onClick={(e) => handleAnchorClick(e, href)} className={linkClass}>

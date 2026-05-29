@@ -6,4 +6,4 @@ compatibility_flags = ["nodejs_compat"]
 command = "npm run pages:build"
 cwd = "./"
 
-pages_build_output_dir = ".open-next/static"
+pages_build_output_dir = ".open-next/assets"

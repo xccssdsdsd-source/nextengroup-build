@@ -44,3 +44,11 @@ dist/
 screenshots/
 temporary\ screenshots/
 test-screenshot.mjs
+shot.mjs
+
+# claude local
+.claude/
+
+# local logs
+dev.log
+serve.log

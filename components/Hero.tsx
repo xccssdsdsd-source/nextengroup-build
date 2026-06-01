@@ -42,7 +42,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-x-hidden pt-36 sm:pt-40 md:pt-48"
+      className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48"
     >
       {/* Background gradients */}
       <div
@@ -70,7 +70,7 @@ export default function Hero() {
             }}
           >
             <span className="block mb-2 sm:mb-3">Budujemy Twój biznes przez</span>
-            <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(3rem, 9vw, 5rem)' }}>
+            <span className="relative block" style={{ overflow: 'hidden', minHeight: 'clamp(3.5rem, 10vw, 5.5rem)', contain: 'paint' }}>
               {!isMounted ? (
                 <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
                   {titles[0]}

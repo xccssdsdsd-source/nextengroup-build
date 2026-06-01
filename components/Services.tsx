@@ -34,7 +34,7 @@ export default function Services() {
   }
 
   return (
-    <section id="uslugi" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
+    <section id="uslugi" ref={ref} className="section-shell relative">
       <BackgroundPathsServices />
       <div
         className="pointer-events-none absolute inset-0"

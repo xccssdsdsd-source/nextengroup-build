@@ -128,7 +128,7 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden">
       <BackgroundPathsPortfolio />
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 

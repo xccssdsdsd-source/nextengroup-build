@@ -32,7 +32,7 @@ export default function Testimonials() {
     <section
       id="opinie"
       ref={ref}
-      className="section-shell relative overflow-hidden bg-white"
+      className="section-shell relative overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0"

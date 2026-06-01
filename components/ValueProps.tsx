@@ -29,7 +29,7 @@ export default function ValueProps() {
   const inView = useInView(ref, { once: true, margin: '-120px' })
 
   return (
-    <section id="wartosci" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
+    <section id="wartosci" ref={ref} className="section-shell relative">
       <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"

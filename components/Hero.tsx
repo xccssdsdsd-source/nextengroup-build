@@ -64,13 +64,14 @@ export default function Hero() {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2rem, 6.5vw, 3.5rem)',
+              fontSize: 'clamp(26px, 6.5vw, 56px)',
               lineHeight: '1.1',
               letterSpacing: '-0.03em',
+              overflowWrap: 'break-word',
             }}
           >
-            <span className="block mb-2 sm:mb-3">Budujemy Twój biznes przez</span>
-            <span className="relative block" style={{ overflow: 'hidden', minHeight: 'clamp(3.5rem, 10vw, 5.5rem)', contain: 'paint' }}>
+            <span className="block mb-2 sm:mb-3 text-balance">Budujemy Twój biznes przez</span>
+            <span className="relative block" style={{ overflow: 'hidden', minHeight: 'clamp(40px, 10vw, 86px)', contain: 'paint' }}>
               {!isMounted ? (
                 <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
                   {titles[0]}

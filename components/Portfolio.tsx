@@ -22,6 +22,8 @@ const projects = [
     tagline: 'Wykończenia pod klucz, Wrocław',
     href: 'https://pm-apartments.pl/',
     preview: '/portfolio/pm-apartments-preview.webp',
+    width: 1852,
+    height: 916,
     body: 'Klient miał firmę bez obecności w sieci. Teraz ma stronę, która prezentuje ofertę i sama odbiera zapytania. Nowi klienci trafiają bezpośrednio do kalendarza.',
     time: '72h',
     lighthouse: [
@@ -36,6 +38,8 @@ const projects = [
     tagline: 'Autorskie wycieczki po Sycylii',
     href: 'https://dorimari.pl',
     preview: '/portfolio/dorimari-preview.webp',
+    width: 1849,
+    height: 929,
     body: 'Klient prowadzi butikowe wycieczki premium i potrzebował miejsca, które sprzeda klimat, nie tylko trasę. Strona pokazuje ofertę i galerię zdjęć. Formularz kontaktowy działa od razu.',
     time: 'tydzień',
     lighthouse: [
@@ -50,6 +54,8 @@ const projects = [
     tagline: 'Wizualizacje 3D wnętrz i architektury',
     href: 'https://msdesignstudio.pl/',
     preview: '/portfolio/msdesignstudio-preview.webp',
+    width: 1440,
+    height: 900,
     body: 'Klientka tworzy wizualizacje 3D i potrzebowała portfolio, które mówi samo za siebie. Strona pokazuje projekty, ofertę i umożliwia kontakt. Wdrożona w jeden dzień.',
     time: '24h',
     lighthouse: [
@@ -180,19 +186,18 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={handleCardClick}
-                  className="group relative block overflow-hidden bg-[#f5f7fa]"
-                  style={{ aspectRatio: '16 / 10' }}
+                  className="group relative flex items-center justify-center overflow-hidden bg-[#f5f7fa]"
                 >
                   <Image
                     src={project.preview}
                     alt={`${project.name} - ${project.tagline}`}
-                    fill
+                    width={project.width}
+                    height={project.height}
                     sizes="(min-width: 768px) 720px, 100vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    quality={80}
+                    className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    quality={82}
                     priority={currentIndex === 0}
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
                 </a>
 

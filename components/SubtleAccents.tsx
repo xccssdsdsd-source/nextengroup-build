@@ -40,9 +40,9 @@ export default function SubtleAccents() {
           </linearGradient>
         </defs>
 
-        <line x1="-250" y1="820" x2="1440" y2="0"    stroke="url(#l1)" strokeWidth="2"   />
-        <line x1="-250" y1="80"  x2="1440" y2="900"  stroke="url(#l2)" strokeWidth="2"   />
-        <line x1="820"  y1="-100" x2="1100" y2="1000" stroke="url(#l3)" strokeWidth="1.5" />
+        <line x1="-250" y1="820" x2="1440" y2="0"    stroke="url(#l1)" strokeWidth="2"   opacity="0.035" />
+        <line x1="-250" y1="80"  x2="1440" y2="900"  stroke="url(#l2)" strokeWidth="2"   opacity="0.035" />
+        <line x1="820"  y1="-100" x2="1100" y2="1000" stroke="url(#l3)" strokeWidth="1.5" opacity="0.035" />
       </svg>
     </div>
   )

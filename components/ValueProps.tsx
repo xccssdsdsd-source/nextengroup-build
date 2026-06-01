@@ -41,8 +41,7 @@ export default function ValueProps() {
             <motion.article
               key={idx}
               variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
-              className="rounded-2xl border border-[#e5e7eb] bg-white p-5 sm:p-6 transition-[border-color,box-shadow] duration-200 hover:border-[#2563EB] hover:shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)] flex flex-col justify-center"
-              style={{ background: 'var(--bg-card)' }}
+              className="value-card rounded-2xl p-5 sm:p-6 flex flex-col justify-center"
             >
               <h3 className="text-[1rem] font-bold tracking-[-0.03em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
                 {value.title}

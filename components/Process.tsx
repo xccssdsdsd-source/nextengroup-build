@@ -80,7 +80,7 @@ function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number,
       }`}
       style={{ background: 'var(--bg-card)' }}
     >
-      <div className="text-[2.6rem] font-black tracking-[-0.03em]" style={{ color: 'var(--accent)', fontFamily: 'var(--font-syne)' }}>
+      <div className="text-[2.6rem] font-black tracking-[-0.03em]" style={{ color: '#1d4ed8', fontFamily: 'var(--font-syne)' }}>
         {step.num}
       </div>
 

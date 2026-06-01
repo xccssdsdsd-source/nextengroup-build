@@ -126,110 +126,108 @@ export default function Portfolio() {
     }
   }, [])
 
+  const project = projects[currentIndex]
+
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden">
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
       <BackgroundPathsPortfolio />
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative mx-auto max-w-6xl">
         <motion.div
-          className="section-heading"
-          initial={{ opacity: 0, y: 32 }}
+          className="flex flex-wrap items-end justify-between gap-4"
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          transition={{ duration: 0.7, ease }}
         >
-          <span className="section-kicker">Nasze realizacje</span>
-          <h2 className="section-title">Nasze strony internetowe</h2>
+          <div>
+            <span className="section-kicker">Nasze realizacje</span>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
+          </div>
+          <div className="hidden sm:flex items-center gap-2.5">
+            <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
+            <span className="font-mono text-[13px] tabular-nums text-[var(--muted)]"><span className="text-[var(--text)] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
+            <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
+          </div>
         </motion.div>
 
-        <div className="mt-10 relative">
+        <motion.div
+          className="mt-7 relative"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.12, ease }}
+        >
           <div
-            className="overflow-hidden rounded-2xl"
+            className="realizacja-card overflow-hidden"
             style={{ touchAction: 'pan-y' }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
             <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.a
+              <motion.div
                 key={currentIndex}
-                href={projects[currentIndex].href}
-                target="_blank"
-                rel="noreferrer"
                 custom={direction}
                 variants={slideVariants}
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.35, ease }}
-                onClick={handleCardClick}
-                className="realizacja-card group block"
+                transition={{ duration: 0.4, ease }}
+                className="grid md:grid-cols-[1.35fr_1fr]"
               >
-                <div className="relative w-full overflow-hidden bg-[#f5f7fa]" style={{ aspectRatio: '16 / 9' }}>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={handleCardClick}
+                  className="group relative block overflow-hidden bg-[#f5f7fa]"
+                  style={{ aspectRatio: '16 / 10' }}
+                >
                   <Image
-                    src={projects[currentIndex].preview}
-                    alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
+                    src={project.preview}
+                    alt={`${project.name} - ${project.tagline}`}
                     fill
-                    sizes="(min-width: 768px) 896px, 100vw"
-                    className="object-cover object-top"
+                    sizes="(min-width: 768px) 720px, 100vw"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     quality={80}
                     priority={currentIndex === 0}
                   />
-                </div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
+                </a>
 
-                <div className="p-5 sm:p-6">
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="font-mono text-[12px] text-[#94a3b8] truncate">{projects[currentIndex].href.replace('https://', '').replace(/\/$/, '')}</span>
-                    <span className="shrink-0 rounded-[6px] px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white" style={{ background: '#0f172a' }}>Wdrożenie {projects[currentIndex].time}</span>
-                  </div>
+                <div className="flex flex-col justify-center p-6 sm:p-8">
+                  <span className="self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white" style={{ background: 'linear-gradient(135deg,#2563EB,#1d4ed8)' }}>Wdrożenie {project.time}</span>
 
-                  <div className="mt-3 inline-flex items-center gap-1.5">
-                    <h3 className="text-[18px] font-bold tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
-                    <ArrowUpRight size={16} strokeWidth={2} className="text-[#94a3b8] transition-colors group-hover:text-[#2563EB]" />
-                  </div>
-                  <p className="mt-1.5 text-[14px] leading-[1.55] text-[#64748b]">{projects[currentIndex].body}</p>
+                  <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
+                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#94a3b8] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                  <p className="mt-1 text-[14px] font-medium text-[#2563EB]">{project.tagline}</p>
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">{project.body}</p>
 
-                  {projects[currentIndex].lighthouse && (
-                    <div className="mt-4 flex gap-3 border-t border-[#e5e7eb] pt-4">
-                      {projects[currentIndex].lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
+                  {project.lighthouse && (
+                    <div className="mt-5 flex gap-4 border-t border-[#eef1f5] pt-4">
+                      {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}
                 </div>
-              </motion.a>
+              </motion.div>
             </AnimatePresence>
           </div>
 
-          <button
-            onClick={prevProject}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -ml-7"
-            aria-label="Poprzednia realizacja"
-          >
-            <ChevronLeft size={24} strokeWidth={2} />
-          </button>
-
-          <button
-            onClick={nextProject}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -mr-7"
-            aria-label="Następna realizacja"
-          >
-            <ChevronRight size={24} strokeWidth={2} />
-          </button>
-
-          <div className="mt-6 flex justify-center items-center gap-3">
+          <div className="mt-6 flex justify-center items-center gap-3 sm:hidden">
             {projects.map((_, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  setDirection(i > currentIndex ? 1 : -1)
-                  setCurrentIndex(i)
-                }}
+                onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
                 className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
                 style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
                 aria-label={`Realizacja ${i + 1}`}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

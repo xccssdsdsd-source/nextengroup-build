@@ -100,7 +100,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
           >
-            Nowoczesne strony, automatyzacje procesów i agenci AI — rozwiązania IT skrojone pod Twój biznes.
+            Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie.
           </motion.p>
 
           {/* Value promise */}

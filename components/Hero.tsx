@@ -103,26 +103,6 @@ export default function Hero() {
             Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie.
           </motion.p>
 
-          {/* Value promise */}
-          <motion.div
-            className="mt-5 sm:mt-6 flex justify-center"
-            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.38, ease: easeOut }}
-          >
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12.5px] font-semibold text-[#1d4ed8]"
-              style={{
-                background: 'rgba(219, 234, 254, 0.7)',
-                border: '1px solid rgba(147, 197, 253, 0.5)',
-                letterSpacing: '0.01em',
-              }}
-            >
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#2563eb] opacity-70" />
-              Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
-            </span>
-          </motion.div>
-
           {/* CTA buttons */}
           <motion.div
             className="mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"

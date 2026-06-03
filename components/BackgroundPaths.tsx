@@ -17,6 +17,19 @@ export default function BackgroundPaths() {
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
+        <style>{`
+          @keyframes flowPath {
+            0% { stroke-dashoffset: 2000; }
+            100% { stroke-dashoffset: 0; }
+          }
+          @media (prefers-reduced-motion: no-preference) {
+            .bp-h-0 { animation: flowPath 20s linear infinite; }
+            .bp-h-1 { animation: flowPath 24s linear infinite; }
+            .bp-h-2 { animation: flowPath 22s linear infinite; }
+            .bp-h-3 { animation: flowPath 26s linear infinite; }
+          }
+          .bp-h-0, .bp-h-1, .bp-h-2, .bp-h-3 { opacity: 0.15; }
+        `}</style>
         {paths.map((p, i) => (
           <path
             key={i}
@@ -25,7 +38,8 @@ export default function BackgroundPaths() {
             stroke={p.color}
             strokeWidth={p.width}
             strokeLinecap="round"
-            opacity={0.12}
+            strokeDasharray={2000}
+            className={`bp-h-${i}`}
           />
         ))}
       </svg>

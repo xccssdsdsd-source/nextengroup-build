@@ -4,6 +4,7 @@ const nextConfig = {
   poweredByHeader: false,
   experimental: {
     turbopack: false,
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],

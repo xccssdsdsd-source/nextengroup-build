@@ -12,14 +12,10 @@ const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
+
   useEffect(() => {
     setIsMounted(true)
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
@@ -44,7 +40,6 @@ export default function Hero() {
       suppressHydrationWarning
       className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48"
     >
-      {/* Background gradients */}
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{ background: 'radial-gradient(ellipse 90% 70% at 50% 0%, rgba(219,234,254,0.55), transparent 65%)' }}
@@ -57,7 +52,6 @@ export default function Hero() {
 
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
 
-        {/* Headline */}
         <div className="w-full text-center">
           <h1
             className="mx-auto text-[#0A0A0F] mb-5 sm:mb-6"
@@ -93,22 +87,17 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Description */}
-          <motion.p
-            className="mt-0 sm:mt-2 max-w-lg mx-auto text-sm sm:text-base leading-relaxed text-[#6B7280] px-2"
-            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
+          {/* CSS animation — plays before JS loads, no delay flash */}
+          <p
+            className="hero-fade-in mt-0 sm:mt-2 max-w-lg mx-auto text-sm sm:text-base leading-relaxed text-[#6B7280] px-2"
+            style={{ animationDelay: '50ms' }}
           >
             Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie.
-          </motion.p>
+          </p>
 
-          {/* CTA buttons */}
-          <motion.div
-            className="mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
-            initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.42, ease: easeOut }}
+          <div
+            className="hero-fade-in mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
+            style={{ animationDelay: '110ms' }}
           >
             <a
               href="#kontakt"
@@ -125,29 +114,21 @@ export default function Hero() {
             >
               Realizacje
             </a>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Device mockup — desktop 3D, mobile flat */}
-        <motion.div
-          className="mt-12 sm:mt-14 flex justify-center pb-0"
-          style={!isMobile ? { perspective: '1400px' } : {}}
-          initial={isMobile || !isMounted ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.68, ease: easeOut }}
+        {/* Device mockup — perspective wrapper + CSS tilt-in animation */}
+        <div
+          className="hero-fade-in mt-12 sm:mt-14 flex justify-center pb-0"
+          style={{ perspective: '1400px', animationDelay: '170ms' }}
         >
-          <motion.div
-            initial={isMobile || !isMounted ? false : { rotateX: 18, scale: 1.04, opacity: 0 }}
-            animate={{ rotateX: 0, scale: 1, opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.7, ease: easeOut }}
-            className="w-full"
-          >
+          <div className="hero-device-tilt w-full">
             <div
               style={{
-                borderRadius: isMobile ? '14px' : '20px',
+                borderRadius: '20px',
                 backgroundColor: '#0d1117',
-                maxWidth: isMobile ? '100%' : '1100px',
-                maxHeight: isMobile ? '200px' : '400px',
+                maxWidth: '1100px',
+                maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',
                 boxShadow: '0 -12px 60px rgba(37,99,235,0.18), 0 -2px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.08)',
                 overflow: 'hidden',
@@ -156,8 +137,8 @@ export default function Hero() {
             >
               {isMounted && <DeviceMockups />}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

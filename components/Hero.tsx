@@ -104,14 +104,24 @@ export default function Hero() {
           </motion.p>
 
           {/* Value promise */}
-          <motion.p
-            className="mt-4 sm:mt-5 max-w-lg mx-auto text-sm text-[#2563EB] font-medium px-2"
+          <motion.div
+            className="mt-5 sm:mt-6 flex justify-center"
             initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38, ease: easeOut }}
           >
-            Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
-          </motion.p>
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12.5px] font-semibold text-[#1d4ed8]"
+              style={{
+                background: 'rgba(219, 234, 254, 0.7)',
+                border: '1px solid rgba(147, 197, 253, 0.5)',
+                letterSpacing: '0.01em',
+              }}
+            >
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#2563eb] opacity-70" />
+              Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
+            </span>
+          </motion.div>
 
           {/* CTA buttons */}
           <motion.div

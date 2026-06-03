@@ -69,13 +69,20 @@ const projects = [
 
 function ScoreBadge({ value, label }: LighthouseScore) {
   const colors = value >= 90
-    ? { bg: '#dcfce7', fg: '#16a34a' }
+    ? { bg: '#dcfce7', fg: '#15803d', ring: 'rgba(21,128,61,0.15)' }
     : value >= 50
-      ? { bg: '#fef9c3', fg: '#ca8a04' }
-      : { bg: '#fee2e2', fg: '#dc2626' }
+      ? { bg: '#fef9c3', fg: '#a16207', ring: 'rgba(161,98,7,0.15)' }
+      : { bg: '#fee2e2', fg: '#dc2626', ring: 'rgba(220,38,38,0.15)' }
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold" style={{ background: colors.bg, color: colors.fg }}>
+    <div className="flex flex-col items-center gap-1.5">
+      <div
+        className="flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold"
+        style={{
+          background: colors.bg,
+          color: colors.fg,
+          boxShadow: `0 0 0 3px ${colors.ring}`,
+        }}
+      >
         {value}
       </div>
       <span className="text-[9px] leading-tight text-[var(--muted)] text-center max-w-[44px]">{label}</span>
@@ -202,7 +209,7 @@ export default function Portfolio() {
                 </a>
 
                 <div className="flex flex-col justify-center p-6 sm:p-8">
-                  <span className="self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white" style={{ background: 'linear-gradient(135deg,#2563EB,#1d4ed8)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: 'linear-gradient(140deg, #1d4ed8 0%, #2563eb 100%)', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
@@ -212,7 +219,7 @@ export default function Portfolio() {
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">{project.body}</p>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[#eef1f5] pt-4">
+                    <div className="mt-5 flex gap-4 border-t border-[var(--border)] pt-5">
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}

@@ -75,19 +75,19 @@ function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number,
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 ${
-        isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
+      className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 ${
+        isHovered ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]' : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
       }`}
       style={{ background: 'var(--bg-card)' }}
     >
-      <div className="text-[2.6rem] font-black tracking-[-0.03em]" style={{ color: '#1d4ed8', fontFamily: 'var(--font-syne)' }}>
+      <div className="step-number">
         {step.num}
       </div>
 
-      <h3 className="mt-4 text-[1.15rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="mt-5 text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {step.title}
       </h3>
-      <p className="mt-4 text-[15px] leading-[1.7] text-[var(--text-secondary)]">
+      <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {step.desc}
       </p>
     </motion.article>

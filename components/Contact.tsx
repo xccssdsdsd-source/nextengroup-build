@@ -122,8 +122,8 @@ export default function Contact() {
         initial={{ opacity: 0, y: 40, scale: 0.98 }}
         animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
         transition={{ duration: 0.85, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-10 lg:p-14"
-        style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(37,99,235,0.10)' }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[var(--border)] bg-white p-6 sm:p-10 lg:p-14"
+        style={{ boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 6px 24px rgba(13,22,41,0.06), 0 16px 64px rgba(37,99,235,0.07), inset 0 1px 0 rgba(255,255,255,0.9)' }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[var(--accent)]/15 to-transparent" />
@@ -232,7 +232,7 @@ export default function Contact() {
                     <p className="text-[13px] text-[#6b7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6" style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(37,99,235,0.06)' }}>
+                  <div className="rounded-2xl border border-[var(--border)] bg-white p-6" style={{ boxShadow: 'var(--shadow-sm)' }}>
                     {submitted ? (
                       <div className="text-center py-8">
                         <div className="mb-4 text-4xl">✓</div>
@@ -242,7 +242,7 @@ export default function Contact() {
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label htmlFor="name" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Imię i nazwisko *</label>
+                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Imię i nazwisko *</label>
                           <input
                             type="text"
                             id="name"
@@ -251,12 +251,12 @@ export default function Contact() {
                             onChange={handleChange}
                             required
                             placeholder="Jan Kowalski"
-                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                            className="form-input"
                           />
                         </div>
 
                         <div>
-                          <label htmlFor="email" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Email *</label>
+                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Email *</label>
                           <input
                             type="email"
                             id="email"
@@ -265,12 +265,12 @@ export default function Contact() {
                             onChange={handleChange}
                             required
                             placeholder="jan@example.com"
-                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all"
+                            className="form-input"
                           />
                         </div>
 
                         <div>
-                          <label htmlFor="message" className="block text-[13px] font-semibold text-[#0A0A0F] mb-2">Wiadomość *</label>
+                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Wiadomość *</label>
                           <textarea
                             id="message"
                             name="message"
@@ -279,7 +279,7 @@ export default function Contact() {
                             required
                             placeholder="Twoja wiadomość..."
                             rows={4}
-                            className="w-full px-4 py-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0A0A0F] placeholder-[#9ca3af] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all resize-none"
+                            className="form-input resize-none"
                           />
                         </div>
 

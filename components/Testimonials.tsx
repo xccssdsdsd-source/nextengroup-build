@@ -67,39 +67,47 @@ function TestimonialCard() {
     <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border bg-white p-7 transition-[box-shadow] duration-200 ${
+      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
         isHovered
-          ? 'border-black/[0.07] shadow-[0_4px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(0,0,0,0.08),_0_32px_64px_rgba(0,0,0,0.05)]'
-          : 'border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04),_0_4px_12px_rgba(0,0,0,0.05),_0_20px_40px_rgba(0,0,0,0.03)]'
+          ? 'border-[var(--border)] shadow-[0_4px_12px_rgba(13,22,41,0.07),_0_16px_40px_rgba(13,22,41,0.08)]'
+          : 'border-[var(--border)] shadow-[0_1px_3px_rgba(13,22,41,0.05),_0_6px_20px_rgba(13,22,41,0.05)]'
       }`}
+      style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)' }}
     >
-      <div className="flex gap-0.5 text-[#FBBF24]">
+      <svg
+        className="absolute right-7 top-7 opacity-[0.06]"
+        width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true"
+      >
+        <path d="M0 48V29.6C0 12.8 8.8 3.2 26.4 0L28.8 4.8C20.8 6.4 15.2 10.4 12 16.8H22.4V48H0ZM36.8 48V29.6C36.8 12.8 45.6 3.2 63.2 0L65.6 4.8C57.6 6.4 52 10.4 48.8 16.8H59.2V48H36.8Z" fill="#1d4ed8" />
+      </svg>
+
+      <div className="flex gap-1 text-[#F59E0B]">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={15} fill="currentColor" strokeWidth={0} />
+          <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
         ))}
       </div>
 
-      <p className="mt-5 text-[15px] leading-[1.8] text-[#374151]">
+      <p className="mt-5 text-[15px] leading-[1.82] text-[#374151]">
         &ldquo;Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.&rdquo;
       </p>
 
-      <div className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
-        <div className="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-full">
+      <div className="mt-6 flex items-center gap-3.5 border-t border-[var(--border)] pt-5">
+        <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--border)]">
           <Image
             src="/patryk-zacharek.jpg"
             alt="Patryk Zacharek"
             fill
             className="object-cover"
-            sizes="36px"
+            sizes="40px"
           />
         </div>
         <div>
-          <div className="text-[13px] font-semibold text-[#0A0A0A]">Patryk Zacharek</div>
+          <div className="text-[13px] font-semibold text-[var(--text)]">Patryk Zacharek</div>
           <a
             href="https://pm-apartments.pl/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-medium text-[#0EA5E9] hover:text-[#6366F1] transition-colors duration-150 uppercase tracking-[0.14em]"
+            className="text-[11px] font-medium text-[#2563eb] hover:text-[#1d4ed8] transition-colors duration-150 uppercase tracking-[0.14em]"
           >
             pm-apartments.pl
           </a>

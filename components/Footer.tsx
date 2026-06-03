@@ -21,12 +21,16 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/6">
+    <footer className="relative overflow-hidden bg-gray-950 px-6 py-8 sm:px-8 sm:py-16 border-t border-white/8">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.3) 35%, rgba(99,102,241,0.3) 65%, transparent 100%)' }}
+      />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.018) 1px, transparent 1px)',
+          backgroundSize: '44px 44px',
         }}
       />
 
@@ -47,7 +51,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <p className="text-[12px] leading-5 text-white/40">
+          <p className="text-[12.5px] leading-[1.7] text-white/35">
             Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
           </p>
         </motion.div>
@@ -60,7 +64,7 @@ export default function Footer() {
         >
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Nawigacja</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/45 mb-4">Nawigacja</p>
               <div className="space-y-2">
                 {footerLinks.map(([label, href], i) => (
                   <motion.a
@@ -77,8 +81,8 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 mb-3">Kontakt i prawne</p>
-              <p className="text-[13px] text-white/40 mb-2">Polska</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/45 mb-4">Kontakt i prawne</p>
+              <p className="text-[12px] text-white/30 mb-3 tracking-[0.04em]">Polska</p>
               <div className="space-y-2">
                 {footerLegal.map(([label, href], i) => (
                   <motion.a
@@ -106,7 +110,7 @@ export default function Footer() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease }}
       >
-        <p className="text-[12px] text-white/25">
+        <p className="text-[11.5px] tracking-[0.02em] text-white/22">
           © {new Date().getFullYear()} Getbuild. Wszystkie prawa zastrzeżone.
         </p>
       </motion.div>

@@ -129,11 +129,11 @@ export default function Hero() {
               Kontakt
             </a>
             <a
-              href="#opinie"
-              onClick={(e) => handleAnchorClick(e, '#opinie')}
+              href="#portfolio"
+              onClick={(e) => handleAnchorClick(e, '#portfolio')}
               className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
             >
-              Opinie klientów
+              Realizacje
             </a>
           </motion.div>
         </div>

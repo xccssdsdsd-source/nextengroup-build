@@ -2,25 +2,32 @@
 
 import { motion, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const testimonials = [
   {
-    quote: 'Po wdrożeniu strona wreszcie wyglądała jak marka premium, a nie kolejna przypadkowa wizytówka.',
-    name: 'Paweł M.',
+    quote: 'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
+    name: 'Patryk Zacharek',
     role: 'PM-Apartments',
+    website: 'pm-apartments.pl',
+    photo: '/patryk-zacharek.jpg',
   },
   {
     quote: 'Największa różnica była taka, że komunikacja stała się prostsza, a klienci szybciej przechodzili do kontaktu.',
     name: 'Anna K.',
     role: 'Branża beauty',
+    website: null,
+    photo: null,
   },
   {
     quote: 'Projekt dostaliśmy szybko, a cały landing był znacznie czytelniejszy i bardziej profesjonalny.',
     name: 'Marcin R.',
     role: 'Usługi lokalne',
+    website: null,
+    photo: null,
   },
 ] as const
 
@@ -81,16 +88,39 @@ function TestimonialCard({ item, ease }: { item: (typeof testimonials)[number], 
       </div>
 
       <p className="mt-5 text-[15px] leading-[1.8] text-[#374151]">
-        "{item.quote}"
+        &ldquo;{item.quote}&rdquo;
       </p>
 
       <div className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0EA5E9]/15 to-[#6366F1]/15 text-[11px] font-bold text-[#0EA5E9]" style={{ fontFamily: 'var(--font-syne)' }}>
-          {item.name.charAt(0)}
-        </div>
+        {item.photo ? (
+          <div className="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-full">
+            <Image
+              src={item.photo}
+              alt={item.name}
+              fill
+              className="object-cover"
+              sizes="36px"
+            />
+          </div>
+        ) : (
+          <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0EA5E9]/15 to-[#6366F1]/15 text-[11px] font-bold text-[#0EA5E9]" style={{ fontFamily: 'var(--font-syne)' }}>
+            {item.name.charAt(0)}
+          </div>
+        )}
         <div>
           <div className="text-[13px] font-semibold text-[#0A0A0A]">{item.name}</div>
-          <div className="text-[11px] uppercase tracking-[0.14em] text-[#9CA3AF]">{item.role}</div>
+          {item.website ? (
+            <a
+              href={`https://${item.website}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-medium text-[#0EA5E9] hover:text-[#6366F1] transition-colors duration-150 uppercase tracking-[0.14em]"
+            >
+              {item.website}
+            </a>
+          ) : (
+            <div className="text-[11px] uppercase tracking-[0.14em] text-[#9CA3AF]">{item.role}</div>
+          )}
         </div>
       </div>
     </motion.article>

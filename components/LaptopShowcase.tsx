@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 type LaptopShowcaseProps = {
   trigger: number
@@ -38,7 +38,7 @@ export default function LaptopShowcase({ trigger }: LaptopShowcaseProps) {
         </div>
       </div>
 
-      <motion.div
+      <m.div
         key={trigger}
         className="relative w-full max-w-[780px]"
         initial={{ opacity: 0, rotateX: 22, rotateY: -14, y: 28, scale: 0.94 }}
@@ -49,7 +49,7 @@ export default function LaptopShowcase({ trigger }: LaptopShowcaseProps) {
         <div className="absolute inset-x-[8%] bottom-[-8%] h-20 rounded-full bg-[radial-gradient(circle,rgba(26,111,255,0.38),rgba(0,212,255,0.14)_45%,transparent_72%)] blur-2xl" />
 
         <div className="relative" style={{ transformStyle: 'preserve-3d' }}>
-          <motion.div
+          <m.div
             className="relative mx-auto aspect-[16/10] w-full rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,#152438_0%,#09111d_50%,#050912_100%)] p-4 shadow-[0_45px_120px_rgba(0,0,0,0.5)]"
             initial={{ rotateX: 80 }}
             animate={{ rotateX: 0 }}
@@ -118,14 +118,14 @@ export default function LaptopShowcase({ trigger }: LaptopShowcaseProps) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           <div className="relative mx-auto -mt-3 h-[26px] w-[108%] rounded-b-[32px] rounded-t-[14px] border border-white/10 bg-[linear-gradient(180deg,#b8c4d8_0%,#7f8ea5_24%,#384658_56%,#172030_100%)] shadow-[0_28px_60px_rgba(0,0,0,0.38)]">
             <div className="absolute left-1/2 top-1.5 h-1.5 w-20 -translate-x-1/2 rounded-full bg-[#d8e1ef]/70" />
             <div className="absolute inset-x-[14%] bottom-[-12px] h-5 rounded-b-[24px] bg-[linear-gradient(180deg,#708099,#1a2332)] blur-[1px]" />
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   )
 }

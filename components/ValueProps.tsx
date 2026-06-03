@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -35,14 +35,14 @@ export default function ValueProps() {
   return (
     <section id="wartosci" ref={ref} className="section-shell relative">
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
           {values.map((value, idx) => (
-            <motion.article
+            <m.article
               key={idx}
               variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
               className="value-card rounded-2xl p-5 sm:p-6 flex flex-col"
@@ -56,9 +56,9 @@ export default function ValueProps() {
               <p className="mt-2 text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">
                 {value.desc}
               </p>
-            </motion.article>
+            </m.article>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

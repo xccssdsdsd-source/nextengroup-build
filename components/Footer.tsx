@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const footerLinks = [
   ['Usługi', '#uslugi'],
@@ -35,7 +35,7 @@ export default function Footer() {
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
@@ -54,9 +54,9 @@ export default function Footer() {
           <p className="text-[12.5px] leading-[1.7] text-white/35">
             Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="lg:col-span-2"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function Footer() {
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/45 mb-4">Nawigacja</p>
               <div className="space-y-2">
                 {footerLinks.map(([label, href], i) => (
-                  <motion.a
+                  <m.a
                     key={href}
                     href={href}
                     initial={{ opacity: 0, x: -8 }}
@@ -76,7 +76,7 @@ export default function Footer() {
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
                     {label}
-                  </motion.a>
+                  </m.a>
                 ))}
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function Footer() {
               <p className="text-[12px] text-white/30 mb-3 tracking-[0.04em]">Polska</p>
               <div className="space-y-2">
                 {footerLegal.map(([label, href], i) => (
-                  <motion.a
+                  <m.a
                     key={href}
                     href={href}
                     target={label === 'LinkedIn' ? '_blank' : undefined}
@@ -96,15 +96,15 @@ export default function Footer() {
                     className="block text-[13px] font-medium text-white/40 transition-colors duration-200 hover:text-white/80"
                   >
                     {label}
-                  </motion.a>
+                  </m.a>
                 ))}
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
-      <motion.div
+      <m.div
         className="relative mx-auto max-w-7xl border-t border-white/10 mt-10 pt-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -113,7 +113,7 @@ export default function Footer() {
         <p className="text-[11.5px] tracking-[0.02em] text-white/22">
           © {new Date().getFullYear()} Getbuild. Wszystkie prawa zastrzeżone.
         </p>
-      </motion.div>
+      </m.div>
     </footer>
   )
 }

@@ -14,15 +14,19 @@ export default function BackgroundPathsPortfolio() {
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <style>{`
           @keyframes flowPath {
             0% { stroke-dashoffset: 2000; }
             100% { stroke-dashoffset: 0; }
           }
-          .path-0 { animation: flowPath 22s linear infinite; opacity: 0.25; }
-          .path-1 { animation: flowPath 26s linear infinite; opacity: 0.2; }
-          .path-2 { animation: flowPath 24s linear infinite; opacity: 0.25; }
+          @media (prefers-reduced-motion: no-preference) {
+            .bp-pf-0 { animation: flowPath 22s linear infinite; }
+            .bp-pf-1 { animation: flowPath 26s linear infinite; }
+            .bp-pf-2 { animation: flowPath 24s linear infinite; }
+          }
+          .bp-pf-0, .bp-pf-1, .bp-pf-2 { opacity: 0.18; }
         `}</style>
         {paths.map((p, i) => (
           <path
@@ -33,7 +37,7 @@ export default function BackgroundPathsPortfolio() {
             strokeWidth={p.width}
             strokeLinecap="round"
             strokeDasharray="2000"
-            className={`path-${i}`}
+            className={`bp-pf-${i}`}
           />
         ))}
       </svg>

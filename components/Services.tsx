@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
 import BackgroundPathsServices from './BackgroundPathsServices'
 
@@ -42,7 +42,7 @@ export default function Services() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="section-heading"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -53,18 +53,18 @@ export default function Services() {
           <p className="section-copy">
             Oferujemy kompleksowe rozwiązania IT dopasowane dokładnie do Twojego biznesu i branży. Tworzymy nowoczesne strony internetowe, które generują zapytania od potencjalnych klientów i budują wiarygodność marki. Wdrażamy zaawansowane automatyzacje oparte na sztucznej inteligencji, które oszczędzają czas zespołu i obniżają koszty operacyjne. Budujemy też inteligentnych agentów AI dopasowanych do konkretnych procesów biznesowych.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
           {services.map((service, idx) => <ServiceCard key={idx} service={service} ease={ease} />)}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-12 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -77,7 +77,7 @@ export default function Services() {
           >
             Umów spotkanie
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
@@ -86,7 +86,7 @@ export default function Services() {
 function ServiceCard({ service, ease }: { service: (typeof services)[number], ease: [number, number, number, number] }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <motion.a
+    <m.a
       href={service.href}
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
@@ -110,6 +110,6 @@ function ServiceCard({ service, ease }: { service: (typeof services)[number], ea
       <p className="mt-4 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {service.desc}
       </p>
-    </motion.a>
+    </m.a>
   )
 }

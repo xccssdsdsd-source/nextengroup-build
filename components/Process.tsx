@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
@@ -42,7 +42,7 @@ export default function Process() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="section-heading"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -53,16 +53,16 @@ export default function Process() {
           <p className="section-copy">
             Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
           {steps.map((step) => <StepCard key={step.num} step={step} ease={ease} />)}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
@@ -71,7 +71,7 @@ export default function Process() {
 function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number, number, number, number] }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <motion.article
+    <m.article
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -90,6 +90,6 @@ function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number,
       <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {step.desc}
       </p>
-    </motion.article>
+    </m.article>
   )
 }

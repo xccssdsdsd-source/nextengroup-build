@@ -15,20 +15,8 @@ export default function BackgroundPaths() {
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
-        <style>{`
-          @keyframes flowPath {
-            0% { stroke-dashoffset: 2000; }
-            100% { stroke-dashoffset: 0; }
-          }
-          @media (prefers-reduced-motion: no-preference) {
-            .path-0 { animation: flowPath 20s linear infinite; }
-            .path-1 { animation: flowPath 24s linear infinite; }
-            .path-2 { animation: flowPath 22s linear infinite; }
-            .path-3 { animation: flowPath 26s linear infinite; }
-          }
-          .path-0, .path-1, .path-2, .path-3 { opacity: 0.15; }
-        `}</style>
         {paths.map((p, i) => (
           <path
             key={i}
@@ -37,8 +25,7 @@ export default function BackgroundPaths() {
             stroke={p.color}
             strokeWidth={p.width}
             strokeLinecap="round"
-            strokeDasharray={2000}
-            className={`path-${i}`}
+            opacity={0.12}
           />
         ))}
       </svg>

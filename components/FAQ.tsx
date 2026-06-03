@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion, useInView } from 'framer-motion'
+import { AnimatePresence, m, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import BackgroundPathsFAQ from './BackgroundPathsFAQ'
@@ -79,7 +79,7 @@ export default function FAQ() {
         }}
       />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.78, ease }}
@@ -89,14 +89,14 @@ export default function FAQ() {
           <p className="section-copy">
             To pytania, które najczęściej słyszymy przed rozpoczęciem współpracy.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="flex flex-col gap-2">
           {faqs.map((faq, index) => {
             const isOpen = open === index
 
             return (
-              <motion.div
+              <m.div
                 key={faq.q}
                 layout="position"
                 initial={{ opacity: 0, y: 24 }}
@@ -117,7 +117,7 @@ export default function FAQ() {
                   <span className="text-[14.5px] font-semibold leading-snug text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
                   </span>
-                  <motion.span
+                  <m.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.26, ease }}
                     className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
@@ -127,12 +127,12 @@ export default function FAQ() {
                     }`}
                   >
                     <Plus size={14} strokeWidth={2.2} />
-                  </motion.span>
+                  </m.span>
                 </button>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -142,10 +142,10 @@ export default function FAQ() {
                       <p className="px-5 pb-5 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
                         {faq.a}
                       </p>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             )
           })}
         </div>

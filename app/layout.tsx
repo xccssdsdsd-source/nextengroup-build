@@ -3,6 +3,7 @@ import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
 import SubtleAccents from '@/components/SubtleAccents'
+import MotionProvider from '@/components/MotionProvider'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
@@ -170,7 +171,9 @@ export default function RootLayout({
         </div>
         <CookieConsent />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#0055FF] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
-        <div id="main-content" className="relative" style={{ zIndex: 1 }}>{children}</div>
+        <MotionProvider>
+          <div id="main-content" className="relative" style={{ zIndex: 1 }}>{children}</div>
+        </MotionProvider>
       </body>
     </html>
   )

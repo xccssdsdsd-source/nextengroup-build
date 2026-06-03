@@ -14,15 +14,19 @@ export default function BackgroundPathsContact() {
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <style>{`
           @keyframes flowPath {
             0% { stroke-dashoffset: 1600; }
             100% { stroke-dashoffset: 0; }
           }
-          .path-0 { animation: flowPath 18s linear infinite; opacity: 0.25; }
-          .path-1 { animation: flowPath 22s linear infinite; opacity: 0.2; }
-          .path-2 { animation: flowPath 20s linear infinite; opacity: 0.25; }
+          @media (prefers-reduced-motion: no-preference) {
+            .bp-c-0 { animation: flowPath 18s linear infinite; }
+            .bp-c-1 { animation: flowPath 22s linear infinite; }
+            .bp-c-2 { animation: flowPath 20s linear infinite; }
+          }
+          .bp-c-0, .bp-c-1, .bp-c-2 { opacity: 0.18; }
         `}</style>
         {paths.map((p, i) => (
           <path
@@ -33,7 +37,7 @@ export default function BackgroundPathsContact() {
             strokeWidth={p.width}
             strokeLinecap="round"
             strokeDasharray="1600"
-            className={`path-${i}`}
+            className={`bp-c-${i}`}
           />
         ))}
       </svg>

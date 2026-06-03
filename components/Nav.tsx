@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -89,7 +89,7 @@ export default function Nav() {
       if (displayText.length > 0) {
         timer = setTimeout(() => {
           setDisplayText(prev => prev.slice(0, -1))
-        }, 40)
+        }, 65)
       } else {
         setIsDeleting(false)
         setCtaIndex(prev => (prev + 1) % ctaLabels.length)
@@ -98,11 +98,11 @@ export default function Nav() {
       if (displayText.length < currentText.length) {
         timer = setTimeout(() => {
           setDisplayText(currentText.slice(0, displayText.length + 1))
-        }, 70)
+        }, 100)
       } else {
         timer = setTimeout(() => {
           setIsDeleting(true)
-        }, 2000)
+        }, 2500)
       }
     }
     
@@ -176,7 +176,7 @@ export default function Nav() {
             </div>
 
             <div className="flex items-center gap-3">
-              <motion.a
+              <m.a
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
@@ -191,7 +191,7 @@ export default function Nav() {
                 ) : (
                   <span>{ctaLabels[0]}</span>
                 )}
-              </motion.a>
+              </m.a>
               <button
                 type="button"
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -201,13 +201,13 @@ export default function Nav() {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
-                    <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <m.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
                       <X size={17} />
-                    </motion.span>
+                    </m.span>
                   ) : (
-                    <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <m.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
                       <Menu size={17} />
-                    </motion.span>
+                    </m.span>
                   )}
                 </AnimatePresence>
               </button>
@@ -217,7 +217,7 @@ export default function Nav() {
           {/* Mobile menu */}
           <AnimatePresence>
             {open && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -228,7 +228,7 @@ export default function Nav() {
                   <div className="flex flex-col gap-1">
                     {allLinks.map(([label, href], i) =>
                       href.startsWith('#') ? (
-                        <motion.a
+                        <m.a
                           key={href}
                           href={anchorHref(href)}
                           onClick={(e) => handleAnchorClick(e, href)}
@@ -238,7 +238,7 @@ export default function Nav() {
                           className={mobileLinkClass}
                         >
                           {label}
-                        </motion.a>
+                        </m.a>
                       ) : (
                         <Link
                           key={href}
@@ -252,17 +252,17 @@ export default function Nav() {
                     )}
                   </div>
                   <div className="mt-2 border-t border-[var(--border)] pt-2">
-                    <motion.a
+                    <m.a
                       href={anchorHref('#kontakt')}
                       onClick={(e) => handleAnchorClick(e, '#kontakt')}
                       whileTap={{ scale: 0.96 }}
                       className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"
                     >
                       Umów rozmowę
-                    </motion.a>
+                    </m.a>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

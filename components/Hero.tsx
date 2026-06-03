@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { useEffect, useState, type MouseEvent } from 'react'
 import BackgroundPaths from './BackgroundPaths'
 
@@ -72,7 +72,7 @@ export default function Hero() {
                 </span>
               ) : (
                 <AnimatePresence mode="wait">
-                  <motion.span
+                  <m.span
                     key={titleNumber}
                     className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
                     initial={{ opacity: 0, y: 22 }}
@@ -81,7 +81,7 @@ export default function Hero() {
                     transition={{ duration: 0.38, ease: easeOut }}
                   >
                     {titles[titleNumber]}
-                  </motion.span>
+                  </m.span>
                 </AnimatePresence>
               )}
             </span>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
@@ -23,25 +23,25 @@ export default function Testimonials() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="section-heading"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease }}
         >
           <span className="section-kicker">Opinie</span>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-14 flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease, delay: 0.15 }}
         >
           <TestimonialCard />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-10 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -55,7 +55,7 @@ export default function Testimonials() {
           >
             Umów spotkanie
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
@@ -94,11 +94,12 @@ function TestimonialCard() {
       <div className="mt-6 flex items-center gap-3.5 border-t border-[var(--border)] pt-5">
         <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--border)]">
           <Image
-            src="/patryk-zacharek.jpg"
+            src="/patryk-zacharek.webp"
             alt="Patryk Zacharek"
-            fill
+            width={80}
+            height={80}
+            loading="lazy"
             className="object-cover"
-            sizes="40px"
           />
         </div>
         <div>

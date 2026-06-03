@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback } from 'react'
 import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
@@ -147,7 +147,7 @@ export default function Portfolio() {
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 
       <div className="relative mx-auto max-w-6xl">
-        <motion.div
+        <m.div
           className="flex flex-wrap items-end justify-between gap-4"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -162,9 +162,9 @@ export default function Portfolio() {
             <span className="font-mono text-[13px] tabular-nums text-[var(--muted)]"><span className="text-[var(--text)] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-7 relative"
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -178,7 +178,7 @@ export default function Portfolio() {
             onTouchEnd={handleTouchEnd}
           >
             <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
+              <m.div
                 key={currentIndex}
                 custom={direction}
                 variants={slideVariants}
@@ -224,7 +224,7 @@ export default function Portfolio() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 
@@ -239,7 +239,7 @@ export default function Portfolio() {
               />
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

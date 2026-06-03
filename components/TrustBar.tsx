@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { useRef } from 'react'
 
@@ -20,17 +20,17 @@ export default function TrustBar() {
   return (
     <section ref={ref} className="px-5 pb-8 sm:pb-14 sm:px-8">
       <div className="mx-auto max-w-7xl">
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease }}
           className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#9CA3AF]"
         >
           Ostatnie realizacje
-        </motion.p>
+        </m.p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {items.map((item, i) => (
-            <motion.a
+            <m.a
               key={item.name}
               href={item.href}
               target="_blank"
@@ -53,7 +53,7 @@ export default function TrustBar() {
                 <span className="text-[12px] font-semibold text-[#0A0A0A]">{item.name}</span>
                 <ArrowUpRight size={14} className="text-[#9CA3AF] transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#0055FF]" />
               </div>
-            </motion.a>
+            </m.a>
           ))}
         </div>
       </div>

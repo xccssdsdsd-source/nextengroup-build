@@ -11,12 +11,8 @@ export default function Cursor() {
     setIsDesktop(check.matches)
     if (!check.matches) return
 
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, frameId = 0
-
-    const onMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-    }
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0
+    let rafId = 0
 
     const animate = () => {
       ringX += (mouseX - ringX) * 0.12
@@ -25,7 +21,18 @@ export default function Cursor() {
         ringRef.current.style.left = ringX + 'px'
         ringRef.current.style.top = ringY + 'px'
       }
-      frameId = requestAnimationFrame(animate)
+      const settled = Math.abs(mouseX - ringX) < 0.08 && Math.abs(mouseY - ringY) < 0.08
+      if (settled) {
+        rafId = 0
+      } else {
+        rafId = requestAnimationFrame(animate)
+      }
+    }
+
+    const onMove = (e: MouseEvent) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+      if (!rafId) rafId = requestAnimationFrame(animate)
     }
 
     const onOver = (e: MouseEvent) => {
@@ -48,16 +55,15 @@ export default function Cursor() {
       }
     }
 
-    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mousemove', onMove, { passive: true })
     document.addEventListener('mouseover', onOver)
     document.addEventListener('mouseout', onOut)
-    frameId = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseover', onOver)
       document.removeEventListener('mouseout', onOut)
-      cancelAnimationFrame(frameId)
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 

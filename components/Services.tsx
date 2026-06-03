@@ -34,7 +34,7 @@ export default function Services() {
   }
 
   return (
-    <section id="uslugi" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
+    <section id="uslugi" ref={ref} className="section-shell relative">
       <BackgroundPathsServices />
       <div
         className="pointer-events-none absolute inset-0"
@@ -91,15 +91,23 @@ function ServiceCard({ service, ease }: { service: (typeof services)[number], ea
       variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-        isHovered ? 'border-[#2563EB] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_12px_24px_rgba(37,99,235,0.12)]' : 'border-[#e5e7eb] shadow-[0_1px_2px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.04)]'
+      className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow,transform] duration-200 cursor-pointer ${
+        isHovered ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]' : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
       }`}
-      style={{ background: 'var(--bg-card)' }}
+      style={{ background: 'var(--bg-card)', transform: isHovered ? 'translateY(-2px)' : 'translateY(0)' }}
     >
-      <h3 className="text-[1.15rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
-        {service.title}
-      </h3>
-      <p className="mt-4 text-[15px] leading-[1.7] text-[var(--text-secondary)]">
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+          {service.title}
+        </h3>
+        <svg
+          width="16" height="16" viewBox="0 0 16 16" fill="none"
+          className={`flex-shrink-0 mt-1 transition-[color,transform] duration-200 ${isHovered ? 'text-[#2563eb] translate-x-0.5 -translate-y-0.5' : 'text-[#cbd5e1]'}`}
+        >
+          <path d="M3 13L13 3M13 3H6M13 3v7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <p className="mt-4 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {service.desc}
       </p>
     </motion.a>

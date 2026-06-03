@@ -22,6 +22,8 @@ const projects = [
     tagline: 'Wykończenia pod klucz, Wrocław',
     href: 'https://pm-apartments.pl/',
     preview: '/portfolio/pm-apartments-preview.webp',
+    width: 1852,
+    height: 916,
     body: 'Klient miał firmę bez obecności w sieci. Teraz ma stronę, która prezentuje ofertę i sama odbiera zapytania. Nowi klienci trafiają bezpośrednio do kalendarza.',
     time: '72h',
     lighthouse: [
@@ -36,6 +38,8 @@ const projects = [
     tagline: 'Autorskie wycieczki po Sycylii',
     href: 'https://dorimari.pl',
     preview: '/portfolio/dorimari-preview.webp',
+    width: 1849,
+    height: 929,
     body: 'Klient prowadzi butikowe wycieczki premium i potrzebował miejsca, które sprzeda klimat, nie tylko trasę. Strona pokazuje ofertę i galerię zdjęć. Formularz kontaktowy działa od razu.',
     time: 'tydzień',
     lighthouse: [
@@ -50,6 +54,8 @@ const projects = [
     tagline: 'Wizualizacje 3D wnętrz i architektury',
     href: 'https://msdesignstudio.pl/',
     preview: '/portfolio/msdesignstudio-preview.webp',
+    width: 1440,
+    height: 900,
     body: 'Klientka tworzy wizualizacje 3D i potrzebowała portfolio, które mówi samo za siebie. Strona pokazuje projekty, ofertę i umożliwia kontakt. Wdrożona w jeden dzień.',
     time: '24h',
     lighthouse: [
@@ -61,19 +67,25 @@ const projects = [
   },
 ]
 
-function ScoreRing({ value, label }: LighthouseScore) {
-  const r = 20
-  const circ = 2 * Math.PI * r
-  const offset = circ * (1 - value / 100)
-  const color = value >= 90 ? '#10b981' : value >= 50 ? '#f59e0b' : '#ef4444'
+function ScoreBadge({ value, label }: LighthouseScore) {
+  const colors = value >= 90
+    ? { bg: '#dcfce7', fg: '#15803d', ring: 'rgba(21,128,61,0.15)' }
+    : value >= 50
+      ? { bg: '#fef9c3', fg: '#a16207', ring: 'rgba(161,98,7,0.15)' }
+      : { bg: '#fee2e2', fg: '#dc2626', ring: 'rgba(220,38,38,0.15)' }
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <svg width="52" height="52" viewBox="0 0 52 52">
-        <circle cx="26" cy="26" r={r} fill="none" stroke="var(--border)" strokeWidth="3.5" />
-        <circle cx="26" cy="26" r={r} fill="none" stroke={color} strokeWidth="3.5" strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" transform="rotate(-90 26 26)" />
-        <text x="26" y="26" dominantBaseline="middle" textAnchor="middle" fontSize="11" fontWeight="700" fill={color}>{value}</text>
-      </svg>
-      <span className="text-[10px] text-[var(--muted)] text-center leading-tight max-w-[52px]">{label}</span>
+      <div
+        className="flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold"
+        style={{
+          background: colors.bg,
+          color: colors.fg,
+          boxShadow: `0 0 0 3px ${colors.ring}`,
+        }}
+      >
+        {value}
+      </div>
+      <span className="text-[9px] leading-tight text-[var(--muted)] text-center max-w-[44px]">{label}</span>
     </div>
   )
 }
@@ -127,127 +139,107 @@ export default function Portfolio() {
     }
   }, [])
 
+  const project = projects[currentIndex]
+
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
       <BackgroundPathsPortfolio />
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-6xl">
         <motion.div
-          className="section-heading"
-          initial={{ opacity: 0, y: 32 }}
+          className="flex flex-wrap items-end justify-between gap-4"
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          transition={{ duration: 0.7, ease }}
         >
-          <span className="section-kicker">Nasze realizacje</span>
-          <h2 className="section-title">Nasze strony internetowe</h2>
+          <div>
+            <span className="section-kicker">Nasze realizacje</span>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
+          </div>
+          <div className="hidden sm:flex items-center gap-2.5">
+            <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
+            <span className="font-mono text-[13px] tabular-nums text-[var(--muted)]"><span className="text-[var(--text)] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
+            <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
+          </div>
         </motion.div>
 
-        <div className="mt-8 relative">
-          <div className="relative">
-            <div
-              className="overflow-hidden rounded-[12px]"
-              style={{ touchAction: 'pan-y' }}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
+        <motion.div
+          className="mt-7 relative"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.12, ease }}
+        >
+          <div
+            className="realizacja-card overflow-hidden"
+            style={{ touchAction: 'pan-y' }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <motion.a
-              key={currentIndex}
-              href={projects[currentIndex].href}
-              target="_blank"
-              rel="noreferrer"
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease }}
-              onClick={handleCardClick}
-              className="group block bg-white rounded-[12px] border border-[#e5e7eb] overflow-hidden"
-              style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.08)' }}
-            >
-              <div className="p-3 sm:p-2 pb-2 sm:pb-1.5">
-                <div className="mb-1.5 flex items-center gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF5F57]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FEBC2E]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#28C840]" />
-                  <div className="ml-2 flex-1 rounded-md bg-neutral-100 px-1.5 py-0.5 text-[8px] text-neutral-400 truncate">{projects[currentIndex].href.replace('https://', '')}</div>
-                  <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-[#9CA3AF]">
-                    <ArrowUpRight size={10} strokeWidth={2} />
-                  </span>
-                </div>
-                <div className="relative overflow-hidden rounded-lg border border-[#e5e7eb] bg-[#f5f7fa]" style={{ aspectRatio: '16/10' }}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease }}
+                className="grid md:grid-cols-[1.35fr_1fr]"
+              >
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={handleCardClick}
+                  className="group relative flex items-center justify-center overflow-hidden bg-[#f5f7fa]"
+                >
                   <Image
-                    src={projects[currentIndex].preview}
-                    alt={`${projects[currentIndex].name} - ${projects[currentIndex].tagline}`}
-                    fill
-                    sizes="100vw"
-                    className="object-contain"
-                    quality={75}
+                    src={project.preview}
+                    alt={`${project.name} - ${project.tagline}`}
+                    width={project.width}
+                    height={project.height}
+                    sizes="(min-width: 768px) 720px, 100vw"
+                    className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    quality={82}
+                    priority={currentIndex === 0}
                   />
-                </div>
-              </div>
+                  <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
+                </a>
 
-              <div className="px-4 pb-4 pt-2.5 sm:px-3 sm:pb-3 sm:pt-1.5">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div className="min-w-0">
-                    <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-[#2563EB] mb-0.5">{projects[currentIndex].tagline}</p>
-                    <h3 className="text-base font-black tracking-[-0.03em] text-[#0A0A0F] mb-1" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].name}</h3>
-                    <p className="text-[11px] leading-[1.5] text-[#6b7280]">{projects[currentIndex].body}</p>
-                  </div>
-                  <div className="rounded-md border border-[#e5e7eb] bg-[#f5f7fa] px-2 py-1 text-center shrink-0">
-                    <div className="text-[7px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Wdrożenie</div>
-                    <div className="text-xs font-black tracking-[-0.02em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{projects[currentIndex].time}</div>
-                  </div>
-                </div>
+                <div className="flex flex-col justify-center p-6 sm:p-8">
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: 'linear-gradient(140deg, #1d4ed8 0%, #2563eb 100%)', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>Wdrożenie {project.time}</span>
 
-                {projects[currentIndex].lighthouse && (
-                  <div className="mt-2 flex items-center gap-1 border-t border-[#e5e7eb] pt-2">
-                    <span className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] mr-1 shrink-0">Lighthouse</span>
-                    <div className="flex gap-2">
-                      {projects[currentIndex].lighthouse.map(s => <ScoreRing key={s.label} {...s} />)}
+                  <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
+                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#94a3b8] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                  <p className="mt-1 text-[14px] font-medium text-[#2563EB]">{project.tagline}</p>
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">{project.body}</p>
+
+                  {project.lighthouse && (
+                    <div className="mt-5 flex gap-4 border-t border-[var(--border)] pt-5">
+                      {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
-                  </div>
-                )}
-              </div>
-            </motion.a>
+                  )}
+                </div>
+              </motion.div>
             </AnimatePresence>
-            </div>
-
-            <button
-              onClick={prevProject}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -ml-7"
-              aria-label="Poprzednia realizacja"
-            >
-              <ChevronLeft size={24} strokeWidth={2} />
-            </button>
-
-            <button
-              onClick={nextProject}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-[#e5e7eb] text-[#6b7280] shadow-lg hover:border-[#2563EB] hover:text-[#2563EB] transition-all hidden sm:flex -mr-7"
-              aria-label="Następna realizacja"
-            >
-              <ChevronRight size={24} strokeWidth={2} />
-            </button>
           </div>
 
-          <div className="mt-6 flex justify-center items-center gap-3">
+          <div className="mt-6 flex justify-center items-center gap-3 sm:hidden">
             {projects.map((_, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  setDirection(i > currentIndex ? 1 : -1)
-                  setCurrentIndex(i)
-                }}
+                onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
                 className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
                 style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
                 aria-label={`Realizacja ${i + 1}`}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

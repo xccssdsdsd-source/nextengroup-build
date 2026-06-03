@@ -42,7 +42,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative bg-white overflow-x-hidden pt-36 sm:pt-40 md:pt-48"
+      className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48"
     >
       {/* Background gradients */}
       <div
@@ -64,13 +64,14 @@ export default function Hero() {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2rem, 6.5vw, 3.5rem)',
+              fontSize: 'clamp(26px, 6.5vw, 56px)',
               lineHeight: '1.1',
               letterSpacing: '-0.03em',
+              overflowWrap: 'break-word',
             }}
           >
-            <span className="block mb-2 sm:mb-3">Budujemy Twój biznes przez</span>
-            <span className="relative block overflow-hidden" style={{ minHeight: 'clamp(3rem, 9vw, 5rem)' }}>
+            <span className="block mb-2 sm:mb-3 text-balance">Budujemy Twój biznes przez</span>
+            <span className="relative block" style={{ overflow: 'hidden', minHeight: 'clamp(40px, 10vw, 86px)', contain: 'paint' }}>
               {!isMounted ? (
                 <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
                   {titles[0]}
@@ -99,18 +100,28 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
           >
-            Nowoczesne strony, automatyzacje procesów i agenci AI — rozwiązania IT skrojone pod Twój biznes.
+            Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie.
           </motion.p>
 
           {/* Value promise */}
-          <motion.p
-            className="mt-4 sm:mt-5 max-w-lg mx-auto text-sm text-[#2563EB] font-medium px-2"
+          <motion.div
+            className="mt-5 sm:mt-6 flex justify-center"
             initial={isMobile || !isMounted ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38, ease: easeOut }}
           >
-            Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
-          </motion.p>
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12.5px] font-semibold text-[#1d4ed8]"
+              style={{
+                background: 'rgba(219, 234, 254, 0.7)',
+                border: '1px solid rgba(147, 197, 253, 0.5)',
+                letterSpacing: '0.01em',
+              }}
+            >
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#2563eb] opacity-70" />
+              Zobacz projekt przed wdrożeniem, zapłać dopiero kiedy działa
+            </span>
+          </motion.div>
 
           {/* CTA buttons */}
           <motion.div
@@ -132,7 +143,7 @@ export default function Hero() {
               onClick={(e) => handleAnchorClick(e, '#portfolio')}
               className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
             >
-              Zobacz realizacje
+              Realizacje
             </a>
           </motion.div>
         </div>

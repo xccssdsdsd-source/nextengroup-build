@@ -33,8 +33,8 @@ const allLinks: readonly (readonly [string, string])[] = [
   ['Kontakt', '#kontakt'],
 ]
 
-const linkClass = 'nav-link text-[12px] font-medium text-[#6b7280] transition-colors duration-200 hover:text-[#0A0A0F]'
-const mobileLinkClass = 'rounded-lg px-4 py-3 text-sm font-medium text-[#6b7280] transition-colors duration-150 hover:bg-[#f5f7fa] hover:text-[#0A0A0F]'
+const linkClass = 'nav-link text-[12.5px] font-medium text-[#64748b] transition-colors duration-200 hover:text-[#0d1629]'
+const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#64748b] transition-colors duration-150 hover:bg-[#f4f6f8] hover:text-[#0d1629]'
 
 const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
 
@@ -197,7 +197,7 @@ export default function Nav() {
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
                 aria-expanded={open}
                 onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#e5e7eb] bg-white text-[#0A0A0F] shadow-[0_1px_2px_rgba(0,0,0,0.06)] lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-white text-[var(--text)] shadow-[0_1px_3px_rgba(13,22,41,0.06)] transition-colors hover:bg-[#f4f6f8] lg:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
@@ -224,7 +224,7 @@ export default function Nav() {
                 transition={{ duration: 0.26, ease }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="mt-3 rounded-xl border border-[#e5e7eb] bg-white p-3 shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+                <div className="mt-3 rounded-2xl border border-[var(--border)] bg-white p-3 shadow-[0_4px_20px_rgba(13,22,41,0.10)]">
                   <div className="flex flex-col gap-1">
                     {allLinks.map(([label, href], i) =>
                       href.startsWith('#') ? (
@@ -251,7 +251,7 @@ export default function Nav() {
                       )
                     )}
                   </div>
-                  <div className="mt-2 border-t border-[#e5e7eb] pt-2">
+                  <div className="mt-2 border-t border-[var(--border)] pt-2">
                     <motion.a
                       href={anchorHref('#kontakt')}
                       onClick={(e) => handleAnchorClick(e, '#kontakt')}

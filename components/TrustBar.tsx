@@ -18,15 +18,15 @@ export default function TrustBar() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section ref={ref} className="bg-white px-5 pb-8 sm:pb-14 sm:px-8">
+    <section ref={ref} className="px-5 pb-8 sm:pb-14 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease }}
-          className="mb-6 text-[15px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]"
+          className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#9CA3AF]"
         >
-          Ostatnie realizacje:
+          Ostatnie realizacje
         </motion.p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {items.map((item, i) => (
@@ -39,7 +39,7 @@ export default function TrustBar() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: i * 0.08, ease }}
               whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-xl border border-black/[0.07] bg-neutral-50 transition-[box-shadow] duration-200 hover:shadow-[0_8px_28px_rgba(0,85,255,0.1)]"
+              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#f9fafb] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(37,99,235,0.10),0_8px_28px_rgba(37,99,235,0.08)]"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img

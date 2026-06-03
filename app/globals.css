@@ -90,6 +90,8 @@ select {
   padding: 1.5rem 1.5rem;
   scroll-margin-top: 90px;
   contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-block-size: 500px;
 }
 
 @media (min-width: 640px) {
@@ -738,6 +740,33 @@ select {
 .grain-drift {
   animation: grain-drift 28s linear infinite;
   will-change: transform;
+}
+
+/* ── Hero CSS animations ──────────────────────────────────────────────
+   Pure CSS — run before JS loads, zero flash, instant perceived render  */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes heroDeviceTiltIn {
+  from { opacity: 0; transform: rotateX(14deg) scale(1.02); }
+  to   { opacity: 1; transform: rotateX(0deg)  scale(1); }
+}
+
+.hero-fade-in {
+  animation: heroFadeUp 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-device-tilt {
+  animation: heroDeviceTiltIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.17s both;
+  transform-style: preserve-3d;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hero-device-tilt {
+    animation: heroFadeUp 0.4s ease-out 0.17s both;
+  }
 }
 
 @layer utilities {

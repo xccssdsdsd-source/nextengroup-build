@@ -7,30 +7,6 @@ import { useRef, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const testimonials = [
-  {
-    quote: 'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
-    name: 'Patryk Zacharek',
-    role: 'PM-Apartments',
-    website: 'pm-apartments.pl',
-    photo: '/patryk-zacharek.jpg',
-  },
-  {
-    quote: 'Największa różnica była taka, że komunikacja stała się prostsza, a klienci szybciej przechodzili do kontaktu.',
-    name: 'Anna K.',
-    role: 'Branża beauty',
-    website: null,
-    photo: null,
-  },
-  {
-    quote: 'Projekt dostaliśmy szybko, a cały landing był znacznie czytelniejszy i bardziej profesjonalny.',
-    name: 'Marcin R.',
-    role: 'Usługi lokalne',
-    website: null,
-    photo: null,
-  },
-] as const
-
 export default function Testimonials() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
@@ -58,27 +34,28 @@ export default function Testimonials() {
         </motion.div>
 
         <motion.div
-          className="mt-14 grid gap-5 lg:grid-cols-3"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          initial="hidden"
-          animate={inView ? 'show' : 'hidden'}
+          className="mt-14 flex justify-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease, delay: 0.15 }}
         >
-          {testimonials.map((item) => <TestimonialCard key={item.name} item={item} ease={ease} />)}
+          <TestimonialCard />
         </motion.div>
       </div>
     </section>
   )
 }
 
-function TestimonialCard({ item, ease }: { item: (typeof testimonials)[number], ease: [number, number, number, number] }) {
+function TestimonialCard() {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <motion.article
-      variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
+    <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border bg-white p-7 transition-[box-shadow] duration-200 ${
-        isHovered ? 'border-black/[0.07] shadow-[0_4px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(0,0,0,0.08),_0_32px_64px_rgba(0,0,0,0.05)]' : 'border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04),_0_4px_12px_rgba(0,0,0,0.05),_0_20px_40px_rgba(0,0,0,0.03)]'
+      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border bg-white p-7 transition-[box-shadow] duration-200 ${
+        isHovered
+          ? 'border-black/[0.07] shadow-[0_4px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(0,0,0,0.08),_0_32px_64px_rgba(0,0,0,0.05)]'
+          : 'border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04),_0_4px_12px_rgba(0,0,0,0.05),_0_20px_40px_rgba(0,0,0,0.03)]'
       }`}
     >
       <div className="flex gap-0.5 text-[#FBBF24]">
@@ -88,41 +65,31 @@ function TestimonialCard({ item, ease }: { item: (typeof testimonials)[number], 
       </div>
 
       <p className="mt-5 text-[15px] leading-[1.8] text-[#374151]">
-        &ldquo;{item.quote}&rdquo;
+        &ldquo;Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.&rdquo;
       </p>
 
       <div className="mt-6 flex items-center gap-3 border-t border-neutral-100 pt-5">
-        {item.photo ? (
-          <div className="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-full">
-            <Image
-              src={item.photo}
-              alt={item.name}
-              fill
-              className="object-cover"
-              sizes="36px"
-            />
-          </div>
-        ) : (
-          <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0EA5E9]/15 to-[#6366F1]/15 text-[11px] font-bold text-[#0EA5E9]" style={{ fontFamily: 'var(--font-syne)' }}>
-            {item.name.charAt(0)}
-          </div>
-        )}
+        <div className="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-full">
+          <Image
+            src="/patryk-zacharek.jpg"
+            alt="Patryk Zacharek"
+            fill
+            className="object-cover"
+            sizes="36px"
+          />
+        </div>
         <div>
-          <div className="text-[13px] font-semibold text-[#0A0A0A]">{item.name}</div>
-          {item.website ? (
-            <a
-              href={`https://${item.website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] font-medium text-[#0EA5E9] hover:text-[#6366F1] transition-colors duration-150 uppercase tracking-[0.14em]"
-            >
-              {item.website}
-            </a>
-          ) : (
-            <div className="text-[11px] uppercase tracking-[0.14em] text-[#9CA3AF]">{item.role}</div>
-          )}
+          <div className="text-[13px] font-semibold text-[#0A0A0A]">Patryk Zacharek</div>
+          <a
+            href="https://pm-apartments.pl/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] font-medium text-[#0EA5E9] hover:text-[#6366F1] transition-colors duration-150 uppercase tracking-[0.14em]"
+          >
+            pm-apartments.pl
+          </a>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }

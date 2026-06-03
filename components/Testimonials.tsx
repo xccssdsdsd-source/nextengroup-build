@@ -40,6 +40,29 @@ export default function Testimonials() {
         >
           <TestimonialCard />
         </motion.div>
+
+        <motion.div
+          className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease, delay: 0.3 }}
+        >
+          <a
+            href="#kontakt"
+            onClick={(e) => { e.preventDefault(); document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
+            className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
+            style={{ minWidth: '180px' }}
+          >
+            Kontakt
+          </a>
+          <a
+            href="#portfolio"
+            onClick={(e) => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
+            className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
+          >
+            Realizacje
+          </a>
+        </motion.div>
       </div>
     </section>
   )

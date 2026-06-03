@@ -30,7 +30,6 @@ export default function Testimonials() {
           transition={{ duration: 0.75, ease }}
         >
           <span className="section-kicker">Opinie</span>
-          <h2 className="section-title">Co mówią firmy, które z nami pracowały.</h2>
         </motion.div>
 
         <motion.div

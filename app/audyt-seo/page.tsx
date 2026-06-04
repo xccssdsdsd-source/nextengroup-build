@@ -38,8 +38,8 @@ export default function AudytSEO() {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Audyt SEO',
-    description: 'Bezpłatny audyt SEO dla firm B2B.',
+    name: 'Bezpłatny audyt SEO dla firm B2B',
+    description: 'Kompleksowy, bezpłatny audyt SEO dla firm B2B w Polsce. Analiza techniczna, on-page, linków i konkurencji wraz z raportem i rekomendacjami.',
     serviceType: 'Audyt SEO',
     provider: {
       '@type': 'Organization',
@@ -51,6 +51,15 @@ export default function AudytSEO() {
       name: 'Polska',
     },
     url: 'https://getbuild.pl/audyt-seo',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'PLN',
+      availability: 'https://schema.org/InStock',
+      name: 'Bezpłatny audyt SEO',
+      description: 'Bezpłatna analiza SEO strony internetowej z raportem i rekomendacjami.',
+      url: 'https://getbuild.pl/audyt-seo',
+    },
   }
 
   return (

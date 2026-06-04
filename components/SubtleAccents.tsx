@@ -15,34 +15,65 @@ export default function SubtleAccents() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Linia 1 — blue ↗ */}
           <linearGradient id="l1" x1="-250" y1="820" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stopColor="#2563EB" stopOpacity="0"    />
-            <stop offset="20%"  stopColor="#2563EB" stopOpacity="0.28" />
-            <stop offset="80%"  stopColor="#2563EB" stopOpacity="0.28" />
-            <stop offset="100%" stopColor="#2563EB" stopOpacity="0"    />
+            <stop offset="0%" stopColor="#2563EB" stopOpacity="0" />
+            <stop offset="22%" stopColor="#2563EB" stopOpacity="0.5" />
+            <stop offset="78%" stopColor="#3B82F6" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
           </linearGradient>
-
-          {/* Linia 2 — cyan ↘ */}
           <linearGradient id="l2" x1="-250" y1="80" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0"    />
-            <stop offset="20%"  stopColor="#0EA5E9" stopOpacity="0.24" />
-            <stop offset="80%"  stopColor="#0EA5E9" stopOpacity="0.24" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0"    />
+            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0" />
+            <stop offset="22%" stopColor="#0EA5E9" stopOpacity="0.42" />
+            <stop offset="78%" stopColor="#38BDF8" stopOpacity="0.42" />
+            <stop offset="100%" stopColor="#38BDF8" stopOpacity="0" />
           </linearGradient>
-
-          {/* Linia 3 — indigo strome ↑ */}
           <linearGradient id="l3" x1="820" y1="-100" x2="1100" y2="1000" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stopColor="#6366F1" stopOpacity="0"    />
-            <stop offset="25%"  stopColor="#6366F1" stopOpacity="0.20" />
-            <stop offset="75%"  stopColor="#6366F1" stopOpacity="0.20" />
-            <stop offset="100%" stopColor="#6366F1" stopOpacity="0"    />
+            <stop offset="0%" stopColor="#6366F1" stopOpacity="0" />
+            <stop offset="28%" stopColor="#6366F1" stopOpacity="0.36" />
+            <stop offset="72%" stopColor="#818CF8" stopOpacity="0.36" />
+            <stop offset="100%" stopColor="#818CF8" stopOpacity="0" />
           </linearGradient>
+          <linearGradient id="frameStroke" x1="0" y1="0" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#2563EB" stopOpacity="0.22" />
+            <stop offset="50%" stopColor="#38BDF8" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#6366F1" stopOpacity="0.22" />
+          </linearGradient>
+          <radialGradient id="glowTL" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 60) scale(520)">
+            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="glowBR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 840) scale(560)">
+            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
+          </radialGradient>
+          <style>{`
+            @media (prefers-reduced-motion: no-preference) {
+              .accent-line { stroke-dasharray: 1900; animation: line-draw 3.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+              .accent-drift { animation: accent-drift 26s ease-in-out infinite; transform-box: view-box; }
+              .accent-glow { animation: accent-pulse 16s ease-in-out infinite; transform-box: view-box; transform-origin: center; }
+            }
+            .accent-l1 { animation-delay: 0.1s; }
+            .accent-l2 { animation-delay: 0.35s; }
+            .accent-l3 { animation-delay: 0.6s; }
+            @keyframes line-draw { from { stroke-dashoffset: 1900; opacity: 0; } to { stroke-dashoffset: 0; opacity: 1; } }
+            @keyframes accent-drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+            @keyframes accent-pulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+          `}</style>
         </defs>
 
-        <line x1="-250" y1="820" x2="1440" y2="0"    stroke="url(#l1)" strokeWidth="2"   opacity="0.035" />
-        <line x1="-250" y1="80"  x2="1440" y2="900"  stroke="url(#l2)" strokeWidth="2"   opacity="0.035" />
-        <line x1="820"  y1="-100" x2="1100" y2="1000" stroke="url(#l3)" strokeWidth="1.5" opacity="0.035" />
+        <rect x="0" y="0" width="1440" height="900" fill="url(#glowTL)" className="accent-glow" />
+        <rect x="0" y="0" width="1440" height="900" fill="url(#glowBR)" className="accent-glow" style={{ animationDelay: '8s' }} />
+
+        <rect
+          x="22" y="22" width="1396" height="856" rx="26"
+          fill="none" stroke="url(#frameStroke)" strokeWidth="1"
+        />
+
+        <g className="accent-drift">
+          <line x1="-250" y1="820" x2="1440" y2="0" stroke="url(#l1)" strokeWidth="1.5" className="accent-line accent-l1" />
+          <line x1="-250" y1="80" x2="1440" y2="900" stroke="url(#l2)" strokeWidth="1.5" className="accent-line accent-l2" />
+          <line x1="820" y1="-100" x2="1100" y2="1000" stroke="url(#l3)" strokeWidth="1.25" className="accent-line accent-l3" />
+        </g>
       </svg>
     </div>
   )

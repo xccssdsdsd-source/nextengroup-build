@@ -1,0 +1,22 @@
+
+> getbuild-build@0.1.0 dev
+> next dev
+
+ ⚠ Invalid next.config.mjs options detected: 
+ ⚠     Unrecognized key(s) in object: 'turbopack' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.129.79:3000
+   - Experiments (use with caution):
+     ⨯ turbopack
+
+ ✓ Starting...
+ ✓ Ready in 3.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 16.1s (1562 modules)
+Image with src "/portfolio/pm-apartments-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 17792ms
+ ✓ Compiled in 1959ms (703 modules)
+ GET / 200 in 413ms

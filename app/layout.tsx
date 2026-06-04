@@ -104,7 +104,7 @@ export default function RootLayout({
         }) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
-          '@type': 'ProfessionalService',
+          '@type': ['ProfessionalService', 'LocalBusiness'],
           '@id': 'https://getbuild.pl/#organization',
           name: 'Getbuild',
           url: 'https://getbuild.pl',
@@ -119,6 +119,8 @@ export default function RootLayout({
           priceRange: 'od 150 zł/miesiąc',
           address: {
             '@type': 'PostalAddress',
+            addressLocality: 'Gdańsk',
+            addressRegion: 'Trójmiasto',
             addressCountry: 'PL',
           },
           hasOfferCatalog: {

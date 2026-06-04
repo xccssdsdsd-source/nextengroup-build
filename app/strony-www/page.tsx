@@ -40,9 +40,70 @@ export const metadata: Metadata = {
   },
 }
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Strony WWW dla firm',
+  description: 'Nowoczesne, responsywne strony internetowe dla małych i średnich firm. Szybkie ładowanie, SEO i wsparcie po wdrożeniu.',
+  serviceType: 'Tworzenie stron internetowych',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://getbuild.pl/#organization',
+    name: 'Getbuild',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Polska',
+  },
+  url: 'https://getbuild.pl/strony-www',
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Ile trwa stworzenie strony WWW?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku. Pełne wdrożenie zajmuje od tygodnia do 2–3 tygodni zależnie od zakresu.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy strona będzie zoptymalizowana pod SEO?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tak. Każdą stronę projektujemy pod SEO — czysty kod, szybkie ładowanie, poprawna struktura nagłówków, metadane i dane strukturalne. Dzięki temu Google łatwiej indeksuje treść, a Ty zyskujesz ruch organiczny bez płacenia za każde kliknięcie.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy strona będzie dobrze wyglądać na telefonie?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają zarówno na komputerze, jak i na smartfonach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Co jeśli nie mam treści ani zdjęć do strony?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nie ma problemu. Pomagamy ułożyć treści i strukturę strony na podstawie krótkiej rozmowy. Jeśli brakuje zdjęć, korzystamy z dobrej jakości materiałów stockowych pasujących do branży.',
+      },
+    },
+  ],
+}
+
+const faqItems = faqSchema.mainEntity
+
 export default function StonyWWW() {
   return (
     <main className="overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <BreadcrumbSchema items={[
         { name: 'Getbuild', url: 'https://getbuild.pl' },
@@ -114,6 +175,22 @@ export default function StonyWWW() {
                 <p>Wizualne i funkcjonalne rozwiązania dostosowane do Twoich wymagań.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
+            Najczęstsze pytania
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.name} className="border-b border-gray-100 pb-6">
+                <h3 className="font-semibold text-[#0A0A0F] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <p className="text-[#6b7280] leading-[1.7] text-[15px]">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

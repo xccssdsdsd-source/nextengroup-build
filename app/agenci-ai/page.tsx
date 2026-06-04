@@ -40,9 +40,70 @@ export const metadata: Metadata = {
   },
 }
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Agenci AI dla firm',
+  description: 'Inteligentni agenci AI pracujący 24/7. Obsługują zapytania, porządkują dane i wspierają decyzje biznesowe.',
+  serviceType: 'Wdrożenia agentów AI',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://getbuild.pl/#organization',
+    name: 'Getbuild',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Polska',
+  },
+  url: 'https://getbuild.pl/agenci-ai',
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Czym agent AI różni się od zwykłego chatbota?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zwykły chatbot odpowiada na podstawie gotowych skryptów i słów kluczowych. Agent AI rozumie kontekst rozmowy, podejmuje decyzje i dostosowuje się do nowych sytuacji — jak człowiek, tylko bez przestojów i w dowolnym języku.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy agent będzie znał moją ofertę i procesy firmy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tak. Szkolimy agenta na wiedzy o Twojej firmie, produktach, procesach i najczęstszych pytaniach klientów. Działa w Twoim języku i zna Twoją ofertę.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Na jakich kanałach może działać agent AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Agent może działać na stronie internetowej, emailu, portalach społecznościowych (Facebook, Instagram) lub w wewnętrznych systemach firmy. Integrujemy go z narzędziami, których już używasz.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile trwa wdrożenie agenta AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pierwsze działające demo agenta możesz zobaczyć już w kilka dni od pierwszego spotkania. Pełne wdrożenie z testami i integracjami zajmuje od 1 do 3 tygodni.',
+      },
+    },
+  ],
+}
+
+const faqItems = faqSchema.mainEntity
+
 export default function AgenciAI() {
   return (
     <main className="overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <BreadcrumbSchema items={[
         { name: 'Getbuild', url: 'https://getbuild.pl' },
@@ -120,6 +181,22 @@ export default function AgenciAI() {
                 <p>Analizuje dane biznesowe i pomaga Ci w podejmowaniu strategicznych decyzji. Porównuje warianty, ocenia ryzyko i sugeruje najlepsze rozwiązania.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
+            Najczęstsze pytania
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.name} className="border-b border-gray-100 pb-6">
+                <h3 className="font-semibold text-[#0A0A0F] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <p className="text-[#6b7280] leading-[1.7] text-[15px]">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

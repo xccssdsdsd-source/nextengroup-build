@@ -40,9 +40,70 @@ export const metadata: Metadata = {
   },
 }
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Automatyzacje AI dla firm',
+  description: 'Automatyzujemy procesy biznesowe przy użyciu AI. Mniej ręcznej pracy, mniej błędów, większa efektywność operacyjna.',
+  serviceType: 'Automatyzacje procesów biznesowych AI',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://getbuild.pl/#organization',
+    name: 'Getbuild',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Polska',
+  },
+  url: 'https://getbuild.pl/automatyzacje-ai',
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Jakie procesy możecie zautomatyzować dzięki AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów — CRM, e-mail, arkusze. Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile trwa wdrożenie automatyzacji AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Działające demo dostarczamy w kilka dni od pierwszego spotkania i zebrania materiałów. Pełne wdrożenie z testami zajmuje od tygodnia do kilku tygodni, zależnie od złożoności procesu.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy automatyzacje da się połączyć z narzędziami, których już używam?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tak. Łączymy automatyzacje z narzędziami, których już używasz — CRM, fakturowanie, e-mail, formularze, arkusze i inne systemy. Wszystko działa jako jeden spójny proces.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy muszę znać się na technologii, żeby skorzystać z automatyzacji?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nie. Przeprowadzamy całą analizę i wdrożenie od strony technicznej. Twoja rola to opisanie procesu, który chcesz usprawnić — resztą zajmujemy się my.',
+      },
+    },
+  ],
+}
+
+const faqItems = faqSchema.mainEntity
+
 export default function AutomatyzacjeAI() {
   return (
     <main className="overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <BreadcrumbSchema items={[
         { name: 'Getbuild', url: 'https://getbuild.pl' },
@@ -123,6 +184,22 @@ export default function AutomatyzacjeAI() {
                 <p>Automatyczne alerty, notyfikacje i monitorowanie statusu procesów — wiesz zawsze, co się dzieje.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
+            Najczęstsze pytania
+          </h2>
+          <div className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.name} className="border-b border-gray-100 pb-6">
+                <h3 className="font-semibold text-[#0A0A0F] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <p className="text-[#6b7280] leading-[1.7] text-[15px]">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

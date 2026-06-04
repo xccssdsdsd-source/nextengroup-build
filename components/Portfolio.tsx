@@ -193,7 +193,7 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={handleCardClick}
-                  className="group relative flex items-center justify-center overflow-hidden bg-[#f5f7fa]"
+                  className="group relative flex items-center justify-center overflow-hidden bg-[#f5f7fa] p-3 sm:p-4"
                 >
                   <Image
                     src={project.preview}
@@ -201,11 +201,11 @@ export default function Portfolio() {
                     width={project.width}
                     height={project.height}
                     sizes="(min-width: 768px) 720px, 100vw"
-                    className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(15,23,42,0.1)] ring-1 ring-black/5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     quality={82}
                     priority={currentIndex === 0}
                   />
-                  <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
+                  <span className="absolute left-6 top-6 sm:left-7 sm:top-7 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
                 </a>
 
                 <div className="flex flex-col justify-center p-6 sm:p-8">

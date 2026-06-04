@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Portfolio from '@/components/Portfolio'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -39,6 +40,10 @@ export default function Realizacje() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'Realizacje' },
+      ]} />
 
       <Portfolio />
 

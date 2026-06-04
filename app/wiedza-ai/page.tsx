@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 const Nav = dynamic(() => import('@/components/Nav'))
 const Contact = dynamic(() => import('@/components/Contact'))
@@ -47,6 +48,10 @@ export default function WiedzaAI() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'Wiedza AI' },
+      ]} />
       <article className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>

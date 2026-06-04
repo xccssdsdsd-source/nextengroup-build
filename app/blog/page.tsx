@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
@@ -76,6 +77,10 @@ export default function Blog() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'Blog' },
+      ]} />
 
       <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.4), transparent 60%)' }} />

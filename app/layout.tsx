@@ -160,6 +160,25 @@ export default function RootLayout({
             'https://www.facebook.com/profile.php?id=61588720012257',
           ],
         }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'SiteLinksSearchBox',
+          'url': 'https://getbuild.pl',
+          'potentialAction': {
+            '@type': 'SearchAction',
+            'target': 'https://getbuild.pl/?q={search_term_string}',
+            'query-input': 'required name=search_term_string'
+          }
+        }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Strony WWW', 'url': 'https://getbuild.pl/strony-www' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Automatyzacje AI', 'url': 'https://getbuild.pl/automatyzacje-ai' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Agenci AI', 'url': 'https://getbuild.pl/agenci-ai' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'SEO dla firm', 'url': 'https://getbuild.pl/seo-dla-firm' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Realizacje', 'url': 'https://getbuild.pl/realizacje' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Blog', 'url': 'https://getbuild.pl/blog' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Wiedza AI', 'url': 'https://getbuild.pl/wiedza-ai' },
+        ]) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="text-[#0A0A0F] antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>

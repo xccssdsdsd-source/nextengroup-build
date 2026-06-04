@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
@@ -36,6 +37,11 @@ export default function PMApartamentsCase() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'Realizacje', url: 'https://getbuild.pl/realizacje' },
+        { name: 'PM Apartments' },
+      ]} />
 
       <section className="relative pt-28 pb-20 px-6 sm:px-8 bg-white overflow-hidden">
         <div

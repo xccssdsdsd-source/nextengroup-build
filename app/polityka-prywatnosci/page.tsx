@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
@@ -14,6 +15,10 @@ export default function PolitykaPrywatnosci() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'Polityka prywatności' },
+      ]} />
 
       <section className="relative bg-white pt-20 pb-16 sm:pt-28 sm:pb-24">
         <div className="pointer-events-none absolute inset-0 z-0" style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.4), transparent 60%)' }} />

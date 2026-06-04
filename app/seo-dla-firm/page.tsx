@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
@@ -56,6 +57,10 @@ export default function SEODlaFirm() {
   return (
     <main className="overflow-x-hidden">
       <Nav />
+      <BreadcrumbSchema items={[
+        { name: 'Getbuild', url: 'https://getbuild.pl' },
+        { name: 'SEO dla firm' },
+      ]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
       <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">

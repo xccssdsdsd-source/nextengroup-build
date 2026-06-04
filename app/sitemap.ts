@@ -63,6 +63,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
+      url: 'https://getbuild.pl/blog/ile-kosztuje-strona-internetowa-dla-firmy-b2b',
+      lastModified: new Date('2026-05-15'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://getbuild.pl/blog/jak-wybrac-agencje-seo-dla-firmy-b2b',
+      lastModified: new Date('2026-05-10'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://getbuild.pl/blog/strona-internetowa-dla-producenta-krok-po-kroku',
+      lastModified: new Date('2026-05-05'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://getbuild.pl/blog/seo-dla-firm-b2b-czy-warto-investowac',
+      lastModified: new Date('2026-04-28'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://getbuild.pl/blog/audyt-seo-co-zawiera-ile-kosztuje',
+      lastModified: new Date('2026-04-20'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: 'https://getbuild.pl/wiedza-ai',
       lastModified: new Date('2026-06-03'),
       changeFrequency: 'monthly',

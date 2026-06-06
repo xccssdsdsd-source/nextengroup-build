@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Strony WWW dla Firm | Nowoczesne Strony Internetowe | Getbuild',
   description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO. Sprawdź ofertę Getbuild.',
-  keywords: ['strony www', 'strony internetowe', 'tworzenie stron', 'strony dla firm', 'web design', 'nowoczesne strony', 'strony responsywne', 'SEO'],
+  keywords: ['strony www', 'strony internetowe', 'tworzenie stron', 'strony dla firm', 'web design', 'nowoczesne strony', 'strony responsywne', 'SEO', 'GEO', 'Generative Engine Optimization'],
   alternates: {
     canonical: `${siteUrl}/strony-www`,
   },
@@ -44,7 +44,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Strony WWW dla firm',
-  description: 'Nowoczesne, responsywne strony internetowe dla małych i średnich firm. Szybkie ładowanie, SEO i wsparcie po wdrożeniu.',
+  description: 'Nowoczesne, responsywne strony internetowe dla małych i średnich firm. Szybkie ładowanie, SEO, GEO (Generative Engine Optimization) i wsparcie po wdrożeniu.',
   serviceType: 'Tworzenie stron internetowych',
   provider: {
     '@type': 'Organization',
@@ -72,10 +72,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'Czy strona będzie zoptymalizowana pod SEO?',
+      name: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Każdą stronę projektujemy pod SEO — czysty kod, szybkie ładowanie, poprawna struktura nagłówków, metadane i dane strukturalne. Dzięki temu Google łatwiej indeksuje treść, a Ty zyskujesz ruch organiczny bez płacenia za każde kliknięcie.',
+        text: 'Tak. Każdą stronę projektujemy pod SEO i GEO (Generative Engine Optimization) — czysty kod, szybkie ładowanie, poprawna struktura nagłówków, metadane i dane strukturalne Schema.org. Dzięki temu Google łatwiej indeksuje treść, a wyszukiwarki AI (ChatGPT, Gemini, Perplexity) cytują Twoją firmę jako eksperta branżowego.',
       },
     },
     {

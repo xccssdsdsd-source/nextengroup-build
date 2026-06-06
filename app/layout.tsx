@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     'agenci AI',
     'rozwiązania IT',
     'Getbuild',
+    'GEO',
+    'Generative Engine Optimization',
+    'SEO dla firm',
+    'optymalizacja AI',
   ],
   alternates: {
     canonical: siteUrl,
@@ -110,7 +114,7 @@ export default function RootLayout({
           url: 'https://getbuild.pl',
           logo: 'https://getbuild.pl/logo-opt.png',
           image: 'https://getbuild.pl/og-image.jpg',
-          description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną.',
+          description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną. Oferujemy SEO i GEO (Generative Engine Optimization) — optymalizację widoczności w Google i wyszukiwarkach generatywnych AI.',
           email: 'kontakt@getbuild.pl',
           areaServed: {
             '@type': 'Country',
@@ -176,11 +180,32 @@ export default function RootLayout({
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Strony WWW', 'url': 'https://getbuild.pl/strony-www' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Automatyzacje AI', 'url': 'https://getbuild.pl/automatyzacje-ai' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Agenci AI', 'url': 'https://getbuild.pl/agenci-ai' },
-          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'SEO dla firm', 'url': 'https://getbuild.pl/seo-dla-firm' },
+          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'SEO i GEO dla firm', 'url': 'https://getbuild.pl/seo-dla-firm' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Realizacje', 'url': 'https://getbuild.pl/realizacje' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Blog', 'url': 'https://getbuild.pl/blog' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Wiedza AI', 'url': 'https://getbuild.pl/wiedza-ai' },
         ]) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': 'https://getbuild.pl/#webpage',
+          url: 'https://getbuild.pl',
+          name: 'Getbuild — Strony WWW, Automatyzacje AI i GEO dla firm',
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', 'h2', '.section-copy', 'p[data-speakable]'],
+          },
+          about: {
+            '@type': 'Organization',
+            '@id': 'https://getbuild.pl/#organization',
+          },
+          mentions: [
+            { '@type': 'Thing', name: 'SEO', sameAs: 'https://en.wikipedia.org/wiki/Search_engine_optimization' },
+            { '@type': 'Thing', name: 'Generative Engine Optimization', alternateName: 'GEO' },
+            { '@type': 'Thing', name: 'Automatyzacja procesów biznesowych' },
+            { '@type': 'Thing', name: 'Agenci AI' },
+          ],
+        }) }} />
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ"></script>
         <script dangerouslySetInnerHTML={{ __html: `

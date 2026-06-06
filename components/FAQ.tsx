@@ -13,8 +13,8 @@ const faqs = [
     a: 'Tworzymy nowoczesne strony WWW dla firm, wdrażamy automatyzacje oparte na AI oraz budujemy agentów AI. Jedno źródło dla strony, która generuje zapytania, i dla rozwiązań, które odciążają zespół z powtarzalnej pracy.',
   },
   {
-    q: 'Czy strona będzie zoptymalizowana pod SEO?',
-    a: 'Tak. Każdą stronę projektujemy pod SEO — czysty kod, szybkie ładowanie, poprawna struktura nagłówków, metadane i dane strukturalne. Dzięki temu Google łatwiej indeksuje treść, a Ty zyskujesz ruch z wyszukiwarki bez płacenia za każde kliknięcie.',
+    q: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
+    a: 'Tak. Każdą stronę projektujemy pod SEO i GEO (Generative Engine Optimization). SEO zapewnia widoczność w Google, a GEO sprawia, że Twoja firma pojawia się w odpowiedziach generowanych przez ChatGPT, Gemini i Perplexity. Wdrażamy dane strukturalne (Schema.org), FAQ, treści formatowane pod AI i sygnały E-E-A-T, które modele językowe cytują jako wiarygodne źródła.',
   },
   {
     q: 'Czym jest agent AI i co może robić w mojej firmie?',

@@ -5,7 +5,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 const Nav = dynamic(() => import('@/components/Nav'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
-const ProcessFlowBackground = dynamic(() => import('@/components/ProcessFlowBackground'), { ssr: false })
+const ProcessFlowBackground = dynamic(() => import('@/components/ProcessFlowBackgroundClient'))
 
 const siteUrl = 'https://getbuild.pl'
 

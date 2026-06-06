@@ -2,6 +2,7 @@
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
+import BackgroundPathsProcess from './BackgroundPathsProcess'
 import BackgroundPathsServices from './BackgroundPathsServices'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -263,26 +264,11 @@ export default function Services() {
         id="automatyzacje"
         ref={ref2}
         className="section-shell relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(180deg, rgba(247,250,255,0.98) 0%, rgba(242,247,253,0.98) 55%, rgba(247,249,255,0.98) 100%)',
-        }}
       >
+        <BackgroundPathsProcess />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 72% 42% at 50% 100%, rgba(59,130,246,0.06) 0%, transparent 60%), radial-gradient(ellipse 55% 32% at 18% 18%, rgba(34,211,238,0.03) 0%, transparent 65%)',
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-50"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-            maskImage: 'linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 100%)',
-            WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 100%)',
-          }}
+          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div

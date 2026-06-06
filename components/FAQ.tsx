@@ -40,10 +40,6 @@ const faqs = [
     q: 'Ile kosztuje współpraca?',
     a: 'Wycena zależy od zakresu — od samej strony, przez automatyzacje, po pełne wdrożenie agenta AI. Skontaktuj się z nami, a po krótkiej rozmowie przygotujemy ofertę dopasowaną do Twoich celów i budżetu.',
   },
-  {
-    q: 'Co jeśli nie mam treści ani zdjęć?',
-    a: 'Nie ma problemu. Pomagamy ułożyć treści i strukturę strony na podstawie krótkiej rozmowy, wzmacniamy komunikaty i CTA. Jeśli brakuje zdjęć, korzystamy z dobrej jakości stocków pasujących do branży.',
-  },
 ] as const
 
 const faqSchema = {

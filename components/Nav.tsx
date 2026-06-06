@@ -16,17 +16,8 @@ const anchorLinks = [
   ['Kontakt', '#kontakt'],
 ] as const
 
-const pageLinks = [
-  ['Strony WWW', '/strony-www'],
-  ['Automatyzacje AI', '/automatyzacje-ai'],
-  ['Agenci AI', '/agenci-ai'],
-] as const
-
 const allLinks: readonly (readonly [string, string])[] = [
   ['Usługi', '#uslugi'],
-  ['Strony WWW', '/strony-www'],
-  ['Automatyzacje AI', '/automatyzacje-ai'],
-  ['Agenci AI', '/agenci-ai'],
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],

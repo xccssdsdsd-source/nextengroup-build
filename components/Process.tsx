@@ -10,22 +10,22 @@ const steps = [
   {
     num: '01',
     title: 'Rozmowa i dostosowanie',
-    desc: 'Poznajemy Twoją markę, cele biznesowe i konkretne potrzeby. Razem definiujemy kierunek projektu, docelową grupę odbiorcy oraz mierniki sukcesu dostosowane do Twojego biznesu. To jest fundament całego procesu. Dzięki temu wiemy dokładnie co budować.',
+    desc: 'Poznajemy Twoją markę, cele i to, co ma naprawdę działać. Na tej podstawie definiujemy kierunek projektu i grupę odbiorców, do których chcesz trafić.',
   },
   {
     num: '02',
     title: 'Projekt i strategia',
-    desc: 'Projektujemy stronę tak żeby klienci rzeczywiście podejmowali działania. Każdy przycisk, każdy tekst, każde zdjęcie ma być na miejscu. Działa to.',
+    desc: 'Projektujemy stronę tak, żeby każdy element skłaniał do działania. Układ, treść i przyciski mają jeden cel: zamieniać wejście w kontakt.',
   },
   {
     num: '03',
     title: 'Wdrożenie',
-    desc: 'Budujemy stronę szybką, na każdym urządzeniu, i wszystko ustawiamy żeby znalazł Cię Google. Powiązujemy to ze swoimi narzędziami. Gotowo, bezpiecznie i z pełną dokumentacją.',
+    desc: 'Budujemy stronę szybką, dopracowaną na każdym urządzeniu i połączoną z narzędziami, których już używasz. Konfigurujemy widoczność w Google i oddajemy gotowy projekt z pełną dokumentacją.',
   },
   {
     num: '04',
     title: 'Opieka i wsparcie',
-    desc: 'Wspieramy Cię po starcie projektu. Regularne aktualizacje, poprawki bezpieczeństwa i ciągłe ulepszenia oparte na tym jak rzeczywiście działa Twój biznes.',
+    desc: 'Wspieramy Cię po starcie. Regularne aktualizacje, bezpieczeństwo i poprawki na bieżąco, żebyś mógł skupić się na swoim biznesie.',
   },
 ] as const
 

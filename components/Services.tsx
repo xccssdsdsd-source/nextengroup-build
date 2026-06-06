@@ -63,7 +63,7 @@ type AiType = typeof aiTypes[number]
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <m.div
+      <m.div
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
@@ -74,7 +74,11 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
           ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]'
           : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
       }`}
-      style={{ background: 'var(--bg-card)' }}
+      style={{
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,255,0.98) 100%)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+      }}
     >
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {pkg.name}
@@ -103,7 +107,11 @@ function AiCard({ ai, inView, i }: { ai: AiType; inView: boolean; i: number }) {
           ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]'
           : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
       }`}
-      style={{ background: 'var(--bg-card)' }}
+      style={{
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(245,248,255,0.96) 100%)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+      }}
     >
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {ai.name}
@@ -251,10 +259,30 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="automatyzacje" ref={ref2} className="section-shell relative" style={{ background: 'var(--bg)' }}>
+      <section
+        id="automatyzacje"
+        ref={ref2}
+        className="section-shell relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(180deg, rgba(247,250,255,0.98) 0%, rgba(242,247,253,0.98) 55%, rgba(247,249,255,0.98) 100%)',
+        }}
+      >
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 100%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+          style={{
+            background:
+              'radial-gradient(ellipse 72% 42% at 50% 100%, rgba(59,130,246,0.06) 0%, transparent 60%), radial-gradient(ellipse 55% 32% at 18% 18%, rgba(34,211,238,0.03) 0%, transparent 65%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-50"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0)',
+            backgroundSize: '32px 32px',
+            maskImage: 'linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 100%)',
+            WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 100%)',
+          }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div

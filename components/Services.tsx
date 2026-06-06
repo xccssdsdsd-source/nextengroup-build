@@ -146,7 +146,7 @@ export default function Services() {
             transition={{ duration: 0.78, ease }}
           >
             <span className="section-kicker">Strony internetowe</span>
-            <h2 className="section-title">Strona, która zaczyna pracować, nie tylko ładnie wygląda.</h2>
+            <h2 className="section-title">Strona, która pracuje na Twój biznes.</h2>
             <p className="section-copy">
               Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
             </p>
@@ -213,13 +213,21 @@ export default function Services() {
           </m.div>
 
           <m.div
-            className="mt-5 rounded-2xl border border-[var(--border)] px-6 py-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
+            className="mt-5 rounded-2xl border border-[var(--border)] px-6 py-5 shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
             style={{ background: 'var(--bg-soft)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.38 }}
           >
-            <span className="font-semibold text-[var(--text)]">Opieka</span> (dla pakietów Landing i Strona kompletna, opcjonalnie): 39 zł, 59 zł lub 99 zł miesięcznie. Pakiet z panelem: + 99 zł/mies.
+            <p className="mb-3 text-[13.5px] font-semibold text-[var(--text)]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
+            <ul className="mb-4 flex flex-col gap-1.5">
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 39 zł za opiekę</li>
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 49 zł za opiekę</li>
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 99 zł za opiekę, obowiązkowa</li>
+            </ul>
+            <p className="text-[13px] leading-[1.6] text-[var(--text-secondary)]">
+              <span className="font-semibold text-[var(--text)]">To zawiera:</span> hosting i domenę, SEO, GEO, kopie zapasowe, aktualizacje i bieżące zmiany.
+            </p>
           </m.div>
 
           <m.div
@@ -256,7 +264,7 @@ export default function Services() {
             transition={{ duration: 0.78, ease }}
           >
             <span className="section-kicker">Automatyzacje i Agenci AI</span>
-            <h2 className="section-title">Automatyzacja wykonuje. Automatyzacja AI rozumie. Agent AI działa sam.</h2>
+            <h2 className="section-title">Automatyzuje. AI rozumie. Agent AI działa sam.</h2>
             <p className="section-copy">
               Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
             </p>

@@ -49,7 +49,7 @@ export default function Process() {
           transition={{ duration: 0.78, ease }}
         >
           <span className="section-kicker">Proces</span>
-          <h2 className="section-title">Prosto od konsultacji do wsparcia</h2>
+          <h2 className="section-title">Od pierwszej rozmowy do gotowej strony.</h2>
           <p className="section-copy">
             Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
           </p>

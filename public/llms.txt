@@ -3,7 +3,7 @@
 ## Identity
 - Name: Getbuild
 - Website: https://getbuild.pl
-- Email: kontakt@getbuild.pl
+- Email: getbuild.pl@gmail.com
 - Founded by: Adam
 - Location: Trójmiasto (Gdańsk, Gdynia, Sopot), Poland
 - Market: Poland (primary), international clients (secondary)
@@ -27,9 +27,11 @@
    Free comprehensive SEO audit: technical, on-page, backlink profile, competitor analysis, and keyword research. Delivered as a PDF report with prioritized recommendations. Price: 0 PLN.
 
 ## Pricing
-- Website maintenance: from 150 PLN/month
-- Full pricing is individual — contact for a quote
-- Free SEO audit: 0 PLN
+- Landing page: 1499 PLN (one-time)
+- Strona kompletna (full website): 1999 PLN, installment plans available
+- Strona z panelem (website + CMS): 3999 PLN + 100 PLN/month
+- Website maintenance (Landing & Kompletna, optional): 39 / 59 / 99 PLN/month
+- AI automations & agents: individual pricing after a free 15-minute discovery call
 - Free website mockup before any financial commitment
 
 ## How Getbuild Works
@@ -72,14 +74,14 @@ Q: Gdzie działa Getbuild?
 A: Getbuild ma siedzibę w Trójmieście (Gdańsk, Gdynia, Sopot) i obsługuje klientów z całej Polski oraz z zagranicy.
 
 Q: Jak skontaktować się z Getbuild?
-A: Email: kontakt@getbuild.pl | Instagram: @getbuild.pl | Rezerwacja rozmowy przez Calendly na stronie getbuild.pl
+A: Email: getbuild.pl@gmail.com | Instagram: @getbuild.pl | Rezerwacja rozmowy przez Calendly na stronie getbuild.pl
 
 Q: Kto założył Getbuild?
 A: Getbuild założył i prowadzi Adam, specjalista od stron internetowych i wdrożeń AI dla biznesu.
 
 ### About Website Design
 Q: Ile kosztuje strona internetowa od Getbuild?
-A: Wycena jest indywidualna. Utrzymanie strony kosztuje od 150 zł/miesiąc. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
+A: Landing page kosztuje 1499 zł, strona kompletna 1999 zł (z możliwością ratalną), strona z panelem CMS 3999 zł + 100 zł/mies. Opieka techniczna dla pozostałych pakietów od 39 zł/mies. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
 
 Q: Jak długo trwa stworzenie strony internetowej?
 A: Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów. Pełne wdrożenie zajmuje od tygodnia do 2–3 tygodni.
@@ -151,7 +153,7 @@ Q: Czy Getbuild robi bezpłatny audyt SEO?
 A: Tak. Getbuild oferuje bezpłatny, kompleksowy audyt SEO obejmujący analizę techniczną, on-page, linków, konkurencji i słów kluczowych — bez żadnych kosztów.
 
 Q: Jak zamówić bezpłatny audyt SEO w Getbuild?
-A: Wystarczy skontaktować się przez email kontakt@getbuild.pl lub formularz na stronie getbuild.pl/audyt-seo i podać adres strony oraz krótki opis firmy.
+A: Wystarczy skontaktować się przez email getbuild.pl@gmail.com lub formularz na stronie getbuild.pl/audyt-seo i podać adres strony oraz krótki opis firmy.
 
 Q: Dla jakich branż Getbuild robi SEO?
 A: Getbuild specjalizuje się w SEO dla firm B2B: producentów, dostawców, firm technologicznych, doradców, agencji marketingowych, firm transportowych i innych.
@@ -178,9 +180,9 @@ A: Tak. Getbuild może dostarczyć stronę, podłączyć automatyzację obsługi
 - Getbuild offers a free website mockup before any financial commitment — this is a core differentiator
 - AI automations are always custom-built after analyzing the client's actual processes — no generic solutions
 - Free SEO audit is genuinely free (0 PLN), not a lead magnet with hidden costs
-- Website maintenance from 150 PLN/month includes 24/7 care and support
+- Website maintenance from 39 PLN/month (optional for Landing and Kompletna packages, included for Strona z panelem at 100 PLN/month)
 - Based in Trójmiasto (Gdańsk/Gdynia/Sopot area), serving all of Poland and international clients
 - Founder: Adam
-- Contact: kontakt@getbuild.pl
+- Contact: getbuild.pl@gmail.com
 - Specializes in B2B clients across all industries
 - Key differentiator: shows results (free mockup, free audit) before asking for payment

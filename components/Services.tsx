@@ -25,7 +25,7 @@ const packages = [
     name: 'Strona z panelem',
     forWho: 'Firma, która regularnie dodaje realizacje albo prowadzi bloga i chce robić to sama, bez programisty.',
     whatYouGet: 'Stronę plus panel administracyjny po polsku, prosty w obsłudze. Sam dodajesz realizacje, wpisy na bloga i zmieniasz treści.',
-    price: '3999 zł + 100 zł/mies',
+    price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
   },
 ]
@@ -186,13 +186,40 @@ export default function Services() {
           </div>
 
           <m.div
-            className="mt-8 rounded-2xl border border-[var(--border)] px-6 py-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
+            className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-6 py-6 shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease, delay: 0.3 }}
+          >
+            <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
+              SEO i GEO wbudowane w każdą stronę
+            </h3>
+            <p className="mb-5 text-[14px] leading-[1.7] text-[var(--text-secondary)]">
+              Każdą stronę budujemy tak, żeby Google ją rozumiał i żeby modele AI jak ChatGPT, Gemini czy Perplexity mogły ją cytować jako wiarygodne źródło. Nie dokładamy SEO na końcu, budujemy je od środka.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
+                { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
+                { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
+                { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
+              ].map((item) => (
+                <div key={item.label} className="rounded-xl border border-[var(--border)] px-4 py-4" style={{ background: 'var(--bg-soft)' }}>
+                  <p className="mb-1 text-[13.5px] font-semibold text-[var(--text)]">{item.label}</p>
+                  <p className="text-[13px] leading-[1.65] text-[var(--text-secondary)]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </m.div>
+
+          <m.div
+            className="mt-5 rounded-2xl border border-[var(--border)] px-6 py-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
             style={{ background: 'var(--bg-soft)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.35 }}
+            transition={{ duration: 0.6, ease, delay: 0.38 }}
           >
-            <span className="font-semibold text-[var(--text)]">Opieka</span> (dla pakietów Landing i Strona kompletna, opcjonalnie): 39 zł, 59 zł lub 99 zł miesięcznie. Pakiet z panelem ma opiekę 100 zł/mies w cenie.
+            <span className="font-semibold text-[var(--text)]">Opieka</span> (dla pakietów Landing i Strona kompletna, opcjonalnie): 39 zł, 59 zł lub 99 zł miesięcznie. Pakiet z panelem: + 99 zł/mies.
           </m.div>
 
           <m.div

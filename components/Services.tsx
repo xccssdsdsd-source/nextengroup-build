@@ -146,7 +146,7 @@ export default function Services() {
             transition={{ duration: 0.78, ease }}
           >
             <span className="section-kicker">Strony internetowe</span>
-            <h2 className="section-title">Strona, która pracuje na Twój biznes.</h2>
+            <h2 className="section-title">Strona, która zaczyna pracować, nie tylko ładnie wygląda.</h2>
             <p className="section-copy">
               Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
             </p>
@@ -264,7 +264,7 @@ export default function Services() {
             transition={{ duration: 0.78, ease }}
           >
             <span className="section-kicker">Automatyzacje i Agenci AI</span>
-            <h2 className="section-title">Automatyzuje. AI rozumie. Agent AI działa sam.</h2>
+            <h2 className="section-title">Automatyzacja wykonuje. Automatyzacja AI rozumie. Agent AI działa sam.</h2>
             <p className="section-copy">
               Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
             </p>

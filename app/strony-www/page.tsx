@@ -109,7 +109,7 @@ export default function StonyWWW() {
         { name: 'Getbuild', url: 'https://getbuild.pl' },
         { name: 'Strony WWW dla Firm' },
       ]} />
-      <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+      <section className="relative bg-[#F7F9FF] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Strony WWW, które pracują dla Twojego biznesu
@@ -120,7 +120,7 @@ export default function StonyWWW() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Co robimy
@@ -142,7 +142,7 @@ export default function StonyWWW() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Twoje strona będzie
@@ -179,7 +179,7 @@ export default function StonyWWW() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
             Najczęstsze pytania
@@ -195,7 +195,7 @@ export default function StonyWWW() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
             Gotów do rozmowy?

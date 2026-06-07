@@ -8,7 +8,7 @@ import BackgroundPaths from './BackgroundPaths'
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
-const dynamicTitles = ['strony internetowe', 'automatyzacje', 'agentów AI']
+const dynamicSubtitles = ['agentów AI', 'strony internetowe', 'automatyzacje AI']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -21,7 +21,7 @@ export default function Hero() {
   useEffect(() => {
     if (!isMounted) return
     const timer = setInterval(() => {
-      setTitleNumber(prev => (prev + 1) % dynamicTitles.length)
+      setTitleNumber(prev => (prev + 1) % dynamicSubtitles.length)
     }, 2500)
     return () => clearInterval(timer)
   }, [isMounted])
@@ -62,40 +62,36 @@ export default function Hero() {
               lineHeight: '1.1',
               letterSpacing: '-0.03em',
               overflowWrap: 'break-word',
+              color: '#0A0A0F'
             }}
           >
-            <span className="block text-[#0A0A0F] text-balance">Strony, które pozyskują klientów.</span>
-            <span className="block text-[#0A0A0F] text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
-            <span className="relative block" style={{ minHeight: 'clamp(45px, 12vw, 80px)', contain: 'paint' }}>
-              <span className="block text-balance">Budujemy Twój biznes przez </span>
-              {!isMounted ? (
-                <span className="bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
-                  {dynamicTitles[0]}
-                </span>
-              ) : (
-                <AnimatePresence mode="wait">
-                  <m.span
-                    key={titleNumber}
-                    className="bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
-                    initial={{ opacity: 0, y: 22 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -22 }}
-                    transition={{ duration: 0.38, ease: easeOut }}
-                  >
-                    {dynamicTitles[titleNumber]}
-                  </m.span>
-                </AnimatePresence>
-              )}
-            </span>
+            <span className="block text-balance">Strony, które pozyskują klientów.</span>
+            <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
           </h1>
 
-          {/* CSS animation — plays before JS loads, no delay flash */}
-          <p
-            className="hero-fade-in mt-0 sm:mt-2 max-w-lg mx-auto text-sm sm:text-base leading-relaxed text-[#6B7280] px-2"
-            style={{ animationDelay: '50ms' }}
+          <div
+            className="relative mx-auto mb-5 sm:mb-6 min-h-[60px]"
+            style={{ contain: 'paint' }}
           >
-            Budujemy Twój biznes przez strony internetowe i automatyzacje AI.
-          </p>
+            {!isMounted ? (
+              <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
+                Budujemy Twój biznes przez {dynamicSubtitles[0]}
+              </p>
+            ) : (
+              <AnimatePresence mode="wait">
+                <m.p
+                  key={titleNumber}
+                  className="text-sm sm:text-base leading-relaxed text-[#6B7280]"
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -22 }}
+                  transition={{ duration: 0.38, ease: easeOut }}
+                >
+                  Budujemy Twój biznes przez {dynamicSubtitles[titleNumber]}
+                </m.p>
+              </AnimatePresence>
+            )}
+          </div>
 
           <div
             className="hero-fade-in mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"

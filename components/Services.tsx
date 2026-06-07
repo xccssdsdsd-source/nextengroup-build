@@ -303,10 +303,7 @@ export default function Services() {
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Strony, które pozyskują klientów.
-              </div>
-              <div className="mt-3 text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Automatyzacja AI, która obsługuje za Ciebie.
+                Strony internetowe
               </div>
             </h2>
             <p className="section-copy mt-6">
@@ -440,10 +437,7 @@ export default function Services() {
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Strony, które pozyskują klientów.
-              </div>
-              <div className="mt-3 text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Automatyzacja AI, która obsługuje za Ciebie.
+                Automatyzacja i agenci AI
               </div>
             </h2>
             <div className="mt-8 flex items-baseline gap-3">

@@ -2,6 +2,8 @@
 
 import { m, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { MdEmail } from 'react-icons/md'
 import BackgroundPathsContact from './BackgroundPathsContact'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -170,32 +172,26 @@ export default function Contact() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease }}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] transition-all"
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:shadow-md hover:border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] transition-all duration-200 cursor-pointer"
                       title={s.fullName}
                     >
-                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border-2" style={{borderColor: s.label === 'Email' ? '#EF4444' : s.label === 'Instagram' ? '#EC4899' : '#3B82F6', backgroundColor: 'transparent'}}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                          {s.label === 'Email' && (
-                            <path d="M2 4h20v16H2V4zm0 0l10 7.5L22 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{color: '#EF4444'}} />
-                          )}
-                          {s.label === 'Instagram' && (
-                            <>
-                              <rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#EC4899'}} />
-                              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#EC4899'}} />
-                              <circle cx="18" cy="6" r="1" fill="currentColor" style={{color: '#EC4899'}} />
-                            </>
-                          )}
-                          {s.label === 'Facebook' && (
-                            <>
-                              <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#3B82F6'}} />
-                              <path d="M10 8v8M10 11h2c.552 0 1-.448 1-1V10c0-.552-.448-1-1-1h-1v-1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{color: '#3B82F6'}} />
-                            </>
-                          )}
-                        </svg>
+                      <div
+                        className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl ${
+                          s.label === 'Email' ? 'bg-red-500' : s.label === 'Facebook' ? 'bg-[#1877f2]' : ''
+                        }`}
+                        style={
+                          s.label === 'Instagram'
+                            ? { background: 'linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045)' }
+                            : undefined
+                        }
+                      >
+                        {s.label === 'Email' && <MdEmail size={22} className="text-white" />}
+                        {s.label === 'Instagram' && <FaInstagram size={22} className="text-white" />}
+                        {s.label === 'Facebook' && <FaFacebook size={22} className="text-white" />}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-[13px] font-semibold text-[#0A0A0F]">{s.label}</p>
-                        <p className="text-[11px] text-[#6b7280] truncate">{s.fullName}</p>
+                        <p className="font-semibold text-gray-900 text-sm">{s.label}</p>
+                        <p className="text-gray-400 text-xs mt-0.5 truncate">{s.fullName}</p>
                       </div>
                     </m.a>
                   ))}

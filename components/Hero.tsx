@@ -8,7 +8,7 @@ import BackgroundPaths from './BackgroundPaths'
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
-const dynamicSubtitles = ['agentów AI', 'strony internetowe', 'automatyzacje AI']
+const carouselWords = ['strony internetowe', 'automatyzację AI', 'agentów AI']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -21,7 +21,7 @@ export default function Hero() {
   useEffect(() => {
     if (!isMounted) return
     const timer = setInterval(() => {
-      setTitleNumber(prev => (prev + 1) % dynamicSubtitles.length)
+      setTitleNumber(prev => (prev + 1) % carouselWords.length)
     }, 2500)
     return () => clearInterval(timer)
   }, [isMounted])
@@ -58,7 +58,7 @@ export default function Hero() {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(26px, 6.5vw, 56px)',
+              fontSize: 'clamp(20px, 4.5vw, 42px)',
               lineHeight: '1.1',
               letterSpacing: '-0.03em',
               overflowWrap: 'break-word',
@@ -69,28 +69,28 @@ export default function Hero() {
             <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
           </h1>
 
-          <div
-            className="relative mx-auto mb-5 sm:mb-6 min-h-[60px]"
-            style={{ contain: 'paint' }}
-          >
-            {!isMounted ? (
-              <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
-                Budujemy Twój biznes przez {dynamicSubtitles[0]}
-              </p>
-            ) : (
-              <AnimatePresence mode="wait">
-                <m.p
-                  key={titleNumber}
-                  className="text-sm sm:text-base leading-relaxed text-[#6B7280]"
-                  initial={{ opacity: 0, y: 22 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -22 }}
-                  transition={{ duration: 0.38, ease: easeOut }}
-                >
-                  Budujemy Twój biznes przez {dynamicSubtitles[titleNumber]}
-                </m.p>
-              </AnimatePresence>
-            )}
+          <div style={{ display: 'flex', justifyContent: 'center' }} className="mb-5 sm:mb-6">
+            <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
+              Budujemy Twój biznes przez{' '}
+              {!isMounted ? (
+                <span style={{ color: '#1a2a4a', fontWeight: 500 }}>
+                  {carouselWords[0]}
+                </span>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <m.span
+                    key={titleNumber}
+                    style={{ color: '#1a2a4a', fontWeight: 500, display: 'inline' }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35, ease: easeOut }}
+                  >
+                    {carouselWords[titleNumber]}
+                  </m.span>
+                </AnimatePresence>
+              )}
+            </p>
           </div>
 
           <div

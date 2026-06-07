@@ -169,24 +169,22 @@ export default function Contact() {
                       className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] transition-all"
                       title={s.fullName}
                     >
-                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br" style={{background: s.label === 'Email' ? 'linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%)' : s.label === 'Instagram' ? 'linear-gradient(135deg, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' : 'linear-gradient(135deg, #1877F2 0%, #0a66c2 100%)'}}>
-                        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
+                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border-2" style={{borderColor: s.label === 'Email' ? '#EF4444' : s.label === 'Instagram' ? '#EC4899' : '#3B82F6', backgroundColor: 'transparent'}}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                           {s.label === 'Email' && (
-                            <>
-                              <path d="M12 16h24c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H12c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="none" stroke="white" strokeWidth="2" strokeLinejoin="round" />
-                              <path d="M12 18l12 8 12-8" fill="none" stroke="white" strokeWidth="2" strokeLinejoin="round" />
-                            </>
+                            <path d="M2 4h20v16H2V4zm0 0l10 7.5L22 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{color: '#EF4444'}} />
                           )}
                           {s.label === 'Instagram' && (
                             <>
-                              <rect x="10" y="10" width="28" height="28" rx="6" fill="none" stroke="white" strokeWidth="2" />
-                              <circle cx="24" cy="24" r="7" fill="none" stroke="white" strokeWidth="2" />
-                              <circle cx="33" cy="15" r="1.5" fill="white" />
+                              <rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#EC4899'}} />
+                              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#EC4899'}} />
+                              <circle cx="18" cy="6" r="1" fill="currentColor" style={{color: '#EC4899'}} />
                             </>
                           )}
                           {s.label === 'Facebook' && (
                             <>
-                              <path d="M14 12c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2h-4.5v-7h2.5l.5-3h-3V19c0-.7.3-1 1.2-1h1.8v-2.8c-.4 0-1.8-.2-3.4-.2-3.3 0-5.6 2-5.6 5.7v2.3h-3.8v3h3.8V28h-2c-1.1 0-2-.9-2-2V12z" fill="white" />
+                              <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#3B82F6'}} />
+                              <path d="M10 8v8M9 11h3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{color: '#3B82F6'}} />
                             </>
                           )}
                         </svg>

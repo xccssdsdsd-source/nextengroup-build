@@ -700,6 +700,26 @@ select {
   }
 }
 
+@keyframes animate-pulse-flow {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+@keyframes animate-flow-line {
+  0%, 100% { stroke-dasharray: 4 6; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 4 6; stroke-dashoffset: -10; }
+}
+
+.animate-pulse-flow {
+  animation: animate-pulse-flow 2.5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+.animate-flow-line {
+  animation: animate-flow-line 2.5s ease-in-out infinite;
+  will-change: stroke-dashoffset;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -708,6 +728,10 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .animate-pulse-flow,
+  .animate-flow-line {
+    animation: none !important;
   }
 }
 

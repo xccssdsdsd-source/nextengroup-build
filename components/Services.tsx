@@ -43,7 +43,9 @@ const careItems = [
 const aiTypes = [
   {
     name: 'Automatyzacja',
-    desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto. Zawsze tak samo, bez myślenia.',
+    tag: 'Reguły',
+    desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto.',
+    bullets: ['Działa zero jeden', 'Bez kontekstu', 'Najtańsza w utrzymaniu'],
     examples: [
       'Klient wypełnia formularz, system sam wysyła maila powitalnego i dopisuje go do arkusza.',
       'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez przepisywania ręcznie.',
@@ -55,7 +57,9 @@ const aiTypes = [
   },
   {
     name: 'Automatyzacja AI',
-    desc: 'Ta sama automatyzacja, ale w środku siedzi model AI, który rozumie treść i sam decyduje, a nie tylko przekłada dane.',
+    tag: 'AI w środku',
+    desc: 'Automatyzacja z modelem AI, który rozumie treść i sam decyduje.',
+    bullets: ['Rozumie treść', 'Decyduje sama', 'Obsługuje warianty'],
     examples: [
       'Klient pisze wiadomość, AI rozpoznaje czego dotyczy, pisze dopasowaną odpowiedź i kieruje sprawę do właściwej osoby.',
       'AI czyta przychodzące maile i sam segreguje je na pilne, oferty i spam.',
@@ -66,7 +70,9 @@ const aiTypes = [
   },
   {
     name: 'Agent AI',
-    desc: 'Krok dalej. Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki, żeby go dowieźć. Korzysta z narzędzi, sprawdza dane, prowadzi sprawę do końca.',
+    tag: 'Pełna autonomia',
+    desc: 'Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki.',
+    bullets: ['Wykonuje cel', 'Używa narzędzi', 'Pracuje 24/7'],
     examples: [
       'Agent odbiera zapytanie, sam dopytuje o szczegóły, sprawdza wolny termin w kalendarzu, umawia spotkanie i wysyła potwierdzenie. Całą dobę, bez Ciebie.',
       'Klient pisze w nocy, agent odpowiada, kwalifikuje go i rezerwuje termin, rano masz gotowe spotkanie w kalendarzu.',
@@ -118,46 +124,46 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
 function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   if (type === 'simple') {
     return (
-      <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
-        <rect x="12" y="20" width="50" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
-        <text x="37" y="37" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="500">Proces A</text>
-        <path d="M68 32 L84 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
-        <rect x="88" y="20" width="50" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
-        <text x="113" y="37" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="500">Proces B</text>
-        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" /></marker></defs>
+      <svg viewBox="0 0 200 80" className="w-full h-20 animate-pulse-flow" style={{ opacity: 0.85 }}>
+        <rect x="12" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <text x="37" y="45" textAnchor="middle" fill="#3b82f6" fontSize="11" fontWeight="600">Proces A</text>
+        <path d="M68 40 L84 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow1)" className="animate-flow-line" />
+        <rect x="88" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <text x="113" y="45" textAnchor="middle" fill="#3b82f6" fontSize="11" fontWeight="600">Proces B</text>
+        <defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" /></marker></defs>
       </svg>
     )
   }
   if (type === 'ai') {
     return (
-      <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
-        <rect x="8" y="20" width="40" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
-        <text x="28" y="37" textAnchor="middle" fill="#3b82f6" fontSize="9" fontWeight="500">Proces</text>
-        <path d="M54 32 L70 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
-        <circle cx="85" cy="32" r="11" fill="url(#aiGradient)" stroke="#1d4ed8" strokeWidth="1.5" />
-        <text x="85" y="37" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">AI</text>
-        <path d="M96 32 L112 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
-        <rect x="116" y="20" width="40" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
-        <text x="136" y="37" textAnchor="middle" fill="#3b82f6" fontSize="9" fontWeight="500">Wynik</text>
+      <svg viewBox="0 0 200 80" className="w-full h-20 animate-pulse-flow" style={{ opacity: 0.85 }}>
+        <rect x="8" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <text x="28" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Proces</text>
+        <path d="M54 40 L66 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" />
+        <circle cx="85" cy="40" r="13" fill="url(#aiGrad)" stroke="#1d4ed8" strokeWidth="2" />
+        <text x="85" y="46" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
+        <path d="M98 40 L110 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" />
+        <rect x="114" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <text x="134" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Wynik</text>
         <defs>
-          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" /></marker>
-          <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
+          <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" /></marker>
+          <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
         </defs>
       </svg>
     )
   }
   return (
-    <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
-      <circle cx="50" cy="32" r="11" fill="url(#agentGradient)" stroke="#1d4ed8" strokeWidth="1.5" />
-      <text x="50" y="37" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">AI</text>
-      <line x1="61" y1="16" x2="80" y2="10" stroke="#3b82f6" strokeWidth="1.2" />
-      <circle cx="88" cy="8" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
-      <line x1="61" y1="32" x2="88" y2="32" stroke="#3b82f6" strokeWidth="1.2" />
-      <circle cx="96" cy="32" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
-      <line x1="61" y1="48" x2="80" y2="54" stroke="#3b82f6" strokeWidth="1.2" />
-      <circle cx="88" cy="56" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
+    <svg viewBox="0 0 200 100" className="w-full h-24 animate-pulse-flow" style={{ opacity: 0.85 }}>
+      <circle cx="50" cy="50" r="13" fill="url(#agentGrad)" stroke="#1d4ed8" strokeWidth="2" />
+      <text x="50" y="56" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
+      <line x1="63" y1="30" x2="80" y2="18" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
+      <circle cx="88" cy="15" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
+      <line x1="63" y1="50" x2="88" y2="50" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
+      <circle cx="96" cy="50" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
+      <line x1="63" y1="70" x2="80" y2="82" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
+      <circle cx="88" cy="85" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
       <defs>
-        <linearGradient id="agentGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
+        <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
       </defs>
     </svg>
   )
@@ -166,11 +172,6 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
 function AiCard({ ai, inView, i }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [expandedExamples, setExpandedExamples] = useState(false)
-
-  const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
 
   const getProcessType = () => {
     if (ai.name === 'Automatyzacja') return 'simple'
@@ -185,7 +186,7 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col ${
+      className={`relative overflow-hidden rounded-2xl border p-8 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
           ? 'border-[rgba(147,180,248,0.6)] shadow-[0_0.5px_2px_rgba(13,22,41,0.04),_0_4px_12px_rgba(37,99,235,0.08),_0_12px_32px_rgba(37,99,235,0.06)]'
           : 'border-[rgba(147,180,248,0.2)] shadow-[0_0.5px_1px_rgba(13,22,41,0.04),_0_2px_6px_rgba(13,22,41,0.03)]'
@@ -196,17 +197,36 @@ function AiCard({ ai, inView, i }: AiCardProps) {
         WebkitBackdropFilter: 'blur(12px)',
       }}
     >
-      <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+      <div className="flex items-center gap-2 mb-2">
+        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#3b82f6', borderRadius: '4px' }}>
+          {ai.tag}
+        </span>
+      </div>
+
+      <h3 className="text-[1.15rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
         {ai.name}
       </h3>
-      <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">{ai.desc}</p>
-      <div className="mt-4 rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
-        <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)]">Przykład</p>
-        <p className="mt-1.5 text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{ai.examples[0]}</p>
-      </div>
-      <div className="mt-4 mb-3">
+
+      <div className="mb-4 p-4 rounded-[12px] border border-[rgba(59,130,246,0.1)]" style={{ background: 'rgba(59, 130, 246, 0.03)' }}>
         <ProcessFlowDiagram type={getProcessType()} />
       </div>
+
+      <p className="text-[13.5px] leading-[1.65] text-[var(--text-secondary)] mb-5">{ai.desc}</p>
+
+      <div className="space-y-2 mb-5">
+        {ai.bullets.map((bullet, idx) => (
+          <div key={idx} className="flex items-start gap-2.5">
+            <span className="text-[#3b82f6] mt-1 flex-shrink-0">●</span>
+            <span className="text-[13px] text-[var(--text-secondary)]">{bullet}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="mb-4 rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
+        <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)]">Przykład</p>
+        <p className="mt-1.5 text-[13px] leading-[1.65] text-[var(--text-secondary)]">{ai.examples[0]}</p>
+      </div>
+
       <AnimatePresence initial={false}>
         {expandedExamples && (
           <m.div
@@ -214,21 +234,22 @@ function AiCard({ ai, inView, i }: AiCardProps) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease }}
-            className="overflow-hidden"
+            className="overflow-hidden mb-4"
           >
-            <div className="mt-3 space-y-3">
+            <div className="space-y-3">
               {ai.examples.slice(1).map((example, idx) => (
                 <div key={idx} className="rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
-                  <p className="text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{example}</p>
+                  <p className="text-[13px] leading-[1.65] text-[var(--text-secondary)]">{example}</p>
                 </div>
               ))}
             </div>
           </m.div>
         )}
       </AnimatePresence>
+
       <button
         onClick={() => setExpandedExamples(!expandedExamples)}
-        className="mt-3 px-4 py-2 text-[13px] font-semibold text-[var(--accent)] text-left rounded transition-colors hover:text-[#1d4ed8]"
+        className="mt-auto px-0 py-2 text-[13px] font-semibold text-[var(--accent)] text-left transition-colors hover:text-[#1d4ed8]"
       >
         {expandedExamples ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>
@@ -405,7 +426,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-5">
+            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6 auto-rows-fr">
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
             </div>
 

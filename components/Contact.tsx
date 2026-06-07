@@ -105,8 +105,8 @@ export default function Contact() {
         style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
       />
       <m.div
-        initial={{ opacity: 0, y: 40, scale: 0.98 }}
-        animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease }}
         className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[var(--border)] bg-white p-6 sm:p-10 lg:p-14"
         style={{ boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 6px 24px rgba(13,22,41,0.06), 0 16px 64px rgba(37,99,235,0.07), inset 0 1px 0 rgba(255,255,255,0.9)' }}
@@ -188,7 +188,7 @@ export default function Contact() {
                           {s.label === 'Facebook' && (
                             <>
                               <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: '#3B82F6'}} />
-                              <path d="M10 8v8M9 11h3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{color: '#3B82F6'}} />
+                              <path d="M10 8v8M10 11h2c.552 0 1-.448 1-1V10c0-.552-.448-1-1-1h-1v-1" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{color: '#3B82F6'}} />
                             </>
                           )}
                         </svg>

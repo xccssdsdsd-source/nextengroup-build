@@ -72,7 +72,7 @@ function TestimonialCard() {
           ? 'border-[var(--border)] shadow-[0_4px_12px_rgba(13,22,41,0.07),_0_16px_40px_rgba(13,22,41,0.08)]'
           : 'border-[var(--border)] shadow-[0_1px_3px_rgba(13,22,41,0.05),_0_6px_20px_rgba(13,22,41,0.05)]'
       }`}
-      style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)' }}
+      style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)', willChange: isHovered ? 'transform' : 'auto' }}
     >
       <svg
         className="absolute right-7 top-7 opacity-[0.06]"

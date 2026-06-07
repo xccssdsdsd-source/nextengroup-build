@@ -8,7 +8,7 @@ import BackgroundPaths from './BackgroundPaths'
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
-const titles = ['strony internetowe', 'agentów AI', 'automatyzacje AI']
+const titles = ['Strony, które pozyskują klientów.', 'Automatyzacje AI, które obsługują ich za Ciebie.']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -64,17 +64,16 @@ export default function Hero() {
               overflowWrap: 'break-word',
             }}
           >
-            <span className="block mb-2 sm:mb-3 text-balance">Budujemy Twój biznes przez</span>
-            <span className="relative block" style={{ overflow: 'hidden', minHeight: 'clamp(40px, 10vw, 86px)', contain: 'paint' }}>
+            <span className="relative block" style={{ minHeight: 'clamp(80px, 20vw, 140px)', contain: 'paint' }}>
               {!isMounted ? (
-                <span className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
+                <span className="block text-balance bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
                   {titles[0]}
                 </span>
               ) : (
                 <AnimatePresence mode="wait">
                   <m.span
                     key={titleNumber}
-                    className="block bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                    className="block text-balance bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
                     initial={{ opacity: 0, y: 22 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -22 }}
@@ -92,7 +91,7 @@ export default function Hero() {
             className="hero-fade-in mt-0 sm:mt-2 max-w-lg mx-auto text-sm sm:text-base leading-relaxed text-[#6B7280] px-2"
             style={{ animationDelay: '50ms' }}
           >
-            Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie.
+            Budujemy Twój biznes przez strony internetowe i automatyzacje AI.
           </p>
 
           <div

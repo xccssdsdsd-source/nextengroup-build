@@ -282,7 +282,7 @@ export default function Services() {
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Automatyzacja plus AI Agenci AI.
+                Automatyzacja i agenci AI.
               </div>
             </h2>
           </m.div>

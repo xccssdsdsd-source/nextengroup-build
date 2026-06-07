@@ -24,7 +24,7 @@ const projects = [
     preview: '/portfolio/pm-apartments-preview.webp',
     width: 1852,
     height: 916,
-    body: 'Klient miał firmę bez obecności w sieci. Teraz ma stronę, która prezentuje ofertę i sama odbiera zapytania. Nowi klienci trafiają bezpośrednio do kalendarza.',
+    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz system kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
     time: '72h',
     lighthouse: [
       { label: 'Wydajność', value: 96 },
@@ -40,7 +40,7 @@ const projects = [
     preview: '/portfolio/dorimari-preview.webp',
     width: 1849,
     height: 929,
-    body: 'Klient prowadzi butikowe wycieczki premium i potrzebował miejsca, które sprzeda klimat, nie tylko trasę. Strona pokazuje ofertę i galerię zdjęć. Formularz kontaktowy działa od razu.',
+    body: 'Strona internetowa dla Dorimari - agencji specjalizującej się w autorskich, butikowych wycieczkach premium po Sycylii. Klient prowadzi wyjątkowe doświadczenia turystyczne i potrzebował miejsca, które sprzedaje klimat i atmosferę podróży, nie tylko trasę. Strona prezentuje szczegółową ofertę wycieczek, galerię profesjonalnych zdjęć z terenów Sycylii, opisy itinerariów, informacje o przewodnikach i harmonogram. Zintegrowany formularz kontaktowy umożliwia natychmiastowe zapytania. Strona jest responsywna, szybka i zoptymalizowana pod wyszukiwarki.',
     time: 'tydzień',
     lighthouse: [
       { label: 'Wydajność', value: 97 },
@@ -56,7 +56,7 @@ const projects = [
     preview: '/portfolio/msdesignstudio-preview.webp',
     width: 1440,
     height: 900,
-    body: 'Klientka tworzy wizualizacje 3D i potrzebowała portfolio, które mówi samo za siebie. Strona pokazuje projekty, ofertę i umożliwia kontakt. Wdrożona w jeden dzień.',
+    body: 'Strona internetowa dla MS Design Studio - studia specjalizującego się w profesjonalnych wizualizacjach 3D wnętrz i projektach architektonicznych. Klientka tworzy wysokiej jakości wizualizacje i potrzebowała portfolio online, które samo mówi za siebie. Strona prezentuje portfolio projektów architektonicznych, wizualizacje wnętrz, galerię realizacji, opis usług oferowanych (wizualizacje wnętrz, renderingi architektoniczne, projekty przestrzenne) oraz system kontaktowy do pozyskiwania nowych zleceń. Wdrożona w 24 godziny z pełną optymalizacją wydajności i SEO.',
     time: '24h',
     lighthouse: [
       { label: 'Wydajność', value: 97 },
@@ -240,6 +240,25 @@ export default function Portfolio() {
             ))}
           </div>
         </m.div>
+
+        <div className="sr-only">
+          <h3>Wszystkie realizacje Getbuild</h3>
+          {projects.map(project => (
+            <article key={project.name}>
+              <h4>{project.name}</h4>
+              <p>{project.tagline}</p>
+              <p>{project.body}</p>
+              <p>Czas wdrożenia: {project.time}</p>
+              <p>Wyniki Lighthouse:</p>
+              <ul>
+                {project.lighthouse.map(score => (
+                  <li key={score.label}>{score.label}: {score.value}/100</li>
+                ))}
+              </ul>
+              <p>Strona: {project.href}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

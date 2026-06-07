@@ -29,10 +29,10 @@ export default function AboutMe() {
           </div>
           <div className="max-w-xl">
             <span className="section-kicker">O mnie</span>
-            <h2 className="mt-2 text-2xl font-black tracking-[-0.035em] text-[#0A0A0A] sm:text-3xl" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h2 className="section-title">
               [Imię Nazwisko]
             </h2>
-            <p className="mt-4 text-[15px] leading-[1.78] text-[var(--text-secondary)]">
+            <p className="section-copy">
               Buduję strony i automatyzacje dla małych firm. Pracuję samodzielnie, więc każde zlecenie robię osobiście. Najczęściej dla firm wykończeniowych, biur podróży i pracowni projektowych.
             </p>
             <a

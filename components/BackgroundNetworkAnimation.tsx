@@ -60,20 +60,20 @@ export default function BackgroundNetworkAnimation() {
     canvas.width = width
     canvas.height = height
 
-    const pointCount = window.innerWidth >= 1024 ? 25 : 15
+    const pointCount = window.innerWidth >= 1024 ? 35 : 20
 
     pointsRef.current = Array.from({ length: pointCount }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      opacity: (i % 4 === 0) ? 0.8 : (Math.random() * 0.5 + 0.4),
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      opacity: (i % 3 === 0) ? 0.9 : (Math.random() * 0.6 + 0.35),
     }))
 
     const generateConnections = () => {
       const connections: Connection[] = []
       const points = pointsRef.current
-      const maxDistance = Math.min(width, height) * 0.25
+      const maxDistance = Math.min(width, height) * 0.28
 
       for (let i = 0; i < points.length; i++) {
         for (let j = i + 1; j < points.length; j++) {
@@ -85,7 +85,7 @@ export default function BackgroundNetworkAnimation() {
             connections.push({
               from: i,
               to: j,
-              opacity: 0.1 + (1 - distance / maxDistance) * 0.3,
+              opacity: 0.12 + (1 - distance / maxDistance) * 0.4,
             })
           }
         }
@@ -103,26 +103,34 @@ export default function BackgroundNetworkAnimation() {
         const from = pointsRef.current[conn.from]
         const to = pointsRef.current[conn.to]
 
-        const pulse = Math.sin(Date.now() / 1500 + idx) * 0.15 + 0.85
-        const opacity = isVisible ? conn.opacity * pulse * 0.7 : conn.opacity * 0.5
+        const pulse = Math.sin(Date.now() / 1400 + idx) * 0.2 + 0.85
+        const opacity = isVisible ? conn.opacity * pulse * 0.8 : conn.opacity * 0.5
 
-        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-        ctx.lineWidth = 1
+        ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`
+        ctx.lineWidth = 1.2
         ctx.lineCap = 'round'
+        ctx.shadowColor = `rgba(59, 130, 246, ${opacity * 0.4})`
+        ctx.shadowBlur = 4
         ctx.beginPath()
         ctx.moveTo(from.x, from.y)
         ctx.lineTo(to.x, to.y)
         ctx.stroke()
+        ctx.shadowBlur = 0
       })
 
       pointsRef.current.forEach((point, idx) => {
-        const isHub = idx % 4 === 0
-        const radius = isHub ? 2.5 : 1.5
-        const baseSizeOpacity = isVisible ? (0.5 + Math.sin(Date.now() / 2000) * 0.2) : 0.5
-        ctx.fillStyle = `rgba(59, 130, 246, ${point.opacity * baseSizeOpacity})`
+        const isHub = idx % 3 === 0
+        const radius = isHub ? 3.5 : 2
+        const pulseSize = Math.sin(Date.now() / 1800 + idx) * 0.3 + 0.85
+        const baseSizeOpacity = isVisible ? (0.6 + Math.sin(Date.now() / 2000 + idx) * 0.3) : 0.6
+
+        ctx.fillStyle = `rgba(96, 165, 250, ${point.opacity * baseSizeOpacity})`
+        ctx.shadowColor = `rgba(59, 130, 246, ${point.opacity * baseSizeOpacity * 0.6})`
+        ctx.shadowBlur = isHub ? 8 : 4
         ctx.beginPath()
-        ctx.arc(point.x, point.y, radius, 0, Math.PI * 2)
+        ctx.arc(point.x, point.y, radius * pulseSize, 0, Math.PI * 2)
         ctx.fill()
+        ctx.shadowBlur = 0
       })
     }
 

@@ -124,47 +124,51 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
 function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   if (type === 'simple') {
     return (
-      <svg viewBox="0 0 200 80" className="w-full h-20 animate-pulse-flow" style={{ opacity: 0.85 }}>
-        <rect x="12" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+      <svg viewBox="0 0 200 80" className="w-full h-24 animate-pulse-flow" style={{ opacity: 0.9 }}>
+        <defs>
+          <linearGradient id="flowGrad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" /><stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" /></linearGradient>
+          <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" /></marker>
+        </defs>
+        <rect x="12" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" style={{ transition: 'all 0.3s ease' }} />
         <text x="37" y="45" textAnchor="middle" fill="#3b82f6" fontSize="11" fontWeight="600">Proces A</text>
-        <path d="M68 40 L84 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow1)" className="animate-flow-line" />
-        <rect x="88" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <path d="M68 40 L84 40" stroke="url(#flowGrad1)" strokeWidth="2.5" fill="none" markerEnd="url(#arrow1)" className="animate-flow-line" style={{ filter: 'drop-shadow(0 0 4px rgba(59,130,246,0.4))' }} />
+        <rect x="88" y="25" width="50" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
         <text x="113" y="45" textAnchor="middle" fill="#3b82f6" fontSize="11" fontWeight="600">Proces B</text>
-        <defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" /></marker></defs>
       </svg>
     )
   }
   if (type === 'ai') {
     return (
-      <svg viewBox="0 0 200 80" className="w-full h-20 animate-pulse-flow" style={{ opacity: 0.85 }}>
-        <rect x="8" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
-        <text x="28" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Proces</text>
-        <path d="M54 40 L66 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" />
-        <circle cx="85" cy="40" r="13" fill="url(#aiGrad)" stroke="#1d4ed8" strokeWidth="2" />
-        <text x="85" y="46" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
-        <path d="M98 40 L110 40" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" />
-        <rect x="114" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" />
-        <text x="134" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Wynik</text>
+      <svg viewBox="0 0 200 80" className="w-full h-24 animate-pulse-flow" style={{ opacity: 0.9 }}>
         <defs>
+          <linearGradient id="flowGrad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" /><stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" /><stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" /></linearGradient>
+          <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#60a5fa" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
           <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" /></marker>
-          <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
         </defs>
+        <rect x="8" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
+        <text x="28" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Proces</text>
+        <path d="M54 40 L66 40" stroke="url(#flowGrad2)" strokeWidth="2.5" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" style={{ filter: 'drop-shadow(0 0 4px rgba(59,130,246,0.4))' }} />
+        <circle cx="85" cy="40" r="13" fill="url(#aiGrad)" stroke="#1d4ed8" strokeWidth="2" style={{ filter: 'drop-shadow(0 0 6px rgba(37,99,235,0.3))' }} className="animate-pulse" />
+        <text x="85" y="46" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
+        <path d="M98 40 L110 40" stroke="url(#flowGrad2)" strokeWidth="2.5" fill="none" markerEnd="url(#arrow2)" className="animate-flow-line" style={{ filter: 'drop-shadow(0 0 4px rgba(59,130,246,0.4))' }} />
+        <rect x="114" y="25" width="40" height="30" rx="4" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
+        <text x="134" y="45" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600">Wynik</text>
       </svg>
     )
   }
   return (
-    <svg viewBox="0 0 200 100" className="w-full h-24 animate-pulse-flow" style={{ opacity: 0.85 }}>
-      <circle cx="50" cy="50" r="13" fill="url(#agentGrad)" stroke="#1d4ed8" strokeWidth="2" />
-      <text x="50" y="56" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
-      <line x1="63" y1="30" x2="80" y2="18" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
-      <circle cx="88" cy="15" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
-      <line x1="63" y1="50" x2="88" y2="50" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
-      <circle cx="96" cy="50" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
-      <line x1="63" y1="70" x2="80" y2="82" stroke="#3b82f6" strokeWidth="2" className="animate-flow-line" />
-      <circle cx="88" cy="85" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" />
+    <svg viewBox="0 0 200 100" className="w-full h-28 animate-pulse-flow" style={{ opacity: 0.9 }}>
       <defs>
-        <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
+        <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#60a5fa" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
       </defs>
+      <circle cx="50" cy="50" r="13" fill="url(#agentGrad)" stroke="#1d4ed8" strokeWidth="2" style={{ filter: 'drop-shadow(0 0 6px rgba(37,99,235,0.3))' }} className="animate-pulse" />
+      <text x="50" y="56" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">AI</text>
+      <line x1="63" y1="30" x2="80" y2="18" stroke="#3b82f6" strokeWidth="2.5" className="animate-flow-line" opacity="0.7" style={{ filter: 'drop-shadow(0 0 3px rgba(59,130,246,0.4))' }} />
+      <circle cx="88" cy="15" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
+      <line x1="63" y1="50" x2="88" y2="50" stroke="#3b82f6" strokeWidth="2.5" className="animate-flow-line" opacity="0.7" style={{ filter: 'drop-shadow(0 0 3px rgba(59,130,246,0.4))' }} />
+      <circle cx="96" cy="50" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
+      <line x1="63" y1="70" x2="80" y2="82" stroke="#3b82f6" strokeWidth="2.5" className="animate-flow-line" opacity="0.7" style={{ filter: 'drop-shadow(0 0 3px rgba(59,130,246,0.4))' }} />
+      <circle cx="88" cy="85" r="7" fill="none" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
     </svg>
   )
 }
@@ -207,7 +211,7 @@ function AiCard({ ai, inView, i }: AiCardProps) {
         {ai.name}
       </h3>
 
-      <div className="mb-4 p-4 rounded-[12px] border border-[rgba(59,130,246,0.1)]" style={{ background: 'rgba(59, 130, 246, 0.03)' }}>
+      <div className="mb-6 p-6 rounded-[12px] border border-[rgba(59,130,246,0.15)]" style={{ background: 'rgba(59, 130, 246, 0.05)' }}>
         <ProcessFlowDiagram type={getProcessType()} />
       </div>
 

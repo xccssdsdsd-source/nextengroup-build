@@ -2,7 +2,7 @@
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
-import BackgroundPathsServices from './BackgroundPathsServices'
+import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -195,7 +195,7 @@ export default function Services() {
   return (
     <>
       <section id="uslugi" ref={ref1} className="section-shell relative">
-        <BackgroundPathsServices />
+        <BackgroundParticlesServices />
         <div
           className="pointer-events-none absolute inset-0"
           style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}

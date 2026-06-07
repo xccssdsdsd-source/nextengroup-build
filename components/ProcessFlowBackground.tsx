@@ -14,26 +14,27 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
     if (!ctx) return
 
-    function setCanvasSize() {
-      const parent = canvas.parentElement
+    function setCanvasSize(): { W: number; H: number; dpr: number } | undefined {
+      const parent = canvas!.parentElement
       if (!parent) return
 
       const W = parent.offsetWidth
       const H = parent.offsetHeight
       const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1
 
-      canvas.width = W * dpr
-      canvas.height = H * dpr
+      canvas!.width = W * dpr
+      canvas!.height = H * dpr
       ctx.scale(dpr, dpr)
 
       return { W, H, dpr }
     }
 
-    let size = setCanvasSize()
-    if (!size) return
+    const sizeInit = setCanvasSize()
+    if (!sizeInit) return
+    let size = sizeInit
 
     const NODE_COUNT = Math.max(50, Math.floor((size.W * size.H) / 30000))
     const MAX_DIST = Math.min(200, size.W / 4)

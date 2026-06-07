@@ -1,11 +1,17 @@
 'use client'
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
-import { useRef, useState, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type MouseEvent } from 'react'
 import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+const rotatingOptions = [
+  'Automatyzację',
+  'Automatyzację AI',
+  'Agentów AI',
+]
 
 const packages = [
   {
@@ -262,11 +268,19 @@ export default function Services() {
   const [expanded1, setExpanded1] = useState(false)
   const [expanded2, setExpanded2] = useState(false)
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
+  const [rotatingIndex, setRotatingIndex] = useState(0)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotatingIndex((prev) => (prev + 1) % rotatingOptions.length)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <>
@@ -418,11 +432,38 @@ export default function Services() {
             animate={inView2 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.78, ease }}
           >
-            <span className="section-kicker">Automatyzacje i Agenci AI</span>
-            <h2 className="section-title">Automatyzacja wykonuje. Automatyzacja AI rozumie. Agent AI działa sam.</h2>
-            <p className="section-copy">
-              Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
-            </p>
+            <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
+              <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
+                Strony, które pozyskują klientów.
+              </div>
+              <div className="mt-3 text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
+                Automatyzacje które ich obsługują
+              </div>
+            </h2>
+            <div className="mt-8 flex items-baseline gap-3">
+              <p className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Budujemy twój biznes przez:
+              </p>
+              <div className="min-w-0">
+                <m.div
+                  key={rotatingIndex}
+                  initial={{ y: 28, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -28, opacity: 0 }}
+                  transition={{ duration: 0.4, ease }}
+                >
+                  <span
+                    className="inline-block text-[1.05rem] font-bold tracking-[-0.03em]"
+                    style={{
+                      fontFamily: 'var(--font-syne)',
+                      color: 'rgba(37, 99, 235, 0.8)',
+                    }}
+                  >
+                    {rotatingOptions[rotatingIndex]}
+                  </span>
+                </m.div>
+              </div>
+            </div>
           </m.div>
 
           <div className="mt-16">

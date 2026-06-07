@@ -443,12 +443,12 @@ export default function Services() {
                 Strony, które pozyskują klientów.
               </div>
               <div className="mt-3 text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Automatyzacje które ich obsługują
+                Automatyzacja AI, która obsługuje za Ciebie.
               </div>
             </h2>
             <div className="mt-8 flex items-baseline gap-3">
-              <p className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
-                Budujemy twój biznes przez:
+              <p className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text-secondary)]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Budujemy Twój biznes przez:
               </p>
               <div className="min-w-0">
                 <m.div

@@ -86,7 +86,7 @@ const aiTypes = [
 type Package = typeof packages[number]
 type AiType = typeof aiTypes[number]
 
-type AiCardProps = { ai: AiType; inView: boolean; i: number }
+type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void }
 
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -164,9 +164,10 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   )
 }
 
-function AiCard({ ai, inView, i }: AiCardProps) {
+function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [expandedExamples, setExpandedExamples] = useState(false)
+  const isExpanded = allExpanded || expandedExamples
 
   const getProcessType = () => {
     if (ai.name === 'Automatyzacja') return 'simple'
@@ -181,13 +182,13 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-8 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
+      className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
           ? 'border-[rgba(147,180,248,0.6)] shadow-[0_0.5px_2px_rgba(13,22,41,0.04),_0_4px_12px_rgba(37,99,235,0.08),_0_12px_32px_rgba(37,99,235,0.06)]'
           : 'border-[rgba(147,180,248,0.2)] shadow-[0_0.5px_1px_rgba(13,22,41,0.04),_0_2px_6px_rgba(13,22,41,0.03)]'
       }`}
       style={{
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.93) 0%, rgba(248,250,255,0.90) 50%, rgba(245,249,255,0.93) 100%)',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,252,255,0.92) 50%, rgba(248,251,255,0.95) 100%)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
       }}
@@ -198,32 +199,32 @@ function AiCard({ ai, inView, i }: AiCardProps) {
         </span>
       </div>
 
-      <h3 className="text-[1.15rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
         {ai.name}
       </h3>
 
-      <div className="mb-6 p-6 rounded-[12px] border border-[rgba(59,130,246,0.15)]" style={{ background: 'rgba(59, 130, 246, 0.05)' }}>
+      <div className="mb-7 p-6 rounded-xl border border-[rgba(59,130,246,0.15)]" style={{ background: 'rgba(59, 130, 246, 0.04)' }}>
         <ProcessFlowDiagram type={getProcessType()} />
       </div>
 
-      <p className="text-[13.5px] leading-[1.65] text-[var(--text-secondary)] mb-5">{ai.desc}</p>
+      <p className="text-[14px] leading-[1.72] text-[var(--text-secondary)] mb-5">{ai.desc}</p>
 
-      <div className="space-y-2 mb-5">
+      <div className="space-y-2.5 mb-6">
         {ai.bullets.map((bullet, idx) => (
           <div key={idx} className="flex items-start gap-2.5">
-            <span className="text-[#3b82f6] mt-1 flex-shrink-0">●</span>
-            <span className="text-[13px] text-[var(--text-secondary)]">{bullet}</span>
+            <span className="text-[#2563eb] mt-1 flex-shrink-0 text-sm">●</span>
+            <span className="text-[13.5px] leading-[1.6] text-[var(--text-secondary)]">{bullet}</span>
           </div>
         ))}
       </div>
 
-      <div className="mb-4 rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
-        <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)]">Przykład</p>
-        <p className="mt-1.5 text-[13px] leading-[1.65] text-[var(--text-secondary)]">{ai.examples[0]}</p>
+      <div className="mb-5 rounded-xl px-4 py-3.5" style={{ background: 'rgba(59, 130, 246, 0.06)' }}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8]">Przykład</p>
+        <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[var(--text-secondary)]">{ai.examples[0]}</p>
       </div>
 
       <AnimatePresence initial={false}>
-        {expandedExamples && (
+        {isExpanded && (
           <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -233,8 +234,8 @@ function AiCard({ ai, inView, i }: AiCardProps) {
           >
             <div className="space-y-3">
               {ai.examples.slice(1).map((example, idx) => (
-                <div key={idx} className="rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
-                  <p className="text-[13px] leading-[1.65] text-[var(--text-secondary)]">{example}</p>
+                <div key={idx} className="rounded-xl px-4 py-3.5" style={{ background: 'rgba(59, 130, 246, 0.06)' }}>
+                  <p className="text-[13.5px] leading-[1.68] text-[var(--text-secondary)]">{example}</p>
                 </div>
               ))}
             </div>
@@ -243,10 +244,16 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       </AnimatePresence>
 
       <button
-        onClick={() => setExpandedExamples(!expandedExamples)}
-        className="mt-auto px-0 py-2 text-[13px] font-semibold text-[var(--accent)] text-left transition-colors hover:text-[#1d4ed8]"
+        onClick={() => {
+          if (allExpanded) {
+            onToggleAll?.()
+          } else {
+            setExpandedExamples(!expandedExamples)
+          }
+        }}
+        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#2563eb] text-left transition-all hover:text-[#1d4ed8] hover:translate-x-0.5"
       >
-        {expandedExamples ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
+        {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>
     </m.div>
   )
@@ -259,6 +266,7 @@ export default function Services() {
   const inView2 = useInView(ref2, { once: true, margin: '-120px' })
   const [expanded1, setExpanded1] = useState(false)
   const [expanded2, setExpanded2] = useState(false)
+  const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -422,7 +430,7 @@ export default function Services() {
 
           <div className="mt-16">
             <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6 auto-rows-fr">
-              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
+              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
             <div className="flex flex-col gap-4 lg:hidden">

@@ -8,7 +8,7 @@ import BackgroundPaths from './BackgroundPaths'
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
-const titles = ['Strony, które pozyskują klientów.', 'Automatyzacje AI, które obsługują ich za Ciebie.']
+const dynamicTitles = ['strony internetowe', 'automatyzacje', 'agentów AI']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -21,7 +21,7 @@ export default function Hero() {
   useEffect(() => {
     if (!isMounted) return
     const timer = setInterval(() => {
-      setTitleNumber(prev => (prev + 1) % titles.length)
+      setTitleNumber(prev => (prev + 1) % dynamicTitles.length)
     }, 2500)
     return () => clearInterval(timer)
   }, [isMounted])
@@ -54,7 +54,7 @@ export default function Hero() {
 
         <div className="w-full text-center">
           <h1
-            className="mx-auto text-[#0A0A0F] mb-5 sm:mb-6"
+            className="mx-auto mb-5 sm:mb-6"
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
@@ -64,22 +64,25 @@ export default function Hero() {
               overflowWrap: 'break-word',
             }}
           >
-            <span className="relative block" style={{ minHeight: 'clamp(80px, 20vw, 140px)', contain: 'paint' }}>
+            <span className="block text-[#0A0A0F] text-balance">Strony, które pozyskują klientów.</span>
+            <span className="block text-[#0A0A0F] text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
+            <span className="relative block" style={{ minHeight: 'clamp(45px, 12vw, 80px)', contain: 'paint' }}>
+              <span className="block text-balance">Budujemy Twój biznes przez </span>
               {!isMounted ? (
-                <span className="block text-balance bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
-                  {titles[0]}
+                <span className="bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent">
+                  {dynamicTitles[0]}
                 </span>
               ) : (
                 <AnimatePresence mode="wait">
                   <m.span
                     key={titleNumber}
-                    className="block text-balance bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
+                    className="bg-gradient-to-r from-[#2563EB] to-[#1e40af] bg-clip-text text-transparent"
                     initial={{ opacity: 0, y: 22 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -22 }}
                     transition={{ duration: 0.38, ease: easeOut }}
                   >
-                    {titles[titleNumber]}
+                    {dynamicTitles[titleNumber]}
                   </m.span>
                 </AnimatePresence>
               )}

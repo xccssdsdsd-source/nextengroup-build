@@ -170,6 +170,10 @@ select {
   -webkit-backface-visibility: hidden;
 }
 
+.btn.w-full {
+  display: flex;
+}
+
 .btn:active {
   transform: translateY(0) scale(0.995);
 }

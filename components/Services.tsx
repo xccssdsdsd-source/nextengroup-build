@@ -2,8 +2,8 @@
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
-import BackgroundPathsProcess from './BackgroundPathsProcess'
 import BackgroundPathsServices from './BackgroundPathsServices'
+import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -44,22 +44,43 @@ const aiTypes = [
   {
     name: 'Automatyzacja',
     desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto. Zawsze tak samo, bez myślenia.',
-    example: 'Klient wypełnia formularz, system sam wysyła maila powitalnego i dopisuje go do arkusza.',
+    examples: [
+      'Klient wypełnia formularz, system sam wysyła maila powitalnego i dopisuje go do arkusza.',
+      'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez przepisywania ręcznie.',
+      'Po zakończonej usłudze klient dostaje automatycznie SMS z prośbą o opinię w Google.',
+      'Faktura tworzy się sama po opłaceniu zamówienia i trafia do klienta na maila.',
+      'Przypomnienie o wizycie wychodzi do klienta dzień wcześniej, sam nie musisz dzwonić.',
+      'Każdy nowy lead z reklamy od razu trafia na Twojego WhatsAppa z danymi kontaktowymi.',
+    ],
   },
   {
     name: 'Automatyzacja AI',
     desc: 'Ta sama automatyzacja, ale w środku siedzi model AI, który rozumie treść i sam decyduje, a nie tylko przekłada dane.',
-    example: 'Klient pisze wiadomość, AI rozpoznaje, czego dotyczy, pisze dopasowaną odpowiedź i kieruje sprawę do właściwej osoby.',
+    examples: [
+      'Klient pisze wiadomość, AI rozpoznaje czego dotyczy, pisze dopasowaną odpowiedź i kieruje sprawę do właściwej osoby.',
+      'AI czyta przychodzące maile i sam segreguje je na pilne, oferty i spam.',
+      'Opinie klientów z Google są streszczane automatycznie, dostajesz raport co chwalą najczęściej i na co narzekają.',
+      'AI przygotowuje opis nieruchomości na podstawie zdjęć i kilku danych, gotowy do publikacji.',
+      'Z nagrania rozmowy z klientem AI wyciąga ustalenia i tworzy notatkę ze spotkania.',
+    ],
   },
   {
     name: 'Agent AI',
     desc: 'Krok dalej. Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki, żeby go dowieźć. Korzysta z narzędzi, sprawdza dane, prowadzi sprawę do końca.',
-    example: 'Agent odbiera zapytanie, sam dopytuje o szczegóły, sprawdza wolny termin w kalendarzu, umawia spotkanie i wysyła potwierdzenie. Całą dobę, bez Ciebie.',
+    examples: [
+      'Agent odbiera zapytanie, sam dopytuje o szczegóły, sprawdza wolny termin w kalendarzu, umawia spotkanie i wysyła potwierdzenie. Całą dobę, bez Ciebie.',
+      'Klient pisze w nocy, agent odpowiada, kwalifikuje go i rezerwuje termin, rano masz gotowe spotkanie w kalendarzu.',
+      'Agent pilnuje skrzynki, sam odpowiada na typowe pytania, a trudniejsze przekazuje Tobie z gotowym podsumowaniem.',
+      'Agent dzwoni do klienta z przypomnieniem o płatności i odnotowuje wynik rozmowy.',
+      'Po zapytaniu o wycenę agent zbiera dane, przygotowuje wstępną ofertę i wysyła ją klientowi.',
+    ],
   },
 ]
 
 type Package = typeof packages[number]
 type AiType = typeof aiTypes[number]
+
+type AiCardProps = { ai: AiType; inView: boolean; i: number }
 
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -94,8 +115,15 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
   )
 }
 
-function AiCard({ ai, inView, i }: { ai: AiType; inView: boolean; i: number }) {
+function AiCard({ ai, inView, i }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const [expandedExamples, setExpandedExamples] = useState(false)
+
+  const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <m.div
       initial={{ opacity: 0, y: 24 }}
@@ -103,7 +131,7 @@ function AiCard({ ai, inView, i }: { ai: AiType; inView: boolean; i: number }) {
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 ${
+      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 flex flex-col ${
         isHovered
           ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]'
           : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
@@ -120,7 +148,37 @@ function AiCard({ ai, inView, i }: { ai: AiType; inView: boolean; i: number }) {
       <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">{ai.desc}</p>
       <div className="mt-4 rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
         <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)]">Przykład</p>
-        <p className="mt-1.5 text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{ai.example}</p>
+        <p className="mt-1.5 text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{ai.examples[0]}</p>
+      </div>
+      <AnimatePresence initial={false}>
+        {expandedExamples && (
+          <m.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease }}
+            className="overflow-hidden"
+          >
+            <div className="mt-3 space-y-3">
+              {ai.examples.slice(1).map((example, idx) => (
+                <div key={idx} className="rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
+                  <p className="text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{example}</p>
+                </div>
+              ))}
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
+      <button
+        onClick={() => setExpandedExamples(!expandedExamples)}
+        className="mt-3 px-4 py-2 text-[13px] font-semibold text-[var(--accent)] text-left rounded transition-colors hover:text-[#1d4ed8]"
+      >
+        {expandedExamples ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
+      </button>
+      <div className="mt-4 pt-4 border-t border-[var(--border)]">
+        <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary w-full text-center">
+          Umów spotkanie
+        </a>
       </div>
     </m.div>
   )
@@ -265,7 +323,9 @@ export default function Services() {
         ref={ref2}
         className="section-shell relative overflow-hidden"
       >
-        <BackgroundPathsProcess />
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-none">
+          <BackgroundNetworkAnimation />
+        </div>
         <div
           className="pointer-events-none absolute inset-0"
           style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}

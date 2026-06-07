@@ -15,37 +15,19 @@ interface CalendlyScriptWindow extends Window {
 
 const socials = [
   {
+    label: 'Email',
+    fullName: 'getbuild.pl@gmail.com',
+    href: `mailto:${contactEmail}`,
+  },
+  {
     label: 'Instagram',
-    fullName: 'Instagram',
+    fullName: '@getbuild.pl',
     href: 'https://www.instagram.com/getbuild.pl/',
-    icon: (
-      <svg width="56" height="56" viewBox="0 0 48 48" aria-hidden="true">
-        <defs>
-          <radialGradient id="ig-c" cx="30%" cy="107%" r="130%">
-            <stop offset="0%" stopColor="#fdf497" />
-            <stop offset="5%" stopColor="#fdf497" />
-            <stop offset="45%" stopColor="#fd5949" />
-            <stop offset="60%" stopColor="#d6249f" />
-            <stop offset="90%" stopColor="#285AEB" />
-          </radialGradient>
-        </defs>
-        <rect width="48" height="48" rx="12" fill="url(#ig-c)" />
-        <rect x="13" y="13" width="22" height="22" rx="6" fill="none" stroke="white" strokeWidth="2.5" />
-        <circle cx="24" cy="24" r="6" fill="none" stroke="white" strokeWidth="2.5" />
-        <circle cx="31.5" cy="16.5" r="1.5" fill="white" />
-      </svg>
-    ),
   },
   {
     label: 'Facebook',
-    fullName: 'Facebook',
+    fullName: 'getbuild',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
-    icon: (
-      <svg width="56" height="56" viewBox="0 0 48 48" aria-hidden="true">
-        <rect width="48" height="48" rx="10" fill="#1877F2" />
-        <path fill="white" d="M32 24h-5v-3c0-1.4.3-2 2.2-2H32v-5h-4c-5 0-7 3-7 7v3h-4v5h4v14h5V29h4.5l.5-5z" />
-      </svg>
-    ),
   },
 ]
 
@@ -173,29 +155,47 @@ export default function Contact() {
               </div>
 
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Media społecznościowe</p>
-                <div className="flex gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Nasze konta</p>
+                <div className="space-y-2">
                   {socials.map((s, i) => (
                     <m.a
                       key={s.label}
                       href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: 0.2 + i * 0.1, ease }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center justify-center rounded-xl hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all"
+                      target={s.label !== 'Email' ? '_blank' : undefined}
+                      rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease }}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] transition-all"
                       title={s.fullName}
                     >
-                      {s.icon}
+                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br" style={{background: s.label === 'Email' ? 'linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%)' : s.label === 'Instagram' ? 'linear-gradient(135deg, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)' : 'linear-gradient(135deg, #1877F2 0%, #0a66c2 100%)'}}>
+                        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
+                          {s.label === 'Email' && (
+                            <>
+                              <path d="M12 16h24c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H12c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="none" stroke="white" strokeWidth="2" strokeLinejoin="round" />
+                              <path d="M12 18l12 8 12-8" fill="none" stroke="white" strokeWidth="2" strokeLinejoin="round" />
+                            </>
+                          )}
+                          {s.label === 'Instagram' && (
+                            <>
+                              <rect x="10" y="10" width="28" height="28" rx="6" fill="none" stroke="white" strokeWidth="2" />
+                              <circle cx="24" cy="24" r="7" fill="none" stroke="white" strokeWidth="2" />
+                              <circle cx="33" cy="15" r="1.5" fill="white" />
+                            </>
+                          )}
+                          {s.label === 'Facebook' && (
+                            <>
+                              <path d="M14 12c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2h-4.5v-7h2.5l.5-3h-3V19c0-.7.3-1 1.2-1h1.8v-2.8c-.4 0-1.8-.2-3.4-.2-3.3 0-5.6 2-5.6 5.7v2.3h-3.8v3h3.8V28h-2c-1.1 0-2-.9-2-2V12z" fill="white" />
+                            </>
+                          )}
+                        </svg>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[13px] font-semibold text-[#0A0A0F]">{s.label}</p>
+                        <p className="text-[11px] text-[#6b7280] truncate">{s.fullName}</p>
+                      </div>
                     </m.a>
-                  ))}
-                </div>
-                <div className="flex gap-3 mt-3 text-[11px] text-[#6b7280]">
-                  {socials.map(s => (
-                    <span key={s.label}>{s.fullName}</span>
                   ))}
                 </div>
               </div>

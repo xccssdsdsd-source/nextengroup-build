@@ -8,9 +8,9 @@ import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const rotatingOptions = [
-  'Automatyzację',
-  'Automatyzację AI',
-  'Agentów AI',
+  'stronę internetową',
+  'automatyzację AI',
+  'agentów AI',
 ]
 
 const packages = [
@@ -301,9 +301,15 @@ export default function Services() {
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.78, ease }}
           >
-            <span className="section-kicker">Strony internetowe</span>
-            <h2 className="section-title">Strona dostosowana do Twojej firmy.</h2>
-            <p className="section-copy">
+            <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
+              <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
+                Strony, które pozyskują klientów.
+              </div>
+              <div className="mt-3 text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
+                Automatyzacja AI, która obsługuje za Ciebie.
+              </div>
+            </h2>
+            <p className="section-copy mt-6">
               Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
             </p>
           </m.div>

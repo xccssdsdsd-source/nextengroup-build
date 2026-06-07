@@ -276,11 +276,11 @@ export default function Services() {
         <BackgroundParticlesServices />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 60% 35% at 50% -10%, rgba(59, 130, 246, 0.06) 0%, rgba(37, 99, 235, 0.02) 30%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% -5%, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.015) 35%, transparent 70%)' }}
         />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 25%, transparent 75%, rgba(248,250,255,0.2) 100%)' }}
+          style={{ background: 'radial-gradient(ellipse 55% 60% at 72% 50%, rgba(37,99,235,0.03), transparent)' }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div
@@ -405,11 +405,11 @@ export default function Services() {
         </div>
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 60% 35% at 50% -10%, rgba(59, 130, 246, 0.06) 0%, rgba(37, 99, 235, 0.02) 30%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% -5%, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.015) 35%, transparent 70%)' }}
         />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 25%, transparent 75%, rgba(248,250,255,0.2) 100%)' }}
+          style={{ background: 'radial-gradient(ellipse 55% 60% at 72% 50%, rgba(37,99,235,0.03), transparent)' }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div

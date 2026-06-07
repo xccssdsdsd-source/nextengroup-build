@@ -98,8 +98,12 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontakt" ref={ref} className="section-shell relative" style={{ background: 'var(--bg)' }}>
+    <section id="kontakt" ref={ref} className="section-shell relative">
       <BackgroundPathsContact />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+      />
       <m.div
         initial={{ opacity: 0, y: 40, scale: 0.98 }}
         animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}

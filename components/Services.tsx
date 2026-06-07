@@ -91,15 +91,15 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 ${
+      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
         isHovered
-          ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]'
-          : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
+          ? 'border-[rgba(147,180,248,0.6)] shadow-[0_0.5px_2px_rgba(13,22,41,0.04),_0_4px_12px_rgba(37,99,235,0.08),_0_12px_32px_rgba(37,99,235,0.06)]'
+          : 'border-[rgba(147,180,248,0.2)] shadow-[0_0.5px_1px_rgba(13,22,41,0.04),_0_2px_6px_rgba(13,22,41,0.03)]'
       }`}
       style={{
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,255,0.98) 100%)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,252,255,0.92) 50%, rgba(248,251,255,0.95) 100%)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
       }}
     >
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -131,15 +131,15 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 flex flex-col ${
+      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col ${
         isHovered
-          ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]'
-          : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
+          ? 'border-[rgba(147,180,248,0.6)] shadow-[0_0.5px_2px_rgba(13,22,41,0.04),_0_4px_12px_rgba(37,99,235,0.08),_0_12px_32px_rgba(37,99,235,0.06)]'
+          : 'border-[rgba(147,180,248,0.2)] shadow-[0_0.5px_1px_rgba(13,22,41,0.04),_0_2px_6px_rgba(13,22,41,0.03)]'
       }`}
       style={{
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(245,248,255,0.96) 100%)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.93) 0%, rgba(248,250,255,0.90) 50%, rgba(245,249,255,0.93) 100%)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
       }}
     >
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -198,7 +198,11 @@ export default function Services() {
         <BackgroundParticlesServices />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 35% at 50% -10%, rgba(59, 130, 246, 0.06) 0%, rgba(37, 99, 235, 0.02) 30%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 25%, transparent 75%, rgba(248,250,255,0.2) 100%)' }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div
@@ -323,7 +327,11 @@ export default function Services() {
         </div>
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 35% at 50% -10%, rgba(59, 130, 246, 0.06) 0%, rgba(37, 99, 235, 0.02) 30%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 25%, transparent 75%, rgba(248,250,255,0.2) 100%)' }}
         />
         <div className="relative mx-auto max-w-7xl">
           <m.div

@@ -1,0 +1,15 @@
+import puppeteer from 'puppeteer'
+const sleep = ms => new Promise(r => setTimeout(r, ms))
+const b = await puppeteer.launch()
+const p = await b.newPage()
+await p.setViewport({width:1440,height:1200})
+await p.goto('http://localhost:3005',{waitUntil:'networkidle0',timeout:60000})
+await sleep(1500)
+await p.evaluate(() => {
+  const el = document.getElementById('uslugi')
+  if(el) el.scrollIntoView({behavior:'instant',block:'start'})
+})
+await sleep(500)
+await p.screenshot({path:'temporary screenshots/services-section.png'})
+await b.close()
+console.log('saved')

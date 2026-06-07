@@ -73,14 +73,14 @@ export default function Hero() {
             <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
-                <span style={{ color: '#1a2a4a', fontWeight: 500 }}>
+                <span style={{ color: '#2563EB', fontWeight: 500 }}>
                   {carouselWords[0]}
                 </span>
               ) : (
                 <AnimatePresence mode="wait">
                   <m.span
                     key={titleNumber}
-                    style={{ color: '#1a2a4a', fontWeight: 500, display: 'inline' }}
+                    style={{ color: '#2563EB', fontWeight: 500, display: 'inline' }}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}

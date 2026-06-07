@@ -175,11 +175,6 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       >
         {expandedExamples ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>
-      <div className="mt-4 pt-4 border-t border-[var(--border)]">
-        <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary w-full text-center">
-          Umów spotkanie
-        </a>
-      </div>
     </m.div>
   )
 }

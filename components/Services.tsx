@@ -1,17 +1,11 @@
 'use client'
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
-import { useRef, useState, useEffect, type MouseEvent } from 'react'
+import { useRef, useState } from 'react'
 import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-
-const rotatingOptions = [
-  'stronę internetową',
-  'automatyzację AI',
-  'agentów AI',
-]
 
 const packages = [
   {
@@ -48,46 +42,7 @@ const careItems = [
   'Wyższy pakiet to szerszy zakres, więcej zmian i szybsze wdrażanie.',
 ]
 
-const aiTypes = [
-  {
-    name: 'Automatyzacja',
-    tag: 'Reguły',
-    desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto.',
-    bullets: ['Działa zero jeden', 'Bez kontekstu', 'Najtańsza w utrzymaniu'],
-    examples: [
-      'Klient wypełnia formularz, system automatycznie wysyła email powitalny i dodaje kontakt do arkusza.',
-      'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez ręcznego przepisywania.',
-      'Po wysłaniu zapytania klient dostaje SMS z potwierdzeniem otrzymania i czasem odpowiedzi.',
-    ],
-  },
-  {
-    name: 'Automatyzacja AI',
-    tag: 'AI w środku',
-    desc: 'Automatyzacja z modelem AI, który rozumie treść i sam decyduje.',
-    bullets: ['Rozumie treść', 'Decyduje sama', 'Obsługuje warianty'],
-    examples: [
-      'Przychodzące maile są automatycznie klasyfikowane: pilne, zwykłe, spam. AI segreguje je bez udziału człowieka.',
-      'Wiadomość od klienta trafia do AI, która rozpoznaje temat, przypisuje priorytet i kieruje do właściwej osoby.',
-      'Długa wiadomość od klienta zostaje streszczona do 3 najważniejszych punktów w automatycznym raporcie.',
-    ],
-  },
-  {
-    name: 'Agent AI',
-    tag: 'Pełna autonomia',
-    desc: 'Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki.',
-    bullets: ['Wykonuje cel', 'Używa narzędzi', 'Pracuje 24/7'],
-    examples: [
-      'Zapytanie przychodzi w nocy — agent odpowiada, zbiera szczegóły, sprawdza dostępność i ustawia spotkanie, rano masz już umówiony klient.',
-      'Klient pisze standardowe pytanie — agent odpowiada samodzielnie. Skomplikowane sprawy trafiają tobie z podsumowaniem.',
-      'Agent obsługuje formularz — sam dopytuje o brakujące detale, upewnia się że rozumie potrzeby, przesyła email z podsumowaniem.',
-    ],
-  },
-]
-
 type Package = typeof packages[number]
-type AiType = typeof aiTypes[number]
-
-type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void }
 
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -165,122 +120,12 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   )
 }
 
-function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [expandedExamples, setExpandedExamples] = useState(false)
-  const isExpanded = allExpanded || expandedExamples
-
-  const getProcessType = () => {
-    if (ai.name === 'Automatyzacja') return 'simple'
-    if (ai.name === 'Automatyzacja AI') return 'ai'
-    return 'agent'
-  }
-
-  return (
-    <m.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: i * 0.1, ease }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
-        isHovered
-          ? 'border-[rgba(147,180,248,0.6)] shadow-[0_0.5px_2px_rgba(13,22,41,0.04),_0_4px_12px_rgba(37,99,235,0.08),_0_12px_32px_rgba(37,99,235,0.06)]'
-          : 'border-[rgba(147,180,248,0.2)] shadow-[0_0.5px_1px_rgba(13,22,41,0.04),_0_2px_6px_rgba(13,22,41,0.03)]'
-      }`}
-      style={{
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,252,255,0.92) 50%, rgba(248,251,255,0.95) 100%)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      }}
-    >
-      <div className="flex items-center gap-2 mb-2">
-        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#3b82f6', borderRadius: '4px' }}>
-          {ai.tag}
-        </span>
-      </div>
-
-      <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
-        {ai.name}
-      </h3>
-
-      <div className="mb-7 p-6 rounded-xl border border-[rgba(59,130,246,0.15)]" style={{ background: 'rgba(59, 130, 246, 0.04)' }}>
-        <ProcessFlowDiagram type={getProcessType()} />
-      </div>
-
-      <p className="text-[14px] leading-[1.72] text-[var(--text-secondary)] mb-5">{ai.desc}</p>
-
-      <div className="space-y-2.5 mb-6">
-        {ai.bullets.map((bullet, idx) => (
-          <div key={idx} className="flex items-start gap-2.5">
-            <span className="text-[#2563eb] mt-1 flex-shrink-0 text-sm">●</span>
-            <span className="text-[13.5px] leading-[1.6] text-[var(--text-secondary)]">{bullet}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="mb-5 rounded-xl px-4 py-3.5" style={{ background: 'rgba(59, 130, 246, 0.06)' }}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8]">Przykład</p>
-        <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[var(--text-secondary)]">{ai.examples[0]}</p>
-      </div>
-
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <m.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease }}
-            className="overflow-hidden mb-4"
-          >
-            <div className="space-y-3">
-              {ai.examples.slice(1).map((example, idx) => (
-                <div key={idx} className="rounded-xl px-4 py-3.5" style={{ background: 'rgba(59, 130, 246, 0.06)' }}>
-                  <p className="text-[13.5px] leading-[1.68] text-[var(--text-secondary)]">{example}</p>
-                </div>
-              ))}
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        onClick={() => {
-          if (onToggleAll) {
-            onToggleAll()
-          } else {
-            setExpandedExamples(!expandedExamples)
-          }
-        }}
-        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#2563eb] text-left transition-all hover:text-[#1d4ed8] hover:translate-x-0.5"
-      >
-        {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
-      </button>
-    </m.div>
-  )
-}
-
 export default function Services() {
   const ref1 = useRef(null)
   const ref2 = useRef(null)
   const inView1 = useInView(ref1, { once: true, margin: '-120px' })
   const inView2 = useInView(ref2, { once: true, margin: '-120px' })
   const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
-  const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
-  const [rotatingIndex, setRotatingIndex] = useState(0)
-
-  const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotatingIndex((prev) => (prev + 1) % rotatingOptions.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <>
@@ -437,89 +282,9 @@ export default function Services() {
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[var(--text)]">
-                Automatyzacja i agenci AI
+                Automatyzacja plus AI Agenci AI.
               </div>
             </h2>
-            <div className="mt-8 flex items-baseline gap-3">
-              <p className="text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text-secondary)]" style={{ fontFamily: 'var(--font-syne)' }}>
-                Budujemy Twój biznes przez:
-              </p>
-              <div className="min-w-0">
-                <m.div
-                  key={rotatingIndex}
-                  initial={{ y: 28, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -28, opacity: 0 }}
-                  transition={{ duration: 0.4, ease }}
-                >
-                  <span
-                    className="inline-block text-[1.05rem] font-bold tracking-[-0.03em]"
-                    style={{
-                      fontFamily: 'var(--font-syne)',
-                      color: 'rgba(37, 99, 235, 0.8)',
-                    }}
-                  >
-                    {rotatingOptions[rotatingIndex]}
-                  </span>
-                </m.div>
-              </div>
-            </div>
-          </m.div>
-
-          <div className="mt-16">
-            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6 auto-rows-fr">
-              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
-            </div>
-
-            <div className="flex flex-col gap-4 lg:hidden">
-              <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded2 && (
-                  <m.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
-                    </div>
-                  </m.div>
-                )}
-              </AnimatePresence>
-              {!expanded2 && (
-                <button
-                  onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-5 py-3 text-[14px] font-semibold text-[var(--accent)] shadow-[0_1px_2px_rgba(13,22,41,0.04)] transition-colors hover:bg-[var(--bg-soft)]"
-                >
-                  Zobacz więcej
-                </button>
-              )}
-            </div>
-          </div>
-
-          <m.div
-            className="mt-8 rounded-2xl border border-[var(--border)] px-6 py-5 shadow-[0_1px_2px_rgba(13,22,41,0.04)]"
-            style={{ background: 'var(--bg-soft)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.35 }}
-          >
-            <p className="text-[14px] leading-[1.7] text-[var(--text-secondary)]">
-              <span className="font-semibold text-[var(--text)]">Wycena</span> dopasowana do Twoich potrzeb po krótkim spotkaniu, 15 minut. Rozpoznajemy na nim Twoje największe wąskie gardła i problemy, które realnie da się zautomatyzować albo poprawić. W najgorszym razie wychodzisz ze spotkania wiedząc dokładnie, co i jak usprawnić u siebie. Czyli i tak wygrywasz.
-            </p>
-          </m.div>
-
-          <m.div
-            className="mt-8 flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.42 }}
-          >
-            <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary">
-              Umów spotkanie
-            </a>
           </m.div>
         </div>
       </section>

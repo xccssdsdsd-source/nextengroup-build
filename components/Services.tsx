@@ -47,12 +47,9 @@ const aiTypes = [
     desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto.',
     bullets: ['Działa zero jeden', 'Bez kontekstu', 'Najtańsza w utrzymaniu'],
     examples: [
-      'Klient wypełnia formularz, system sam wysyła maila powitalnego i dopisuje go do arkusza.',
-      'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez przepisywania ręcznie.',
-      'Po zakończonej usłudze klient dostaje automatycznie SMS z prośbą o opinię w Google.',
-      'Faktura tworzy się sama po opłaceniu zamówienia i trafia do klienta na maila.',
-      'Przypomnienie o wizycie wychodzi do klienta dzień wcześniej, sam nie musisz dzwonić.',
-      'Każdy nowy lead z reklamy od razu trafia na Twojego WhatsAppa z danymi kontaktowymi.',
+      'Klient wypełnia formularz, system automatycznie wysyła email powitalny i dodaje kontakt do arkusza.',
+      'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez ręcznego przepisywania.',
+      'Po wysłaniu zapytania klient dostaje SMS z potwierdzeniem otrzymania i czasem odpowiedzi.',
     ],
   },
   {
@@ -61,11 +58,9 @@ const aiTypes = [
     desc: 'Automatyzacja z modelem AI, który rozumie treść i sam decyduje.',
     bullets: ['Rozumie treść', 'Decyduje sama', 'Obsługuje warianty'],
     examples: [
-      'Klient pisze wiadomość, AI rozpoznaje czego dotyczy, pisze dopasowaną odpowiedź i kieruje sprawę do właściwej osoby.',
-      'AI czyta przychodzące maile i sam segreguje je na pilne, oferty i spam.',
-      'Opinie klientów z Google są streszczane automatycznie, dostajesz raport co chwalą najczęściej i na co narzekają.',
-      'AI przygotowuje opis nieruchomości na podstawie zdjęć i kilku danych, gotowy do publikacji.',
-      'Z nagrania rozmowy z klientem AI wyciąga ustalenia i tworzy notatkę ze spotkania.',
+      'Przychodzące maile są automatycznie klasyfikowane: pilne, zwykłe, spam. AI segreguje je bez udziału człowieka.',
+      'Wiadomość od klienta trafia do AI, która rozpoznaje temat, przypisuje priorytet i kieruje do właściwej osoby.',
+      'Długa wiadomość od klienta zostaje streszczona do 3 najważniejszych punktów w automatycznym raporcie.',
     ],
   },
   {
@@ -74,11 +69,9 @@ const aiTypes = [
     desc: 'Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki.',
     bullets: ['Wykonuje cel', 'Używa narzędzi', 'Pracuje 24/7'],
     examples: [
-      'Agent odbiera zapytanie, sam dopytuje o szczegóły, sprawdza wolny termin w kalendarzu, umawia spotkanie i wysyła potwierdzenie. Całą dobę, bez Ciebie.',
-      'Klient pisze w nocy, agent odpowiada, kwalifikuje go i rezerwuje termin, rano masz gotowe spotkanie w kalendarzu.',
-      'Agent pilnuje skrzynki, sam odpowiada na typowe pytania, a trudniejsze przekazuje Tobie z gotowym podsumowaniem.',
-      'Agent dzwoni do klienta z przypomnieniem o płatności i odnotowuje wynik rozmowy.',
-      'Po zapytaniu o wycenę agent zbiera dane, przygotowuje wstępną ofertę i wysyła ją klientowi.',
+      'Zapytanie przychodzi w nocy — agent odpowiada, zbiera szczegóły, sprawdza dostępność i ustawia spotkanie, rano masz już umówiony klient.',
+      'Klient pisze standardowe pytanie — agent odpowiada samodzielnie. Skomplikowane sprawy trafiają tobie z podsumowaniem.',
+      'Agent obsługuje formularz — sam dopytuje o brakujące detale, upewnia się że rozumie potrzeby, przesyła email z podsumowaniem.',
     ],
   },
 ]
@@ -245,8 +238,8 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
       <button
         onClick={() => {
-          if (allExpanded) {
-            onToggleAll?.()
+          if (onToggleAll) {
+            onToggleAll()
           } else {
             setExpandedExamples(!expandedExamples)
           }

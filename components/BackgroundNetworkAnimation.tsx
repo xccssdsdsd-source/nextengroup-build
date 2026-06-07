@@ -60,14 +60,14 @@ export default function BackgroundNetworkAnimation() {
     canvas.width = width
     canvas.height = height
 
-    const pointCount = window.innerWidth >= 1024 ? 40 : 24
+    const pointCount = window.innerWidth >= 1024 ? 25 : 15
 
-    pointsRef.current = Array.from({ length: pointCount }, () => ({
+    pointsRef.current = Array.from({ length: pointCount }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
-      opacity: Math.random() * 0.6 + 0.2,
+      opacity: (i % 4 === 0) ? 0.8 : (Math.random() * 0.5 + 0.4),
     }))
 
     const generateConnections = () => {
@@ -104,10 +104,10 @@ export default function BackgroundNetworkAnimation() {
         const to = pointsRef.current[conn.to]
 
         const pulse = Math.sin(Date.now() / 1500 + idx) * 0.15 + 0.85
-        const opacity = isVisible ? conn.opacity * pulse * 0.5 : conn.opacity * 0.3
+        const opacity = isVisible ? conn.opacity * pulse * 0.7 : conn.opacity * 0.5
 
         ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-        ctx.lineWidth = 0.8
+        ctx.lineWidth = 1
         ctx.lineCap = 'round'
         ctx.beginPath()
         ctx.moveTo(from.x, from.y)
@@ -115,11 +115,13 @@ export default function BackgroundNetworkAnimation() {
         ctx.stroke()
       })
 
-      pointsRef.current.forEach((point) => {
-        const baseSizeOpacity = isVisible ? (0.3 + Math.sin(Date.now() / 2000) * 0.15) : 0.3
-        ctx.fillStyle = `rgba(59, 130, 246, ${point.opacity * baseSizeOpacity * 0.8})`
+      pointsRef.current.forEach((point, idx) => {
+        const isHub = idx % 4 === 0
+        const radius = isHub ? 2.5 : 1.5
+        const baseSizeOpacity = isVisible ? (0.5 + Math.sin(Date.now() / 2000) * 0.2) : 0.5
+        ctx.fillStyle = `rgba(59, 130, 246, ${point.opacity * baseSizeOpacity})`
         ctx.beginPath()
-        ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2)
+        ctx.arc(point.x, point.y, radius, 0, Math.PI * 2)
         ctx.fill()
       })
     }

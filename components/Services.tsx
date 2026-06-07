@@ -115,6 +115,54 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
   )
 }
 
+function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
+  if (type === 'simple') {
+    return (
+      <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
+        <rect x="12" y="20" width="50" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
+        <text x="37" y="37" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="500">Proces A</text>
+        <path d="M68 32 L84 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
+        <rect x="88" y="20" width="50" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
+        <text x="113" y="37" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="500">Proces B</text>
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" /></marker></defs>
+      </svg>
+    )
+  }
+  if (type === 'ai') {
+    return (
+      <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
+        <rect x="8" y="20" width="40" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
+        <text x="28" y="37" textAnchor="middle" fill="#3b82f6" fontSize="9" fontWeight="500">Proces</text>
+        <path d="M54 32 L70 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
+        <circle cx="85" cy="32" r="11" fill="url(#aiGradient)" stroke="#1d4ed8" strokeWidth="1.5" />
+        <text x="85" y="37" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">AI</text>
+        <path d="M96 32 L112 32" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
+        <rect x="116" y="20" width="40" height="24" rx="4" fill="none" stroke="#3b82f6" strokeWidth="1.5" />
+        <text x="136" y="37" textAnchor="middle" fill="#3b82f6" fontSize="9" fontWeight="500">Wynik</text>
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" /></marker>
+          <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
+        </defs>
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 200 64" className="w-full h-16" style={{ opacity: 0.7 }}>
+      <circle cx="50" cy="32" r="11" fill="url(#agentGradient)" stroke="#1d4ed8" strokeWidth="1.5" />
+      <text x="50" y="37" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">AI</text>
+      <line x1="61" y1="16" x2="80" y2="10" stroke="#3b82f6" strokeWidth="1.2" />
+      <circle cx="88" cy="8" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
+      <line x1="61" y1="32" x2="88" y2="32" stroke="#3b82f6" strokeWidth="1.2" />
+      <circle cx="96" cy="32" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
+      <line x1="61" y1="48" x2="80" y2="54" stroke="#3b82f6" strokeWidth="1.2" />
+      <circle cx="88" cy="56" r="6" fill="none" stroke="#3b82f6" strokeWidth="1.2" />
+      <defs>
+        <linearGradient id="agentGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#1d4ed8" /></linearGradient>
+      </defs>
+    </svg>
+  )
+}
+
 function AiCard({ ai, inView, i }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [expandedExamples, setExpandedExamples] = useState(false)
@@ -122,6 +170,12 @@ function AiCard({ ai, inView, i }: AiCardProps) {
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const getProcessType = () => {
+    if (ai.name === 'Automatyzacja') return 'simple'
+    if (ai.name === 'Automatyzacja AI') return 'ai'
+    return 'agent'
   }
 
   return (
@@ -149,6 +203,9 @@ function AiCard({ ai, inView, i }: AiCardProps) {
       <div className="mt-4 rounded-lg px-4 py-3" style={{ background: 'var(--bg-soft)' }}>
         <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)]">Przykład</p>
         <p className="mt-1.5 text-[13.5px] leading-[1.65] text-[var(--text-secondary)]">{ai.examples[0]}</p>
+      </div>
+      <div className="mt-4 mb-3">
+        <ProcessFlowDiagram type={getProcessType()} />
       </div>
       <AnimatePresence initial={false}>
         {expandedExamples && (

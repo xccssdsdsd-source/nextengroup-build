@@ -8,6 +8,8 @@ import { articles } from '../articles'
 const Nav = dynamic(() => import('@/components/Nav'))
 const Footer = dynamic(() => import('@/components/Footer'))
 
+export const runtime = 'edge'
+
 interface Props {
   params: Promise<{ slug: string }>
 }

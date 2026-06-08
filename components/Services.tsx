@@ -36,7 +36,7 @@ const careItems = [
   'Kopie zapasowe i monitoring, żebyś nigdy nie stracił danych.',
   'SEO — optymalizacja w Google, pozycjonowanie pod słowa kluczowe, analizy rankingów.',
   'GEO — widoczność w wyszukiwarkach AI (ChatGPT, Gemini, Perplexity), gdzie klienci coraz częściej szukają odpowiedzi.',
-  'AIR SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
+  'AI SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
   'Analiza konkurencji i dostosowanie strategii na bieżąco.',
   'Aktualizacje treści, łatki bezpieczeństwa i drobne zmiany — wszystko obsługujemy.',
   'Wyższy pakiet to szerszy zakres, więcej zmian i szybsze wdrażanie.',
@@ -260,7 +260,7 @@ export default function Services() {
                 { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
                 { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
                 { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
-                { label: 'AIR SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
+                { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
                 { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
                 { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
               ].map((item) => (
@@ -286,7 +286,7 @@ export default function Services() {
               <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 99 zł za opiekę, obowiązkowa</li>
             </ul>
             <p className="text-[13px] leading-[1.6] text-[var(--text-secondary)]">
-              <span className="font-semibold text-[var(--text)]">To zawiera:</span> hosting i domenę, SEO, GEO, AIR SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
+              <span className="font-semibold text-[var(--text)]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
             </p>
           </m.div>
 

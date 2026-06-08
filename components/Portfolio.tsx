@@ -82,10 +82,10 @@ function splitAtSentences(text: string, count: number): [string, string] {
 
 function ScoreBadge({ value, label }: LighthouseScore) {
   const colors = value >= 90
-    ? { bg: '#dcfce7', fg: '#15803d', ring: 'rgba(21,128,61,0.15)' }
+    ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)' }
     : value >= 50
-      ? { bg: '#fef9c3', fg: '#a16207', ring: 'rgba(161,98,7,0.15)' }
-      : { bg: '#fee2e2', fg: '#dc2626', ring: 'rgba(220,38,38,0.15)' }
+      ? { bg: 'rgba(234,179,8,0.15)', fg: '#FACC15', ring: 'rgba(234,179,8,0.25)' }
+      : { bg: 'rgba(239,68,68,0.15)', fg: '#FCA5A5', ring: 'rgba(239,68,68,0.25)' }
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div
@@ -98,7 +98,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
       >
         {value}
       </div>
-      <span className="text-[9px] leading-tight text-[var(--muted)] text-center max-w-[44px]">{label}</span>
+      <span className="text-[9px] leading-tight text-[#6B7280] text-center max-w-[44px]">{label}</span>
     </div>
   )
 }
@@ -161,7 +161,6 @@ export default function Portfolio() {
   return (
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
       <BackgroundPathsPortfolio />
-      <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 50% 30% at 100% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%)' }} />
 
       <div className="relative mx-auto max-w-6xl">
         <m.div
@@ -172,11 +171,11 @@ export default function Portfolio() {
         >
           <div>
             <span className="section-kicker">Nasze realizacje</span>
-            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
-            <span className="font-mono text-[13px] tabular-nums text-[var(--muted)]"><span className="text-[var(--text)] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
+            <span className="font-mono text-[13px] tabular-nums text-[#6B7280]"><span className="text-[#111827] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
         </m.div>
@@ -210,7 +209,7 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={handleCardClick}
-                  className="group relative flex items-center justify-center overflow-hidden bg-[#f5f7fa] p-3 sm:p-4"
+                  className="group relative flex items-center justify-center overflow-hidden bg-[rgba(17,24,39)] p-3 sm:p-4"
                 >
                   <Image
                     src={project.preview}
@@ -218,22 +217,22 @@ export default function Portfolio() {
                     width={project.width}
                     height={project.height}
                     sizes="(min-width: 768px) 720px, 100vw"
-                    className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(15,23,42,0.1)] ring-1 ring-black/5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] ring-1 ring-white/5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     quality={82}
                     priority={currentIndex === 0}
                   />
-                  <span className="absolute left-6 top-6 sm:left-7 sm:top-7 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] text-[#475569] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
+                  <span className="absolute left-6 top-6 sm:left-7 sm:top-7 rounded-full bg-black/50 px-3 py-1 font-mono text-[11px] text-[#6B7280] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
                 </a>
 
-                <div className="flex flex-col justify-center p-6 sm:p-8">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: 'linear-gradient(140deg, #1d4ed8 0%, #2563eb 100%)', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>Wdrożenie {project.time}</span>
+                <div className="flex flex-col justify-center p-6 sm:p-8 bg-white">
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: '#2563EB', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
-                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#94a3b8] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#6B7280] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#2563EB]">{project.tagline}</p>
-                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#6B7280]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
                       <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#2563EB] hover:underline">Zobacz więcej</button></>
@@ -241,7 +240,7 @@ export default function Portfolio() {
                   </p>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[var(--border)] pt-5">
+                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.06)] pt-5">
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}
@@ -256,7 +255,7 @@ export default function Portfolio() {
                 key={i}
                 onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
                 className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
-                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : '#d1d5db' }}
+                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : 'rgba(255,255,255,0.15)' }}
                 aria-label={`Realizacja ${i + 1}`}
               />
             ))}

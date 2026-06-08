@@ -64,16 +64,8 @@ export default function FAQ() {
       id="faq"
       ref={ref}
       className="section-shell relative"
-      style={{ background: 'var(--bg)' }}
     >
       <BackgroundPathsFAQ />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
           initial={{ opacity: 0, y: 28 }}
@@ -100,19 +92,18 @@ export default function FAQ() {
                 transition={{ duration: 0.5, delay: index * 0.06, ease }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
-                    ? 'border-l-[#2563eb] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_6px_16px_rgba(37,99,235,0.07)]'
-                    : 'border-l-transparent shadow-[0_1px_2px_rgba(13,22,41,0.04)]'
+                    ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'
+                    : 'border-l-transparent bg-transparent'
                 }`}
-                style={{ background: isOpen ? '#f8faff' : 'var(--bg-card)' }}
               >
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${index}`}
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left border-b border-[rgba(255,255,255,0.06)]"
                 >
-                  <span className="text-[14.5px] font-semibold leading-snug text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>
+                  <span className="text-[14.5px] font-semibold leading-snug text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
                   </span>
                   <m.span
@@ -120,8 +111,8 @@ export default function FAQ() {
                     transition={{ duration: 0.26, ease }}
                     className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
                       isOpen
-                        ? 'bg-[var(--accent)] text-white shadow-[0_2px_8px_rgba(37,99,235,0.30)]'
-                        : 'bg-[var(--bg-soft)] text-[var(--muted)] border border-[var(--border)]'
+                        ? 'bg-[#2563EB] text-white shadow-[0_2px_8px_rgba(37,99,235,0.30)]'
+                        : 'bg-transparent text-[#2563EB] border border-[rgba(37,99,235,0.3)]'
                     }`}
                   >
                     <Plus size={14} strokeWidth={2.2} />
@@ -138,8 +129,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.32, ease }}
                     >
-                      <div className="mx-5 mb-4 h-px bg-[var(--border)]" />
-                      <p className="px-5 pb-5 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
+                      <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#6B7280]">
                         {faq.a}
                       </p>
                     </m.div>

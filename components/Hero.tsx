@@ -40,14 +40,6 @@ export default function Hero() {
       suppressHydrationWarning
       className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48"
     >
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{ background: 'radial-gradient(ellipse 90% 70% at 50% 0%, rgba(219,234,254,0.55), transparent 65%)' }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{ background: 'radial-gradient(ellipse 55% 60% at 72% 50%, rgba(37,99,235,0.06), transparent)' }}
-      />
       <BackgroundPaths />
 
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
@@ -62,7 +54,7 @@ export default function Hero() {
               lineHeight: '1.1',
               letterSpacing: '-0.03em',
               overflowWrap: 'break-word',
-              color: '#0A0A0F'
+              color: '#111827'
             }}
           >
             <span className="block text-balance">Strony, które pozyskują klientów.</span>
@@ -73,7 +65,7 @@ export default function Hero() {
             <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
-                <span style={{ color: '#1d4ed8', fontWeight: 600 }}>
+                <span style={{ color: '#2563EB', fontWeight: 600 }}>
                   {carouselWords[0]}
                 </span>
               ) : (
@@ -81,7 +73,7 @@ export default function Hero() {
                   <AnimatePresence mode="wait">
                     <m.span
                       key={titleNumber}
-                      style={{ color: '#1d4ed8', fontWeight: 600, display: 'inline-block' }}
+                      style={{ color: '#2563EB', fontWeight: 600, display: 'inline-block' }}
                       initial={{ opacity: 0, y: '110%' }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: '-70%' }}
@@ -102,15 +94,14 @@ export default function Hero() {
             <a
               href="#kontakt"
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
-              style={{ minWidth: '220px' }}
+              className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold"
             >
               Kontakt
             </a>
             <a
               href="#portfolio"
               onClick={(e) => handleAnchorClick(e, '#portfolio')}
-              className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto"
+              className="btn btn-ghost inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold"
             >
               Realizacje
             </a>
@@ -126,18 +117,18 @@ export default function Hero() {
             <div
               style={{
                 borderRadius: '20px',
-                backgroundColor: '#0d1117',
+                backgroundColor: '#F3F4F6',
                 maxWidth: '1100px',
                 maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',
-                boxShadow: '0 -12px 60px rgba(37,99,235,0.18), 0 -2px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.08)',
+                boxShadow: '0 0 80px rgba(37,99,235,0.1), 0 40px 80px rgba(0,0,0,0.1)',
                 overflow: 'hidden',
                 willChange: 'transform',
                 position: 'relative',
               }}
             >
               {isMounted && <DeviceMockups />}
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #f4f6fb)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #FFFFFF)', pointerEvents: 'none' }} />
             </div>
           </div>
         </div>

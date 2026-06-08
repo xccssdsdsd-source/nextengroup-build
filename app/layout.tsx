@@ -5,6 +5,7 @@ import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
 import SubtleAccents from '@/components/SubtleAccents'
 import MotionProvider from '@/components/MotionProvider'
+import AnimatedBackground from '@/components/AnimatedBackground'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
@@ -207,15 +208,10 @@ export default function RootLayout({
         }) }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
-      <body className="text-[#0A0A0F] antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
-        <SubtleAccents />
-        <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true" style={{ zIndex: 0 }}>
-          <div className="absolute" style={{ top: '-150px', left: '-150px', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)' }} />
-          <div className="absolute" style={{ bottom: '-200px', right: '-200px', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)' }} />
-          <div className="absolute" style={{ top: '-100px', left: '50%', width: '400px', height: '400px', transform: 'translateX(-50%)', background: 'radial-gradient(circle, rgba(37,99,235,0.04) 0%, transparent 70%)' }} />
-        </div>
+      <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
+        <AnimatedBackground />
         <CookieConsent />
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#0055FF] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#2563EB] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
         <MotionProvider>
           <div id="main-content" className="relative" style={{ zIndex: 1 }}>{children}</div>
         </MotionProvider>

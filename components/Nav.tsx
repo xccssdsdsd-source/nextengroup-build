@@ -25,8 +25,8 @@ const allLinks: readonly (readonly [string, string])[] = [
   ['Kontakt', '#kontakt'],
 ]
 
-const linkClass = 'nav-link text-[12.5px] font-medium text-[#64748b] transition-colors duration-200 hover:text-[#0d1629]'
-const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#64748b] transition-colors duration-150 hover:bg-[#f4f6f8] hover:text-[#0d1629]'
+const linkClass = 'nav-link text-[12.5px] font-medium text-[#111827]'
+const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#111827] transition-colors duration-150 hover:bg-rgba(37,99,235,0.1) hover:text-[#111827]'
 
 const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
 
@@ -133,22 +133,20 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300 ${
-            scrolled
-              ? 'border-[#e5e7eb] bg-white/95 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.08)] backdrop-blur-md'
-              : 'border-transparent bg-white shadow-none'
-          }`}
+          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300`}
           style={{
-            borderColor: scrolled ? 'var(--border)' : 'transparent',
-            background: scrolled ? 'rgba(255, 255, 255, 0.88)' : 'rgba(255, 255, 255, 0.25)'
+            borderColor: 'rgba(255, 255, 255, 0.06)',
+            background: 'rgba(10, 15, 30, 0.75)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
           }}
         >
           <div className="flex items-center justify-between gap-4">
             <a href="/" className="flex min-w-0 items-center gap-3">
               <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-lg object-contain" priority />
               <div className="min-w-0">
-                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
-                <div className="truncate text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">Strony WWW & Automatyzacje</div>
+                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
+                <div className="truncate text-[10px] uppercase tracking-[0.16em] text-[#94A3B8]">Strony WWW & Automatyzacje</div>
               </div>
             </a>
 
@@ -172,8 +170,8 @@ export default function Nav() {
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary !hidden px-6 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
-                style={{ minWidth: '220px', justifyContent: 'center' }}
+                className="btn btn-primary !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
+                style={{ minWidth: 'auto' }}
               >
                 {isMounted ? (
                   <span className="inline-flex items-center">
@@ -189,7 +187,7 @@ export default function Nav() {
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
                 aria-expanded={open}
                 onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-white text-[var(--text)] shadow-[0_1px_3px_rgba(13,22,41,0.06)] transition-colors hover:bg-[#f4f6f8] lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.15)] bg-transparent text-[#111827] transition-colors hover:bg-[rgba(37,99,235,0.1)] hover:border-[rgba(37,99,235,0.4)] lg:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
@@ -216,7 +214,8 @@ export default function Nav() {
                 transition={{ duration: 0.26, ease }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="mt-3 rounded-2xl border border-[var(--border)] bg-white p-3 shadow-[0_4px_20px_rgba(13,22,41,0.10)]">
+                <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(17,24,39,0.8)] p-3">
+
                   <div className="flex flex-col gap-1">
                     {allLinks.map(([label, href], i) =>
                       href.startsWith('#') ? (
@@ -243,7 +242,7 @@ export default function Nav() {
                       )
                     )}
                   </div>
-                  <div className="mt-2 border-t border-[var(--border)] pt-2">
+                  <div className="mt-2 border-t border-[rgba(255,255,255,0.06)] pt-2">
                     <m.a
                       href={anchorHref('#kontakt')}
                       onClick={(e) => handleAnchorClick(e, '#kontakt')}

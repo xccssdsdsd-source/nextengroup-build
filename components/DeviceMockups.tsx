@@ -48,32 +48,32 @@ export default function DeviceMockups() {
         <div style={{
           width: 'clamp(300px, 85vw, 680px)',
           height: 'clamp(210px, 60vw, 480px)',
-          background: '#0d1117',
+          background: '#FFFFFF',
           borderRadius: '20px',
           padding: '14px',
-          boxShadow: '0 0 0 1px rgba(255,255,255,0.07), 0 40px 100px rgba(37,99,235,0.28), 0 20px 60px rgba(0,0,0,0.6)',
+          boxShadow: '0 0 0 1px rgba(0,0,0,0.08), 0 40px 100px rgba(37,99,235,0.15), 0 20px 60px rgba(0,0,0,0.1)',
           position: 'relative',
         }}>
           <div style={{
             position: 'absolute', top: '7px', left: '50%',
             transform: 'translateX(-50%)',
             width: '6px', height: '6px', borderRadius: '50%',
-            background: '#1c2840',
+            background: '#E5E7EB',
           }} />
 
           <div style={{
-            background: '#0a0f1e',
+            background: '#F9FAFB',
             borderRadius: '8px',
             height: '100%',
             overflow: 'hidden',
             position: 'relative',
-            border: '1px solid rgba(255,255,255,0.04)',
+            border: '1px solid rgba(0,0,0,0.08)',
           }}>
             <div ref={screenContentRef} style={{ position: 'absolute', inset: 0, willChange: 'transform' }}>
               <div style={{
                 height: '28px',
-                background: 'rgba(8,16,34,0.97)',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                background: 'rgba(249,250,251,0.97)',
+                borderBottom: '1px solid rgba(0,0,0,0.08)',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 padding: '0 10px', flexShrink: 0,
               }}>
@@ -83,7 +83,7 @@ export default function DeviceMockups() {
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#28c840', opacity: 0.9 }} />
                 </div>
                 <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-                  <div style={{ width: '42px', height: '10px', borderRadius: '6px', background: '#1e3a5f', opacity: 0.8 }} />
+                  <div style={{ width: '42px', height: '10px', borderRadius: '6px', background: '#BFDBFE', opacity: 0.8 }} />
                   <div style={{ width: '28px', height: '10px', borderRadius: '6px', background: '#1e3a5f', opacity: 0.8 }} />
                 </div>
               </div>
@@ -91,27 +91,27 @@ export default function DeviceMockups() {
               <div style={{ display: 'flex', height: 'calc(100% - 28px)' }}>
                 <div style={{
                   width: '44px',
-                  background: 'rgba(6,12,26,0.98)',
-                  borderRight: '1px solid rgba(255,255,255,0.04)',
+                  background: 'rgba(243,244,246,0.98)',
+                  borderRight: '1px solid rgba(0,0,0,0.08)',
                   display: 'flex', flexDirection: 'column', alignItems: 'center',
                   paddingTop: '14px', gap: '8px', flexShrink: 0,
                 }}>
                   {([0.9, 0.7, 0.7, 0.7] as number[]).map((op, i) => (
-                    <div key={i} style={{ width: '20px', height: '20px', borderRadius: '5px', background: '#1e3a5f', opacity: op }} />
+                    <div key={i} style={{ width: '20px', height: '20px', borderRadius: '5px', background: '#BFDBFE', opacity: op }} />
                   ))}
                 </div>
 
                 <div style={{ flex: 1, padding: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <div style={{
                     flex: 2, borderRadius: '8px',
-                    background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)',
+                    background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)',
                     opacity: 0.9, position: 'relative', overflow: 'hidden',
                   }}>
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: '#00d4ff' }} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: '#2563EB' }} />
                   </div>
                   <div style={{ flex: 1, display: 'flex', gap: '8px' }}>
-                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)', opacity: 0.8 }} />
-                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #1a2744 0%, #0f1e3d 100%)', opacity: 0.75 }} />
+                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)', opacity: 0.8 }} />
+                    <div style={{ flex: 1, borderRadius: '8px', background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)', opacity: 0.75 }} />
                   </div>
                 </div>
               </div>

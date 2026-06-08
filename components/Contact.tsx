@@ -102,35 +102,29 @@ export default function Contact() {
   return (
     <section id="kontakt" ref={ref} className="section-shell relative">
       <BackgroundPathsContact />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
-      />
       <m.div
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[var(--border)] bg-white p-6 sm:p-10 lg:p-14"
-        style={{ boxShadow: '0 2px 16px rgba(37,99,235,0.07), 0 8px 32px rgba(13,22,41,0.08), inset 0 1px 0 rgba(255,255,255,0.9)' }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[rgba(17,24,39,0.8)] backdrop-blur-[20px] p-6 sm:p-10 lg:p-14"
+        style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.4)' }}
       >
-        <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle, rgba(15,23,42,0.015) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] rounded-t-3xl bg-gradient-to-r from-transparent via-[var(--accent)]/15 to-transparent" />
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
           <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
             <div>
               <span className="section-kicker">Kontakt</span>
-              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#0A0A0F]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
                 Umów bezpłatną konsultację
               </h2>
-              <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
+              <p className="mt-3 text-[14px] leading-[1.7] text-[#6B7280]">
                 Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
               </p>
             </div>
 
             <div className="mt-8 flex flex-col gap-4">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Email</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#475569] mb-3">Email</p>
                 <m.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -139,20 +133,20 @@ export default function Contact() {
                 >
                   <a
                     href={`mailto:${contactEmail}`}
-                    className="flex-1 px-4 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-between"
+                    className="flex-1 px-4 py-3 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all flex items-center justify-between"
                   >
-                    <span className="text-[13px] font-semibold text-[#0A0A0F] break-all">{contactEmail}</span>
+                    <span className="text-[13px] font-semibold text-[#111827] break-all">{contactEmail}</span>
                   </a>
                   <button
                     onClick={copyEmail}
-                    className="px-3 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
+                    className="px-3 py-3 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all flex items-center justify-center flex-shrink-0"
                     aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                     title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                   >
                     {copied ? (
                       <span className="text-[12px] font-semibold text-[#2563EB]">Skopiowane!</span>
                     ) : (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#0A0A0F]">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#111827]">
                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                       </svg>
@@ -162,7 +156,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6b7280] mb-3">Nasze konta</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#475569] mb-3">Nasze konta</p>
                 <div className="space-y-2">
                   {socials.map((s, i) => (
                     <m.a
@@ -173,7 +167,7 @@ export default function Contact() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease }}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:shadow-md hover:border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] transition-all duration-200 cursor-pointer"
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all duration-200 cursor-pointer"
                       title={s.fullName}
                     >
                       <div
@@ -191,8 +185,8 @@ export default function Contact() {
                         {s.label === 'Facebook' && <FaFacebook size={22} className="text-white" />}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-gray-900 text-sm">{s.label}</p>
-                        <p className="text-gray-400 text-xs mt-0.5 truncate">{s.fullName}</p>
+                        <p className="font-semibold text-[#111827] text-sm">{s.label}</p>
+                        <p className="text-[#6B7280] text-xs mt-0.5 truncate">{s.fullName}</p>
                       </div>
                     </m.a>
                   ))}
@@ -203,8 +197,8 @@ export default function Contact() {
 
           <div className="w-full flex-1 min-w-0 flex flex-col">
             <div className="text-center mb-8">
-              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#0A0A0F] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
-              <p className="text-[14px] text-[#6b7280]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
+              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#111827] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
+              <p className="text-[14px] text-[#6B7280]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
             </div>
 
             <div className="flex flex-col gap-8">
@@ -215,33 +209,33 @@ export default function Contact() {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.55, delay: 0.2, ease }}
                     onClick={() => setShowCalendly(true)}
-                    className="btn btn-primary px-8 py-4"
+                    className="btn btn-primary px-8 py-4 font-semibold"
                   >
                     Umów spotkanie w dogodnym dla Ciebie czasie
                   </m.button>
                 ) : (
-                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[#e5e7eb]" style={{ minHeight: '500px' }} />
+                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '500px' }} />
                 )}
               </div>
 
               <div className="flex flex-col items-center">
                 <div className="w-full max-w-xl">
                   <div className="text-center mb-6">
-                    <h4 className="text-[16px] font-bold text-[#0A0A0F] mb-2">Lub wyślij nam zapytanie</h4>
-                    <p className="text-[13px] text-[#6b7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
+                    <h4 className="text-[16px] font-bold text-[#111827] mb-2">Lub wyślij nam zapytanie</h4>
+                    <p className="text-[13px] text-[#6B7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
-                  <div className="rounded-2xl border border-[var(--border)] bg-white p-6" style={{ boxShadow: 'var(--shadow-sm)' }}>
+                  <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6">
                     {submitted ? (
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
-                        <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
-                        <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+                        <h3 className="text-lg font-bold text-[#111827] mb-2">Dziękujemy!</h3>
+                        <p className="text-[14px] text-[#6B7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Imię i nazwisko *</label>
+                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Imię i nazwisko *</label>
                           <input
                             type="text"
                             id="name"
@@ -255,7 +249,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Email *</label>
+                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Email *</label>
                           <input
                             type="email"
                             id="email"
@@ -269,7 +263,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] mb-2">Wiadomość *</label>
+                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Wiadomość *</label>
                           <textarea
                             id="message"
                             name="message"
@@ -282,7 +276,7 @@ export default function Contact() {
                           />
                         </div>
 
-                        <button type="submit" className="w-full btn btn-primary py-3">Wyślij wiadomość</button>
+                        <button type="submit" className="w-full btn btn-primary py-3 font-semibold">Wyślij wiadomość</button>
                       </form>
                     )}
                   </div>

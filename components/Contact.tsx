@@ -124,7 +124,7 @@ export default function Contact() {
                 Umów bezpłatną konsultację
               </h2>
               <p className="mt-3 text-[14px] leading-[1.7] text-[#6b7280]">
-                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź jaka ścieżka będzie dla Ciebie najlepsza.
+                Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
               </p>
             </div>
 
@@ -146,6 +146,7 @@ export default function Contact() {
                   <button
                     onClick={copyEmail}
                     className="px-3 py-3 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#2563EB] hover:bg-[#eff6ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
+                    aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                     title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                   >
                     {copied ? (
@@ -232,8 +233,8 @@ export default function Contact() {
 
                   <div className="rounded-2xl border border-[var(--border)] bg-white p-6" style={{ boxShadow: 'var(--shadow-sm)' }}>
                     {submitted ? (
-                      <div className="text-center py-8">
-                        <div className="mb-4 text-4xl">✓</div>
+                      <div className="text-center py-8" role="alert" aria-live="polite">
+                        <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
                         <h3 className="text-lg font-bold text-[#0A0A0F] mb-2">Dziękujemy!</h3>
                         <p className="text-[14px] text-[#6b7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
                       </div>

@@ -36,7 +36,7 @@ const careItems = [
   'Kopie zapasowe i monitoring, żebyś nigdy nie stracił danych.',
   'SEO — optymalizacja w Google, pozycjonowanie pod słowa kluczowe, analizy rankingów.',
   'GEO — widoczność w wyszukiwarkach AI (ChatGPT, Gemini, Perplexity), gdzie klienci coraz częściej szukają odpowiedzi.',
-  'AIR SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
+  'AI SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
   'Analiza konkurencji i dostosowanie strategii na bieżąco.',
   'Aktualizacje treści, łatki bezpieczeństwa i drobne zmiany — wszystko obsługujemy.',
   'Wyższy pakiet to szerszy zakres, więcej zmian i szybsze wdrażanie.',
@@ -127,7 +127,8 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
 function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   if (type === 'simple') {
     return (
-      <svg viewBox="0 0 380 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 380 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
+        <title id="diagram-simple-title">Schemat prostej automatyzacji: Proces A połączony z Procesem B</title>
         <rect x="20" y="39" width="120" height="52" rx="12" fill="#eff6ff" stroke="#60a5fa" strokeWidth="2" />
         <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#1d4ed8">Proces A</text>
         <line x1="152" y1="65" x2="210" y2="65" stroke="#2563eb" strokeWidth="2.5" />
@@ -139,7 +140,8 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   }
   if (type === 'ai') {
     return (
-      <svg viewBox="0 0 420 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 420 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
+        <title id="diagram-ai-title">Schemat automatyzacji AI: Proces przechodzi przez model AI, który podejmuje decyzję i zwraca wynik</title>
         <rect x="24" y="39" width="104" height="52" rx="12" fill="#eff6ff" stroke="#60a5fa" strokeWidth="2" />
         <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#1d4ed8">Proces</text>
         <line x1="140" y1="65" x2="168" y2="65" stroke="#2563eb" strokeWidth="2.5" />
@@ -154,7 +156,8 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     )
   }
   return (
-    <svg viewBox="0 0 380 200" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 380 200" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
+      <title id="diagram-agent-title">Schemat agenta AI: centralny agent AI samodzielnie wybiera i łączy wiele narzędzi, żeby zrealizować cel</title>
       <line x1="117" y1="94" x2="286" y2="53" stroke="#93c5fd" strokeWidth="2" strokeDasharray="4 6" />
       <line x1="118" y1="100" x2="286" y2="100" stroke="#93c5fd" strokeWidth="2" strokeDasharray="4 6" />
       <line x1="117" y1="106" x2="286" y2="147" stroke="#93c5fd" strokeWidth="2" strokeDasharray="4 6" />
@@ -260,7 +263,7 @@ export default function Services() {
                 { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
                 { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
                 { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
-                { label: 'AIR SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
+                { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
                 { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
                 { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
               ].map((item) => (
@@ -281,12 +284,12 @@ export default function Services() {
           >
             <p className="mb-3 text-[13.5px] font-semibold text-[var(--text)]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
             <ul className="mb-4 flex flex-col gap-1.5">
-              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 39 zł za opiekę</li>
-              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 49 zł za opiekę</li>
-              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]">+ 99 zł za opiekę, obowiązkowa</li>
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]"><span className="font-semibold text-[var(--text)]">Landing:</span> + 39 zł/mies.</li>
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]"><span className="font-semibold text-[var(--text)]">Strona kompletna:</span> + 49 zł/mies.</li>
+              <li className="text-[14px] leading-[1.6] text-[var(--text-secondary)]"><span className="font-semibold text-[var(--text)]">Strona z panelem:</span> + 99 zł/mies. (obowiązkowa)</li>
             </ul>
             <p className="text-[13px] leading-[1.6] text-[var(--text-secondary)]">
-              <span className="font-semibold text-[var(--text)]">To zawiera:</span> hosting i domenę, SEO, GEO, AIR SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
+              <span className="font-semibold text-[var(--text)]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
             </p>
           </m.div>
 
@@ -335,7 +338,7 @@ export default function Services() {
             transition={{ duration: 0.78, ease }}
           >
             <span className="section-kicker">Automatyzacje i agenci AI</span>
-            <h2 className="section-title">Automatyzacje i agenci AI</h2>
+            <h2 className="section-title">Przestań robić to, co AI może zrobić za Ciebie</h2>
             <p className="section-copy">
               Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
             </p>

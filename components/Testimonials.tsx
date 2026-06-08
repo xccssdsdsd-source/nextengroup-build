@@ -30,6 +30,7 @@ export default function Testimonials() {
           transition={{ duration: 0.75, ease }}
         >
           <span className="section-kicker">Opinie</span>
+          <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>Co mówią nasi klienci</h2>
         </m.div>
 
         <m.div

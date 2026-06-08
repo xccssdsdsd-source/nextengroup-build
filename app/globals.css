@@ -93,9 +93,6 @@ select {
   position: relative;
   padding: calc(var(--nav-h) + 0.5rem) 1.5rem 1.5rem;
   scroll-margin-top: var(--nav-h);
-  contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-block-size: 500px;
 }
 
 @media (min-width: 640px) {

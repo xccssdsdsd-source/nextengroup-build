@@ -117,7 +117,7 @@ export default function Hero() {
             <div
               style={{
                 borderRadius: '20px',
-                backgroundColor: '#F3F4F6',
+                backgroundColor: '#FFFFFF',
                 maxWidth: '1100px',
                 maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',

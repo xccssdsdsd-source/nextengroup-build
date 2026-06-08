@@ -207,7 +207,7 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={handleCardClick}
-                  className="group relative flex items-center justify-center overflow-hidden bg-[rgba(17,24,39)] p-3 sm:p-4"
+                  className="group relative flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-lg rounded-2xl p-3 sm:p-4"
                 >
                   <Image
                     src={project.preview}

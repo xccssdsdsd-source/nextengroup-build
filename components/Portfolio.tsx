@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -67,6 +67,19 @@ const projects = [
   },
 ]
 
+function splitAtSentences(text: string, count: number): [string, string] {
+  const regex = /[.!?]\s+/g
+  let match
+  let found = 0
+  while ((match = regex.exec(text)) !== null) {
+    found++
+    if (found === count) {
+      return [text.slice(0, match.index + 1), text.slice(match.index + 1).trim()]
+    }
+  }
+  return [text, '']
+}
+
 function ScoreBadge({ value, label }: LighthouseScore) {
   const colors = value >= 90
     ? { bg: '#dcfce7', fg: '#15803d', ring: 'rgba(21,128,61,0.15)' }
@@ -95,6 +108,9 @@ export default function Portfolio() {
   const inView = useInView(ref, { once: true, margin: '-120px' })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
+  const [bodyExpanded, setBodyExpanded] = useState(false)
+
+  useEffect(() => { setBodyExpanded(false) }, [currentIndex])
 
   const touchStartX = useRef(0)
   const touchStartY = useRef(0)
@@ -140,6 +156,7 @@ export default function Portfolio() {
   }, [])
 
   const project = projects[currentIndex]
+  const [bodyPreview, bodyRest] = splitAtSentences(project.body, 2)
 
   return (
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
@@ -216,7 +233,12 @@ export default function Portfolio() {
                     <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#94a3b8] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#2563EB]">{project.tagline}</p>
-                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">{project.body}</p>
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#64748b]">
+                    {bodyExpanded ? project.body : bodyPreview}
+                    {bodyRest && !bodyExpanded && (
+                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#2563EB] hover:underline">Zobacz więcej</button></>
+                    )}
+                  </p>
 
                   {project.lighthouse && (
                     <div className="mt-5 flex gap-4 border-t border-[var(--border)] pt-5">

@@ -106,8 +106,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white bg-[rgba(17,24,39,0.8)] backdrop-blur-[20px] p-6 sm:p-10 lg:p-14"
-        style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.4)' }}
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm p-6 sm:p-10 lg:p-14"
       >
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
@@ -124,7 +123,7 @@ export default function Contact() {
 
             <div className="mt-8 flex flex-col gap-4">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#475569] mb-3">Email</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7280] mb-3">Email</p>
                 <m.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -133,13 +132,13 @@ export default function Contact() {
                 >
                   <a
                     href={`mailto:${contactEmail}`}
-                    className="flex-1 px-4 py-3 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all flex items-center justify-between"
+                    className="flex-1 px-4 py-3 rounded-2xl border border-gray-300 bg-gray-100 hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-between"
                   >
                     <span className="text-[13px] font-semibold text-[#111827] break-all">{contactEmail}</span>
                   </a>
                   <button
                     onClick={copyEmail}
-                    className="px-3 py-3 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all flex items-center justify-center flex-shrink-0"
+                    className="px-3 py-3 rounded-2xl border border-gray-300 bg-gray-100 hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
                     aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                     title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                   >
@@ -156,7 +155,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#475569] mb-3">Nasze konta</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7280] mb-3">Nasze konta</p>
                 <div className="space-y-2">
                   {socials.map((s, i) => (
                     <m.a
@@ -167,7 +166,7 @@ export default function Contact() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease }}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E] transition-all duration-200 cursor-pointer"
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 bg-gray-50 hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all duration-200 cursor-pointer"
                       title={s.fullName}
                     >
                       <div
@@ -225,7 +224,7 @@ export default function Contact() {
                     <p className="text-[13px] text-[#6B7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
-                  <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6">
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
                     {submitted ? (
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
@@ -235,7 +234,7 @@ export default function Contact() {
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Imię i nazwisko *</label>
+                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Imię i nazwisko *</label>
                           <input
                             type="text"
                             id="name"
@@ -249,7 +248,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Email *</label>
+                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Email *</label>
                           <input
                             type="email"
                             id="email"
@@ -263,7 +262,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#475569] mb-2">Wiadomość *</label>
+                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Wiadomość *</label>
                           <textarea
                             id="message"
                             name="message"

@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
-import BackgroundPathsPortfolio from './BackgroundPathsPortfolio'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -159,8 +158,7 @@ export default function Portfolio() {
   const [bodyPreview, bodyRest] = splitAtSentences(project.body, 2)
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-      <BackgroundPathsPortfolio />
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden bg-white" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
 
       <div className="relative mx-auto max-w-6xl">
         <m.div

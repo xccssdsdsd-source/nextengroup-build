@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48"
+      className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48 bg-white"
     >
       <BackgroundPaths />
 

@@ -135,10 +135,8 @@ export default function Nav() {
         <div
           className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300`}
           style={{
-            borderColor: 'rgba(255, 255, 255, 0.06)',
-            background: 'rgba(10, 15, 30, 0.75)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            background: '#ffffff',
           }}
         >
           <div className="flex items-center justify-between gap-4">
@@ -187,7 +185,7 @@ export default function Nav() {
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
                 aria-expanded={open}
                 onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.15)] bg-transparent text-[#111827] transition-colors hover:bg-[rgba(37,99,235,0.1)] hover:border-[rgba(37,99,235,0.4)] lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent text-[#111827] transition-colors hover:bg-[rgba(0,0,0,0.05)] hover:border-[rgba(0,0,0,0.2)] lg:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
@@ -214,7 +212,7 @@ export default function Nav() {
                 transition={{ duration: 0.26, ease }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(17,24,39,0.8)] p-3">
+                <div className="mt-3 rounded-2xl border border-[rgba(0,0,0,0.08)] bg-[#ffffff] p-3">
 
                   <div className="flex flex-col gap-1">
                     {allLinks.map(([label, href], i) =>

@@ -219,7 +219,6 @@ export default function Portfolio() {
                     quality={82}
                     priority={currentIndex === 0}
                   />
-                  <span className="absolute left-6 top-6 sm:left-7 sm:top-7 rounded-full bg-black/50 px-3 py-1 font-mono text-[11px] text-[#6B7280] backdrop-blur-sm">{project.href.replace('https://', '').replace(/\/$/, '')}</span>
                 </a>
 
                 <div className="flex flex-col justify-center p-6 sm:p-8 bg-white">

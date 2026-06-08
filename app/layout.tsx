@@ -5,7 +5,7 @@ import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
 import SubtleAccents from '@/components/SubtleAccents'
 import MotionProvider from '@/components/MotionProvider'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import AnimatedBackground from '@/components/ui/AnimatedBackground'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'

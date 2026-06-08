@@ -24,7 +24,7 @@ const projects = [
     preview: '/portfolio/pm-apartments-preview.webp',
     width: 1852,
     height: 916,
-    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz system kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
+    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Strona zawiera galerię realizowanych projektów, opis usług i formularz kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
     time: '72h',
     lighthouse: [
       { label: 'Wydajność', value: 96 },

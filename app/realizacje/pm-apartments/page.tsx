@@ -8,14 +8,14 @@ import { ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Realizacja: PM Apartments | Getbuild',
-  description: 'Strona internetowa dla firmy wykończeniowej PM Apartments z Wrocławia. Wdrożenie w 72h, formularz z automatyzacją, galeria projektów.',
+  description: 'Strona internetowa dla firmy wykończeniowej PM Apartments z Wrocławia. Wdrożenie w 72h, formularz kontaktowy, galeria projektów.',
   alternates: { canonical: 'https://getbuild.pl/realizacje/pm-apartments' },
 }
 
 const metrics = [
   { value: '72h', label: 'czas wdrożenia' },
   { value: '4', label: 'kluczowe sekcje' },
-  { value: '100%', label: 'automatyzacja zapytań' },
+  { value: '100', label: 'Lighthouse SEO' },
 ]
 
 const deliverables = [
@@ -24,8 +24,8 @@ const deliverables = [
     body: 'Przejrzysta prezentacja usług wykończenia pod klucz. Portfolio podzielone według typów wnętrz, gotowe do rozbudowy o nowe projekty.',
   },
   {
-    title: 'Formularz z automatycznym potwierdzeniem',
-    body: 'Klient wysyła zapytanie i od razu dostaje maila z potwierdzeniem. Zero ręcznej obsługi, zero zapytań, które giną bez śladu.',
+    title: 'Formularz kontaktowy',
+    body: 'Klient wysyła zapytanie przez formularz na stronie. Proste narzędzie do bezpośredniego nawiązania kontaktu z firmą.',
   },
   {
     title: 'Sekcja realizacji z filtrowaniem projektów',
@@ -64,7 +64,7 @@ export default function PMApartamentsCase() {
             Strona dla firmy wykończeniowej. Wdrożona w&nbsp;72h.
           </h1>
           <p className="text-lg leading-[1.7] text-[#6B7280] max-w-2xl">
-            PM Apartments robi wykończenia mieszkań pod klucz we Wrocławiu. Klient potrzebował miejsca, które pokaże jakość pracy i zbiera zapytania od nowych klientów. Zamiast czekać tygodniami na agencję, miał działającą stronę w trzy dni robocze. Formularz kontaktowy działa automatycznie. Galeria realizacji mówi sama za siebie.
+            PM Apartments robi wykończenia mieszkań pod klucz we Wrocławiu. Klient potrzebował miejsca, które pokaże jakość pracy i zbierze zapytania od nowych klientów. Zamiast czekać tygodniami na agencję, miał działającą stronę w trzy dni robocze. Galeria realizacji mówi sama za siebie.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">

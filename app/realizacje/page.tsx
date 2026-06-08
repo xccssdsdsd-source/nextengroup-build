@@ -1,9 +1,11 @@
 ﻿import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
+import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import Portfolio from '@/components/Portfolio'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
+
+const Nav = dynamic(() => import('@/components/Nav'))
+const Portfolio = dynamic(() => import('@/components/Portfolio'))
+const Contact = dynamic(() => import('@/components/Contact'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 const projects = [
   {

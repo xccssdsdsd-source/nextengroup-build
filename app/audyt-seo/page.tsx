@@ -1,8 +1,10 @@
 ﻿import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
+import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
+
+const Nav = dynamic(() => import('@/components/Nav'))
+const Contact = dynamic(() => import('@/components/Contact'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 export const metadata: Metadata = {
   title: 'BezpĹ‚atny audyt SEO dla firm B2B | Getbuild',

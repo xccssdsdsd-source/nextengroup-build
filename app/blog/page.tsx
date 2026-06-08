@@ -1,8 +1,10 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import Nav from '@/components/Nav'
+import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import Footer from '@/components/Footer'
+
+const Nav = dynamic(() => import('@/components/Nav'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://getbuild.pl'),

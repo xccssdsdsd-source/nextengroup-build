@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
-import Nav from '@/components/Nav'
+import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+
+const Nav = dynamic(() => import('@/components/Nav'))
+const Contact = dynamic(() => import('@/components/Contact'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 export const metadata: Metadata = {
   title: 'Realizacja: PM Apartments | Getbuild',

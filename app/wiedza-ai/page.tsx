@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
@@ -10,9 +10,9 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
-  description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie i kiedy warto zacząć. Getbuild — doradztwo i wdrożenia AI dla polskich firm.',
-  keywords: ['automatyzacja AI', 'agent AI', 'wiedza AI', 'AI dla firm', 'wdrożenia AI', 'sztuczna inteligencja', 'automatyzacje biznesowe'],
+  title: 'Automatyzacja AI i agenci AI â€” Wiedza dla firm | Getbuild',
+  description: 'Praktyczne wyjaĹ›nienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdroĹĽenie i kiedy warto zaczÄ…Ä‡. Getbuild â€” doradztwo i wdroĹĽenia AI dla polskich firm.',
+  keywords: ['automatyzacja AI', 'agent AI', 'wiedza AI', 'AI dla firm', 'wdroĹĽenia AI', 'sztuczna inteligencja', 'automatyzacje biznesowe'],
   alternates: {
     canonical: `${siteUrl}/wiedza-ai`,
   },
@@ -23,24 +23,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: `${siteUrl}/wiedza-ai`,
-    title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
-    description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie i kiedy warto zacząć.',
+    title: 'Automatyzacja AI i agenci AI â€” Wiedza dla firm | Getbuild',
+    description: 'Praktyczne wyjaĹ›nienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdroĹĽenie i kiedy warto zaczÄ…Ä‡.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo-opt.png`,
+        url: `${siteUrl}/getbuild-logo-og.png`,
         width: 1200,
         height: 630,
-        alt: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
+        alt: 'Automatyzacja AI i agenci AI â€” Wiedza dla firm | Getbuild',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
-    description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie.',
-    images: [`${siteUrl}/logo-opt.png`],
+    title: 'Automatyzacja AI i agenci AI â€” Wiedza dla firm | Getbuild',
+    description: 'Praktyczne wyjaĹ›nienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdroĹĽenie.',
+    images: [`${siteUrl}/getbuild-logo-og.png`],
   },
 }
 
@@ -55,10 +55,10 @@ export default function WiedzaAI() {
       <article className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            AI dla firm — co warto wiedzieć przed wdrożeniem
+            AI dla firm â€” co warto wiedzieÄ‡ przed wdroĹĽeniem
           </h1>
           <p className="text-lg leading-[1.7] text-[#374151]">
-            Praktyczne wyjaśnienia, które pomogą Ci zrozumieć, jak automatyzacja i agenci AI mogą wspierać Twój biznes.
+            Praktyczne wyjaĹ›nienia, ktĂłre pomogÄ… Ci zrozumieÄ‡, jak automatyzacja i agenci AI mogÄ… wspieraÄ‡ TwĂłj biznes.
           </p>
         </div>
       </article>
@@ -70,16 +70,16 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi Twojej firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to za Ciebie zautomatyzowane systemy. To nie o zastępowaniu ludzi, ale o uwolnieniu Twojego zespołu od powtarzających się zadań.
+              Automatyzacja AI to poĹ‚Ä…czenie narzÄ™dzi sztucznej inteligencji z procesami biznesowymi Twojej firmy. Zamiast rÄ™cznie odpowiadaÄ‡ na maile, wysyĹ‚aÄ‡ przypomnienia, kwalifikowaÄ‡ leady czy generowaÄ‡ dokumenty â€” robiÄ… to za Ciebie zautomatyzowane systemy. To nie o zastÄ™powaniu ludzi, ale o uwolnieniu Twojego zespoĹ‚u od powtarzajÄ…cych siÄ™ zadaĹ„.
             </p>
             <p>
-              Praktyczne przykłady: automatyczne odpowiedzi na najczęstsze pytania klientów, wysyłanie e-maili uzupełnionych danymi z systemu CRM, generowanie ofert na podstawie parametrów, sortowanie i klasyfikowanie zapytań. Każda z tych czynności, jeśli powtarza się codziennie, jest idealnym kandydatem do automatyzacji.
+              Praktyczne przykĹ‚ady: automatyczne odpowiedzi na najczÄ™stsze pytania klientĂłw, wysyĹ‚anie e-maili uzupeĹ‚nionych danymi z systemu CRM, generowanie ofert na podstawie parametrĂłw, sortowanie i klasyfikowanie zapytaĹ„. KaĹĽda z tych czynnoĹ›ci, jeĹ›li powtarza siÄ™ codziennie, jest idealnym kandydatem do automatyzacji.
             </p>
             <p>
-              W Getbuild zawsze zaczynamy od analizy — nie szukamy gotowych rozwiązań, ale rozumiemy dokładnie, jak pracuje Twoja firma, gdzie marnuje się czas i gdzie automatyzacja przyniesie największą korzyść.
+              W Getbuild zawsze zaczynamy od analizy â€” nie szukamy gotowych rozwiÄ…zaĹ„, ale rozumiemy dokĹ‚adnie, jak pracuje Twoja firma, gdzie marnuje siÄ™ czas i gdzie automatyzacja przyniesie najwiÄ™kszÄ… korzyĹ›Ä‡.
             </p>
             <p>
-              Rezultat? Mniej błędów, szybsza obsługa klientów, więcej czasu dla Twojego zespołu na pracę, która rzeczywiście tworzy wartość.
+              Rezultat? Mniej bĹ‚Ä™dĂłw, szybsza obsĹ‚uga klientĂłw, wiÄ™cej czasu dla Twojego zespoĹ‚u na pracÄ™, ktĂłra rzeczywiĹ›cie tworzy wartoĹ›Ä‡.
             </p>
           </div>
         </div>
@@ -88,20 +88,20 @@ export default function WiedzaAI() {
       <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Czym jest agent AI i czym różni się od zwykłej automatyzacji?
+            Czym jest agent AI i czym rĂłĹĽni siÄ™ od zwykĹ‚ej automatyzacji?
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Agent AI to bardziej zaawansowany system — nie tylko wykonuje zadania, ale także podejmuje decyzje, działa niezależnie i potrafi obsługiwać wieloetapowe procesy. Agent pracuje 24/7, uczy się z każdą interakcją i dostosowuje swoje działania do kontekstu.
+              Agent AI to bardziej zaawansowany system â€” nie tylko wykonuje zadania, ale takĹĽe podejmuje decyzje, dziaĹ‚a niezaleĹĽnie i potrafi obsĹ‚ugiwaÄ‡ wieloetapowe procesy. Agent pracuje 24/7, uczy siÄ™ z kaĹĽdÄ… interakcjÄ… i dostosowuje swoje dziaĹ‚ania do kontekstu.
             </p>
             <p>
-              W przeciwieństwie do prostej automatyzacji (np. wysłanie mejla po złożeniu zamówienia), agent AI może: przeprowadzić rozmowę z potencjalnym klientem, odpowiedzieć na zmieniające się pytania, samodzielnie kwalifikować leady, zaproponować rozwiązania, a w razie potrzeby eskalować sprawę do człowieka.
+              W przeciwieĹ„stwie do prostej automatyzacji (np. wysĹ‚anie mejla po zĹ‚oĹĽeniu zamĂłwienia), agent AI moĹĽe: przeprowadziÄ‡ rozmowÄ™ z potencjalnym klientem, odpowiedzieÄ‡ na zmieniajÄ…ce siÄ™ pytania, samodzielnie kwalifikowaÄ‡ leady, zaproponowaÄ‡ rozwiÄ…zania, a w razie potrzeby eskalowaÄ‡ sprawÄ™ do czĹ‚owieka.
             </p>
             <p>
-              Praktyczne przykłady agentów AI: agent obsługujący zapytania klientów przez chat na stronie, agent sprzedażowy, który prowadzi rozmowę i umawia spotkania, agent analizy danych, który monitoruje metryki biznesowe i wysyła codzienne raporty.
+              Praktyczne przykĹ‚ady agentĂłw AI: agent obsĹ‚ugujÄ…cy zapytania klientĂłw przez chat na stronie, agent sprzedaĹĽowy, ktĂłry prowadzi rozmowÄ™ i umawia spotkania, agent analizy danych, ktĂłry monitoruje metryki biznesowe i wysyĹ‚a codzienne raporty.
             </p>
             <p>
-              Agent to inwestycja na dłużej — im więcej z nim pracuje Twoja firma, tym lepiej się uczy i tym bardziej staje się dostosowany do Twoich procesów.
+              Agent to inwestycja na dĹ‚uĹĽej â€” im wiÄ™cej z nim pracuje Twoja firma, tym lepiej siÄ™ uczy i tym bardziej staje siÄ™ dostosowany do Twoich procesĂłw.
             </p>
           </div>
         </div>
@@ -114,16 +114,16 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Koszty są bardzo zmienne. Prosta automatyzacja — np. wysyłanie e-maili powiadomień lub powiadomienia o nowych zapytaniach — może kosztować kilkaset złotych jako jednorazowa konfiguracja. Bardziej złożone systemy i agenci wymagają więcej pracy i kosztują więcej.
+              Koszty sÄ… bardzo zmienne. Prosta automatyzacja â€” np. wysyĹ‚anie e-maili powiadomieĹ„ lub powiadomienia o nowych zapytaniach â€” moĹĽe kosztowaÄ‡ kilkaset zĹ‚otych jako jednorazowa konfiguracja. Bardziej zĹ‚oĹĽone systemy i agenci wymagajÄ… wiÄ™cej pracy i kosztujÄ… wiÄ™cej.
             </p>
             <p>
-              Kluczowe pytanie to nie „ile to będzie kosztować", ale „ile ta automatyzacja mi zaoszczędzi". Jeśli Twój zespół spędza 5 godzin tygodniowo na ręcznym sortowaniu e-maili, a automatyzacja to skraca do 30 minut — ta oszczędność szybko zwraca się z nawiązką.
+              Kluczowe pytanie to nie â€žile to bÄ™dzie kosztowaÄ‡", ale â€žile ta automatyzacja mi zaoszczÄ™dzi". JeĹ›li TwĂłj zespĂłĹ‚ spÄ™dza 5 godzin tygodniowo na rÄ™cznym sortowaniu e-maili, a automatyzacja to skraca do 30 minut â€” ta oszczÄ™dnoĹ›Ä‡ szybko zwraca siÄ™ z nawiÄ…zkÄ….
             </p>
             <p>
-              Naszą rekomendacją jest zawsze zacząć z jednym procesem — tym, który marnuje Ci teraz najwięcej czasu. Zmierz wynik, zobacz korzyści, a potem rozwiń na kolejne obszary biznesu. W Getbuild nie namęcimy Cię na drogi system, jeśli prosty lepiej odpowiada Twoim potrzebom.
+              NaszÄ… rekomendacjÄ… jest zawsze zaczÄ…Ä‡ z jednym procesem â€” tym, ktĂłry marnuje Ci teraz najwiÄ™cej czasu. Zmierz wynik, zobacz korzyĹ›ci, a potem rozwiĹ„ na kolejne obszary biznesu. W Getbuild nie namÄ™cimy CiÄ™ na drogi system, jeĹ›li prosty lepiej odpowiada Twoim potrzebom.
             </p>
             <p>
-              Zawsze najpierw mówimy o konkretnych liczbach, porównaniu nakładów do oszczędności i doradzimy, czy wdrożenie ma sens biznesowy dla Twojej firmy.
+              Zawsze najpierw mĂłwimy o konkretnych liczbach, porĂłwnaniu nakĹ‚adĂłw do oszczÄ™dnoĹ›ci i doradzimy, czy wdroĹĽenie ma sens biznesowy dla Twojej firmy.
             </p>
           </div>
         </div>
@@ -136,38 +136,16 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Nie potrzebujesz być dużą firmą ani mieć wewnętrznych IT-owców. Automatyzacja AI ma sens dla każdej firmy, która ma powtarzalne zadania robione w ten sam sposób codziennie. Czy to jedna osoba, czy pięciu pracowników — jeśli spędzają czas na czynności, które można zautomatyzować, to jest potencjał.
+              Nie potrzebujesz byÄ‡ duĹĽÄ… firmÄ… ani mieÄ‡ wewnÄ™trznych IT-owcĂłw. Automatyzacja AI ma sens dla kaĹĽdej firmy, ktĂłra ma powtarzalne zadania robione w ten sam sposĂłb codziennie. Czy to jedna osoba, czy piÄ™ciu pracownikĂłw â€” jeĹ›li spÄ™dzajÄ… czas na czynnoĹ›ci, ktĂłre moĹĽna zautomatyzowaÄ‡, to jest potencjaĹ‚.
             </p>
             <p>
-              Dobre punkty startowe: odpowiadanie na te same pytania od klientów w kółko, ręczne wysyłanie wiadomości po zamówieniu, kopiowanie danych z jednego systemu do drugiego, generowanie ofert lub protokołów, zarządzanie kalendarzem i umawianiem spotkań.
+              Dobre punkty startowe: odpowiadanie na te same pytania od klientĂłw w kĂłĹ‚ko, rÄ™czne wysyĹ‚anie wiadomoĹ›ci po zamĂłwieniu, kopiowanie danych z jednego systemu do drugiego, generowanie ofert lub protokoĹ‚Ăłw, zarzÄ…dzanie kalendarzem i umawianiem spotkaĹ„.
             </p>
             <p>
-              Pracujemy głównie z małymi i średnimi firmami usługowymi w Polsce — agentami nieruchomości, projektantami wnętrz, firmami budowlanymi, renowacyjnymi, usługami czyszczenia, doradcami prawnymi, doradcami finansowymi, producentami mebli. Żaden z nich nie miał wewnętrznego zespołu AI, ale wszystkim udało się automatyzować procesy, które im utrudniały życie.
+              Pracujemy gĹ‚Ăłwnie z maĹ‚ymi i Ĺ›rednimi firmami usĹ‚ugowymi w Polsce â€” agentami nieruchomoĹ›ci, projektantami wnÄ™trz, firmami budowlanymi, renowacyjnymi, usĹ‚ugami czyszczenia, doradcami prawnymi, doradcami finansowymi, producentami mebli. Ĺ»aden z nich nie miaĹ‚ wewnÄ™trznego zespoĹ‚u AI, ale wszystkim udaĹ‚o siÄ™ automatyzowaÄ‡ procesy, ktĂłre im utrudniaĹ‚y ĹĽycie.
             </p>
             <p>
-              Jeśli masz wątpliwości, czy coś się opłaca — zaproś nas do rozmowy. Często wystarczy 15 minut, żeby zobaczyć, czy automatyzacja ma sens w Twoim przypadku.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Czy strona internetowa może być zintegrowana z automatyzacją AI?
-          </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
-            <p>
-              Tak — i to jest właśnie tam, gdzie automatyzacja zazwyczaj zaczyna przynosić największą wartość. Strona internetowa to naturalny punkt wejścia dla automatyzacji.
-            </p>
-            <p>
-              Przykłady: formularz kontaktowy, który zamiast wysłać mejla do skrzynki, automatycznie kwalifikuje zapytanie i wysyła spersonalizowaną odpowiedź? Chat na stronie obsługiwany przez agenta AI, który odpowiada na pytania 24/7? System rezerwacji, który nie tylko ustawia spotkanie w kalendarzu, ale wysyła automatyczne przypomnienia i follow-upy?
-            </p>
-            <p>
-              Budując stronę, możemy od razu zaprojektować ją w taki sposób, aby dobrze współpracowała z automatyzacją. To znaczy — formularz zbiera dokładnie te dane, które agent będzie musiał przeanalizować, a przepływ informacji jest płynny i nie wymaga ręcznego kopiowania.
-            </p>
-            <p>
-              W Getbuild projektujemy stronę i automatyzacje razem, jako jeden spójny system — jeśli chcesz, aby Twoja strona nie tylko wyglądała dobrze, ale także pracowała dla Twojego biznesu.
+              JeĹ›li masz wÄ…tpliwoĹ›ci, czy coĹ› siÄ™ opĹ‚aca â€” zaproĹ› nas do rozmowy. CzÄ™sto wystarczy 15 minut, ĹĽeby zobaczyÄ‡, czy automatyzacja ma sens w Twoim przypadku.
             </p>
           </div>
         </div>
@@ -176,20 +154,42 @@ export default function WiedzaAI() {
       <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Ile kosztuje strona internetowa dla małej firmy?
+            Czy strona internetowa moĹĽe byÄ‡ zintegrowana z automatyzacjÄ… AI?
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              W Getbuild strony zaczynają się od około 150 zł miesięcznie, co obejmuje hosting, obsługę, aktualizacje bezpieczeństwa i bezpośrednie wsparcie. To znaczy — nie płacisz za stronę raz, ale za to, że Twoja strona zawsze działa, jest bezpieczna i wspierana.
+              Tak â€” i to jest wĹ‚aĹ›nie tam, gdzie automatyzacja zazwyczaj zaczyna przynosiÄ‡ najwiÄ™kszÄ… wartoĹ›Ä‡. Strona internetowa to naturalny punkt wejĹ›cia dla automatyzacji.
             </p>
             <p>
-              Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.
+              PrzykĹ‚ady: formularz kontaktowy, ktĂłry zamiast wysĹ‚aÄ‡ mejla do skrzynki, automatycznie kwalifikuje zapytanie i wysyĹ‚a spersonalizowanÄ… odpowiedĹş? Chat na stronie obsĹ‚ugiwany przez agenta AI, ktĂłry odpowiada na pytania 24/7? System rezerwacji, ktĂłry nie tylko ustawia spotkanie w kalendarzu, ale wysyĹ‚a automatyczne przypomnienia i follow-upy?
             </p>
             <p>
-              Cena zawsze zależy od zakresu — mała strona dla fryzjera to inne pieniądze niż rozbudowany system dla firmy budowlanej. Zawsze omawiamy to szczegółowo, aby znaleźć rozwiązanie, które pasuje do Twojego budżetu.
+              BudujÄ…c stronÄ™, moĹĽemy od razu zaprojektowaÄ‡ jÄ… w taki sposĂłb, aby dobrze wspĂłĹ‚pracowaĹ‚a z automatyzacjÄ…. To znaczy â€” formularz zbiera dokĹ‚adnie te dane, ktĂłre agent bÄ™dzie musiaĹ‚ przeanalizowaÄ‡, a przepĹ‚yw informacji jest pĹ‚ynny i nie wymaga rÄ™cznego kopiowania.
             </p>
             <p>
-              Przesunięcia, zmiany i nowe funkcje możesz zlecać Adamowi w dowolnym momencie — e-mail, Instagram, rozmowa. Zmiany są wprowadzane bezpośrednio, bez dodatkowych umów czy zamówień.
+              W Getbuild projektujemy stronÄ™ i automatyzacje razem, jako jeden spĂłjny system â€” jeĹ›li chcesz, aby Twoja strona nie tylko wyglÄ…daĹ‚a dobrze, ale takĹĽe pracowaĹ‚a dla Twojego biznesu.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+            Ile kosztuje strona internetowa dla maĹ‚ej firmy?
+          </h2>
+          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+            <p>
+              W Getbuild strony zaczynajÄ… siÄ™ od okoĹ‚o 150 zĹ‚ miesiÄ™cznie, co obejmuje hosting, obsĹ‚ugÄ™, aktualizacje bezpieczeĹ„stwa i bezpoĹ›rednie wsparcie. To znaczy â€” nie pĹ‚acisz za stronÄ™ raz, ale za to, ĹĽe Twoja strona zawsze dziaĹ‚a, jest bezpieczna i wspierana.
+            </p>
+            <p>
+              Przed jakimikolwiek zobowiÄ…zaniami finansowymi tworzymy dla Ciebie bezpĹ‚atny projekt â€” wizualizacjÄ™ strony, ktĂłrÄ… widzisz przed opĹ‚aceniem czegokolwiek. To Ty decydujesz, czy projekt Ci siÄ™ podoba i czy chcesz iĹ›Ä‡ dalej.
+            </p>
+            <p>
+              Cena zawsze zaleĹĽy od zakresu â€” maĹ‚a strona dla fryzjera to inne pieniÄ…dze niĹĽ rozbudowany system dla firmy budowlanej. Zawsze omawiamy to szczegĂłĹ‚owo, aby znaleĹşÄ‡ rozwiÄ…zanie, ktĂłre pasuje do Twojego budĹĽetu.
+            </p>
+            <p>
+              PrzesuniÄ™cia, zmiany i nowe funkcje moĹĽesz zlecaÄ‡ Adamowi w dowolnym momencie â€” e-mail, Instagram, rozmowa. Zmiany sÄ… wprowadzane bezpoĹ›rednio, bez dodatkowych umĂłw czy zamĂłwieĹ„.
             </p>
           </div>
         </div>
@@ -202,13 +202,13 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Podstawowa strona profesjonalna może być gotowa w ciągu 72 godzin od zebrania materiałów. To znaczy — jak dostarczysz nam teksty, zdjęcia i wiadomi, jakie informacje chcesz na stronie — w 3 dni projekt jest gotowy.
+              Podstawowa strona profesjonalna moĹĽe byÄ‡ gotowa w ciÄ…gu 72 godzin od zebrania materiaĹ‚Ăłw. To znaczy â€” jak dostarczysz nam teksty, zdjÄ™cia i wiadomi, jakie informacje chcesz na stronie â€” w 3 dni projekt jest gotowy.
             </p>
             <p>
-              Bardziej złożone projekty zajmują więcej czasu. Ale najpierw robimy Ci bezpłatny mockup — wizualną koncepcję strony. Zatwierdzisz design, a potem wdrażamy.
+              Bardziej zĹ‚oĹĽone projekty zajmujÄ… wiÄ™cej czasu. Ale najpierw robimy Ci bezpĹ‚atny mockup â€” wizualnÄ… koncepcjÄ™ strony. Zatwierdzisz design, a potem wdraĹĽamy.
             </p>
             <p>
-              Po uruchomieniu możesz w dowolnym momencie prosić o zmiany — Adam zajmie się nimi bezpośrednio.
+              Po uruchomieniu moĹĽesz w dowolnym momencie prosiÄ‡ o zmiany â€” Adam zajmie siÄ™ nimi bezpoĹ›rednio.
             </p>
           </div>
         </div>
@@ -217,16 +217,16 @@ export default function WiedzaAI() {
       <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-            Masz pytanie o AI lub stronę WWW?
+            Masz pytanie o AI lub stronÄ™ WWW?
           </h2>
           <p className="text-lg text-[#6b7280] mb-8">
-            Odpiszę tego samego dnia. Umów bezpłatną 15-minutową rozmowę lub napisz bezpośrednio.
+            OdpiszÄ™ tego samego dnia. UmĂłw bezpĹ‚atnÄ… 15-minutowÄ… rozmowÄ™ lub napisz bezpoĹ›rednio.
           </p>
           <a
             href="/#kontakt"
             className="inline-flex items-center gap-3 rounded-xl bg-[#2563EB] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0 8px 24px rgba(37,99,235,0.20)] hover:-translate-y-0.5"
           >
-            Skontaktuj się
+            Skontaktuj siÄ™
           </a>
         </div>
       </section>
@@ -236,3 +236,4 @@ export default function WiedzaAI() {
     </main>
   )
 }
+

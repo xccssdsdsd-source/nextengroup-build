@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
@@ -11,22 +11,22 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
-  description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność. Wdrożenia automatyzacji AI dla firm — Getbuild.',
-  keywords: ['automatyzacje AI', 'automatyzacje biznesowe', 'AI dla firm', 'RPA', 'wdrożenia AI', 'procesy biznesowe', 'inteligencja sztuczna'],
+  title: 'Automatyzacje AI dla Firm | OszczÄ™dĹş Czas i Koszty | Getbuild',
+  description: 'Automatyzujemy procesy biznesowe z uĹĽyciem AI. Mniej rÄ™cznej pracy, mniej bĹ‚Ä™dĂłw, wiÄ™ksza efektywnoĹ›Ä‡. WdroĹĽenia automatyzacji AI dla firm â€” Getbuild.',
+  keywords: ['automatyzacje AI', 'automatyzacje biznesowe', 'AI dla firm', 'RPA', 'wdroĹĽenia AI', 'procesy biznesowe', 'inteligencja sztuczna'],
   alternates: {
     canonical: `${siteUrl}/automatyzacje-ai`,
   },
   openGraph: {
     type: 'website',
     url: `${siteUrl}/automatyzacje-ai`,
-    title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
-    description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
+    title: 'Automatyzacje AI dla Firm | OszczÄ™dĹş Czas i Koszty | Getbuild',
+    description: 'Automatyzujemy procesy biznesowe z uĹĽyciem AI. Mniej rÄ™cznej pracy, mniej bĹ‚Ä™dĂłw, wiÄ™ksza efektywnoĹ›Ä‡.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo-opt.png`,
+        url: `${siteUrl}/getbuild-logo-og.png`,
         width: 1200,
         height: 630,
         alt: 'Automatyzacje AI dla Firm | Getbuild',
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
-    description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
-    images: [`${siteUrl}/logo-opt.png`],
+    title: 'Automatyzacje AI dla Firm | OszczÄ™dĹş Czas i Koszty | Getbuild',
+    description: 'Automatyzujemy procesy biznesowe z uĹĽyciem AI. Mniej rÄ™cznej pracy, mniej bĹ‚Ä™dĂłw, wiÄ™ksza efektywnoĹ›Ä‡.',
+    images: [`${siteUrl}/getbuild-logo-og.png`],
   },
 }
 
@@ -45,8 +45,8 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Automatyzacje AI dla firm',
-  description: 'Automatyzujemy procesy biznesowe przy użyciu AI. Mniej ręcznej pracy, mniej błędów, większa efektywność operacyjna.',
-  serviceType: 'Automatyzacje procesów biznesowych AI',
+  description: 'Automatyzujemy procesy biznesowe przy uĹĽyciu AI. Mniej rÄ™cznej pracy, mniej bĹ‚Ä™dĂłw, wiÄ™ksza efektywnoĹ›Ä‡ operacyjna.',
+  serviceType: 'Automatyzacje procesĂłw biznesowych AI',
   provider: {
     '@type': 'Organization',
     '@id': 'https://getbuild.pl/#organization',
@@ -65,34 +65,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Jakie procesy możecie zautomatyzować dzięki AI?',
+      name: 'Jakie procesy moĹĽecie zautomatyzowaÄ‡ dziÄ™ki AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów — CRM, e-mail, arkusze. Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
+        text: 'NajczÄ™Ĺ›ciej automatyzujemy obsĹ‚ugÄ™ zapytaĹ„, segregowanie i kierowanie leadĂłw, generowanie raportĂłw oraz integracjÄ™ systemĂłw â€” CRM, e-mail, arkusze. Efekt to mniej rÄ™cznej pracy, mniej bĹ‚Ä™dĂłw i wiÄ™cej czasu dla zespoĹ‚u na to, co naprawdÄ™ waĹĽne.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Ile trwa wdrożenie automatyzacji AI?',
+      name: 'Ile trwa wdroĹĽenie automatyzacji AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Działające demo dostarczamy w kilka dni od pierwszego spotkania i zebrania materiałów. Pełne wdrożenie z testami zajmuje od tygodnia do kilku tygodni, zależnie od złożoności procesu.',
+        text: 'DziaĹ‚ajÄ…ce demo dostarczamy w kilka dni od pierwszego spotkania i zebrania materiaĹ‚Ăłw. PeĹ‚ne wdroĹĽenie z testami zajmuje od tygodnia do kilku tygodni, zaleĹĽnie od zĹ‚oĹĽonoĹ›ci procesu.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Czy automatyzacje da się połączyć z narzędziami, których już używam?',
+      name: 'Czy automatyzacje da siÄ™ poĹ‚Ä…czyÄ‡ z narzÄ™dziami, ktĂłrych juĹĽ uĹĽywam?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Łączymy automatyzacje z narzędziami, których już używasz — CRM, fakturowanie, e-mail, formularze, arkusze i inne systemy. Wszystko działa jako jeden spójny proces.',
+        text: 'Tak. ĹÄ…czymy automatyzacje z narzÄ™dziami, ktĂłrych juĹĽ uĹĽywasz â€” CRM, fakturowanie, e-mail, formularze, arkusze i inne systemy. Wszystko dziaĹ‚a jako jeden spĂłjny proces.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Czy muszę znać się na technologii, żeby skorzystać z automatyzacji?',
+      name: 'Czy muszÄ™ znaÄ‡ siÄ™ na technologii, ĹĽeby skorzystaÄ‡ z automatyzacji?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Nie. Przeprowadzamy całą analizę i wdrożenie od strony technicznej. Twoja rola to opisanie procesu, który chcesz usprawnić — resztą zajmujemy się my.',
+        text: 'Nie. Przeprowadzamy caĹ‚Ä… analizÄ™ i wdroĹĽenie od strony technicznej. Twoja rola to opisanie procesu, ktĂłry chcesz usprawniÄ‡ â€” resztÄ… zajmujemy siÄ™ my.',
       },
     },
   ],
@@ -114,10 +114,10 @@ export default function AutomatyzacjeAI() {
         <ProcessFlowBackground />
         <div className="relative z-10 mx-auto max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Automatyzacje AI, które odciążają Twój zespół
+            Automatyzacje AI, ktĂłre odciÄ…ĹĽajÄ… TwĂłj zespĂłĹ‚
           </h1>
           <p className="text-lg leading-[1.7] text-[#374151] mb-8">
-            Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność operacyjna.
+            Automatyzujemy procesy biznesowe przy uĹĽyciu AI i zaawansowanych systemĂłw. Mniej bĹ‚Ä™dĂłw, mniej rÄ™cznej pracy, wiÄ™ksza efektywnoĹ›Ä‡ operacyjna.
           </p>
         </div>
       </section>
@@ -125,20 +125,20 @@ export default function AutomatyzacjeAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Po co automatyzować
+            Po co automatyzowaÄ‡
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Każdy zespół ma procesy, które pochłaniają czas i generują błędy. Faktury do wysłania, raporty do przygotowania, dane do wprowadzenia do systemu. To wszystko można zautomatyzować.
+              KaĹĽdy zespĂłĹ‚ ma procesy, ktĂłre pochĹ‚aniajÄ… czas i generujÄ… bĹ‚Ä™dy. Faktury do wysĹ‚ania, raporty do przygotowania, dane do wprowadzenia do systemu. To wszystko moĹĽna zautomatyzowaÄ‡.
             </p>
             <p>
-              Automatyzacje AI przyspeszają pracę, eliminują błędy ręczne i uwalniają czas Twoich pracowników do bardziej strategicznych zadań. Zmniejszają też koszty operacyjne — pracownicy zamiast przepisywać dane mogą zajmować się rozwojem biznesu.
+              Automatyzacje AI przyspeszajÄ… pracÄ™, eliminujÄ… bĹ‚Ä™dy rÄ™czne i uwalniajÄ… czas Twoich pracownikĂłw do bardziej strategicznych zadaĹ„. ZmniejszajÄ… teĹĽ koszty operacyjne â€” pracownicy zamiast przepisywaÄ‡ dane mogÄ… zajmowaÄ‡ siÄ™ rozwojem biznesu.
             </p>
             <p>
-              Możemy zautomatyzować obsługę zapytań od klientów, porządkowanie informacji z emaili, wysyłanie powiadomień, generowanie raportów czy integrację różnych systemów. Wszystko zależy od tego, co Cię boli najbardziej.
+              MoĹĽemy zautomatyzowaÄ‡ obsĹ‚ugÄ™ zapytaĹ„ od klientĂłw, porzÄ…dkowanie informacji z emaili, wysyĹ‚anie powiadomieĹ„, generowanie raportĂłw czy integracjÄ™ rĂłĹĽnych systemĂłw. Wszystko zaleĹĽy od tego, co CiÄ™ boli najbardziej.
             </p>
             <p>
-              Przeprowadzamy analizę procesów, określamy, co się da zautomatyzować, budujemy rozwiązanie i testujemy je. Pracujemy iteracyjnie — najpierw jedna automatyzacja, potem rozwijamy ją w miarę potrzeb.
+              Przeprowadzamy analizÄ™ procesĂłw, okreĹ›lamy, co siÄ™ da zautomatyzowaÄ‡, budujemy rozwiÄ…zanie i testujemy je. Pracujemy iteracyjnie â€” najpierw jedna automatyzacja, potem rozwijamy jÄ… w miarÄ™ potrzeb.
             </p>
           </div>
         </div>
@@ -147,43 +147,43 @@ export default function AutomatyzacjeAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Co możemy zautomatyzować
+            Co moĹĽemy zautomatyzowaÄ‡
           </h2>
           <div className="space-y-4 text-[#6b7280] leading-[1.7]">
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
               </div>
               <div>
-                <h3 className="font-semibold text-[#0A0A0F] mb-1">Obsługa zapytań i komunikacja</h3>
-                <p>Przychodzące emaile, wiadomości, zgłoszenia od klientów — mogą być automatycznie sortowane, odpowiadane i przypisywane zespołowi.</p>
+                <h3 className="font-semibold text-[#0A0A0F] mb-1">ObsĹ‚uga zapytaĹ„ i komunikacja</h3>
+                <p>PrzychodzÄ…ce emaile, wiadomoĹ›ci, zgĹ‚oszenia od klientĂłw â€” mogÄ… byÄ‡ automatycznie sortowane, odpowiadane i przypisywane zespoĹ‚owi.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
               </div>
               <div>
                 <h3 className="font-semibold text-[#0A0A0F] mb-1">Przetwarzanie danych i raporty</h3>
-                <p>Zbieranie informacji z różnych źródeł, czyszczenie danych, generowanie raportów i wizualizacji — wszystko automatycznie.</p>
+                <p>Zbieranie informacji z rĂłĹĽnych ĹşrĂłdeĹ‚, czyszczenie danych, generowanie raportĂłw i wizualizacji â€” wszystko automatycznie.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
               </div>
               <div>
-                <h3 className="font-semibold text-[#0A0A0F] mb-1">Integracje między systemami</h3>
-                <p>Dane z jednego narzędzia mogą automatycznie przechodzić do innego. CRM, faktury, HR — wszystko synchronizowane bez ręcznego wprowadzania.</p>
+                <h3 className="font-semibold text-[#0A0A0F] mb-1">Integracje miÄ™dzy systemami</h3>
+                <p>Dane z jednego narzÄ™dzia mogÄ… automatycznie przechodziÄ‡ do innego. CRM, faktury, HR â€” wszystko synchronizowane bez rÄ™cznego wprowadzania.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
               </div>
               <div>
                 <h3 className="font-semibold text-[#0A0A0F] mb-1">Powiadomienia i monitoring</h3>
-                <p>Automatyczne alerty, notyfikacje i monitorowanie statusu procesów — wiesz zawsze, co się dzieje.</p>
+                <p>Automatyczne alerty, notyfikacje i monitorowanie statusu procesĂłw â€” wiesz zawsze, co siÄ™ dzieje.</p>
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function AutomatyzacjeAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Najczęstsze pytania
+            NajczÄ™stsze pytania
           </h2>
           <div className="space-y-6">
             {faqItems.map((item) => (
@@ -209,13 +209,13 @@ export default function AutomatyzacjeAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Chcesz wiedzieć, co się daje zautomatyzować?
+            Chcesz wiedzieÄ‡, co siÄ™ daje zautomatyzowaÄ‡?
           </h2>
           <a
             href="/#kontakt"
             className="inline-flex items-center gap-3 rounded-xl bg-[#2563EB] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0 8px 24px rgba(37,99,235,0.20)] hover:-translate-y-0.5"
           >
-            Umów konsultację
+            UmĂłw konsultacjÄ™
           </a>
         </div>
       </section>
@@ -225,3 +225,4 @@ export default function AutomatyzacjeAI() {
     </main>
   )
 }
+

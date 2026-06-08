@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Portfolio from '@/components/Portfolio'
@@ -8,41 +8,41 @@ import Footer from '@/components/Footer'
 const projects = [
   {
     name: 'PM Apartments',
-    tagline: 'Wykończenia pod klucz, Wrocław',
+    tagline: 'WykoĹ„czenia pod klucz, WrocĹ‚aw',
     url: 'https://pm-apartments.pl/',
-    description: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji.',
+    description: 'Strona internetowa dla PM Apartments - firmy zajmujÄ…cej siÄ™ wykoĹ„czeniami pod klucz we WrocĹ‚awiu. Klient miaĹ‚ firmÄ™ bez obecnoĹ›ci w sieci i potrzebowaĹ‚ nowoczesnej strony prezentujÄ…cej portfel prac. Teraz ma stronÄ™, ktĂłra automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiajÄ… bezpoĹ›rednio do zintegrowanego kalendarza rezerwacji.',
   },
   {
     name: 'Dorimari',
     tagline: 'Autorskie wycieczki po Sycylii',
     url: 'https://dorimari.pl',
-    description: 'Strona internetowa dla Dorimari - agencji specjalizującej się w autorskich, butikowych wycieczkach premium po Sycylii. Klient prowadzi wyjątkowe doświadczenia turystyczne i potrzebował miejsca, które sprzedaje klimat i atmosferę podróży, nie tylko trasę.',
+    description: 'Strona internetowa dla Dorimari - agencji specjalizujÄ…cej siÄ™ w autorskich, butikowych wycieczkach premium po Sycylii. Klient prowadzi wyjÄ…tkowe doĹ›wiadczenia turystyczne i potrzebowaĹ‚ miejsca, ktĂłre sprzedaje klimat i atmosferÄ™ podrĂłĹĽy, nie tylko trasÄ™.',
   },
   {
     name: 'MS Design Studio',
-    tagline: 'Wizualizacje 3D wnętrz i architektury',
+    tagline: 'Wizualizacje 3D wnÄ™trz i architektury',
     url: 'https://msdesignstudio.pl/',
-    description: 'Strona internetowa dla MS Design Studio - studia specjalizującego się w profesjonalnych wizualizacjach 3D wnętrz i projektach architektonicznych. Klientka tworzy wysokiej jakości wizualizacje i potrzebowała portfolio online, które samo mówi za siebie.',
+    description: 'Strona internetowa dla MS Design Studio - studia specjalizujÄ…cego siÄ™ w profesjonalnych wizualizacjach 3D wnÄ™trz i projektach architektonicznych. Klientka tworzy wysokiej jakoĹ›ci wizualizacje i potrzebowaĹ‚a portfolio online, ktĂłre samo mĂłwi za siebie.',
   },
 ]
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://getbuild.pl'),
   title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
-  description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje dla producentów, dostawców i firm technologicznych.',
-  keywords: ['portfolio B2B', 'case studies', 'realizacje', 'strony dla firm', 'projekty B2B', 'portfolio web design', 'przykłady projektów'],
+  description: 'Case studies i realizacje projektĂłw dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje dla producentĂłw, dostawcĂłw i firm technologicznych.',
+  keywords: ['portfolio B2B', 'case studies', 'realizacje', 'strony dla firm', 'projekty B2B', 'portfolio web design', 'przykĹ‚ady projektĂłw'],
   alternates: {
     canonical: 'https://getbuild.pl/realizacje',
   },
   openGraph: {
     title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
-    description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje.',
+    description: 'Case studies i realizacje projektĂłw dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje.',
     url: 'https://getbuild.pl/realizacje',
     type: 'website',
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: 'https://getbuild.pl/getbuild-logo-og.png',
         width: 1200,
         height: 630,
         alt: 'Portfolio i realizacje Getbuild - Case studies B2B',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
-    description: 'Case studies i realizacje projektów dla firm B2B.',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    description: 'Case studies i realizacje projektĂłw dla firm B2B.',
+    images: ['https://getbuild.pl/getbuild-logo-og.png'],
   },
 }
 
@@ -63,7 +63,7 @@ export default function Realizacje() {
     '@type': 'CollectionPage',
     '@id': 'https://getbuild.pl/realizacje#webpage',
     name: 'Portfolio i realizacje',
-    description: 'Case studies i realizacje projektów dla firm B2B',
+    description: 'Case studies i realizacje projektĂłw dla firm B2B',
     url: 'https://getbuild.pl/realizacje',
     isPartOf: {
       '@type': 'WebSite',
@@ -108,3 +108,4 @@ export default function Realizacje() {
     </main>
   )
 }
+

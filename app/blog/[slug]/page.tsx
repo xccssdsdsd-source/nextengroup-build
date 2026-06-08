@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Getbuild',
       images: [
         {
-          url: `${siteUrl}/logo-opt.png`,
+          url: `${siteUrl}/getbuild-logo-og.png`,
           width: 1200,
           height: 630,
           alt: article.title,
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${article.title} | Blog Getbuild`,
       description: article.excerpt,
-      images: [`${siteUrl}/logo-opt.png`],
+      images: [`${siteUrl}/getbuild-logo-og.png`],
     },
   }
 }
@@ -82,7 +82,7 @@ export default async function ArticlePage({ params }: Props) {
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo-opt.png`,
+        url: `${siteUrl}/getbuild-logo-og.png`,
       },
     },
     url: `${siteUrl}/blog/${slug}`,

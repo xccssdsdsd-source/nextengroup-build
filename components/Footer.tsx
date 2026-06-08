@@ -41,7 +41,7 @@ export default function Footer() {
           transition={{ duration: 0.7, ease }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <img src="/logo.webp" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
+            <img src="/getbuild-logo.webp" alt="Getbuild agencja usług cyfrowych" className="h-9 w-9 rounded-lg object-contain" />
             <div>
               <div className="text-sm font-bold uppercase tracking-[0.2em] text-white" style={{ fontFamily: 'var(--font-syne)' }}>
                 Getbuild

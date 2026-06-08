@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo-opt.png`,
+        url: `${siteUrl}/getbuild-logo-og.png`,
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -62,12 +62,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [`${siteUrl}/logo-opt.png`],
+    images: [`${siteUrl}/getbuild-logo-og.png`],
   },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/logo-opt.png',
+    apple: '/getbuild-logo-og.png',
   },
   robots: {
     index: true,
@@ -87,10 +87,10 @@ export default function RootLayout({
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/png" href="/logo-opt.png" sizes="any" />
+        <link rel="icon" type="image/png" href="/getbuild-logo-og.png" sizes="any" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo-opt.png" />
-        <meta property="og:image" content="https://getbuild.pl/logo.webp" />
+        <link rel="apple-touch-icon" href="/getbuild-logo-og.png" />
+        <meta property="og:image" content="https://getbuild.pl/getbuild-logo-og.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -112,7 +112,7 @@ export default function RootLayout({
           '@id': 'https://getbuild.pl/#organization',
           name: 'Getbuild',
           url: 'https://getbuild.pl',
-          logo: 'https://getbuild.pl/logo-opt.png',
+          logo: 'https://getbuild.pl/getbuild-logo-og.png',
           image: 'https://getbuild.pl/og-image.jpg',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną. Oferujemy SEO i GEO (Generative Engine Optimization) — optymalizację widoczności w Google i wyszukiwarkach generatywnych AI.',
           email: 'kontakt@getbuild.pl',

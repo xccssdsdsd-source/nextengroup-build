@@ -144,7 +144,7 @@ export default function Nav() {
         >
           <div className="flex items-center justify-between gap-4">
             <a href="/" className="flex min-w-0 items-center gap-3">
-              <img src="/logo.webp" alt="Getbuild.pl" className="h-9 w-9 flex-shrink-0 rounded-lg object-contain" fetchPriority="high" />
+              <img src="/getbuild-logo.webp" alt="Getbuild.pl" className="h-9 w-9 flex-shrink-0 rounded-lg object-contain" fetchPriority="high" />
               <div className="min-w-0">
                 <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[var(--text)]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
                 <div className="truncate text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">Strony WWW & Automatyzacje</div>

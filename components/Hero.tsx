@@ -22,7 +22,7 @@ export default function Hero() {
     if (!isMounted) return
     const timer = setInterval(() => {
       setTitleNumber(prev => (prev + 1) % carouselWords.length)
-    }, 2500)
+    }, 2000)
     return () => clearInterval(timer)
   }, [isMounted])
 
@@ -73,22 +73,24 @@ export default function Hero() {
             <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
-                <span style={{ color: '#2563EB', fontWeight: 500 }}>
+                <span style={{ color: '#1d4ed8', fontWeight: 600 }}>
                   {carouselWords[0]}
                 </span>
               ) : (
-                <AnimatePresence mode="wait">
-                  <m.span
-                    key={titleNumber}
-                    style={{ color: '#2563EB', fontWeight: 500, display: 'inline' }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.35, ease: easeOut }}
-                  >
-                    {carouselWords[titleNumber]}
-                  </m.span>
-                </AnimatePresence>
+                <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                  <AnimatePresence mode="wait">
+                    <m.span
+                      key={titleNumber}
+                      style={{ color: '#1d4ed8', fontWeight: 600, display: 'inline-block' }}
+                      initial={{ opacity: 0, y: '110%' }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: '-70%' }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {carouselWords[titleNumber]}
+                    </m.span>
+                  </AnimatePresence>
+                </span>
               )}
             </p>
           </div>

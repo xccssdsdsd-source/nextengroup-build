@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Sans } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
 import SubtleAccents from '@/components/SubtleAccents'
@@ -91,8 +92,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/getbuild-logo-og.png" />
         <meta property="og:image" content="https://getbuild.pl/getbuild-logo-og.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
@@ -206,14 +205,6 @@ export default function RootLayout({
             { '@type': 'Thing', name: 'Agenci AI' },
           ],
         }) }} />
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ"></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6D0PC33PCQ');
-        ` }} />
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="text-[#0A0A0F] antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
@@ -228,6 +219,13 @@ export default function RootLayout({
         <MotionProvider>
           <div id="main-content" className="relative" style={{ zIndex: 1 }}>{children}</div>
         </MotionProvider>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ" strategy="afterInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-6D0PC33PCQ');
+        `}</Script>
       </body>
     </html>
   )

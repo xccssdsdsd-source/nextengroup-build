@@ -171,8 +171,8 @@ export default function Nav() {
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary !hidden px-5 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5"
-                style={{ minWidth: '200px', justifyContent: 'center' }}
+                className="btn btn-primary !hidden px-6 py-2.5 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
+                style={{ minWidth: '220px', justifyContent: 'center' }}
               >
                 {isMounted ? (
                   <span className="inline-flex items-center">

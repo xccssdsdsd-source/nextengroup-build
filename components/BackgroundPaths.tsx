@@ -28,7 +28,7 @@ export default function BackgroundPaths() {
             .bp-h-2 { animation: flowPath 22s linear infinite; }
             .bp-h-3 { animation: flowPath 26s linear infinite; }
           }
-          .bp-h-0, .bp-h-1, .bp-h-2, .bp-h-3 { opacity: 0.15; }
+          .bp-h-0, .bp-h-1, .bp-h-2, .bp-h-3 { opacity: 0.06; }
         `}</style>
         {paths.map((p, i) => (
           <path

@@ -67,7 +67,7 @@ function TestimonialCard() {
     <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
+      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-[#2563eb] bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
         isHovered
           ? 'border-[var(--border)] shadow-[0_4px_12px_rgba(13,22,41,0.07),_0_16px_40px_rgba(13,22,41,0.08)]'
           : 'border-[var(--border)] shadow-[0_1px_3px_rgba(13,22,41,0.05),_0_6px_20px_rgba(13,22,41,0.05)]'

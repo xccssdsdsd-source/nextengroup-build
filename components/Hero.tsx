@@ -133,9 +133,11 @@ export default function Hero() {
                 boxShadow: '0 -12px 60px rgba(37,99,235,0.18), 0 -2px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.08)',
                 overflow: 'hidden',
                 willChange: 'transform',
+                position: 'relative',
               }}
             >
               {isMounted && <DeviceMockups />}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #f4f6fb)', pointerEvents: 'none' }} />
             </div>
           </div>
         </div>

@@ -217,7 +217,7 @@ export default function Portfolio() {
                     width={project.width}
                     height={project.height}
                     sizes="(min-width: 768px) 720px, 100vw"
-                    className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] ring-1 ring-white/5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] ring-1 ring-white transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     quality={82}
                     priority={currentIndex === 0}
                   />

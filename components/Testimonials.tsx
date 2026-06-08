@@ -63,10 +63,10 @@ function TestimonialCard() {
     <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-[#2563EB] bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
+      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-white bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
         isHovered
-          ? 'border-[rgba(37,99,235,0.35)] shadow-[0_4px_12px_rgba(0,0,0,0.15),_0_16px_40px_rgba(0,0,0,0.1)]'
-          : 'border-[rgba(37,99,235,0.1)] shadow-[0_1px_3px_rgba(0,0,0,0.1),_0_6px_20px_rgba(0,0,0,0.08)]'
+          ? 'border-white shadow-[0_4px_12px_rgba(0,0,0,0.15),_0_16px_40px_rgba(0,0,0,0.1)]'
+          : 'border-white shadow-[0_1px_3px_rgba(0,0,0,0.1),_0_6px_20px_rgba(0,0,0,0.08)]'
       }`}
       style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)', willChange: isHovered ? 'transform' : 'auto' }}
     >

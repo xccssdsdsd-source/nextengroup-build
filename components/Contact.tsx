@@ -106,7 +106,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[rgba(17,24,39,0.8)] backdrop-blur-[20px] p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-white bg-[rgba(17,24,39,0.8)] backdrop-blur-[20px] p-6 sm:p-10 lg:p-14"
         style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.4)' }}
       >
 

@@ -1,5 +1,2 @@
 name = "getbuild-build"
 pages_build_output_dir = ".vercel/output/static"
-
-[build]
-command = "npx @cloudflare/next-on-pages@1"

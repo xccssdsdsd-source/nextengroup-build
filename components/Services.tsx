@@ -173,7 +173,6 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-120px' })
   const inView2 = useInView(ref2, { once: true, margin: '-120px' })
   const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -347,30 +346,7 @@ export default function Services() {
             </div>
 
             <div className="flex flex-col gap-4 lg:hidden">
-              <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded2 && (
-                  <m.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
-                    </div>
-                  </m.div>
-                )}
-              </AnimatePresence>
-              {!expanded2 && (
-                <button
-                  onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-5 py-3 text-[14px] font-semibold text-[var(--accent)] shadow-[0_1px_2px_rgba(13,22,41,0.04)] transition-colors hover:bg-[var(--bg-soft)]"
-                >
-                  Zobacz więcej
-                </button>
-              )}
+              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
             </div>
           </div>
 

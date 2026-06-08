@@ -10,7 +10,7 @@ const projects = [
     name: 'PM Apartments',
     tagline: 'Wykończenia pod klucz, Wrocław',
     url: 'https://pm-apartments.pl/',
-    description: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji.',
+    description: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę z galerią realizacji, opisem usług i formularzem kontaktowym.',
   },
   {
     name: 'Dorimari',

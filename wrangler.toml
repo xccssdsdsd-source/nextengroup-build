@@ -1,2 +1,4 @@
 name = "getbuild-build"
 pages_build_output_dir = ".vercel/output/static"
+compatibility_date = "2024-12-16"
+compatibility_flags = ["nodejs_compat"]

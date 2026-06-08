@@ -227,7 +227,7 @@ export default function Contact() {
                 <div className="w-full max-w-xl">
                   <div className="text-center mb-6">
                     <h4 className="text-[16px] font-bold text-[#0A0A0F] mb-2">Lub wyślij nam zapytanie</h4>
-                    <p className="text-[13px] text-[#6b7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
+                    <p className="text-[13px] text-[#6b7280]">Masz pytanie? Chętnie je odczytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
                   <div className="rounded-2xl border border-[var(--border)] bg-white p-6" style={{ boxShadow: 'var(--shadow-sm)' }}>

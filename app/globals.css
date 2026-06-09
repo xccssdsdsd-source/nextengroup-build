@@ -49,6 +49,10 @@ html {
 body {
   min-width: 320px;
   background: var(--bg-base);
+  background-image:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, transparent 30%),
+    linear-gradient(-45deg, rgba(60, 125, 240, 0.03) 0%, transparent 40%),
+    linear-gradient(180deg, transparent 0%, rgba(37, 99, 235, 0.02) 100%);
   color: var(--text-primary);
   font-family: var(--font-dm-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -239,6 +243,24 @@ select {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   padding: 1.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.value-card:hover::before {
+  left: 100%;
 }
 
 .value-card:hover {

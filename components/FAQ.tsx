@@ -127,7 +127,7 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.32, ease }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#6B7280]">
                         {faq.a}

@@ -1,10 +1,12 @@
 'use client'
 
-const paths = [
-  { d: 'M -100 500 Q 300 350 600 300 Q 900 250 1300 100', color: '#3B82F6', width: 1.2 },
-  { d: 'M -100 540 Q 260 370 560 320 Q 860 270 1300 120', color: '#60A5FA', width: 0.5 },
-  { d: 'M -100 600 Q 200 420 500 370 Q 800 320 1300 200', color: '#2563EB', width: 1.0 },
-  { d: 'M 1300 500 Q 900 350 600 300 Q 300 250 -100 100', color: '#3B82F6', width: 0.8 },
+const mainPaths = [
+  { d: 'M -100 480 Q 250 300 550 280 Q 850 260 1300 80', color: '#2563EB', width: 1.1, dur: 20 },
+  { d: 'M -100 540 Q 290 360 580 320 Q 880 280 1300 130', color: '#3B82F6', width: 0.55, dur: 25 },
+  { d: 'M -100 600 Q 200 420 500 380 Q 800 340 1300 220', color: '#1D4ED8', width: 0.9, dur: 22 },
+  { d: 'M 1300 490 Q 920 340 630 310 Q 340 280 -100 110', color: '#60A5FA', width: 0.7, dur: 27 },
+  { d: 'M -100 420 Q 300 240 600 260 Q 900 280 1300 60', color: '#93C5FD', width: 0.4, dur: 32 },
+  { d: 'M 1300 560 Q 950 400 660 360 Q 370 320 -100 170', color: '#3B82F6', width: 0.45, dur: 30 },
 ]
 
 export default function BackgroundPaths() {
@@ -17,20 +19,30 @@ export default function BackgroundPaths() {
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
+        <defs>
+          <filter id="bp-glow">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
         <style>{`
-          @keyframes flowPath {
-            0% { stroke-dashoffset: 2000; }
+          @keyframes bpFlow {
+            0% { stroke-dashoffset: 2400; }
             100% { stroke-dashoffset: 0; }
           }
           @media (prefers-reduced-motion: no-preference) {
-            .bp-h-0 { animation: flowPath 20s linear infinite; }
-            .bp-h-1 { animation: flowPath 24s linear infinite; }
-            .bp-h-2 { animation: flowPath 22s linear infinite; }
-            .bp-h-3 { animation: flowPath 26s linear infinite; }
+            .bp-0 { animation: bpFlow ${mainPaths[0].dur}s linear infinite; }
+            .bp-1 { animation: bpFlow ${mainPaths[1].dur}s linear infinite; }
+            .bp-2 { animation: bpFlow ${mainPaths[2].dur}s linear infinite; }
+            .bp-3 { animation: bpFlow ${mainPaths[3].dur}s linear infinite; }
+            .bp-4 { animation: bpFlow ${mainPaths[4].dur}s linear infinite; }
+            .bp-5 { animation: bpFlow ${mainPaths[5].dur}s linear infinite; }
           }
-          .bp-h-0, .bp-h-1, .bp-h-2, .bp-h-3 { opacity: 0.06; }
+          .bp-0, .bp-2 { opacity: 0.16; }
+          .bp-1, .bp-3 { opacity: 0.11; }
+          .bp-4, .bp-5 { opacity: 0.08; }
         `}</style>
-        {paths.map((p, i) => (
+        {mainPaths.map((p, i) => (
           <path
             key={i}
             d={p.d}
@@ -38,8 +50,9 @@ export default function BackgroundPaths() {
             stroke={p.color}
             strokeWidth={p.width}
             strokeLinecap="round"
-            strokeDasharray={2000}
-            className={`bp-h-${i}`}
+            strokeDasharray={2400}
+            className={`bp-${i}`}
+            filter={i < 2 ? 'url(#bp-glow)' : undefined}
           />
         ))}
       </svg>

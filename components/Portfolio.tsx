@@ -104,7 +104,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
 
 export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-120px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [bodyExpanded, setBodyExpanded] = useState(false)

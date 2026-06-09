@@ -30,7 +30,7 @@ const values = [
 
 export default function ValueProps() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-120px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
     <section id="wartosci" ref={ref} className="section-shell relative">

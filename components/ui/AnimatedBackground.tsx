@@ -8,8 +8,9 @@ export default function AnimatedBackground() {
       <div className={styles.orb1} />
       <div className={styles.orb2} />
       <div className={styles.orb3} />
-      <div className={styles.grain} />
+      <div className={styles.orb4} />
       <div className={styles.grid} />
+      <div className={styles.grain} />
     </div>
   )
 }

@@ -55,7 +55,7 @@ const faqSchema = {
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
     <>

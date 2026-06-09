@@ -3,7 +3,7 @@
 import { m, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -31,9 +31,9 @@ export default function Testimonials() {
 
         <m.div
           className="mt-14 flex justify-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, ease, delay: 0.15 }}
+          initial={{ opacity: 0, y: 32, scale: 0.97 }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.55, ease, delay: 0.15 }}
         >
           <TestimonialCard />
         </m.div>
@@ -58,17 +58,12 @@ export default function Testimonials() {
 }
 
 function TestimonialCard() {
-  const [isHovered, setIsHovered] = useState(false)
   return (
-    <article
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-white bg-white p-7 sm:p-8 transition-[box-shadow,transform] duration-200 ${
-        isHovered
-          ? 'border-white shadow-[0_4px_12px_rgba(0,0,0,0.15),_0_16px_40px_rgba(0,0,0,0.1)]'
-          : 'border-white shadow-[0_1px_3px_rgba(0,0,0,0.1),_0_6px_20px_rgba(0,0,0,0.08)]'
-      }`}
-      style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)', willChange: isHovered ? 'transform' : 'auto' }}
+    <m.article
+      whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 20px 50px rgba(0,0,0,0.09)' }}
+      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+      className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-white bg-white p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1),_0_6px_20px_rgba(0,0,0,0.08)]"
+      style={{ willChange: 'transform' }}
     >
       <svg
         className="absolute right-7 top-7 opacity-[0.12]"
@@ -110,6 +105,6 @@ function TestimonialCard() {
           </a>
         </div>
       </div>
-    </article>
+    </m.article>
   )
 }

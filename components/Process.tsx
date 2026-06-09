@@ -1,7 +1,7 @@
 'use client'
 
 import { m, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -69,16 +69,13 @@ export default function Process() {
 }
 
 function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number, number, number, number] }) {
-  const [isHovered, setIsHovered] = useState(false)
   return (
     <m.article
-      variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-200 ${
-        isHovered ? 'border-[#93b4f8] shadow-[0_1px_3px_rgba(13,22,41,0.06),_0_8px_24px_rgba(37,99,235,0.12)]' : 'border-[var(--border)] shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]'
-      }`}
-      style={{ background: 'var(--bg-card)' }}
+      variants={{ hidden: { opacity: 0, y: 24, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
+      whileHover={{ y: -4, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 8px 24px rgba(37,99,235,0.12)' }}
+      transition={{ duration: 0.22, ease }}
+      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"
+      style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >
       <div className="step-number">
         {step.num}

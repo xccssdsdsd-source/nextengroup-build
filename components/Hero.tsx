@@ -45,23 +45,32 @@ export default function Hero() {
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
 
         <div className="w-full text-center">
-          <h1
-            className="mx-auto mb-5 sm:mb-6"
-            style={{
-              fontFamily: 'var(--font-syne)',
-              fontWeight: 800,
-              fontSize: 'clamp(20px, 4.5vw, 42px)',
-              lineHeight: '1.1',
-              letterSpacing: '-0.03em',
-              overflowWrap: 'break-word',
-              color: '#111827'
-            }}
+          {/* Headline — animates in first */}
+          <div
+            className="hero-fade-in mx-auto mb-5 sm:mb-6"
+            style={{ animationDelay: '0ms' }}
           >
-            <span className="block text-balance">Strony, które pozyskują klientów.</span>
-            <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
-          </h1>
+            <h1
+              style={{
+                fontFamily: 'var(--font-syne)',
+                fontWeight: 800,
+                fontSize: 'clamp(20px, 4.5vw, 42px)',
+                lineHeight: '1.1',
+                letterSpacing: '-0.03em',
+                overflowWrap: 'break-word',
+                color: '#111827'
+              }}
+            >
+              <span className="block text-balance">Strony, które pozyskują klientów.</span>
+              <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
+            </h1>
+          </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center' }} className="mb-5 sm:mb-6">
+          {/* Carousel subline — animates in second */}
+          <div
+            className="hero-fade-in"
+            style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem', animationDelay: '90ms' }}
+          >
             <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
@@ -87,9 +96,10 @@ export default function Hero() {
             </p>
           </div>
 
+          {/* CTA buttons — animates in third */}
           <div
             className="hero-fade-in mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
-            style={{ animationDelay: '110ms' }}
+            style={{ animationDelay: '200ms' }}
           >
             <a
               href="#kontakt"
@@ -108,10 +118,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Device mockup — perspective wrapper + CSS tilt-in animation */}
+        {/* Device mockup — animates in last */}
         <div
           className="hero-fade-in mt-12 sm:mt-14 flex justify-center pb-0"
-          style={{ perspective: '1400px', animationDelay: '170ms' }}
+          style={{ perspective: '1400px', animationDelay: '310ms' }}
         >
           <div className="hero-device-tilt w-full">
             <div

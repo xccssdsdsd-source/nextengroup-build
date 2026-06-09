@@ -751,27 +751,27 @@ select {
 /* ── Hero CSS animations ──────────────────────────────────────────────
    Pure CSS — run before JS loads, zero flash, instant perceived render  */
 @keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: none; }
 }
 
 @keyframes heroDeviceTiltIn {
-  from { opacity: 0; transform: rotateX(14deg) scale(1.02); }
+  from { opacity: 0; transform: rotateX(16deg) scale(0.97); }
   to   { opacity: 1; transform: rotateX(0deg)  scale(1); }
 }
 
 .hero-fade-in {
-  animation: heroFadeUp 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-device-tilt {
-  animation: heroDeviceTiltIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.17s both;
+  animation: heroDeviceTiltIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
   transform-style: preserve-3d;
 }
 
 @media (hover: none), (pointer: coarse) {
   .hero-device-tilt {
-    animation: heroFadeUp 0.4s ease-out 0.17s both;
+    animation: heroFadeUp 0.5s ease-out 0.2s both;
   }
 }
 

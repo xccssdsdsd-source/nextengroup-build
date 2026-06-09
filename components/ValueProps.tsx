@@ -44,7 +44,7 @@ export default function ValueProps() {
           {values.map((value, idx) => (
             <m.li
               key={idx}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } } }}
+              variants={{ hidden: { opacity: 0, y: 28, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
               className="value-card rounded-2xl p-5 sm:p-6 flex flex-col"
             >
               <span className="text-[11px] font-bold tabular-nums tracking-[0.14em] text-[#2563EB]/50 mb-3" style={{ fontFamily: 'var(--font-syne)' }}>

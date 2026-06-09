@@ -44,9 +44,9 @@ export default function Process() {
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.78, ease }}
+          transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">Proces</span>
           <h2 className="section-title">Prosto od konsultacji do wsparcia</h2>
@@ -57,7 +57,7 @@ export default function Process() {
 
         <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
@@ -71,7 +71,7 @@ export default function Process() {
 function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number, number, number, number] }) {
   return (
     <m.article
-      variants={{ hidden: { opacity: 0, y: 24, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
+      variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.42, ease } } }}
       whileHover={{ y: -4, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 8px 24px rgba(37,99,235,0.12)' }}
       transition={{ duration: 0.22, ease }}
       className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"

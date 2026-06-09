@@ -21,9 +21,9 @@ export default function Testimonials() {
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease }}
+          transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">Opinie</span>
           <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>Co mówią nasi klienci</h2>
@@ -31,9 +31,9 @@ export default function Testimonials() {
 
         <m.div
           className="mt-14 flex justify-center"
-          initial={{ opacity: 0, y: 32, scale: 0.97 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.55, ease, delay: 0.15 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.52, ease, delay: 0.12 }}
         >
           <TestimonialCard />
         </m.div>

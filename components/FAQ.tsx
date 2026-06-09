@@ -68,9 +68,9 @@ export default function FAQ() {
       <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.78, ease }}
+          transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">FAQ</span>
           <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
@@ -87,9 +87,9 @@ export default function FAQ() {
               <m.div
                 key={faq.q}
                 layout="position"
-                initial={{ opacity: 0, y: 28, scale: 0.97 }}
-                animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ duration: 0.55, delay: index * 0.07, ease }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.42, delay: index * 0.055, ease }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'

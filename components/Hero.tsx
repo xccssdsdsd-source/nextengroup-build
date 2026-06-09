@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-hidden pt-36 sm:pt-40 md:pt-48 bg-white"
+      className="relative overflow-hidden pt-52 sm:pt-56 md:pt-64 bg-white"
     >
       <BackgroundPaths />
 
@@ -47,16 +47,16 @@ export default function Hero() {
         <div className="w-full text-center">
           {/* Headline — animates in first */}
           <div
-            className="hero-fade-in mx-auto mb-5 sm:mb-6"
+            className="hero-fade-in mx-auto mb-6 sm:mb-8"
             style={{ animationDelay: '0ms' }}
           >
             <h1
               style={{
                 fontFamily: 'var(--font-syne)',
                 fontWeight: 800,
-                fontSize: 'clamp(20px, 4.5vw, 42px)',
+                fontSize: 'clamp(25px, 5.5vw, 54px)',
                 lineHeight: '1.1',
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.02em',
                 overflowWrap: 'break-word',
                 color: '#111827'
               }}
@@ -71,10 +71,10 @@ export default function Hero() {
             className="hero-fade-in"
             style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem', animationDelay: '90ms' }}
           >
-            <p className="text-sm sm:text-base leading-relaxed text-[#6B7280]">
+            <p className="text-sm sm:text-base leading-relaxed text-[#555555]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
-                <span style={{ color: '#2563EB', fontWeight: 600 }}>
+                <span style={{ color: '#0D0D0D', fontWeight: 600 }}>
                   {carouselWords[0]}
                 </span>
               ) : (
@@ -82,7 +82,7 @@ export default function Hero() {
                   <AnimatePresence mode="wait">
                     <m.span
                       key={titleNumber}
-                      style={{ color: '#2563EB', fontWeight: 600, display: 'inline-block' }}
+                      style={{ color: '#0D0D0D', fontWeight: 600, display: 'inline-block' }}
                       initial={{ opacity: 0, y: '110%' }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: '-70%' }}
@@ -131,7 +131,7 @@ export default function Hero() {
                 maxWidth: '1100px',
                 maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',
-                boxShadow: '0 0 80px rgba(37,99,235,0.1), 0 40px 80px rgba(0,0,0,0.1)',
+                boxShadow: '0 0 80px rgba(0,0,0,0.06), 0 40px 80px rgba(0,0,0,0.1)',
                 overflow: 'hidden',
                 willChange: 'transform',
                 position: 'relative',

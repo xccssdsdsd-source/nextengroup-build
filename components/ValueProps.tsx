@@ -47,13 +47,13 @@ export default function ValueProps() {
               variants={{ hidden: { opacity: 0, y: 28, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
               className="value-card rounded-2xl p-5 sm:p-6 flex flex-col"
             >
-              <span className="text-[11px] font-bold tabular-nums tracking-[0.14em] text-[#2563EB]/50 mb-3" style={{ fontFamily: 'var(--font-syne)' }}>
+              <span className="text-[11px] font-bold tabular-nums tracking-[0.14em] text-[#BBBBBB] mb-3" style={{ fontFamily: 'var(--font-syne)' }}>
                 {value.num}
               </span>
-              <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#111827] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
                 {value.title}
               </h3>
-              <p className="mt-2 text-[13.5px] leading-[1.65] text-[#6B7280]">
+              <p className="mt-2 text-[13.5px] leading-[1.65] text-[#555555]">
                 {value.desc}
               </p>
             </m.li>

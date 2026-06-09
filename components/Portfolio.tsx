@@ -222,17 +222,17 @@ export default function Portfolio() {
                 </a>
 
                 <div className="flex flex-col justify-center p-6 sm:p-8 bg-white">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: '#2563EB', boxShadow: '0 2px 8px rgba(37,99,235,0.28)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: '#0D0D0D', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#6B7280] transition-all duration-200 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#6B7280] transition-all duration-200 group-hover:text-[#0D0D0D] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
-                  <p className="mt-1 text-[14px] font-medium text-[#2563EB]">{project.tagline}</p>
+                  <p className="mt-1 text-[14px] font-medium text-[#555555]">{project.tagline}</p>
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#6B7280]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#2563EB] hover:underline">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#0D0D0D] hover:underline">Zobacz więcej</button></>
                     )}
                   </p>
 
@@ -252,7 +252,7 @@ export default function Portfolio() {
                 key={i}
                 onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
                 className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
-                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : 'rgba(255,255,255,0.15)' }}
+                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#0D0D0D' : 'rgba(0,0,0,0.15)' }}
                 aria-label={`Realizacja ${i + 1}`}
               />
             ))}

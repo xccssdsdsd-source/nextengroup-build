@@ -102,7 +102,7 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
         isHovered
-          ? 'border-[rgba(37,99,235,0.35)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(37,99,235,0.25)]'
+          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
       }`}
       style={{
@@ -127,12 +127,12 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 380 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
         <title id="diagram-simple-title">Schemat prostej automatyzacji: Proces A połączony z Procesem B</title>
-        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(37,99,235,0.15)" stroke="#2563EB" strokeWidth="2" />
-        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#93C5FD">Proces A</text>
-        <line x1="152" y1="65" x2="210" y2="65" stroke="#2563EB" strokeWidth="2.5" />
-        <path d="M210 57 L224 65 L210 73 Z" fill="#2563EB" />
-        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(37,99,235,0.15)" stroke="#2563EB" strokeWidth="2" />
-        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#93C5FD">Proces B</text>
+        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
+        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces A</text>
+        <line x1="152" y1="65" x2="210" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
+        <path d="M210 57 L224 65 L210 73 Z" fill="#0D0D0D" />
+        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
+        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces B</text>
       </svg>
     )
   }
@@ -140,29 +140,29 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 420 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
         <title id="diagram-ai-title">Schemat automatyzacji AI: Proces przechodzi przez model AI, który podejmuje decyzję i zwraca wynik</title>
-        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(37,99,235,0.15)" stroke="#2563EB" strokeWidth="2" />
-        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#93C5FD">Proces</text>
-        <line x1="140" y1="65" x2="168" y2="65" stroke="#2563EB" strokeWidth="2.5" />
-        <path d="M168 57 L182 65 L168 73 Z" fill="#2563EB" />
-        <circle cx="212" cy="65" r="26" fill="#2563EB" />
+        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
+        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces</text>
+        <line x1="140" y1="65" x2="168" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
+        <path d="M168 57 L182 65 L168 73 Z" fill="#0D0D0D" />
+        <circle cx="212" cy="65" r="26" fill="#0D0D0D" />
         <text x="212" y="71" textAnchor="middle" fontFamily="inherit" fontSize="17" fontWeight="700" fill="#ffffff">A</text>
-        <line x1="250" y1="65" x2="278" y2="65" stroke="#2563EB" strokeWidth="2.5" />
-        <path d="M278 57 L292 65 L278 73 Z" fill="#2563EB" />
-        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(37,99,235,0.15)" stroke="#2563EB" strokeWidth="2" />
-        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#93C5FD">Wynik</text>
+        <line x1="250" y1="65" x2="278" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
+        <path d="M278 57 L292 65 L278 73 Z" fill="#0D0D0D" />
+        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
+        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Wynik</text>
       </svg>
     )
   }
   return (
     <svg viewBox="0 0 380 200" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
       <title id="diagram-agent-title">Schemat agenta AI: centralny agent AI samodzielnie wybiera i łączy wiele narzędzi, żeby zrealizować cel</title>
-      <line x1="117" y1="94" x2="286" y2="53" stroke="#2563EB" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="118" y1="100" x2="286" y2="100" stroke="#2563EB" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="117" y1="106" x2="286" y2="147" stroke="#2563EB" strokeWidth="2" strokeDasharray="4 6" />
-      <circle cx="300" cy="50" r="14" fill="rgba(37,99,235,0.2)" stroke="#2563EB" strokeWidth="2" />
-      <circle cx="300" cy="100" r="14" fill="rgba(37,99,235,0.2)" stroke="#2563EB" strokeWidth="2" />
-      <circle cx="300" cy="150" r="14" fill="rgba(37,99,235,0.2)" stroke="#2563EB" strokeWidth="2" />
-      <circle cx="90" cy="100" r="28" fill="#2563EB" />
+      <line x1="117" y1="94" x2="286" y2="53" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
+      <line x1="118" y1="100" x2="286" y2="100" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
+      <line x1="117" y1="106" x2="286" y2="147" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
+      <circle cx="300" cy="50" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
+      <circle cx="300" cy="100" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
+      <circle cx="300" cy="150" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
+      <circle cx="90" cy="100" r="28" fill="#0D0D0D" />
       <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="700" fill="#ffffff">AI</text>
     </svg>
   )
@@ -228,7 +228,7 @@ export default function Services() {
               {!expanded1 && (
                 <button
                   onClick={() => setExpanded1(true)}
-                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#2563EB] transition-colors hover:bg-[rgba(37,99,235,0.05)] hover:border-[rgba(37,99,235,0.4)]"
+                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
                 >
                   Zobacz więcej
                 </button>
@@ -350,7 +350,7 @@ export default function Services() {
               {!expanded2 && (
                 <button
                   onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#2563EB] transition-colors hover:bg-[rgba(37,99,235,0.05)] hover:border-[rgba(37,99,235,0.4)]"
+                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
                 >
                   Zobacz więcej
                 </button>
@@ -405,7 +405,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
-          ? 'border-[rgba(37,99,235,0.35)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(37,99,235,0.25)]'
+          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
       }`}
       style={{
@@ -413,7 +413,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       }}
     >
       <div className="flex items-center gap-2 mb-2">
-        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#2563EB', borderRadius: '4px' }}>
+        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#0D0D0D', borderRadius: '4px' }}>
           {ai.tag}
         </span>
       </div>
@@ -431,7 +431,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       <div className="space-y-2.5 mb-6">
         {ai.bullets.map((bullet, idx) => (
           <div key={idx} className="flex items-start gap-2.5">
-            <span className="text-[#2563EB] mt-1 flex-shrink-0 text-sm">●</span>
+            <span className="text-[#0D0D0D] mt-1 flex-shrink-0 text-sm">●</span>
             <span className="text-[13.5px] leading-[1.6] text-[#6B7280]">{bullet}</span>
           </div>
         ))}
@@ -470,7 +470,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
             setExpandedExamples(!expandedExamples)
           }
         }}
-        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#93C5FD] text-left transition-all hover:text-[#2563EB] hover:translate-x-0.5"
+        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#555555] text-left transition-all hover:text-[#0D0D0D] hover:translate-x-0.5"
       >
         {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>

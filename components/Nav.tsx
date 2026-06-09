@@ -26,7 +26,7 @@ const allLinks: readonly (readonly [string, string])[] = [
 ]
 
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#111827]'
-const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#111827] transition-colors duration-150 hover:bg-rgba(37,99,235,0.1) hover:text-[#111827]'
+const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#111827] transition-colors duration-150 hover:bg-[rgba(0,0,0,0.04)] hover:text-[#111827]'
 
 const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
 
@@ -133,10 +133,11 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-5 py-3 sm:px-6 transition-[border-color,box-shadow,background-color] duration-300`}
+          className={`mx-auto max-w-7xl rounded-2xl border px-4 py-2 sm:px-5 transition-[border-color,box-shadow,background-color] duration-300`}
           style={{
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-            background: '#ffffff',
+            borderColor: 'rgba(0, 0, 0, 0.06)',
+            background: 'rgba(249, 249, 247, 0.92)',
+            backdropFilter: 'blur(12px)',
           }}
         >
           <div className="flex items-center justify-between gap-4">
@@ -144,7 +145,6 @@ export default function Nav() {
               <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-lg object-contain" priority />
               <div className="min-w-0">
                 <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
-                <div className="truncate text-[10px] uppercase tracking-[0.16em] text-[#94A3B8]">Strony WWW & Automatyzacje</div>
               </div>
             </a>
 

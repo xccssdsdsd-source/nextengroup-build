@@ -768,6 +768,47 @@ select {
   }
 }
 
+/* ── Mobile directional entrance animations ─────────────────────────── */
+@keyframes heroSlideFromLeft {
+  from { opacity: 0; transform: translateX(-56px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes heroSlideFromRight {
+  from { opacity: 0; transform: translateX(56px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes heroMockupSlideIn {
+  from { opacity: 0; transform: translateX(-60px) scale(0.95); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Desktop default: identical to hero-fade-in */
+.hero-from-left,
+.hero-from-right,
+.hero-mockup {
+  animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Mobile: directional slides — placed after (hover:none) so it wins on phones */
+@media (max-width: 639px) {
+  .hero-from-left {
+    animation: heroSlideFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-from-right {
+    animation: heroSlideFromRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-mockup {
+    animation: heroMockupSlideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  /* Disable inner 3-D tilt on mobile — outer wrapper owns the animation */
+  .hero-device-tilt {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -35,7 +35,7 @@ const socials = [
 
 export default function Contact() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
   const [showCalendly, setShowCalendly] = useState(false)
@@ -103,9 +103,9 @@ export default function Contact() {
     <section id="kontakt" ref={ref} className="section-shell relative">
       <BackgroundPathsContact />
       <m.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.85, ease }}
+        transition={{ duration: 0.72, ease }}
         className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm p-6 sm:p-10 lg:p-14"
       >
 

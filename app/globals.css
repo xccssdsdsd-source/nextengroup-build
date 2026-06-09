@@ -644,7 +644,6 @@ select {
 }
 
 @media (hover: none), (pointer: coarse) {
-  .aurora-1, .aurora-2, .aurora-3,
   .dmblob-l1, .dmblob-l2, .dmblob-l3,
   .dmblob-p1, .dmblob-p2,
   .float-laptop, .float-phone {
@@ -655,6 +654,9 @@ select {
     animation: none !important;
     will-change: auto !important;
   }
+  .aurora-1 { animation-duration: 34s !important; }
+  .aurora-2 { animation-duration: 42s !important; }
+  .aurora-3 { animation: none !important; will-change: auto !important; }
 }
 
 @media (max-width: 640px) {

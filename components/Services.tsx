@@ -171,10 +171,8 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
 export default function Services() {
   const ref1 = useRef(null)
   const ref2 = useRef(null)
-  const inView1 = useInView(ref1, { once: true, margin: '-120px' })
-  const inView2 = useInView(ref2, { once: true, margin: '-120px' })
-  const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
+  const inView1 = useInView(ref1, { once: true, margin: '-50px' })
+  const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -189,9 +187,9 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.78, ease }}
+            transition={{ duration: 0.68, ease }}
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#111827]">
@@ -204,7 +202,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-5">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
               {packages.map((pkg, i) => <PackageCard key={pkg.name} pkg={pkg} inView={inView1} i={i} />)}
             </div>
 
@@ -314,9 +312,9 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView2 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.78, ease }}
+            transition={{ duration: 0.68, ease }}
           >
             <span className="section-kicker">Automatyzacje i agenci AI</span>
             <h2 className="section-title">Przestań robić to, co AI może zrobić za Ciebie</h2>
@@ -326,7 +324,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6 auto-rows-fr">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 

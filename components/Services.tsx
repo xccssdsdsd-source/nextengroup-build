@@ -205,7 +205,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
               {packages.map((pkg, i) => <PackageCard key={pkg.name} pkg={pkg} inView={inView1} i={i} />)}
             </div>
 
@@ -348,7 +348,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 

@@ -16,35 +16,35 @@ export default function SubtleAccents() {
       >
         <defs>
           <linearGradient id="l1" x1="-250" y1="820" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#2563EB" stopOpacity="0" />
-            <stop offset="22%" stopColor="#2563EB" stopOpacity="0.5" />
-            <stop offset="78%" stopColor="#3B82F6" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0D0D0D" stopOpacity="0" />
+            <stop offset="22%" stopColor="#0D0D0D" stopOpacity="0.45" />
+            <stop offset="78%" stopColor="#111111" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#111111" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="l2" x1="-250" y1="80" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0" />
-            <stop offset="22%" stopColor="#0EA5E9" stopOpacity="0.42" />
-            <stop offset="78%" stopColor="#38BDF8" stopOpacity="0.42" />
-            <stop offset="100%" stopColor="#38BDF8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0D0D0D" stopOpacity="0" />
+            <stop offset="22%" stopColor="#0D0D0D" stopOpacity="0.38" />
+            <stop offset="78%" stopColor="#222222" stopOpacity="0.38" />
+            <stop offset="100%" stopColor="#222222" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="l3" x1="820" y1="-100" x2="1100" y2="1000" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#6366F1" stopOpacity="0" />
-            <stop offset="28%" stopColor="#6366F1" stopOpacity="0.36" />
-            <stop offset="72%" stopColor="#818CF8" stopOpacity="0.36" />
-            <stop offset="100%" stopColor="#818CF8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#888888" stopOpacity="0" />
+            <stop offset="28%" stopColor="#888888" stopOpacity="0.3" />
+            <stop offset="72%" stopColor="#AAAAAA" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#AAAAAA" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="frameStroke" x1="0" y1="0" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#2563EB" stopOpacity="0.22" />
-            <stop offset="50%" stopColor="#38BDF8" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#6366F1" stopOpacity="0.22" />
+            <stop offset="0%" stopColor="#0D0D0D" stopOpacity="0.18" />
+            <stop offset="50%" stopColor="#333333" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#0D0D0D" stopOpacity="0.18" />
           </linearGradient>
           <radialGradient id="glowTL" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 60) scale(520)">
-            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0D0D0D" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="#0D0D0D" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="glowBR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 840) scale(560)">
-            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
+            <stop offset="0%" stopColor="#444444" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="#444444" stopOpacity="0" />
           </radialGradient>
           <style>{`
             @media (prefers-reduced-motion: no-preference) {

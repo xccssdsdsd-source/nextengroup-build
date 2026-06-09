@@ -35,7 +35,7 @@ const socials = [
 
 export default function Contact() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
   const [showCalendly, setShowCalendly] = useState(false)

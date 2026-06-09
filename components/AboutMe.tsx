@@ -7,7 +7,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function AboutMe() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
     <section ref={ref} className="section-shell bg-white">

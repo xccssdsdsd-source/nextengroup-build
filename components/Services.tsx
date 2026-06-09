@@ -171,8 +171,8 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
 export default function Services() {
   const ref1 = useRef(null)
   const ref2 = useRef(null)
-  const inView1 = useInView(ref1, { once: true, margin: '-120px' })
-  const inView2 = useInView(ref2, { once: true, margin: '-120px' })
+  const inView1 = useInView(ref1, { once: true, margin: '-50px' })
+  const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {

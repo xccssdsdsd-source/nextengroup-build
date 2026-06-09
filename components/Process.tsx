@@ -31,7 +31,7 @@ const steps = [
 
 export default function Process() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
     <section id="proces" ref={ref} className="section-shell relative">

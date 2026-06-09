@@ -187,9 +187,9 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.78, ease }}
+            transition={{ duration: 0.68, ease }}
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#111827]">
@@ -285,9 +285,9 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView2 ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.78, ease }}
+            transition={{ duration: 0.68, ease }}
           >
             <span className="section-kicker">Automatyzacje i agenci AI</span>
             <h2 className="section-title">Przestań robić to, co AI może zrobić za Ciebie</h2>

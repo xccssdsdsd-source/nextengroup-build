@@ -8,9 +8,9 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const slideVariants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir * 60 }),
-  center: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: -(dir * 60) }),
+  enter: (dir: number) => ({ opacity: 0, x: dir * 56, scale: 0.97 }),
+  center: { opacity: 1, x: 0, scale: 1 },
+  exit: (dir: number) => ({ opacity: 0, x: -(dir * 56), scale: 0.97 }),
 }
 
 type LighthouseScore = { label: string; value: number }
@@ -163,9 +163,9 @@ export default function Portfolio() {
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
+          transition={{ duration: 0.65, ease }}
         >
           <div>
             <span className="section-kicker">Nasze realizacje</span>
@@ -199,7 +199,7 @@ export default function Portfolio() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.4, ease }}
+                transition={{ duration: 0.48, ease }}
                 className="grid md:grid-cols-[1.35fr_1fr]"
               >
                 <a
@@ -246,16 +246,40 @@ export default function Portfolio() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-6 flex justify-center items-center gap-3 sm:hidden">
-            {projects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
-                className="relative h-2 rounded-full focus-visible:outline-none transition-all duration-300"
-                style={{ width: i === currentIndex ? 24 : 8, background: i === currentIndex ? '#2563EB' : 'rgba(255,255,255,0.15)' }}
-                aria-label={`Realizacja ${i + 1}`}
-              />
-            ))}
+          <div className="mt-5 flex justify-center items-center gap-4 sm:hidden">
+            <m.button
+              onClick={prevProject}
+              whileTap={{ scale: 0.9 }}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(37,99,235,0.3)] bg-white text-[#2563EB] shadow-sm transition-all duration-200 hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.55)] active:scale-95"
+              aria-label="Poprzednia realizacja"
+            >
+              <ChevronLeft size={20} strokeWidth={2.5} />
+            </m.button>
+
+            <div className="flex items-center gap-2">
+              {projects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
+                  className="relative rounded-full focus-visible:outline-none transition-all duration-300"
+                  style={{
+                    width: i === currentIndex ? 22 : 7,
+                    height: 7,
+                    background: i === currentIndex ? '#2563EB' : 'rgba(37,99,235,0.22)',
+                  }}
+                  aria-label={`Realizacja ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <m.button
+              onClick={nextProject}
+              whileTap={{ scale: 0.9 }}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(37,99,235,0.3)] bg-white text-[#2563EB] shadow-sm transition-all duration-200 hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.55)] active:scale-95"
+              aria-label="Następna realizacja"
+            >
+              <ChevronRight size={20} strokeWidth={2.5} />
+            </m.button>
           </div>
         </m.div>
 

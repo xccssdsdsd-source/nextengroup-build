@@ -68,5 +68,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: 'https://getbuild.pl/regulamin',
+      lastModified: new Date('2026-06-01'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ]
 }

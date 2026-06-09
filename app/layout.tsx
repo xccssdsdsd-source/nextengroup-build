@@ -88,6 +88,8 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" type="image/png" href="/getbuild-logo-og.png" sizes="any" />
         <link rel="icon" href="/favicon.ico" />

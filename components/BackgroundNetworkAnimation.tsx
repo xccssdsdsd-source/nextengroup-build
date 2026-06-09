@@ -60,7 +60,7 @@ export default function BackgroundNetworkAnimation() {
     canvas.width = width
     canvas.height = height
 
-    const pointCount = window.innerWidth >= 1024 ? 35 : 20
+    const pointCount = window.innerWidth >= 1024 ? 30 : 16
 
     pointsRef.current = Array.from({ length: pointCount }, (_, i) => ({
       x: Math.random() * width,
@@ -70,22 +70,26 @@ export default function BackgroundNetworkAnimation() {
       opacity: (i % 3 === 0) ? 0.9 : (Math.random() * 0.6 + 0.35),
     }))
 
+    // Squared max distance — avoids sqrt per pair per frame
+    const maxDistance = Math.min(width, height) * 0.28
+    const maxDistSq = maxDistance * maxDistance
+
     const generateConnections = () => {
       const connections: Connection[] = []
       const points = pointsRef.current
-      const maxDistance = Math.min(width, height) * 0.28
 
       for (let i = 0; i < points.length; i++) {
         for (let j = i + 1; j < points.length; j++) {
           const dx = points[i].x - points[j].x
           const dy = points[i].y - points[j].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const distSq = dx * dx + dy * dy
 
-          if (distance < maxDistance) {
+          if (distSq < maxDistSq) {
+            const dist = Math.sqrt(distSq)
             connections.push({
               from: i,
               to: j,
-              opacity: 0.12 + (1 - distance / maxDistance) * 0.4,
+              opacity: 0.12 + (1 - dist / maxDistance) * 0.4,
             })
           }
         }
@@ -95,6 +99,10 @@ export default function BackgroundNetworkAnimation() {
     }
 
     connectionsRef.current = generateConnections()
+
+    // Regenerate connections every N frames, not every frame
+    let frameCount = 0
+    const REGEN_INTERVAL = 4
 
     const draw = (ctx: CanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, width, height)
@@ -150,7 +158,11 @@ export default function BackgroundNetworkAnimation() {
           point.y = Math.max(0, Math.min(height, point.y))
         })
 
-        connectionsRef.current = generateConnections()
+        // Recalculate connections periodically, not every frame
+        if (++frameCount >= REGEN_INTERVAL) {
+          connectionsRef.current = generateConnections()
+          frameCount = 0
+        }
       }
 
       draw(ctx)
@@ -176,7 +188,7 @@ export default function BackgroundNetworkAnimation() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ display: 'block' }}
+      style={{ display: 'block', willChange: 'contents' }}
     />
   )
 }

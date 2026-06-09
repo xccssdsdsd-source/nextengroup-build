@@ -2,6 +2,7 @@
 
 import { m, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -41,12 +42,13 @@ export default function TrustBar() {
               whileHover={{ y: -4 }}
               className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#f9fafb] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(37,99,235,0.10),0_8px_28px_rgba(37,99,235,0.08)]"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
+              <div className="aspect-[4/3] overflow-hidden relative">
+                <Image
                   src={item.img}
                   alt={item.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="flex items-center justify-between px-3 py-2.5">

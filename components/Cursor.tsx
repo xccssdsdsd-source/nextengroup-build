@@ -18,8 +18,8 @@ export default function Cursor() {
       ringX += (mouseX - ringX) * 0.12
       ringY += (mouseY - ringY) * 0.12
       if (ringRef.current) {
-        ringRef.current.style.left = ringX + 'px'
-        ringRef.current.style.top = ringY + 'px'
+        // Use transform instead of left/top — composited on GPU, no layout/paint
+        ringRef.current.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`
       }
       const settled = Math.abs(mouseX - ringX) < 0.08 && Math.abs(mouseY - ringY) < 0.08
       if (settled) {

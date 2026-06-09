@@ -36,8 +36,10 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
     if (!sizeInit) return
     let size = sizeInit
 
-    const NODE_COUNT = Math.max(50, Math.floor((size.W * size.H) / 30000))
+    // Fewer nodes — was max(50,...), reduced for better perf
+    const NODE_COUNT = Math.max(25, Math.floor((size.W * size.H) / 60000))
     const MAX_DIST = Math.min(200, size.W / 4)
+    const MAX_DIST_SQ = MAX_DIST * MAX_DIST // avoid sqrt in hot path
 
     const nodes = Array.from({ length: NODE_COUNT }, () => ({
       x: Math.random() * size.W,
@@ -52,13 +54,14 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
 
       ctx.clearRect(0, 0, W, H)
 
+      // Use squared distance check — skip sqrt unless inside range
       for (let i = 0; i < NODE_COUNT; i++) {
         for (let j = i + 1; j < NODE_COUNT; j++) {
           const dx = nodes[i].x - nodes[j].x
           const dy = nodes[i].y - nodes[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.4
+          const distSq = dx * dx + dy * dy
+          if (distSq < MAX_DIST_SQ) {
+            const alpha = (1 - Math.sqrt(distSq) / MAX_DIST) * 0.4
             ctx.beginPath()
             ctx.moveTo(nodes[i].x, nodes[i].y)
             ctx.lineTo(nodes[j].x, nodes[j].y)
@@ -133,6 +136,7 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
       ref={canvasRef}
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 z-0 h-full w-full ${className}`}
+      style={{ willChange: 'contents' }}
     />
   )
 }

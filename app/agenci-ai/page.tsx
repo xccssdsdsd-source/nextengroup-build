@@ -11,17 +11,17 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Agenci AI dla Firm | Inteligentna ObsĹ‚uga 24/7 | Getbuild',
-  description: 'WdraĹĽamy inteligentnych agentĂłw AI pracujÄ…cych za Ciebie caĹ‚Ä… dobÄ™. ObsĹ‚uga zapytaĹ„, porzÄ…dkowanie danych, wsparcie decyzji. Getbuild â€” agenci AI dla biznesu.',
-  keywords: ['agenci AI', 'chatbot AI', 'obsĹ‚uga klienta AI', 'agent AI', 'sztuczna inteligencja', 'customer service bot', 'AI dla firmy'],
+  title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
+  description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji. Getbuild — agenci AI dla biznesu.',
+  keywords: ['agenci AI', 'chatbot AI', 'obsługa klienta AI', 'agent AI', 'sztuczna inteligencja', 'customer service bot', 'AI dla firmy'],
   alternates: {
     canonical: `${siteUrl}/agenci-ai`,
   },
   openGraph: {
     type: 'website',
     url: `${siteUrl}/agenci-ai`,
-    title: 'Agenci AI dla Firm | Inteligentna ObsĹ‚uga 24/7 | Getbuild',
-    description: 'WdraĹĽamy inteligentnych agentĂłw AI pracujÄ…cych za Ciebie caĹ‚Ä… dobÄ™. ObsĹ‚uga zapytaĹ„, porzÄ…dkowanie danych, wsparcie decyzji.',
+    title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
+    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agenci AI dla Firm | Inteligentna ObsĹ‚uga 24/7 | Getbuild',
-    description: 'WdraĹĽamy inteligentnych agentĂłw AI pracujÄ…cych za Ciebie caĹ‚Ä… dobÄ™. ObsĹ‚uga zapytaĹ„, porzÄ…dkowanie danych, wsparcie decyzji.',
+    title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
+    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
     images: [`${siteUrl}/getbuild-logo-og.png`],
   },
 }
@@ -45,8 +45,8 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Agenci AI dla firm',
-  description: 'Inteligentni agenci AI pracujÄ…cy 24/7. ObsĹ‚ugujÄ… zapytania, porzÄ…dkujÄ… dane i wspierajÄ… decyzje biznesowe.',
-  serviceType: 'WdroĹĽenia agentĂłw AI',
+  description: 'Inteligentni agenci AI pracujący 24/7. Obsługują zapytania, porządkują dane i wspierają decyzje biznesowe.',
+  serviceType: 'Wdrożenia agentów AI',
   provider: {
     '@type': 'Organization',
     '@id': 'https://getbuild.pl/#organization',
@@ -65,34 +65,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Czym agent AI rĂłĹĽni siÄ™ od zwykĹ‚ego chatbota?',
+      name: 'Czym agent AI różni się od zwykłego chatbota?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ZwykĹ‚y chatbot odpowiada na podstawie gotowych skryptĂłw i sĹ‚Ăłw kluczowych. Agent AI rozumie kontekst rozmowy, podejmuje decyzje i dostosowuje siÄ™ do nowych sytuacji â€” jak czĹ‚owiek, tylko bez przestojĂłw i w dowolnym jÄ™zyku.',
+        text: 'Zwykły chatbot odpowiada na podstawie gotowych skryptów i słów kluczowych. Agent AI rozumie kontekst rozmowy, podejmuje decyzje i dostosowuje się do nowych sytuacji — jak człowiek, tylko bez przestojów i w dowolnym języku.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Czy agent bÄ™dzie znaĹ‚ mojÄ… ofertÄ™ i procesy firmy?',
+      name: 'Czy agent będzie znał moją ofertę i procesy firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Szkolimy agenta na wiedzy o Twojej firmie, produktach, procesach i najczÄ™stszych pytaniach klientĂłw. DziaĹ‚a w Twoim jÄ™zyku i zna TwojÄ… ofertÄ™.',
+        text: 'Tak. Szkolimy agenta na wiedzy o Twojej firmie, produktach, procesach i najczęstszych pytaniach klientów. Działa w Twoim języku i zna Twoją ofertę.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Na jakich kanaĹ‚ach moĹĽe dziaĹ‚aÄ‡ agent AI?',
+      name: 'Na jakich kanałach może działać agent AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Agent moĹĽe dziaĹ‚aÄ‡ na stronie internetowej, emailu, portalach spoĹ‚ecznoĹ›ciowych (Facebook, Instagram) lub w wewnÄ™trznych systemach firmy. Integrujemy go z narzÄ™dziami, ktĂłrych juĹĽ uĹĽywasz.',
+        text: 'Agent może działać na stronie internetowej, emailu, portalach społecznościowych (Facebook, Instagram) lub w wewnętrznych systemach firmy. Integrujemy go z narzędziami, których już używasz.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Ile trwa wdroĹĽenie agenta AI?',
+      name: 'Ile trwa wdrożenie agenta AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pierwsze dziaĹ‚ajÄ…ce demo agenta moĹĽesz zobaczyÄ‡ juĹĽ w kilka dni od pierwszego spotkania. PeĹ‚ne wdroĹĽenie z testami i integracjami zajmuje od 1 do 3 tygodni.',
+        text: 'Pierwsze działające demo agenta możesz zobaczyć już w kilka dni od pierwszego spotkania. Pełne wdrożenie z testami i integracjami zajmuje od 1 do 3 tygodni.',
       },
     },
   ],
@@ -114,10 +114,10 @@ export default function AgenciAI() {
         <ProcessFlowBackground />
         <div className="relative z-10 mx-auto max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Agenci AI, ktĂłrzy pracujÄ… za Ciebie 24/7
+            Agenci AI, którzy pracują za Ciebie 24/7
           </h1>
           <p className="text-lg leading-[1.7] text-[#374151] mb-8">
-            Zaawansowani agenci AI pracujÄ…cy bez przestojĂłw. ObsĹ‚ugujÄ… zapytania, porzÄ…dkujÄ… dane i wspierajÄ… Twoje decyzje biznesowe.
+            Zaawansowani agenci AI pracujący bez przestojów. Obsługują zapytania, porządkują dane i wspierają Twoje decyzje biznesowe.
           </p>
         </div>
       </section>
@@ -125,17 +125,17 @@ export default function AgenciAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Czym siÄ™ rĂłĹĽniÄ… agenci od automatyzacji
+            Czym się różnią agenci od automatyzacji
           </h2>
           <div className="space-y-6 text-[#6b7280] leading-[1.7]">
             <p>
-              Agenci AI to nie zwykĹ‚a automatyzacja. ZwykĹ‚a automatyzacja wykonuje powtarzalne zadania na podstawie ustalonych reguĹ‚. Agent AI jest inteligentny â€” rozumie kontekst, podejmuje decyzje i dostosowuje siÄ™ do nowych sytuacji.
+              Agenci AI to nie zwykła automatyzacja. Zwykła automatyzacja wykonuje powtarzalne zadania na podstawie ustalonych reguł. Agent AI jest inteligentny — rozumie kontekst, podejmuje decyzje i dostosowuje się do nowych sytuacji.
             </p>
             <p>
-              Agent AI moĹĽe obsĹ‚ugiwaÄ‡ zapytania klientĂłw w naturalnym jÄ™zyku, zrozumieÄ‡, czego naprawdÄ™ potrzebuje, i udzieliÄ‡ sensownej odpowiedzi. MoĹĽe porzÄ…dkowaÄ‡ zĹ‚oĹĽone dane z wielu ĹşrĂłdeĹ‚, wyciÄ…gaÄ‡ wnioski i generowaÄ‡ raporty. MoĹĽe nawet wspieraÄ‡ Ciebie w podejmowaniu decyzji biznesowych.
+              Agent AI może obsługiwać zapytania klientów w naturalnym języku, zrozumieć, czego naprawdę potrzebuje, i udzielić sensownej odpowiedzi. Może porządkować złożone dane z wielu źródeł, wyciągać wnioski i generować raporty. Może nawet wspierać Ciebie w podejmowaniu decyzji biznesowych.
             </p>
             <p>
-              Agenci pracujÄ… caĹ‚Ä… dobÄ™, bez przestojĂłw i zmÄ™czenia. Nie poprawiajÄ… sobie kawy, nie biora wolnych, nie przychodzÄ… do pracy w zĹ‚ym nastroju. SÄ… zawsze dostÄ™pni i zawsze w formie.
+              Agenci pracują całą dobę, bez przestojów i zmęczenia. Nie poprawiają sobie kawy, nie biora wolnych, nie przychodzą do pracy w złym nastroju. Są zawsze dostępni i zawsze w formie.
             </p>
           </div>
         </div>
@@ -144,43 +144,43 @@ export default function AgenciAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Jacy agenci mogÄ… pracowaÄ‡ dla Ciebie
+            Jacy agenci mogą pracować dla Ciebie
           </h2>
           <div className="space-y-4 text-[#6b7280] leading-[1.7]">
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
               </div>
               <div>
-                <h3 className="font-semibold text-[#0A0A0F] mb-1">Agent obsĹ‚ugi klienta</h3>
-                <p>Odpowiada na pytania, rozwiÄ…zuje problemy i kieruje klientĂłw do wĹ‚aĹ›ciwych dziaĹ‚Ăłw. Pracuje na chacie, emailu czy portalach spoĹ‚ecznoĹ›ciowych.</p>
+                <h3 className="font-semibold text-[#0A0A0F] mb-1">Agent obsługi klienta</h3>
+                <p>Odpowiada na pytania, rozwiązuje problemy i kieruje klientów do właściwych działów. Pracuje na chacie, emailu czy portalach społecznościowych.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
               </div>
               <div>
                 <h3 className="font-semibold text-[#0A0A0F] mb-1">Agent analityk</h3>
-                <p>Analizuje dane biznesowe, wyciÄ…ga wnioski i przygotowuje raporty. Dostrzega trendy i anomalie, ktĂłre mogÄ… Ci ujĹ›Ä‡.</p>
+                <p>Analizuje dane biznesowe, wyciąga wnioski i przygotowuje raporty. Dostrzega trendy i anomalie, które mogą Ci ujść.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
               </div>
               <div>
                 <h3 className="font-semibold text-[#0A0A0F] mb-1">Agent badawczy</h3>
-                <p>Przeszukuje internet, zbiera informacje o konkurentach, trendach i rynku. OszczÄ™dza Ci wiele godzin rÄ™cznej pracy.</p>
+                <p>Przeszukuje internet, zbiera informacje o konkurentach, trendach i rynku. Oszczędza Ci wiele godzin ręcznej pracy.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">âś“</div>
+                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#2563EB] text-white text-sm font-bold">✓</div>
               </div>
               <div>
                 <h3 className="font-semibold text-[#0A0A0F] mb-1">Agent wsparcia decyzji</h3>
-                <p>Analizuje dane biznesowe i pomaga Ci w podejmowaniu strategicznych decyzji. PorĂłwnuje warianty, ocenia ryzyko i sugeruje najlepsze rozwiÄ…zania.</p>
+                <p>Analizuje dane biznesowe i pomaga Ci w podejmowaniu strategicznych decyzji. Porównuje warianty, ocenia ryzyko i sugeruje najlepsze rozwiązania.</p>
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@ export default function AgenciAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            NajczÄ™stsze pytania
+            Najczęstsze pytania
           </h2>
           <div className="space-y-6">
             {faqItems.map((item) => (
@@ -206,13 +206,13 @@ export default function AgenciAI() {
       <section className="relative bg-[#F7F9FF] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Chcesz wdroĹĽyÄ‡ agenta do Twojego biznesu?
+            Chcesz wdrożyć agenta do Twojego biznesu?
           </h2>
           <a
             href="/#kontakt"
             className="inline-flex items-center gap-3 rounded-xl bg-[#2563EB] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0 8px 24px rgba(37,99,235,0.20)] hover:-translate-y-0.5"
           >
-            UmĂłw rozmowÄ™
+            Umów rozmowę
           </a>
         </div>
       </section>

@@ -155,18 +155,23 @@ export default function PMApartamentsCase() {
 
       <section className="px-6 sm:px-8 pb-24">
         <div className="max-w-4xl mx-auto">
-          <blockquote
-            className="rounded-2xl border border-black/[0.07] bg-[#F8F9FF] p-8 sm:p-10"
+          <div
+            className="rounded-2xl border border-black/[0.07] bg-[#F8F9FF] p-8 sm:p-10 text-center"
             style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.04)' }}
           >
-            <p className="text-lg sm:text-xl leading-[1.65] text-[#0A0A0A] font-medium mb-6 italic">
-              &ldquo;do uzupełnienia&rdquo;
+            <p className="text-lg sm:text-xl leading-[1.65] text-[#0A0A0A] font-medium mb-4">
+              Chcesz podobną stronę dla swojej firmy?
             </p>
-            <div>
-              <div className="text-sm font-bold text-[#0A0A0A]">właściciel PM Apartments</div>
-              <div className="text-xs text-[#9CA3AF] mt-0.5">Wrocław</div>
-            </div>
-          </blockquote>
+            <p className="text-[14px] leading-[1.7] text-[#6B7280] mb-6">
+              Wdrożenie w 72h, automatyczne potwierdzenia zapytań i galeria realizacji gotowa do rozbudowy.
+            </p>
+            <a
+              href="/#kontakt"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0055FF] px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(0,85,255,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,85,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
+            >
+              Umów bezpłatną rozmowę
+            </a>
+          </div>
         </div>
       </section>
 

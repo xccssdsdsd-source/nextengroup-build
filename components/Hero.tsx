@@ -9,6 +9,7 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const easeOut = 'easeOut'
 const carouselWords = ['strony internetowe', 'automatyzację AI', 'agentów AI']
+const ctaMobileWords = ['Umów bezpłatną wizytę', 'Zapytaj o wycenę', 'Porozmawiajmy']
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
@@ -104,9 +105,29 @@ export default function Hero() {
             <a
               href="#kontakt"
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold"
+              className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold overflow-hidden"
             >
-              Kontakt
+              {/* Mobile: animated carousel CTA */}
+              <span className="sm:hidden" style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                {!isMounted ? (
+                  ctaMobileWords[0]
+                ) : (
+                  <AnimatePresence mode="wait">
+                    <m.span
+                      key={titleNumber}
+                      style={{ display: 'inline-block' }}
+                      initial={{ opacity: 0, y: '110%' }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: '-70%' }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {ctaMobileWords[titleNumber % ctaMobileWords.length]}
+                    </m.span>
+                  </AnimatePresence>
+                )}
+              </span>
+              {/* Desktop: static text */}
+              <span className="hidden sm:inline">Kontakt</span>
             </a>
             <a
               href="#portfolio"

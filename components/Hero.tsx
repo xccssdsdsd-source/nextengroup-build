@@ -125,7 +125,24 @@ export default function Hero() {
                   </AnimatePresence>
                 )}
               </span>
-              <span className="hidden sm:inline">Kontakt</span>
+              <span className="hidden sm:inline" style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                {!isMounted ? (
+                  ctaMobileWords[0]
+                ) : (
+                  <AnimatePresence mode="wait">
+                    <m.span
+                      key={titleNumber}
+                      style={{ display: 'inline-block' }}
+                      initial={{ opacity: 0, y: '110%' }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: '-70%' }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {ctaMobileWords[titleNumber % ctaMobileWords.length]}
+                    </m.span>
+                  </AnimatePresence>
+                )}
+              </span>
             </a>
             <a
               href="#portfolio"

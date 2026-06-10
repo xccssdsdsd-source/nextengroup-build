@@ -105,10 +105,10 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-all duration-300 ${isHovered ? '-translate-y-1' : ''} ${
         pkg.featured
-          ? 'border-[rgba(29,78,216,0.2)] shadow-[0_0_0_2px_rgba(29,78,216,0.12),_0_4px_30px_rgba(37,99,235,0.28),_0_0_60px_rgba(37,99,235,0.14)]'
+          ? 'border-[rgba(29,78,216,0.2)] shadow-[0_0_0_2px_rgba(29,78,216,0.08),_0_4px_24px_rgba(37,99,235,0.12),_0_0_40px_rgba(37,99,235,0.06)]'
           : isHovered
-          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
-          : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
+          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
+          : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
       }`}
       style={{ background: '#FFFFFF' }}
     >
@@ -442,8 +442,8 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
-          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
-          : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
+          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
+          : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
       }`}
       style={{
         background: '#FFFFFF',

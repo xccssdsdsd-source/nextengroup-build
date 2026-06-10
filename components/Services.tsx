@@ -12,15 +12,17 @@ const packages = [
     name: 'Landing',
     forWho: 'Nowa firma albo jedna usługa, która ma szybko zacząć łapać kontakty.',
     whatYouGet: 'Jedna strona nastawiona na jeden cel. Oferta, dowód, formularz kontaktowy, błyskawiczne ładowanie i pełne dopięcie na telefonie.',
-    price: '1499 zł',
+    price: '2099 zł',
     sub: null as string | null,
+    featured: false,
   },
   {
     name: 'Strona kompletna',
     forWho: 'Firma, która chce wyglądać poważnie od pierwszej sekundy i mieć pełną stronę z ofertą.',
     whatYouGet: 'Wszystko z landingu plus rozbudowana struktura: kilka sekcji, FAQ, formularz, mapa i treść pisana pod sprzedaż.',
-    price: '1999 zł',
+    price: '2499 zł',
     sub: 'Możliwość rozłożenia na raty miesięczne.' as string | null,
+    featured: true,
   },
   {
     name: 'Strona z panelem',
@@ -28,6 +30,7 @@ const packages = [
     whatYouGet: 'Stronę plus panel administracyjny po polsku, prosty w obsłudze. Sam dodajesz realizacje, wpisy na bloga i zmieniasz treści.',
     price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
+    featured: false,
   },
 ]
 
@@ -94,28 +97,40 @@ type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boole
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-      <m.div
+    <m.div
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
-        isHovered
+        pkg.featured
+          ? 'border-[#2563EB] shadow-[0_4px_30px_rgba(37,99,235,0.18),_0_0_0_1px_rgba(37,99,235,0.25)]'
+          : isHovered
           ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
       }`}
-      style={{
-        background: '#FFFFFF',
-      }}
+      style={{ background: '#FFFFFF' }}
     >
+      {pkg.featured && (
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#2563EB] rounded-t-2xl" />
+      )}
+      {pkg.featured ? (
+        <div className="mb-3 mt-1">
+          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-white bg-[#2563EB] rounded-full">
+            Najpopularniejszy
+          </span>
+        </div>
+      ) : (
+        <div className="mb-3 mt-1 h-[22px]" />
+      )}
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#111827] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {pkg.name}
       </h3>
       <p className="mt-2 text-[13px] leading-[1.6] text-[#6B7280]">{pkg.forWho}</p>
       <p className="mt-3 text-[14px] leading-[1.72] text-[#6B7280]">{pkg.whatYouGet}</p>
       {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#6B7280]">{pkg.sub}</p>}
-      <div className="mt-5 border-t border-[rgba(255,255,255,0.06)] pt-4">
+      <div className="mt-5 border-t border-[rgba(0,0,0,0.06)] pt-4">
         <span className="text-[1.1rem] font-bold text-[#111827]">{pkg.price}</span>
       </div>
     </m.div>

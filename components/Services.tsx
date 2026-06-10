@@ -103,9 +103,9 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
+      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-all duration-300 ${isHovered ? '-translate-y-1' : ''} ${
         pkg.featured
-          ? 'border-[#2563EB] shadow-[0_0_0_1px_rgba(37,99,235,0.35),_0_4px_30px_rgba(37,99,235,0.22),_0_0_50px_rgba(37,99,235,0.10)]'
+          ? 'border-[rgba(29,78,216,0.2)] shadow-[0_0_0_2px_rgba(29,78,216,0.12),_0_4px_30px_rgba(37,99,235,0.28),_0_0_60px_rgba(37,99,235,0.14)]'
           : isHovered
           ? 'border-[rgba(0,0,0,0.1)] shadow-[0_20px_40px_rgba(0,0,0,0.3),_0_0_0_1px_rgba(0,0,0,0.1)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
@@ -330,7 +330,7 @@ export default function Services() {
             </h3>
             <ul className="flex flex-col gap-2.5">
               {careItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[14px] leading-[1.65] text-[#6B7280]">
+                <li key={i} className="flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#6B7280] transition-colors duration-200 hover:bg-[rgba(37,99,235,0.04)]">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#93C5FD]" style={{ background: 'rgba(37,99,235,0.15)' }}>✓</span>
                   {item}
                 </li>

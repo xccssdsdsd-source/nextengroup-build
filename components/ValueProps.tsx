@@ -52,12 +52,12 @@ export default function ValueProps() {
               <m.li
                 key={idx}
                 variants={{ hidden: { opacity: 0, y: 28, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
-                className="value-card rounded-2xl p-5 sm:p-6 flex flex-col"
+                className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col"
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: 'rgba(37,99,235,0.08)' }}>
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110" style={{ background: 'rgba(37,99,235,0.08)' }}>
                   <Icon size={20} strokeWidth={1.8} style={{ color: '#2563EB' }} />
                 </div>
-                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug transition-colors duration-200 group-hover:text-[#1D4ED8]" style={{ fontFamily: 'var(--font-syne)' }}>
                   {value.title}
                 </h3>
                 <p className="mt-2 text-[13.5px] leading-[1.65] text-[#555555]">

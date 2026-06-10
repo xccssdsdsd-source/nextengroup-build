@@ -63,7 +63,7 @@ export default function Hero() {
               }}
             >
               <span className="block text-balance">Strony, które pozyskują klientów.</span>
-              <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
+              <span className="block text-balance" style={{ background: 'linear-gradient(135deg, #111827 30%, #1D4ED8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Automatyzacje, które obsługują ich za Ciebie.</span>
             </h1>
           </div>
 
@@ -95,6 +95,25 @@ export default function Hero() {
                 </span>
               )}
             </p>
+          </div>
+
+          {/* Trust indicators */}
+          <div
+            className="hero-from-left mt-4 flex items-center justify-center gap-6 text-xs text-[#888]"
+            style={{ animationDelay: '140ms' }}
+          >
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Bez umów długoterminowych
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Projekt gratis przed startem
+            </span>
+            <span className="hidden sm:flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Wsparcie 24/7
+            </span>
           </div>
 
           {/* CTA buttons — animates in third */}
@@ -144,12 +163,12 @@ export default function Hero() {
           <div className="hero-device-tilt w-full">
             <div
               style={{
-                borderRadius: '20px',
+                borderRadius: '24px',
                 backgroundColor: '#FFFFFF',
                 maxWidth: '1100px',
                 maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',
-                boxShadow: '0 0 80px rgba(0,0,0,0.06), 0 40px 80px rgba(0,0,0,0.1)',
+                boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 20px 60px rgba(0,0,0,0.08), 0 40px 80px rgba(0,0,0,0.06)',
                 overflow: 'hidden',
                 willChange: 'transform',
                 position: 'relative',

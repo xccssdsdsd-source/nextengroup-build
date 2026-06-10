@@ -36,10 +36,6 @@ const faqs = [
     q: 'Czy strona będzie dopracowana na telefonie?',
     a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
   },
-  {
-    q: 'Ile kosztuje współpraca?',
-    a: 'Wycena zależy od zakresu — od samej strony, przez automatyzacje, po pełne wdrożenie agenta AI. Skontaktuj się z nami, a po krótkiej rozmowie przygotujemy ofertę dopasowaną do Twoich celów i budżetu.',
-  },
 ] as const
 
 const faqSchema = {

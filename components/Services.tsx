@@ -174,6 +174,8 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
+  const [expanded1, setExpanded1] = useState(false)
+  const [expanded2, setExpanded2] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()

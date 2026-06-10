@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
-      className="relative overflow-hidden pt-52 sm:pt-56 md:pt-64 bg-white"
+      className="relative overflow-hidden pt-40 sm:pt-56 md:pt-64 bg-white"
     >
       <BackgroundPaths />
 
@@ -47,7 +47,7 @@ export default function Hero() {
         <div className="w-full text-center">
           {/* Headline — animates in first */}
           <div
-            className="hero-fade-in mx-auto mb-6 sm:mb-8"
+            className="hero-from-left mx-auto mb-6 sm:mb-8"
             style={{ animationDelay: '0ms' }}
           >
             <h1
@@ -68,7 +68,7 @@ export default function Hero() {
 
           {/* Carousel subline — animates in second */}
           <div
-            className="hero-fade-in"
+            className="hero-from-right"
             style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem', animationDelay: '90ms' }}
           >
             <p className="text-sm sm:text-base leading-relaxed text-[#555555]">
@@ -98,7 +98,7 @@ export default function Hero() {
 
           {/* CTA buttons — animates in third */}
           <div
-            className="hero-fade-in mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
+            className="hero-from-left mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0"
             style={{ animationDelay: '200ms' }}
           >
             <a
@@ -120,7 +120,7 @@ export default function Hero() {
 
         {/* Device mockup — animates in last */}
         <div
-          className="hero-fade-in mt-12 sm:mt-14 flex justify-center pb-0"
+          className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0"
           style={{ perspective: '1400px', animationDelay: '310ms' }}
         >
           <div className="hero-device-tilt w-full">

@@ -176,6 +176,7 @@ export default function Services() {
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
   const [expanded1, setExpanded1] = useState(false)
   const [expanded2, setExpanded2] = useState(false)
+  const [seoExpanded, setSeoExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -204,7 +205,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
               {packages.map((pkg, i) => <PackageCard key={pkg.name} pkg={pkg} inView={inView1} i={i} />)}
             </div>
 
@@ -245,24 +246,45 @@ export default function Services() {
             <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
               SEO i GEO wbudowane w każdą stronę
             </h3>
-            <p className="mb-5 text-[14px] leading-[1.7] text-[#6B7280]">
+            <p className="text-[14px] leading-[1.7] text-[#6B7280]">
               Każdą stronę budujemy tak, żeby Google ją rozumiał i żeby modele AI jak ChatGPT, Gemini czy Perplexity mogły ją cytować jako wiarygodne źródło. Nie dokładamy SEO na końcu, budujemy je od środka.
             </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
-                { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
-                { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
-                { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
-                { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
-                { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
-              ].map((item) => (
-                <div key={item.label} className="rounded-xl border border-[rgba(255,255,255,0.06)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
-                  <p className="mb-1 text-[13.5px] font-semibold text-[#111827]">{item.label}</p>
-                  <p className="text-[13px] leading-[1.65] text-[#6B7280]">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+
+            <AnimatePresence initial={false}>
+              {seoExpanded && (
+                <m.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.36, ease }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {[
+                      { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
+                      { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
+                      { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
+                      { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
+                      { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
+                      { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-xl border border-[rgba(255,255,255,0.06)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
+                        <p className="mb-1 text-[13.5px] font-semibold text-[#111827]">{item.label}</p>
+                        <p className="text-[13px] leading-[1.65] text-[#6B7280]">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </m.div>
+              )}
+            </AnimatePresence>
+
+            <button
+              onClick={() => setSeoExpanded((v) => !v)}
+              aria-expanded={seoExpanded}
+              className="mt-5 w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
+            >
+              {seoExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            </button>
           </m.div>
 
           <m.div
@@ -326,7 +348,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 

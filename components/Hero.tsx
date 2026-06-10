@@ -107,25 +107,7 @@ export default function Hero() {
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
               className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold overflow-hidden"
             >
-              <span className="sm:hidden" style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
-                {!isMounted ? (
-                  ctaMobileWords[0]
-                ) : (
-                  <AnimatePresence mode="wait">
-                    <m.span
-                      key={titleNumber}
-                      style={{ display: 'inline-block' }}
-                      initial={{ opacity: 0, y: '110%' }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: '-70%' }}
-                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      {ctaMobileWords[titleNumber % ctaMobileWords.length]}
-                    </m.span>
-                  </AnimatePresence>
-                )}
-              </span>
-              <span className="hidden sm:inline" style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
+              <span style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
                 {!isMounted ? (
                   ctaMobileWords[0]
                 ) : (

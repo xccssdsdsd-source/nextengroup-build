@@ -18,20 +18,22 @@ body::-webkit-scrollbar,
 
 :root {
   --nav-h: 100px;
-  --bg-base: #F9F9F7;
+  --bg-base: #FAFAF9;
   --bg-surface: #FFFFFF;
   --bg-elevated: #FAFAF8;
   --border: rgba(0, 0, 0, 0.06);
   --border-accent: rgba(0, 0, 0, 0.1);
-  --accent: #2563EB;
-  --accent-glow: rgba(37, 99, 235, 0.25);
+  --accent: #1D4ED8;
+  --accent-glow: rgba(29, 78, 216, 0.2);
+  --accent-warm: #F59E0B;
+  --accent-warm-glow: rgba(245, 158, 11, 0.15);
   --text-primary: #1A1A1A;
   --text-secondary: #555555;
   --text-muted: #999999;
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-blue: 0 4px 14px rgba(37, 99, 235, 0.15), 0 8px 32px rgba(37, 99, 235, 0.10);
+  --shadow-blue: 0 4px 14px rgba(29, 78, 216, 0.12), 0 8px 32px rgba(29, 78, 216, 0.08);
 }
 
 *,
@@ -67,8 +69,8 @@ select {
 }
 
 ::selection {
-  background: rgba(0, 0, 0, 0.15);
-  color: var(--text-primary);
+  background: rgba(29, 78, 216, 0.12);
+  color: #1D4ED8;
 }
 
 .glass {
@@ -107,13 +109,13 @@ select {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.7rem;
-  background: rgba(37, 99, 235, 0.07);
-  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: rgba(29, 78, 216, 0.06);
+  border: 1px solid rgba(29, 78, 216, 0.14);
   border-radius: 9999px;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #2563EB;
+  color: #1D4ED8;
   font-weight: 700;
   font-family: var(--font-syne), sans-serif;
 }
@@ -177,13 +179,13 @@ select {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   border-radius: 0.5rem;
   color: #ffffff;
   font-family: var(--font-syne), sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 15px rgba(29, 78, 216, 0.25), 0 1px 3px rgba(0,0,0,0.08);
   position: relative;
   padding: 0.875rem 1.5rem;
   font-size: 0.9375rem;
@@ -203,8 +205,9 @@ select {
 }
 
 .btn-primary:hover {
-  background: #3b82f6;
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  box-shadow: 0 8px 30px rgba(29, 78, 216, 0.35), 0 2px 6px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
@@ -232,9 +235,9 @@ select {
 
 .value-card {
   background: var(--bg-surface);
-  border: 1px solid #E8E8E8;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
   padding: 1.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
@@ -258,9 +261,16 @@ select {
 }
 
 .value-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #E8E8E8;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(29, 78, 216, 0.08), 0 4px 12px rgba(0,0,0,0.06);
+  border-color: rgba(29, 78, 216, 0.12);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent);
+  margin: 0 auto;
+  max-width: 80%;
 }
 
 .realizacja-card {
@@ -637,7 +647,7 @@ select {
   font-size: 2.25rem;
   letter-spacing: -0.04em;
   line-height: 1;
-  color: #BBBBBB;
+  color: rgba(29, 78, 216, 0.15);
 }
 
 @media (hover: none), (pointer: coarse) {

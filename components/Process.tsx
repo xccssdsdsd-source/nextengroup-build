@@ -34,7 +34,7 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <section id="proces" ref={ref} className="section-shell relative">
+    <section id="proces" ref={ref} className="section-shell relative" style={{ background: '#ffffff' }}>
       <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"

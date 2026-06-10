@@ -106,23 +106,20 @@ select {
 .section-kicker {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 9999px;
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #999999;
+  color: #2563EB;
   font-weight: 700;
   font-family: var(--font-syne), sans-serif;
 }
 
 .section-kicker::before {
-  content: '';
-  display: inline-block;
-  width: 22px;
-  height: 2px;
-  background: #999999;
-  border-radius: 2px;
-  flex-shrink: 0;
+  content: none;
 }
 
 .section-title {
@@ -215,7 +212,7 @@ select {
 }
 
 .btn-ghost {
-  border: 1.5px solid #0D0D0D;
+  border: 1.5px solid rgba(0, 0, 0, 0.22);
   border-radius: 0.5rem;
   color: #0D0D0D;
   background: transparent;
@@ -229,7 +226,7 @@ select {
 
 .btn-ghost:hover {
   background: rgba(0, 0, 0, 0.04);
-  border-color: #0D0D0D;
+  border-color: rgba(0, 0, 0, 0.45);
   color: #0D0D0D;
 }
 

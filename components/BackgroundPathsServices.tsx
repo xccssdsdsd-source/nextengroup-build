@@ -1,9 +1,9 @@
 'use client'
 
 const paths = [
-  { d: 'M -50 300 Q 150 200 350 180 Q 550 160 800 100', color: '#06B6D4', width: 1.0 },
-  { d: 'M -50 360 Q 130 240 310 220 Q 510 200 800 160', color: '#22D3EE', width: 0.5 },
-  { d: 'M 800 100 Q 600 200 400 250 Q 200 300 -50 400', color: '#0891B2', width: 0.7 },
+  { d: 'M -50 300 Q 150 200 350 180 Q 550 160 800 100', color: '#1D4ED8', width: 1.0 },
+  { d: 'M -50 360 Q 130 240 310 220 Q 510 200 800 160', color: '#3B82F6', width: 0.5 },
+  { d: 'M 800 100 Q 600 200 400 250 Q 200 300 -50 400', color: '#2563EB', width: 0.7 },
 ]
 
 const nodes = [
@@ -90,7 +90,7 @@ export default function BackgroundPathsServices() {
             cy={node.cy}
             r={node.r}
             fill="rgba(255, 255, 255, 0.9)"
-            stroke="rgba(59, 130, 246, 0.35)"
+            stroke="rgba(29, 78, 216, 0.25)"
             strokeWidth="1"
             className={`bp-node bp-node-${index + 1}`}
           />

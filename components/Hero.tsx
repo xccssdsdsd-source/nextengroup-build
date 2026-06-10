@@ -168,7 +168,7 @@ export default function Hero() {
                 maxWidth: '1100px',
                 maxHeight: 'clamp(180px, 40vw, 400px)',
                 margin: '0 auto',
-                boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 20px 60px rgba(0,0,0,0.08), 0 40px 80px rgba(0,0,0,0.06)',
+                boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 16px 48px rgba(0,0,0,0.06), 0 32px 64px rgba(0,0,0,0.04)',
                 overflow: 'hidden',
                 willChange: 'transform',
                 position: 'relative',

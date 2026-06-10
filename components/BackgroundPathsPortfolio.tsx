@@ -1,9 +1,9 @@
 'use client'
 
 const paths = [
-  { d: 'M -60 350 Q 200 220 480 180 Q 760 140 1200 80', color: '#F97316', width: 1.0 },
-  { d: 'M -60 410 Q 180 260 440 220 Q 720 180 1200 140', color: '#FBBF24', width: 0.5 },
-  { d: 'M 1200 250 Q 850 350 550 420 Q 250 490 -60 600', color: '#F59E0B', width: 0.7 },
+  { d: 'M -60 350 Q 200 220 480 180 Q 760 140 1200 80', color: '#1D4ED8', width: 1.0 },
+  { d: 'M -60 410 Q 180 260 440 220 Q 720 180 1200 140', color: '#3B82F6', width: 0.5 },
+  { d: 'M 1200 250 Q 850 350 550 420 Q 250 490 -60 600', color: '#60A5FA', width: 0.7 },
 ]
 
 export default function BackgroundPathsPortfolio() {

@@ -42,7 +42,7 @@ export default function ValueProps() {
       <div className="relative mx-auto max-w-7xl">
         <m.ul
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
@@ -54,7 +54,7 @@ export default function ValueProps() {
                 variants={{ hidden: { opacity: 0, y: 28, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
                 className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col"
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110" style={{ background: 'rgba(37,99,235,0.08)' }}>
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-transform duration-200 group-hover:scale-110" style={{ background: 'rgba(37,99,235,0.08)', animationDelay: `${idx * 0.5}s` }}>
                   <Icon size={20} strokeWidth={1.8} style={{ color: '#2563EB' }} />
                 </div>
                 <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug transition-colors duration-200 group-hover:text-[#1D4ED8]" style={{ fontFamily: 'var(--font-syne)' }}>

@@ -165,7 +165,7 @@ export default function Contact() {
                       rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
                       initial={{ opacity: 0, x: -8 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.45, delay: 0.2 + i * 0.08, ease }}
+                      transition={{ duration: 0.45, delay: 0.2 + i * 0.1, ease }}
                       className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 bg-gray-50 hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all duration-200 cursor-pointer"
                       title={s.fullName}
                     >
@@ -224,7 +224,7 @@ export default function Contact() {
                     <p className="text-[13px] text-[#6B7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(29,78,216,0.06)]">
                     {submitted ? (
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>

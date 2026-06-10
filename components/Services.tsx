@@ -440,7 +440,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       transition={{ duration: 0.4, delay: i * 0.1, ease }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
+      className={`relative overflow-hidden rounded-2xl border p-7 transition-all duration-300 flex flex-col h-full ${isHovered ? '-translate-y-1' : ''} ${
         isHovered
           ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'

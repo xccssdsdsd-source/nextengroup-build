@@ -85,7 +85,7 @@ export default function FAQ() {
                 layout="position"
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.42, delay: index * 0.055, ease }}
+                transition={{ duration: 0.42, delay: index * 0.07, ease }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'
@@ -123,7 +123,7 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#6B7280]">
                         {faq.a}

@@ -87,7 +87,7 @@ export default function Footer() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
-                    className="block text-[13px] font-medium text-[#64748B] transition-colors duration-200 hover:text-[#F1F5F9]"
+                    className="block text-[13px] font-medium text-[#64748B] transition-colors duration-200 hover:text-[#111827]"
                   >
                     {label}
                   </m.a>

@@ -57,7 +57,7 @@ export default function Process() {
 
         <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
@@ -77,7 +77,7 @@ function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number,
       className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"
       style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >
-      <div className="step-number">
+      <div className="step-number animate-float" style={{ animationDelay: `${parseInt(step.num, 10) * 0.8}s` }}>
         {step.num}
       </div>
 

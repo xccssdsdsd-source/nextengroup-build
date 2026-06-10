@@ -157,8 +157,8 @@ export default function Hero() {
 
         {/* Device mockup — animates in last */}
         <div
-          className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0"
-          style={{ perspective: '1400px', animationDelay: '310ms' }}
+          className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0 animate-float"
+          style={{ perspective: '1400px', animationDelay: '1s' }}
         >
           <div className="hero-device-tilt w-full">
             <div

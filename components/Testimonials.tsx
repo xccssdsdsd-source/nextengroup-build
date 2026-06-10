@@ -67,7 +67,7 @@ function TestimonialCard() {
       style={{ willChange: 'transform' }}
     >
       <svg
-        className="absolute right-7 top-7 opacity-[0.12]"
+        className="absolute right-7 top-7 opacity-[0.12] animate-breathe"
         width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true"
       >
         <path d="M0 48V29.6C0 12.8 8.8 3.2 26.4 0L28.8 4.8C20.8 6.4 15.2 10.4 12 16.8H22.4V48H0ZM36.8 48V29.6C36.8 12.8 45.6 3.2 63.2 0L65.6 4.8C57.6 6.4 52 10.4 48.8 16.8H59.2V48H36.8Z" fill="#2563EB" />
@@ -75,7 +75,9 @@ function TestimonialCard() {
 
       <div className="flex gap-1 text-[#FBBF24]">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
+          <span key={i} style={{ display: 'inline-flex', animation: 'heroFadeUp 0.4s ease-out both', animationDelay: `${0.3 + i * 0.1}s` }}>
+            <Star size={14} fill="currentColor" strokeWidth={0} />
+          </span>
         ))}
       </div>
 

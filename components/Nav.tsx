@@ -14,7 +14,6 @@ const anchorLinks = [
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],
-  ['Kontakt', '#kontakt'],
 ] as const
 
 const allLinks: readonly (readonly [string, string])[] = [
@@ -22,7 +21,6 @@ const allLinks: readonly (readonly [string, string])[] = [
   ['Proces', '#proces'],
   ['Realizacje', '#portfolio'],
   ['FAQ', '#faq'],
-  ['Kontakt', '#kontakt'],
 ]
 
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#111827]'

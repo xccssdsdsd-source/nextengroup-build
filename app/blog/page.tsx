@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { articles as articlesRecord } from './articles'
 
 const Nav = dynamic(() => import('@/components/Nav'))
 const Footer = dynamic(() => import('@/components/Footer'))
@@ -12,8 +13,8 @@ export const metadata: Metadata = {
   description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i marketingu internetowym. Praktyczne poradniki i wnioski z projektów.',
   keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'e-commerce', 'marketing internetowy', 'tworzenie stron', 'automatyzacje AI'],
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
   alternates: {
     canonical: 'https://getbuild.pl/blog',
@@ -41,43 +42,13 @@ export const metadata: Metadata = {
   },
 }
 
-const articles = [
-  {
-    slug: 'ile-kosztuje-strona-internetowa-dla-firmy-b2b',
-    title: 'Ile kosztuje strona internetowa dla firmy B2B w 2026 roku',
-    excerpt: 'Przegląd cen projektowania i tworzenia stron WWW dla firm B2B. Od czego zależy cena i kiedy inwestycja ma sens.',
-    date: '2026-05-15',
-    readTime: 8,
-  },
-  {
-    slug: 'jak-wybrac-agencje-seo-dla-firmy-b2b',
-    title: 'Jak wybrać agencję SEO dla firmy B2B',
-    excerpt: 'Na co zwrócić uwagę przy wyborze agencji SEO, jakie pytania zadać i jakie sygnały ostrzegawcze warto wychwycić.',
-    date: '2026-05-10',
-    readTime: 10,
-  },
-  {
-    slug: 'strona-internetowa-dla-producenta-krok-po-kroku',
-    title: 'Strona internetowa dla producenta krok po kroku',
-    excerpt: 'Przewodnik po tym, kiedy producent potrzebuje nowej strony WWW, co powinna zawierać i jak wygląda wdrożenie.',
-    date: '2026-05-05',
-    readTime: 12,
-  },
-  {
-    slug: 'seo-dla-firm-b2b-czy-warto-investowac',
-    title: 'SEO dla firm B2B: czy warto inwestować',
-    excerpt: 'Analiza opłacalności SEO w B2B: zwrot z inwestycji, czas oczekiwania na efekty i możliwe alternatywy.',
-    date: '2026-04-28',
-    readTime: 9,
-  },
-  {
-    slug: 'audyt-seo-co-zawiera-ile-kosztuje',
-    title: 'Audyt SEO: co zawiera i ile kosztuje',
-    excerpt: 'Co obejmuje profesjonalny audyt SEO, ile kosztuje i jakich efektów można po nim oczekiwać.',
-    date: '2026-04-20',
-    readTime: 7,
-  },
-]
+const articles = Object.entries(articlesRecord).map(([slug, a]) => ({
+  slug,
+  title: a.title,
+  excerpt: a.excerpt,
+  date: a.date,
+  readTime: a.readTime,
+}))
 
 export default function Blog() {
   return (

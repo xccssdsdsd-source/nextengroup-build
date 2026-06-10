@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${article.title} | Blog Getbuild`,
     description: article.excerpt,
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
     alternates: { canonical: url },
     openGraph: {

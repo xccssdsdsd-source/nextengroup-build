@@ -1,6 +1,14 @@
 import type { MetadataRoute } from 'next'
+import { articles } from './blog/articles'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const blogSlugs = Object.keys(articles).map((slug) => ({
+    url: `https://getbuild.pl/blog/${slug}`,
+    lastModified: new Date(articles[slug].date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
   return [
     {
       url: 'https://getbuild.pl',
@@ -74,5 +82,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: 'https://getbuild.pl/blog',
+      lastModified: new Date('2026-05-15'),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    ...blogSlugs,
   ]
 }

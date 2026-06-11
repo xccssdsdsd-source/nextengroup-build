@@ -5,12 +5,12 @@ import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 80, damping: 20, mass: 0.8 }
 
 export default function Testimonials() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section
@@ -33,9 +33,9 @@ export default function Testimonials() {
 
         <m.div
           className="mt-14 flex justify-center"
-          initial={{ opacity: 0, y: 30, scale: 0.96 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ ...premiumSpring, delay: 0.12 }}
+          initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
+          transition={{ ...premiumSpring, delay: 0.1 }}
         >
           <TestimonialCard />
         </m.div>
@@ -62,8 +62,8 @@ export default function Testimonials() {
 function TestimonialCard() {
   return (
     <m.article
-      whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 20px 50px rgba(0,0,0,0.09)' }}
-      transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+      whileHover={{ y: -8, scale: 1.02, boxShadow: '0 12px 32px rgba(0,0,0,0.12), 0 24px 56px rgba(0,0,0,0.08)' }}
+      transition={{ type: 'spring', stiffness: 260, damping: 25 }}
       className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-l-4 border-l-white bg-white p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1),_0_6px_20px_rgba(0,0,0,0.08)]"
       style={{ willChange: 'transform' }}
     >

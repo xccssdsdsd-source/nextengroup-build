@@ -4,17 +4,17 @@ import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 80, damping: 20, mass: 0.8 }
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 }
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { ...premiumSpring } },
+  hidden: { opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' },
+  show: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { ...premiumSpring } },
 }
 
 const steps = [
@@ -42,7 +42,7 @@ const steps = [
 
 export default function Process() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section id="proces" ref={ref} className="section-shell relative" style={{ background: '#ffffff' }}>
@@ -83,8 +83,8 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
     <m.article
       variants={stepVariants}
-      whileHover={{ y: -6, scale: 1.02, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 12px 32px rgba(37,99,235,0.14)' }}
-      transition={{ type: 'spring', stiffness: 200, damping: 22 }}
+      whileHover={{ y: -8, scale: 1.03, borderColor: '#93b4f8', boxShadow: '0 2px 6px rgba(13,22,41,0.06), 0 16px 40px rgba(37,99,235,0.16)' }}
+      transition={{ type: 'spring', stiffness: 260, damping: 25 }}
       className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"
       style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >

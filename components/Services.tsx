@@ -5,9 +5,9 @@ import { useRef, useState, type MouseEvent } from 'react'
 import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
-const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 80, damping: 20, mass: 0.8 }
+const hoverSpring = { type: 'spring' as const, stiffness: 260, damping: 25 }
 
 const packages = [
   {
@@ -100,8 +100,8 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
@@ -189,8 +189,8 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
 export default function Services() {
   const ref1 = useRef(null)
   const ref2 = useRef(null)
-  const inView1 = useInView(ref1, { once: true, margin: '-50px' })
-  const inView2 = useInView(ref2, { once: true, margin: '-50px' })
+  const inView1 = useInView(ref1, { once: true, margin: '-80px' })
+  const inView2 = useInView(ref2, { once: true, margin: '-80px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
   const [expanded1, setExpanded1] = useState(false)
   const [expanded2, setExpanded2] = useState(false)
@@ -438,8 +438,8 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
   return (
     <m.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}

@@ -5,12 +5,12 @@ import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const slideVariants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir * 56, scale: 0.97 }),
-  center: { opacity: 1, x: 0, scale: 1 },
-  exit: (dir: number) => ({ opacity: 0, x: -(dir * 56), scale: 0.97 }),
+  enter: (dir: number) => ({ opacity: 0, x: dir * 40, scale: 0.98, filter: 'blur(3px)' }),
+  center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' },
+  exit: (dir: number) => ({ opacity: 0, x: -(dir * 40), scale: 0.98, filter: 'blur(3px)' }),
 }
 
 type LighthouseScore = { label: string; value: number }
@@ -104,7 +104,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
 
 export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [bodyExpanded, setBodyExpanded] = useState(false)
@@ -199,7 +199,7 @@ export default function Portfolio() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.48, ease }}
+                transition={{ duration: 0.52, ease }}
                 className="grid md:grid-cols-[1.35fr_1fr]"
               >
                 <a

@@ -4,20 +4,21 @@ import { m, useInView } from 'framer-motion'
 import { Shield, Users, Settings2, Zap } from 'lucide-react'
 import { useRef } from 'react'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 80, damping: 20, mass: 0.8 }
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32, scale: 0.94 },
+  hidden: { opacity: 0, y: 24, scale: 0.97, filter: 'blur(4px)' },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
+    filter: 'blur(0px)',
     transition: { ...premiumSpring },
   },
 }
@@ -51,7 +52,7 @@ const values = [
 
 export default function ValueProps() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section id="wartosci" ref={ref} className="section-shell relative">
@@ -68,7 +69,7 @@ export default function ValueProps() {
               <m.li
                 key={idx}
                 variants={cardVariants}
-                whileHover={{ y: -6, scale: 1.03, transition: { type: 'spring', stiffness: 200, damping: 20 } }}
+                whileHover={{ y: -8, scale: 1.04, boxShadow: '0 16px 48px rgba(37,99,235,0.12), 0 4px 16px rgba(0,0,0,0.06)', transition: { type: 'spring', stiffness: 260, damping: 25 } }}
                 className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col cursor-default"
                 style={{ willChange: 'transform' }}
               >

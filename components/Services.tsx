@@ -100,9 +100,9 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
-      initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      initial={{ opacity: 0, x: i === 0 ? -50 : i === 2 ? 50 : 0, y: i === 1 ? 30 : 10, scale: 0.97, filter: 'blur(4px)' }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
+      transition={{ ...premiumSpring, delay: i * 0.12 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -203,13 +203,13 @@ export default function Services() {
 
   return (
     <>
-      <section id="uslugi" ref={ref1} className="section-shell relative">
+      <section id="uslugi" ref={ref1} className="section-shell relative overflow-hidden">
         <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, x: -60 }}
+            animate={inView1 ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.68, ease }}
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -438,9 +438,9 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
   return (
     <m.div
-      initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      initial={{ opacity: 0, x: i === 0 ? -50 : i === 2 ? 50 : 0, y: i === 1 ? 30 : 10, scale: 0.97, filter: 'blur(4px)' }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
+      transition={{ ...premiumSpring, delay: i * 0.12 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

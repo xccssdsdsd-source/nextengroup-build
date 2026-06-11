@@ -23,8 +23,8 @@ export default function Testimonials() {
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, x: -50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">Opinie</span>
@@ -33,9 +33,9 @@ export default function Testimonials() {
 
         <m.div
           className="mt-14 flex justify-center"
-          initial={{ opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' } : {}}
-          transition={{ ...premiumSpring, delay: 0.1 }}
+          initial={{ opacity: 0, x: 60, scale: 0.97, filter: 'blur(4px)' }}
+          animate={inView ? { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' } : {}}
+          transition={{ ...premiumSpring, delay: 0.15 }}
         >
           <TestimonialCard />
         </m.div>

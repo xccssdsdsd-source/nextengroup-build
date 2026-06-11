@@ -13,8 +13,14 @@ const containerVariants = {
 }
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' },
-  show: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { ...premiumSpring } },
+  hidden: (i: number) => ({
+    opacity: 0,
+    x: i % 2 === 0 ? -50 : 50,
+    y: 12,
+    scale: 0.97,
+    filter: 'blur(4px)',
+  }),
+  show: { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)', transition: { ...premiumSpring } },
 }
 
 const steps = [
@@ -45,7 +51,7 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="proces" ref={ref} className="section-shell relative" style={{ background: '#ffffff' }}>
+    <section id="proces" ref={ref} className="section-shell relative overflow-hidden" style={{ background: '#ffffff' }}>
       <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"
@@ -55,8 +61,8 @@ export default function Process() {
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, x: -50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">Proces</span>
@@ -72,16 +78,17 @@ export default function Process() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {steps.map((step) => <StepCard key={step.num} step={step} />)}
+          {steps.map((step, i) => <StepCard key={step.num} step={step} index={i} />)}
         </m.div>
       </div>
     </section>
   )
 }
 
-function StepCard({ step }: { step: (typeof steps)[number] }) {
+function StepCard({ step, index }: { step: (typeof steps)[number]; index: number }) {
   return (
     <m.article
+      custom={index}
       variants={stepVariants}
       whileHover={{ y: -8, scale: 1.03, borderColor: '#93b4f8', boxShadow: '0 2px 6px rgba(13,22,41,0.06), 0 16px 40px rgba(37,99,235,0.16)' }}
       transition={{ type: 'spring', stiffness: 260, damping: 25 }}

@@ -163,8 +163,8 @@ export default function Portfolio() {
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, x: -50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.65, ease }}
         >
           <div>
@@ -180,9 +180,9 @@ export default function Portfolio() {
 
         <m.div
           className="mt-7 relative"
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.12, ease }}
+          initial={{ opacity: 0, x: 60 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15, ease }}
         >
           <div
             className="realizacja-card overflow-hidden"

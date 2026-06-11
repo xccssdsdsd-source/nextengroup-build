@@ -5,6 +5,7 @@ import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
+import LiveSiteButton from './ui/LiveSiteButton'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -241,8 +242,12 @@ export default function Portfolio() {
                     )}
                   </p>
 
+                  <div className="mt-5">
+                    <LiveSiteButton href={project.href} />
+                  </div>
+
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.06)] pt-5">
+                    <div className="mt-5 flex gap-4 border-t border-[rgba(0,0,0,0.06)] pt-5">
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}
@@ -333,6 +338,10 @@ export default function Portfolio() {
                   <> <button onClick={() => setDorimariExpanded(true)} className="font-semibold text-[#0D0D0D] hover:underline">Zobacz więcej</button></>
                 )}
               </p>
+
+              <div className="mt-5">
+                <LiveSiteButton href={dorimari.href} />
+              </div>
 
               <div className="mt-5 flex gap-4 border-t border-[rgba(0,0,0,0.06)] pt-5">
                 {dorimari.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}

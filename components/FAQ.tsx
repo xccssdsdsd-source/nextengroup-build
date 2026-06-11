@@ -6,6 +6,7 @@ import { useRef, useState } from 'react'
 import BackgroundPathsFAQ from './BackgroundPathsFAQ'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const faqs = [
   {
@@ -83,9 +84,9 @@ export default function FAQ() {
               <m.div
                 key={faq.q}
                 layout="position"
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.42, delay: index * 0.07, ease }}
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ ...premiumSpring, delay: index * 0.07 }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'

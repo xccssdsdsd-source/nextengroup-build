@@ -5,6 +5,22 @@ import { Shield, Users, Settings2, Zap } from 'lucide-react'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 32, scale: 0.94 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { ...premiumSpring },
+  },
+}
 
 const values = [
   {
@@ -42,7 +58,7 @@ export default function ValueProps() {
       <div className="relative mx-auto max-w-7xl">
         <m.ul
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
+          variants={containerVariants}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
@@ -51,8 +67,10 @@ export default function ValueProps() {
             return (
               <m.li
                 key={idx}
-                variants={{ hidden: { opacity: 0, y: 28, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } } }}
-                className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col"
+                variants={cardVariants}
+                whileHover={{ y: -6, scale: 1.03, transition: { type: 'spring', stiffness: 200, damping: 20 } }}
+                className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col cursor-default"
+                style={{ willChange: 'transform' }}
               >
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-transform duration-200 group-hover:scale-110" style={{ background: 'rgba(37,99,235,0.08)', animationDelay: `${idx * 0.5}s` }}>
                   <Icon size={20} strokeWidth={1.8} style={{ color: '#2563EB' }} />

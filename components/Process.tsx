@@ -5,6 +5,17 @@ import { useRef } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+}
+
+const stepVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { ...premiumSpring } },
+}
 
 const steps = [
   {
@@ -57,23 +68,23 @@ export default function Process() {
 
         <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+          variants={containerVariants}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {steps.map((step) => <StepCard key={step.num} step={step} ease={ease} />)}
+          {steps.map((step) => <StepCard key={step.num} step={step} />)}
         </m.div>
       </div>
     </section>
   )
 }
 
-function StepCard({ step, ease }: { step: (typeof steps)[number], ease: [number, number, number, number] }) {
+function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
     <m.article
-      variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.42, ease } } }}
-      whileHover={{ y: -4, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 8px 24px rgba(37,99,235,0.12)' }}
-      transition={{ duration: 0.22, ease }}
+      variants={stepVariants}
+      whileHover={{ y: -6, scale: 1.02, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 12px 32px rgba(37,99,235,0.14)' }}
+      transition={{ type: 'spring', stiffness: 200, damping: 22 }}
       className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"
       style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >

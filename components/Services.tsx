@@ -6,6 +6,8 @@ import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
 
 const packages = [
   {
@@ -98,19 +100,20 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: i * 0.1, ease }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-all duration-300 ${isHovered ? '-translate-y-1' : ''} ${
+      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
         pkg.featured
           ? 'border-[rgba(29,78,216,0.2)] shadow-[0_0_0_2px_rgba(29,78,216,0.08),_0_4px_24px_rgba(37,99,235,0.12),_0_0_40px_rgba(37,99,235,0.06)]'
           : isHovered
           ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
       }`}
-      style={{ background: '#FFFFFF' }}
+      style={{ background: '#FFFFFF', willChange: 'transform' }}
     >
       {pkg.featured && (
         <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#2563EB] rounded-t-2xl" />
@@ -435,19 +438,18 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
   return (
     <m.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: i * 0.1, ease }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-7 transition-all duration-300 flex flex-col h-full ${isHovered ? '-translate-y-1' : ''} ${
+      className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
           ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
           : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
       }`}
-      style={{
-        background: '#FFFFFF',
-      }}
+      style={{ background: '#FFFFFF', willChange: 'transform' }}
     >
       <div className="flex items-center gap-2 mb-2">
         <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#0D0D0D', borderRadius: '4px' }}>

@@ -7,12 +7,12 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
 import LiveSiteButton from './ui/LiveSiteButton'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const slideVariants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir * 56, scale: 0.97 }),
-  center: { opacity: 1, x: 0, scale: 1 },
-  exit: (dir: number) => ({ opacity: 0, x: -(dir * 56), scale: 0.97 }),
+  enter: (dir: number) => ({ opacity: 0, x: dir * 40, scale: 0.98, filter: 'blur(3px)' }),
+  center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)' },
+  exit: (dir: number) => ({ opacity: 0, x: -(dir * 40), scale: 0.98, filter: 'blur(3px)' }),
 }
 
 type LighthouseScore = { label: string; value: number }
@@ -108,7 +108,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
 
 export default function Portfolio() {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [bodyExpanded, setBodyExpanded] = useState(false)
@@ -169,8 +169,8 @@ export default function Portfolio() {
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, x: -50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.65, ease }}
         >
           <div>
@@ -186,9 +186,9 @@ export default function Portfolio() {
 
         <m.div
           className="mt-7 relative"
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.12, ease }}
+          initial={{ opacity: 0, x: 60 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15, ease }}
         >
           <div
             className="realizacja-card overflow-hidden"
@@ -205,7 +205,7 @@ export default function Portfolio() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.48, ease }}
+                transition={{ duration: 0.52, ease }}
                 className="grid md:grid-cols-[1.35fr_1fr]"
               >
                 <a

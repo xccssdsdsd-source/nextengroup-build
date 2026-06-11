@@ -100,7 +100,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontakt" ref={ref} className="section-shell relative">
+    <section id="kontakt" ref={ref} className="section-shell relative overflow-hidden">
       <BackgroundPathsContact />
       <m.div
         initial={{ opacity: 0, y: 24 }}
@@ -110,7 +110,12 @@ export default function Contact() {
       >
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
-          <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
+          <m.div
+            className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col"
+            initial={{ opacity: 0, x: -60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease }}
+          >
             <div>
               <span className="section-kicker">Kontakt</span>
               <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -192,9 +197,14 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </m.div>
 
-          <div className="w-full flex-1 min-w-0 flex flex-col">
+          <m.div
+            className="w-full flex-1 min-w-0 flex flex-col"
+            initial={{ opacity: 0, x: 60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15, ease }}
+          >
             <div className="text-center mb-8">
               <h3 className="text-[18px] sm:text-[20px] font-bold text-[#111827] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
               <p className="text-[14px] text-[#6B7280]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
@@ -282,7 +292,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </m.div>
         </div>
       </m.div>
     </section>

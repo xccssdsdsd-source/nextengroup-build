@@ -60,13 +60,13 @@ export default function FAQ() {
     <section
       id="faq"
       ref={ref}
-      className="section-shell relative"
+      className="section-shell relative overflow-hidden"
     >
       <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, x: -60 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.68, ease }}
         >
           <span className="section-kicker">FAQ</span>
@@ -84,9 +84,9 @@ export default function FAQ() {
               <m.div
                 key={faq.q}
                 layout="position"
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ ...premiumSpring, delay: index * 0.07 }}
+                initial={{ opacity: 0, x: 50, scale: 0.97 }}
+                animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
+                transition={{ ...premiumSpring, delay: index * 0.09 }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'

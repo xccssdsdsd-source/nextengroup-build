@@ -8,7 +8,6 @@ import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import GSAPProvider from '@/components/GSAPProvider'
 import GSAPAnimations from '@/components/GSAPAnimations'
-import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
@@ -214,16 +213,6 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
-        <svg style={{ position: 'fixed', width: 0, height: 0 }} aria-hidden="true">
-          <defs>
-            <filter id="noise-filter" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="linearRGB">
-              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
-              <feColorMatrix type="saturate" values="0" in="noise" />
-            </filter>
-          </defs>
-        </svg>
-        <div id="noise-overlay" aria-hidden="true" />
-        <Cursor />
         <GSAPProvider>
           <AnimatedBackground />
           <CookieConsent />

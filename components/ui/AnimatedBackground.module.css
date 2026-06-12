@@ -12,8 +12,6 @@
 .orb4 {
   position: absolute;
   border-radius: 50%;
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 .orb1 {
@@ -24,7 +22,6 @@
   opacity: 0.16;
   top: -260px;
   left: -220px;
-  animation: orbFloat1 22s ease-in-out infinite;
 }
 
 .orb2 {
@@ -35,7 +32,6 @@
   opacity: 0.12;
   bottom: 0;
   right: -180px;
-  animation: orbFloat2 28s ease-in-out infinite;
 }
 
 .orb3 {
@@ -46,46 +42,10 @@
   opacity: 0.10;
   top: 38%;
   left: 42%;
-  animation: orbFloat3 32s ease-in-out infinite;
 }
 
 .orb4 {
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, rgba(96,165,250,0.38) 0%, transparent 65%);
-  filter: blur(90px);
-  opacity: 0.08;
-  top: 62%;
-  left: 18%;
-  animation: orbFloat4 26s ease-in-out infinite;
-}
-
-@keyframes orbFloat1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(90px, 55px) scale(1.04); }
-  50%  { transform: translate(45px, 130px) scale(0.97); }
-  75%  { transform: translate(130px, 70px) scale(1.05); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes orbFloat2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(-90px, -70px) scale(1.06); }
-  66%  { transform: translate(-50px, 90px) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes orbFloat3 {
-  0%   { transform: translate(-50%, 0) scale(1); }
-  40%  { transform: translate(-50%, -90px) scale(1.08); }
-  80%  { transform: translate(-44%, 55px) scale(0.94); }
-  100% { transform: translate(-50%, 0) scale(1); }
-}
-
-@keyframes orbFloat4 {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(55px, -75px) scale(1.1); }
-  100% { transform: translate(0, 0) scale(1); }
+  display: none;
 }
 
 /* Dot grid — subtle blue visible on white/light backgrounds */
@@ -98,38 +58,6 @@
   -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 35%, black 10%, transparent 100%);
 }
 
-/* Grain overlay — very subtle static texture */
 .grain {
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.015;
-  animation: grainShift 60s linear infinite;
-}
-
-@keyframes grainShift {
-  0%   { transform: translate(0, 0); }
-  10%  { transform: translate(-3%, -4%); }
-  20%  { transform: translate(4%, 3%); }
-  30%  { transform: translate(-2%, 5%); }
-  40%  { transform: translate(5%, -2%); }
-  50%  { transform: translate(-4%, 3%); }
-  60%  { transform: translate(3%, -5%); }
-  70%  { transform: translate(-5%, 2%); }
-  80%  { transform: translate(2%, 4%); }
-  90%  { transform: translate(4%, -3%); }
-  100% { transform: translate(0, 0); }
-}
-
-@media (hover: none), (pointer: coarse) {
-  .orb1 { animation-duration: 36s; opacity: 0.22; }
-  .orb2 { animation-duration: 44s; opacity: 0.18; }
-  .orb3, .orb4 { animation: none; }
-  .grain { animation: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .orb1, .orb2, .orb3, .orb4, .grain { animation: none; }
+  display: none;
 }

@@ -782,6 +782,35 @@ select {
   to   { opacity: 1; transform: none; }
 }
 
+@keyframes heroWordRise {
+  from { transform: translateY(115%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.hero-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.hero-word {
+  display: inline-block;
+  animation: heroWordRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-badge {
+  animation: fade-up-stagger 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word,
+  .hero-badge {
+    animation: none !important;
+  }
+}
+
 @keyframes heroDeviceTiltIn {
   from { opacity: 0; transform: rotateX(16deg) scale(0.97); }
   to   { opacity: 1; transform: rotateX(0deg)  scale(1); }

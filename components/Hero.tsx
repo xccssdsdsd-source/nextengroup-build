@@ -13,28 +13,12 @@ const ctaMobileWords = ['Umów bezpłatną wizytę', 'Zapytaj o wycenę', 'Poroz
 const line1 = ['Strony,', 'które', 'pozyskują', 'klientów.']
 const line2 = ['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.']
 
-const wordVariants = {
-  hidden: { y: '115%', opacity: 0 },
-  show: (i: number) => ({
-    y: '0%',
-    opacity: 1,
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as [number,number,number,number], delay: 0.12 + i * 0.065 },
-  }),
-}
-
-const badgeVariants = {
-  hidden: { opacity: 0, y: 12 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: [0.33, 1, 0.68, 1] as [number,number,number,number], delay: 0.5 + i * 0.1 },
-  }),
-}
+const wordDelay = (i: number) => `${0.12 + i * 0.065}s`
 
 const badges = [
-  { label: 'Bez umów długoterminowych', mobile: true },
-  { label: 'Projekt gratis przed startem', mobile: true },
-  { label: 'Wsparcie 24/7', mobile: false },
+  { label: 'Nielimitowana liczba poprawek', mobile: true },
+  { label: 'Bezpłatna wizualizacja', mobile: true },
+  { label: 'Pełne wsparcie', mobile: false },
 ]
 
 const CheckIcon = () => (
@@ -106,29 +90,21 @@ export default function Hero() {
               }}
             >
               <span className="block text-balance" style={{ display: 'block', marginBottom: '0.08em' }}>
-                {isMounted
-                  ? line1.map((word, i) => (
-                      <span key={i} style={{ display: 'inline-block', overflow: 'hidden', marginRight: '0.22em', paddingBottom: '0.14em', marginBottom: '-0.14em', verticalAlign: 'top' }}>
-                        <m.span custom={i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block' }}>
-                          {word}
-                        </m.span>
-                      </span>
-                    ))
-                  : line1.join(' ')}
+                {line1.map((word, i) => (
+                  <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
+                    <span className="hero-word" style={{ animationDelay: wordDelay(i) }}>{word}</span>
+                  </span>
+                ))}
               </span>
               <span
                 className="block text-balance"
                 style={{ background: 'linear-gradient(135deg, #111827 30%, #2563EB 65%, #4F46E5 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
               >
-                {isMounted
-                  ? line2.map((word, i) => (
-                      <span key={i} style={{ display: 'inline-block', overflow: 'hidden', marginRight: '0.22em', paddingBottom: '0.14em', marginBottom: '-0.14em', verticalAlign: 'top' }}>
-                        <m.span custom={line1.length + i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block', WebkitTextFillColor: 'transparent' }}>
-                          {word}
-                        </m.span>
-                      </span>
-                    ))
-                  : line2.join(' ')}
+                {line2.map((word, i) => (
+                  <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
+                    <span className="hero-word" style={{ animationDelay: wordDelay(line1.length + i), WebkitTextFillColor: 'transparent' }}>{word}</span>
+                  </span>
+                ))}
               </span>
             </h1>
           </div>
@@ -152,17 +128,14 @@ export default function Hero() {
 
           <div className="mt-4 flex items-center justify-center gap-6 text-xs text-[#888]">
             {badges.map((b, i) => (
-              <m.span
+              <span
                 key={b.label}
-                custom={i}
-                variants={badgeVariants}
-                initial={isMounted ? 'hidden' : false}
-                animate={isMounted ? 'show' : false}
-                className={`flex items-center gap-1.5${!b.mobile ? ' hidden sm:flex' : ''}`}
+                className={`hero-badge flex items-center gap-1.5${!b.mobile ? ' hidden sm:flex' : ''}`}
+                style={{ animationDelay: `${0.55 + i * 0.1}s` }}
               >
                 <CheckIcon />
                 {b.label}
-              </m.span>
+              </span>
             ))}
           </div>
 
@@ -189,7 +162,7 @@ export default function Hero() {
         <div className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0 animate-float" style={{ perspective: '1400px', animationDelay: '1s' }}>
           <div className="hero-device-tilt w-full">
             <div style={{ borderRadius: '24px', backgroundColor: '#FFFFFF', maxWidth: '1100px', maxHeight: 'clamp(180px, 40vw, 400px)', margin: '0 auto', boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 16px 48px rgba(0,0,0,0.06), 0 32px 64px rgba(0,0,0,0.04)', overflow: 'hidden', willChange: 'transform', position: 'relative' }}>
-              {isMounted && <DeviceMockups />}
+              <DeviceMockups />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #FFFFFF)', pointerEvents: 'none' }} />
             </div>
           </div>

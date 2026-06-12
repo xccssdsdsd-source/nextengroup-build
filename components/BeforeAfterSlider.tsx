@@ -35,10 +35,14 @@ export default function BeforeAfterSlider({
   const dragging = useRef(false)
   const controls = useRef<AnimationPlaybackControls | null>(null)
 
+  // Direction detection — decide horizontal vs vertical on first move
+  const dragStartX = useRef(0)
+  const dragStartY = useRef(0)
+  const directionLocked = useRef(false)
+
   const [mode, setMode] = useState<'before' | 'after' | 'split'>('split')
   const [building, setBuilding] = useState(false)
 
-  // Motion-derived styles
   const beforeClip = useTransform(pos, (v) => `inset(0 ${100 - v}% 0 0)`)
   const handleLeft = useTransform(pos, (v) => `${v}%`)
   const beforeLabelOpacity = useTransform(pos, [8, 16], [0, 1])
@@ -58,31 +62,46 @@ export default function BeforeAfterSlider({
   }, [pos])
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
+    // Record start position; don't commit to dragging until direction is known
+    dragStartX.current = e.clientX
+    dragStartY.current = e.clientY
+    directionLocked.current = false
+    dragging.current = false
     stopAnim()
     setBuilding(false)
     setMode('split')
-    dragging.current = true
-    ;(e.target as Element).setPointerCapture?.(e.pointerId)
-    updateFromClientX(e.clientX)
-  }, [updateFromClientX, stopAnim])
+  }, [stopAnim])
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!dragging.current) return
-    updateFromClientX(e.clientX)
+    const dx = Math.abs(e.clientX - dragStartX.current)
+    const dy = Math.abs(e.clientY - dragStartY.current)
+
+    if (!directionLocked.current) {
+      // Wait for minimum movement before deciding direction
+      if (dx < 4 && dy < 4) return
+      // Vertical dominant — let the browser scroll, don't interfere
+      if (dy > dx) return
+      // Horizontal dominant — lock in and capture pointer
+      directionLocked.current = true
+      dragging.current = true
+      ;(e.target as Element).setPointerCapture?.(e.pointerId)
+    }
+
+    if (dragging.current) {
+      updateFromClientX(e.clientX)
+    }
   }, [updateFromClientX])
 
   const onPointerUp = useCallback(() => {
     dragging.current = false
+    directionLocked.current = false
   }, [])
 
-  // PRZED / PO toggle — animate the reveal. Switching to "po" plays a build effect.
   const goTo = useCallback((target: 'before' | 'after') => {
     stopAnim()
     setMode(target)
     const isBuild = target === 'after'
     if (isBuild) setBuilding(true)
-    // Left portion (0..pos%) shows the "before" image, the rest shows "after".
-    // So fully-after = 0, fully-before = 100.
     controls.current = animate(pos, target === 'after' ? 0 : 100, {
       duration: isBuild ? 1.15 : 0.6,
       ease,
@@ -90,7 +109,6 @@ export default function BeforeAfterSlider({
     })
   }, [pos, stopAnim])
 
-  // Keyboard accessibility on the handle
   const onKeyDown = useCallback((e: React.KeyboardEvent) => {
     stopAnim()
     setMode('split')
@@ -100,7 +118,6 @@ export default function BeforeAfterSlider({
     else if (e.key === 'End') pos.set(100)
   }, [pos, stopAnim])
 
-  // One-time hint nudge when it scrolls into view
   const [hinted, setHinted] = useState(false)
   useEffect(() => {
     const el = containerRef.current
@@ -122,12 +139,18 @@ export default function BeforeAfterSlider({
     <div className="flex flex-col gap-3">
       <div
         ref={containerRef}
-        className="relative w-full select-none overflow-hidden rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.18)] ring-1 ring-black/5 touch-none"
+        // touch-pan-y: browser handles vertical scroll; horizontal → our pointer handlers
+        // stopPropagation on touch events so parent carousel doesn't intercept
+        className="relative w-full select-none overflow-hidden rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.18)] ring-1 ring-black/5 touch-pan-y"
         style={{ aspectRatio: `${width} / ${height}`, cursor: 'ew-resize' }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onTouchStart={(e) => e.stopPropagation()}
+        onTouchMove={(e) => { if (dragging.current) e.stopPropagation() }}
+        onTouchEnd={(e) => { if (dragging.current) e.stopPropagation() }}
       >
         {/* After image (full, underneath) */}
         <Image
@@ -142,7 +165,7 @@ export default function BeforeAfterSlider({
           draggable={false}
         />
 
-        {/* Build effect overlay — a scanner beam + grid that "constructs" the new site */}
+        {/* Build effect overlay */}
         {building && (
           <m.div
             className="pointer-events-none absolute inset-0 z-20"
@@ -206,7 +229,7 @@ export default function BeforeAfterSlider({
             aria-valuenow={Math.round(mode === 'after' ? 0 : mode === 'before' ? 100 : 50)}
             onKeyDown={onKeyDown}
             className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0D0D0D] shadow-[0_4px_14px_rgba(0,0,0,0.3)] ring-1 ring-black/10 transition-transform duration-150 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            style={{ cursor: 'ew-resize' }}
+            style={{ cursor: 'ew-resize', touchAction: 'none' }}
           >
             <MoveHorizontal size={20} strokeWidth={2.4} />
           </button>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
   const [isDesktop, setIsDesktop] = useState(false)
+  const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -18,40 +19,50 @@ export default function Cursor() {
       ringX += (mouseX - ringX) * 0.12
       ringY += (mouseY - ringY) * 0.12
       if (ringRef.current) {
-        // Use transform instead of left/top — composited on GPU, no layout/paint
         ringRef.current.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`
       }
       const settled = Math.abs(mouseX - ringX) < 0.08 && Math.abs(mouseY - ringY) < 0.08
-      if (settled) {
-        rafId = 0
-      } else {
-        rafId = requestAnimationFrame(animate)
-      }
+      rafId = settled ? 0 : requestAnimationFrame(animate)
     }
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`
+      }
       if (!rafId) rafId = requestAnimationFrame(animate)
     }
 
     const onOver = (e: MouseEvent) => {
-      if (!(e.target as Element).closest('a, button, [role="button"], label, input, textarea, select')) return
+      const target = e.target as Element
       if (ringRef.current) {
-        ringRef.current.style.width = '54px'
-        ringRef.current.style.height = '54px'
-        ringRef.current.style.borderColor = 'rgba(0,212,255,0.72)'
-        ringRef.current.style.background = 'rgba(0,212,255,0.04)'
+        if (target.closest('.value-card, .realizacja-card, [data-tilt-card]')) {
+          ringRef.current.style.width = '48px'
+          ringRef.current.style.height = '48px'
+          ringRef.current.style.borderRadius = '4px'
+          ringRef.current.style.opacity = '0.5'
+          ringRef.current.style.mixBlendMode = 'normal'
+        } else if (target.closest('a, button, [role="button"], label, input, textarea, select')) {
+          ringRef.current.style.width = '48px'
+          ringRef.current.style.height = '48px'
+          ringRef.current.style.borderRadius = '50%'
+          ringRef.current.style.opacity = '0.4'
+          ringRef.current.style.mixBlendMode = 'difference'
+        }
       }
     }
 
     const onOut = (e: MouseEvent) => {
-      if (!(e.target as Element).closest('a, button, [role="button"], label, input, textarea, select')) return
-      if (ringRef.current) {
-        ringRef.current.style.width = '32px'
-        ringRef.current.style.height = '32px'
-        ringRef.current.style.borderColor = 'rgba(0,212,255,0.45)'
-        ringRef.current.style.background = ''
+      const target = e.target as Element
+      if (target.closest('a, button, [role="button"], label, input, textarea, select, .value-card, .realizacja-card, [data-tilt-card]')) {
+        if (ringRef.current) {
+          ringRef.current.style.width = '28px'
+          ringRef.current.style.height = '28px'
+          ringRef.current.style.borderRadius = '50%'
+          ringRef.current.style.opacity = '1'
+          ringRef.current.style.mixBlendMode = 'normal'
+        }
       }
     }
 
@@ -69,5 +80,10 @@ export default function Cursor() {
 
   if (!isDesktop) return null
 
-  return <div ref={ringRef} className="cursor-ring" />
+  return (
+    <>
+      <div ref={dotRef} className="cursor-dot" />
+      <div ref={ringRef} className="cursor-ring" />
+    </>
+  )
 }

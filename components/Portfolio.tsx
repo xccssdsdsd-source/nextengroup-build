@@ -23,6 +23,7 @@ type RegularProject = {
   tagline: string
   href: string
   preview: string
+  blurDataURL: string
   imgWidth: number
   imgHeight: number
   body: string
@@ -37,6 +38,8 @@ type SliderProject = {
   href: string
   beforeSrc: string
   afterSrc: string
+  beforeBlur: string
+  afterBlur: string
   sliderWidth: number
   sliderHeight: number
   body: string
@@ -53,6 +56,7 @@ const projects: Project[] = [
     tagline: 'Wykończenia pod klucz, Wrocław',
     href: 'https://pm-apartments.pl/',
     preview: '/portfolio/pm-apartments-preview.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoIAAUABUB8JZQC7ADZkPFAAP5Yc5shiBKga0xz0IkIAAAA',
     imgWidth: 1852,
     imgHeight: 916,
     body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz system kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
@@ -70,6 +74,7 @@ const projects: Project[] = [
     tagline: 'Wizualizacje 3D wnętrz i architektury',
     href: 'https://msdesignstudio.pl/',
     preview: '/portfolio/msdesignstudio-preview.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAABwAQCdASoIAAUABUB8JYwCdAFAAAD+5h/UovMcS/iaJK7Q5MCWAAAA',
     imgWidth: 1440,
     imgHeight: 900,
     body: 'Strona internetowa dla MS Design Studio - studia specjalizującego się w profesjonalnych wizualizacjach 3D wnętrz i projektach architektonicznych. Klientka tworzy wysokiej jakości wizualizacje i potrzebowała portfolio online, które samo mówi za siebie. Strona prezentuje portfolio projektów architektonicznych, wizualizacje wnętrz, galerię realizacji, opis usług oferowanych (wizualizacje wnętrz, renderingi architektoniczne, projekty przestrzenne) oraz system kontaktowy do pozyskiwania nowych zleceń. Wdrożona w 24 godziny z pełną optymalizacją wydajności i SEO.',
@@ -86,8 +91,10 @@ const projects: Project[] = [
     name: 'Dorimari',
     tagline: 'Autorskie wycieczki po Sycylii',
     href: 'https://dorimari.pl',
-    beforeSrc: '/portfolio/dorimari-before.jpg',
-    afterSrc: '/portfolio/dorimari-after.jpg',
+    beforeSrc: '/portfolio/dorimari-before.webp',
+    afterSrc: '/portfolio/dorimari-after.webp',
+    beforeBlur: 'data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAACwAQCdASoIAAUABUB8JZACdAEOuwSAAP5hZAeURPt5uidU0CPlFQB62TBcAA==',
+    afterBlur: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoIAAUABUB8JYwCdADze7UQAPJeuX07MW4dYgWVRdfZS8AA',
     sliderWidth: 1080,
     sliderHeight: 2063,
     body: 'Strona internetowa dla Dorimari - agencji specjalizującej się w autorskich, butikowych wycieczkach premium po Sycylii. Klient prowadzi wyjątkowe doświadczenia turystyczne i potrzebował miejsca, które sprzedaje klimat i atmosferę podróży, nie tylko trasę. Stara strona była przestarzała i nie oddawała charakteru marki - przebudowaliśmy ją od podstaw. Strona prezentuje szczegółową ofertę wycieczek, galerię profesjonalnych zdjęć z terenów Sycylii, opisy itinerariów, informacje o przewodnikach i harmonogram. Zintegrowany formularz kontaktowy umożliwia natychmiastowe zapytania. Strona jest responsywna, szybka i zoptymalizowana pod wyszukiwarki.',
@@ -123,7 +130,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div
-        className="flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold"
+        className={`flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold counter-${value}`}
         style={{
           background: colors.bg,
           color: colors.fg,
@@ -251,9 +258,12 @@ export default function Portfolio() {
                       width={project.imgWidth}
                       height={project.imgHeight}
                       sizes="(min-width: 768px) 720px, 100vw"
+                      data-parallax-image
                       className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] ring-1 ring-white transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       quality={82}
                       priority={currentIndex === 0}
+                      placeholder="blur"
+                      blurDataURL={project.blurDataURL}
                     />
                   </a>
                 ) : (
@@ -267,6 +277,8 @@ export default function Portfolio() {
                         afterAlt={`${project.name} — strona po redesignie`}
                         width={project.sliderWidth}
                         height={project.sliderHeight}
+                        beforeBlur={project.beforeBlur}
+                        afterBlur={project.afterBlur}
                       />
                     </div>
                   </div>

@@ -6,6 +6,9 @@ import CookieConsent from '@/components/CookieConsent'
 import SubtleAccents from '@/components/SubtleAccents'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
+import GSAPProvider from '@/components/GSAPProvider'
+import GSAPAnimations from '@/components/GSAPAnimations'
+import Cursor from '@/components/Cursor'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
@@ -211,12 +214,27 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
-        <AnimatedBackground />
-        <CookieConsent />
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#2563EB] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
-        <MotionProvider>
-          <div id="main-content" className="relative" style={{ zIndex: 1 }}>{children}</div>
-        </MotionProvider>
+        <svg style={{ position: 'fixed', width: 0, height: 0 }} aria-hidden="true">
+          <defs>
+            <filter id="noise-filter" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="linearRGB">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+              <feColorMatrix type="saturate" values="0" in="noise" />
+            </filter>
+          </defs>
+        </svg>
+        <div id="noise-overlay" aria-hidden="true" />
+        <Cursor />
+        <GSAPProvider>
+          <AnimatedBackground />
+          <CookieConsent />
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#2563EB] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
+          <MotionProvider>
+            <div id="main-content" className="relative" style={{ zIndex: 1 }}>
+              {children}
+              <GSAPAnimations />
+            </div>
+          </MotionProvider>
+        </GSAPProvider>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ" strategy="afterInteractive" />
         <Script id="ga4-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];

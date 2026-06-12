@@ -134,7 +134,12 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       <p className="mt-3 text-[14px] leading-[1.72] text-[#6B7280]">{pkg.whatYouGet}</p>
       {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#6B7280]">{pkg.sub}</p>}
       <div className="mt-5 border-t border-[rgba(0,0,0,0.06)] pt-4">
-        <span className="text-[1.55rem] font-extrabold tracking-tight text-[#111827]">{pkg.price}</span>
+        <span className="text-[1.55rem] font-extrabold tracking-tight text-[#111827]">
+          {pkg.price === '2099 zł' && <><span className={`counter-2099`}>2099</span> zł</>}
+          {pkg.price === '2499 zł' && <><span className={`counter-2499`}>2499</span> zł</>}
+          {pkg.price === '3999 zł + 99 zł/mies' && <><span className={`counter-3999`}>3999</span> zł + 99 zł/mies</>}
+          {!['2099 zł','2499 zł','3999 zł + 99 zł/mies'].includes(pkg.price) && pkg.price}
+        </span>
       </div>
     </m.div>
   )

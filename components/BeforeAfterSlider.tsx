@@ -14,6 +14,8 @@ type BeforeAfterSliderProps = {
   height: number
   beforeLabel?: string
   afterLabel?: string
+  beforeBlur?: string
+  afterBlur?: string
   priority?: boolean
 }
 
@@ -28,6 +30,8 @@ export default function BeforeAfterSlider({
   height,
   beforeLabel = 'Przed',
   afterLabel = 'Po',
+  beforeBlur,
+  afterBlur,
   priority = false,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -162,6 +166,8 @@ export default function BeforeAfterSlider({
           className="absolute inset-0 h-full w-full object-cover object-top"
           quality={82}
           priority={priority}
+          placeholder={afterBlur ? 'blur' : 'empty'}
+          blurDataURL={afterBlur}
           draggable={false}
         />
 
@@ -196,6 +202,8 @@ export default function BeforeAfterSlider({
             className="absolute inset-0 h-full w-full object-cover object-top"
             quality={82}
             priority={priority}
+            placeholder={beforeBlur ? 'blur' : 'empty'}
+            blurDataURL={beforeBlur}
             draggable={false}
           />
         </m.div>

@@ -76,13 +76,14 @@ export default function Hero() {
   return (
     <section
       suppressHydrationWarning
+      data-no-reveal
       className="relative overflow-hidden pt-40 sm:pt-56 md:pt-64"
       style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, #FAFBFF 60%, #EEF2FF 100%)' }}
     >
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '8%', left: '12%', width: 480, height: 320, background: 'radial-gradient(ellipse, rgba(79,70,229,0.06) 0%, transparent 70%)', filter: 'blur(40px)', borderRadius: '50%' }} />
-        <div style={{ position: 'absolute', top: '30%', right: '8%', width: 360, height: 280, background: 'radial-gradient(ellipse, rgba(37,99,235,0.05) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
-        <div style={{ position: 'absolute', bottom: '10%', left: '38%', width: 300, height: 220, background: 'radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 70%)', filter: 'blur(45px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', top: '8%', left: '12%', width: 480, height: 320, background: 'radial-gradient(ellipse, rgba(79,70,229,0.06) 0%, transparent 70%)', filter: 'blur(40px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', top: '30%', right: '8%', width: 360, height: 280, background: 'radial-gradient(ellipse, rgba(37,99,235,0.05) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', bottom: '10%', left: '38%', width: 300, height: 220, background: 'radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 70%)', filter: 'blur(45px)', borderRadius: '50%' }} />
       </div>
 
       <BackgroundPaths />
@@ -90,7 +91,7 @@ export default function Hero() {
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
         <div className="w-full text-center">
 
-          <div className="mx-auto mb-6 sm:mb-8">
+          <div className="mx-auto mb-6 sm:mb-8" data-parallax-headline>
             <h1
               style={{
                 fontFamily: 'var(--font-syne)',

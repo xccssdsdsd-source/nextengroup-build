@@ -166,8 +166,7 @@ export default function BeforeAfterSlider({
           className="absolute inset-0 h-full w-full object-cover object-top"
           quality={82}
           priority={priority}
-          placeholder={afterBlur ? 'blur' : 'empty'}
-          blurDataURL={afterBlur}
+          {...(afterBlur ? { placeholder: 'blur' as const, blurDataURL: afterBlur } : {})}
           draggable={false}
         />
 
@@ -202,8 +201,7 @@ export default function BeforeAfterSlider({
             className="absolute inset-0 h-full w-full object-cover object-top"
             quality={82}
             priority={priority}
-            placeholder={beforeBlur ? 'blur' : 'empty'}
-            blurDataURL={beforeBlur}
+            {...(beforeBlur ? { placeholder: 'blur' as const, blurDataURL: beforeBlur } : {})}
             draggable={false}
           />
         </m.div>

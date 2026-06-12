@@ -38,9 +38,9 @@ export default function BackgroundPaths() {
             .bp-4 { animation: bpFlow ${mainPaths[4].dur}s linear infinite; }
             .bp-5 { animation: bpFlow ${mainPaths[5].dur}s linear infinite; }
           }
-          .bp-0, .bp-2 { opacity: 0.16; }
-          .bp-1, .bp-3 { opacity: 0.11; }
-          .bp-4, .bp-5 { opacity: 0.08; }
+          .bp-0, .bp-2 { opacity: 0.22; }
+          .bp-1, .bp-3 { opacity: 0.15; }
+          .bp-4, .bp-5 { opacity: 0.12; }
         `}</style>
         {mainPaths.map((p, i) => (
           <path

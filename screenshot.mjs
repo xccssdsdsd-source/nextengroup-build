@@ -4,7 +4,7 @@ import path from 'path'
 
 const url = process.argv[2] || 'http://localhost:3000'
 
-const browser = await puppeteer.launch({ headless: true })
+const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
 const page = await browser.newPage()
 await page.setViewport({ width: 1440, height: 900 })
 await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 })

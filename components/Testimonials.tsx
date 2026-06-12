@@ -17,6 +17,7 @@ export default function Testimonials() {
       id="opinie"
       ref={ref}
       className="section-shell relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #F3F7FF 0%, #FAFAF9 55%)' }}
     >
 
       <div className="relative mx-auto max-w-7xl">

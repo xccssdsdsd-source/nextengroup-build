@@ -45,6 +45,10 @@ screenshots/
 temporary\ screenshots/
 test-screenshot.mjs
 shot.mjs
+sec-*.png
+new-*.png
+screenshot-*.png
+screenshot-hydrated.png
 
 # claude local
 .claude/

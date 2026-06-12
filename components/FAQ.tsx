@@ -65,9 +65,9 @@ export default function FAQ() {
       <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.68, ease }}
+          transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker">FAQ</span>
           <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>

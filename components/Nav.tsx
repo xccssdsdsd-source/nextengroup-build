@@ -63,7 +63,7 @@ export default function Nav() {
 
   useEffect(() => {
     setIsMounted(true)
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 80)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -131,11 +131,13 @@ export default function Nav() {
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-4 py-2 sm:px-5 transition-[border-color,box-shadow,background-color] duration-300`}
+          className={`mx-auto max-w-7xl rounded-2xl border px-4 py-2 sm:px-5 transition-[border-color,box-shadow,background-color,backdrop-filter] duration-300`}
           style={{
-            borderColor: 'rgba(0, 0, 0, 0.06)',
-            background: 'rgba(249, 249, 247, 0.92)',
-            backdropFilter: 'blur(12px)',
+            borderColor: scrolled ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.06)',
+            background: scrolled ? 'rgba(255, 255, 255, 0.80)' : 'rgba(249, 249, 247, 0.92)',
+            backdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
+            WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
+            boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06)' : 'none',
           }}
         >
           <div className="flex items-center justify-between gap-4">

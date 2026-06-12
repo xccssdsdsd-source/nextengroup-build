@@ -9,11 +9,11 @@ const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.12 } },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32, scale: 0.94 },
+  hidden: { opacity: 0, y: 40, scale: 0.94 },
   show: {
     opacity: 1,
     y: 0,
@@ -72,10 +72,10 @@ export default function ValueProps() {
                 className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col cursor-default"
                 style={{ willChange: 'transform' }}
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-transform duration-200 group-hover:scale-110" style={{ background: 'rgba(37,99,235,0.08)', animationDelay: `${idx * 0.5}s` }}>
-                  <Icon size={20} strokeWidth={1.8} style={{ color: '#2563EB' }} />
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-transform duration-200 group-hover:scale-110" style={{ background: 'linear-gradient(135deg, rgba(37,99,235,0.10) 0%, rgba(79,70,229,0.10) 100%)', animationDelay: `${idx * 0.5}s` }}>
+                  <Icon size={20} strokeWidth={1.8} style={{ color: '#4F46E5' }} />
                 </div>
-                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug transition-colors duration-200 group-hover:text-[#1D4ED8]" style={{ fontFamily: 'var(--font-syne)' }}>
+                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#0D0D0D] leading-snug transition-colors duration-200 group-hover:text-[#2563EB]" style={{ fontFamily: 'var(--font-syne)' }}>
                   {value.title}
                 </h3>
                 <p className="mt-2 text-[13.5px] leading-[1.65] text-[#555555]">

@@ -169,9 +169,9 @@ export default function Portfolio() {
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, ease }}
+          transition={{ duration: 0.7, ease }}
         >
           <div>
             <span className="section-kicker">Nasze realizacje</span>

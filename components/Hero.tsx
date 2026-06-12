@@ -14,11 +14,11 @@ const line1 = ['Strony,', 'które', 'pozyskują', 'klientów.']
 const line2 = ['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.']
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { y: '115%', opacity: 0 },
   show: (i: number) => ({
+    y: '0%',
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.33, 1, 0.68, 1] as [number,number,number,number], delay: i * 0.08 },
+    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as [number,number,number,number], delay: 0.12 + i * 0.065 },
   }),
 }
 
@@ -75,8 +75,10 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       suppressHydrationWarning
       data-no-reveal
+      data-no-entrance
       className="relative overflow-hidden pt-40 sm:pt-56 md:pt-64"
       style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, #FAFBFF 60%, #EEF2FF 100%)' }}
     >
@@ -106,9 +108,11 @@ export default function Hero() {
               <span className="block text-balance" style={{ display: 'block', marginBottom: '0.08em' }}>
                 {isMounted
                   ? line1.map((word, i) => (
-                      <m.span key={i} custom={i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block', marginRight: '0.22em' }}>
-                        {word}
-                      </m.span>
+                      <span key={i} style={{ display: 'inline-block', overflow: 'hidden', marginRight: '0.22em', paddingBottom: '0.14em', marginBottom: '-0.14em', verticalAlign: 'top' }}>
+                        <m.span custom={i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block' }}>
+                          {word}
+                        </m.span>
+                      </span>
                     ))
                   : line1.join(' ')}
               </span>
@@ -118,9 +122,11 @@ export default function Hero() {
               >
                 {isMounted
                   ? line2.map((word, i) => (
-                      <m.span key={i} custom={line1.length + i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block', marginRight: '0.22em', WebkitTextFillColor: 'transparent' }}>
-                        {word}
-                      </m.span>
+                      <span key={i} style={{ display: 'inline-block', overflow: 'hidden', marginRight: '0.22em', paddingBottom: '0.14em', marginBottom: '-0.14em', verticalAlign: 'top' }}>
+                        <m.span custom={line1.length + i} variants={wordVariants} initial="hidden" animate="show" style={{ display: 'inline-block', WebkitTextFillColor: 'transparent' }}>
+                          {word}
+                        </m.span>
+                      </span>
                     ))
                   : line2.join(' ')}
               </span>

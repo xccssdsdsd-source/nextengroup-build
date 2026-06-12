@@ -269,10 +269,6 @@ export default function Portfolio() {
                         height={project.sliderHeight}
                       />
                     </div>
-                    {/* Subtle label */}
-                    <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm whitespace-nowrap">
-                      Przeciągnij suwak
-                    </span>
                   </div>
                 )}
 

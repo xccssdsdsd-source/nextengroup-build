@@ -17,7 +17,6 @@ export default function Testimonials() {
       id="opinie"
       ref={ref}
       className="section-shell relative overflow-hidden"
-      style={{ background: '#ffffff' }}
     >
 
       <div className="relative mx-auto max-w-7xl">

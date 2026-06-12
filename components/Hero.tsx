@@ -43,6 +43,26 @@ export default function Hero() {
     >
       <BackgroundPaths />
 
+      {/* Ambient gradient depth — establishes brand identity, zero JS */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
+        width: '120%', height: '75%',
+        background: 'radial-gradient(ellipse 80% 70% at 50% 0%, rgba(59,130,246,0.10) 0%, transparent 70%)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: '10%', right: '-5%',
+        width: '45%', height: '55%',
+        background: 'radial-gradient(ellipse at 70% 70%, rgba(99,102,241,0.07) 0%, transparent 65%)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: '15%', left: '-5%',
+        width: '35%', height: '50%',
+        background: 'radial-gradient(ellipse at 30% 30%, rgba(37,99,235,0.05) 0%, transparent 65%)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+
       <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
 
         <div className="w-full text-center">

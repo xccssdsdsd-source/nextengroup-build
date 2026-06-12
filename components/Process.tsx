@@ -49,7 +49,7 @@ export default function Process() {
       <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%)' }}
       />
 
       <div className="relative mx-auto max-w-7xl">

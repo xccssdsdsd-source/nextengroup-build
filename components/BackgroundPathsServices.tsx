@@ -1,9 +1,9 @@
 'use client'
 
 const paths = [
-  { d: 'M -50 300 Q 150 200 350 180 Q 550 160 800 100', color: '#1D4ED8', width: 1.0 },
-  { d: 'M -50 360 Q 130 240 310 220 Q 510 200 800 160', color: '#3B82F6', width: 0.5 },
-  { d: 'M 800 100 Q 600 200 400 250 Q 200 300 -50 400', color: '#2563EB', width: 0.7 },
+  { d: 'M -50 300 Q 150 200 350 180 Q 550 160 800 100', color: '#0E7490', width: 1.0 },
+  { d: 'M -50 360 Q 130 240 310 220 Q 510 200 800 160', color: '#5EEAFF', width: 0.5 },
+  { d: 'M 800 100 Q 600 200 400 250 Q 200 300 -50 400', color: '#22D3EE', width: 0.7 },
 ]
 
 const nodes = [
@@ -29,9 +29,9 @@ export default function BackgroundPathsServices() {
           WebkitMaskImage: 'radial-gradient(ellipse at center, black 56%, transparent 100%)',
         }}
       />
-      <div className="absolute left-1/2 top-0 h-72 w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.10),transparent_70%)] blur-3xl" />
-      <div className="absolute -left-24 top-32 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.08),transparent_72%)] blur-3xl" />
-      <div className="absolute -right-28 bottom-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08),transparent_72%)] blur-3xl" />
+      <div className="absolute left-1/2 top-0 h-72 w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.12),transparent_70%)] blur-3xl" />
+      <div className="absolute -left-24 top-32 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.10),transparent_72%)] blur-3xl" />
+      <div className="absolute -right-28 bottom-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.08),transparent_72%)] blur-3xl" />
       <svg
         viewBox="0 0 800 500"
         preserveAspectRatio="xMidYMid slice"
@@ -69,7 +69,7 @@ export default function BackgroundPathsServices() {
         `}</style>
         <g opacity="0.18">
           <path d="M 96 268 L 192 232 L 286 210 L 404 194 L 520 176 L 636 146 L 742 112" fill="none" stroke="rgba(14,165,233,0.24)" strokeWidth="1" strokeLinecap="round" strokeDasharray="2 10" />
-          <path d="M 96 268 L 286 210 L 404 194 L 636 146 L 742 112" fill="none" stroke="rgba(37,99,235,0.16)" strokeWidth="1" strokeLinecap="round" strokeDasharray="1 12" />
+          <path d="M 96 268 L 286 210 L 404 194 L 636 146 L 742 112" fill="none" stroke="rgba(34,211,238,0.16)" strokeWidth="1" strokeLinecap="round" strokeDasharray="1 12" />
         </g>
         {paths.map((p, i) => (
           <path
@@ -89,8 +89,8 @@ export default function BackgroundPathsServices() {
             cx={node.cx}
             cy={node.cy}
             r={node.r}
-            fill="rgba(255, 255, 255, 0.9)"
-            stroke="rgba(29, 78, 216, 0.25)"
+            fill="rgba(94, 234, 255, 0.9)"
+            stroke="rgba(34, 211, 238, 0.35)"
             strokeWidth="1"
             className={`bp-node bp-node-${index + 1}`}
           />

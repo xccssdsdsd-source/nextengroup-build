@@ -65,7 +65,7 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
             ctx.beginPath()
             ctx.moveTo(nodes[i].x, nodes[i].y)
             ctx.lineTo(nodes[j].x, nodes[j].y)
-            ctx.strokeStyle = `rgba(37,99,235,${alpha})`
+            ctx.strokeStyle = `rgba(34,211,238,${alpha})`
             ctx.lineWidth = 1
             ctx.stroke()
           }
@@ -75,7 +75,7 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
       for (const n of nodes) {
         ctx.beginPath()
         ctx.arc(n.x, n.y, 3.5, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(37,99,235,0.65)'
+        ctx.fillStyle = 'rgba(34,211,238,0.65)'
         ctx.fill()
       }
 

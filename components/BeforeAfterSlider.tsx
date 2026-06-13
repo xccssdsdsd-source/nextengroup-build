@@ -182,7 +182,7 @@ export default function BeforeAfterSlider({
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  'linear-gradient(rgba(37,99,235,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.18) 1px, transparent 1px)',
+                  'linear-gradient(rgba(34,211,238,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.18) 1px, transparent 1px)',
                 backgroundSize: '28px 28px',
                 maskImage: 'linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)',
               }}
@@ -214,7 +214,7 @@ export default function BeforeAfterSlider({
           {beforeLabel}
         </m.span>
         <m.span
-          className="pointer-events-none absolute right-3 top-3 z-30 rounded-full bg-blue-600/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm"
+          className="pointer-events-none absolute right-3 top-3 z-30 rounded-full bg-[#22D3EE]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A] backdrop-blur-sm"
           style={{ opacity: afterLabelOpacity }}
         >
           {afterLabel}
@@ -224,7 +224,7 @@ export default function BeforeAfterSlider({
         <m.div className="pointer-events-none absolute inset-y-0 z-30" style={{ left: handleLeft, x: '-50%' }}>
           <div
             className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white shadow-[0_0_8px_rgba(0,0,0,0.35)]"
-            style={building ? { boxShadow: '0 0 14px 2px rgba(37,99,235,0.8)' } : undefined}
+            style={building ? { boxShadow: '0 0 14px 2px rgba(34,211,238,0.8)' } : undefined}
           />
           <button
             type="button"
@@ -234,7 +234,7 @@ export default function BeforeAfterSlider({
             aria-valuemax={100}
             aria-valuenow={Math.round(mode === 'after' ? 0 : mode === 'before' ? 100 : 50)}
             onKeyDown={onKeyDown}
-            className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0D0D0D] shadow-[0_4px_14px_rgba(0,0,0,0.3)] ring-1 ring-black/10 transition-transform duration-150 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0D0D0D] shadow-[0_4px_14px_rgba(0,0,0,0.5)] ring-1 ring-black/10 transition-transform duration-150 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE]"
             style={{ cursor: 'ew-resize', touchAction: 'none' }}
           >
             <MoveHorizontal size={20} strokeWidth={2.4} />
@@ -244,13 +244,13 @@ export default function BeforeAfterSlider({
 
       {/* PRZED / PO toggle */}
       <div className="flex items-center justify-center">
-        <div className="inline-flex items-center rounded-full bg-[#F3F4F6] p-1 ring-1 ring-black/5">
+        <div className="inline-flex items-center rounded-full bg-[#161C28] p-1 ring-1 ring-[rgba(255,255,255,0.08)]">
           <button
             type="button"
             onClick={() => goTo('before')}
             aria-pressed={mode === 'before'}
             className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-all duration-200 ${
-              mode === 'before' ? 'bg-[#0D0D0D] text-white shadow-sm' : 'text-[#6B7280] hover:text-[#0D0D0D]'
+              mode === 'before' ? 'bg-[#1C2433] text-[#EAF0F7] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
             }`}
           >
             {beforeLabel}
@@ -260,7 +260,7 @@ export default function BeforeAfterSlider({
             onClick={() => goTo('after')}
             aria-pressed={mode === 'after'}
             className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-all duration-200 ${
-              mode === 'after' ? 'bg-blue-600 text-white shadow-sm' : 'text-[#6B7280] hover:text-[#0D0D0D]'
+              mode === 'after' ? 'bg-[#22D3EE] text-[#06141A] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
             }`}
           >
             {afterLabel}

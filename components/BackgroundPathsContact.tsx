@@ -1,9 +1,9 @@
 'use client'
 
 const paths = [
-  { d: 'M -50 300 Q 140 200 350 170 Q 560 140 850 80', color: '#1D4ED8', width: 0.9 },
-  { d: 'M -50 360 Q 120 240 310 210 Q 520 180 850 140', color: '#3B82F6', width: 0.5 },
-  { d: 'M 850 150 Q 650 250 450 320 Q 250 390 -50 480', color: '#60A5FA', width: 0.7 },
+  { d: 'M -50 300 Q 140 200 350 170 Q 560 140 850 80', color: '#22D3EE', width: 0.9 },
+  { d: 'M -50 360 Q 120 240 310 210 Q 520 180 850 140', color: '#5EEAFF', width: 0.5 },
+  { d: 'M 850 150 Q 650 250 450 320 Q 250 390 -50 480', color: '#0E7490', width: 0.7 },
 ]
 
 export default function BackgroundPathsContact() {

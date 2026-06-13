@@ -139,7 +139,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
       >
         {value}
       </div>
-      <span className="text-[9px] leading-tight text-[#6B7280] text-center max-w-[44px]">{label}</span>
+      <span className="text-[9px] leading-tight text-[#A6B2C4] text-center max-w-[44px]">{label}</span>
     </div>
   )
 }
@@ -211,11 +211,11 @@ export default function Portfolio() {
         >
           <div>
             <span className="section-kicker">Nasze realizacje</span>
-            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
-            <span className="font-mono text-[13px] tabular-nums text-[#6B7280]"><span className="text-[#111827] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
+            <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
         </m.div>
@@ -250,7 +250,7 @@ export default function Portfolio() {
                     target="_blank"
                     rel="noreferrer"
                     onClick={handleCardClick}
-                    className="group relative flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-lg rounded-2xl p-3 sm:p-4"
+                    className="group relative flex items-center justify-center overflow-hidden bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4"
                   >
                     <Image
                       src={project.preview}
@@ -259,7 +259,7 @@ export default function Portfolio() {
                       height={project.imgHeight}
                       sizes="(min-width: 768px) 720px, 100vw"
                       data-parallax-image
-                      className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] ring-1 ring-white transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       quality={82}
                       priority={currentIndex === 0}
                       placeholder="blur"
@@ -268,7 +268,7 @@ export default function Portfolio() {
                   </a>
                 ) : (
                   /* Slider project (Dorimari) — portrait image in a constrained frame */
-                  <div className="relative flex items-center justify-center overflow-hidden bg-[#F3F4F6] rounded-2xl p-4 sm:p-5">
+                  <div className="relative flex items-center justify-center overflow-hidden bg-[#161C28] rounded-2xl p-4 sm:p-5">
                     <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
                       <BeforeAfterSlider
                         beforeSrc={project.beforeSrc}
@@ -284,18 +284,18 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                <div className="flex flex-col justify-center p-6 sm:p-8 bg-white">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white" style={{ background: '#0D0D0D', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Wdrożenie {project.time}</span>
+                <div className="flex flex-col justify-center p-6 sm:p-8 bg-[#11161F]">
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#22D3EE', boxShadow: '0 2px 8px rgba(34,211,238,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
-                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#6B7280] transition-all duration-200 group-hover:text-[#0D0D0D] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-all duration-200 group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
-                  <p className="mt-1 text-[14px] font-medium text-[#555555]">{project.tagline}</p>
-                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#6B7280]">
+                  <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#0D0D0D] hover:underline">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#22D3EE] hover:underline">Zobacz więcej</button></>
                     )}
                   </p>
 
@@ -304,7 +304,7 @@ export default function Portfolio() {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[rgba(0,0,0,0.06)] pt-5">
+                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}
@@ -318,7 +318,7 @@ export default function Portfolio() {
             <m.button
               onClick={prevProject}
               whileTap={{ scale: 0.9 }}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(0,0,0,0.1)] bg-white text-[#0D0D0D] shadow-sm transition-all duration-200 hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)] active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Poprzednia realizacja"
             >
               <ChevronLeft size={20} strokeWidth={2.5} />
@@ -333,7 +333,7 @@ export default function Portfolio() {
                   style={{
                     width: i === currentIndex ? 22 : 7,
                     height: 7,
-                    background: i === currentIndex ? '#0D0D0D' : 'rgba(0,0,0,0.15)',
+                    background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
                   }}
                   aria-label={`Realizacja ${i + 1}`}
                 />
@@ -343,7 +343,7 @@ export default function Portfolio() {
             <m.button
               onClick={nextProject}
               whileTap={{ scale: 0.9 }}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(0,0,0,0.1)] bg-white text-[#0D0D0D] shadow-sm transition-all duration-200 hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)] active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Następna realizacja"
             >
               <ChevronRight size={20} strokeWidth={2.5} />

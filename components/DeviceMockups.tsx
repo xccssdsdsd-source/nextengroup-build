@@ -48,17 +48,17 @@ export default function DeviceMockups() {
         <div style={{
           width: 'clamp(300px, 85vw, 680px)',
           height: 'clamp(210px, 60vw, 480px)',
-          background: '#FFFFFF',
+          background: '#161C28',
           borderRadius: '20px',
           padding: '14px',
-          boxShadow: '0 0 0 1px rgba(0,0,0,0.08), 0 40px 100px rgba(37,99,235,0.15), 0 20px 60px rgba(0,0,0,0.1)',
+          boxShadow: '0 0 0 1px rgba(255,255,255,0.08), 0 40px 100px rgba(34,211,238,0.22), 0 20px 60px rgba(0,0,0,0.55)',
           position: 'relative',
         }}>
           <div style={{
             position: 'absolute', top: '7px', left: '50%',
             transform: 'translateX(-50%)',
             width: '6px', height: '6px', borderRadius: '50%',
-            background: '#E5E7EB',
+            background: 'rgba(255,255,255,0.14)',
           }} />
 
           <div style={{

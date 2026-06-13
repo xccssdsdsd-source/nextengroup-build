@@ -52,23 +52,23 @@ export default function WiedzaAI() {
         { name: 'Getbuild', url: 'https://getbuild.pl' },
         { name: 'Wiedza AI' },
       ]} />
-      <article className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+      <article className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             AI dla firm — co warto wiedzieć przed wdrożeniem
           </h1>
-          <p className="text-lg leading-[1.7] text-[#374151]">
+          <p className="text-lg leading-[1.7] text-[#A6B2C4]">
             Praktyczne wyjaśnienia, które pomogą Ci zrozumieć, jak automatyzacja i agenci AI mogą wspierać Twój biznes.
           </p>
         </div>
       </article>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Czym jest automatyzacja AI dla firmy?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi Twojej firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to za Ciebie zautomatyzowane systemy. To nie o zastępowaniu ludzi, ale o uwolnieniu Twojego zespołu od powtarzających się zadań.
             </p>
@@ -85,12 +85,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Czym jest agent AI i czym różni się od zwykłej automatyzacji?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Agent AI to bardziej zaawansowany system — nie tylko wykonuje zadania, ale także podejmuje decyzje, działa niezależnie i potrafi obsługiwać wieloetapowe procesy. Agent pracuje 24/7, uczy się z każdą interakcją i dostosowuje swoje działania do kontekstu.
             </p>
@@ -107,12 +107,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Ile kosztuje automatyzacja AI lub agent AI?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Koszty są bardzo zmienne. Prosta automatyzacja — np. wysyłanie e-maili powiadomień lub powiadomienia o nowych zapytaniach — może kosztować kilkaset złotych jako jednorazowa konfiguracja. Bardziej złożone systemy i agenci wymagają więcej pracy i kosztują więcej.
             </p>
@@ -129,12 +129,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Kiedy firma jest gotowa na automatyzacje AI?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Nie potrzebujesz być dużą firmą ani mieć wewnętrznych IT-owców. Automatyzacja AI ma sens dla każdej firmy, która ma powtarzalne zadania robione w ten sam sposób codziennie. Czy to jedna osoba, czy pięciu pracowników — jeśli spędzają czas na czynności, które można zautomatyzować, to jest potencjał.
             </p>
@@ -151,12 +151,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Czy strona internetowa może być zintegrowana z automatyzacją AI?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Tak — i to jest właśnie tam, gdzie automatyzacja zazwyczaj zaczyna przynosić największą wartość. Strona internetowa to naturalny punkt wejścia dla automatyzacji.
             </p>
@@ -173,12 +173,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Ile kosztuje strona internetowa dla małej firmy?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               W Getbuild strony zaczynają się od około 150 zł miesięcznie, co obejmuje hosting, obsługę, aktualizacje bezpieczeństwa i bezpośrednie wsparcie. To znaczy — nie płacisz za stronę raz, ale za to, że Twoja strona zawsze działa, jest bezpieczna i wspierana.
             </p>
@@ -195,12 +195,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Ile czasu trwa stworzenie strony internetowej?
           </h2>
-          <div className="space-y-6 text-[#6b7280] leading-[1.7]">
+          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
               Podstawowa strona profesjonalna może być gotowa w ciągu 72 godzin od zebrania materiałów. To znaczy — jak dostarczysz nam teksty, zdjęcia i wiadomi, jakie informacje chcesz na stronie — w 3 dni projekt jest gotowy.
             </p>
@@ -214,17 +214,17 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-white py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
             Masz pytanie o AI lub stronę WWW?
           </h2>
-          <p className="text-lg text-[#6b7280] mb-8">
+          <p className="text-lg text-[#A6B2C4] mb-8">
             Odpiszę tego samego dnia. Umów bezpłatną 15-minutową rozmowę lub napisz bezpośrednio.
           </p>
           <a
             href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#2563EB] px-8 py-4 text-[15px] font-semibold text-white tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0 8px 24px rgba(37,99,235,0.20)] hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0 8px 24px rgba(34,211,238,0.22)] hover:-translate-y-0.5"
           >
             Skontaktuj się
           </a>

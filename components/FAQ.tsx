@@ -89,7 +89,7 @@ export default function FAQ() {
                 transition={{ ...premiumSpring, delay: index * 0.07 }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
-                    ? 'border-l-[#2563EB] bg-[rgba(37,99,235,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.2),_0_6px_16px_rgba(37,99,235,0.1)]'
+                    ? 'border-l-[#22D3EE] bg-[rgba(34,211,238,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(34,211,238,0.18)]'
                     : 'border-l-transparent bg-transparent'
                 }`}
               >
@@ -100,7 +100,7 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left border-b border-[rgba(255,255,255,0.06)]"
                 >
-                  <span className="text-[14.5px] font-semibold leading-snug text-[#111827] transition-colors duration-200 hover:text-[#2563EB]" style={{ fontFamily: 'var(--font-syne)' }}>
+                  <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
                   </span>
                   <m.span
@@ -108,8 +108,8 @@ export default function FAQ() {
                     transition={{ duration: 0.26, ease }}
                     className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
                       isOpen
-                        ? 'bg-[#2563EB] text-white shadow-[0_2px_8px_rgba(37,99,235,0.30)]'
-                        : 'bg-transparent text-[#2563EB] border border-[rgba(37,99,235,0.3)]'
+                        ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
+                        : 'bg-transparent text-[#22D3EE] border border-[rgba(34,211,238,0.3)]'
                     }`}
                   >
                     <Plus size={14} strokeWidth={2.2} />
@@ -126,7 +126,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#6B7280]">
+                      <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
                         {faq.a}
                       </p>
                     </m.div>

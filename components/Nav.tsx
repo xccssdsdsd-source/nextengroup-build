@@ -23,8 +23,8 @@ const allLinks: readonly (readonly [string, string])[] = [
   ['FAQ', '#faq'],
 ]
 
-const linkClass = 'nav-link text-[12.5px] font-medium text-[#111827]'
-const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#111827] transition-colors duration-150 hover:bg-[rgba(0,0,0,0.04)] hover:text-[#111827]'
+const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
+const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
 const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
 
@@ -133,18 +133,18 @@ export default function Nav() {
         <div
           className={`mx-auto max-w-7xl rounded-2xl border px-4 py-2 sm:px-5 transition-[border-color,box-shadow,background-color,backdrop-filter] duration-300`}
           style={{
-            borderColor: scrolled ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.06)',
-            background: scrolled ? 'rgba(255, 255, 255, 0.80)' : 'rgba(249, 249, 247, 0.92)',
+            borderColor: scrolled ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
+            background: scrolled ? 'rgba(10, 14, 20, 0.72)' : 'rgba(10, 14, 20, 0.72)',
             backdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
             WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
-            boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06)' : 'none',
+            boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.4), 0 4px 20px rgba(0,0,0,0.5)' : 'none',
           }}
         >
           <div className="flex items-center justify-between gap-4">
             <a href="/" className="flex min-w-0 items-center gap-3">
               <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-lg object-contain" priority />
               <div className="min-w-0">
-                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
+                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
               </div>
             </a>
 
@@ -185,7 +185,7 @@ export default function Nav() {
                 aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
                 aria-expanded={open}
                 onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent text-[#111827] transition-colors hover:bg-[rgba(0,0,0,0.05)] hover:border-[rgba(0,0,0,0.2)] lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] lg:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {open ? (
@@ -212,7 +212,7 @@ export default function Nav() {
                 transition={{ duration: 0.26, ease }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="mt-3 rounded-2xl border border-[rgba(0,0,0,0.08)] bg-[#ffffff] p-3">
+                <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] p-3">
 
                   <div className="flex flex-col gap-1">
                     {allLinks.map(([label, href], i) =>

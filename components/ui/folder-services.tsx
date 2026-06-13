@@ -11,7 +11,7 @@ const services = [
       'Nowoczesne strony, które budują wiarygodność firmy i aktywnie kierują klientów do kontaktu. Każdy element dopasowany do Twoich celów.',
     tags: ['Responsywność', 'Szybkie ładowanie', 'Integracje z systemami'],
     icon: '🌐',
-    color: '#2563eb',
+    color: '#22D3EE',
   },
   {
     id: 'ai',
@@ -20,7 +20,7 @@ const services = [
       'Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność.',
     tags: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i raportowanie'],
     icon: '⚡',
-    color: '#7c3aed',
+    color: '#F5B547',
   },
   {
     id: 'agents',
@@ -29,21 +29,21 @@ const services = [
       'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
     tags: ['Agenci AI 24/7', 'Integracje z CRM', 'Monitoring i statystyki'],
     icon: '🤖',
-    color: '#0891b2',
+    color: '#5EEAFF',
   },
 ]
 
 const PageMini = ({ icon, title }: { icon: string; title: string }) => (
-  <div className="w-full h-full bg-white/90 rounded-[11px] p-3 flex flex-col gap-2 shadow-sm border border-white/60">
+  <div className="w-full h-full bg-[#161C28] rounded-[11px] p-3 flex flex-col gap-2 shadow-[0_2px_12px_rgba(0,0,0,0.45)] border border-[rgba(255,255,255,0.08)]">
     <div className="text-2xl leading-none">{icon}</div>
-    <div className="h-1 bg-gray-200 rounded-full w-full" />
+    <div className="h-1 bg-[rgba(255,255,255,0.14)] rounded-full w-full" />
     {Array.from({ length: 4 }).map((_, i) => (
       <div key={i} className="flex gap-1">
-        <div className="flex-1 h-0.5 bg-gray-200 rounded-full" />
-        <div className="flex-[0.6] h-0.5 bg-gray-200 rounded-full opacity-50" />
+        <div className="flex-1 h-0.5 bg-[rgba(255,255,255,0.14)] rounded-full" />
+        <div className="flex-[0.6] h-0.5 bg-[rgba(255,255,255,0.14)] rounded-full opacity-50" />
       </div>
     ))}
-    <div className="mt-auto text-[9px] font-semibold text-gray-500 uppercase tracking-wide truncate">{title}</div>
+    <div className="mt-auto text-[9px] font-semibold text-[#7C879B] uppercase tracking-wide truncate">{title}</div>
   </div>
 )
 
@@ -51,9 +51,9 @@ const FolderBackSVG = () => (
   <svg viewBox="0 0 244 188" fill="none" className="w-full h-full block" preserveAspectRatio="none">
     <defs>
       <linearGradient id="sb-backGrad" x1="0" y1="0" x2="244" y2="188" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#1e3a8a" />
-        <stop offset="40%" stopColor="#1e40af" />
-        <stop offset="100%" stopColor="#1d4ed8" />
+        <stop offset="0%" stopColor="#0E7490" />
+        <stop offset="40%" stopColor="#0891B2" />
+        <stop offset="100%" stopColor="#22D3EE" />
       </linearGradient>
     </defs>
     <rect x="0" y="0" width="244" height="188" rx="22" ry="22" fill="url(#sb-backGrad)" />
@@ -106,7 +106,7 @@ export default function FolderServices() {
           className="absolute -left-8 -right-8 top-12 -bottom-8 z-0 pointer-events-none rounded-full"
           style={{
             background:
-              'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0.06) 50%, transparent 100%)',
+              'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(34,211,238,0.22) 0%, rgba(34,211,238,0.08) 50%, transparent 100%)',
             filter: 'blur(20px)',
           }}
         />
@@ -137,10 +137,10 @@ export default function FolderServices() {
           <svg viewBox="0 0 210 150" preserveAspectRatio="none" className="w-full h-full block" style={{ overflow: 'visible' }}>
             <defs>
               <linearGradient id="sb-flapGrad" x1="0" y1="22" x2="0" y2="150" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="rgba(147,197,253,0.7)" />
-                <stop offset="30%" stopColor="rgba(96,165,250,0.8)" />
-                <stop offset="65%" stopColor="rgba(37,99,235,0.9)" />
-                <stop offset="100%" stopColor="rgba(29,78,216,0.97)" />
+                <stop offset="0%" stopColor="rgba(94,234,255,0.7)" />
+                <stop offset="30%" stopColor="rgba(34,211,238,0.8)" />
+                <stop offset="65%" stopColor="rgba(8,145,178,0.9)" />
+                <stop offset="100%" stopColor="rgba(14,116,144,0.97)" />
               </linearGradient>
             </defs>
             <path
@@ -157,7 +157,7 @@ export default function FolderServices() {
         <div
           className="absolute -bottom-2 left-[20%] right-[20%] h-4 z-[1] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse, rgba(37,99,235,0.20) 0%, transparent 78%)',
+            background: 'radial-gradient(ellipse, rgba(34,211,238,0.22) 0%, transparent 78%)',
             filter: 'blur(6px)',
           }}
         />
@@ -165,7 +165,7 @@ export default function FolderServices() {
 
       <motion.p
         animate={{ opacity: 1 }}
-        className="text-sm text-gray-500 font-medium"
+        className="text-sm text-[#7C879B] font-medium"
       >
         {isOpen && !activeService ? 'Kliknij kartę, by dowiedzieć się więcej' : isOpen && activeService !== null ? 'Kliknij, by wrócić' : 'Kliknij, by zobaczyć usługi'}
       </motion.p>
@@ -187,11 +187,11 @@ export default function FolderServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.08, duration: 0.35 }}
                 onClick={() => setActiveService(i)}
-                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 h-[140px] flex flex-col items-center justify-center"
+                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5 h-[140px] flex flex-col items-center justify-center"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
                 <div className="text-4xl mb-3">{service.icon}</div>
-                <h3 className="text-sm font-semibold text-gray-900 text-center">{service.title}</h3>
+                <h3 className="text-sm font-semibold text-[#EAF0F7] text-center">{service.title}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -212,17 +212,17 @@ export default function FolderServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08, duration: 0.35 }}
                 onClick={() => setActiveService(i === activeService ? null : i)}
-                className="cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
                 <div className="text-3xl mb-2">{service.icon}</div>
-                <h3 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <h3 className="text-base font-semibold text-[#EAF0F7] mb-2">{service.title}</h3>
                 {i === activeService && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.15 }}
-                    className="text-[11px] leading-relaxed text-gray-600 mt-2 pt-2 border-t border-gray-100"
+                    className="text-[11px] leading-relaxed text-[#A6B2C4] mt-2 pt-2 border-t border-[rgba(255,255,255,0.08)]"
                   >
                     <p className="mb-2">{service.description}</p>
                     <div className="flex flex-wrap gap-1">

@@ -106,24 +106,24 @@ export default function Contact() {
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] shadow-[0_8px_40px_rgba(0,0,0,0.5)] p-6 sm:p-10 lg:p-14"
       >
 
         <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
           <div className="w-full lg:w-[300px] xl:w-[340px] flex-shrink-0 flex flex-col">
             <div>
               <span className="section-kicker">Kontakt</span>
-              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="mt-2 text-[28px] sm:text-[32px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
                 Umów bezpłatną konsultację
               </h2>
-              <p className="mt-3 text-[14px] leading-[1.7] text-[#6B7280]">
+              <p className="mt-3 text-[14px] leading-[1.7] text-[#A6B2C4]">
                 Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
               </p>
             </div>
 
             <div className="mt-8 flex flex-col gap-4">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7280] mb-3">Email</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-3">Email</p>
                 <m.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -132,20 +132,20 @@ export default function Contact() {
                 >
                   <a
                     href={`mailto:${contactEmail}`}
-                    className="flex-1 px-4 py-3 rounded-2xl border border-gray-300 bg-gray-100 hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-between"
+                    className="flex-1 px-4 py-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all flex items-center justify-between"
                   >
-                    <span className="text-[13px] font-semibold text-[#111827] break-all">{contactEmail}</span>
+                    <span className="text-[13px] font-semibold text-[#EAF0F7] break-all">{contactEmail}</span>
                   </a>
                   <button
                     onClick={copyEmail}
-                    className="px-3 py-3 rounded-2xl border border-gray-300 bg-gray-100 hover:border-[#2563EB] hover:bg-[rgba(37,99,235,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
+                    className="px-3 py-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
                     aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                     title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                   >
                     {copied ? (
-                      <span className="text-[12px] font-semibold text-[#2563EB]">Skopiowane!</span>
+                      <span className="text-[12px] font-semibold text-[#22D3EE]">Skopiowane!</span>
                     ) : (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#111827]">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#EAF0F7]">
                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                       </svg>
@@ -155,7 +155,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#6B7280] mb-3">Nasze konta</p>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-3">Nasze konta</p>
                 <div className="space-y-2">
                   {socials.map((s, i) => (
                     <m.a
@@ -166,7 +166,7 @@ export default function Contact() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.45, delay: 0.2 + i * 0.1, ease }}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 bg-gray-50 hover:bg-[rgba(37,99,235,0.08)] hover:border-[rgba(37,99,235,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-all duration-200 cursor-pointer"
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(34,211,238,0.08)] hover:border-[rgba(34,211,238,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all duration-200 cursor-pointer"
                       title={s.fullName}
                     >
                       <div
@@ -184,8 +184,8 @@ export default function Contact() {
                         {s.label === 'Facebook' && <FaFacebook size={22} className="text-white" />}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-[#111827] text-sm">{s.label}</p>
-                        <p className="text-[#6B7280] text-xs mt-0.5 truncate">{s.fullName}</p>
+                        <p className="font-semibold text-[#EAF0F7] text-sm">{s.label}</p>
+                        <p className="text-[#A6B2C4] text-xs mt-0.5 truncate">{s.fullName}</p>
                       </div>
                     </m.a>
                   ))}
@@ -196,8 +196,8 @@ export default function Contact() {
 
           <div className="w-full flex-1 min-w-0 flex flex-col">
             <div className="text-center mb-8">
-              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#111827] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
-              <p className="text-[14px] text-[#6B7280]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
+              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#EAF0F7] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
+              <p className="text-[14px] text-[#A6B2C4]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
             </div>
 
             <div className="flex flex-col gap-8">
@@ -220,21 +220,21 @@ export default function Contact() {
               <div className="flex flex-col items-center">
                 <div className="w-full max-w-xl">
                   <div className="text-center mb-6">
-                    <h4 className="text-[16px] font-bold text-[#111827] mb-2">Lub wyślij nam zapytanie</h4>
-                    <p className="text-[13px] text-[#6B7280]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
+                    <h4 className="text-[16px] font-bold text-[#EAF0F7] mb-2">Lub wyślij nam zapytanie</h4>
+                    <p className="text-[13px] text-[#A6B2C4]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
                   </div>
 
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(29,78,216,0.06)]">
+                  <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
                     {submitted ? (
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
-                        <h3 className="text-lg font-bold text-[#111827] mb-2">Dziękujemy!</h3>
-                        <p className="text-[14px] text-[#6B7280]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+                        <h3 className="text-lg font-bold text-[#EAF0F7] mb-2">Dziękujemy!</h3>
+                        <p className="text-[14px] text-[#A6B2C4]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Imię i nazwisko *</label>
+                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Imię i nazwisko *</label>
                           <input
                             type="text"
                             id="name"
@@ -248,7 +248,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Email *</label>
+                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
                           <input
                             type="email"
                             id="email"
@@ -262,7 +262,7 @@ export default function Contact() {
                         </div>
 
                         <div>
-                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B7280] mb-2">Wiadomość *</label>
+                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
                           <textarea
                             id="message"
                             name="message"

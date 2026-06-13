@@ -114,28 +114,28 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="relative bg-white pt-24 pb-10 md:pt-32 md:pb-16 px-6 md:px-12">
+      <section className="relative bg-[#0A0E14] pt-24 pb-10 md:pt-32 md:pb-16 px-6 md:px-12">
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(219,234,254,0.4), transparent 60%)',
+              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.12), transparent 60%)',
           }}
         />
         <div className="mx-auto max-w-3xl relative z-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-[#6B7280] hover:text-[#0055FF] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-[#A6B2C4] hover:text-[#22D3EE] transition-colors mb-6"
           >
             ← Wróć do bloga
           </Link>
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#0A0A0F] mb-6 leading-[1.15]"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.15]"
             style={{ fontFamily: 'var(--font-syne)' }}
           >
             {article.title}
           </h1>
-          <p className="text-sm text-[#6B7280] flex flex-wrap gap-3 items-center">
+          <p className="text-sm text-[#A6B2C4] flex flex-wrap gap-3 items-center">
             <span>{formattedDate}</span>
             <span aria-hidden="true">•</span>
             <span>{article.readTime} min czytania</span>
@@ -146,7 +146,7 @@ export default async function ArticlePage({ params }: Props) {
       </section>
 
       {/* Article body */}
-      <article className="px-6 pb-20 md:pb-32 bg-white">
+      <article className="px-6 pb-20 md:pb-32 bg-[#0A0E14]">
         <div className="mx-auto max-w-3xl">
           <div className="prose-custom">
             {article.sections.map((section, i) => {
@@ -154,7 +154,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#0A0A0F] mt-12 mb-4"
+                    className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#EAF0F7] mt-12 mb-4"
                     style={{ fontFamily: 'var(--font-syne)' }}
                   >
                     {section.text}
@@ -165,7 +165,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <h3
                     key={i}
-                    className="text-xl font-bold text-[#0A0A0F] mt-8 mb-3"
+                    className="text-xl font-bold text-[#EAF0F7] mt-8 mb-3"
                     style={{ fontFamily: 'var(--font-syne)' }}
                   >
                     {section.text}
@@ -176,7 +176,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <p
                     key={i}
-                    className="text-[#374151] leading-[1.8] text-base md:text-[1.0625rem] mb-5"
+                    className="text-[#A6B2C4] leading-[1.8] text-base md:text-[1.0625rem] mb-5"
                   >
                     {section.text}
                   </p>
@@ -188,10 +188,10 @@ export default async function ArticlePage({ params }: Props) {
                     {section.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-3 text-[#374151] leading-[1.7] text-base md:text-[1.0625rem]"
+                        className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
                         <span
-                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#0055FF]"
+                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#22D3EE]"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -206,9 +206,9 @@ export default async function ArticlePage({ params }: Props) {
                     {section.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-3 text-[#374151] leading-[1.7] text-base md:text-[1.0625rem]"
+                        className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#EFF6FF] text-[#0055FF] text-xs font-bold flex items-center justify-center mt-[0.15em]">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1C2433] text-[#5EEAFF] text-xs font-bold flex items-center justify-center mt-[0.15em]">
                           {j + 1}
                         </span>
                         <span>{item}</span>
@@ -222,29 +222,29 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* CTA block */}
-          <div className="mt-16 rounded-2xl border border-blue-100 bg-[#F0F7FF] px-8 py-8">
+          <div className="mt-16 rounded-2xl border border-white/10 bg-[#161C28] px-8 py-8">
             <p
-              className="text-lg font-bold text-[#0A0A0F] mb-2"
+              className="text-lg font-bold text-[#EAF0F7] mb-2"
               style={{ fontFamily: 'var(--font-syne)' }}
             >
               Masz pytania? Napisz do nas.
             </p>
-            <p className="text-[#374151] mb-5 text-sm leading-relaxed">
+            <p className="text-[#A6B2C4] mb-5 text-sm leading-relaxed">
               Getbuild to agencja z Trójmiasta obsługująca firmy z całej Polski. Oferujemy bezpłatny mockup strony, bezpłatny audyt SEO i wycenę bez zobowiązań.
             </p>
             <a
               href="mailto:kontakt@getbuild.pl"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0055FF] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0044CC] transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#22D3EE] px-5 py-2.5 text-sm font-semibold text-[#06141A] hover:bg-[#5EEAFF] transition-colors"
             >
               kontakt@getbuild.pl
             </a>
           </div>
 
           {/* Back link */}
-          <div className="mt-12 pt-8 border-t border-gray-100">
+          <div className="mt-12 pt-8 border-t border-white/10">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[#0055FF] font-semibold hover:gap-3 transition-all text-sm"
+              className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-all text-sm"
             >
               ← Wszystkie artykuły
             </Link>

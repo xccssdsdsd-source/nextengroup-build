@@ -49,7 +49,7 @@ export default function Process() {
       <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 60%)' }}
       />
 
       <div className="relative mx-auto max-w-7xl">
@@ -83,9 +83,9 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
     <m.article
       variants={stepVariants}
-      whileHover={{ y: -6, scale: 1.02, borderColor: '#93b4f8', boxShadow: '0 1px 3px rgba(13,22,41,0.06), 0 12px 32px rgba(37,99,235,0.14)' }}
+      whileHover={{ y: -6, scale: 1.02, borderColor: 'rgba(34,211,238,0.4)', boxShadow: '0 1px 3px rgba(0,0,0,0.45), 0 12px 32px rgba(34,211,238,0.18)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(13,22,41,0.05),_0_2px_8px_rgba(13,22,41,0.04)]"
+      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
       style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >
       <div className="step-number animate-float" style={{ animationDelay: `${parseInt(step.num, 10) * 0.8}s` }}>

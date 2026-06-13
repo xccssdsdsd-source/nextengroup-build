@@ -25,8 +25,8 @@ const CheckIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" strokeWidth="2">
     <defs>
       <linearGradient id="chk-g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#2563EB" />
-        <stop offset="100%" stopColor="#4F46E5" />
+        <stop offset="0%" stopColor="#5EEAFF" />
+        <stop offset="100%" stopColor="#22D3EE" />
       </linearGradient>
     </defs>
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="url(#chk-g)" />
@@ -64,12 +64,12 @@ export default function Hero() {
       data-no-reveal
       data-no-entrance
       className="relative overflow-hidden pt-40 sm:pt-56 md:pt-64"
-      style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, #FAFBFF 60%, #EEF2FF 100%)' }}
+      style={{ background: 'radial-gradient(ellipse 90% 70% at 50% -5%, #11203A 0%, #0A0E14 55%, #06090F 100%)' }}
     >
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div data-parallax-blob style={{ position: 'absolute', top: '8%', left: '12%', width: 480, height: 320, background: 'radial-gradient(ellipse, rgba(79,70,229,0.06) 0%, transparent 70%)', filter: 'blur(40px)', borderRadius: '50%' }} />
-        <div data-parallax-blob style={{ position: 'absolute', top: '30%', right: '8%', width: 360, height: 280, background: 'radial-gradient(ellipse, rgba(37,99,235,0.05) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
-        <div data-parallax-blob style={{ position: 'absolute', bottom: '10%', left: '38%', width: 300, height: 220, background: 'radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 70%)', filter: 'blur(45px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', top: '4%', left: '50%', transform: 'translateX(-50%)', width: 760, height: 460, background: 'radial-gradient(ellipse, rgba(34,211,238,0.16) 0%, transparent 70%)', filter: 'blur(60px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', top: '8%', left: '10%', width: 480, height: 320, background: 'radial-gradient(ellipse, rgba(34,211,238,0.12) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
+        <div data-parallax-blob style={{ position: 'absolute', top: '32%', right: '6%', width: 380, height: 300, background: 'radial-gradient(ellipse, rgba(245,181,71,0.08) 0%, transparent 70%)', filter: 'blur(55px)', borderRadius: '50%' }} />
       </div>
 
       <BackgroundPaths />
@@ -86,7 +86,7 @@ export default function Hero() {
                 lineHeight: '1.1',
                 letterSpacing: '-0.02em',
                 overflowWrap: 'break-word',
-                color: '#111827',
+                color: '#EAF0F7',
               }}
             >
               <span className="block text-balance" style={{ display: 'block', marginBottom: '0.08em' }}>
@@ -96,13 +96,10 @@ export default function Hero() {
                   </span>
                 ))}
               </span>
-              <span
-                className="block text-balance"
-                style={{ background: 'linear-gradient(135deg, #111827 30%, #2563EB 65%, #4F46E5 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
-              >
+              <span className="block text-balance">
                 {line2.map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: wordDelay(line1.length + i), WebkitTextFillColor: 'transparent' }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: wordDelay(line1.length + i), background: 'linear-gradient(135deg, #7DF0FF 0%, #5EEAFF 50%, #22D3EE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{word}</span>
                   </span>
                 ))}
               </span>
@@ -110,14 +107,14 @@ export default function Hero() {
           </div>
 
           <div className="hero-from-right" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem', animationDelay: '90ms' }}>
-            <p className="text-sm sm:text-base leading-relaxed text-[#555555]">
+            <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
               Budujemy Twój biznes przez{' '}
               {!isMounted ? (
-                <span style={{ color: '#0D0D0D', fontWeight: 600 }}>{carouselWords[0]}</span>
+                <span style={{ color: '#5EEAFF', fontWeight: 600 }}>{carouselWords[0]}</span>
               ) : (
                 <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
                   <AnimatePresence mode="wait">
-                    <m.span key={titleNumber} style={{ color: '#0D0D0D', fontWeight: 600, display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                    <m.span key={titleNumber} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
                       {carouselWords[titleNumber]}
                     </m.span>
                   </AnimatePresence>
@@ -126,7 +123,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="mt-4 flex items-center justify-center gap-6 text-xs text-[#888]">
+          <div className="mt-4 flex items-center justify-center gap-6 text-xs text-[#A6B2C4]">
             {badges.map((b, i) => (
               <span
                 key={b.label}
@@ -160,11 +157,8 @@ export default function Hero() {
         </div>
 
         <div className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0 animate-float" style={{ perspective: '1400px', animationDelay: '1s' }}>
-          <div className="hero-device-tilt w-full">
-            <div style={{ borderRadius: '24px', backgroundColor: '#FFFFFF', maxWidth: '1100px', maxHeight: 'clamp(180px, 40vw, 400px)', margin: '0 auto', boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 16px 48px rgba(0,0,0,0.06), 0 32px 64px rgba(0,0,0,0.04)', overflow: 'hidden', willChange: 'transform', position: 'relative' }}>
-              <DeviceMockups />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #FFFFFF)', pointerEvents: 'none' }} />
-            </div>
+          <div className="hero-device-tilt w-full flex justify-center">
+            <DeviceMockups />
           </div>
         </div>
       </div>

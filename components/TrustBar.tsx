@@ -25,7 +25,7 @@ export default function TrustBar() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease }}
-          className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#9CA3AF]"
+          className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#7C879B]"
         >
           Ostatnie realizacje
         </m.p>
@@ -40,7 +40,7 @@ export default function TrustBar() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: i * 0.08, ease }}
               whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#f9fafb] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(37,99,235,0.10),0_8px_28px_rgba(37,99,235,0.08)]"
+              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#161C28] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(34,211,238,0.18),0_8px_28px_rgba(34,211,238,0.12)]"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <Image
@@ -52,8 +52,8 @@ export default function TrustBar() {
                 />
               </div>
               <div className="flex items-center justify-between px-3 py-2.5">
-                <span className="text-[12px] font-semibold text-[#0A0A0A]">{item.name}</span>
-                <ArrowUpRight size={14} className="text-[#9CA3AF] transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#0055FF]" />
+                <span className="text-[12px] font-semibold text-[#EAF0F7]">{item.name}</span>
+                <ArrowUpRight size={14} className="text-[#7C879B] transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#22D3EE]" />
               </div>
             </m.a>
           ))}

@@ -27,7 +27,7 @@ export default function StickyCta() {
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           whileHover={{ y: -4, scale: 1.03 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 rounded-full bg-[#1D4ED8] px-5 py-3.5 text-[13px] font-semibold text-white shadow-[0_4px_14px_rgba(29,78,216,0.35),_0_1px_3px_rgba(0,0,0,0.1)] transition-[background,box-shadow] duration-200 hover:bg-[#1d4ed8] hover:shadow-[0_8px_24px_rgba(29,78,216,0.45),_0_2px_6px_rgba(0,0,0,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-2"
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 rounded-full bg-[#22D3EE] px-5 py-3.5 text-[13px] font-semibold text-[#06141A] shadow-[0_4px_14px_rgba(34,211,238,0.22),_0_1px_3px_rgba(0,0,0,0.4)] transition-[background,box-shadow] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.3),_0_2px_6px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <rect x="1.5" y="2.5" width="13" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />

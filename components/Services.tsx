@@ -108,33 +108,33 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
         pkg.featured
-          ? 'border-[rgba(29,78,216,0.2)] shadow-[0_0_0_2px_rgba(29,78,216,0.08),_0_4px_24px_rgba(37,99,235,0.12),_0_0_40px_rgba(37,99,235,0.06)]'
+          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
           : isHovered
-          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
-          : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
+          ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
+          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: '#FFFFFF', willChange: 'transform' }}
+      style={{ background: '#161C28', willChange: 'transform' }}
     >
       {pkg.featured && (
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#2563EB] rounded-t-2xl" />
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
       )}
       {pkg.featured ? (
         <div className="mb-3 mt-1">
-          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-white bg-[#2563EB] rounded-full">
+          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full">
             Najpopularniejszy
           </span>
         </div>
       ) : (
         <div className="mb-3 mt-1 h-[22px]" />
       )}
-      <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#111827] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {pkg.name}
       </h3>
-      <p className="mt-2 text-[13px] leading-[1.6] text-[#6B7280]">{pkg.forWho}</p>
-      <p className="mt-3 text-[14px] leading-[1.72] text-[#6B7280]">{pkg.whatYouGet}</p>
-      {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#6B7280]">{pkg.sub}</p>}
-      <div className="mt-5 border-t border-[rgba(0,0,0,0.06)] pt-4">
-        <span className="text-[1.55rem] font-extrabold tracking-tight text-[#111827]">
+      <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.forWho}</p>
+      <p className="mt-3 text-[14px] leading-[1.72] text-[#A6B2C4]">{pkg.whatYouGet}</p>
+      {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.sub}</p>}
+      <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-4">
+        <span className="text-[1.55rem] font-extrabold tracking-tight text-[#EAF0F7]">
           {pkg.price === '2099 zł' && <><span className={`counter-2099`}>2099</span> zł</>}
           {pkg.price === '2499 zł' && <><span className={`counter-2499`}>2499</span> zł</>}
           {pkg.price === '3999 zł + 99 zł/mies' && <><span className={`counter-3999`}>3999</span> zł + 99 zł/mies</>}
@@ -150,12 +150,12 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 380 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
         <title id="diagram-simple-title">Schemat prostej automatyzacji: Proces A połączony z Procesem B</title>
-        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
-        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces A</text>
-        <line x1="152" y1="65" x2="210" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
-        <path d="M210 57 L224 65 L210 73 Z" fill="#0D0D0D" />
-        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
-        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces B</text>
+        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
+        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces A</text>
+        <line x1="152" y1="65" x2="210" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
+        <path d="M210 57 L224 65 L210 73 Z" fill="#EAF0F7" />
+        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
+        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces B</text>
       </svg>
     )
   }
@@ -163,30 +163,30 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 420 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
         <title id="diagram-ai-title">Schemat automatyzacji AI: Proces przechodzi przez model AI, który podejmuje decyzję i zwraca wynik</title>
-        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
-        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Proces</text>
-        <line x1="140" y1="65" x2="168" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
-        <path d="M168 57 L182 65 L168 73 Z" fill="#0D0D0D" />
-        <circle cx="212" cy="65" r="26" fill="#0D0D0D" />
-        <text x="212" y="71" textAnchor="middle" fontFamily="inherit" fontSize="17" fontWeight="700" fill="#ffffff">A</text>
-        <line x1="250" y1="65" x2="278" y2="65" stroke="#0D0D0D" strokeWidth="2.5" />
-        <path d="M278 57 L292 65 L278 73 Z" fill="#0D0D0D" />
-        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(0,0,0,0.06)" stroke="#0D0D0D" strokeWidth="2" />
-        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#0D0D0D">Wynik</text>
+        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
+        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces</text>
+        <line x1="140" y1="65" x2="168" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
+        <path d="M168 57 L182 65 L168 73 Z" fill="#EAF0F7" />
+        <circle cx="212" cy="65" r="26" fill="#22D3EE" />
+        <text x="212" y="71" textAnchor="middle" fontFamily="inherit" fontSize="17" fontWeight="700" fill="#06141A">A</text>
+        <line x1="250" y1="65" x2="278" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
+        <path d="M278 57 L292 65 L278 73 Z" fill="#EAF0F7" />
+        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
+        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Wynik</text>
       </svg>
     )
   }
   return (
     <svg viewBox="0 0 380 200" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
       <title id="diagram-agent-title">Schemat agenta AI: centralny agent AI samodzielnie wybiera i łączy wiele narzędzi, żeby zrealizować cel</title>
-      <line x1="117" y1="94" x2="286" y2="53" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="118" y1="100" x2="286" y2="100" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="117" y1="106" x2="286" y2="147" stroke="#0D0D0D" strokeWidth="2" strokeDasharray="4 6" />
-      <circle cx="300" cy="50" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
-      <circle cx="300" cy="100" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
-      <circle cx="300" cy="150" r="14" fill="rgba(0,0,0,0.08)" stroke="#0D0D0D" strokeWidth="2" />
-      <circle cx="90" cy="100" r="28" fill="#0D0D0D" />
-      <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="700" fill="#ffffff">AI</text>
+      <line x1="117" y1="94" x2="286" y2="53" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
+      <line x1="118" y1="100" x2="286" y2="100" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
+      <line x1="117" y1="106" x2="286" y2="147" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
+      <circle cx="300" cy="50" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
+      <circle cx="300" cy="100" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
+      <circle cx="300" cy="150" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
+      <circle cx="90" cy="100" r="28" fill="#22D3EE" />
+      <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="700" fill="#06141A">AI</text>
     </svg>
   )
 }
@@ -218,7 +218,7 @@ export default function Services() {
             transition={{ duration: 0.7, ease }}
           >
             <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
-              <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#111827]">
+              <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]">
                 Strony internetowe
               </div>
             </h2>
@@ -252,7 +252,7 @@ export default function Services() {
               {!expanded1 && (
                 <button
                   onClick={() => setExpanded1(true)}
-                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
+                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
                 >
                   Zobacz więcej
                 </button>
@@ -261,15 +261,15 @@ export default function Services() {
           </div>
 
           <m.div
-            className="mt-8 rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white px-6 py-6"
+            className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
             initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.3 }}
           >
-            <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
               SEO i GEO wbudowane w każdą stronę
             </h3>
-            <p className="text-[14px] leading-[1.7] text-[#6B7280]">
+            <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
               Każdą stronę budujemy tak, żeby Google ją rozumiał i żeby modele AI jak ChatGPT, Gemini czy Perplexity mogły ją cytować jako wiarygodne źródło. Nie dokładamy SEO na końcu, budujemy je od środka.
             </p>
 
@@ -291,9 +291,9 @@ export default function Services() {
                       { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
                       { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
                     ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-[rgba(255,255,255,0.06)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
-                        <p className="mb-1 text-[13.5px] font-semibold text-[#111827]">{item.label}</p>
-                        <p className="text-[13px] leading-[1.65] text-[#6B7280]">{item.desc}</p>
+                      <div key={item.label} className="rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
+                        <p className="mb-1 text-[13.5px] font-semibold text-[#EAF0F7]">{item.label}</p>
+                        <p className="text-[13px] leading-[1.65] text-[#A6B2C4]">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -304,42 +304,42 @@ export default function Services() {
             <button
               onClick={() => setSeoExpanded((v) => !v)}
               aria-expanded={seoExpanded}
-              className="mt-5 w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
+              className="mt-5 w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
             >
               {seoExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
             </button>
           </m.div>
 
           <m.div
-            className="mt-5 rounded-2xl border border-[rgba(0,0,0,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
+            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
             initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.38 }}
           >
-            <p className="mb-3 text-[13.5px] font-semibold text-[#111827]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
+            <p className="mb-3 text-[13.5px] font-semibold text-[#EAF0F7]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
             <ul className="mb-4 flex flex-col gap-1.5">
-              <li className="text-[14px] leading-[1.6] text-[#6B7280]"><span className="font-semibold text-[#111827]">Landing:</span> + 39 zł/mies.</li>
-              <li className="text-[14px] leading-[1.6] text-[#6B7280]"><span className="font-semibold text-[#111827]">Strona kompletna:</span> + 49 zł/mies.</li>
-              <li className="text-[14px] leading-[1.6] text-[#6B7280]"><span className="font-semibold text-[#111827]">Strona z panelem:</span> + 99 zł/mies. (obowiązkowa)</li>
+              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Landing:</span> + 39 zł/mies.</li>
+              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona kompletna:</span> + 49 zł/mies.</li>
+              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona z panelem:</span> + 99 zł/mies. (obowiązkowa)</li>
             </ul>
-            <p className="text-[13px] leading-[1.6] text-[#6B7280]">
-              <span className="font-semibold text-[#111827]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
+            <p className="text-[13px] leading-[1.6] text-[#A6B2C4]">
+              <span className="font-semibold text-[#EAF0F7]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
             </p>
           </m.div>
 
           <m.div
-            className="mt-5 rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white px-6 py-6"
+            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
             initial={{ opacity: 0, y: 20 }}
             animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
           >
-            <h3 className="mb-4 text-[15px] font-bold tracking-[-0.02em] text-[#111827]" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h3 className="mb-4 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
               Co obejmuje opieka
             </h3>
             <ul className="flex flex-col gap-2.5">
               {careItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#6B7280] transition-colors duration-200 hover:bg-[rgba(37,99,235,0.04)]">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#93C5FD]" style={{ background: 'rgba(37,99,235,0.15)' }}>✓</span>
+                <li key={i} className="flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4] transition-colors duration-200 hover:bg-[rgba(34,211,238,0.06)]">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -395,7 +395,7 @@ export default function Services() {
               {!expanded2 && (
                 <button
                   onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[rgba(0,0,0,0.1)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#0D0D0D] transition-colors hover:bg-[rgba(0,0,0,0.04)] hover:border-[rgba(0,0,0,0.15)]"
+                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
                 >
                   Zobacz więcej
                 </button>
@@ -404,13 +404,13 @@ export default function Services() {
           </div>
 
           <m.div
-            className="mt-8 rounded-2xl border border-[rgba(0,0,0,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
+            className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
             initial={{ opacity: 0, y: 20 }}
             animate={inView2 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.35 }}
           >
-            <p className="text-[14px] leading-[1.7] text-[#6B7280]">
-              <span className="font-semibold text-[#111827]">Wycena</span> dopasowana do Twoich potrzeb po krótkim spotkaniu, 15 minut. Rozpoznajemy na nim Twoje największe wąskie gardła i problemy, które realnie da się zautomatyzować albo poprawić. W najgorszym razie wychodzisz ze spotkania wiedząc dokładnie, co i jak usprawnić u siebie. Czyli i tak wygrywasz.
+            <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
+              <span className="font-semibold text-[#EAF0F7]">Wycena</span> dopasowana do Twoich potrzeb po krótkim spotkaniu, 15 minut. Rozpoznajemy na nim Twoje największe wąskie gardła i problemy, które realnie da się zautomatyzować albo poprawić. W najgorszym razie wychodzisz ze spotkania wiedząc dokładnie, co i jak usprawnić u siebie. Czyli i tak wygrywasz.
             </p>
           </m.div>
 
@@ -451,39 +451,39 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
         isHovered
-          ? 'border-[rgba(0,0,0,0.1)] shadow-[0_12px_36px_rgba(29,78,216,0.08),_0_4px_12px_rgba(0,0,0,0.06)]'
-          : 'border-[rgba(0,0,0,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
+          ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
+          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: '#FFFFFF', willChange: 'transform' }}
+      style={{ background: '#161C28', willChange: 'transform' }}
     >
       <div className="flex items-center gap-2 mb-2">
-        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white" style={{ background: '#0D0D0D', borderRadius: '4px' }}>
+        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#06141A]" style={{ background: '#22D3EE', borderRadius: '4px' }}>
           {ai.tag}
         </span>
       </div>
 
-      <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#111827] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
         {ai.name}
       </h3>
 
-      <div className="mb-7 p-6 rounded-xl border border-[rgba(37,99,235,0.2)]" style={{ background: 'rgba(37,99,235,0.08)' }}>
+      <div className="mb-7 p-6 rounded-xl border border-[rgba(34,211,238,0.2)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
         <ProcessFlowDiagram type={getProcessType()} />
       </div>
 
-      <p className="text-[14px] leading-[1.72] text-[#6B7280] mb-5">{ai.desc}</p>
+      <p className="text-[14px] leading-[1.72] text-[#A6B2C4] mb-5">{ai.desc}</p>
 
       <div className="space-y-2.5 mb-6">
         {ai.bullets.map((bullet, idx) => (
           <div key={idx} className="flex items-start gap-2.5">
-            <span className="text-[#0D0D0D] mt-1 flex-shrink-0 text-sm">●</span>
-            <span className="text-[13.5px] leading-[1.6] text-[#6B7280]">{bullet}</span>
+            <span className="text-[#22D3EE] mt-1 flex-shrink-0 text-sm">●</span>
+            <span className="text-[13.5px] leading-[1.6] text-[#A6B2C4]">{bullet}</span>
           </div>
         ))}
       </div>
 
-      <div className="mb-5 rounded-xl px-4 py-3.5" style={{ background: 'rgba(37,99,235,0.08)' }}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#93C5FD]">Przykład</p>
-        <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[#6B7280]">{ai.examples[0]}</p>
+      <div className="mb-5 rounded-xl px-4 py-3.5" style={{ background: 'rgba(34,211,238,0.08)' }}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Przykład</p>
+        <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[#A6B2C4]">{ai.examples[0]}</p>
       </div>
 
       <AnimatePresence initial={false}>
@@ -497,8 +497,8 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
           >
             <div className="space-y-3">
               {ai.examples.slice(1).map((example, idx) => (
-                <div key={idx} className="rounded-xl px-4 py-3.5" style={{ background: 'rgba(37,99,235,0.08)' }}>
-                  <p className="text-[13.5px] leading-[1.68] text-[#6B7280]">{example}</p>
+                <div key={idx} className="rounded-xl px-4 py-3.5" style={{ background: 'rgba(34,211,238,0.08)' }}>
+                  <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
                 </div>
               ))}
             </div>
@@ -514,7 +514,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
             setExpandedExamples(!expandedExamples)
           }
         }}
-        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#555555] text-left transition-all hover:text-[#0D0D0D] hover:translate-x-0.5"
+        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#A6B2C4] text-left transition-all hover:text-[#5EEAFF] hover:translate-x-0.5"
       >
         {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>

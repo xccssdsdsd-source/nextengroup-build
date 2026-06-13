@@ -216,7 +216,7 @@ export default function RootLayout({
         <GSAPProvider>
           <AnimatedBackground />
           <CookieConsent />
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#2563EB] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg">Przejdź do treści</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#22D3EE] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>
               {children}

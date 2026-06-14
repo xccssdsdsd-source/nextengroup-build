@@ -35,7 +35,7 @@ export default function GlobalPathsClient() {
         }
       `}</style>
       <svg
-        className="w-full h-full"
+        className="gp-svg w-full h-full"
         viewBox="0 0 696 316"
         fill="none"
         preserveAspectRatio="xMidYMid slice"

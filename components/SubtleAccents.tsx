@@ -52,6 +52,9 @@ export default function SubtleAccents() {
               .accent-drift { animation: accent-drift 26s ease-in-out infinite; transform-box: view-box; }
               .accent-glow { animation: accent-pulse 16s ease-in-out infinite; transform-box: view-box; transform-origin: center; }
             }
+            @media (pointer: coarse) {
+              .accent-drift, .accent-glow { animation: none !important; }
+            }
             .accent-l1 { animation-delay: 0.1s; }
             .accent-l2 { animation-delay: 0.35s; }
             .accent-l3 { animation-delay: 0.6s; }

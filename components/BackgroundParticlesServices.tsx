@@ -7,6 +7,7 @@ export default function BackgroundParticlesServices() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return
 
     const canvas = canvasRef.current
     if (!canvas) return

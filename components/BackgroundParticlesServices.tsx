@@ -2,117 +2,96 @@
 
 import { useEffect, useRef } from 'react'
 
-const CANVAS_OPACITY = 0.85
-const WIREFRAME_COLOR = 'rgba(59, 130, 246, 0.07)'
-const LINE_COLOR = 'rgba(59, 130, 246, 0.05)'
-const ACCENT_COLOR = 'rgba(96, 165, 250, 0.15)'
-
 export default function BackgroundParticlesServices() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
-  const timeRef = useRef(0)
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect()
-      if (rect.width === 0 || rect.height === 0) return
-      canvas.width = rect.width * window.devicePixelRatio
-      canvas.height = rect.height * window.devicePixelRatio
+    let raf = 0
+    let visible = true
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting }, { threshold: 0 })
+    io.observe(canvas)
+
+    const resize = () => {
+      const r = canvas.getBoundingClientRect()
+      if (r.width === 0 || r.height === 0) return
+      canvas.width = r.width * window.devicePixelRatio
+      canvas.height = r.height * window.devicePixelRatio
       ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0)
     }
+    resize()
 
-    resizeCanvas()
+    const ro = new ResizeObserver(resize)
+    ro.observe(canvas)
 
-    const drawWireframe = (time: number) => {
+    const draw = (time: number) => {
       const w = canvas.width / window.devicePixelRatio
       const h = canvas.height / window.devicePixelRatio
-
       ctx.clearRect(0, 0, w, h)
 
-      const pulse = Math.sin(time / 1000) * 0.15 + 0.85
+      const pulse = Math.sin(time / 1200) * 0.12 + 0.88
+      const pad = w * 0.08
+      const fw = w - pad * 2
+      const fh = h * 0.88
 
-      ctx.strokeStyle = LINE_COLOR
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'
+      ctx.fillStyle = 'rgba(255,255,255,0.05)'
       ctx.lineWidth = 1
-      ctx.fillStyle = WIREFRAME_COLOR
 
-      const padding = w * 0.08
-      const frameW = w - padding * 2
-      const frameH = h * 0.9
-
-      ctx.globalAlpha = pulse * 0.8
-      ctx.strokeRect(padding, 20, frameW, frameH)
-
-      const headerH = 30
-      ctx.globalAlpha = pulse
-      ctx.fillRect(padding, 20, frameW, headerH)
-
-      const navY = 60
-      const navItem = frameW / 8
       ctx.globalAlpha = pulse * 0.7
-      for (let i = 0; i < 3; i++) {
-        ctx.fillRect(padding + navItem * (i + 1), navY, navItem * 0.6, 12)
+      ctx.strokeRect(pad, 20, fw, fh)
+
+      ctx.globalAlpha = pulse * 0.9
+      ctx.fillRect(pad, 20, fw, 28)
+
+      const navItem = fw / 8
+      ctx.globalAlpha = pulse * 0.6
+      for (let i = 0; i < 3; i++) ctx.fillRect(pad + navItem * (i + 1), 62, navItem * 0.55, 10)
+
+      const heroY = 100
+      const heroW = fw * 0.65
+      ctx.globalAlpha = pulse * 0.85
+      ctx.fillRect(pad + (fw - heroW) / 2, heroY, heroW, fh * 0.22)
+
+      const contentY = heroY + fh * 0.28
+      const cardW = (fw - 24) / 3
+      for (let col = 0; col < 3; col++) {
+        const x = pad + col * (cardW + 12)
+        ctx.globalAlpha = pulse * 0.5
+        ctx.strokeRect(x, contentY, cardW, fh * 0.14)
+        ctx.globalAlpha = pulse * 0.7
+        ctx.fillRect(x + 8, contentY + 10, cardW - 16, 5)
+        ctx.globalAlpha = pulse * 0.55
+        ctx.fillRect(x + 8, contentY + 20, cardW * 0.65, 4)
       }
 
-      const heroY = navY + 40
-      const heroW = frameW * 0.7
-      const heroX = padding + (frameW - heroW) / 2
-      ctx.globalAlpha = pulse * 0.9
-      ctx.fillRect(heroX, heroY, heroW, frameH * 0.25)
-
-      const contentY = heroY + frameH * 0.3
-      const cardW = (frameW - 30) / 3
-      for (let row = 0; row < 2; row++) {
-        for (let col = 0; col < 3; col++) {
-          const x = padding + col * (cardW + 15)
-          const y = contentY + row * (frameH * 0.2)
-          ctx.globalAlpha = pulse * 0.6
-          ctx.strokeRect(x, y, cardW, frameH * 0.15)
-          ctx.globalAlpha = pulse * 0.8
-          ctx.fillRect(x + 8, y + 10, cardW - 16, 6)
-          ctx.globalAlpha = pulse * 0.7
-          ctx.fillRect(x + 8, y + 22, cardW - 16, 4)
-          ctx.globalAlpha = pulse * 0.65
-          ctx.fillRect(x + 8, y + 32, cardW * 0.6, 4)
-        }
+      ctx.strokeStyle = 'rgba(34,211,238,0.12)'
+      ctx.lineWidth = 1
+      for (let i = 0; i < 2; i++) {
+        const off = Math.sin(time / 1400 + i) * 6
+        ctx.globalAlpha = Math.sin(time / 1400 + i) * 0.25 + 0.2
+        ctx.beginPath()
+        ctx.moveTo(pad + 16, 105 + i * 90 + off)
+        ctx.lineTo(pad + fw - 16, 105 + i * 90 + off)
+        ctx.stroke()
       }
 
       ctx.globalAlpha = 1
-      ctx.strokeStyle = ACCENT_COLOR
-      ctx.lineWidth = 1.5
-      for (let i = 0; i < 2; i++) {
-        const offset = Math.sin(time / 1200 + i) * 8
-        ctx.globalAlpha = Math.sin(time / 1200 + i) * 0.3 + 0.3
-        ctx.beginPath()
-        ctx.moveTo(padding + 20, 100 + i * 100 + offset)
-        ctx.lineTo(padding + frameW - 20, 100 + i * 100 + offset)
-        ctx.stroke()
-      }
+      if (visible) raf = requestAnimationFrame(draw)
     }
 
-    const animate = (time: number) => {
-      timeRef.current = time
-      drawWireframe(time)
-      animationRef.current = requestAnimationFrame(animate)
-    }
-
-    animationRef.current = requestAnimationFrame(animate)
-
-    const resizeObserver = new ResizeObserver(() => {
-      resizeCanvas()
-      drawWireframe(timeRef.current)
-    })
-
-    resizeObserver.observe(canvas)
+    raf = requestAnimationFrame(draw)
 
     return () => {
-      resizeObserver.disconnect()
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      io.disconnect()
+      ro.disconnect()
+      cancelAnimationFrame(raf)
     }
   }, [])
 
@@ -120,11 +99,7 @@ export default function BackgroundParticlesServices() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 h-full w-full"
-      style={{
-        opacity: CANVAS_OPACITY,
-        pointerEvents: 'none',
-        zIndex: 0,
-      }}
+      style={{ opacity: 0.9, pointerEvents: 'none', zIndex: 0 }}
     />
   )
 }

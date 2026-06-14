@@ -1,58 +1,59 @@
 'use client'
 
-const mainPaths = [
-  { d: 'M -100 480 Q 250 300 550 280 Q 850 260 1300 80', color: '#5EEAFF', width: 1.1, dur: 20 },
-  { d: 'M -100 540 Q 290 360 580 320 Q 880 280 1300 130', color: '#22D3EE', width: 0.55, dur: 25 },
-  { d: 'M -100 600 Q 200 420 500 380 Q 800 340 1300 220', color: '#5EEAFF', width: 0.9, dur: 22 },
-  { d: 'M 1300 490 Q 920 340 630 310 Q 340 280 -100 110', color: '#7C879B', width: 0.7, dur: 27 },
-  { d: 'M -100 420 Q 300 240 600 260 Q 900 280 1300 60', color: 'rgba(34,211,238,0.5)', width: 0.4, dur: 32 },
-  { d: 'M 1300 560 Q 950 400 660 360 Q 370 320 -100 170', color: 'rgba(94,234,255,0.4)', width: 0.45, dur: 30 },
+const curve = (i: number, pos: number) =>
+  `M-${380 - i * 5 * pos} -${189 + i * 6}C-${380 - i * 5 * pos} -${189 + i * 6} -${312 - i * 5 * pos} ${216 - i * 6} ${152 - i * 5 * pos} ${343 - i * 6}C${616 - i * 5 * pos} ${470 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6}`
+
+const paths = [
+  { d: curve(1, 1),   w: 1.4, dur: 20, delay: 0 },
+  { d: curve(6, 1),   w: 1.0, dur: 26, delay: 2 },
+  { d: curve(12, 1),  w: 0.8, dur: 32, delay: 5 },
+  { d: curve(19, 1),  w: 0.6, dur: 38, delay: 9 },
+  { d: curve(28, 1),  w: 0.4, dur: 44, delay: 13 },
+  { d: curve(3, -1),  w: 1.2, dur: 24, delay: 1 },
+  { d: curve(10, -1), w: 0.9, dur: 30, delay: 4 },
+  { d: curve(18, -1), w: 0.7, dur: 36, delay: 8 },
+  { d: curve(26, -1), w: 0.5, dur: 42, delay: 12 },
+  { d: curve(34, -1), w: 0.35, dur: 50, delay: 17 },
 ]
 
 export default function BackgroundPaths() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+      <style>{`
+        @keyframes bp-flow {
+          0%   { stroke-dashoffset: 2400; opacity: 0; }
+          5%   { opacity: 1; }
+          95%  { opacity: 1; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+        @keyframes bp-pulse {
+          0%, 100% { opacity: 0.10; }
+          50%       { opacity: 0.38; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .bp-path { animation: none !important; opacity: 0.1 !important; }
+        }
+      `}</style>
       <svg
-        viewBox="0 0 1200 600"
-        preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
+        viewBox="0 0 696 316"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.25))' }}
       >
-        <defs>
-          <filter id="bp-glow">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-        </defs>
-        <style>{`
-          @keyframes bpFlow {
-            0% { stroke-dashoffset: 2400; }
-            100% { stroke-dashoffset: 0; }
-          }
-          @media (prefers-reduced-motion: no-preference) {
-            .bp-0 { animation: bpFlow ${mainPaths[0].dur}s linear infinite; }
-            .bp-1 { animation: bpFlow ${mainPaths[1].dur}s linear infinite; }
-            .bp-2 { animation: bpFlow ${mainPaths[2].dur}s linear infinite; }
-            .bp-3 { animation: bpFlow ${mainPaths[3].dur}s linear infinite; }
-            .bp-4 { animation: bpFlow ${mainPaths[4].dur}s linear infinite; }
-            .bp-5 { animation: bpFlow ${mainPaths[5].dur}s linear infinite; }
-          }
-          .bp-0, .bp-2 { opacity: 0.22; }
-          .bp-1, .bp-3 { opacity: 0.15; }
-          .bp-4, .bp-5 { opacity: 0.14; }
-        `}</style>
-        {mainPaths.map((p, i) => (
+        {paths.map((p, i) => (
           <path
             key={i}
+            className="bp-path"
             d={p.d}
-            fill="none"
-            stroke={p.color}
-            strokeWidth={p.width}
+            stroke="#22D3EE"
+            strokeWidth={p.w}
             strokeLinecap="round"
+            fill="none"
             strokeDasharray={2400}
-            className={`bp-${i}`}
-            filter={i < 2 ? 'url(#bp-glow)' : undefined}
+            style={{
+              animation: `bp-flow ${p.dur}s linear ${p.delay}s infinite, bp-pulse ${Math.round(p.dur * 0.6)}s ease-in-out ${p.delay}s infinite`,
+            }}
           />
         ))}
       </svg>

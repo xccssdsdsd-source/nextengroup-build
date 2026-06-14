@@ -1,194 +1,99 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
-interface Point {
-  x: number
-  y: number
-  vx: number
-  vy: number
-  opacity: number
-}
-
-interface Connection {
-  from: number
-  to: number
-  opacity: number
-}
+interface Point { x: number; y: number; vx: number; vy: number }
 
 export default function BackgroundNetworkAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const pointsRef = useRef<Point[]>([])
-  const connectionsRef = useRef<Connection[]>([])
-  const animationRef = useRef<number | null>(null)
-  const [isVisible, setIsVisible] = useState(true)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        setIsVisible(entries[0].isIntersecting)
-      },
-      { threshold: 0 }
-    )
-
-    if (canvasRef.current) observer.observe(canvasRef.current)
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
     const rect = canvas.getBoundingClientRect()
-    const width = rect.width || canvas.offsetWidth
-    const height = rect.height || canvas.offsetHeight
+    let W = rect.width || canvas.offsetWidth
+    let H = rect.height || canvas.offsetHeight
+    if (W === 0 || H === 0) return
 
-    if (width === 0 || height === 0) return
+    canvas.width = W
+    canvas.height = H
 
-    canvas.width = width
-    canvas.height = height
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    const pointCount = window.innerWidth >= 1024 ? 30 : 16
+    const COUNT = window.innerWidth >= 1024 ? 22 : 12
+    const MAX_DIST = Math.min(W, H) * 0.30
+    const MAX_DIST_SQ = MAX_DIST * MAX_DIST
 
-    pointsRef.current = Array.from({ length: pointCount }, (_, i) => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      opacity: (i % 3 === 0) ? 0.9 : (Math.random() * 0.6 + 0.35),
+    const pts: Point[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.20,
+      vy: (Math.random() - 0.5) * 0.20,
     }))
 
-    // Squared max distance — avoids sqrt per pair per frame
-    const maxDistance = Math.min(width, height) * 0.28
-    const maxDistSq = maxDistance * maxDistance
+    let raf = 0
+    let visible = true
 
-    const generateConnections = () => {
-      const connections: Connection[] = []
-      const points = pointsRef.current
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting }, { threshold: 0 })
+    io.observe(canvas)
 
-      for (let i = 0; i < points.length; i++) {
-        for (let j = i + 1; j < points.length; j++) {
-          const dx = points[i].x - points[j].x
-          const dy = points[i].y - points[j].y
-          const distSq = dx * dx + dy * dy
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H)
 
-          if (distSq < maxDistSq) {
-            const dist = Math.sqrt(distSq)
-            connections.push({
-              from: i,
-              to: j,
-              opacity: 0.12 + (1 - dist / maxDistance) * 0.4,
-            })
+      for (let i = 0; i < COUNT; i++) {
+        const p = pts[i]
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0 || p.x > W) { p.vx *= -1; p.x = Math.max(0, Math.min(W, p.x)) }
+        if (p.y < 0 || p.y > H) { p.vy *= -1; p.y = Math.max(0, Math.min(H, p.y)) }
+      }
+
+      ctx.lineWidth = 0.8
+      ctx.lineCap = 'round'
+
+      for (let i = 0; i < COUNT; i++) {
+        for (let j = i + 1; j < COUNT; j++) {
+          const dx = pts[i].x - pts[j].x
+          const dy = pts[i].y - pts[j].y
+          const dSq = dx * dx + dy * dy
+          if (dSq < MAX_DIST_SQ) {
+            const alpha = (1 - Math.sqrt(dSq) / MAX_DIST) * 0.18
+            ctx.strokeStyle = `rgba(34,211,238,${alpha.toFixed(3)})`
+            ctx.beginPath()
+            ctx.moveTo(pts[i].x, pts[i].y)
+            ctx.lineTo(pts[j].x, pts[j].y)
+            ctx.stroke()
           }
         }
       }
 
-      return connections
-    }
-
-    connectionsRef.current = generateConnections()
-
-    // Regenerate connections every N frames, not every frame
-    let frameCount = 0
-    const REGEN_INTERVAL = 4
-
-    const draw = (ctx: CanvasRenderingContext2D) => {
-      ctx.clearRect(0, 0, width, height)
-
-      connectionsRef.current.forEach((conn, idx) => {
-        const from = pointsRef.current[conn.from]
-        const to = pointsRef.current[conn.to]
-
-        const pulse = Math.sin(Date.now() / 1400 + idx) * 0.2 + 0.85
-        const opacity = isVisible ? conn.opacity * pulse * 0.8 : conn.opacity * 0.5
-
-        ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`
-        ctx.lineWidth = 1.2
-        ctx.lineCap = 'round'
-        ctx.shadowColor = `rgba(59, 130, 246, ${opacity * 0.4})`
-        ctx.shadowBlur = 4
+      ctx.fillStyle = 'rgba(34,211,238,0.25)'
+      for (let i = 0; i < COUNT; i++) {
+        const r = i % 4 === 0 ? 2.5 : 1.5
         ctx.beginPath()
-        ctx.moveTo(from.x, from.y)
-        ctx.lineTo(to.x, to.y)
-        ctx.stroke()
-        ctx.shadowBlur = 0
-      })
-
-      pointsRef.current.forEach((point, idx) => {
-        const isHub = idx % 3 === 0
-        const radius = isHub ? 3.5 : 2
-        const pulseSize = Math.sin(Date.now() / 1800 + idx) * 0.3 + 0.85
-        const baseSizeOpacity = isVisible ? (0.6 + Math.sin(Date.now() / 2000 + idx) * 0.3) : 0.6
-
-        ctx.fillStyle = `rgba(96, 165, 250, ${point.opacity * baseSizeOpacity})`
-        ctx.shadowColor = `rgba(59, 130, 246, ${point.opacity * baseSizeOpacity * 0.6})`
-        ctx.shadowBlur = isHub ? 8 : 4
-        ctx.beginPath()
-        ctx.arc(point.x, point.y, radius * pulseSize, 0, Math.PI * 2)
+        ctx.arc(pts[i].x, pts[i].y, r, 0, Math.PI * 2)
         ctx.fill()
-        ctx.shadowBlur = 0
-      })
-    }
-
-    const animate = () => {
-      const ctx = canvas.getContext('2d')
-      if (!ctx) return
-
-      if (!prefersReducedMotion) {
-        pointsRef.current.forEach((point) => {
-          point.x += point.vx
-          point.y += point.vy
-
-          if (point.x < 0 || point.x > width) point.vx *= -1
-          if (point.y < 0 || point.y > height) point.vy *= -1
-
-          point.x = Math.max(0, Math.min(width, point.x))
-          point.y = Math.max(0, Math.min(height, point.y))
-        })
-
-        // Recalculate connections periodically, not every frame
-        if (++frameCount >= REGEN_INTERVAL) {
-          connectionsRef.current = generateConnections()
-          frameCount = 0
-        }
       }
 
-      draw(ctx)
-
-      if (isVisible && !prefersReducedMotion) {
-        animationRef.current = requestAnimationFrame(animate)
-      }
+      if (visible) raf = requestAnimationFrame(draw)
     }
 
-    if (isVisible && !prefersReducedMotion) {
-      animationRef.current = requestAnimationFrame(animate)
-    } else {
-      const ctx = canvas.getContext('2d')
-      if (ctx) draw(ctx)
-    }
+    raf = requestAnimationFrame(draw)
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      cancelAnimationFrame(raf)
+      io.disconnect()
     }
-  }, [isVisible, prefersReducedMotion])
+  }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ display: 'block', willChange: 'contents' }}
+      className="absolute inset-0 pointer-events-none w-full h-full"
+      style={{ display: 'block' }}
     />
   )
 }

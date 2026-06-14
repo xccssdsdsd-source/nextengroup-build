@@ -26,13 +26,13 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
 const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
-const ctaLabels = ['Umów spotkanie', 'Bezpłatna konsultacja', 'Pomoc w procesach']
+const ctaLabels = ['Umów spotkanie', 'Bezpłatna wizualizacja', 'Kontakt', 'Napisz do nas']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [ctaIndex, setCtaIndex] = useState(0)
-  const [displayText, setDisplayText] = useState('')
+  const [displayText, setDisplayText] = useState(ctaLabels[0])
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
@@ -106,22 +106,6 @@ export default function Nav() {
 
   return (
     <>
-      <style suppressHydrationWarning>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        .typing-cursor {
-          display: inline-block;
-          width: 2px;
-          height: 1.1em;
-          background-color: currentColor;
-          margin-left: 2px;
-          vertical-align: middle;
-          animation: blink 0.8s step-end infinite;
-        }
-      `}</style>
-
       {open && (
         <div
           className="fixed inset-0 z-40"
@@ -130,76 +114,61 @@ export default function Nav() {
         />
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
-        <div
-          className={`mx-auto max-w-7xl rounded-2xl border px-4 py-2 sm:px-5 transition-[border-color,box-shadow,background-color,backdrop-filter] duration-300`}
-          style={{
-            borderColor: scrolled ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.08)',
-            background: scrolled ? 'rgba(10, 14, 20, 0.72)' : 'rgba(10, 14, 20, 0.72)',
-            backdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
-            WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'blur(12px)',
-            boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.4), 0 4px 20px rgba(0,0,0,0.5)' : 'none',
-          }}
-        >
-          <div className="flex items-center justify-between gap-4">
-            <a href="/" className="flex min-w-0 items-center gap-3">
-              <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-lg object-contain" priority />
-              <div className="min-w-0">
-                <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
-              </div>
-            </a>
-
-            {/* Desktop nav */}
-            <div className="hidden items-center gap-5 lg:flex">
-              {allLinks.map(([label, href]) =>
-                href.startsWith('#') ? (
-                  <a key={href} href={anchorHref(href)} onClick={(e) => handleAnchorClick(e, href)} className={linkClass}>
-                    {label}
-                  </a>
-                ) : (
-                  <Link key={href} href={href} className={linkClass}>
-                    {label}
-                  </Link>
-                )
-              )}
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4">
+          <a href="/" className="nav-island flex min-w-0 items-center gap-3 rounded-full py-2 pl-2 pr-4">
+            <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-full object-contain" priority />
+            <div className="min-w-0">
+              <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
             </div>
+          </a>
 
-            <div className="flex items-center gap-3">
-              <motion.a
-                href={anchorHref('#kontakt')}
-                onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
-                style={{ minWidth: 'auto' }}
-              >
-                {isMounted ? (
-                  <span className="inline-flex items-center">
-                    {displayText}
-                    <span className="typing-cursor" />
-                  </span>
+          {/* Desktop nav */}
+          <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2.5 lg:flex">
+            {allLinks.map(([label, href]) =>
+              href.startsWith('#') ? (
+                <a key={href} href={anchorHref(href)} onClick={(e) => handleAnchorClick(e, href)} className={`nav-island rounded-full px-4 py-2.5 ${linkClass}`}>
+                  {label}
+                </a>
+              ) : (
+                <Link key={href} href={href} className={`nav-island rounded-full px-4 py-2.5 ${linkClass}`}>
+                  {label}
+                </Link>
+              )
+            )}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <motion.a
+              href={anchorHref('#kontakt')}
+              onClick={(e) => handleAnchorClick(e, '#kontakt')}
+              whileTap={{ scale: 0.95 }}
+              className="btn btn-primary !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
+              style={{ minWidth: 'auto' }}
+            >
+              <span className="inline-flex items-center">
+                {displayText}
+                {isMounted && <span className="typing-cursor" />}
+              </span>
+            </motion.a>
+            <button
+              type="button"
+              aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
+              aria-expanded={open}
+              onClick={() => setOpen(prev => !prev)}
+              className="nav-island inline-flex h-11 w-11 items-center justify-center rounded-full text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] lg:hidden"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {open ? (
+                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <X size={17} />
+                  </motion.span>
                 ) : (
-                  <span>{ctaLabels[0]}</span>
+                  <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
+                    <Menu size={17} />
+                  </motion.span>
                 )}
-              </motion.a>
-              <button
-                type="button"
-                aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
-                aria-expanded={open}
-                onClick={() => setOpen(prev => !prev)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] lg:hidden"
-              >
-                <AnimatePresence mode="wait" initial={false}>
-                  {open ? (
-                    <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
-                      <X size={17} />
-                    </motion.span>
-                  ) : (
-                    <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
-                      <Menu size={17} />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </button>
-            </div>
+              </AnimatePresence>
+            </button>
           </div>
 
           {/* Mobile menu */}
@@ -210,7 +179,7 @@ export default function Nav() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.26, ease }}
-                className="overflow-hidden lg:hidden"
+                className="absolute inset-x-0 top-full overflow-hidden lg:hidden"
               >
                 <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] p-3">
 

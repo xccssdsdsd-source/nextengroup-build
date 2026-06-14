@@ -47,6 +47,7 @@ export default function Realizacje() {
         { name: 'Realizacje' },
       ]} />
 
+      <div style={{ height: 'var(--nav-h)' }} aria-hidden="true" />
       <Portfolio />
 
       <Contact />

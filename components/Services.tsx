@@ -115,7 +115,7 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
           ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: '#161C28', willChange: 'transform' }}
+      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
       {pkg.featured && (
         <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
@@ -263,7 +263,7 @@ export default function Services() {
           </div>
 
           <motion.div
-            className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
+            className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.3 }}
@@ -330,7 +330,7 @@ export default function Services() {
           </motion.div>
 
           <motion.div
-            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
+            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
@@ -458,7 +458,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
           ? 'border-[rgba(255,255,255,0.14)]'
           : 'border-[rgba(255,255,255,0.08)]'
       }`}
-      style={{ background: '#161C28', willChange: 'transform' }}
+      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
       <div className="flex items-center gap-2 mb-2">
         <span className="ai-tag inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#06141A]" style={{ background: '#22D3EE', borderRadius: '4px' }}>

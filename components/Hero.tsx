@@ -7,10 +7,8 @@ import { useEffect, useState, type MouseEvent } from 'react'
 const BackgroundPaths = dynamic(() => import('./BackgroundPaths'), { ssr: false })
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
-const carouselWords = ['strony internetowe', 'automatyzację AI', 'agentów AI']
-const ctaMobileWords = ['Umów bezpłatną wizytę', 'Zapytaj o wycenę', 'Porozmawiajmy']
+const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
 
-const wordDelay = (i: number) => `${0.12 + i * 0.065}s`
 
 const badges = [
   { label: 'Nielimitowana liczba poprawek', mobile: true },
@@ -63,19 +61,13 @@ export default function Hero() {
       className="relative"
       style={{
         minHeight: '100dvh',
-        background: 'radial-gradient(ellipse 90% 70% at 50% -5%, #11203A 0%, #0A0E14 55%, #06090F 100%)',
+        background: '#000000',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
       }}
     >
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div data-parallax-blob className="hero-blob hero-blob-1" />
-        <div data-parallax-blob className="hero-blob hero-blob-2" />
-        <div data-parallax-blob className="hero-blob hero-blob-3" />
-      </div>
-
-      <BackgroundPaths />
+      {isMounted && <BackgroundPaths />}
 
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
@@ -105,14 +97,14 @@ export default function Hero() {
               <span className="block text-balance" style={{ marginBottom: '0.06em' }}>
                 {['Strony,', 'które', 'pozyskują', 'klientów.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: wordDelay(i) }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: `${i * 0.08}s` }}>{word}</span>
                   </span>
                 ))}
               </span>
               <span className="block text-balance">
                 {['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: wordDelay(4 + i), background: 'linear-gradient(135deg, #7DF0FF 0%, #5EEAFF 50%, #22D3EE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: `${(i + 4) * 0.08}s` }}>{word}</span>
                   </span>
                 ))}
               </span>
@@ -121,17 +113,13 @@ export default function Hero() {
             <div className="hero-from-right mt-4 flex justify-start" style={{ animationDelay: '90ms' }}>
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
                 Budujemy Twój biznes przez{' '}
-                {!isMounted ? (
-                  <span style={{ color: '#5EEAFF', fontWeight: 600 }}>{carouselWords[0]}</span>
-                ) : (
-                  <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-                    <AnimatePresence mode="wait">
-                      <motion.span key={titleNumber} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                        {carouselWords[titleNumber]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </span>
-                )}
+                <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                  <AnimatePresence mode="wait">
+                    <motion.span key={isMounted ? titleNumber : 'ssr'} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={isMounted ? { opacity: 0, y: '110%' } : false} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                      {carouselWords[isMounted ? titleNumber : 0]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
               </p>
             </div>
 
@@ -149,18 +137,8 @@ export default function Hero() {
             </div>
 
             <div className="hero-from-left mt-6 flex flex-col gap-3 sm:flex-row justify-start sm:gap-4" style={{ animationDelay: '200ms' }}>
-              <a href="#kontakt" onClick={(e) => handleAnchorClick(e, '#kontakt')} className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto font-semibold overflow-hidden">
-                <span style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
-                  {!isMounted ? (
-                    ctaMobileWords[0]
-                  ) : (
-                    <AnimatePresence mode="wait">
-                      <motion.span key={titleNumber} style={{ display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                        {ctaMobileWords[titleNumber % ctaMobileWords.length]}
-                      </motion.span>
-                    </AnimatePresence>
-                  )}
-                </span>
+              <a href="#kontakt" onClick={(e) => handleAnchorClick(e, '#kontakt')} className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto font-semibold">
+                Kontakt
               </a>
               <a href="#portfolio" onClick={(e) => handleAnchorClick(e, '#portfolio')} className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto font-semibold">
                 Realizacje

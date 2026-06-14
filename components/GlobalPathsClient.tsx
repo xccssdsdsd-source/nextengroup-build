@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 const curve = (i: number, pos: number) =>
   `M-${380 - i * 5 * pos} -${189 + i * 6}C-${380 - i * 5 * pos} -${189 + i * 6} -${312 - i * 5 * pos} ${216 - i * 6} ${152 - i * 5 * pos} ${343 - i * 6}C${616 - i * 5 * pos} ${470 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6}`
 
@@ -15,10 +13,6 @@ const threads = [
 ]
 
 export default function GlobalPathsClient() {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => { setMounted(true) }, [])
-  if (!mounted) return null
-
   return (
     <div
       className="fixed inset-0 pointer-events-none overflow-hidden"

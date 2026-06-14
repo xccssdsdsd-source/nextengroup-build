@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState, type MouseEvent } from 'react'
 
-const BackgroundPaths = dynamic(() => import('./BackgroundPaths'), { ssr: false })
+const BackgroundPaths = dynamic(() => import('./BackgroundPaths'))
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
@@ -67,7 +67,8 @@ export default function Hero() {
         justifyContent: 'center',
       }}
     >
-      {isMounted && <BackgroundPaths />}
+      <BackgroundPaths />
+
 
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"

@@ -59,7 +59,7 @@ const projects: Project[] = [
     blurDataURL: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoIAAUABUB8JZQC7ADZkPFAAP5Yc5shiBKga0xz0IkIAAAA',
     imgWidth: 1852,
     imgHeight: 916,
-    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Klient miał firmę bez obecności w sieci i potrzebował nowoczesnej strony prezentującej portfel prac. Teraz ma stronę, która automatycznie odbiera zapytania i umawia spotkania. Nowi potencjalni klienci trafiają bezpośrednio do zintegrowanego kalendarza rezerwacji. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz system kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
+    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Patryk Zacharek miał stronę, ale bez optymalizacji pod względem SEO i słabo działającą na telefonie. Nowi potencjalni klienci teraz trafiają na estetyczny landing page. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz formularz kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
     time: '72h',
     lighthouse: [
       { label: 'Wydajność', value: 96 },
@@ -97,7 +97,7 @@ const projects: Project[] = [
     afterBlur: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoIAAUABUB8JYwCdADze7UQAPJeuX07MW4dYgWVRdfZS8AA',
     sliderWidth: 1080,
     sliderHeight: 2063,
-    body: 'Strona internetowa dla Dorimari - agencji specjalizującej się w autorskich, butikowych wycieczkach premium po Sycylii. Klient prowadzi wyjątkowe doświadczenia turystyczne i potrzebował miejsca, które sprzedaje klimat i atmosferę podróży, nie tylko trasę. Stara strona była przestarzała i nie oddawała charakteru marki - przebudowaliśmy ją od podstaw. Strona prezentuje szczegółową ofertę wycieczek, galerię profesjonalnych zdjęć z terenów Sycylii, opisy itinerariów, informacje o przewodnikach i harmonogram. Zintegrowany formularz kontaktowy umożliwia natychmiastowe zapytania. Strona jest responsywna, szybka i zoptymalizowana pod wyszukiwarki.',
+    body: 'Strona internetowa dla Dorimari. Klient prowadzi wyjątkowe doświadczenia turystyczne i potrzebował miejsca, które sprzedaje klimat i atmosferę podróży, nie tylko trasę. Stara strona była przestarzała i nie oddawała charakteru marki - przebudowaliśmy ją od podstaw. Strona prezentuje szczegółową ofertę wycieczek, galerię profesjonalnych zdjęć z terenów Sycylii, opisy, informacje o przewodnikach i harmonogram. Strona jest responsywna, szybka i zoptymalizowana pod wyszukiwarki.',
     time: 'tydzień',
     lighthouse: [
       { label: 'Wydajność', value: 97 },

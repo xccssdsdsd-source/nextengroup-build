@@ -2,8 +2,10 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
-import BackgroundParticlesServices from './BackgroundParticlesServices'
-import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
+import dynamic from 'next/dynamic'
+
+const BackgroundParticlesServices = dynamic(() => import('./BackgroundParticlesServices'), { ssr: false })
+const BackgroundNetworkAnimation = dynamic(() => import('./BackgroundNetworkAnimation'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }

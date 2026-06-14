@@ -4,8 +4,8 @@
   "description": "Getbuild projektuje i wdraża rozwiązania IT. Strony WWW, automatyzacje AI i agenci AI pracujący 24/7.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#020810",
-  "theme_color": "#ffffff",
+  "background_color": "#0A0E14",
+  "theme_color": "#22D3EE",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -13,8 +13,8 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/logo.png",
-      "sizes": "689x689",
+      "src": "/getbuild-logo-og.png",
+      "sizes": "1200x630",
       "type": "image/png",
       "purpose": "any"
     }

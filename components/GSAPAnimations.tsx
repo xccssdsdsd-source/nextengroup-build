@@ -184,7 +184,17 @@ export default function GSAPAnimations() {
       })
     }
 
-    const t = setTimeout(() => init(), 200)
+    let t: ReturnType<typeof setTimeout> | undefined
+    if (typeof requestIdleCallback !== 'undefined') {
+      const id = requestIdleCallback(() => init(), { timeout: 2000 })
+      return () => {
+        cancelIdleCallback(id)
+        ctx?.revert()
+        io.disconnect()
+        style.remove()
+      }
+    }
+    t = setTimeout(() => init(), 400)
 
     return () => {
       clearTimeout(t)

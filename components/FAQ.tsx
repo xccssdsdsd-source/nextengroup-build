@@ -3,7 +3,8 @@
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
-import BackgroundPathsFAQ from './BackgroundPathsFAQ'
+import dynamic from 'next/dynamic'
+const BackgroundPathsFAQ = dynamic(() => import('./BackgroundPathsFAQ'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }

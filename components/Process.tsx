@@ -2,7 +2,8 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import BackgroundPathsProcess from './BackgroundPathsProcess'
+import dynamic from 'next/dynamic'
+const BackgroundPathsProcess = dynamic(() => import('./BackgroundPathsProcess'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }

@@ -25,10 +25,9 @@ export default function RippleCursor() {
     let lastMove = 0
     let raf = 0
 
-    // trail of points
     const trail: { x: number; y: number; t: number }[] = []
     const TRAIL_LEN = 28
-    const FADE_MS = 220  // how fast trail fades after stop
+    const FADE_MS = 220
 
     const onMove = (e: MouseEvent) => {
       mx.x = e.clientX; mx.y = e.clientY
@@ -64,14 +63,12 @@ export default function RippleCursor() {
 
       if (trail.length < 2) return
 
-      // draw thick torch trail
       for (let i = 1; i < trail.length; i++) {
         const p0 = trail[i - 1]
         const p1 = trail[i]
         const age0 = 1 - Math.min((now - p0.t) / FADE_MS, 1)
         const age1 = 1 - Math.min((now - p1.t) / FADE_MS, 1)
 
-        // thickness: fat at head, tapers at tail
         const frac0 = i / trail.length
         const frac1 = (i + 1) / trail.length
         const w0 = frac0 * 18 * age0
@@ -102,7 +99,6 @@ export default function RippleCursor() {
         ctx.restore()
       }
 
-      // glowing head dot
       const head = trail[trail.length - 1]
       const headAge = 1 - Math.min((now - head.t) / FADE_MS, 1)
       if (headAge > 0.05) {

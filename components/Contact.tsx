@@ -4,7 +4,8 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
-import BackgroundPathsContact from './BackgroundPathsContact'
+import dynamic from 'next/dynamic'
+const BackgroundPathsContact = dynamic(() => import('./BackgroundPathsContact'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'

@@ -18,11 +18,14 @@ export default function BackgroundNetworkAnimation() {
     let H = rect.height || canvas.offsetHeight
     if (W === 0 || H === 0) return
 
-    canvas.width = W
-    canvas.height = H
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    canvas.width = Math.round(W * dpr)
+    canvas.height = Math.round(H * dpr)
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
+
+    ctx.scale(dpr, dpr)
 
     const COUNT = window.innerWidth >= 1024 ? 22 : 12
     const MAX_DIST = Math.min(W, H) * 0.30
@@ -38,7 +41,10 @@ export default function BackgroundNetworkAnimation() {
     let raf = 0
     let visible = true
 
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting }, { threshold: 0 })
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting
+      if (visible && !raf) raf = requestAnimationFrame(draw)
+    }, { threshold: 0 })
     io.observe(canvas)
 
     const draw = () => {
@@ -78,7 +84,7 @@ export default function BackgroundNetworkAnimation() {
         ctx.fill()
       }
 
-      if (visible) raf = requestAnimationFrame(draw)
+      raf = visible ? requestAnimationFrame(draw) : 0
     }
 
     raf = requestAnimationFrame(draw)

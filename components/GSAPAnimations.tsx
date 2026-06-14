@@ -2,6 +2,19 @@
 
 import { useEffect } from 'react'
 
+const counterTargets = [
+  { selector: '.counter-2099', final: 2099 },
+  { selector: '.counter-2499', final: 2499 },
+  { selector: '.counter-3999', final: 3999 },
+  { selector: '.counter-247', final: 24, suffix: '/7' },
+  { selector: '.counter-24h', final: 24, suffix: 'h' },
+  { selector: '.counter-72h', final: 72, suffix: 'h' },
+  { selector: '.counter-96', final: 96 },
+  { selector: '.counter-97', final: 97 },
+  { selector: '.counter-100', final: 100 },
+  { selector: '.counter-93', final: 93 },
+]
+
 export default function GSAPAnimations() {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -69,20 +82,7 @@ export default function GSAPAnimations() {
         const mm = gsap.matchMedia()
 
         /* ── NUMBER COUNTERS ── */
-        const numberTargets = [
-          { selector: '.counter-2099', final: 2099 },
-          { selector: '.counter-2499', final: 2499 },
-          { selector: '.counter-3999', final: 3999 },
-          { selector: '.counter-247', final: 24, suffix: '/7' },
-          { selector: '.counter-24h', final: 24, suffix: 'h' },
-          { selector: '.counter-72h', final: 72, suffix: 'h' },
-          { selector: '.counter-96', final: 96 },
-          { selector: '.counter-97', final: 97 },
-          { selector: '.counter-100', final: 100 },
-          { selector: '.counter-93', final: 93 },
-        ]
-
-        numberTargets.forEach(({ selector, final, suffix = '' }) => {
+        counterTargets.forEach(({ selector, final, suffix = '' }) => {
           document.querySelectorAll(selector).forEach((el) => {
             const obj = { val: 0 }
             gsap.to(obj, {
@@ -184,21 +184,57 @@ export default function GSAPAnimations() {
       })
     }
 
+    /* ── MOBILE: counters only, no GSAP payload (parallax/tilt/magnetic are desktop-only) ── */
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    let counterIo: IntersectionObserver | undefined
+
+    const runMobileCounters = () => {
+      counterIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          const el = entry.target as HTMLElement
+          counterIo!.unobserve(el)
+          const final = Number(el.dataset.cf)
+          const suffix = el.dataset.cs || ''
+          const start = performance.now()
+          const step = (now: number) => {
+            const p = Math.min((now - start) / 1400, 1)
+            const eased = 1 - Math.pow(1 - p, 2)
+            el.textContent = Math.round(final * eased) + suffix
+            if (p < 1) requestAnimationFrame(step)
+          }
+          requestAnimationFrame(step)
+        })
+      }, { threshold: 0, rootMargin: '0px 0px -13% 0px' })
+
+      counterTargets.forEach(({ selector, final, suffix = '' }) => {
+        document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
+          el.dataset.cf = String(final)
+          el.dataset.cs = suffix
+          counterIo!.observe(el)
+        })
+      })
+    }
+
     let t: ReturnType<typeof setTimeout> | undefined
+    const start = isMobile ? runMobileCounters : init
+
     if (typeof requestIdleCallback !== 'undefined') {
-      const id = requestIdleCallback(() => init(), { timeout: 2000 })
+      const id = requestIdleCallback(() => start(), { timeout: 2000 })
       return () => {
         cancelIdleCallback(id)
         ctx?.revert()
+        counterIo?.disconnect()
         io.disconnect()
         style.remove()
       }
     }
-    t = setTimeout(() => init(), 400)
+    t = setTimeout(() => start(), 400)
 
     return () => {
       clearTimeout(t)
       ctx?.revert()
+      counterIo?.disconnect()
       io.disconnect()
       style.remove()
     }

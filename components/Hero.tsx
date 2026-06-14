@@ -98,14 +98,14 @@ export default function Hero() {
               <span className="block text-balance" style={{ marginBottom: '0.06em' }}>
                 {['Strony,', 'które', 'pozyskują', 'klientów.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: `${i * 0.08}s` }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: `${i * 0.045}s` }}>{word}</span>
                   </span>
                 ))}
               </span>
               <span className="block text-balance">
                 {['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: `${(i + 4) * 0.08}s` }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: `${(i + 4) * 0.045}s` }}>{word}</span>
                   </span>
                 ))}
               </span>

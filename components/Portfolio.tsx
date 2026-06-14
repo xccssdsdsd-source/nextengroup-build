@@ -262,7 +262,7 @@ export default function Portfolio() {
                       data-parallax-image
                       className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       quality={82}
-                      priority={currentIndex === 0}
+                      loading="lazy"
                       placeholder="blur"
                       blurDataURL={project.blurDataURL}
                       suppressHydrationWarning

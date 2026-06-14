@@ -8,6 +8,10 @@ export default function BackgroundParticlesServices() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+    const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768
+    const FRAME_INTERVAL = isMobile ? 1000 / 15 : 0
+    let lastFrameTime = 0
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -18,12 +22,14 @@ export default function BackgroundParticlesServices() {
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting }, { threshold: 0 })
     io.observe(canvas)
 
+    const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1) : window.devicePixelRatio
+
     const resize = () => {
       const r = canvas.getBoundingClientRect()
       if (r.width === 0 || r.height === 0) return
-      canvas.width = r.width * window.devicePixelRatio
-      canvas.height = r.height * window.devicePixelRatio
-      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0)
+      canvas.width = r.width * dpr
+      canvas.height = r.height * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     resize()
 
@@ -31,8 +37,14 @@ export default function BackgroundParticlesServices() {
     ro.observe(canvas)
 
     const draw = (time: number) => {
-      const w = canvas.width / window.devicePixelRatio
-      const h = canvas.height / window.devicePixelRatio
+      if (isMobile && time - lastFrameTime < FRAME_INTERVAL) {
+        if (visible) raf = requestAnimationFrame(draw)
+        return
+      }
+      lastFrameTime = time
+
+      const w = canvas.width / dpr
+      const h = canvas.height / dpr
       ctx.clearRect(0, 0, w, h)
 
       const pulse = Math.sin(time / 1200) * 0.12 + 0.88

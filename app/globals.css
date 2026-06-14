@@ -68,6 +68,17 @@ body {
   overscroll-behavior-y: none;
 }
 
+@media (pointer: coarse) {
+  body {
+    /* fixed attachment forces repaint on every scroll pixel on Android —
+       switch to scroll to remove this bottleneck */
+    background-attachment: scroll;
+    /* disable the gradient entirely on mobile: saves the radial-gradient repaint cost
+       while keeping the solid #000000 background */
+    background-image: none;
+  }
+}
+
 a,
 button,
 input,
@@ -728,9 +739,40 @@ select {
     animation: none !important;
     will-change: auto !important;
   }
-  .aurora-1 { animation-duration: 34s !important; }
-  .aurora-2 { animation-duration: 42s !important; }
-  .aurora-3 { animation: none !important; will-change: auto !important; }
+  /* Disable auroras entirely on touch — was previously just slowing them down */
+  .aurora-1, .aurora-2, .aurora-3 {
+    animation: none !important;
+    will-change: auto !important;
+  }
+  /* Flow line animations not needed on mobile */
+  .animate-pulse-flow, .animate-flow-line {
+    animation: none !important;
+    will-change: auto !important;
+  }
+  /* GlobalPaths: drop all 12 SVG path animations + expensive filter */
+  .gp-path {
+    animation: none !important;
+    opacity: 0.04 !important;
+  }
+  .gp-svg {
+    filter: none !important;
+  }
+  /* SubtleAccents: disable continuous drift/glow loops */
+  .accent-drift, .accent-glow {
+    animation: none !important;
+  }
+  /* Ticker: slow down for less GPU thrashing */
+  .ticker-track {
+    animation-duration: 48s !important;
+  }
+  /* Remove unnecessary compositor layers from static-blur elements */
+  .dm-scene::before {
+    will-change: auto;
+  }
+  .flow-line {
+    animation: none !important;
+    will-change: auto !important;
+  }
 }
 
 @media (max-width: 640px) {

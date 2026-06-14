@@ -10,6 +10,8 @@ export default function BackgroundNetworkAnimation() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+    const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -18,7 +20,7 @@ export default function BackgroundNetworkAnimation() {
     let H = rect.height || canvas.offsetHeight
     if (W === 0 || H === 0) return
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 2)
     canvas.width = Math.round(W * dpr)
     canvas.height = Math.round(H * dpr)
 
@@ -27,9 +29,11 @@ export default function BackgroundNetworkAnimation() {
 
     ctx.scale(dpr, dpr)
 
-    const COUNT = window.innerWidth >= 1024 ? 22 : 12
+    const COUNT = isMobile ? 6 : (window.innerWidth >= 1024 ? 22 : 12)
     const MAX_DIST = Math.min(W, H) * 0.30
     const MAX_DIST_SQ = MAX_DIST * MAX_DIST
+    const FRAME_INTERVAL = isMobile ? 1000 / 30 : 0
+    let lastFrameTime = 0
 
     const pts: Point[] = Array.from({ length: COUNT }, () => ({
       x: Math.random() * W,
@@ -47,7 +51,13 @@ export default function BackgroundNetworkAnimation() {
     }, { threshold: 0 })
     io.observe(canvas)
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
+      if (isMobile && timestamp - lastFrameTime < FRAME_INTERVAL) {
+        raf = visible ? requestAnimationFrame(draw) : 0
+        return
+      }
+      lastFrameTime = timestamp
+
       ctx.clearRect(0, 0, W, H)
 
       for (let i = 0; i < COUNT; i++) {

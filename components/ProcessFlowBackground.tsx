@@ -12,6 +12,8 @@ export default function ProcessFlowBackground({ className = '' }: Props) {
   const isVisibleRef = useRef(true)
 
   useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D

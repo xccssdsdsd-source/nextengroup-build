@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { m } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const footerLinks = [
@@ -29,8 +29,8 @@ export default function Footer() {
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
-        <m.div
-          initial={{ opacity: 0, y: 24 }}
+        <motion.div
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
@@ -48,11 +48,11 @@ export default function Footer() {
           <p className="text-[12.5px] leading-[1.7] text-[#A6B2C4]">
             Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
           </p>
-        </m.div>
+        </motion.div>
 
-        <m.div
+        <motion.div
           className="lg:col-span-2"
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12, ease }}
         >
@@ -61,16 +61,16 @@ export default function Footer() {
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#7C879B] mb-4">Nawigacja</p>
               <div className="space-y-2">
                 {footerLinks.map(([label, href], i) => (
-                  <m.a
+                  <motion.a
                     key={href}
                     href={href}
-                    initial={{ opacity: 0, x: -8 }}
+                    initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.18 + i * 0.06, ease }}
-                    className="block text-[13px] font-medium text-[#A6B2C4] transition-colors duration-200 hover:text-[#EAF0F7]"
+                    className="footer-link block text-[13px] font-medium text-[#A6B2C4]"
                   >
                     {label}
-                  </m.a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -79,35 +79,35 @@ export default function Footer() {
               <p className="text-[12px] text-[#7C879B] mb-3 tracking-[0.04em]">Polska</p>
               <div className="space-y-2">
                 {footerLegal.map(([label, href], i) => (
-                  <m.a
+                  <motion.a
                     key={href}
                     href={href}
                     target={label === 'LinkedIn' ? '_blank' : undefined}
                     rel={label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
-                    initial={{ opacity: 0, x: -8 }}
+                    initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
-                    className="block text-[13px] font-medium text-[#A6B2C4] transition-colors duration-200 hover:text-[#EAF0F7]"
+                    className="footer-link block text-[13px] font-medium text-[#A6B2C4]"
                   >
                     {label}
-                  </m.a>
+                  </motion.a>
                 ))}
               </div>
             </div>
           </div>
-        </m.div>
+        </motion.div>
       </div>
 
-      <m.div
+      <motion.div
         className="relative mx-auto max-w-7xl border-t border-[rgba(255,255,255,0.08)] mt-10 pt-6"
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease }}
       >
         <p className="text-[11.5px] tracking-[0.02em] text-[#7C879B]">
           © {new Date().getFullYear()} Getbuild. Wszystkie prawa zastrzeżone.
         </p>
-      </m.div>
+      </motion.div>
     </footer>
   )
 }

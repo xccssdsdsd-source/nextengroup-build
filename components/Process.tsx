@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { m, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import BackgroundPathsProcess from './BackgroundPathsProcess'
 
@@ -8,12 +8,10 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const containerVariants = {
-  hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 }
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.95 },
   show: { opacity: 1, y: 0, scale: 1, transition: { ...premiumSpring } },
 }
 
@@ -45,7 +43,7 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <section id="proces" ref={ref} className="section-shell relative">
+    <section id="proces" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
       <BackgroundPathsProcess />
       <div
         className="pointer-events-none absolute inset-0"
@@ -53,27 +51,27 @@ export default function Process() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <m.div
+        <motion.div
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
-          <span className="section-kicker">Proces</span>
-          <h2 className="section-title">Prosto od konsultacji do wsparcia</h2>
+          <span className="section-kicker" suppressHydrationWarning>Proces</span>
+          <h2 className="section-title" suppressHydrationWarning>Prosto od konsultacji do wsparcia</h2>
           <p className="section-copy">
             Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
           </p>
-        </m.div>
+        </motion.div>
 
-        <m.div
+        <motion.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'show' : 'hidden'}
+          initial={false}
+          animate="show"
         >
           {steps.map((step) => <StepCard key={step.num} step={step} />)}
-        </m.div>
+        </motion.div>
       </div>
     </section>
   )
@@ -81,11 +79,11 @@ export default function Process() {
 
 function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
-    <m.article
+    <motion.article
       variants={stepVariants}
       whileHover={{ y: -6, scale: 1.02, borderColor: 'rgba(34,211,238,0.4)', boxShadow: '0 1px 3px rgba(0,0,0,0.45), 0 12px 32px rgba(34,211,238,0.18)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
+      className="step-card group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
       style={{ background: 'var(--bg-card)', willChange: 'transform' }}
     >
       <div className="step-number animate-float" style={{ animationDelay: `${parseInt(step.num, 10) * 0.8}s` }}>
@@ -98,6 +96,6 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
       <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {step.desc}
       </p>
-    </m.article>
+    </motion.article>
   )
 }

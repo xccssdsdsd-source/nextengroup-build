@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { m, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
@@ -17,32 +17,34 @@ export default function Testimonials() {
       id="opinie"
       ref={ref}
       className="section-shell relative overflow-hidden"
+      data-no-entrance
+      suppressHydrationWarning
     >
 
       <div className="relative mx-auto max-w-7xl">
-        <m.div
+        <motion.div
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
-          <span className="section-kicker">Opinie</span>
-          <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>Co mówią nasi klienci</h2>
-        </m.div>
+          <span className="section-kicker" suppressHydrationWarning>Opinie</span>
+          <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>Co mówią nasi klienci</h2>
+        </motion.div>
 
-        <m.div
+        <motion.div
           className="mt-14 flex justify-center"
-          initial={{ opacity: 0, y: 30, scale: 0.96 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...premiumSpring, delay: 0.12 }}
         >
           <TestimonialCard />
-        </m.div>
+        </motion.div>
 
-        <m.div
+        <motion.div
           className="mt-10 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease, delay: 0.3 }}
         >
           <a
@@ -52,7 +54,7 @@ export default function Testimonials() {
           >
             Umów spotkanie
           </a>
-        </m.div>
+        </motion.div>
       </div>
     </section>
   )
@@ -60,10 +62,10 @@ export default function Testimonials() {
 
 function TestimonialCard() {
   return (
-    <m.article
+    <motion.article
       whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 20px 50px rgba(0,0,0,0.5)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
+      className="testimonial-card relative w-full max-w-2xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
       style={{ willChange: 'transform' }}
     >
       <svg
@@ -108,6 +110,6 @@ function TestimonialCard() {
           </a>
         </div>
       </div>
-    </m.article>
+    </motion.article>
   )
 }

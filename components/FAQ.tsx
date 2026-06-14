@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { AnimatePresence, m, useInView } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import BackgroundPathsFAQ from './BackgroundPathsFAQ'
@@ -61,31 +61,33 @@ export default function FAQ() {
       id="faq"
       ref={ref}
       className="section-shell relative"
+      data-no-entrance
+      suppressHydrationWarning
     >
       <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
-        <m.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
-          <span className="section-kicker">FAQ</span>
-          <h2 className="section-title max-w-[11ch]">Najczęstsze pytania przed startem.</h2>
+          <span className="section-kicker" suppressHydrationWarning>FAQ</span>
+          <h2 className="section-title max-w-[11ch]" suppressHydrationWarning>Najczęstsze pytania przed startem.</h2>
           <p className="section-copy">
             To pytania, które najczęściej słyszymy przed rozpoczęciem współpracy.
           </p>
-        </m.div>
+        </motion.div>
 
         <div className="flex flex-col gap-2">
           {faqs.map((faq, index) => {
             const isOpen = open === index
 
             return (
-              <m.div
+              <motion.div
                 key={faq.q}
                 layout="position"
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                initial={false}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ ...premiumSpring, delay: index * 0.07 }}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
@@ -103,7 +105,7 @@ export default function FAQ() {
                   <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-syne)' }}>
                     {faq.q}
                   </span>
-                  <m.span
+                  <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.26, ease }}
                     className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
@@ -113,12 +115,12 @@ export default function FAQ() {
                     }`}
                   >
                     <Plus size={14} strokeWidth={2.2} />
-                  </m.span>
+                  </motion.span>
                 </button>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <m.div
+                    <motion.div
                       id={`faq-answer-${index}`}
                       role="region"
                       initial={{ height: 0, opacity: 0 }}
@@ -129,10 +131,10 @@ export default function FAQ() {
                       <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
                         {faq.a}
                       </p>
-                    </m.div>
+                    </motion.div>
                   )}
                 </AnimatePresence>
-              </m.div>
+              </motion.div>
             )
           })}
         </div>

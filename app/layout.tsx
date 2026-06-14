@@ -3,11 +3,11 @@ import { Syne, DM_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import CookieConsent from '@/components/CookieConsent'
-import SubtleAccents from '@/components/SubtleAccents'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import GSAPProvider from '@/components/GSAPProvider'
 import GSAPAnimations from '@/components/GSAPAnimations'
+import RippleCursor from '@/components/RippleCursor'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
@@ -43,9 +43,6 @@ export const metadata: Metadata = {
     'SEO dla firm',
     'optymalizacja AI',
   ],
-  alternates: {
-    canonical: siteUrl,
-  },
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -77,6 +74,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  manifest: '/manifest.json',
+  alternates: {
+    canonical: siteUrl,
+    languages: { pl: siteUrl },
+  },
 }
 
 export default function RootLayout({
@@ -92,11 +94,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/png" href="/getbuild-logo-og.png" sizes="any" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/getbuild-logo-og.png" />
-        <meta property="og:image" content="https://getbuild.pl/getbuild-logo-og.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
@@ -210,9 +207,9 @@ export default function RootLayout({
             { '@type': 'Thing', name: 'Agenci AI' },
           ],
         }) }} />
-        <link rel="alternate" hrefLang="pl" href="https://getbuild.pl" />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
+        <RippleCursor />
         <GSAPProvider>
           <AnimatedBackground />
           <CookieConsent />

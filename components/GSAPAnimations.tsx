@@ -7,6 +7,59 @@ export default function GSAPAnimations() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let ctx: any = null
 
+    /* ── CSS-BASED SCROLL REVEALS (IntersectionObserver) ── */
+    const style = document.createElement('style')
+    style.textContent = `
+      .io-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+      .io-reveal.io-visible { opacity: 1; transform: none; }
+      .io-reveal-scale { opacity: 0; transform: scale(0.96); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+      .io-reveal-scale.io-visible { opacity: 1; transform: none; }
+      .io-kicker { opacity: 0; transform: translateX(-10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+      .io-kicker.io-visible { opacity: 1; transform: none; }
+      .io-divider { opacity: 0; transform: scaleX(0); transform-origin: center; transition: opacity 0.8s ease, transform 0.8s ease; }
+      .io-divider.io-visible { opacity: 1; transform: scaleX(1); }
+    `
+    document.head.appendChild(style)
+
+    const revealTargets: { el: HTMLElement; cls: string; delay?: number }[] = []
+
+    document.querySelectorAll<HTMLElement>('[data-fade-in], [data-stagger-group] > *, [data-img-reveal], [data-stat-block]').forEach((el, i) => {
+      const delay = parseFloat((el as HTMLElement).dataset.fadeIn || '0') || (el.closest('[data-stagger-group]') ? i * 0.07 : 0)
+      el.classList.add('io-reveal')
+      if (delay) el.style.transitionDelay = `${delay}s`
+      revealTargets.push({ el, cls: 'io-reveal' })
+    })
+
+    document.querySelectorAll<HTMLElement>('[data-img-reveal]').forEach((el) => {
+      el.classList.remove('io-reveal')
+      el.classList.add('io-reveal-scale')
+      revealTargets.push({ el, cls: 'io-reveal-scale' })
+    })
+
+    document.querySelectorAll<HTMLElement>('.section-kicker').forEach((el) => {
+      if (!el.dataset.ioKicker) {
+        el.dataset.ioKicker = '1'
+        el.classList.add('io-kicker')
+        revealTargets.push({ el, cls: 'io-kicker' })
+      }
+    })
+
+    document.querySelectorAll<HTMLElement>('.section-divider').forEach((el) => {
+      el.classList.add('io-divider')
+      revealTargets.push({ el, cls: 'io-divider' })
+    })
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          ;(entry.target as HTMLElement).classList.add('io-visible')
+          io.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12 })
+
+    revealTargets.forEach(({ el }) => io.observe(el))
+
     const init = async () => {
       const { gsap } = await import('gsap')
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
@@ -15,64 +68,7 @@ export default function GSAPAnimations() {
       ctx = gsap.context(() => {
         const mm = gsap.matchMedia()
 
-        /* ── TEXT REVEAL ──────────────────────────────────────────── */
-        document.querySelectorAll('h1, h2').forEach((heading) => {
-          if ((heading as HTMLElement).dataset.revealed) return
-          if ((heading as HTMLElement).closest('[data-no-reveal]')) return
-          ;(heading as HTMLElement).dataset.revealed = '1'
-
-          const raw = heading.innerHTML
-          const lines = raw.split(/<br\s*\/?>/i)
-          if (lines.length <= 1) {
-            const text = heading.textContent || ''
-            const sentences = text.split(/(?<=\.)\s+|(?<=\n)/)
-            if (sentences.length <= 1) {
-              const wrapper = document.createElement('span')
-              wrapper.style.cssText = 'display:block;overflow:hidden;'
-              const inner = document.createElement('span')
-              inner.style.cssText = 'display:block;clip-path:inset(0 0 100% 0);'
-              inner.innerHTML = heading.innerHTML
-              wrapper.appendChild(inner)
-              heading.innerHTML = ''
-              heading.appendChild(wrapper)
-              gsap.to(inner, {
-                clipPath: 'inset(0 0 0% 0)',
-                duration: 0.75,
-                ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: heading,
-                  start: 'top 80%',
-                  once: true,
-                },
-              })
-              return
-            }
-          }
-
-          const parts = heading.innerHTML.split(/<br\s*\/?>/i)
-          heading.innerHTML = parts
-            .map(
-              (part) =>
-                `<span style="display:block;overflow:hidden;"><span class="gsap-line-inner" style="display:block;">${part}</span></span>`
-            )
-            .join('')
-
-          const inners = heading.querySelectorAll('.gsap-line-inner')
-          gsap.set(inners, { clipPath: 'inset(0 0 100% 0)' })
-          gsap.to(inners, {
-            clipPath: 'inset(0 0 0% 0)',
-            duration: 0.75,
-            ease: 'power3.out',
-            stagger: 0.1,
-            scrollTrigger: {
-              trigger: heading,
-              start: 'top 80%',
-              once: true,
-            },
-          })
-        })
-
-        /* ── NUMBER COUNTERS ──────────────────────────────────────── */
+        /* ── NUMBER COUNTERS ── */
         const numberTargets = [
           { selector: '.counter-2099', final: 2099 },
           { selector: '.counter-2499', final: 2499 },
@@ -91,210 +87,110 @@ export default function GSAPAnimations() {
             const obj = { val: 0 }
             gsap.to(obj, {
               val: final,
-              duration: 1.5,
+              duration: 1.4,
               ease: 'power2.out',
-              onUpdate() {
-                el.textContent = Math.round(obj.val) + suffix
-              },
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-              },
+              onUpdate() { el.textContent = Math.round(obj.val) + suffix },
+              scrollTrigger: { trigger: el, start: 'top 87%', once: true },
             })
           })
         })
 
-        /* ── SECTION ENTRANCE ─────────────────────────────────────── */
-        const sections = document.querySelectorAll(
-          'section:not(#hero):not([data-no-entrance])'
-        )
-        sections.forEach((section) => {
-          const directChildren = Array.from(section.children).filter(
-            (el) => !el.matches('h1, h2, [data-no-entrance]')
-          )
-          if (!directChildren.length) return
-
-          gsap.fromTo(
-            section,
-            { opacity: 0, y: 60 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-              once: true,
-              scrollTrigger: {
-                trigger: section,
-                start: 'top 85%',
-                once: true,
-                onEnter() {
-                  gsap.set(section, { clearProps: 'willChange' })
-                },
-              },
-              onComplete() {
-                gsap.set(section, { clearProps: 'willChange' })
-              },
-            }
-          )
-        })
-
-        /* ── PARALLAX ─────────────────────────────────────────────── */
+        /* ── PARALLAX ── */
         mm.add('(min-width: 769px)', () => {
           const heroSection = document.querySelector('#hero, section:first-of-type')
 
-          const heroBlobs = document.querySelectorAll('[data-parallax-blob]')
-          heroBlobs.forEach((blob) => {
+          document.querySelectorAll('[data-parallax-blob]').forEach((blob, i) => {
             gsap.to(blob, {
-              y: () => (heroSection?.clientHeight || 600) * 0.3,
+              y: () => (heroSection?.clientHeight || 600) * (0.25 + i * 0.05),
               ease: 'none',
-              scrollTrigger: {
-                trigger: heroSection || document.body,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1,
-              },
+              force3D: true,
+              scrollTrigger: { trigger: heroSection || document.body, start: 'top top', end: 'bottom top', scrub: 2 },
             })
           })
 
           const heroHeadline = document.querySelector('[data-parallax-headline]')
           if (heroHeadline) {
             gsap.to(heroHeadline, {
-              y: () => (heroSection?.clientHeight || 600) * 0.05,
+              y: () => (heroSection?.clientHeight || 600) * 0.10,
               ease: 'none',
-              scrollTrigger: {
-                trigger: heroSection || document.body,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1,
-              },
+              force3D: true,
+              scrollTrigger: { trigger: heroSection || document.body, start: 'top top', end: 'bottom top', scrub: 1.5 },
             })
           }
 
-          const portfolioImages = document.querySelectorAll('[data-parallax-image]')
-          portfolioImages.forEach((img) => {
+          document.querySelectorAll('[data-parallax-image]').forEach((img) => {
             gsap.to(img, {
-              y: -60,
+              y: -50,
               ease: 'none',
-              scrollTrigger: {
-                trigger: img.closest('section') || img,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1,
-              },
+              scrollTrigger: { trigger: img.closest('section') || img, start: 'top bottom', end: 'bottom top', scrub: 1 },
             })
           })
         })
 
-        /* ── 3D CARD TILT ─────────────────────────────────────────── */
+        /* ── 3D CARD TILT ── */
         mm.add('(min-width: 769px)', () => {
-          const tiltCards = document.querySelectorAll(
-            '.value-card, .realizacja-card, [data-tilt-card]'
-          )
-
+          const tiltCards = document.querySelectorAll('.value-card, .realizacja-card, [data-tilt-card]')
           tiltCards.forEach((card) => {
             const el = card as HTMLElement
             let glare = el.querySelector<HTMLElement>('.tilt-glare')
             if (!glare) {
               glare = document.createElement('div')
               glare.className = 'tilt-glare'
-              glare.style.cssText =
-                'position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 60%);opacity:0;z-index:1;transition:none;'
+              glare.style.cssText = 'position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%);opacity:0;z-index:1;'
               el.style.position = 'relative'
               el.appendChild(glare)
             }
 
-            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.1, ease: 'none' })
-            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.1, ease: 'none' })
+            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.12, ease: 'none' })
+            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.12, ease: 'none' })
 
             const onMove = (e: MouseEvent) => {
               const rect = el.getBoundingClientRect()
-              const cx = rect.left + rect.width / 2
-              const cy = rect.top + rect.height / 2
-              const dx = (e.clientX - cx) / (rect.width / 2)
-              const dy = (e.clientY - cy) / (rect.height / 2)
-              rotX(-dy * 8)
-              rotY(dx * 8)
+              rotX(-((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 7)
+              rotY(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 7)
               if (glare) {
-                const gx = ((e.clientX - rect.left) / rect.width) * 100
-                const gy = ((e.clientY - rect.top) / rect.height) * 100
-                glare.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.12) 0%, transparent 60%)`
+                glare.style.background = `radial-gradient(circle at ${((e.clientX - rect.left) / rect.width) * 100}% ${((e.clientY - rect.top) / rect.height) * 100}%, rgba(255,255,255,0.10) 0%, transparent 60%)`
                 glare.style.opacity = '1'
               }
-              gsap.set(el, { willChange: 'transform' })
             }
-
             const onLeave = () => {
-              gsap.to(el, {
-                rotationX: 0,
-                rotationY: 0,
-                duration: 0.5,
-                ease: 'power2.out',
-                clearProps: 'willChange',
-                onComplete: () => gsap.set(el, { clearProps: 'rotationX,rotationY' }),
-              })
+              gsap.to(el, { rotationX: 0, rotationY: 0, duration: 0.55, ease: 'power2.out', onComplete: () => gsap.set(el, { clearProps: 'rotationX,rotationY' }) })
               if (glare) gsap.to(glare, { opacity: 0, duration: 0.3 })
             }
-
             el.addEventListener('mousemove', onMove)
             el.addEventListener('mouseleave', onLeave)
-
-            return () => {
-              el.removeEventListener('mousemove', onMove)
-              el.removeEventListener('mouseleave', onLeave)
-            }
+            return () => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave) }
           })
         })
 
-        /* ── MAGNETIC BUTTONS ─────────────────────────────────────── */
+        /* ── MAGNETIC BUTTONS ── */
         mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
-          const magnetics = document.querySelectorAll<HTMLElement>(
-            '.btn-primary, [data-magnetic]'
-          )
-
           const cleanups: Array<() => void> = []
-
-          magnetics.forEach((btn) => {
+          document.querySelectorAll<HTMLElement>('.btn-primary, [data-magnetic]').forEach((btn) => {
             const moveX = gsap.quickTo(btn, 'x', { duration: 0.2, ease: 'power2.out' })
             const moveY = gsap.quickTo(btn, 'y', { duration: 0.2, ease: 'power2.out' })
-
             const onMove = (e: MouseEvent) => {
               const rect = btn.getBoundingClientRect()
-              const cx = rect.left + rect.width / 2
-              const cy = rect.top + rect.height / 2
-              const dx = ((e.clientX - cx) / (rect.width / 2)) * 8
-              const dy = ((e.clientY - cy) / (rect.height / 2)) * 8
-              moveX(dx)
-              moveY(dy)
+              moveX(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 8)
+              moveY(((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 8)
             }
-
-            const onLeave = () => {
-              gsap.to(btn, {
-                x: 0,
-                y: 0,
-                duration: 0.4,
-                ease: 'elastic.out(1, 0.4)',
-              })
-            }
-
+            const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'elastic.out(1, 0.4)' })
             btn.addEventListener('mousemove', onMove)
             btn.addEventListener('mouseleave', onLeave)
-
-            cleanups.push(() => {
-              btn.removeEventListener('mousemove', onMove)
-              btn.removeEventListener('mouseleave', onLeave)
-            })
+            cleanups.push(() => { btn.removeEventListener('mousemove', onMove); btn.removeEventListener('mouseleave', onLeave) })
           })
-
           return () => cleanups.forEach((fn) => fn())
         })
       })
     }
 
-    init()
+    const t = setTimeout(() => init(), 200)
 
     return () => {
+      clearTimeout(t)
       ctx?.revert()
+      io.disconnect()
+      style.remove()
     }
   }, [])
 

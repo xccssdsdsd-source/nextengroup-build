@@ -1,7 +1,7 @@
-'use client'
+﻿'use client'
 
 import Image from 'next/image'
-import { m, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
@@ -128,7 +128,7 @@ function ScoreBadge({ value, label }: LighthouseScore) {
       ? { bg: 'rgba(234,179,8,0.15)', fg: '#FACC15', ring: 'rgba(234,179,8,0.25)' }
       : { bg: 'rgba(239,68,68,0.15)', fg: '#FCA5A5', ring: 'rgba(239,68,68,0.25)' }
   return (
-    <div className="flex flex-col items-center gap-1.5">
+    <div className="score-badge flex flex-col items-center gap-1.5" suppressHydrationWarning>
       <div
         className={`flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold counter-${value}`}
         style={{
@@ -200,41 +200,42 @@ export default function Portfolio() {
   const [bodyPreview, bodyRest] = splitAtSentences(project.body, 2)
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }} data-no-entrance suppressHydrationWarning>
 
       <div className="relative mx-auto max-w-6xl">
-        <m.div
+        <motion.div
           className="flex flex-wrap items-end justify-between gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
         >
           <div>
-            <span className="section-kicker">Nasze realizacje</span>
-            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Nasze strony internetowe</h2>
+            <span className="section-kicker" suppressHydrationWarning>Nasze realizacje</span>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
             <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
-        </m.div>
+        </motion.div>
 
-        <m.div
+        <motion.div
           className="mt-7 relative"
-          initial={{ opacity: 0, y: 28 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12, ease }}
         >
           <div
             className="realizacja-card overflow-hidden"
-            style={{ touchAction: 'pan-y' }}
+            style={{ touchAction: 'pan-y', position: 'relative' }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
+            <div className="tilt-glare" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%)', opacity: 0, zIndex: 1 }} />
             <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <m.div
+              <motion.div
                 key={currentIndex}
                 custom={direction}
                 variants={slideVariants}
@@ -264,6 +265,7 @@ export default function Portfolio() {
                       priority={currentIndex === 0}
                       placeholder="blur"
                       blurDataURL={project.blurDataURL}
+                      suppressHydrationWarning
                     />
                   </a>
                 ) : (
@@ -304,25 +306,25 @@ export default function Portfolio() {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
+                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5" data-stagger-group>
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}
                 </div>
-              </m.div>
+              </motion.div>
             </AnimatePresence>
           </div>
 
           {/* Mobile nav — dots + arrows */}
           <div className="mt-5 flex justify-center items-center gap-4 sm:hidden">
-            <m.button
+            <motion.button
               onClick={prevProject}
               whileTap={{ scale: 0.9 }}
               className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Poprzednia realizacja"
             >
               <ChevronLeft size={20} strokeWidth={2.5} />
-            </m.button>
+            </motion.button>
 
             <div className="flex items-center gap-2">
               {projects.map((_, i) => (
@@ -340,16 +342,16 @@ export default function Portfolio() {
               ))}
             </div>
 
-            <m.button
+            <motion.button
               onClick={nextProject}
               whileTap={{ scale: 0.9 }}
               className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Następna realizacja"
             >
               <ChevronRight size={20} strokeWidth={2.5} />
-            </m.button>
+            </motion.button>
           </div>
-        </m.div>
+        </motion.div>
 
         <div className="sr-only">
           <h3>Wszystkie realizacje Getbuild</h3>

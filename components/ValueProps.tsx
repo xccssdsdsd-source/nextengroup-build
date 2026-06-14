@@ -1,26 +1,6 @@
-'use client'
+﻿'use client'
 
-import { m, useInView } from 'framer-motion'
 import { Shield, Users, Settings2, Zap } from 'lucide-react'
-import { useRef } from 'react'
-
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.94 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { ...premiumSpring },
-  },
-}
 
 const values = [
   {
@@ -50,29 +30,20 @@ const values = [
 ]
 
 export default function ValueProps() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
-
   return (
-    <section id="wartosci" ref={ref} className="section-shell relative">
+    <section id="wartosci" className="section-shell relative" data-no-entrance suppressHydrationWarning>
       <div className="relative mx-auto max-w-7xl">
-        <m.ul
-          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'show' : 'hidden'}
-        >
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0">
           {values.map((value, idx) => {
             const Icon = value.Icon
             return (
-              <m.li
+              <li
                 key={idx}
-                variants={cardVariants}
-                whileHover={{ y: -6, scale: 1.03, transition: { type: 'spring', stiffness: 200, damping: 20 } }}
-                className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col cursor-default"
-                style={{ willChange: 'transform' }}
+                className="value-card group rounded-2xl p-5 sm:p-6 flex flex-col cursor-default transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.03]"
+                style={{ position: 'relative' }}
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-transform duration-200 group-hover:scale-110" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)', animationDelay: `${idx * 0.5}s` }}>
+                <div className="tilt-glare" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%)', opacity: 0, zIndex: 1 }} />
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-[transform,box-shadow] duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(34,211,238,0.35)]" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)', animationDelay: `${idx * 0.5}s` }}>
                   <Icon size={20} strokeWidth={1.8} style={{ color: '#22D3EE' }} />
                 </div>
                 <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug transition-colors duration-200 group-hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -81,10 +52,10 @@ export default function ValueProps() {
                 <p className="mt-2 text-[13.5px] leading-[1.65] text-[#A6B2C4]">
                   {value.desc}
                 </p>
-              </m.li>
+              </li>
             )
           })}
-        </m.ul>
+        </ul>
       </div>
     </section>
   )

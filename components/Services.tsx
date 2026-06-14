@@ -1,6 +1,6 @@
-'use client'
+﻿'use client'
 
-import { AnimatePresence, m, useInView } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
 import BackgroundParticlesServices from './BackgroundParticlesServices'
 import BackgroundNetworkAnimation from './BackgroundNetworkAnimation'
@@ -99,14 +99,14 @@ type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boole
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <m.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    <motion.div
+      initial={false}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
+      className={`pkg-card relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 ${
         pkg.featured
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
           : isHovered
@@ -135,13 +135,13 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.sub}</p>}
       <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-4">
         <span className="text-[1.55rem] font-extrabold tracking-tight text-[#EAF0F7]">
-          {pkg.price === '2099 zł' && <><span className={`counter-2099`}>2099</span> zł</>}
-          {pkg.price === '2499 zł' && <><span className={`counter-2499`}>2499</span> zł</>}
-          {pkg.price === '3999 zł + 99 zł/mies' && <><span className={`counter-3999`}>3999</span> zł + 99 zł/mies</>}
+          {pkg.price === '2099 zł' && <><span className={`counter-2099`} suppressHydrationWarning>2099</span> zł</>}
+          {pkg.price === '2499 zł' && <><span className={`counter-2499`} suppressHydrationWarning>2499</span> zł</>}
+          {pkg.price === '3999 zł + 99 zł/mies' && <><span className={`counter-3999`} suppressHydrationWarning>3999</span> zł + 99 zł/mies</>}
           {!['2099 zł','2499 zł','3999 zł + 99 zł/mies'].includes(pkg.price) && pkg.price}
         </span>
       </div>
-    </m.div>
+    </motion.div>
   )
 }
 
@@ -208,16 +208,16 @@ export default function Services() {
 
   return (
     <>
-      <section id="uslugi" ref={ref1} className="section-shell relative">
+      <section id="uslugi" ref={ref1} className="section-shell relative" data-no-entrance suppressHydrationWarning>
         <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
-          <m.div
+          <motion.div
             className="section-heading"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]">
                 Strony internetowe
               </div>
@@ -225,7 +225,7 @@ export default function Services() {
             <p className="section-copy mt-6">
               Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
             </p>
-          </m.div>
+          </motion.div>
 
           <div className="mt-16">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
@@ -236,8 +236,8 @@ export default function Services() {
               <PackageCard pkg={packages[0]} inView={inView1} i={0} />
               <AnimatePresence initial={false}>
                 {expanded1 && (
-                  <m.div
-                    initial={{ opacity: 0, height: 0 }}
+                  <motion.div
+                    initial={false}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.36, ease }}
@@ -246,7 +246,7 @@ export default function Services() {
                     <div className="flex flex-col gap-4">
                       {packages.slice(1).map((pkg, i) => <PackageCard key={pkg.name} pkg={pkg} inView={inView1} i={i + 1} />)}
                     </div>
-                  </m.div>
+                  </motion.div>
                 )}
               </AnimatePresence>
               {!expanded1 && (
@@ -260,10 +260,10 @@ export default function Services() {
             </div>
           </div>
 
-          <m.div
+          <motion.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.3 }}
           >
             <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -275,8 +275,8 @@ export default function Services() {
 
             <AnimatePresence initial={false}>
               {seoExpanded && (
-                <m.div
-                  initial={{ opacity: 0, height: 0 }}
+                <motion.div
+                  initial={false}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.36, ease }}
@@ -291,13 +291,13 @@ export default function Services() {
                       { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
                       { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
                     ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
+                      <div key={item.label} className="seo-card rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
                         <p className="mb-1 text-[13.5px] font-semibold text-[#EAF0F7]">{item.label}</p>
                         <p className="text-[13px] leading-[1.65] text-[#A6B2C4]">{item.desc}</p>
                       </div>
                     ))}
                   </div>
-                </m.div>
+                </motion.div>
               )}
             </AnimatePresence>
 
@@ -308,12 +308,12 @@ export default function Services() {
             >
               {seoExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
             </button>
-          </m.div>
+          </motion.div>
 
-          <m.div
+          <motion.div
             className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.38 }}
           >
             <p className="mb-3 text-[13.5px] font-semibold text-[#EAF0F7]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
@@ -325,12 +325,12 @@ export default function Services() {
             <p className="text-[13px] leading-[1.6] text-[#A6B2C4]">
               <span className="font-semibold text-[#EAF0F7]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
             </p>
-          </m.div>
+          </motion.div>
 
-          <m.div
+          <motion.div
             className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] px-6 py-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView1 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
           >
             <h3 className="mb-4 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
@@ -338,13 +338,13 @@ export default function Services() {
             </h3>
             <ul className="flex flex-col gap-2.5">
               {careItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4] transition-colors duration-200 hover:bg-[rgba(34,211,238,0.06)]">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+                <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
+                  <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
                   {item}
                 </li>
               ))}
             </ul>
-          </m.div>
+          </motion.div>
         </div>
       </section>
 
@@ -352,23 +352,25 @@ export default function Services() {
         id="automatyzacje"
         ref={ref2}
         className="section-shell relative overflow-hidden"
+        data-no-entrance
+        suppressHydrationWarning
       >
         <div className="absolute inset-0 z-0 overflow-hidden rounded-none">
           <BackgroundNetworkAnimation />
         </div>
         <div className="relative mx-auto max-w-7xl">
-          <m.div
+          <motion.div
             className="section-heading"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <span className="section-kicker">Automatyzacje i agenci AI</span>
-            <h2 className="section-title">Przestań robić to, co AI może zrobić za Ciebie</h2>
+            <span className="section-kicker" suppressHydrationWarning>Automatyzacje i agenci AI</span>
+            <h2 className="section-title" suppressHydrationWarning>Przestań robić to, co AI może zrobić za Ciebie</h2>
             <p className="section-copy">
               Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
             </p>
-          </m.div>
+          </motion.div>
 
           <div className="mt-16">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
@@ -379,8 +381,8 @@ export default function Services() {
               <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
               <AnimatePresence initial={false}>
                 {expanded2 && (
-                  <m.div
-                    initial={{ opacity: 0, height: 0 }}
+                  <motion.div
+                    initial={false}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.36, ease }}
@@ -389,7 +391,7 @@ export default function Services() {
                     <div className="flex flex-col gap-4">
                       {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
                     </div>
-                  </m.div>
+                  </motion.div>
                 )}
               </AnimatePresence>
               {!expanded2 && (
@@ -403,27 +405,27 @@ export default function Services() {
             </div>
           </div>
 
-          <m.div
+          <motion.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.35 }}
           >
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
               <span className="font-semibold text-[#EAF0F7]">Wycena</span> dopasowana do Twoich potrzeb po krótkim spotkaniu, 15 minut. Rozpoznajemy na nim Twoje największe wąskie gardła i problemy, które realnie da się zautomatyzować albo poprawić. W najgorszym razie wychodzisz ze spotkania wiedząc dokładnie, co i jak usprawnić u siebie. Czyli i tak wygrywasz.
             </p>
-          </m.div>
+          </motion.div>
 
-          <m.div
+          <motion.div
             className="mt-8 flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : {}}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
           >
             <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary">
               Umów spotkanie
             </a>
-          </m.div>
+          </motion.div>
         </div>
       </section>
     </>
@@ -442,22 +444,22 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
   }
 
   return (
-    <m.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    <motion.div
+      initial={false}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
+      className={`ai-card rounded-2xl border p-7 flex flex-col h-full ${
         isHovered
-          ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
-          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
+          ? 'border-[rgba(255,255,255,0.14)]'
+          : 'border-[rgba(255,255,255,0.08)]'
       }`}
       style={{ background: '#161C28', willChange: 'transform' }}
     >
       <div className="flex items-center gap-2 mb-2">
-        <span className="inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#06141A]" style={{ background: '#22D3EE', borderRadius: '4px' }}>
+        <span className="ai-tag inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#06141A]" style={{ background: '#22D3EE', borderRadius: '4px' }}>
           {ai.tag}
         </span>
       </div>
@@ -488,8 +490,8 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
       <AnimatePresence initial={false}>
         {isExpanded && (
-          <m.div
-            initial={{ opacity: 0, height: 0 }}
+          <motion.div
+            initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease }}
@@ -502,7 +504,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
                 </div>
               ))}
             </div>
-          </m.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -518,6 +520,6 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       >
         {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>
-    </m.div>
+    </motion.div>
   )
 }

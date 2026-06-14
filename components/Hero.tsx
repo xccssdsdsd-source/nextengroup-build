@@ -1,17 +1,14 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, m } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState, type MouseEvent } from 'react'
-import BackgroundPaths from './BackgroundPaths'
 
+const BackgroundPaths = dynamic(() => import('./BackgroundPaths'), { ssr: false })
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const carouselWords = ['strony internetowe', 'automatyzację AI', 'agentów AI']
 const ctaMobileWords = ['Umów bezpłatną wizytę', 'Zapytaj o wycenę', 'Porozmawiajmy']
-
-const line1 = ['Strony,', 'które', 'pozyskują', 'klientów.']
-const line2 = ['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.']
 
 const wordDelay = (i: number) => `${0.12 + i * 0.065}s`
 
@@ -63,101 +60,116 @@ export default function Hero() {
       suppressHydrationWarning
       data-no-reveal
       data-no-entrance
-      className="relative overflow-hidden pt-40 sm:pt-56 md:pt-64"
-      style={{ background: 'radial-gradient(ellipse 90% 70% at 50% -5%, #11203A 0%, #0A0E14 55%, #06090F 100%)' }}
+      className="relative"
+      style={{
+        minHeight: '100dvh',
+        background: 'radial-gradient(ellipse 90% 70% at 50% -5%, #11203A 0%, #0A0E14 55%, #06090F 100%)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
     >
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div data-parallax-blob style={{ position: 'absolute', top: '4%', left: '50%', transform: 'translateX(-50%)', width: 760, height: 460, background: 'radial-gradient(ellipse, rgba(34,211,238,0.16) 0%, transparent 70%)', filter: 'blur(60px)', borderRadius: '50%' }} />
-        <div data-parallax-blob style={{ position: 'absolute', top: '8%', left: '10%', width: 480, height: 320, background: 'radial-gradient(ellipse, rgba(34,211,238,0.12) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
-        <div data-parallax-blob style={{ position: 'absolute', top: '32%', right: '6%', width: 380, height: 300, background: 'radial-gradient(ellipse, rgba(245,181,71,0.08) 0%, transparent 70%)', filter: 'blur(55px)', borderRadius: '50%' }} />
+        <div data-parallax-blob className="hero-blob hero-blob-1" />
+        <div data-parallax-blob className="hero-blob hero-blob-2" />
+        <div data-parallax-blob className="hero-blob hero-blob-3" />
       </div>
 
       <BackgroundPaths />
 
-      <div className="relative z-10 px-5 sm:px-6 md:px-12 mx-auto max-w-7xl">
-        <div className="w-full text-center">
+      <div
+        className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
+        style={{ paddingTop: 'var(--nav-h)', paddingBottom: '1.5rem' }}
+      >
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          alignItems: 'center',
+          gap: '2rem',
+        }}
+          className="hero-grid"
+        >
 
-          <div className="mx-auto mb-6 sm:mb-8" data-parallax-headline>
+          {/* ── TEXT COLUMN ── */}
+          <div className="text-left" data-parallax-headline>
             <h1
               style={{
                 fontFamily: 'var(--font-syne)',
                 fontWeight: 800,
-                fontSize: 'clamp(25px, 5.5vw, 54px)',
-                lineHeight: '1.1',
-                letterSpacing: '-0.02em',
-                overflowWrap: 'break-word',
+                fontSize: 'clamp(22px, 3.2vw, 48px)',
+                lineHeight: '1.09',
+                letterSpacing: '-0.025em',
                 color: '#EAF0F7',
               }}
             >
-              <span className="block text-balance" style={{ display: 'block', marginBottom: '0.08em' }}>
-                {line1.map((word, i) => (
+              <span className="block text-balance" style={{ marginBottom: '0.06em' }}>
+                {['Strony,', 'które', 'pozyskują', 'klientów.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
                     <span className="hero-word" style={{ animationDelay: wordDelay(i) }}>{word}</span>
                   </span>
                 ))}
               </span>
               <span className="block text-balance">
-                {line2.map((word, i) => (
+                {['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.'].map((word, i) => (
                   <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: wordDelay(line1.length + i), background: 'linear-gradient(135deg, #7DF0FF 0%, #5EEAFF 50%, #22D3EE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{word}</span>
+                    <span className="hero-word" style={{ animationDelay: wordDelay(4 + i), background: 'linear-gradient(135deg, #7DF0FF 0%, #5EEAFF 50%, #22D3EE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{word}</span>
                   </span>
                 ))}
               </span>
             </h1>
-          </div>
 
-          <div className="hero-from-right" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem', animationDelay: '90ms' }}>
-            <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
-              Budujemy Twój biznes przez{' '}
-              {!isMounted ? (
-                <span style={{ color: '#5EEAFF', fontWeight: 600 }}>{carouselWords[0]}</span>
-              ) : (
-                <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-                  <AnimatePresence mode="wait">
-                    <m.span key={titleNumber} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                      {carouselWords[titleNumber]}
-                    </m.span>
-                  </AnimatePresence>
-                </span>
-              )}
-            </p>
-          </div>
-
-          <div className="mt-4 flex items-center justify-center gap-6 text-xs text-[#A6B2C4]">
-            {badges.map((b, i) => (
-              <span
-                key={b.label}
-                className={`hero-badge flex items-center gap-1.5${!b.mobile ? ' hidden sm:flex' : ''}`}
-                style={{ animationDelay: `${0.55 + i * 0.1}s` }}
-              >
-                <CheckIcon />
-                {b.label}
-              </span>
-            ))}
-          </div>
-
-          <div className="hero-from-left mt-7 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 px-4 sm:px-0" style={{ animationDelay: '200ms' }}>
-            <a href="#kontakt" onClick={(e) => handleAnchorClick(e, '#kontakt')} className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold overflow-hidden">
-              <span style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
+            <div className="hero-from-right mt-4 flex justify-start" style={{ animationDelay: '90ms' }}>
+              <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
+                Budujemy Twój biznes przez{' '}
                 {!isMounted ? (
-                  ctaMobileWords[0]
+                  <span style={{ color: '#5EEAFF', fontWeight: 600 }}>{carouselWords[0]}</span>
                 ) : (
-                  <AnimatePresence mode="wait">
-                    <m.span key={titleNumber} style={{ display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                      {ctaMobileWords[titleNumber % ctaMobileWords.length]}
-                    </m.span>
-                  </AnimatePresence>
+                  <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.span key={titleNumber} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                        {carouselWords[titleNumber]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
                 )}
-              </span>
-            </a>
-            <a href="#portfolio" onClick={(e) => handleAnchorClick(e, '#portfolio')} className="btn btn-ghost inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold">
-              Realizacje
-            </a>
-          </div>
-        </div>
+              </p>
+            </div>
 
-        <div className="hero-mockup mt-12 sm:mt-14 flex justify-center pb-0 animate-float" style={{ perspective: '1400px', animationDelay: '1s' }}>
-          <div className="hero-device-tilt w-full flex justify-center">
+            <div className="mt-3 flex items-center justify-start gap-5 text-xs text-[#A6B2C4]">
+              {badges.map((b, i) => (
+                <span
+                  key={b.label}
+                  className={`hero-badge flex items-center gap-1.5${!b.mobile ? ' hidden sm:flex' : ''}`}
+                  style={{ animationDelay: `${0.55 + i * 0.1}s` }}
+                >
+                  <CheckIcon />
+                  {b.label}
+                </span>
+              ))}
+            </div>
+
+            <div className="hero-from-left mt-6 flex flex-col gap-3 sm:flex-row justify-start sm:gap-4" style={{ animationDelay: '200ms' }}>
+              <a href="#kontakt" onClick={(e) => handleAnchorClick(e, '#kontakt')} className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto font-semibold overflow-hidden">
+                <span style={{ display: 'inline-flex', overflow: 'hidden', verticalAlign: 'bottom' }}>
+                  {!isMounted ? (
+                    ctaMobileWords[0]
+                  ) : (
+                    <AnimatePresence mode="wait">
+                      <motion.span key={titleNumber} style={{ display: 'inline-block' }} initial={{ opacity: 0, y: '110%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                        {ctaMobileWords[titleNumber % ctaMobileWords.length]}
+                      </motion.span>
+                    </AnimatePresence>
+                  )}
+                </span>
+              </a>
+              <a href="#portfolio" onClick={(e) => handleAnchorClick(e, '#portfolio')} className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm w-full sm:w-auto font-semibold">
+                Realizacje
+              </a>
+            </div>
+          </div>
+
+          {/* ── MOCKUP ROW ── */}
+          <div style={{ opacity: 1 }}>
             <DeviceMockups />
           </div>
         </div>

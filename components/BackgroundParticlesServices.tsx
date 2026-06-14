@@ -21,9 +21,10 @@ export default function BackgroundParticlesServices() {
 
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect()
+      if (rect.width === 0 || rect.height === 0) return
       canvas.width = rect.width * window.devicePixelRatio
       canvas.height = rect.height * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0)
     }
 
     resizeCanvas()

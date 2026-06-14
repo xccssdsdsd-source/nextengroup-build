@@ -39,7 +39,6 @@ export default function GlobalPathsClient() {
         viewBox="0 0 696 316"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
-        style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.28))' }}
       >
         {threads.map((t, i) => (
           <path

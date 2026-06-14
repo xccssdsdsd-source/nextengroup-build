@@ -8,7 +8,7 @@ const paths = [
 
 export default function BackgroundPathsFAQ() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" style={{ contentVisibility: 'auto' }}>
       <svg
         viewBox="0 0 900 600"
         preserveAspectRatio="xMidYMid slice"

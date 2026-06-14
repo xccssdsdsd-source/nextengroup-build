@@ -68,9 +68,14 @@ body {
   overscroll-behavior-y: none;
 }
 
-@media (max-width: 768px), (pointer: coarse) {
+@media (pointer: coarse) {
   body {
+    /* fixed attachment forces repaint on every scroll pixel on Android —
+       switch to scroll to remove this bottleneck */
     background-attachment: scroll;
+    /* disable the gradient entirely on mobile: saves the radial-gradient repaint cost
+       while keeping the solid #000000 background */
+    background-image: none;
   }
 }
 

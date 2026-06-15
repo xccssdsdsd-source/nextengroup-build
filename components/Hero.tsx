@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useEffect, useState, type MouseEvent } from 'react'
+import { scrollToSection } from '@/lib/scrollToSection'
 
 const BackgroundPaths = dynamic(() => import('./BackgroundPaths'))
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
@@ -41,10 +42,6 @@ export default function Hero() {
     }, 2000)
     return () => clearInterval(timer)
   }, [isMounted])
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
 
   const handleAnchorClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()

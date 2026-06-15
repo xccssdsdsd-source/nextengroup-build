@@ -2,6 +2,9 @@
 
 import { m } from 'framer-motion'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { type MouseEvent } from 'react'
+import { scrollToSection } from '@/lib/scrollToSection'
 
 const footerLinks = [
   ['Usługi', '#uslugi'],
@@ -21,6 +24,17 @@ const footerLegal = [
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export default function Footer() {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  const anchorHref = (href: string) => (href.startsWith('#') && !isHome ? `/${href}` : href)
+
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#') || !isHome) return
+    e.preventDefault()
+    scrollToSection(href.slice(1))
+  }
+
   return (
     <footer className="relative overflow-hidden bg-[#11161F] px-6 py-8 sm:px-8 sm:py-16 border-t border-[rgba(255,255,255,0.08)]">
       <div
@@ -63,7 +77,8 @@ export default function Footer() {
                 {footerLinks.map(([label, href], i) => (
                   <m.a
                     key={href}
-                    href={href}
+                    href={anchorHref(href)}
+                    onClick={(e) => handleClick(e, href)}
                     initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.18 + i * 0.06, ease }}

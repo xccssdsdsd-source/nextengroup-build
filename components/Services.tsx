@@ -3,6 +3,7 @@
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
+import { scrollToSection } from '@/lib/scrollToSection'
 
 const BackgroundParticlesServices = dynamic(() => import('./BackgroundParticlesServices'), { ssr: false })
 const BackgroundNetworkAnimation = dynamic(() => import('./BackgroundNetworkAnimation'), { ssr: false })
@@ -233,7 +234,7 @@ export default function Services() {
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollToSection('kontakt')
   }
 
   return (

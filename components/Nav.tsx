@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, type MouseEvent } from 'react'
+import { scrollToSection } from '@/lib/scrollToSection'
 
 const anchorLinks = [
   ['Usługi', '#uslugi'],
@@ -37,31 +38,28 @@ export default function Nav() {
   const pathname = usePathname()
   const isHome = pathname === '/'
 
-  const scrollToSection = (id: string) => {
-    setOpen(false)
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 50)
-  }
-
   // Anchor links work as smooth-scroll on the page that contains the target
   // section, and navigate to the home page anchor (/#section) otherwise.
   const anchorHref = (href: string) => (isHome ? href : `/${href}`)
 
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    const id = href.slice(1)
-    if (typeof document !== 'undefined' && document.getElementById(id)) {
-      event.preventDefault()
-      scrollToSection(id)
-    } else {
-      // Section is not on the current page — allow navigation to /#section.
+    if (!isHome) {
+      // Not on the home page — allow navigation to /#section.
       setOpen(false)
+      return
     }
+    event.preventDefault()
+    setOpen(false)
+    setTimeout(() => scrollToSection(href.slice(1)), 60)
   }
 
   useEffect(() => {
     setIsMounted(true)
     setTypingEnabled(window.matchMedia('(min-width: 640px)').matches)
+    if (window.location.hash.length > 1) {
+      const id = decodeURIComponent(window.location.hash.slice(1))
+      setTimeout(() => scrollToSection(id), 120)
+    }
     const onScroll = () => setScrolled(window.scrollY > 80)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })

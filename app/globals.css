@@ -259,8 +259,13 @@ select {
   transition: opacity 0.2s ease;
 }
 
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
 .btn-primary:hover {
   background: linear-gradient(135deg, #8FF5FF 0%, #22D3EE 100%);
+  filter: brightness(1.08) saturate(1.05);
   box-shadow:
     0 0 0 1px rgba(94,234,255,0.4),
     0 4px 20px rgba(34,211,238,0.50),
@@ -290,10 +295,14 @@ select {
 }
 
 .btn-ghost:hover {
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(94,234,255,0.55);
   color: #ffffff;
-  background: rgba(255,255,255,0.06);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 4px 20px rgba(0,0,0,0.5);
+  background: rgba(94,234,255,0.18);
+  box-shadow:
+    inset 0 0 24px rgba(94,234,255,0.22),
+    0 0 0 1px rgba(94,234,255,0.30),
+    0 6px 26px rgba(34,211,238,0.30),
+    0 10px 40px rgba(34,211,238,0.18);
   transform: translateY(-2px) scale(1.025);
 }
 

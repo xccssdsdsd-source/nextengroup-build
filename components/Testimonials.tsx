@@ -4,6 +4,7 @@ import { m, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
+import { scrollToSection } from '@/lib/scrollToSection'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -49,7 +50,7 @@ export default function Testimonials() {
         >
           <a
             href="#kontakt"
-            onClick={(e) => { e.preventDefault(); document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
+            onClick={(e) => { e.preventDefault(); scrollToSection('kontakt') }}
             className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold"
           >
             Umów spotkanie

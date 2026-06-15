@@ -1,8 +1,8 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { AnimatePresence, motion, useMotionValue, useSpring, useScroll, useTransform, useMotionTemplate } from 'framer-motion'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 
 const BackgroundPaths = dynamic(() => import('./BackgroundPaths'))
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
@@ -32,6 +32,23 @@ const CheckIcon = () => (
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
+  const heroRef = useRef<HTMLElement>(null)
+
+  /* ── Mouse-following gradient (technique from nextjs-animations repo) ── */
+  const mouseX = useMotionValue(50)
+  const mouseY = useMotionValue(50)
+  const springX = useSpring(mouseX, { stiffness: 55, damping: 22 })
+  const springY = useSpring(mouseY, { stiffness: 55, damping: 22 })
+  const gradientBg = useMotionTemplate`radial-gradient(700px circle at ${springX}% ${springY}%, rgba(34,211,238,0.06) 0%, transparent 65%)`
+
+  /* ── Scroll-driven parallax on mockup (useScroll + useTransform) ── */
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+  const mockupY = useTransform(scrollYProgress, [0, 1], [0, -70])
+  const mockupOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
+  const mockupScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.94])
 
   useEffect(() => { setIsMounted(true) }, [])
 
@@ -52,8 +69,15 @@ export default function Hero() {
     scrollToSection(href.slice(1))
   }
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    mouseX.set(((e.clientX - rect.left) / rect.width) * 100)
+    mouseY.set(((e.clientY - rect.top) / rect.height) * 100)
+  }
+
   return (
     <section
+      ref={heroRef}
       id="hero"
       suppressHydrationWarning
       data-no-reveal
@@ -66,9 +90,16 @@ export default function Hero() {
         flexDirection: 'column',
         justifyContent: 'center',
       }}
+      onMouseMove={handleMouseMove}
     >
       <BackgroundPaths />
 
+      {/* Mouse-following gradient overlay */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{ background: gradientBg }}
+        aria-hidden="true"
+      />
 
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
@@ -147,10 +178,17 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── MOCKUP ROW ── */}
-          <div style={{ opacity: 1 }}>
+          {/* ── MOCKUP ROW — scroll-driven parallax ── */}
+          <motion.div
+            style={{
+              y: mockupY,
+              opacity: mockupOpacity,
+              scale: mockupScale,
+              willChange: 'transform, opacity',
+            }}
+          >
             <DeviceMockups />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

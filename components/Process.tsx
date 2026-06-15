@@ -9,10 +9,12 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const containerVariants = {
+  hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 }
 
 const stepVariants = {
+  hidden: { opacity: 0, y: 32, scale: 0.95 },
   show: { opacity: 1, y: 0, scale: 1, transition: { ...premiumSpring } },
 }
 
@@ -68,8 +70,8 @@ export default function Process() {
         <motion.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
-          initial={false}
-          animate="show"
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
         >
           {steps.map((step) => <StepCard key={step.num} step={step} />)}
         </motion.div>

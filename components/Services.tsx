@@ -23,7 +23,7 @@ const packages = [
   {
     name: 'Strona kompletna',
     forWho: 'Dla firmy, która chce od razu wyglądać poważnie i mieć miejsce na pełną ofertę.',
-    whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały.',
+    whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały. Podłączamy Calendly, żeby klient sam rezerwował termin, a po wysłaniu formularza dostaje od razu potwierdzenie na maila.',
     price: '2499 zł',
     sub: 'Płatność można rozłożyć na wygodne miesięczne raty.' as string | null,
     featured: true,

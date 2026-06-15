@@ -14,26 +14,45 @@ const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
 const packages = [
   {
     name: 'Landing',
-    forWho: 'Dla Ciebie, jeśli dopiero startujesz albo chcesz dobrze sprzedać jedną usługę i szybko zacząć odbierać telefony.',
-    whatYouGet: 'Jedna strona, jeden cel. Pokazujemy, co robisz, dlaczego warto i dajemy prosty formularz. Ładuje się błyskawicznie i równie dobrze wygląda na telefonie.',
+    intro: 'Dla Ciebie, jeśli dopiero startujesz i chcesz szybko sprzedać jedną usługę.',
+    features: [
+      'Jedna strona, jeden cel',
+      'Sekcja oferty, opinie i wezwanie do kontaktu',
+      'Prosty formularz kontaktowy',
+      'Pełna responsywność na telefonie',
+      'Błyskawiczne ładowanie',
+    ],
     price: '2099 zł',
-    sub: null as string | null,
     featured: false,
   },
   {
     name: 'Strona kompletna',
-    forWho: 'Dla firmy, która chce od razu wyglądać poważnie i mieć miejsce na pełną ofertę.',
-    whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały. Podłączamy Calendly, żeby klient sam rezerwował termin, a po wysłaniu formularza dostaje od razu potwierdzenie na maila.',
+    intro: 'Wszystko co w Landingu, plus:',
+    features: [
+      'Kilka rozbudowanych sekcji i FAQ',
+      'Mapa i teksty pisane pod sprzedaż',
+      'Optymalizacja pod Google i wyszukiwarki AI (ChatGPT, Perplexity)',
+      'Konfiguracja Profilu Firmy w Google',
+      'Rezerwacja terminów przez Calendly',
+      'Formularz z automatycznym potwierdzeniem na maila dla klienta',
+      'Gwarancja 90/90/90/100 w Lighthouse i ładowania poniżej 3 sekund',
+      'Możliwość rozłożenia płatności na raty',
+    ],
     price: '2499 zł',
-    sub: null as string | null,
     featured: true,
   },
   {
     name: 'Strona z panelem',
-    forWho: 'Dla Ciebie, jeśli często dodajesz nowe realizacje albo piszesz bloga i chcesz robić to sam, bez dzwonienia do programisty.',
-    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę.',
+    intro: 'Wszystko co w Stronie kompletnej, plus:',
+    features: [
+      'Panel administracyjny po polsku',
+      'Samodzielne dodawanie mieszkań i ogłoszeń',
+      'Własny blog i wpisy bez pomocy programisty',
+      'Edycja treści kiedy chcesz',
+      'Miesięczny raport analityczny: ile osób weszło na stronę, skąd przychodzą klienci, i czego szukają',
+      'Bieżące wsparcie techniczne w ramach abonamentu',
+    ],
     price: '3999 zł + 99 zł/mies',
-    sub: null as string | null,
     featured: false,
   },
 ]
@@ -132,10 +151,16 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {pkg.name}
       </h3>
-      <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.forWho}</p>
-      <p className="mt-3 text-[14px] leading-[1.72] text-[#A6B2C4]">{pkg.whatYouGet}</p>
-      {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.sub}</p>}
-      <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-4">
+      <p className="mt-2 text-[13.5px] leading-[1.6] text-[#A6B2C4]">{pkg.intro}</p>
+      <ul className="mt-4 flex flex-col gap-2">
+        {pkg.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-2.5 text-[13.5px] leading-[1.55] text-[#A6B2C4]">
+            <span className="mt-[7px] flex-shrink-0 h-1.5 w-1.5 rounded-full bg-[#22D3EE]" />
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-auto pt-5 border-t border-[rgba(255,255,255,0.08)]">
         <span className="text-[1.55rem] font-extrabold tracking-tight text-[#EAF0F7]">
           {pkg.price === '2099 zł' && <><span className={`counter-2099`} suppressHydrationWarning>2099</span> zł</>}
           {pkg.price === '2499 zł' && <><span className={`counter-2499`} suppressHydrationWarning>2499</span> zł</>}
@@ -199,9 +224,8 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
-  const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
   const [seoExpanded, setSeoExpanded] = useState(false)
+  const [careExpanded, setCareExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -241,38 +265,17 @@ export default function Services() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <PackageCard pkg={packages[0]} inView={inView1} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded1 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {packages.slice(1).map((pkg, i) => (
-                        <PackageCard
-                          key={pkg.name}
-                          pkg={pkg}
-                          inView={inView1}
-                          i={i + 1}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded1 && (
-                <button
-                  onClick={() => setExpanded1(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {packages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <PackageCard pkg={pkg} inView={inView1} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 
@@ -349,10 +352,20 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
           >
-            <h3 className="mb-4 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
-              Co obejmuje opieka
-            </h3>
-            <ul className="flex flex-col gap-2.5">
+            <button
+              className="mb-0 lg:mb-4 flex w-full items-center justify-between text-left text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7] lg:pointer-events-none"
+              style={{ fontFamily: 'var(--font-syne)' }}
+              onClick={() => setCareExpanded((v) => !v)}
+              aria-expanded={careExpanded}
+            >
+              Co obejmuje opieka?
+              <span className="block lg:hidden ml-2 text-[#22D3EE] text-[18px] leading-none" aria-hidden="true">
+                {careExpanded ? '−' : '+'}
+              </span>
+            </button>
+
+            {/* Desktop: always visible */}
+            <ul className="hidden lg:flex flex-col gap-2.5 mt-4">
               {careItems.map((item, i) => (
                 <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
                   <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
@@ -360,6 +373,28 @@ export default function Services() {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile: collapsible */}
+            <AnimatePresence initial={false}>
+              {careExpanded && (
+                <motion.div
+                  className="block lg:hidden overflow-hidden"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.36, ease }}
+                >
+                  <ul className="flex flex-col gap-2.5 mt-4">
+                    {careItems.map((item, i) => (
+                      <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
+                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
@@ -393,31 +428,17 @@ export default function Services() {
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded2 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded2 && (
-                <button
-                  onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {aiTypes.map((ai, i) => (
+                <motion.div
+                  key={ai.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView2 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <AiCard ai={ai} inView={inView2} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 

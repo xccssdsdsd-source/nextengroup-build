@@ -148,7 +148,7 @@ export default function Hero() {
           </div>
 
           {/* ── MOCKUP ROW ── */}
-          <div style={{ opacity: 1 }}>
+          <div className="flex justify-center">
             <DeviceMockups />
           </div>
         </div>

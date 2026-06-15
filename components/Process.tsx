@@ -91,7 +91,7 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
         {step.num}
       </div>
 
-      <h3 className="mt-5 text-[1.05rem] font-bold tracking-[-0.03em] text-[var(--text)] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+      <h3 className="mt-5 text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
         {step.title}
       </h3>
       <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">

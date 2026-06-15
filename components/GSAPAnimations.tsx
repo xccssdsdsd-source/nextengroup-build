@@ -23,7 +23,7 @@ export default function GSAPAnimations() {
     /* ── CSS-BASED SCROLL REVEALS (IntersectionObserver) ── */
     const style = document.createElement('style')
     style.textContent = `
-      .io-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+      .io-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
       .io-reveal.io-visible { opacity: 1; transform: none; }
       .io-reveal-scale { opacity: 0; transform: scale(0.96); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
       .io-reveal-scale.io-visible { opacity: 1; transform: none; }

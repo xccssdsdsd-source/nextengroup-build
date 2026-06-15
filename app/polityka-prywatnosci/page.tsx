@@ -120,6 +120,15 @@ export default function PolitykaPrywatnosci() {
               </p>
             </section>
           </div>
+
+          <div className="mt-16 flex flex-col sm:flex-row gap-4">
+            <a href="/" className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm">
+              ← Strona główna
+            </a>
+            <a href="/#kontakt" className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm">
+              Skontaktuj się z nami
+            </a>
+          </div>
         </div>
       </section>
 

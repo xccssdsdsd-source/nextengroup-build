@@ -63,7 +63,7 @@ export default function Hero() {
     scrollToSection(href.slice(1))
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
     if (isTouch) return
     const rect = e.currentTarget.getBoundingClientRect()
     mouseX.set(((e.clientX - rect.left) / rect.width) * 100)

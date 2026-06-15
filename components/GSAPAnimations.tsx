@@ -82,18 +82,22 @@ export default function GSAPAnimations() {
         const mm = gsap.matchMedia()
 
         /* ── NUMBER COUNTERS ── */
-        counterTargets.forEach(({ selector, final, suffix = '' }) => {
-          document.querySelectorAll(selector).forEach((el) => {
-            const obj = { val: 0 }
-            gsap.to(obj, {
-              val: final,
-              duration: 1.4,
-              ease: 'power2.out',
-              onUpdate() { el.textContent = Math.round(obj.val) + suffix },
-              scrollTrigger: { trigger: el, start: 'top 87%', once: true },
-            })
+        const animateCounter = (el: Element, final: number, suffix: string) => {
+          const obj = { val: 0 }
+          gsap.to(obj, {
+            val: final,
+            duration: 1.4,
+            ease: 'power2.out',
+            onUpdate() { el.textContent = Math.round(obj.val) + suffix },
+            scrollTrigger: { trigger: el, start: 'top 87%', once: true },
           })
+        }
+        counterTargets.forEach(({ selector, final, suffix = '' }) => {
+          document.querySelectorAll(selector).forEach((el) => animateCounter(el, final, suffix))
         })
+        document.querySelectorAll<HTMLElement>('[data-counter-final]').forEach((el) =>
+          animateCounter(el, Number(el.dataset.counterFinal), el.dataset.counterSuffix || ''),
+        )
 
         /* ── PARALLAX ── */
         mm.add('(min-width: 769px)', () => {
@@ -213,6 +217,11 @@ export default function GSAPAnimations() {
           el.dataset.cs = suffix
           counterIo!.observe(el)
         })
+      })
+      document.querySelectorAll<HTMLElement>('[data-counter-final]').forEach((el) => {
+        el.dataset.cf = el.dataset.counterFinal!
+        el.dataset.cs = el.dataset.counterSuffix || ''
+        counterIo!.observe(el)
       })
     }
 

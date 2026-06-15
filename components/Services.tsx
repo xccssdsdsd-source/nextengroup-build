@@ -22,7 +22,8 @@ const packages = [
       'Pełna responsywność na telefonie',
       'Błyskawiczne ładowanie',
     ],
-    price: '2099 zł',
+    amount: 2099,
+    priceSuffix: ' zł',
     featured: false,
   },
   {
@@ -38,7 +39,8 @@ const packages = [
       'Gwarancja 90/90/90/100 w Lighthouse i ładowania poniżej 3 sekund',
       'Możliwość rozłożenia płatności na raty',
     ],
-    price: '2499 zł',
+    amount: 2499,
+    priceSuffix: ' zł',
     featured: true,
   },
   {
@@ -52,7 +54,8 @@ const packages = [
       'Miesięczny raport analityczny: ile osób weszło na stronę, skąd przychodzą klienci, i czego szukają',
       'Bieżące wsparcie techniczne w ramach abonamentu',
     ],
-    price: '3999 zł + 99 zł/mies',
+    amount: 3999,
+    priceSuffix: ' zł + 99 zł/mies',
     featured: false,
   },
 ]
@@ -137,7 +140,10 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
       {pkg.featured && (
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
+        <>
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
+          <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.16),transparent_70%)]" />
+        </>
       )}
       {pkg.featured ? (
         <div className="mb-3 mt-1">
@@ -161,11 +167,10 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
         ))}
       </ul>
       <div className="mt-auto pt-5 border-t border-[rgba(255,255,255,0.08)]">
-        <span className="text-[1.55rem] font-extrabold tracking-tight text-[#EAF0F7]">
-          {pkg.price === '2099 zł' && <><span className={`counter-2099`} suppressHydrationWarning>2099</span> zł</>}
-          {pkg.price === '2499 zł' && <><span className={`counter-2499`} suppressHydrationWarning>2499</span> zł</>}
-          {pkg.price === '3999 zł + 99 zł/mies' && <><span className={`counter-3999`} suppressHydrationWarning>3999</span> zł + 99 zł/mies</>}
-          {!['2099 zł','2499 zł','3999 zł + 99 zł/mies'].includes(pkg.price) && pkg.price}
+        <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-[#6B7891] mb-1">Cena</span>
+        <span className="text-[1.7rem] font-extrabold tracking-tight text-[#EAF0F7]">
+          <span className="price-counter" data-counter-final={pkg.amount} suppressHydrationWarning>{pkg.amount}</span>
+          <span className="text-[#A6B2C4] font-bold text-[1.15rem]">{pkg.priceSuffix}</span>
         </span>
       </div>
     </motion.div>

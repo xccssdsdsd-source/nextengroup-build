@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -12,7 +12,7 @@ export default function AboutMe() {
   return (
     <section ref={ref} className="section-shell bg-white">
       <div className="mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease }}
@@ -47,7 +47,7 @@ export default function AboutMe() {
               </svg>
             </a>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

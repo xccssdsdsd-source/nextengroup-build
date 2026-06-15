@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
@@ -103,7 +103,7 @@ export default function Contact() {
   return (
     <section id="kontakt" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
       <BackgroundPathsContact />
-      <motion.div
+      <m.div
         initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
@@ -125,7 +125,7 @@ export default function Contact() {
             <div className="mt-8 flex flex-col gap-4">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-3">Email</p>
-                <motion.div
+                <m.div
                   initial={false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.15, ease }}
@@ -152,14 +152,14 @@ export default function Contact() {
                       </svg>
                     )}
                   </button>
-                </motion.div>
+                </m.div>
               </div>
 
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-3">Nasze konta</p>
                 <div className="space-y-2">
                   {socials.map((s, i) => (
-                    <motion.a
+                    <m.a
                       key={s.label}
                       href={s.href}
                       target={s.label !== 'Email' ? '_blank' : undefined}
@@ -188,7 +188,7 @@ export default function Contact() {
                         <p className="font-semibold text-[#EAF0F7] text-sm">{s.label}</p>
                         <p className="text-[#A6B2C4] text-xs mt-0.5 truncate">{s.fullName}</p>
                       </div>
-                    </motion.a>
+                    </m.a>
                   ))}
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function Contact() {
             <div className="flex flex-col gap-8">
               <div className="flex justify-center">
                 {!showCalendly ? (
-                  <motion.button
+                  <m.button
                     initial={false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.2, ease }}
@@ -212,7 +212,7 @@ export default function Contact() {
                     className="btn btn-primary px-8 py-4 font-semibold"
                   >
                     Umów spotkanie w dogodnym dla Ciebie czasie
-                  </motion.button>
+                  </m.button>
                 ) : (
                   <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '500px' }} />
                 )}
@@ -285,7 +285,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

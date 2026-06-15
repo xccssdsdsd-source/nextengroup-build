@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
@@ -22,7 +22,7 @@ export default function Testimonials() {
     >
 
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="section-heading"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -30,18 +30,18 @@ export default function Testimonials() {
         >
           <span className="section-kicker" suppressHydrationWarning>Opinie</span>
           <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>Co mówią nasi klienci</h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-14 flex justify-center"
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...premiumSpring, delay: 0.12 }}
         >
           <TestimonialCard />
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-10 flex justify-center"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export default function Testimonials() {
           >
             Umów spotkanie
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
@@ -62,7 +62,7 @@ export default function Testimonials() {
 
 function TestimonialCard() {
   return (
-    <motion.article
+    <m.article
       whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 20px 50px rgba(0,0,0,0.5)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
       className="testimonial-card relative w-full max-w-2xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
@@ -110,6 +110,6 @@ function TestimonialCard() {
           </a>
         </div>
       </div>
-    </motion.article>
+    </m.article>
   )
 }

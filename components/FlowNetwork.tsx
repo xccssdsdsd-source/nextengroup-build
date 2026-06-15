@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { CalendarDays, CircleDollarSign, Mail, UserRound } from 'lucide-react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -63,7 +63,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
 
           <AnimatePresence>
             {phase === 'incoming' && (
-              <motion.div
+              <m.div
                 key={`mail-${trigger}`}
                 initial={{ opacity: 0, x: 220, scale: 0.8, rotate: -10 }}
                 animate={{
@@ -77,11 +77,11 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
                 className="absolute left-1/2 top-1/2 z-20 ml-2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] border border-[#87d7ff]/30 bg-[linear-gradient(180deg,rgba(14,28,48,0.96),rgba(7,15,30,0.92))] text-[#ddf6ff] shadow-[0_0_40px_rgba(61,148,255,0.25)]"
               >
                 <Mail size={24} />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
-          <motion.div
+          <m.div
             animate={{
               scale: phase === 'scanning' ? 1.02 : 1,
             }}
@@ -93,7 +93,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
           >
             <div className="absolute inset-[14px] rounded-full border border-white/10" />
             <div className="absolute inset-[30px] rounded-full border border-[#8be2ff]/10" />
-            <motion.div
+            <m.div
               animate={{
                 rotate: [0, 360]
               }}
@@ -106,7 +106,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
               }}
               className="absolute inset-[42px] rounded-full border border-dashed border-[#87d7ff]/35"
             />
-            <motion.div
+            <m.div
               animate={{ opacity: [0.3, 0.5, 0.3] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               className="h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(199,239,255,0.95)_0%,rgba(107,194,255,0.75)_36%,rgba(61,148,255,0.18)_70%,transparent_100%)] blur-[2px]"
@@ -115,7 +115,7 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
             <AnimatePresence>
               {phase === 'scanning' &&
                 tags.map((tag, index) => (
-                  <motion.div
+                  <m.div
                     key={tag.label}
                     initial={{ opacity: 0, scale: 0.8, y: 8 }}
                     animate={{
@@ -128,10 +128,10 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
                     className={`absolute z-20 rounded-full border border-[#90e9ff]/30 bg-[#071524]/88 px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-[#c8f4ff] shadow-[0_0_24px_rgba(61,148,255,0.2)] ${tag.className}`}
                   >
                     {tag.label}
-                  </motion.div>
+                  </m.div>
                 ))}
             </AnimatePresence>
-          </motion.div>
+          </m.div>
 
           <AnimatePresence>
             {phase === 'result' && (
@@ -171,7 +171,7 @@ function ResultCard({
   accent: ReactNode
 }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.72, x: 0, y: '-50%' }}
       animate={{
         opacity: 1,
@@ -187,6 +187,6 @@ function ResultCard({
         {icon}
       </div>
       <div className="mt-4 flex items-center justify-center">{accent}</div>
-    </motion.div>
+    </m.div>
   )
 }

@@ -10,7 +10,7 @@ const nextConfig = {
     minimumCacheTTL: 2592000,
   },
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react', 'gsap', 'react-icons'],
+    optimizePackageImports: ['lucide-react', 'gsap', 'react-icons'],
   },
   async headers() {
     return [

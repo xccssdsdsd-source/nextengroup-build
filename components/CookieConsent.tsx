@@ -30,14 +30,28 @@ function injectGtm() {
 }
 
 export default function CookieConsent() {
-  const [mounted, setMounted] = useState(false)
+  const [show, setShow] = useState(false)
   const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    let stored: string | null = null
     try {
-      if (localStorage.getItem(CONSENT_KEY) === 'accepted') injectGtm()
+      stored = localStorage.getItem(CONSENT_KEY)
+      if (stored === 'accepted') injectGtm()
     } catch (e) {}
+    if (stored === 'accepted' || stored === 'rejected') return
+    const events = ['scroll', 'pointerdown', 'keydown', 'touchstart'] as const
+    const reveal = () => {
+      setShow(true)
+      events.forEach((e) => window.removeEventListener(e, reveal))
+      clearTimeout(t)
+    }
+    events.forEach((e) => window.addEventListener(e, reveal, { once: true, passive: true }))
+    const t = setTimeout(reveal, 8000)
+    return () => {
+      clearTimeout(t)
+      events.forEach((e) => window.removeEventListener(e, reveal))
+    }
   }, [])
 
   function accept() {
@@ -55,7 +69,7 @@ export default function CookieConsent() {
     setDismissed(true)
   }
 
-  if (!mounted || dismissed) return null
+  if (!show || dismissed) return null
 
   return (
     <div className="fixed left-4 right-4 bottom-6 z-[9999]">

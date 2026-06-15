@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Sans } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
+import Analytics from '@/components/Analytics'
 import CookieConsent from '@/components/CookieConsent'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
@@ -19,14 +19,14 @@ const syne = Syne({
   subsets: ['latin'],
   weight: ['700', '800'],
   variable: '--font-syne',
-  display: 'swap',
+  display: 'optional',
 })
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-dm-sans',
-  display: 'swap',
+  display: 'optional',
 })
 
 export const metadata: Metadata = {
@@ -224,13 +224,7 @@ export default function RootLayout({
             </div>
           </MotionProvider>
         </GSAPProvider>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-6D0PC33PCQ" strategy="afterInteractive" />
-        <Script id="ga4-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6D0PC33PCQ');
-        `}</Script>
+        <Analytics />
       </body>
     </html>
   )

@@ -1,7 +1,6 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState, type MouseEvent } from 'react'
 
 const BackgroundPaths = dynamic(() => import('./BackgroundPaths'))
@@ -95,31 +94,17 @@ export default function Hero() {
                 color: '#EAF0F7',
               }}
             >
-              <span className="block text-balance" style={{ marginBottom: '0.06em' }}>
-                {['Strony,', 'które', 'pozyskują', 'klientów.'].map((word, i) => (
-                  <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: `${i * 0.045}s` }}>{word}</span>
-                  </span>
-                ))}
-              </span>
-              <span className="block text-balance">
-                {['Automatyzacje,', 'które', 'obsługują', 'ich', 'za', 'Ciebie.'].map((word, i) => (
-                  <span key={i} className="hero-word-mask" style={{ marginRight: '0.22em' }}>
-                    <span className="hero-word" style={{ animationDelay: `${(i + 4) * 0.045}s` }}>{word}</span>
-                  </span>
-                ))}
-              </span>
+              <span className="block text-balance" style={{ marginBottom: '0.06em' }}>Strony, które pozyskują klientów.</span>
+              <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
             </h1>
 
             <div className="hero-from-right mt-4 flex justify-start" style={{ animationDelay: '90ms' }}>
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
                 Budujemy Twój biznes przez{' '}
                 <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-                  <AnimatePresence mode="wait">
-                    <motion.span key={isMounted ? titleNumber : 'ssr'} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={isMounted ? { opacity: 0, y: '110%' } : false} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
-                      {carouselWords[isMounted ? titleNumber : 0]}
-                    </motion.span>
-                  </AnimatePresence>
+                  <span key={isMounted ? titleNumber : 'ssr'} className={isMounted ? 'hero-rotate-word' : undefined} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }}>
+                    {carouselWords[isMounted ? titleNumber : 0]}
+                  </span>
                 </span>
               </p>
             </div>

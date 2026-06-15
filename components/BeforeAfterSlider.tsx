@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRef, useState, useCallback, useEffect } from 'react'
-import { motion, animate, useMotionValue, useTransform, type AnimationPlaybackControls } from 'framer-motion'
+import { m, animate, useMotionValue, useTransform, type AnimationPlaybackControls } from 'framer-motion'
 import { MoveHorizontal } from 'lucide-react'
 
 type BeforeAfterSliderProps = {
@@ -172,7 +172,7 @@ export default function BeforeAfterSlider({
 
         {/* Build effect overlay */}
         {building && (
-          <motion.div
+          <m.div
             className="pointer-events-none absolute inset-0 z-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1, 1, 0] }}
@@ -187,11 +187,11 @@ export default function BeforeAfterSlider({
                 maskImage: 'linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)',
               }}
             />
-          </motion.div>
+          </m.div>
         )}
 
         {/* Before image (clipped to the left of the handle) */}
-        <motion.div className="absolute inset-0 overflow-hidden z-10" style={{ clipPath: beforeClip }}>
+        <m.div className="absolute inset-0 overflow-hidden z-10" style={{ clipPath: beforeClip }}>
           <Image
             src={beforeSrc}
             alt={beforeAlt}
@@ -204,24 +204,24 @@ export default function BeforeAfterSlider({
             {...(beforeBlur ? { placeholder: 'blur' as const, blurDataURL: beforeBlur } : {})}
             draggable={false}
           />
-        </motion.div>
+        </m.div>
 
         {/* Labels */}
-        <motion.span
+        <m.span
           className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm"
           style={{ opacity: beforeLabelOpacity }}
         >
           {beforeLabel}
-        </motion.span>
-        <motion.span
+        </m.span>
+        <m.span
           className="pointer-events-none absolute right-3 top-3 z-30 rounded-full bg-[#22D3EE]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A] backdrop-blur-sm"
           style={{ opacity: afterLabelOpacity }}
         >
           {afterLabel}
-        </motion.span>
+        </m.span>
 
         {/* Divider line + handle */}
-        <motion.div className="pointer-events-none absolute inset-y-0 z-30" style={{ left: handleLeft, x: '-50%' }}>
+        <m.div className="pointer-events-none absolute inset-y-0 z-30" style={{ left: handleLeft, x: '-50%' }}>
           <div
             className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white shadow-[0_0_8px_rgba(0,0,0,0.35)]"
             style={building ? { boxShadow: '0 0 14px 2px rgba(34,211,238,0.8)' } : undefined}
@@ -239,7 +239,7 @@ export default function BeforeAfterSlider({
           >
             <MoveHorizontal size={20} strokeWidth={2.4} />
           </button>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* PRZED / PO toggle */}

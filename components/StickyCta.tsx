@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function StickyCta() {
@@ -16,7 +16,7 @@ export default function StickyCta() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.a
+        <m.a
           href="https://calendly.com/getbuild-pl/30min"
           target="_blank"
           rel="noopener noreferrer"
@@ -35,7 +35,7 @@ export default function StickyCta() {
           </svg>
           <span className="hidden sm:inline">Umów rozmowę</span>
           <span className="sm:hidden">15 min</span>
-        </motion.a>
+        </m.a>
       )}
     </AnimatePresence>
   )

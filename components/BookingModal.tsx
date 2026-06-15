@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { type FormEvent, useEffect, useRef, useState } from 'react'
 
 interface CalendlyWindow extends Window {
@@ -118,7 +118,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -130,7 +130,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
         >
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
@@ -176,7 +176,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
             )}
 
             {step === 'form' && (
-              <motion.div
+              <m.div
                 key="form"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -281,11 +281,11 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     Twoje dane są bezpieczne i nie trafiają do żadnych zewnętrznych systemów marketingowych.
                   </p>
                 </form>
-              </motion.div>
+              </m.div>
             )}
 
             {step === 'calendar' && (
-              <motion.div
+              <m.div
                 key="calendar"
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -309,11 +309,11 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                   className="w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.06)]"
                   style={{ minHeight: '580px' }}
                 />
-              </motion.div>
+              </m.div>
             )}
 
             {step === 'success' && (
-              <motion.div
+              <m.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -342,10 +342,10 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 <button onClick={onClose} className="btn btn-primary px-10 py-3 font-semibold">
                   Zamknij
                 </button>
-              </motion.div>
+              </m.div>
             )}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

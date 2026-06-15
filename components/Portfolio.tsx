@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import Image from 'next/image'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
@@ -203,7 +203,7 @@ export default function Portfolio() {
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }} data-no-entrance suppressHydrationWarning>
 
       <div className="relative mx-auto max-w-6xl">
-        <motion.div
+        <m.div
           className="flex flex-wrap items-end justify-between gap-4"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -218,9 +218,9 @@ export default function Portfolio() {
             <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-7 relative"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ export default function Portfolio() {
           >
             <div className="tilt-glare" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%)', opacity: 0, zIndex: 1 }} />
             <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
+              <m.div
                 key={currentIndex}
                 custom={direction}
                 variants={slideVariants}
@@ -311,20 +311,20 @@ export default function Portfolio() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 
           {/* Mobile nav — dots + arrows */}
           <div className="mt-5 flex justify-center items-center gap-4 sm:hidden">
-            <motion.button
+            <m.button
               onClick={prevProject}
               whileTap={{ scale: 0.9 }}
               className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Poprzednia realizacja"
             >
               <ChevronLeft size={20} strokeWidth={2.5} />
-            </motion.button>
+            </m.button>
 
             <div className="flex items-center gap-2">
               {projects.map((_, i) => (
@@ -342,16 +342,16 @@ export default function Portfolio() {
               ))}
             </div>
 
-            <motion.button
+            <m.button
               onClick={nextProject}
               whileTap={{ scale: 0.9 }}
               className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
               aria-label="Następna realizacja"
             >
               <ChevronRight size={20} strokeWidth={2.5} />
-            </motion.button>
+            </m.button>
           </div>
-        </motion.div>
+        </m.div>
 
         <div className="sr-only">
           <h3>Wszystkie realizacje Getbuild</h3>

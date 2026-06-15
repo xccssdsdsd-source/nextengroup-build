@@ -1365,3 +1365,37 @@ select {
     animation: none !important;
   }
 }
+
+/* ── Hero rotating word (CSS, replaces framer-motion) ── */
+.hero-rotate-word {
+  animation: heroWordRise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Nav interactions (CSS, replaces framer-motion) ── */
+.nav-tap { transition: transform 0.15s ease; }
+.nav-tap:active { transform: scale(0.95); }
+
+@keyframes navIconIn {
+  from { opacity: 0; transform: rotate(-90deg); }
+  to   { opacity: 1; transform: none; }
+}
+.nav-icon-swap { animation: navIconIn 0.18s ease both; }
+
+.nav-mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+}
+.nav-mobile-menu.is-open { max-height: 440px; opacity: 1; }
+
+.nav-mobile-link {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.nav-mobile-menu.is-open .nav-mobile-link { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rotate-word, .nav-icon-swap { animation: none !important; }
+  .nav-tap, .nav-mobile-menu, .nav-mobile-link { transition: none !important; transform: none !important; }
+}

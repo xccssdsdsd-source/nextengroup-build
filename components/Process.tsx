@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 const BackgroundPathsProcess = dynamic(() => import('./BackgroundPathsProcess'), { ssr: false })
@@ -52,7 +52,7 @@ export default function Process() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <motion.div
+        <m.div
           className="section-heading"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -63,16 +63,16 @@ export default function Process() {
           <p className="section-copy">
             Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
           initial={false}
           animate="show"
         >
           {steps.map((step) => <StepCard key={step.num} step={step} />)}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
@@ -80,7 +80,7 @@ export default function Process() {
 
 function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
-    <motion.article
+    <m.article
       variants={stepVariants}
       whileHover={{ y: -6, scale: 1.02, borderColor: 'rgba(34,211,238,0.4)', boxShadow: '0 1px 3px rgba(0,0,0,0.45), 0 12px 32px rgba(34,211,238,0.18)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
@@ -97,6 +97,6 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
       <p className="mt-3 text-[14px] leading-[1.72] text-[var(--text-secondary)]">
         {step.desc}
       </p>
-    </motion.article>
+    </m.article>
   )
 }

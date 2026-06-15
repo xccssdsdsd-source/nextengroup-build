@@ -1,13 +1,10 @@
 ﻿'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
-
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+import { useEffect, useState, type MouseEvent } from 'react'
 
 const anchorLinks = [
   ['Usługi', '#uslugi'],
@@ -35,6 +32,7 @@ export default function Nav() {
   const [displayText, setDisplayText] = useState(ctaLabels[0])
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [typingEnabled, setTypingEnabled] = useState(false)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -63,6 +61,7 @@ export default function Nav() {
 
   useEffect(() => {
     setIsMounted(true)
+    setTypingEnabled(window.matchMedia('(min-width: 640px)').matches)
     const onScroll = () => setScrolled(window.scrollY > 80)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -70,7 +69,7 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
-    if (!isMounted) return
+    if (!isMounted || !typingEnabled) return
     const currentText = ctaLabels[ctaIndex]
     
     let timer: NodeJS.Timeout
@@ -97,7 +96,7 @@ export default function Nav() {
     }
     
     return () => clearTimeout(timer)
-  }, [displayText, isDeleting, ctaIndex, isMounted])
+  }, [displayText, isDeleting, ctaIndex, isMounted, typingEnabled])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -138,18 +137,17 @@ export default function Nav() {
           </div>
 
           <div className="flex items-center gap-3">
-            <motion.a
+            <a
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              whileTap={{ scale: 0.95 }}
-              className="btn btn-primary !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
+              className="btn btn-primary nav-tap !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
               style={{ minWidth: 'auto' }}
             >
               <span className="inline-flex items-center">
                 {displayText}
                 {isMounted && <span className="typing-cursor" />}
               </span>
-            </motion.a>
+            </a>
             <button
               type="button"
               aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -157,72 +155,45 @@ export default function Nav() {
               onClick={() => setOpen(prev => !prev)}
               className="nav-island inline-flex h-11 w-11 items-center justify-center rounded-full text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] lg:hidden"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                {open ? (
-                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
-                    <X size={17} />
-                  </motion.span>
-                ) : (
-                  <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.18, ease }}>
-                    <Menu size={17} />
-                  </motion.span>
-                )}
-              </AnimatePresence>
+              <span key={open ? 'close' : 'open'} className="nav-icon-swap inline-flex">
+                {open ? <X size={17} /> : <Menu size={17} />}
+              </span>
             </button>
           </div>
 
           {/* Mobile menu */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.26, ease }}
-                className="absolute inset-x-0 top-full overflow-hidden lg:hidden"
-              >
-                <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] p-3">
-
-                  <div className="flex flex-col gap-1">
-                    {allLinks.map(([label, href], i) =>
-                      href.startsWith('#') ? (
-                        <motion.a
-                          key={href}
-                          href={anchorHref(href)}
-                          onClick={(e) => handleAnchorClick(e, href)}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.22, delay: i * 0.055, ease }}
-                          className={mobileLinkClass}
-                        >
-                          {label}
-                        </motion.a>
-                      ) : (
-                        <Link
-                          key={href}
-                          href={href}
-                          onClick={() => setOpen(false)}
-                          className={mobileLinkClass}
-                        >
-                          {label}
-                        </Link>
-                      )
-                    )}
-                  </div>
-                  <div className="mt-2 border-t border-[rgba(255,255,255,0.06)] pt-2">
-                    <motion.a
-                      href={anchorHref('#kontakt')}
-                      onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                      whileTap={{ scale: 0.96 }}
-                      className="btn btn-primary inline-flex w-full justify-center px-5 py-3 text-sm"
+          <div className={`nav-mobile-menu absolute inset-x-0 top-full overflow-hidden lg:hidden${open ? ' is-open' : ''}`} aria-hidden={!open}>
+            <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] p-3">
+              <div className="flex flex-col gap-1">
+                {allLinks.map(([label, href], i) =>
+                  href.startsWith('#') ? (
+                    <a
+                      key={href}
+                      href={anchorHref(href)}
+                      onClick={(e) => handleAnchorClick(e, href)}
+                      className={`nav-mobile-link ${mobileLinkClass}`}
+                      style={{ transitionDelay: open ? `${i * 0.055}s` : '0s' }}
                     >
-                      Umów rozmowę
-                    </motion.a>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                      {label}
+                    </a>
+                  ) : (
+                    <Link key={href} href={href} onClick={() => setOpen(false)} className={mobileLinkClass}>
+                      {label}
+                    </Link>
+                  )
+                )}
+              </div>
+              <div className="mt-2 border-t border-[rgba(255,255,255,0.06)] pt-2">
+                <a
+                  href={anchorHref('#kontakt')}
+                  onClick={(e) => handleAnchorClick(e, '#kontakt')}
+                  className="btn btn-primary nav-tap inline-flex w-full justify-center px-5 py-3 text-sm"
+                >
+                  Umów rozmowę
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
     </>

@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { AnimatePresence, motion, useInView } from 'framer-motion'
+import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -122,7 +122,7 @@ type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boole
 function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
-    <motion.div
+    <m.div
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
@@ -172,7 +172,7 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
           <span className="text-[#A6B2C4] font-bold text-[1.15rem]">{pkg.priceSuffix}</span>
         </span>
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -241,7 +241,7 @@ export default function Services() {
       <section id="uslugi" ref={ref1} className="section-shell relative" data-no-entrance suppressHydrationWarning>
         <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
-          <motion.div
+          <m.div
             className="section-heading"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -255,7 +255,7 @@ export default function Services() {
             <p className="section-copy mt-6">
               Robimy strony, na których ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="mt-16">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
@@ -271,19 +271,19 @@ export default function Services() {
 
             <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
               {packages.map((pkg, i) => (
-                <motion.div
+                <m.div
                   key={pkg.name}
                   initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
                   animate={inView1 ? { opacity: 1, x: 0 } : {}}
                   transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
                   <PackageCard pkg={pkg} inView={inView1} i={i} />
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
 
-          <motion.div
+          <m.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -298,7 +298,7 @@ export default function Services() {
 
             <AnimatePresence initial={false}>
               {seoExpanded && (
-                <motion.div
+                <m.div
                   initial={false}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -320,7 +320,7 @@ export default function Services() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
 
@@ -331,9 +331,9 @@ export default function Services() {
             >
               {seoExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
             </button>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -348,9 +348,9 @@ export default function Services() {
             <p className="text-[13px] leading-[1.6] text-[#A6B2C4]">
               <span className="font-semibold text-[#EAF0F7]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -381,7 +381,7 @@ export default function Services() {
             {/* Mobile: collapsible */}
             <AnimatePresence initial={false}>
               {careExpanded && (
-                <motion.div
+                <m.div
                   className="block lg:hidden overflow-hidden"
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
@@ -396,10 +396,10 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -414,7 +414,7 @@ export default function Services() {
           <BackgroundNetworkAnimation />
         </div>
         <div className="relative mx-auto max-w-7xl">
-          <motion.div
+          <m.div
             className="section-heading"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -425,7 +425,7 @@ export default function Services() {
             <p className="section-copy">
               Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="mt-16">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
@@ -434,19 +434,19 @@ export default function Services() {
 
             <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
               {aiTypes.map((ai, i) => (
-                <motion.div
+                <m.div
                   key={ai.name}
                   initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
                   animate={inView2 ? { opacity: 1, x: 0 } : {}}
                   transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
                   <AiCard ai={ai} inView={inView2} i={i} />
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
 
-          <motion.div
+          <m.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -455,9 +455,9 @@ export default function Services() {
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
               <span className="font-semibold text-[#EAF0F7]">Wycena</span> dopasowana do Twoich potrzeb po krótkim spotkaniu, 15 minut. Rozpoznajemy na nim Twoje największe wąskie gardła i problemy, które realnie da się zautomatyzować albo poprawić. W najgorszym razie wychodzisz ze spotkania wiedząc dokładnie, co i jak usprawnić u siebie. Czyli i tak wygrywasz.
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className="mt-8 flex justify-center"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -466,7 +466,7 @@ export default function Services() {
             <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary">
               Umów spotkanie
             </a>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </>
@@ -485,7 +485,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
   }
 
   return (
-    <motion.div
+    <m.div
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
@@ -531,7 +531,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
 
       <AnimatePresence initial={false}>
         {isExpanded && (
-          <motion.div
+          <m.div
             initial={false}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -545,7 +545,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -561,6 +561,6 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
       >
         {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>
-    </motion.div>
+    </m.div>
   )
 }

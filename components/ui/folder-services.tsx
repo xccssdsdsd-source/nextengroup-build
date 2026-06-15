@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
 const services = [
@@ -116,7 +116,7 @@ export default function FolderServices() {
         </div>
 
         {PAGES_CONFIG.map((p, i) => (
-          <motion.div
+          <m.div
             key={i}
             initial={p.closed}
             animate={isOpen ? p.open : p.closed}
@@ -125,10 +125,10 @@ export default function FolderServices() {
             style={{ marginLeft: -50, zIndex: p.zIndex }}
           >
             <PageMini icon={services[p.serviceIndex].icon} title={services[p.serviceIndex].title} />
-          </motion.div>
+          </m.div>
         ))}
 
-        <motion.div
+        <m.div
           animate={{ rotateX: isOpen ? -45 : 0 }}
           transition={{ type: 'spring', duration: 0.52, bounce: 0.18 }}
           className="absolute left-4 right-4 bottom-3 h-[138px] z-[8]"
@@ -152,7 +152,7 @@ export default function FolderServices() {
             className="absolute top-[22px] left-0 w-[50%] h-[40%] pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at 18% 8%, rgba(255,255,255,0.18) 0%, transparent 70%)' }}
           />
-        </motion.div>
+        </m.div>
 
         <div
           className="absolute -bottom-2 left-[20%] right-[20%] h-4 z-[1] pointer-events-none"
@@ -163,16 +163,16 @@ export default function FolderServices() {
         />
       </div>
 
-      <motion.p
+      <m.p
         animate={{ opacity: 1 }}
         className="text-sm text-[#7C879B] font-medium"
       >
         {isOpen && !activeService ? 'Kliknij kartę, by dowiedzieć się więcej' : isOpen && activeService !== null ? 'Kliknij, by wrócić' : 'Kliknij, by zobaczyć usługi'}
-      </motion.p>
+      </m.p>
 
       <AnimatePresence mode="wait">
         {isOpen && activeService === null && (
-          <motion.div
+          <m.div
             key="tiles"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -181,7 +181,7 @@ export default function FolderServices() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl"
           >
             {services.map((service, i) => (
-              <motion.div
+              <m.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -192,12 +192,12 @@ export default function FolderServices() {
               >
                 <div className="text-4xl mb-3">{service.icon}</div>
                 <h3 className="text-sm font-semibold text-[#EAF0F7] text-center">{service.title}</h3>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         )}
         {isOpen && activeService !== null && (
-          <motion.div
+          <m.div
             key="expanded"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -206,7 +206,7 @@ export default function FolderServices() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl"
           >
             {services.map((service, i) => (
-              <motion.div
+              <m.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -218,7 +218,7 @@ export default function FolderServices() {
                 <div className="text-3xl mb-2">{service.icon}</div>
                 <h3 className="text-base font-semibold text-[#EAF0F7] mb-2">{service.title}</h3>
                 {i === activeService && (
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.15 }}
@@ -236,11 +236,11 @@ export default function FolderServices() {
                         </span>
                       ))}
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

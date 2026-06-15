@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
 type LiveSiteButtonProps = {
@@ -11,7 +11,7 @@ type LiveSiteButtonProps = {
 
 export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo', className = '' }: LiveSiteButtonProps) {
   return (
-    <motion.a
+    <m.a
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -22,7 +22,7 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
       style={{ fontFamily: 'var(--font-syne)' }}
     >
       {/* Automatic shine sweep that loops periodically */}
-      <motion.span
+      <m.span
         aria-hidden
         className="pointer-events-none absolute inset-0"
         initial={{ x: '-150%' }}
@@ -36,6 +36,6 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
         strokeWidth={2.6}
         className="relative z-10 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
-    </motion.a>
+    </m.a>
   )
 }

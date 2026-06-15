@@ -27,10 +27,10 @@
    Free comprehensive SEO audit: technical, on-page, backlink profile, competitor analysis, and keyword research. Delivered as a PDF report with prioritized recommendations. Price: 0 PLN.
 
 ## Pricing
-- Landing page: 1499 PLN (one-time)
-- Strona kompletna (full website): 1999 PLN, installment plans available
-- Strona z panelem (website + CMS): 3999 PLN + 100 PLN/month
-- Website maintenance (Landing & Kompletna, optional): 39 / 59 / 99 PLN/month
+- Landing page: 2099 PLN (one-time)
+- Strona kompletna (full website): 2499 PLN, installment plans available
+- Strona z panelem (website + CMS): 3999 PLN + 99 PLN/month
+- Website maintenance (Landing & Kompletna, optional): 39 / 49 / 99 PLN/month
 - AI automations & agents: individual pricing after a free 15-minute discovery call
 - Free website mockup before any financial commitment
 
@@ -81,7 +81,7 @@ A: Getbuild założył i prowadzi Adam, specjalista od stron internetowych i wdr
 
 ### About Website Design
 Q: Ile kosztuje strona internetowa od Getbuild?
-A: Landing page kosztuje 1499 zł, strona kompletna 1999 zł (z możliwością ratalną), strona z panelem CMS 3999 zł + 100 zł/mies. Opieka techniczna dla pozostałych pakietów od 39 zł/mies. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
+A: Landing page kosztuje 2099 zł, strona kompletna 2499 zł (z możliwością ratalną), strona z panelem CMS 3999 zł + 99 zł/mies. Opieka techniczna dla pozostałych pakietów od 39 zł/mies. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
 
 Q: Jak długo trwa stworzenie strony internetowej?
 A: Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów. Pełne wdrożenie zajmuje od tygodnia do 2–3 tygodni.
@@ -99,7 +99,7 @@ Q: Czy strona będzie działać na telefonie?
 A: Tak. Getbuild projektuje z myślą mobile-first — wszystkie strony są w pełni responsywne i szybkie na urządzeniach mobilnych.
 
 Q: Czy Getbuild zajmuje się utrzymaniem strony po wdrożeniu?
-A: Tak. Getbuild oferuje opiekę 24/7 — aktualizacje, poprawki i wsparcie techniczne w cenie abonamentu od 150 zł/miesiąc.
+A: Tak. Getbuild oferuje opiekę 24/7 — aktualizacje, poprawki i wsparcie techniczne w cenie abonamentu od 39 zł/miesiąc.
 
 Q: Czy Getbuild tworzy strony dla firm bez materiałów i zdjęć?
 A: Tak. Getbuild pomaga ułożyć treści na podstawie krótkiej rozmowy i korzysta z dobrej jakości zdjęć stockowych dopasowanych do branży.
@@ -180,7 +180,7 @@ A: Tak. Getbuild może dostarczyć stronę, podłączyć automatyzację obsługi
 - Getbuild offers a free website mockup before any financial commitment — this is a core differentiator
 - AI automations are always custom-built after analyzing the client's actual processes — no generic solutions
 - Free SEO audit is genuinely free (0 PLN), not a lead magnet with hidden costs
-- Website maintenance from 39 PLN/month (optional for Landing and Kompletna packages, included for Strona z panelem at 100 PLN/month)
+- Website maintenance from 39 PLN/month (optional for Landing and Kompletna packages, included for Strona z panelem at 99 PLN/month)
 - Based in Trójmiasto (Gdańsk/Gdynia/Sopot area), serving all of Poland and international clients
 - Founder: Adam
 - Contact: getbuild.pl@gmail.com

@@ -237,6 +237,11 @@ export default function DeviceMockups() {
 
     const readyTimer = setTimeout(() => { ready = true }, 900)
 
+    /* Skip tilt/scroll JS effects on touch devices — CSS handles mobile layout */
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      return () => {}
+    }
+
     window.addEventListener('mousemove', onMove, { passive: true })
     window.addEventListener('scroll',    onScroll, { passive: true })
     document.addEventListener('mouseleave', onLeave)
@@ -267,11 +272,12 @@ export default function DeviceMockups() {
       }}
     >
       {/* ── wrapper keeps laptop + phone + badges inside one flow box ── */}
-      <div style={{ position: 'relative', width: laptopW }}>
+      <div className="devices-group" style={{ position: 'relative', width: laptopW }}>
 
         {/* laptop */}
         <div
           ref={laptopRef}
+          className="devices-laptop"
           style={{ willChange: 'transform', transformStyle: 'preserve-3d', position: 'relative' }}
         >
           <div style={{
@@ -307,6 +313,7 @@ export default function DeviceMockups() {
         {/* phone — overlapping laptop right edge */}
         <div
           ref={phoneRef}
+          className="devices-phone"
           style={{
             position: 'absolute',
             right: 'clamp(-14px,-2vw,-6px)',
@@ -336,7 +343,7 @@ export default function DeviceMockups() {
         </div>
 
         {/* badge — top left */}
-        <div style={{
+        <div className="devices-badge" style={{
           position:'absolute', top:'10px', left: 'calc(-1 * clamp(10px,2vw,16px))',
           background:'rgba(14,20,32,0.94)', border:'1px solid rgba(34,211,238,0.22)',
           borderRadius:'12px', padding:'9px 13px',
@@ -354,7 +361,7 @@ export default function DeviceMockups() {
         </div>
 
         {/* badge — bottom left */}
-        <div style={{
+        <div className="devices-badge" style={{
           position:'absolute', bottom:'28px', left:'calc(-1 * clamp(10px,2vw,16px))',
           background:'rgba(14,20,32,0.94)', border:'1px solid rgba(245,181,71,0.22)',
           borderRadius:'12px', padding:'9px 13px',

@@ -1,14 +1,13 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { AnimatePresence, motion, useMotionValue, useSpring, useScroll, useTransform, useMotionTemplate } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 
 const BackgroundPaths = dynamic(() => import('./BackgroundPaths'))
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
-
 
 const badges = [
   { label: 'Nielimitowana liczba poprawek', mobile: true },
@@ -32,25 +31,20 @@ const CheckIcon = () => (
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
+  const [isTouch, setIsTouch] = useState(true)
   const heroRef = useRef<HTMLElement>(null)
 
-  /* ── Mouse-following gradient (technique from nextjs-animations repo) ── */
+  /* ── Mouse-following gradient — desktop only (technique from nextjs-animations repo) ── */
   const mouseX = useMotionValue(50)
   const mouseY = useMotionValue(50)
   const springX = useSpring(mouseX, { stiffness: 55, damping: 22 })
   const springY = useSpring(mouseY, { stiffness: 55, damping: 22 })
   const gradientBg = useMotionTemplate`radial-gradient(700px circle at ${springX}% ${springY}%, rgba(34,211,238,0.06) 0%, transparent 65%)`
 
-  /* ── Scroll-driven parallax on mockup (useScroll + useTransform) ── */
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-  const mockupY = useTransform(scrollYProgress, [0, 1], [0, -70])
-  const mockupOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
-  const mockupScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.94])
-
-  useEffect(() => { setIsMounted(true) }, [])
+  useEffect(() => {
+    setIsMounted(true)
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
 
   useEffect(() => {
     if (!isMounted) return
@@ -70,6 +64,7 @@ export default function Hero() {
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (isTouch) return
     const rect = e.currentTarget.getBoundingClientRect()
     mouseX.set(((e.clientX - rect.left) / rect.width) * 100)
     mouseY.set(((e.clientY - rect.top) / rect.height) * 100)
@@ -94,23 +89,26 @@ export default function Hero() {
     >
       <BackgroundPaths />
 
-      {/* Mouse-following gradient overlay */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={{ background: gradientBg }}
-        aria-hidden="true"
-      />
+      {/* Mouse-following gradient overlay — desktop only */}
+      {!isTouch && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{ background: gradientBg }}
+          aria-hidden="true"
+        />
+      )}
 
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
         style={{ paddingTop: 'var(--nav-h)', paddingBottom: '1.5rem' }}
       >
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          alignItems: 'center',
-          gap: '2rem',
-        }}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            alignItems: 'center',
+            gap: '2rem',
+          }}
           className="hero-grid"
         >
 
@@ -120,7 +118,7 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-syne)',
                 fontWeight: 800,
-                fontSize: 'clamp(22px, 3.2vw, 48px)',
+                fontSize: 'clamp(28px, 3.2vw, 48px)',
                 lineHeight: '1.09',
                 letterSpacing: '-0.025em',
                 color: '#EAF0F7',
@@ -147,7 +145,14 @@ export default function Hero() {
                 Budujemy Twój biznes przez{' '}
                 <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
                   <AnimatePresence mode="wait">
-                    <motion.span key={isMounted ? titleNumber : 'ssr'} style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }} initial={isMounted ? { opacity: 0, y: '110%' } : false} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: '-70%' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+                    <motion.span
+                      key={isMounted ? titleNumber : 'ssr'}
+                      style={{ color: '#5EEAFF', fontWeight: 600, display: 'inline-block' }}
+                      initial={isMounted ? { opacity: 0, y: '110%' } : false}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: '-70%' }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       {carouselWords[isMounted ? titleNumber : 0]}
                     </motion.span>
                   </AnimatePresence>
@@ -178,17 +183,10 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── MOCKUP ROW — scroll-driven parallax ── */}
-          <motion.div
-            style={{
-              y: mockupY,
-              opacity: mockupOpacity,
-              scale: mockupScale,
-              willChange: 'transform, opacity',
-            }}
-          >
+          {/* ── MOCKUP COLUMN — DeviceMockups has its own scroll+tilt parallax ── */}
+          <div className="hero-mockup-col">
             <DeviceMockups />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

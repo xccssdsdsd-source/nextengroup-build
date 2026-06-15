@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 
 const BackgroundParticlesServices = dynamic(() => import('./BackgroundParticlesServices'), { ssr: false })
 const BackgroundNetworkAnimation = dynamic(() => import('./BackgroundNetworkAnimation'), { ssr: false })
-const BookingModal = dynamic(() => import('./BookingModal'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -99,7 +98,7 @@ type AiType = typeof aiTypes[number]
 
 type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void }
 
-function PackageCard({ pkg, inView, i, onBook }: { pkg: Package; inView: boolean; i: number; onBook?: () => void }) {
+function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <motion.div
@@ -144,23 +143,6 @@ function PackageCard({ pkg, inView, i, onBook }: { pkg: Package; inView: boolean
           {!['2099 zł','2499 zł','3999 zł + 99 zł/mies'].includes(pkg.price) && pkg.price}
         </span>
       </div>
-      {pkg.featured && onBook && (
-        <div className="mt-5">
-          <button
-            onClick={onBook}
-            className="w-full btn btn-primary py-3 text-[14px] font-semibold flex items-center justify-center gap-2"
-          >
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-              <rect x="1" y="2" width="13" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="1" y1="5.5" x2="14" y2="5.5" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="4.5" y1="1" x2="4.5" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              <line x1="10.5" y1="1" x2="10.5" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            Umów wizytę
-          </button>
-          <p className="mt-2 text-center text-[11px] text-[#7C879B]">Bezpłatna konsultacja · 30 min · Online</p>
-        </div>
-      )}
     </motion.div>
   )
 }
@@ -220,13 +202,6 @@ export default function Services() {
   const [expanded1, setExpanded1] = useState(false)
   const [expanded2, setExpanded2] = useState(false)
   const [seoExpanded, setSeoExpanded] = useState(false)
-  const [bookingOpen, setBookingOpen] = useState(false)
-  const [bookingPackage, setBookingPackage] = useState('Strona kompletna')
-
-  const openBooking = (name: string) => {
-    setBookingPackage(name)
-    setBookingOpen(true)
-  }
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -235,7 +210,6 @@ export default function Services() {
 
   return (
     <>
-      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} packageName={bookingPackage} />
       <section id="uslugi" ref={ref1} className="section-shell relative" data-no-entrance suppressHydrationWarning>
         <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
@@ -263,7 +237,6 @@ export default function Services() {
                   pkg={pkg}
                   inView={inView1}
                   i={i}
-                  onBook={pkg.featured ? () => openBooking(pkg.name) : undefined}
                 />
               ))}
             </div>
@@ -286,7 +259,6 @@ export default function Services() {
                           pkg={pkg}
                           inView={inView1}
                           i={i + 1}
-                          onBook={pkg.featured ? () => openBooking(pkg.name) : undefined}
                         />
                       ))}
                     </div>

@@ -51,7 +51,7 @@ export const articles: Record<string, ArticleContent> = {
       ]},
       { type: 'h2', text: 'Koszty utrzymania strony — o tym często się zapomina' },
       { type: 'p', text: 'Cena wdrożenia to jedno. Ale strona internetowa to żywy organizm — wymaga aktualizacji systemu, wtyczek, monitoringu bezpieczeństwa i regularnych poprawek. Profesjonalna opieka techniczna to realny wydatek, który warto uwzględnić w budżecie.' },
-      { type: 'p', text: 'W Getbuild oferujemy opiekę i utrzymanie strony już od 150 PLN miesięcznie. To abonament, który pokrywa aktualizacje, monitoring bezpieczeństwa, drobne poprawki i dostępność techniczną — tak, żebyś Ty mógł się skupić na prowadzeniu firmy, nie na pilnowaniu serwera.' },
+      { type: 'p', text: 'W Getbuild oferujemy opiekę i utrzymanie strony już od 39 PLN miesięcznie. To abonament, który pokrywa aktualizacje, monitoring bezpieczeństwa, drobne poprawki i dostępność techniczną — tak, żebyś Ty mógł się skupić na prowadzeniu firmy, nie na pilnowaniu serwera.' },
       { type: 'h2', text: 'Kiedy tańsza strona jest fałszywą oszczędnością' },
       { type: 'p', text: 'W B2B decyzje zakupowe rzadko są impulsywne. Potencjalny klient, zanim wyśle zapytanie ofertowe, przejrzy Twoją stronę, oceni ją i porówna z konkurencją. Strona, która wygląda jak zrobiona dekadę temu lub ładuje się przez 5 sekund na telefonie, wysyła sygnał: "nie dbamy o szczegóły". A firma, która nie dba o swoją prezentację online, trudno, żeby wzbudzała zaufanie jako dostawca.' },
       { type: 'p', text: 'Konkretny przykład: jeśli Twoja firma B2B traci miesięcznie choćby jeden kontrakt o wartości 10 000 PLN, bo potencjalny klient wybrał konkurenta z bardziej profesjonalną stroną — inwestycja w nowy serwis za 15 000 PLN zwraca się w kilka tygodni.' },
@@ -170,7 +170,7 @@ export const articles: Record<string, ArticleContent> = {
       { type: 'h3', text: 'Krok 5: Testowanie i launch' },
       { type: 'p', text: 'Przed uruchomieniem strona przechodzi testy: szybkość na różnych urządzeniach, poprawność formularzy, działanie na różnych przeglądarkach, weryfikację tagów SEO. Dopiero po akceptacji następuje wdrożenie na produkcję.' },
       { type: 'h3', text: 'Krok 6: Opieka po wdrożeniu' },
-      { type: 'p', text: 'Uruchomienie strony to nie koniec — to początek. W ramach abonamentu (od 150 PLN miesięcznie) obsługujemy aktualizacje, monitorujemy bezpieczeństwo i jesteśmy dostępni na bieżące poprawki. W B2B strona powinna rosnąć razem z firmą — nowe realizacje, nowe produkty, nowe rynki.' },
+      { type: 'p', text: 'Uruchomienie strony to nie koniec — to początek. W ramach abonamentu (od 39 PLN miesięcznie) obsługujemy aktualizacje, monitorujemy bezpieczeństwo i jesteśmy dostępni na bieżące poprawki. W B2B strona powinna rosnąć razem z firmą — nowe realizacje, nowe produkty, nowe rynki.' },
       { type: 'h2', text: 'Jak mierzyć sukces strony produkcyjnej' },
       { type: 'p', text: 'Samo uruchomienie strony to za mało. Warto śledzić kilka wskaźników, które powiedzą, czy strona realnie wspiera sprzedaż:' },
       { type: 'ul', items: [

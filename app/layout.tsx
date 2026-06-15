@@ -123,7 +123,7 @@ export default function RootLayout({
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: 'od 150 zł/miesiąc',
+          priceRange: 'od 39 zł/miesiąc',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',

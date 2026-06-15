@@ -199,8 +199,6 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
-  const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
   const [seoExpanded, setSeoExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -241,38 +239,17 @@ export default function Services() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <PackageCard pkg={packages[0]} inView={inView1} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded1 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {packages.slice(1).map((pkg, i) => (
-                        <PackageCard
-                          key={pkg.name}
-                          pkg={pkg}
-                          inView={inView1}
-                          i={i + 1}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded1 && (
-                <button
-                  onClick={() => setExpanded1(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {packages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <PackageCard pkg={pkg} inView={inView1} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 
@@ -393,31 +370,17 @@ export default function Services() {
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded2 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded2 && (
-                <button
-                  onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {aiTypes.map((ai, i) => (
+                <motion.div
+                  key={ai.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView2 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <AiCard ai={ai} inView={inView2} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 

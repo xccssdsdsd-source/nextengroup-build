@@ -15,24 +15,24 @@ const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
 const packages = [
   {
     name: 'Landing',
-    forWho: 'Nowa firma albo jedna usługa, która ma szybko zacząć łapać kontakty.',
-    whatYouGet: 'Jedna strona nastawiona na jeden cel. Oferta, dowód, formularz kontaktowy, błyskawiczne ładowanie i pełne dopięcie na telefonie.',
+    forWho: 'Dla Ciebie, jeśli dopiero startujesz albo chcesz dobrze sprzedać jedną usługę i szybko zacząć odbierać telefony.',
+    whatYouGet: 'Jedna strona, jeden cel. Pokazujemy, co robisz, dlaczego warto i dajemy prosty formularz. Ładuje się błyskawicznie i równie dobrze wygląda na telefonie.',
     price: '2099 zł',
     sub: null as string | null,
     featured: false,
   },
   {
     name: 'Strona kompletna',
-    forWho: 'Firma, która chce wyglądać poważnie od pierwszej sekundy i mieć pełną stronę z ofertą.',
-    whatYouGet: 'Wszystko z landingu plus rozbudowana struktura: kilka sekcji, FAQ, formularz, mapa i treść pisana pod sprzedaż.',
+    forWho: 'Dla firmy, która chce od razu wyglądać poważnie i mieć miejsce na pełną ofertę.',
+    whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały.',
     price: '2499 zł',
-    sub: 'Możliwość rozłożenia na raty miesięczne.' as string | null,
+    sub: 'Płatność można rozłożyć na wygodne miesięczne raty.' as string | null,
     featured: true,
   },
   {
     name: 'Strona z panelem',
-    forWho: 'Firma, która regularnie dodaje realizacje albo prowadzi bloga i chce robić to sama, bez programisty.',
-    whatYouGet: 'Stronę plus panel administracyjny po polsku, prosty w obsłudze. Sam dodajesz realizacje, wpisy na bloga i zmieniasz treści.',
+    forWho: 'Dla Ciebie, jeśli często dodajesz nowe realizacje albo piszesz bloga i chcesz robić to sam, bez dzwonienia do programisty.',
+    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę.',
     price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
     featured: false,
@@ -40,14 +40,14 @@ const packages = [
 ]
 
 const careItems = [
-  'Hosting i domena, żeby strona zawsze działała.',
-  'Kopie zapasowe i monitoring, żebyś nigdy nie stracił danych.',
-  'SEO — optymalizacja w Google, pozycjonowanie pod słowa kluczowe, analizy rankingów.',
-  'GEO — widoczność w wyszukiwarkach AI (ChatGPT, Gemini, Perplexity), gdzie klienci coraz częściej szukają odpowiedzi.',
-  'AI SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
-  'Analiza konkurencji i dostosowanie strategii na bieżąco.',
-  'Aktualizacje treści, łatki bezpieczeństwa i drobne zmiany — wszystko obsługujemy.',
-  'Wyższy pakiet to szerszy zakres, więcej zmian i szybsze wdrażanie.',
+  'Hosting i domena — pilnujemy, żeby strona zawsze była online.',
+  'Kopie zapasowe i monitoring — śpisz spokojnie, bo nic Ci nie przepadnie.',
+  'SEO — dbamy, żeby Google znajdował Cię na frazy, których szukają Twoi klienci.',
+  'GEO — jesteś widoczny tam, gdzie ludzie coraz częściej pytają: ChatGPT, Gemini, Perplexity.',
+  'AI SEARCH — nadążamy za nowymi wyszukiwarkami AI, które pojawiają się niemal co miesiąc.',
+  'Trzymamy rękę na pulsie konkurencji i na bieżąco dostrajamy strategię.',
+  'Aktualizacje, poprawki bezpieczeństwa i drobne zmiany bierzemy na siebie.',
+  'Im wyższy pakiet, tym więcej zmian w cenie i tym szybciej je wdrażamy.',
 ]
 
 type Package = typeof packages[number]
@@ -251,7 +251,7 @@ export default function Services() {
               </div>
             </h2>
             <p className="section-copy mt-6">
-              Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
+              Robimy strony, na których ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
             </p>
           </motion.div>
 
@@ -314,7 +314,7 @@ export default function Services() {
               SEO i GEO wbudowane w każdą stronę
             </h3>
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
-              Każdą stronę budujemy tak, żeby Google ją rozumiał i żeby modele AI jak ChatGPT, Gemini czy Perplexity mogły ją cytować jako wiarygodne źródło. Nie dokładamy SEO na końcu, budujemy je od środka.
+              Każdą stronę robimy tak, żeby Google ją rozumiał, a ChatGPT, Gemini czy Perplexity chętnie się na Ciebie powoływały. SEO nie doklejamy na końcu — siedzi w środku od pierwszego dnia.
             </p>
 
             <AnimatePresence initial={false}>

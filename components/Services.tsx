@@ -31,7 +31,7 @@ const packages = [
   {
     name: 'Strona z panelem',
     forWho: 'Dla Ciebie, jeśli często dodajesz nowe realizacje albo piszesz bloga i chcesz robić to sam, bez dzwonienia do programisty.',
-    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę.',
+    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę. Miesięczny raport analityczny: skąd przychodzą klienci, czego szukają i które sekcje działają najlepiej.',
     price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
     featured: false,

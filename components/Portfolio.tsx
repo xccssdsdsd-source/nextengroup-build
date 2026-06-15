@@ -306,7 +306,7 @@ export default function Portfolio() {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5" data-stagger-group>
+                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
                       {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                     </div>
                   )}

@@ -18,6 +18,7 @@ const packages = [
     whatYouGet: 'Jedna strona, jeden cel. Pokazujemy, co robisz, dlaczego warto i dajemy prosty formularz. Ładuje się błyskawicznie i równie dobrze wygląda na telefonie.',
     price: '2099 zł',
     sub: null as string | null,
+    report: null as string[] | null,
     featured: false,
   },
   {
@@ -26,14 +27,16 @@ const packages = [
     whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały. Podłączamy Calendly, żeby klient sam rezerwował termin, a po wysłaniu formularza dostaje od razu potwierdzenie na maila.',
     price: '2499 zł',
     sub: 'Płatność można rozłożyć na wygodne miesięczne raty.' as string | null,
+    report: null,
     featured: true,
   },
   {
     name: 'Strona z panelem',
     forWho: 'Dla Ciebie, jeśli często dodajesz nowe realizacje albo piszesz bloga i chcesz robić to sam, bez dzwonienia do programisty.',
-    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę. Miesięczny raport analityczny: skąd przychodzą klienci, czego szukają i które sekcje działają najlepiej.',
+    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę.',
     price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
+    report: ['Skąd przychodzą klienci', 'Czego szukają', 'Które sekcje działają najlepiej'],
     featured: false,
   },
 ]
@@ -134,6 +137,19 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       </h3>
       <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.forWho}</p>
       <p className="mt-3 text-[14px] leading-[1.72] text-[#A6B2C4]">{pkg.whatYouGet}</p>
+      {pkg.report && (
+        <div className="mt-3">
+          <p className="text-[14px] leading-[1.6] text-[#A6B2C4]">Miesięczny raport analityczny:</p>
+          <ul className="mt-2 flex flex-col gap-1.5">
+            {pkg.report.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-[13.5px] leading-[1.6] text-[#A6B2C4]">
+                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full bg-[#22D3EE]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {pkg.sub && <p className="mt-2 text-[13px] leading-[1.6] text-[#A6B2C4]">{pkg.sub}</p>}
       <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-4">
         <span className="text-[1.55rem] font-extrabold tracking-tight text-[#EAF0F7]">

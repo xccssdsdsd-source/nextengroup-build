@@ -225,6 +225,7 @@ export default function Services() {
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
   const [seoExpanded, setSeoExpanded] = useState(false)
+  const [careExpanded, setCareExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -351,10 +352,20 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.42 }}
           >
-            <h3 className="mb-4 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
-              Co obejmuje opieka
-            </h3>
-            <ul className="flex flex-col gap-2.5">
+            <button
+              className="mb-0 lg:mb-4 flex w-full items-center justify-between text-left text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7] lg:pointer-events-none"
+              style={{ fontFamily: 'var(--font-syne)' }}
+              onClick={() => setCareExpanded((v) => !v)}
+              aria-expanded={careExpanded}
+            >
+              Co obejmuje opieka?
+              <span className="block lg:hidden ml-2 text-[#22D3EE] text-[18px] leading-none" aria-hidden="true">
+                {careExpanded ? '−' : '+'}
+              </span>
+            </button>
+
+            {/* Desktop: always visible */}
+            <ul className="hidden lg:flex flex-col gap-2.5 mt-4">
               {careItems.map((item, i) => (
                 <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
                   <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
@@ -362,6 +373,28 @@ export default function Services() {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile: collapsible */}
+            <AnimatePresence initial={false}>
+              {careExpanded && (
+                <motion.div
+                  className="block lg:hidden overflow-hidden"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.36, ease }}
+                >
+                  <ul className="flex flex-col gap-2.5 mt-4">
+                    {careItems.map((item, i) => (
+                      <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
+                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>

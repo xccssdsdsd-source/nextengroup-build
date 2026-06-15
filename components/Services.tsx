@@ -37,7 +37,6 @@ const packages = [
       'Rezerwacja terminów przez Calendly',
       'Formularz z automatycznym potwierdzeniem na maila dla klienta',
       'Gwarancja 90/90/90/100 w Lighthouse i ładowania poniżej 3 sekund',
-      'Możliwość rozłożenia płatności na raty',
     ],
     amount: 2499,
     priceSuffix: ' zł',

@@ -645,16 +645,28 @@ select {
 
 @media (max-width: 768px) {
   .devices-group {
-    width: 180px;
-    height: 320px;
+    /* override inline width so only the phone fits */
+    width: clamp(120px, 46vw, 170px) !important;
+    height: auto !important;
+    margin: 0 auto;
   }
 
   .devices-laptop {
-    display: none;
+    display: none !important;
   }
 
   .devices-phone {
-    position: static;
+    /* pull out of absolute flow so the wrapper sizes around it */
+    position: static !important;
+    width: 100% !important;
+    right: auto !important;
+    top: auto !important;
+    will-change: auto !important;
+    transform: none !important;
+  }
+
+  .devices-badge {
+    display: none !important;
   }
 }
 
@@ -971,6 +983,20 @@ select {
 @media (max-width: 767px) {
   .hero-grid {
     grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+.hero-mockup-col {
+  /* desktop: normal */
+}
+
+@media (max-width: 767px) {
+  .hero-mockup-col {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
   }
 }
 

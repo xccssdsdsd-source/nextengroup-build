@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
@@ -50,6 +50,16 @@ const faqSchema = {
   })),
 }
 
+const listVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+}
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring' as const, stiffness: 130, damping: 22 } },
+}
+
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
   const ref = useRef(null)
@@ -68,8 +78,8 @@ export default function FAQ() {
       <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <motion.div
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker" suppressHydrationWarning>FAQ</span>
@@ -79,7 +89,12 @@ export default function FAQ() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-2">
+        <motion.div
+          className="flex flex-col gap-2"
+          variants={listVariants}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
           {faqs.map((faq, index) => {
             const isOpen = open === index
 
@@ -87,9 +102,7 @@ export default function FAQ() {
               <motion.div
                 key={faq.q}
                 layout="position"
-                initial={false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ ...premiumSpring, delay: index * 0.07 }}
+                variants={rowVariants}
                 className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#22D3EE] bg-[rgba(34,211,238,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(34,211,238,0.18)]'
@@ -138,7 +151,7 @@ export default function FAQ() {
               </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
     </>

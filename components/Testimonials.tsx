@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
@@ -24,8 +24,8 @@ export default function Testimonials() {
       <div className="relative mx-auto max-w-7xl">
         <motion.div
           className="section-heading"
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker" suppressHydrationWarning>Opinie</span>
@@ -34,18 +34,18 @@ export default function Testimonials() {
 
         <motion.div
           className="mt-14 flex justify-center"
-          initial={false}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ ...premiumSpring, delay: 0.12 }}
+          initial={{ opacity: 0, y: 28, scale: 0.96 }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 28, scale: 0.96 }}
+          transition={{ ...premiumSpring, delay: 0.15 }}
         >
           <TestimonialCard />
         </motion.div>
 
         <motion.div
           className="mt-10 flex justify-center"
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease, delay: 0.3 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.5, ease, delay: 0.32 }}
         >
           <a
             href="#kontakt"

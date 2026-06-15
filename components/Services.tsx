@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 
 const BackgroundParticlesServices = dynamic(() => import('./BackgroundParticlesServices'), { ssr: false })
 const BackgroundNetworkAnimation = dynamic(() => import('./BackgroundNetworkAnimation'), { ssr: false })
-const BookingModal = dynamic(() => import('./BookingModal'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -15,24 +14,24 @@ const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
 const packages = [
   {
     name: 'Landing',
-    forWho: 'Nowa firma albo jedna usługa, która ma szybko zacząć łapać kontakty.',
-    whatYouGet: 'Jedna strona nastawiona na jeden cel. Oferta, dowód, formularz kontaktowy, błyskawiczne ładowanie i pełne dopięcie na telefonie.',
+    forWho: 'Dla Ciebie, jeśli dopiero startujesz albo chcesz dobrze sprzedać jedną usługę i szybko zacząć odbierać telefony.',
+    whatYouGet: 'Jedna strona, jeden cel. Pokazujemy, co robisz, dlaczego warto i dajemy prosty formularz. Ładuje się błyskawicznie i równie dobrze wygląda na telefonie.',
     price: '2099 zł',
     sub: null as string | null,
     featured: false,
   },
   {
     name: 'Strona kompletna',
-    forWho: 'Firma, która chce wyglądać poważnie od pierwszej sekundy i mieć pełną stronę z ofertą.',
-    whatYouGet: 'Wszystko z landingu plus rozbudowana struktura: kilka sekcji, FAQ, formularz, mapa i treść pisana pod sprzedaż.',
+    forWho: 'Dla firmy, która chce od razu wyglądać poważnie i mieć miejsce na pełną ofertę.',
+    whatYouGet: 'Wszystko, co w landingu, plus więcej miejsca: kilka sekcji, FAQ, formularz, mapa i teksty napisane tak, żeby naprawdę sprzedawały. Podłączamy Calendly, żeby klient sam rezerwował termin, a po wysłaniu formularza dostaje od razu potwierdzenie na maila.',
     price: '2499 zł',
-    sub: 'Możliwość rozłożenia na raty miesięczne.' as string | null,
+    sub: 'Płatność można rozłożyć na wygodne miesięczne raty.' as string | null,
     featured: true,
   },
   {
     name: 'Strona z panelem',
-    forWho: 'Firma, która regularnie dodaje realizacje albo prowadzi bloga i chce robić to sama, bez programisty.',
-    whatYouGet: 'Stronę plus panel administracyjny po polsku, prosty w obsłudze. Sam dodajesz realizacje, wpisy na bloga i zmieniasz treści.',
+    forWho: 'Dla Ciebie, jeśli często dodajesz nowe realizacje albo piszesz bloga i chcesz robić to sam, bez dzwonienia do programisty.',
+    whatYouGet: 'Strona plus prosty panel po polsku. Sam dodajesz realizacje, wpisy i zmieniasz treści, kiedy tylko masz na to ochotę.',
     price: '3999 zł + 99 zł/mies',
     sub: null as string | null,
     featured: false,
@@ -40,14 +39,14 @@ const packages = [
 ]
 
 const careItems = [
-  'Hosting i domena, żeby strona zawsze działała.',
-  'Kopie zapasowe i monitoring, żebyś nigdy nie stracił danych.',
-  'SEO — optymalizacja w Google, pozycjonowanie pod słowa kluczowe, analizy rankingów.',
-  'GEO — widoczność w wyszukiwarkach AI (ChatGPT, Gemini, Perplexity), gdzie klienci coraz częściej szukają odpowiedzi.',
-  'AI SEARCH — optymalizacja pod nowe wyszukiwarki AI, które pojawiają się niemal co miesiąc.',
-  'Analiza konkurencji i dostosowanie strategii na bieżąco.',
-  'Aktualizacje treści, łatki bezpieczeństwa i drobne zmiany — wszystko obsługujemy.',
-  'Wyższy pakiet to szerszy zakres, więcej zmian i szybsze wdrażanie.',
+  'Hosting i domena — pilnujemy, żeby strona zawsze była online.',
+  'Kopie zapasowe i monitoring — śpisz spokojnie, bo nic Ci nie przepadnie.',
+  'SEO — dbamy, żeby Google znajdował Cię na frazy, których szukają Twoi klienci.',
+  'GEO — jesteś widoczny tam, gdzie ludzie coraz częściej pytają: ChatGPT, Gemini, Perplexity.',
+  'AI SEARCH — nadążamy za nowymi wyszukiwarkami AI, które pojawiają się niemal co miesiąc.',
+  'Trzymamy rękę na pulsie konkurencji i na bieżąco dostrajamy strategię.',
+  'Aktualizacje, poprawki bezpieczeństwa i drobne zmiany bierzemy na siebie.',
+  'Im wyższy pakiet, tym więcej zmian w cenie i tym szybciej je wdrażamy.',
 ]
 
 type Package = typeof packages[number]
@@ -99,7 +98,7 @@ type AiType = typeof aiTypes[number]
 
 type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void }
 
-function PackageCard({ pkg, inView, i, onBook }: { pkg: Package; inView: boolean; i: number; onBook?: () => void }) {
+function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <motion.div
@@ -144,23 +143,6 @@ function PackageCard({ pkg, inView, i, onBook }: { pkg: Package; inView: boolean
           {!['2099 zł','2499 zł','3999 zł + 99 zł/mies'].includes(pkg.price) && pkg.price}
         </span>
       </div>
-      {pkg.featured && onBook && (
-        <div className="mt-5">
-          <button
-            onClick={onBook}
-            className="w-full btn btn-primary py-3 text-[14px] font-semibold flex items-center justify-center gap-2"
-          >
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-              <rect x="1" y="2" width="13" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="1" y1="5.5" x2="14" y2="5.5" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="4.5" y1="1" x2="4.5" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              <line x1="10.5" y1="1" x2="10.5" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            Umów wizytę
-          </button>
-          <p className="mt-2 text-center text-[11px] text-[#7C879B]">Bezpłatna konsultacja · 30 min · Online</p>
-        </div>
-      )}
     </motion.div>
   )
 }
@@ -217,16 +199,7 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
-  const [expanded1, setExpanded1] = useState(false)
-  const [expanded2, setExpanded2] = useState(false)
   const [seoExpanded, setSeoExpanded] = useState(false)
-  const [bookingOpen, setBookingOpen] = useState(false)
-  const [bookingPackage, setBookingPackage] = useState('Strona kompletna')
-
-  const openBooking = (name: string) => {
-    setBookingPackage(name)
-    setBookingOpen(true)
-  }
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -235,7 +208,6 @@ export default function Services() {
 
   return (
     <>
-      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} packageName={bookingPackage} />
       <section id="uslugi" ref={ref1} className="section-shell relative" data-no-entrance suppressHydrationWarning>
         <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
@@ -251,7 +223,7 @@ export default function Services() {
               </div>
             </h2>
             <p className="section-copy mt-6">
-              Budujemy strony, które zamieniają wejście w kontakt. Szybkie, dopracowane na telefonie, z treścią, która sprzedaje. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero, gdy wszystko działa.
+              Robimy strony, na których ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
             </p>
           </motion.div>
 
@@ -263,44 +235,21 @@ export default function Services() {
                   pkg={pkg}
                   inView={inView1}
                   i={i}
-                  onBook={pkg.featured ? () => openBooking(pkg.name) : undefined}
                 />
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <PackageCard pkg={packages[0]} inView={inView1} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded1 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {packages.slice(1).map((pkg, i) => (
-                        <PackageCard
-                          key={pkg.name}
-                          pkg={pkg}
-                          inView={inView1}
-                          i={i + 1}
-                          onBook={pkg.featured ? () => openBooking(pkg.name) : undefined}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded1 && (
-                <button
-                  onClick={() => setExpanded1(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {packages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <PackageCard pkg={pkg} inView={inView1} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 
@@ -314,7 +263,7 @@ export default function Services() {
               SEO i GEO wbudowane w każdą stronę
             </h3>
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
-              Każdą stronę budujemy tak, żeby Google ją rozumiał i żeby modele AI jak ChatGPT, Gemini czy Perplexity mogły ją cytować jako wiarygodne źródło. Nie dokładamy SEO na końcu, budujemy je od środka.
+              Każdą stronę robimy tak, żeby Google ją rozumiał, a ChatGPT, Gemini czy Perplexity chętnie się na Ciebie powoływały. SEO nie doklejamy na końcu — siedzi w środku od pierwszego dnia.
             </p>
 
             <AnimatePresence initial={false}>
@@ -421,31 +370,17 @@ export default function Services() {
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
-            <div className="flex flex-col gap-4 lg:hidden">
-              <AiCard ai={aiTypes[0]} inView={inView2} i={0} />
-              <AnimatePresence initial={false}>
-                {expanded2 && (
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.36, ease }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {aiTypes.slice(1).map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i + 1} />)}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {!expanded2 && (
-                <button
-                  onClick={() => setExpanded2(true)}
-                  className="w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+              {aiTypes.map((ai, i) => (
+                <motion.div
+                  key={ai.name}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -64 : 64 }}
+                  animate={inView2 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  Zobacz więcej
-                </button>
-              )}
+                  <AiCard ai={ai} inView={inView2} i={i} />
+                </motion.div>
+              ))}
             </div>
           </div>
 

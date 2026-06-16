@@ -83,10 +83,19 @@ export default function Contact() {
     setSubmitting(true)
     setSubmitError(false)
     try {
-      const response = await fetch('/api/inquiry', {
+      const response = await fetch('https://formsubmit.co/ajax/getbuild.pl@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          topic: formData.topic || 'Nie podano',
+          _subject: `Nowe zapytanie od ${formData.name} – ${formData.topic || 'Nie podano'}`,
+          _autoresponse: `Cześć ${formData.name}! Dziękujemy za kontakt. Otrzymaliśmy Twoją wiadomość i odezwiemy się wkrótce.\n\nZespół GetBuild`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
       })
       if (response.ok) {
         setSubmitted(true)

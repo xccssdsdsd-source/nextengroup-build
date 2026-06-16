@@ -5,38 +5,32 @@ const getNavOffset = () => {
   return Number.isFinite(parsed) ? parsed : 80
 }
 
-const smoothTo = (el: HTMLElement) => {
+const jumpTo = (el: HTMLElement) => {
   const top = el.getBoundingClientRect().top + window.scrollY - getNavOffset()
-  window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
+  window.scrollTo({ top: Math.max(top, 0), behavior: 'auto' })
 }
 
 export const scrollToSection = (id: string) => {
   if (typeof document === 'undefined') return
 
-  const existing = document.getElementById(id)
-  if (existing) {
-    smoothTo(existing)
-    return
-  }
+  window.dispatchEvent(new Event('getbuild:reveal'))
 
-  const maxSteps = 60
-  let step = 0
-
-  const tick = () => {
+  let frames = 0
+  const attempt = () => {
     const el = document.getElementById(id)
     if (el) {
-      requestAnimationFrame(() => smoothTo(el))
+      jumpTo(el)
+      let pins = 0
+      const pin = () => {
+        jumpTo(el)
+        if (pins++ < 24) requestAnimationFrame(pin)
+      }
+      requestAnimationFrame(pin)
       return
     }
-    if (step >= maxSteps || window.scrollY + window.innerHeight >= document.body.scrollHeight - 1) {
-      const fallback = document.getElementById(id)
-      if (fallback) smoothTo(fallback)
-      return
-    }
-    step += 1
-    window.scrollTo({ top: window.scrollY + window.innerHeight * 0.85, behavior: 'auto' })
-    setTimeout(tick, 70)
+    if (frames >= 40) return
+    frames += 1
+    requestAnimationFrame(attempt)
   }
-
-  tick()
+  requestAnimationFrame(attempt)
 }

@@ -17,7 +17,9 @@ export default function InView({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (typeof IntersectionObserver === 'undefined') { setShow(true); return }
+    const reveal = () => setShow(true)
+    window.addEventListener('getbuild:reveal', reveal)
+    if (typeof IntersectionObserver === 'undefined') { setShow(true); return () => window.removeEventListener('getbuild:reveal', reveal) }
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -28,7 +30,10 @@ export default function InView({
       { rootMargin },
     )
     io.observe(el)
-    return () => io.disconnect()
+    return () => {
+      window.removeEventListener('getbuild:reveal', reveal)
+      io.disconnect()
+    }
   }, [rootMargin])
 
   return (

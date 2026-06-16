@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { CONTACT, clientConfirmationEmail, ownerNotificationEmail } from '@/lib/emailTemplates'
 
-export const runtime = 'edge'
-
 const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
 /**

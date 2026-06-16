@@ -7,7 +7,7 @@ const getNavOffset = () => {
 
 const smoothTo = (el: HTMLElement) => {
   const top = el.getBoundingClientRect().top + window.scrollY - getNavOffset()
-  window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
+  window.scrollTo({ top: Math.max(top, 0), behavior: 'instant' })
 }
 
 export const scrollToSection = (id: string) => {

@@ -3,7 +3,7 @@ import { logoB64, igB64, fbB64 } from './assets'
 export const runtime = 'edge'
 
 const OWNER_EMAIL = 'getbuild.pl@gmail.com'
-const FROM = 'Getbuild <kontakt@getbuild.pl>'
+const FROM = 'Getbuild.pl <kontakt@getbuild.pl>'
 const IG = 'https://www.instagram.com/getbuild.pl/'
 const FB = 'https://www.facebook.com/profile.php?id=61588720012257'
 const SITE = 'https://getbuild.pl'
@@ -16,8 +16,8 @@ const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body styl
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
 <tr><td style="height:4px;background:linear-gradient(90deg,#22D3EE,#3B82F6);font-size:0;line-height:0;">&nbsp;</td></tr>
 <tr><td align="center" style="padding:40px 36px 0;">
-<img src="cid:logo" width="64" height="64" alt="Getbuild" style="display:block;border-radius:16px;" />
-<p style="margin:14px 0 0;font-family:Arial,sans-serif;font-size:18px;font-weight:800;letter-spacing:0.04em;color:#EAF0F7;">GETBUILD</p>
+<img src="cid:logo" width="64" height="64" alt="Getbuild.pl" style="display:block;border-radius:16px;" />
+<p style="margin:14px 0 0;font-family:Arial,sans-serif;font-size:18px;font-weight:800;letter-spacing:0.04em;color:#EAF0F7;">Getbuild.pl</p>
 </td></tr>
 <tr><td align="center" style="padding:28px 36px 0;">
 <div style="width:60px;height:60px;border-radius:999px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);text-align:center;line-height:60px;font-size:28px;color:#22D3EE;">&#10003;</div>
@@ -35,7 +35,7 @@ const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body styl
 </td></tr>
 <tr><td style="padding:36px 36px 0;"><div style="height:1px;background:rgba(255,255,255,0.06);font-size:0;line-height:0;">&nbsp;</div></td></tr>
 <tr><td align="center" style="padding:22px 36px 36px;">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;line-height:1.6;color:#7C879B;">Getbuild · <a href="${SITE}" style="color:#7C879B;text-decoration:underline;">getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
+<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;line-height:1.6;color:#7C879B;"><a href="${SITE}" style="color:#7C879B;text-decoration:underline;">Getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
 </td></tr>
 </table>
 </td></tr>
@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
     await send({
       from: FROM,
       to: [email],
-      subject: 'Dziękujemy za kontakt z Getbuild',
+      subject: 'Dziękujemy za kontakt z Getbuild.pl',
       html: clientEmail(name),
       attachments: [
         { filename: 'logo.png', content: logoB64, content_id: 'logo' },

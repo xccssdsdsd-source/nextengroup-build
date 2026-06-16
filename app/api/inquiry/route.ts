@@ -5,30 +5,36 @@ const OWNER_EMAIL = 'getbuild.pl@gmail.com'
 const FROM = 'Getbuild <kontakt@getbuild.pl>'
 const IG = 'https://www.instagram.com/getbuild.pl/'
 const FB = 'https://www.facebook.com/profile.php?id=61588720012257'
+const SITE = 'https://getbuild.pl'
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
 
 const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:32px 16px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:40px 16px;">
 <tr><td align="center">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;">
-<tr><td style="padding:36px 36px 8px;">
-<p style="margin:0 0 24px;font-family:'Syne',Arial,sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.02em;color:#EAF0F7;">GETBUILD</p>
-<div style="width:56px;height:56px;border-radius:999px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);text-align:center;line-height:56px;font-size:26px;color:#22D3EE;">&#10003;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+<tr><td style="height:4px;background:linear-gradient(90deg,#22D3EE,#3B82F6);font-size:0;line-height:0;">&nbsp;</td></tr>
+<tr><td align="center" style="padding:40px 36px 0;">
+<img src="${SITE}/getbuild-logo-og.png" width="64" height="64" alt="Getbuild" style="display:block;border-radius:16px;" />
+<p style="margin:14px 0 0;font-family:Arial,sans-serif;font-size:18px;font-weight:800;letter-spacing:0.04em;color:#EAF0F7;">GETBUILD</p>
 </td></tr>
-<tr><td style="padding:20px 36px 0;">
-<h1 style="margin:0 0 14px;font-family:'Syne',Arial,sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
-<p style="margin:0 0 14px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">Otrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej, jak to możliwe.</p>
-<p style="margin:0 0 28px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">W międzyczasie zapraszamy do obserwowania nas:</p>
+<tr><td align="center" style="padding:28px 36px 0;">
+<div style="width:60px;height:60px;border-radius:999px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);text-align:center;line-height:60px;font-size:28px;color:#22D3EE;">&#10003;</div>
 </td></tr>
-<tr><td style="padding:0 36px 36px;">
+<tr><td align="center" style="padding:22px 36px 0;">
+<h1 style="margin:0 0 14px;font-family:Arial,sans-serif;font-size:27px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
+<p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">Otrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej, jak to możliwe.</p>
+</td></tr>
+<tr><td align="center" style="padding:32px 36px 0;">
+<p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7C879B;">Obserwuj nas</p>
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="padding-right:10px;"><a href="${IG}" style="display:inline-block;padding:12px 22px;border-radius:12px;background:#22D3EE;color:#06121a;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-decoration:none;">Instagram</a></td>
-<td><a href="${FB}" style="display:inline-block;padding:12px 22px;border-radius:12px;border:1px solid rgba(255,255,255,0.14);color:#EAF0F7;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-decoration:none;">Facebook</a></td>
+<td style="padding:0 8px;"><a href="${IG}"><img src="${SITE}/ig-icon.png" width="48" height="48" alt="Instagram" style="display:block;border-radius:14px;" /></a></td>
+<td style="padding:0 8px;"><a href="${FB}"><img src="${SITE}/fb-icon.png" width="48" height="48" alt="Facebook" style="display:block;border-radius:14px;" /></a></td>
 </tr></table>
 </td></tr>
-<tr><td style="padding:22px 36px;border-top:1px solid rgba(255,255,255,0.06);">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;line-height:1.6;color:#7C879B;">Getbuild · getbuild.pl · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
+<tr><td style="padding:36px 36px 0;"><div style="height:1px;background:rgba(255,255,255,0.06);font-size:0;line-height:0;">&nbsp;</div></td></tr>
+<tr><td align="center" style="padding:22px 36px 36px;">
+<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;line-height:1.6;color:#7C879B;">Getbuild · <a href="${SITE}" style="color:#7C879B;text-decoration:underline;">getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
 </td></tr>
 </table>
 </td></tr>

@@ -1,5 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+
+export const runtime = 'edge'
+
+async function sendEmail(apiKey: string, payload: {
+  from: string
+  to: string
+  replyTo?: string
+  subject: string
+  html: string
+}) {
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: payload.from,
+      to: [payload.to],
+      reply_to: payload.replyTo,
+      subject: payload.subject,
+      html: payload.html,
+    }),
+  })
+  if (!res.ok) {
+    const body = await res.text()
+    throw new Error(`Resend API error ${res.status}: ${body}`)
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,28 +37,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Brakuje wymaganych pól' }, { status: 400 })
     }
 
-    const smtpUser = process.env.SMTP_USER
-    const smtpPassword = process.env.SMTP_PASSWORD
+    const apiKey = process.env.RESEND_API_KEY
     const businessEmail = process.env.BUSINESS_EMAIL || 'getbuild.pl@gmail.com'
+    const fromEmail = process.env.FROM_EMAIL || 'GetBuild <noreply@getbuild.pl>'
 
-    if (!smtpUser || !smtpPassword) {
-      console.error('SMTP credentials not configured')
+    if (!apiKey) {
+      console.error('RESEND_API_KEY not configured')
       return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
     }
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: smtpUser,
-        pass: smtpPassword,
-      },
-    })
-
     const topicLabel = topic || 'Nie podano'
+    const safeMessage = message.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
     // Powiadomienie do firmy
-    await transporter.sendMail({
-      from: `"GetBuild" <${smtpUser}>`,
+    await sendEmail(apiKey, {
+      from: fromEmail,
       to: businessEmail,
       replyTo: email,
       subject: `Nowe zapytanie od ${name} – ${topicLabel}`,
@@ -59,7 +80,7 @@ export async function POST(req: NextRequest) {
               </table>
               <div style="margin-top: 24px;">
                 <p style="font-weight: bold; color: #555; margin-bottom: 8px;">Wiadomość:</p>
-                <div style="background: #f8f8f8; border-left: 4px solid #22D3EE; padding: 16px; border-radius: 4px; color: #333; white-space: pre-wrap;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                <div style="background: #f8f8f8; border-left: 4px solid #22D3EE; padding: 16px; border-radius: 4px; color: #333; white-space: pre-wrap;">${safeMessage}</div>
               </div>
             </div>
           </div>
@@ -69,8 +90,8 @@ export async function POST(req: NextRequest) {
     })
 
     // Potwierdzenie do klienta
-    await transporter.sendMail({
-      from: `"GetBuild" <${smtpUser}>`,
+    await sendEmail(apiKey, {
+      from: fromEmail,
       to: email,
       subject: 'Dziękujemy za wiadomość – GetBuild',
       html: `
@@ -82,13 +103,13 @@ export async function POST(req: NextRequest) {
               <h1 style="color: #22D3EE; margin: 0; font-size: 22px;">GetBuild</h1>
             </div>
             <div style="padding: 32px;">
-              <h2 style="color: #111; margin-top: 0;">Cześć, ${name}! 👋</h2>
-              <p style="color: #555; line-height: 1.7;">Dziękujemy za kontakt. Otrzymaliśmy Twoją wiadomość i odezwiemy się do Ciebie tak szybko jak to możliwe – zazwyczaj w ciągu 24 godzin roboczych.</p>
+              <h2 style="color: #111; margin-top: 0;">Czesc, ${name}!</h2>
+              <p style="color: #555; line-height: 1.7;">Dziekujemy za kontakt. Otrzymalismy Twoja wiadomosc i odezwiemy sie do Ciebie tak szybko jak to mozliwe – zazwyczaj w ciagu 24 godzin roboczych.</p>
               <div style="background: #f8f8f8; border-radius: 8px; padding: 20px; margin: 24px 0;">
                 <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">Twoje zapytanie dotyczy: <span style="color: #22D3EE;">${topicLabel}</span></p>
-                <p style="margin: 0; color: #555; font-style: italic; white-space: pre-wrap;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                <p style="margin: 0; color: #555; font-style: italic; white-space: pre-wrap;">${safeMessage}</p>
               </div>
-              <p style="color: #555; line-height: 1.7;">Jeśli masz pilną sprawę, możesz napisać do nas bezpośrednio na <a href="mailto:${businessEmail}" style="color: #22D3EE;">${businessEmail}</a></p>
+              <p style="color: #555; line-height: 1.7;">Jesli masz pilna sprawe, mozesz napisac do nas bezposrednio na <a href="mailto:${businessEmail}" style="color: #22D3EE;">${businessEmail}</a></p>
               <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;">
               <p style="color: #999; font-size: 12px; margin: 0;">GetBuild – Strony WWW, Automatyzacja, Agenci AI</p>
             </div>
@@ -101,6 +122,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Email sending error:', error)
-    return NextResponse.json({ error: 'Wysyłka emaila nie powiodła się' }, { status: 500 })
+    return NextResponse.json({ error: 'Wysylka emaila nie powiodla sie' }, { status: 500 })
   }
 }

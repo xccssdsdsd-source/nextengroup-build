@@ -1,7 +1,8 @@
 ﻿'use client'
 
 import { m, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, type FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import dynamic from 'next/dynamic'
@@ -41,6 +42,9 @@ export default function Contact() {
   const calendlyRef = useRef<HTMLDivElement>(null)
   const [showCalendly, setShowCalendly] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     if (!showCalendly) return
@@ -75,7 +79,23 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const autoResponse = 'Dziękujemy za kontakt z Getbuild!\n\nOtrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej, jak to możliwe.\n\nW międzyczasie zapraszamy do obserwowania nas:\nInstagram: https://www.instagram.com/getbuild.pl/\nFacebook: https://www.facebook.com/profile.php?id=61588720012257\n\nPozdrawiamy,\nZespół Getbuild\ngetbuild.pl'
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSending(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) throw new Error('failed')
+      router.push('/dziekujemy')
+    } catch {
+      setError(true)
+      setSending(false)
+    }
+  }
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
@@ -203,12 +223,7 @@ export default function Contact() {
                   </div>
 
                   <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
-                    <form action="https://formsubmit.co/getbuild.pl@gmail.com" method="POST" className="space-y-4">
-                      <input type="hidden" name="_subject" value="Nowe zapytanie ze strony getbuild.pl" />
-                      <input type="hidden" name="_template" value="table" />
-                      <input type="hidden" name="_autoresponse" value={autoResponse} />
-                      <input type="hidden" name="_next" value="https://getbuild.pl/dziekujemy" />
-                      <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                           <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Imię i nazwisko *</label>
                           <input
@@ -251,7 +266,8 @@ export default function Contact() {
                           />
                         </div>
 
-                        <button type="submit" className="w-full btn btn-primary py-3 font-semibold">Wyślij wiadomość</button>
+                        {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}
+                        <button type="submit" disabled={sending} className="w-full btn btn-primary py-3 font-semibold disabled:opacity-60 disabled:cursor-not-allowed">{sending ? 'Wysyłanie…' : 'Wyślij wiadomość'}</button>
                     </form>
                   </div>
                 </div>

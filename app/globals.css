@@ -50,7 +50,7 @@ body::-webkit-scrollbar,
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: var(--nav-h);
   -webkit-text-size-adjust: 100%;
 }

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { logoB64, igB64, fbB64 } from './assets'
 export const runtime = 'edge'
 
 const OWNER_EMAIL = 'getbuild.pl@gmail.com'
@@ -15,7 +16,7 @@ const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body styl
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
 <tr><td style="height:4px;background:linear-gradient(90deg,#22D3EE,#3B82F6);font-size:0;line-height:0;">&nbsp;</td></tr>
 <tr><td align="center" style="padding:40px 36px 0;">
-<img src="${SITE}/getbuild-logo-og.png" width="64" height="64" alt="Getbuild" style="display:block;border-radius:16px;" />
+<img src="cid:logo" width="64" height="64" alt="Getbuild" style="display:block;border-radius:16px;" />
 <p style="margin:14px 0 0;font-family:Arial,sans-serif;font-size:18px;font-weight:800;letter-spacing:0.04em;color:#EAF0F7;">GETBUILD</p>
 </td></tr>
 <tr><td align="center" style="padding:28px 36px 0;">
@@ -28,8 +29,8 @@ const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body styl
 <tr><td align="center" style="padding:32px 36px 0;">
 <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7C879B;">Obserwuj nas</p>
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="padding:0 8px;"><a href="${IG}"><img src="${SITE}/ig-icon.png" width="48" height="48" alt="Instagram" style="display:block;border-radius:14px;" /></a></td>
-<td style="padding:0 8px;"><a href="${FB}"><img src="${SITE}/fb-icon.png" width="48" height="48" alt="Facebook" style="display:block;border-radius:14px;" /></a></td>
+<td style="padding:0 8px;"><a href="${IG}"><img src="cid:ig" width="48" height="48" alt="Instagram" style="display:block;border-radius:14px;" /></a></td>
+<td style="padding:0 8px;"><a href="${FB}"><img src="cid:fb" width="48" height="48" alt="Facebook" style="display:block;border-radius:14px;" /></a></td>
 </tr></table>
 </td></tr>
 <tr><td style="padding:36px 36px 0;"><div style="height:1px;background:rgba(255,255,255,0.06);font-size:0;line-height:0;">&nbsp;</div></td></tr>
@@ -100,6 +101,11 @@ export async function POST(req: NextRequest) {
       to: [email],
       subject: 'Dziękujemy za kontakt z Getbuild',
       html: clientEmail(name),
+      attachments: [
+        { filename: 'logo.png', content: logoB64, content_id: 'logo' },
+        { filename: 'instagram.png', content: igB64, content_id: 'ig' },
+        { filename: 'facebook.png', content: fbB64, content_id: 'fb' },
+      ],
     })
 
     return NextResponse.json({ success: true })

@@ -42,6 +42,8 @@ export default function Contact() {
   const [showCalendly, setShowCalendly] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (!showCalendly) return
@@ -78,6 +80,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSending(true)
+    setError('')
     try {
       const response = await fetch('/api/inquiry', {
         method: 'POST',
@@ -85,18 +89,17 @@ export default function Contact() {
         body: JSON.stringify(formData),
       })
       if (response.ok) {
-        const data = await response.json()
         setSubmitted(true)
         setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => {
-          if (data.redirectUrl) {
-            window.open(data.redirectUrl, '_blank')
-          }
-          setSubmitted(false)
-        }, 2000)
+      } else {
+        const data = await response.json().catch(() => null)
+        setError(data?.error || 'Nie udało się wysłać wiadomości. Spróbuj ponownie.')
       }
-    } catch (error) {
-      console.error('Form submission failed:', error)
+    } catch (err) {
+      console.error('Form submission failed:', err)
+      setError('Wystąpił błąd połączenia. Spróbuj ponownie.')
+    } finally {
+      setSending(false)
     }
   }
 
@@ -230,7 +233,7 @@ export default function Contact() {
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
                         <h3 className="text-lg font-bold text-[#EAF0F7] mb-2">Dziękujemy!</h3>
-                        <p className="text-[14px] text-[#A6B2C4]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+                        <p className="text-[14px] text-[#A6B2C4]">Otrzymaliśmy Twoją wiadomość. Potwierdzenie wysłaliśmy na Twój e-mail — odezwiemy się wkrótce.</p>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
@@ -276,7 +279,17 @@ export default function Contact() {
                           />
                         </div>
 
-                        <button type="submit" className="w-full btn btn-primary py-3 font-semibold">Wyślij wiadomość</button>
+                        {error && (
+                          <p className="text-[13px] text-red-400" role="alert" aria-live="assertive">{error}</p>
+                        )}
+
+                        <button
+                          type="submit"
+                          disabled={sending}
+                          className="w-full btn btn-primary py-3 font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                          {sending ? 'Wysyłanie…' : 'Wyślij wiadomość'}
+                        </button>
                       </form>
                     )}
                   </div>

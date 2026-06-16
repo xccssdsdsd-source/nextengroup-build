@@ -131,60 +131,9 @@ export default function GSAPAnimations() {
           })
         })
 
-        /* ── 3D CARD TILT ── */
-        mm.add('(min-width: 769px)', () => {
-          const tiltCards = document.querySelectorAll('.value-card, .realizacja-card, [data-tilt-card]')
-          tiltCards.forEach((card) => {
-            const el = card as HTMLElement
-            let glare = el.querySelector<HTMLElement>('.tilt-glare')
-            if (!glare) {
-              glare = document.createElement('div')
-              glare.className = 'tilt-glare'
-              glare.style.cssText = 'position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%);opacity:0;z-index:1;'
-              el.style.position = 'relative'
-              el.appendChild(glare)
-            }
-
-            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.12, ease: 'none' })
-            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.12, ease: 'none' })
-
-            const onMove = (e: MouseEvent) => {
-              const rect = el.getBoundingClientRect()
-              rotX(-((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 7)
-              rotY(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 7)
-              if (glare) {
-                glare.style.background = `radial-gradient(circle at ${((e.clientX - rect.left) / rect.width) * 100}% ${((e.clientY - rect.top) / rect.height) * 100}%, rgba(255,255,255,0.10) 0%, transparent 60%)`
-                glare.style.opacity = '1'
-              }
-            }
-            const onLeave = () => {
-              gsap.to(el, { rotationX: 0, rotationY: 0, duration: 0.55, ease: 'power2.out', onComplete: () => gsap.set(el, { clearProps: 'rotationX,rotationY' }) })
-              if (glare) gsap.to(glare, { opacity: 0, duration: 0.3 })
-            }
-            el.addEventListener('mousemove', onMove)
-            el.addEventListener('mouseleave', onLeave)
-            return () => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave) }
-          })
-        })
-
-        /* ── MAGNETIC BUTTONS ── */
-        mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
-          const cleanups: Array<() => void> = []
-          document.querySelectorAll<HTMLElement>('.btn-primary, [data-magnetic]').forEach((btn) => {
-            const moveX = gsap.quickTo(btn, 'x', { duration: 0.2, ease: 'power2.out' })
-            const moveY = gsap.quickTo(btn, 'y', { duration: 0.2, ease: 'power2.out' })
-            const onMove = (e: MouseEvent) => {
-              const rect = btn.getBoundingClientRect()
-              moveX(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 8)
-              moveY(((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 8)
-            }
-            const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'elastic.out(1, 0.4)' })
-            btn.addEventListener('mousemove', onMove)
-            btn.addEventListener('mouseleave', onLeave)
-            cleanups.push(() => { btn.removeEventListener('mousemove', onMove); btn.removeEventListener('mouseleave', onLeave) })
-          })
-          return () => cleanups.forEach((fn) => fn())
-        })
+        /* ── 3D card tilt and magnetic buttons removed: floaty cursor-follow +
+           elastic spring-back made buttons/cards feel laggy ("slow motion").
+           Buttons now respond instantly via the CSS :hover/:active states. ── */
       })
     }
 

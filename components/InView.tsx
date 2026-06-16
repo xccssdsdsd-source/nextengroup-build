@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { MOUNT_ALL_EVENT } from '@/lib/scrollToSection'
 
 export default function InView({
   children,
@@ -28,7 +29,13 @@ export default function InView({
       { rootMargin },
     )
     io.observe(el)
-    return () => io.disconnect()
+    // Mount immediately when an anchor jump needs this section in the DOM.
+    const forceMount = () => { setShow(true); io.disconnect() }
+    window.addEventListener(MOUNT_ALL_EVENT, forceMount)
+    return () => {
+      io.disconnect()
+      window.removeEventListener(MOUNT_ALL_EVENT, forceMount)
+    }
   }, [rootMargin])
 
   return (

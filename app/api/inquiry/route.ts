@@ -4,6 +4,20 @@ export const runtime = 'edge'
 
 const OWNER_EMAIL = 'getbuild.pl@gmail.com'
 const FROM = 'Getbuild.pl <kontakt@getbuild.pl>'
+// Resend's shared, always-verified sender. Used as a fallback so the business
+// still receives the lead even if the getbuild.pl domain isn't verified yet.
+const FROM_FALLBACK = 'Getbuild.pl <onboarding@resend.dev>'
+
+// The Resend API key. Read a few common variable names so a slightly
+// differently named secret in the host (e.g. Cloudflare) still works.
+const getApiKey = () =>
+  process.env.RESEND_API_KEY ||
+  process.env.RESEND_KEY ||
+  process.env.RESEND ||
+  process.env.RISEN_API_KEY ||
+  ''
+
+const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s)
 const IG = 'https://www.instagram.com/getbuild.pl/'
 const FB = 'https://www.facebook.com/profile.php?id=61588720012257'
 const SITE = 'https://getbuild.pl'
@@ -66,13 +80,21 @@ const ownerEmail = (name: string, email: string, message: string) => `<!doctype 
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json()
+    const body = await req.json().catch(() => null)
+    const name = typeof body?.name === 'string' ? body.name.trim() : ''
+    const email = typeof body?.email === 'string' ? body.email.trim() : ''
+    const message = typeof body?.message === 'string' ? body.message.trim() : ''
+
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
+    if (!isEmail(email)) {
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
+    }
 
-    const apiKey = process.env.RESEND_API_KEY
+    const apiKey = getApiKey()
     if (!apiKey) {
+      console.error('[inquiry] RESEND_API_KEY is not set in the environment')
       return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
     }
 
@@ -83,33 +105,54 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify(payload),
       })
 
-    const ownerRes = await send({
-      from: FROM,
+    // Deliver the lead to the business. If the branded domain isn't verified
+    // in Resend yet, retry from the always-verified resend.dev sender so the
+    // inquiry is never lost while domain verification is still pending.
+    const ownerPayload = (from: string) => ({
+      from,
       to: [OWNER_EMAIL],
       reply_to: email,
       subject: `Nowe zapytanie od ${name}`,
       html: ownerEmail(name, email, message),
     })
 
+    let ownerRes = await send(ownerPayload(FROM))
     if (!ownerRes.ok) {
       const detail = await ownerRes.text()
-      return NextResponse.json({ error: 'Send failed', detail }, { status: 502 })
+      console.error('[inquiry] owner send failed from', FROM, '-', ownerRes.status, detail)
+      ownerRes = await send(ownerPayload(FROM_FALLBACK))
+      if (!ownerRes.ok) {
+        const fallbackDetail = await ownerRes.text()
+        console.error('[inquiry] owner send failed from fallback -', ownerRes.status, fallbackDetail)
+        return NextResponse.json({ error: 'Send failed', detail: fallbackDetail }, { status: 502 })
+      }
     }
 
-    await send({
-      from: FROM,
-      to: [email],
-      subject: 'Dziękujemy za kontakt z Getbuild.pl',
-      html: clientEmail(name),
-      attachments: [
-        { filename: 'logo.png', content: logoB64, content_id: 'logo' },
-        { filename: 'instagram.png', content: igB64, content_id: 'ig' },
-        { filename: 'facebook.png', content: fbB64, content_id: 'fb' },
-      ],
-    })
+    // Confirmation to the visitor — best effort. A failure here (e.g. domain
+    // not verified, so Resend only allows sending to the account owner) must
+    // not fail the request: the lead has already reached the business.
+    try {
+      const confirmRes = await send({
+        from: FROM,
+        to: [email],
+        subject: 'Dziękujemy za kontakt z Getbuild.pl',
+        html: clientEmail(name),
+        attachments: [
+          { filename: 'logo.png', content: logoB64, content_id: 'logo' },
+          { filename: 'instagram.png', content: igB64, content_id: 'ig' },
+          { filename: 'facebook.png', content: fbB64, content_id: 'fb' },
+        ],
+      })
+      if (!confirmRes.ok) {
+        console.error('[inquiry] client confirmation failed -', confirmRes.status, await confirmRes.text())
+      }
+    } catch (err) {
+      console.error('[inquiry] client confirmation threw', err)
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('[inquiry] internal error', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

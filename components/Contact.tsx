@@ -41,7 +41,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
   const [showCalendly, setShowCalendly] = useState(false)
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
   const router = useRouter()
@@ -74,6 +74,8 @@ export default function Contact() {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
+
+  const subjects = ['Strona internetowa', 'Sklep online', 'SEO', 'Agenci AI', 'Automatyzacje AI', 'Inne']
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -250,6 +252,26 @@ export default function Contact() {
                             placeholder="jan@example.com"
                             className="form-input"
                           />
+                        </div>
+
+                        <div>
+                          <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Czego dotyczy wiadomość?</label>
+                          <div className="flex flex-wrap gap-2">
+                            {subjects.map((s) => (
+                              <button
+                                key={s}
+                                type="button"
+                                onClick={() => setFormData({ ...formData, subject: formData.subject === s ? '' : s })}
+                                className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                                  formData.subject === s
+                                    ? 'border-[#22D3EE] bg-[rgba(34,211,238,0.15)] text-[#22D3EE]'
+                                    : 'border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'
+                                }`}
+                              >
+                                {s}
+                              </button>
+                            ))}
+                          </div>
                         </div>
 
                         <div>

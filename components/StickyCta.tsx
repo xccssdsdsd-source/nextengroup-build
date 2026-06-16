@@ -21,9 +21,9 @@ export default function StickyCta() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Umów 15 min rozmowę"
-          initial={{ opacity: 0, y: 20, scale: 0.88 }}
+          initial={{ opacity: 0, y: 14, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.88 }}
+          exit={{ opacity: 0, y: 14, scale: 0.92 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           whileHover={{ y: -4, scale: 1.03 }}
           whileTap={{ scale: 0.95 }}

@@ -153,6 +153,13 @@ export default function Portfolio() {
 
   useEffect(() => { setBodyExpanded(false) }, [currentIndex])
 
+  const [showSwipeHint, setShowSwipeHint] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowSwipeHint(false), 2800)
+    return () => clearTimeout(t)
+  }, [])
+
   const touchStartX = useRef(0)
   const touchStartY = useRef(0)
   const isSwiping = useRef(false)
@@ -182,6 +189,7 @@ export default function Portfolio() {
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current
     if (isSwiping.current && Math.abs(dx) > 50) {
+      setShowSwipeHint(false)
       if (dx < 0) nextProject()
       else prevProject()
     } else {
@@ -315,41 +323,59 @@ export default function Portfolio() {
             </AnimatePresence>
           </div>
 
-          {/* Mobile nav — dots + arrows */}
-          <div className="mt-5 flex justify-center items-center gap-4 sm:hidden">
-            <m.button
-              onClick={prevProject}
-              whileTap={{ scale: 0.9 }}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
-              aria-label="Poprzednia realizacja"
-            >
-              <ChevronLeft size={20} strokeWidth={2.5} />
-            </m.button>
+          {/* Mobile nav — hint + dots + arrows */}
+          <div className="mt-4 flex flex-col items-center gap-3 sm:hidden">
+            <AnimatePresence>
+              {showSwipeHint && (
+                <m.p
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center gap-1.5 text-[11px] text-[#7C879B] select-none"
+                >
+                  <ChevronLeft size={11} strokeWidth={2.5} />
+                  <span>Przesuń, by zobaczyć kolejną realizację</span>
+                  <ChevronRight size={11} strokeWidth={2.5} />
+                </m.p>
+              )}
+            </AnimatePresence>
 
-            <div className="flex items-center gap-2">
-              {projects.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
-                  className="relative rounded-full focus-visible:outline-none transition-all duration-300"
-                  style={{
-                    width: i === currentIndex ? 22 : 7,
-                    height: 7,
-                    background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
-                  }}
-                  aria-label={`Realizacja ${i + 1}`}
-                />
-              ))}
+            <div className="flex justify-center items-center gap-4">
+              <m.button
+                onClick={prevProject}
+                whileTap={{ scale: 0.9 }}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 active:scale-95"
+                aria-label="Poprzednia realizacja"
+              >
+                <ChevronLeft size={22} strokeWidth={2.5} />
+              </m.button>
+
+              <div className="flex items-center gap-2">
+                {projects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setShowSwipeHint(false); setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
+                    className="relative rounded-full focus-visible:outline-none transition-all duration-300"
+                    style={{
+                      width: i === currentIndex ? 22 : 8,
+                      height: 8,
+                      background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
+                    }}
+                    aria-label={`Realizacja ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <m.button
+                onClick={nextProject}
+                whileTap={{ scale: 0.9 }}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 active:scale-95"
+                aria-label="Następna realizacja"
+              >
+                <ChevronRight size={22} strokeWidth={2.5} />
+              </m.button>
             </div>
-
-            <m.button
-              onClick={nextProject}
-              whileTap={{ scale: 0.9 }}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] active:scale-95"
-              aria-label="Następna realizacja"
-            >
-              <ChevronRight size={20} strokeWidth={2.5} />
-            </m.button>
           </div>
         </m.div>
 

@@ -307,7 +307,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 <div
                   ref={calendlyRef}
                   className="w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.06)]"
-                  style={{ minHeight: '580px' }}
+                  style={{ minHeight: 'clamp(400px, 70vh, 580px)' }}
                 />
               </m.div>
             )}

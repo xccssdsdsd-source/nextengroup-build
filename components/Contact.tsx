@@ -40,8 +40,10 @@ export default function Contact() {
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
   const [showCalendly, setShowCalendly] = useState(false)
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', topic: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     if (!showCalendly) return
@@ -78,6 +80,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitting(true)
+    setSubmitError(false)
     try {
       const response = await fetch('/api/inquiry', {
         method: 'POST',
@@ -85,18 +89,15 @@ export default function Contact() {
         body: JSON.stringify(formData),
       })
       if (response.ok) {
-        const data = await response.json()
         setSubmitted(true)
-        setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => {
-          if (data.redirectUrl) {
-            window.open(data.redirectUrl, '_blank')
-          }
-          setSubmitted(false)
-        }, 2000)
+        setFormData({ name: '', email: '', topic: '', message: '' })
+      } else {
+        setSubmitError(true)
       }
-    } catch (error) {
-      console.error('Form submission failed:', error)
+    } catch {
+      setSubmitError(true)
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -230,7 +231,7 @@ export default function Contact() {
                       <div className="text-center py-8" role="alert" aria-live="polite">
                         <div className="mb-4 text-4xl" aria-hidden="true">✓</div>
                         <h3 className="text-lg font-bold text-[#EAF0F7] mb-2">Dziękujemy!</h3>
-                        <p className="text-[14px] text-[#A6B2C4]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce.</p>
+                        <p className="text-[14px] text-[#A6B2C4]">Otrzymaliśmy Twoją wiadomość. Skontaktujemy się wkrótce. Sprawdź swoją skrzynkę – wysłaliśmy Ci potwierdzenie.</p>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-4">
@@ -263,6 +264,26 @@ export default function Contact() {
                         </div>
 
                         <div>
+                          <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Czego dotyczy zapytanie?</label>
+                          <div className="flex flex-wrap gap-2">
+                            {['Strona WWW', 'Automatyzacja', 'Agenci AI', 'Konsultacja', 'Coś innego'].map((t) => (
+                              <button
+                                key={t}
+                                type="button"
+                                onClick={() => setFormData({ ...formData, topic: formData.topic === t ? '' : t })}
+                                className={`px-3 py-1.5 rounded-full text-[12px] font-semibold border transition-all duration-150 ${
+                                  formData.topic === t
+                                    ? 'bg-[#22D3EE] border-[#22D3EE] text-[#0F1520]'
+                                    : 'bg-transparent border-[rgba(255,255,255,0.15)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'
+                                }`}
+                              >
+                                {t}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
                           <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
                           <textarea
                             id="message"
@@ -276,7 +297,17 @@ export default function Contact() {
                           />
                         </div>
 
-                        <button type="submit" className="w-full btn btn-primary py-3 font-semibold">Wyślij wiadomość</button>
+                        {submitError && (
+                          <p className="text-[13px] text-red-400 text-center">Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na getbuild.pl@gmail.com</p>
+                        )}
+
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="w-full btn btn-primary py-3 font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                          {submitting ? 'Wysyłanie...' : 'Wyślij wiadomość'}
+                        </button>
                       </form>
                     )}
                   </div>

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/getbuild-logo-og.png`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [`${siteUrl}/getbuild-logo-og.png`],
+    images: [`${siteUrl}/api/og`],
   },
   icons: {
     icon: '/favicon.ico',

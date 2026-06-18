@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/getbuild-logo-og.png`,
+        url: `${siteUrl}/api/og?title=${encodeURIComponent('Automatyzacje AI dla Firm')}`,
         width: 1200,
         height: 630,
         alt: 'Automatyzacje AI dla Firm | Getbuild',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
     description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
-    images: [`${siteUrl}/getbuild-logo-og.png`],
+    images: [`${siteUrl}/api/og?title=${encodeURIComponent('Automatyzacje AI dla Firm')}`],
   },
 }
 

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/getbuild-logo-og.png`,
+        url: `${siteUrl}/api/og?title=${encodeURIComponent('Wiedza o AI dla Biznesu')}`,
         width: 1200,
         height: 630,
         alt: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Automatyzacja AI i agenci AI — Wiedza dla firm | Getbuild',
     description: 'Praktyczne wyjaśnienia: czym jest automatyzacja AI, agent AI, ile kosztuje wdrożenie.',
-    images: [`${siteUrl}/getbuild-logo-og.png`],
+    images: [`${siteUrl}/api/og?title=${encodeURIComponent('Wiedza o AI dla Biznesu')}`],
   },
 }
 

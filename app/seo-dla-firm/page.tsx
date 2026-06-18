@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: `https://getbuild.pl/api/og?title=${encodeURIComponent('SEO i GEO dla Firm')}`,
         width: 1200,
         height: 630,
         alt: 'SEO dla firm B2B w Polsce | Getbuild',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SEO i GEO dla firm B2B w Polsce | Getbuild - Pozycjonowanie w Google i AI',
     description: 'Pozycjonowanie firm B2B w Google i wyszukiwarkach AI. Strategie SEO i GEO (Generative Engine Optimization).',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    images: [`https://getbuild.pl/api/og?title=${encodeURIComponent('SEO i GEO dla Firm')}`],
   },
 }
 

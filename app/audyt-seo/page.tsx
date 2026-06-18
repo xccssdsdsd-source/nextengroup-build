@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: `https://getbuild.pl/api/og?title=${encodeURIComponent('Bezpłatny Audyt SEO')}`,
         width: 1200,
         height: 630,
         alt: 'Bezpłatny audyt SEO dla firm B2B | Getbuild',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Bezpłatny audyt SEO dla firm B2B | Getbuild',
     description: 'Darmowy audyt SEO Twojej strony internetowej. Kompleksowa analiza SEO.',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    images: [`https://getbuild.pl/api/og?title=${encodeURIComponent('Bezpłatny Audyt SEO')}`],
   },
 }
 

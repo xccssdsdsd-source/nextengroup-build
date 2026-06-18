@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: `https://getbuild.pl/api/og?title=${encodeURIComponent('Strony Internetowe dla Firm B2B')}`,
         width: 1200,
         height: 630,
         alt: 'Strony internetowe dla firm B2B | Getbuild',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Strony internetowe dla firm B2B | Getbuild - Profesjonalne projekty',
     description: 'Tworzymy profesjonalne strony WWW dla firm B2B, producentów i dostawców usług.',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    images: [`https://getbuild.pl/api/og?title=${encodeURIComponent('Strony Internetowe dla Firm B2B')}`],
   },
 }
 

@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Getbuild',
       images: [
         {
-          url: `${siteUrl}/getbuild-logo-og.png`,
+          url: `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}`,
           width: 1200,
           height: 630,
           alt: article.title,
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${article.title} | Blog Getbuild`,
       description: article.excerpt,
-      images: [`${siteUrl}/getbuild-logo-og.png`],
+      images: [`${siteUrl}/api/og?title=${encodeURIComponent(article.title)}`],
     },
   }
 }

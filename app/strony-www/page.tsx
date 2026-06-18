@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/logo-opt.png`,
+        url: `${siteUrl}/api/og?title=${encodeURIComponent('Strony WWW dla Firm')}`,
         width: 1200,
         height: 630,
         alt: 'Strony WWW dla Firm | Getbuild',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Strony WWW dla Firm | Nowoczesne Strony Internetowe | Getbuild',
     description: 'Tworzymy profesjonalne strony internetowe dla małych i średnich firm. Szybkie, responsywne, zoptymalizowane pod SEO.',
-    images: [`${siteUrl}/logo-opt.png`],
+    images: [`${siteUrl}/api/og?title=${encodeURIComponent('Strony WWW dla Firm')}`],
   },
 }
 

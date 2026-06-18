@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: `${siteUrl}/getbuild-logo-og.png`,
+        url: `${siteUrl}/api/og?title=${encodeURIComponent('Agenci AI dla Firm')}`,
         width: 1200,
         height: 630,
         alt: 'Agenci AI dla Firm | Getbuild',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
     description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
-    images: [`${siteUrl}/getbuild-logo-og.png`],
+    images: [`${siteUrl}/api/og?title=${encodeURIComponent('Agenci AI dla Firm')}`],
   },
 }
 

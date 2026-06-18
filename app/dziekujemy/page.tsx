@@ -36,12 +36,12 @@ export default function Dziekujemy() {
             Otrzymaliśmy Twoje zapytanie. Wysłaliśmy też potwierdzenie na Twój adres e-mail.
           </p>
           <p className="text-[15px] sm:text-[16px] leading-[1.7] text-[#A6B2C4]">
-            Odezwiemy się najszybciej, jak to możliwe.
+            Odezwiemy się w ciągu <span className="text-[#22D3EE] font-semibold">24 godzin</span> w dni robocze.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/realizacje" className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm">Zobacz nasze realizacje</a>
             <a href="/" className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm">← Strona główna</a>
-            <a href="https://www.instagram.com/getbuild.pl/" target="_blank" rel="noopener noreferrer" className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm">Obserwuj nas na Instagramie</a>
           </div>
         </div>
       </section>

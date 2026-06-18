@@ -211,7 +211,7 @@ export default function Contact() {
                     Umów spotkanie w dogodnym dla Ciebie czasie
                   </m.button>
                 ) : (
-                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '500px' }} />
+                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '700px', height: '700px' }} />
                 )}
               </div>
 

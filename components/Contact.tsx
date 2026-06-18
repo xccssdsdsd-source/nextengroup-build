@@ -44,6 +44,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
+  const [gdprAccepted, setGdprAccepted] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -195,103 +196,126 @@ export default function Contact() {
           </div>
 
           <div className="w-full flex-1 min-w-0 flex flex-col">
-            <div className="text-center mb-8">
-              <h3 className="text-[18px] sm:text-[20px] font-bold text-[#EAF0F7] mb-3">Umów spotkanie lub wyślij zapytanie</h3>
-              <p className="text-[14px] text-[#A6B2C4]">Wybierz termin w kalendarzu lub skontaktuj się z nami bezpośrednio</p>
-            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-full max-w-xl">
+                <div className="mb-6">
+                  <h3 className="text-[18px] sm:text-[20px] font-bold text-[#EAF0F7] mb-2">Wyślij zapytanie</h3>
+                  <p className="text-[14px] text-[#A6B2C4]">Opisz swój projekt — odpiszemy w ciągu 24&nbsp;godzin.</p>
+                </div>
 
-            <div className="flex flex-col gap-8">
-              <div className="flex justify-center">
-                {!showCalendly ? (
-                  <m.button
-                    initial={false}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, delay: 0.2, ease }}
-                    onClick={() => setShowCalendly(true)}
-                    className="btn btn-primary px-8 py-4 font-semibold"
-                  >
-                    Umów spotkanie w dogodnym dla Ciebie czasie
-                  </m.button>
-                ) : (
-                  <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '500px' }} />
-                )}
-              </div>
+                <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Imię i nazwisko *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Jan Kowalski"
+                        className="form-input"
+                      />
+                    </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-full max-w-xl">
-                  <div className="text-center mb-6">
-                    <h4 className="text-[16px] font-bold text-[#EAF0F7] mb-2">Lub wyślij nam zapytanie</h4>
-                    <p className="text-[13px] text-[#A6B2C4]">Masz pytanie? Chętnie je czytamy. Odpowiemy tak szybko jak się da.</p>
-                  </div>
+                    <div>
+                      <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="jan@firma.pl"
+                        className="form-input"
+                      />
+                    </div>
 
-                  <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                          <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Imię i nazwisko *</label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            placeholder="Jan Kowalski"
-                            className="form-input"
-                          />
-                        </div>
+                    <div>
+                      <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Czego dotyczy wiadomość?</label>
+                      <div className="flex flex-wrap gap-2">
+                        {subjects.map((s) => (
+                          <button
+                            key={s}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, subject: formData.subject === s ? '' : s })}
+                            className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                              formData.subject === s
+                                ? 'border-[#22D3EE] bg-[rgba(34,211,238,0.15)] text-[#22D3EE]'
+                                : 'border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'
+                            }`}
+                          >
+                            {s}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
 
-                        <div>
-                          <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            placeholder="jan@example.com"
-                            className="form-input"
-                          />
-                        </div>
+                    <div>
+                      <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder="Opisz swój projekt lub pytanie w kilku zdaniach — im więcej szczegółów, tym lepiej dopasujemy rozwiązanie."
+                        rows={4}
+                        className="form-input resize-none"
+                      />
+                    </div>
 
-                        <div>
-                          <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Czego dotyczy wiadomość?</label>
-                          <div className="flex flex-wrap gap-2">
-                            {subjects.map((s) => (
-                              <button
-                                key={s}
-                                type="button"
-                                onClick={() => setFormData({ ...formData, subject: formData.subject === s ? '' : s })}
-                                className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
-                                  formData.subject === s
-                                    ? 'border-[#22D3EE] bg-[rgba(34,211,238,0.15)] text-[#22D3EE]'
-                                    : 'border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'
-                                }`}
-                              >
-                                {s}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="gdpr"
+                        checked={gdprAccepted}
+                        onChange={(e) => setGdprAccepted(e.target.checked)}
+                        required
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#22D3EE]"
+                      />
+                      <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
+                        Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z{' '}
+                        <a href="/polityka-prywatnosci" className="text-[#22D3EE] hover:text-[#5EEAFF] underline underline-offset-2 transition-colors">
+                          Polityką prywatności
+                        </a>
+                        . *
+                      </label>
+                    </div>
 
-                        <div>
-                          <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
-                          <textarea
-                            id="message"
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            placeholder="Twoja wiadomość..."
-                            rows={4}
-                            className="form-input resize-none"
-                          />
-                        </div>
+                    {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}
 
-                        {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}
-                        <button type="submit" disabled={sending} className="w-full btn btn-primary py-3 font-semibold disabled:opacity-60 disabled:cursor-not-allowed">{sending ? 'Wysyłanie…' : 'Wyślij wiadomość'}</button>
-                    </form>
-                  </div>
+                    <button
+                      type="submit"
+                      disabled={sending || !gdprAccepted}
+                      className="w-full btn btn-primary py-3 font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {sending ? 'Wysyłanie…' : 'Wyślij zapytanie'}
+                    </button>
+
+                    <p className="text-center text-[11px] text-[#7C879B]">
+                      Bez spamu. Bez zobowiązań. Odpowiadamy w&nbsp;ciągu 24&nbsp;h.
+                    </p>
+                  </form>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-[13px] text-[#7C879B] mb-3">Wolisz wybrać termin rozmowy?</p>
+                  {!showCalendly ? (
+                    <m.button
+                      initial={false}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.55, delay: 0.2, ease }}
+                      onClick={() => setShowCalendly(true)}
+                      className="btn btn-ghost px-6 py-3 text-sm font-semibold"
+                    >
+                      Umów spotkanie w kalendarzu
+                    </m.button>
+                  ) : (
+                    <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '500px' }} />
+                  )}
                 </div>
               </div>
             </div>

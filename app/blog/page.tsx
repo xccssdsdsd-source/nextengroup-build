@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: 'https://getbuild.pl/getbuild-logo-og.png',
         width: 1200,
         height: 630,
         alt: 'Blog Getbuild - Artykuły o SEO i stronach internetowych',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Blog | Getbuild - Artykuły o SEO i stronach internetowych',
     description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW i automatyzacjach AI.',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    images: ['https://getbuild.pl/getbuild-logo-og.png'],
   },
 }
 

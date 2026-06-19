@@ -104,7 +104,7 @@ A: Tak. Getbuild oferuje opiekę 24/7 — aktualizacje, poprawki i wsparcie tech
 Q: Czy Getbuild tworzy strony dla firm bez materiałów i zdjęć?
 A: Tak. Getbuild pomaga ułożyć treści na podstawie krótkiej rozmowy i korzysta z dobrej jakości zdjęć stockowych dopasowanych do branży.
 
-Q: Jakie technologie używa Getbuild do budowania stron?
+Q: Jakich technologii używa Getbuild do budowania stron?
 A: Getbuild buduje strony na Next.js (React), z hostingiem na Cloudflare Workers. Strony ładują się błyskawicznie i mają doskonałe wyniki Core Web Vitals.
 
 ### About AI Automations

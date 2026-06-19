@@ -116,20 +116,35 @@ export default function RootLayout({
           name: 'Getbuild',
           url: 'https://getbuild.pl',
           logo: 'https://getbuild.pl/getbuild-logo-og.png',
-          image: 'https://getbuild.pl/og-image.jpg',
+          image: 'https://getbuild.pl/getbuild-logo-og.png',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną. Oferujemy SEO i GEO (Generative Engine Optimization) — optymalizację widoczności w Google i wyszukiwarkach generatywnych AI.',
           email: 'getbuild.pl@gmail.com',
           areaServed: {
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: 'od 39 zł/miesiąc',
+          priceRange: '39–3999 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',
             addressRegion: 'Trójmiasto',
             addressCountry: 'PL',
           },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5',
+            reviewCount: '1',
+            bestRating: '5',
+            worstRating: '1',
+          },
+          review: [
+            {
+              '@type': 'Review',
+              author: { '@type': 'Person', name: 'Patryk Zacharek' },
+              reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+              reviewBody: 'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
+            },
+          ],
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: 'Usługi Getbuild',

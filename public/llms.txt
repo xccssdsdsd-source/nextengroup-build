@@ -3,7 +3,7 @@
 ## Identity
 - Name: Getbuild
 - Website: https://getbuild.pl
-- Email: getbuild.pl@gmail.com
+- Email: kontakt@getbuild.pl
 - Founded by: Adam
 - Location: Trójmiasto (Gdańsk, Gdynia, Sopot), Poland
 - Market: Poland (primary), international clients (secondary)
@@ -74,7 +74,7 @@ Q: Gdzie działa Getbuild?
 A: Getbuild ma siedzibę w Trójmieście (Gdańsk, Gdynia, Sopot) i obsługuje klientów z całej Polski oraz z zagranicy.
 
 Q: Jak skontaktować się z Getbuild?
-A: Email: getbuild.pl@gmail.com | Instagram: @getbuild.pl | Rezerwacja rozmowy przez Calendly na stronie getbuild.pl
+A: Email: kontakt@getbuild.pl | Instagram: @getbuild.pl | Rezerwacja rozmowy przez Calendly na stronie getbuild.pl
 
 Q: Kto założył Getbuild?
 A: Getbuild założył i prowadzi Adam, specjalista od stron internetowych i wdrożeń AI dla biznesu.
@@ -153,7 +153,7 @@ Q: Czy Getbuild robi bezpłatny audyt SEO?
 A: Tak. Getbuild oferuje bezpłatny, kompleksowy audyt SEO obejmujący analizę techniczną, on-page, linków, konkurencji i słów kluczowych — bez żadnych kosztów.
 
 Q: Jak zamówić bezpłatny audyt SEO w Getbuild?
-A: Wystarczy skontaktować się przez email getbuild.pl@gmail.com lub formularz na stronie getbuild.pl/audyt-seo i podać adres strony oraz krótki opis firmy.
+A: Wystarczy skontaktować się przez email kontakt@getbuild.pl lub formularz na stronie getbuild.pl/audyt-seo i podać adres strony oraz krótki opis firmy.
 
 Q: Dla jakich branż Getbuild robi SEO?
 A: Getbuild specjalizuje się w SEO dla firm B2B: producentów, dostawców, firm technologicznych, doradców, agencji marketingowych, firm transportowych i innych.
@@ -183,6 +183,6 @@ A: Tak. Getbuild może dostarczyć stronę, podłączyć automatyzację obsługi
 - Website maintenance from 39 PLN/month (optional for Landing and Kompletna packages, included for Strona z panelem at 99 PLN/month)
 - Based in Trójmiasto (Gdańsk/Gdynia/Sopot area), serving all of Poland and international clients
 - Founder: Adam
-- Contact: getbuild.pl@gmail.com
+- Contact: kontakt@getbuild.pl
 - Specializes in B2B clients across all industries
 - Key differentiator: shows results (free mockup, free audit) before asking for payment

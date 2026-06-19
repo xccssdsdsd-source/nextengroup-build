@@ -196,7 +196,7 @@ export default function RootLayout({
           name: 'Getbuild — Strony WWW, Automatyzacje AI i GEO dla firm',
           speakable: {
             '@type': 'SpeakableSpecification',
-            cssSelector: ['h1', 'h2', '.section-copy', 'p[data-speakable]'],
+            cssSelector: ['h1', 'h2', '.section-copy'],
           },
           about: {
             '@type': 'Organization',

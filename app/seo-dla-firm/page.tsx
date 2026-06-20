@@ -111,7 +111,7 @@ export default function SEODlaFirm() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             SEO i GEO dla firm B2B w Polsce
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8">
+          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
             Getbuild specjalizuje się w SEO i GEO (Generative Engine Optimization) dla firm B2B w Polsce. Tworzymy strategie, które przekładają się na większą widoczność — zarówno w Google, jak i w wyszukiwarkach generatywnych AI takich jak ChatGPT, Gemini czy Perplexity. Efekt: więcej wartościowych zapytań ofertowych z każdego kanału.
           </p>
         </div>

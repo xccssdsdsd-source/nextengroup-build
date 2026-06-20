@@ -79,7 +79,7 @@ export default function AudytSEO() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Bezpłatny audyt SEO dla Twojej strony
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8">
+          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
             Oferujemy bezpłatny audyt SEO dla firm B2B. Analizujemy Twoją stronę internetową i przygotowujemy raport z konkretnymi rekomendacjami, które pomagają poprawić widoczność w Google i zwiększyć ruch organiczny.
           </p>
         </div>

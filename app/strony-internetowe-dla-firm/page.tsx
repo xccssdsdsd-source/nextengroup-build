@@ -71,7 +71,7 @@ export default function StronyInternetoweDlaFirm() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
             Strony internetowe dla firm B2B
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8">
+          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
             Tworzymy strony internetowe dla firm B2B, które budują wiarygodność, porządkują ofertę i pomagają pozyskiwać realne zapytania ofertowe od potencjalnych klientów.
           </p>
         </div>

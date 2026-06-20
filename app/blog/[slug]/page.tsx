@@ -66,6 +66,13 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound()
 
   const siteUrl = 'https://getbuild.pl'
+
+  const wordCount = article.sections.reduce((acc, s) => {
+    if (s.type === 'p') return acc + s.text.split(/\s+/).length
+    if (s.type === 'ul' || s.type === 'ol') return acc + s.items.join(' ').split(/\s+/).length
+    return acc
+  }, 0)
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -73,6 +80,15 @@ export default async function ArticlePage({ params }: Props) {
     description: article.excerpt,
     datePublished: article.date,
     dateModified: article.date,
+    wordCount,
+    inLanguage: 'pl',
+    url: `${siteUrl}/blog/${slug}`,
+    mainEntityOfPage: `${siteUrl}/blog/${slug}`,
+    ...(article.keywords && { keywords: article.keywords.join(', ') }),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.prose-custom h2', '.prose-custom p'],
+    },
     author: {
       '@type': 'Person',
       name: 'Adam',
@@ -87,9 +103,11 @@ export default async function ArticlePage({ params }: Props) {
         url: `${siteUrl}/getbuild-logo-og.png`,
       },
     },
-    url: `${siteUrl}/blog/${slug}`,
-    inLanguage: 'pl',
-    mainEntityOfPage: `${siteUrl}/blog/${slug}`,
+    isPartOf: {
+      '@type': 'Blog',
+      name: 'Blog Getbuild',
+      url: `${siteUrl}/blog`,
+    },
   }
 
   const formattedDate = new Date(article.date).toLocaleDateString('pl-PL', {

@@ -83,6 +83,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: 'https://getbuild.pl/kontakt',
+      lastModified: new Date('2026-06-04'),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
       url: 'https://getbuild.pl/blog',
       lastModified: new Date('2026-05-15'),
       changeFrequency: 'weekly',

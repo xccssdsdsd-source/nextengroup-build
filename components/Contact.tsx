@@ -3,7 +3,8 @@
 import { m, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaRedditAlien, FaTiktok } from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
 import dynamic from 'next/dynamic'
 const BackgroundPathsContact = dynamic(() => import('./BackgroundPathsContact'), { ssr: false })
@@ -32,6 +33,21 @@ const socials = [
     label: 'Facebook',
     fullName: 'getbuild',
     href: 'https://www.facebook.com/profile.php?id=61588720012257',
+  },
+  {
+    label: 'X',
+    fullName: '@getbuildpl',
+    href: 'https://x.com/getbuildpl',
+  },
+  {
+    label: 'Reddit',
+    fullName: 'u/getbuildpl',
+    href: 'https://www.reddit.com/user/getbuildpl/',
+  },
+  {
+    label: 'TikTok',
+    fullName: '@getbuild.pl',
+    href: 'https://www.tiktok.com/@getbuild.pl',
   },
 ]
 
@@ -172,7 +188,7 @@ export default function Contact() {
                     >
                       <div
                         className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl ${
-                          s.label === 'Email' ? 'bg-red-500' : s.label === 'Facebook' ? 'bg-[#1877f2]' : ''
+                          s.label === 'Email' ? 'bg-red-500' : s.label === 'Facebook' ? 'bg-[#1877f2]' : s.label === 'X' ? 'bg-black' : s.label === 'Reddit' ? 'bg-[#FF4500]' : s.label === 'TikTok' ? 'bg-black' : ''
                         }`}
                         style={
                           s.label === 'Instagram'
@@ -183,6 +199,9 @@ export default function Contact() {
                         {s.label === 'Email' && <MdEmail size={22} className="text-white" />}
                         {s.label === 'Instagram' && <FaInstagram size={22} className="text-white" />}
                         {s.label === 'Facebook' && <FaFacebook size={22} className="text-white" />}
+                        {s.label === 'X' && <FaXTwitter size={22} className="text-white" />}
+                        {s.label === 'Reddit' && <FaRedditAlien size={22} className="text-white" />}
+                        {s.label === 'TikTok' && <FaTiktok size={22} className="text-white" />}
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="font-semibold text-[#EAF0F7] text-sm">{s.label}</p>

@@ -3,6 +3,7 @@ export interface ArticleContent {
   date: string
   readTime: number
   excerpt: string
+  keywords?: string[]
   sections: Array<
     | { type: 'p'; text: string }
     | { type: 'h2'; text: string }
@@ -18,6 +19,7 @@ export const articles: Record<string, ArticleContent> = {
     date: '2026-05-15',
     readTime: 8,
     excerpt: 'Przegląd cen projektowania i tworzenia stron WWW dla firm B2B. Od czego zależy cena i kiedy inwestycja ma sens.',
+    keywords: ['koszt strony internetowej', 'cena strony www', 'strona internetowa dla firmy B2B', 'tworzenie stron www', 'agencja webowa Polska'],
     sections: [
       { type: 'p', text: 'Jedno z najczęstszych pytań, które słyszymy od właścicieli firm B2B, brzmi: "ile właściwie powinna kosztować strona internetowa?". Odpowiedź jest złożona — bo cena zależy od zakresu projektu, branży, celów biznesowych i tego, czego naprawdę potrzebujesz. W tym artykule rozkładamy na czynniki pierwsze, co składa się na koszt strony WWW dla firmy B2B w 2026 roku i jak ocenić, czy dana oferta jest uczciwa.' },
       { type: 'h2', text: 'Od czego zależy cena strony internetowej dla B2B' },
@@ -76,6 +78,7 @@ export const articles: Record<string, ArticleContent> = {
     date: '2026-05-10',
     readTime: 10,
     excerpt: 'Na co zwrócić uwagę przy wyborze agencji SEO, jakie pytania zadać i jakie sygnały ostrzegawcze warto wychwycić.',
+    keywords: ['agencja SEO dla firm B2B', 'jak wybrać agencję SEO', 'pozycjonowanie stron B2B', 'SEO dla firm', 'wybór agencji pozycjonowania'],
     sections: [
       { type: 'p', text: 'Wybór agencji SEO to decyzja, która może zadecydować o tym, czy Twoja firma B2B będzie widoczna dla klientów szukających Twoich usług — albo czy przez rok zapłacisz za coś, co nie przyniesie żadnych rezultatów. Rynek agencji SEO jest rozdrobniony i niejednorodny. Obok firm, które rzeczywiście rozumieją, jak działa SEO w segmencie B2B, funkcjonują też takie, które sprzedają raporty i obietnice zamiast wyników. W tym artykule podpowiadamy, jak odróżnić jedne od drugich.' },
       { type: 'h2', text: 'Dlaczego SEO dla B2B różni się od SEO dla B2C' },
@@ -132,6 +135,7 @@ export const articles: Record<string, ArticleContent> = {
     date: '2026-05-05',
     readTime: 12,
     excerpt: 'Przewodnik po tym, kiedy producent potrzebuje nowej strony WWW, co powinna zawierać i jak wygląda wdrożenie.',
+    keywords: ['strona internetowa dla producenta', 'strona www firma produkcyjna', 'web design B2B', 'strona dla firmy przemysłowej', 'wdrożenie strony www'],
     sections: [
       { type: 'p', text: 'Wiele firm produkcyjnych w Polsce działa z przestarzałą stroną internetową lub bez niej w ogóle — i przez lata jakoś sobie radziły, bo biznes opierał się na relacjach i rekomendacjach. Ten model coraz częściej się wyczerpuje. Procurement managerowie, inżynierowie i właściciele firm regularnie sprawdzają potencjalnych dostawców w Google — zanim zadzwonią, zanim wyślą e-mail. Jeśli Twoja firma nie pojawia się w wynikach wyszukiwania lub wygląda nieprofesjonalnie online, tracisz szanse, o których nawet nie wiesz.' },
       { type: 'h2', text: 'Dlaczego producenci szczególnie potrzebują dobrej strony WWW' },
@@ -189,6 +193,7 @@ export const articles: Record<string, ArticleContent> = {
     date: '2026-04-28',
     readTime: 9,
     excerpt: 'Analiza opłacalności SEO w B2B: zwrot z inwestycji, czas oczekiwania na efekty i możliwe alternatywy.',
+    keywords: ['SEO dla firm B2B', 'pozycjonowanie B2B', 'ROI z SEO', 'inwestycja w SEO', 'SEO czy Google Ads'],
     sections: [
       { type: 'p', text: 'SEO to jedna z tych inwestycji marketingowych, które sprawiają trudność przy uzasadnieniu zarządowi lub przy samodzielnej kalkulacji: efekty są oddalone w czasie, trudno je bezpośrednio zmierzyć na początku, a rynek pełen jest agencji sprzedających obietnice. Jednocześnie firmy B2B, które zdecydowały się na konsekwentne SEO, często opisują je jako najważniejszy kanał pozyskiwania klientów — i to z rosnącą wydajnością przez lata. Kto ma rację i kiedy SEO naprawdę się opłaca?' },
       { type: 'h2', text: 'Jak SEO w B2B różni się od B2C — i dlaczego to ma znaczenie' },
@@ -249,6 +254,7 @@ export const articles: Record<string, ArticleContent> = {
     date: '2026-04-20',
     readTime: 7,
     excerpt: 'Co obejmuje profesjonalny audyt SEO, ile kosztuje i jakich efektów można po nim oczekiwać.',
+    keywords: ['audyt SEO', 'co zawiera audyt SEO', 'koszt audytu SEO', 'analiza SEO strony', 'audyt pozycjonowania'],
     sections: [
       { type: 'p', text: 'Audyt SEO to jedno z tych pojęć, które brzmią technicznie i przez to mogą być mylnie rozumiane. Niektóre firmy wyobrażają sobie raport kilkudziesięciu stron pełen wykresów. Inne — skrypt, który automatycznie przeskanuje stronę i wypluje listę błędów. Żadne z tych wyobrażeń nie jest do końca trafne. W tym artykule wyjaśniamy, czym naprawdę jest dobry audyt SEO, co powinien zawierać, ile kosztuje na rynku i — co równie ważne — co zrobić po jego otrzymaniu.' },
       { type: 'h2', text: 'Czym jest audyt SEO — a czym nie jest' },

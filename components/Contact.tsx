@@ -169,23 +169,45 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-2">Nasze konta</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C879B] mb-3">Nasze konta</p>
+                  <div className="flex flex-col gap-2">
                     {socials.map((s) => (
                       <a
                         key={s.label}
                         href={s.href}
                         target={s.label !== 'Email' ? '_blank' : undefined}
                         rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        title={s.fullName}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(34,211,238,0.12)] hover:border-[rgba(34,211,238,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all duration-200"
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 ${
+                          s.label === 'Email' ? 'border-[rgba(234,113,42,0.2)] bg-[rgba(234,113,42,0.06)] hover:bg-[rgba(234,113,42,0.14)] hover:border-[rgba(234,113,42,0.5)]'
+                          : s.label === 'Instagram' ? 'border-[rgba(225,48,108,0.2)] bg-[rgba(225,48,108,0.06)] hover:bg-[rgba(225,48,108,0.14)] hover:border-[rgba(225,48,108,0.5)]'
+                          : s.label === 'Facebook' ? 'border-[rgba(24,119,242,0.2)] bg-[rgba(24,119,242,0.06)] hover:bg-[rgba(24,119,242,0.14)] hover:border-[rgba(24,119,242,0.5)]'
+                          : s.label === 'X' ? 'border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.25)]'
+                          : s.label === 'Reddit' ? 'border-[rgba(255,69,0,0.2)] bg-[rgba(255,69,0,0.06)] hover:bg-[rgba(255,69,0,0.14)] hover:border-[rgba(255,69,0,0.5)]'
+                          : 'border-[rgba(105,201,208,0.2)] bg-[rgba(105,201,208,0.06)] hover:bg-[rgba(105,201,208,0.14)] hover:border-[rgba(105,201,208,0.5)]'
+                        }`}
                       >
-                        {s.label === 'Email' && <MdEmail size={15} className="text-[#A6B2C4]" />}
-                        {s.label === 'Instagram' && <FaInstagram size={15} className="text-[#A6B2C4]" />}
-                        {s.label === 'Facebook' && <FaFacebook size={15} className="text-[#A6B2C4]" />}
-                        {s.label === 'X' && <FaXTwitter size={15} className="text-[#A6B2C4]" />}
-                        {s.label === 'Reddit' && <FaRedditAlien size={15} className="text-[#A6B2C4]" />}
-                        {s.label === 'TikTok' && <FaTiktok size={15} className="text-[#A6B2C4]" />}
+                        <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg ${
+                          s.label === 'Email' ? 'text-[#EA712A]'
+                          : s.label === 'Instagram' ? 'text-[#E1306C]'
+                          : s.label === 'Facebook' ? 'text-[#1877F2]'
+                          : s.label === 'X' ? 'text-[#EAF0F7]'
+                          : s.label === 'Reddit' ? 'text-[#FF4500]'
+                          : 'text-[#69C9D0]'
+                        }`}>
+                          {s.label === 'Email' && <MdEmail size={20} />}
+                          {s.label === 'Instagram' && <FaInstagram size={20} />}
+                          {s.label === 'Facebook' && <FaFacebook size={20} />}
+                          {s.label === 'X' && <FaXTwitter size={20} />}
+                          {s.label === 'Reddit' && <FaRedditAlien size={20} />}
+                          {s.label === 'TikTok' && <FaTiktok size={20} />}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-[12px] font-semibold text-[#EAF0F7] leading-tight">{s.label}</p>
+                          <p className="text-[11px] text-[#7C879B] truncate">{s.fullName}</p>
+                        </div>
+                        <svg className="ml-auto flex-shrink-0 text-[#7C879B] group-hover:text-[#A6B2C4] transition-colors" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                       </a>
                     ))}
                   </div>

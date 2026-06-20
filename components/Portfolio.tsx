@@ -283,43 +283,48 @@ export default function Portfolio() {
                 className="grid md:grid-cols-[1.35fr_1fr]"
               >
                 {project.kind === 'image' ? (
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={handleCardClick}
-                    className="group relative flex items-center justify-center overflow-hidden bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4"
-                  >
-                    <Image
-                      src={project.preview}
-                      alt={`${project.name} - ${project.tagline}`}
-                      width={project.imgWidth}
-                      height={project.imgHeight}
-                      sizes="(min-width: 768px) 720px, 100vw"
-                      data-parallax-image
-                      className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                      quality={82}
-                      loading="lazy"
-                      placeholder="blur"
-                      blurDataURL={project.blurDataURL}
-                      suppressHydrationWarning
-                    />
-                  </a>
-                ) : (
-                  /* Slider project (Dorimari) — portrait image in a constrained frame */
-                  <div className="relative flex items-center justify-center overflow-hidden bg-[#161C28] rounded-2xl p-4 sm:p-5">
-                    <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
-                      <BeforeAfterSlider
-                        beforeSrc={project.beforeSrc}
-                        afterSrc={project.afterSrc}
-                        beforeAlt={`${project.name} — strona przed redesignem`}
-                        afterAlt={`${project.name} — strona po redesignie`}
-                        width={project.sliderWidth}
-                        height={project.sliderHeight}
-                        beforeBlur={project.beforeBlur}
-                        afterBlur={project.afterBlur}
+                  <div className="flex flex-col gap-3">
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={handleCardClick}
+                      className="group relative flex items-center justify-center overflow-hidden bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4"
+                    >
+                      <Image
+                        src={project.preview}
+                        alt={`${project.name} - ${project.tagline}`}
+                        width={project.imgWidth}
+                        height={project.imgHeight}
+                        sizes="(min-width: 768px) 720px, 100vw"
+                        data-parallax-image
+                        className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        quality={82}
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={project.blurDataURL}
+                        suppressHydrationWarning
                       />
+                    </a>
+                    <AgentBadge />
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    <div className="relative flex items-center justify-center overflow-hidden bg-[#161C28] rounded-2xl p-4 sm:p-5">
+                      <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
+                        <BeforeAfterSlider
+                          beforeSrc={project.beforeSrc}
+                          afterSrc={project.afterSrc}
+                          beforeAlt={`${project.name} — strona przed redesignem`}
+                          afterAlt={`${project.name} — strona po redesignie`}
+                          width={project.sliderWidth}
+                          height={project.sliderHeight}
+                          beforeBlur={project.beforeBlur}
+                          afterBlur={project.afterBlur}
+                        />
+                      </div>
                     </div>
+                    <AgentBadge />
                   </div>
                 )}
 
@@ -359,8 +364,7 @@ export default function Portfolio() {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5 space-y-4">
-                      <AgentBadge />
+                    <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
                       <div className="flex gap-4 flex-wrap">
                         {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                       </div>

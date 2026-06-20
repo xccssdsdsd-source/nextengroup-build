@@ -60,29 +60,33 @@ export default function Contact() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
   const [gdprAccepted, setGdprAccepted] = useState(false)
-  const [activeTab, setActiveTab] = useState<'calendly' | 'form'>('calendly')
+  const [activeTab, setActiveTab] = useState<'calendly' | 'form'>('form')
+  const [calendlyLoaded, setCalendlyLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://assets.calendly.com/assets/external/widget.js'
-    script.async = true
-    script.onload = () => {
+    if (activeTab !== 'calendly' || calendlyLoaded) return
+    const existing = document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')
+    const initWidget = () => {
       const w = window as CalendlyScriptWindow
       if (w.Calendly && calendlyRef.current) {
         w.Calendly.initInlineWidget({
           url: 'https://calendly.com/getbuild-pl/30min',
           parentElement: calendlyRef.current,
         })
+        setCalendlyLoaded(true)
       }
     }
+    if (existing) {
+      initWidget()
+      return
+    }
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    script.onload = initWidget
     document.body.appendChild(script)
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
-    }
-  }, [])
+  }, [activeTab, calendlyLoaded])
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)

@@ -284,44 +284,66 @@ export default function Portfolio() {
               >
                 {project.kind === 'image' ? (
                   <div className="flex flex-col gap-3">
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={handleCardClick}
-                      className="group relative flex items-center justify-center overflow-hidden bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4"
-                    >
-                      <Image
-                        src={project.preview}
-                        alt={`${project.name} - ${project.tagline}`}
-                        width={project.imgWidth}
-                        height={project.imgHeight}
-                        sizes="(min-width: 768px) 720px, 100vw"
-                        data-parallax-image
-                        className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        quality={82}
-                        loading="lazy"
-                        placeholder="blur"
-                        blurDataURL={project.blurDataURL}
-                        suppressHydrationWarning
-                      />
-                    </a>
+                    <div className="bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
+                          <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                        </div>
+                        <div>
+                          <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
+                          <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
+                        </div>
+                      </div>
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={handleCardClick}
+                        className="group relative flex items-center justify-center overflow-hidden"
+                      >
+                        <Image
+                          src={project.preview}
+                          alt={`${project.name} - ${project.tagline}`}
+                          width={project.imgWidth}
+                          height={project.imgHeight}
+                          sizes="(min-width: 768px) 720px, 100vw"
+                          data-parallax-image
+                          className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                          quality={82}
+                          loading="lazy"
+                          placeholder="blur"
+                          blurDataURL={project.blurDataURL}
+                          suppressHydrationWarning
+                        />
+                      </a>
+                    </div>
                     <AgentBadge />
                   </div>
                 ) : (
                   <div className="flex flex-col gap-3">
-                    <div className="relative flex items-center justify-center overflow-hidden bg-[#161C28] rounded-2xl p-4 sm:p-5">
-                      <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
-                        <BeforeAfterSlider
-                          beforeSrc={project.beforeSrc}
-                          afterSrc={project.afterSrc}
-                          beforeAlt={`${project.name} — strona przed redesignem`}
-                          afterAlt={`${project.name} — strona po redesignie`}
-                          width={project.sliderWidth}
-                          height={project.sliderHeight}
-                          beforeBlur={project.beforeBlur}
-                          afterBlur={project.afterBlur}
-                        />
+                    <div className="bg-[#161C28] rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
+                          <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                        </div>
+                        <div>
+                          <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
+                          <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
+                        </div>
+                      </div>
+                      <div className="relative flex items-center justify-center overflow-hidden">
+                        <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
+                          <BeforeAfterSlider
+                            beforeSrc={project.beforeSrc}
+                            afterSrc={project.afterSrc}
+                            beforeAlt={`${project.name} — strona przed redesignem`}
+                            afterAlt={`${project.name} — strona po redesignie`}
+                            width={project.sliderWidth}
+                            height={project.sliderHeight}
+                            beforeBlur={project.beforeBlur}
+                            afterBlur={project.afterBlur}
+                          />
+                        </div>
                       </div>
                     </div>
                     <AgentBadge />
@@ -343,23 +365,7 @@ export default function Portfolio() {
                     )}
                   </p>
 
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
-                      <Image
-                        src={project.owner.photo}
-                        alt={project.owner.name}
-                        fill
-                        className="object-cover object-top"
-                        sizes="40px"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
-                      <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4">
+                  <div className="mt-5">
                     <LiveSiteButton href={project.href} />
                   </div>
 

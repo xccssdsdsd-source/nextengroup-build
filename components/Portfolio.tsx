@@ -29,6 +29,7 @@ type RegularProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
+  owner: { name: string; role: string; photo: string }
 }
 
 type SliderProject = {
@@ -45,6 +46,7 @@ type SliderProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
+  owner: { name: string; role: string; photo: string }
 }
 
 type Project = RegularProject | SliderProject
@@ -67,6 +69,7 @@ const projects: Project[] = [
       { label: 'Best Practices', value: 100 },
       { label: 'SEO', value: 100 },
     ],
+    owner: { name: 'Patryk Zacharek', role: 'Właściciel, PM Apartments', photo: '/owner-pm-apartments.jpg' },
   },
   {
     kind: 'image',
@@ -85,6 +88,7 @@ const projects: Project[] = [
       { label: 'Best Practices', value: 100 },
       { label: 'SEO', value: 100 },
     ],
+    owner: { name: 'Marta Sobieska', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.jpg' },
   },
   {
     kind: 'slider',
@@ -105,6 +109,7 @@ const projects: Project[] = [
       { label: 'Best Practices', value: 96 },
       { label: 'SEO', value: 100 },
     ],
+    owner: { name: 'Dorota Marek', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.jpg' },
   },
 ]
 
@@ -309,7 +314,23 @@ export default function Portfolio() {
                     )}
                   </p>
 
-                  <div className="mt-5">
+                  <div className="mt-5 flex items-center gap-3">
+                    <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
+                      <Image
+                        src={project.owner.photo}
+                        alt={project.owner.name}
+                        fill
+                        className="object-cover object-top"
+                        sizes="40px"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
+                      <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
                     <LiveSiteButton href={project.href} />
                   </div>
 

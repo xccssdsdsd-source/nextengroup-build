@@ -14,30 +14,29 @@ export default function GlobalPaths() {
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }} aria-hidden="true">
       <style>{`
         @keyframes gp-flow2 {
-          0%   { stroke-dashoffset: 2400; opacity: 0; }
-          8%   { opacity: 0.4; }
-          92%  { opacity: 0.4; }
-          100% { stroke-dashoffset: 0; opacity: 0; }
+          from { stroke-dashoffset: 2400; }
+          to { stroke-dashoffset: 0; }
         }
+        .gp-path { opacity: 0.4; }
         @media (prefers-reduced-motion: reduce) {
           .gp-path { animation: none !important; opacity: 0.07 !important; }
         }
       `}</style>
       <svg className="w-full h-full" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice">
         {threads.map((t, i) => (
-          <path
-            key={i}
-            className="gp-path"
-            d={t.d}
-            stroke="#22D3EE"
-            strokeWidth={t.w}
-            strokeLinecap="round"
-            fill="none"
-            strokeDasharray={2400}
-            style={{
-              animation: `gp-flow2 ${t.dur}s linear ${t.delay}s infinite`,
-            }}
-          />
+          <g key={i}>
+            <path d={t.d} stroke="#22D3EE" strokeWidth={t.w} strokeLinecap="round" fill="none" opacity={0.1} />
+            <path
+              className="gp-path"
+              d={t.d}
+              stroke="#22D3EE"
+              strokeWidth={t.w}
+              strokeLinecap="round"
+              fill="none"
+              strokeDasharray="420 1980"
+              style={{ animation: `gp-flow2 ${t.dur}s linear ${t.delay}s infinite` }}
+            />
+          </g>
         ))}
       </svg>
     </div>

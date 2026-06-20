@@ -41,8 +41,8 @@ export default function BackgroundPathsServices() {
       >
         <style>{`
           @keyframes flowPath {
-            0% { stroke-dashoffset: 1500; }
-            100% { stroke-dashoffset: 0; }
+            from { stroke-dashoffset: 1800; }
+            to { stroke-dashoffset: 0; }
           }
           @media (prefers-reduced-motion: no-preference) {
             .bp-s-0 { animation: flowPath 18s linear infinite; }
@@ -72,16 +72,10 @@ export default function BackgroundPathsServices() {
           <path d="M 96 268 L 286 210 L 404 194 L 636 146 L 742 112" fill="none" stroke="rgba(34,211,238,0.16)" strokeWidth="1" strokeLinecap="round" strokeDasharray="1 12" />
         </g>
         {paths.map((p, i) => (
-          <path
-            key={i}
-            d={p.d}
-            fill="none"
-            stroke={p.color}
-            strokeWidth={p.width}
-            strokeLinecap="round"
-            strokeDasharray="1500"
-            className={`bp-s-${i}`}
-          />
+          <g key={i}>
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" opacity={0.1} />
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" strokeDasharray="300 1500" className={`bp-s-${i}`} />
+          </g>
         ))}
         {nodes.map((node, index) => (
           <circle

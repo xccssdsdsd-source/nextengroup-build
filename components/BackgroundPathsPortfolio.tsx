@@ -18,8 +18,8 @@ export default function BackgroundPathsPortfolio() {
       >
         <style>{`
           @keyframes flowPath {
-            0% { stroke-dashoffset: 2000; }
-            100% { stroke-dashoffset: 0; }
+            from { stroke-dashoffset: 1800; }
+            to { stroke-dashoffset: 0; }
           }
           @media (prefers-reduced-motion: no-preference) {
             .bp-pf-0 { animation: flowPath 22s linear infinite; }
@@ -29,16 +29,10 @@ export default function BackgroundPathsPortfolio() {
           .bp-pf-0, .bp-pf-1, .bp-pf-2 { opacity: 0.18; }
         `}</style>
         {paths.map((p, i) => (
-          <path
-            key={i}
-            d={p.d}
-            fill="none"
-            stroke={p.color}
-            strokeWidth={p.width}
-            strokeLinecap="round"
-            strokeDasharray="2000"
-            className={`bp-pf-${i}`}
-          />
+          <g key={i}>
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" opacity={0.1} />
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" strokeDasharray="300 1500" className={`bp-pf-${i}`} />
+          </g>
         ))}
       </svg>
     </div>

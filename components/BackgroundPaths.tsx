@@ -42,15 +42,10 @@ export default function BackgroundPaths() {
     >
       <style>{`
         @keyframes bp-flow {
-          0%   { stroke-dashoffset: 2400; opacity: 0; }
-          5%   { opacity: 1; }
-          95%  { opacity: 1; }
-          100% { stroke-dashoffset: 0; opacity: 0; }
+          from { stroke-dashoffset: 2400; }
+          to { stroke-dashoffset: 0; }
         }
-        @keyframes bp-pulse {
-          0%, 100% { opacity: 0.10; }
-          50%       { opacity: 0.38; }
-        }
+        .bp-path { opacity: 0.5; }
         @media (prefers-reduced-motion: reduce) {
           .bp-path { animation: none !important; opacity: 0.1 !important; }
         }
@@ -62,19 +57,19 @@ export default function BackgroundPaths() {
         preserveAspectRatio="xMidYMid slice"
       >
         {ready && paths.map((p, i) => (
-          <path
-            key={i}
-            className="bp-path"
-            d={p.d}
-            stroke="#22D3EE"
-            strokeWidth={p.w}
-            strokeLinecap="round"
-            fill="none"
-            strokeDasharray={2400}
-            style={{
-              animation: `bp-flow ${p.dur}s linear ${p.delay}s infinite, bp-pulse ${Math.round(p.dur * 0.6)}s ease-in-out ${p.delay}s infinite`,
-            }}
-          />
+          <g key={i}>
+            <path d={p.d} stroke="#22D3EE" strokeWidth={p.w} strokeLinecap="round" fill="none" opacity={0.1} />
+            <path
+              className="bp-path"
+              d={p.d}
+              stroke="#22D3EE"
+              strokeWidth={p.w}
+              strokeLinecap="round"
+              fill="none"
+              strokeDasharray="420 1980"
+              style={{ animation: `bp-flow ${p.dur}s linear ${p.delay}s infinite` }}
+            />
+          </g>
         ))}
       </svg>
     </div>

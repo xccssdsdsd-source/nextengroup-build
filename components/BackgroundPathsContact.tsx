@@ -18,8 +18,8 @@ export default function BackgroundPathsContact() {
       >
         <style>{`
           @keyframes flowPath {
-            0% { stroke-dashoffset: 1600; }
-            100% { stroke-dashoffset: 0; }
+            from { stroke-dashoffset: 1800; }
+            to { stroke-dashoffset: 0; }
           }
           @media (prefers-reduced-motion: no-preference) {
             .bp-c-0 { animation: flowPath 18s linear infinite; }
@@ -29,16 +29,10 @@ export default function BackgroundPathsContact() {
           .bp-c-0, .bp-c-1, .bp-c-2 { opacity: 0.18; }
         `}</style>
         {paths.map((p, i) => (
-          <path
-            key={i}
-            d={p.d}
-            fill="none"
-            stroke={p.color}
-            strokeWidth={p.width}
-            strokeLinecap="round"
-            strokeDasharray="1600"
-            className={`bp-c-${i}`}
-          />
+          <g key={i}>
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" opacity={0.1} />
+            <path d={p.d} fill="none" stroke={p.color} strokeWidth={p.width} strokeLinecap="round" strokeDasharray="300 1500" className={`bp-c-${i}`} />
+          </g>
         ))}
       </svg>
     </div>

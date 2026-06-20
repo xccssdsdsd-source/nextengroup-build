@@ -88,7 +88,7 @@ const projects: Project[] = [
       { label: 'Best Practices', value: 100 },
       { label: 'SEO', value: 100 },
     ],
-    owner: { name: 'Marta Sobieska', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.jpg' },
+    owner: { name: 'Magdalena Sioła', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.jpg' },
   },
   {
     kind: 'slider',
@@ -109,7 +109,7 @@ const projects: Project[] = [
       { label: 'Best Practices', value: 96 },
       { label: 'SEO', value: 100 },
     ],
-    owner: { name: 'Dorota Marek', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.jpg' },
+    owner: { name: 'Dori', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.jpg' },
   },
 ]
 

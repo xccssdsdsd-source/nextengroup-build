@@ -69,7 +69,7 @@ export const articles: Record<string, ArticleContent> = {
       { type: 'p', text: 'W Getbuild każdy projekt zaczynamy od bezpłatnego mockupu strony — zanim podpiszesz jakąkolwiek umowę i zanim pojawi się jakakolwiek faktura. To nasza odpowiedź na brak zaufania, który często towarzyszy zlecaniu stron nowej agencji. Możesz zobaczyć, jak będzie wyglądać Twoja strona, zanim zdecydujesz się na współpracę.' },
       { type: 'h2', text: 'Podsumowanie: jak podejść do budżetu na stronę B2B' },
       { type: 'p', text: 'Nie ma jednej słusznej odpowiedzi na pytanie "ile kosztuje strona dla B2B" — bo to zależy od Twoich potrzeb, branży i skali działania. Warto jednak myśleć o stronie jak o inwestycji sprzedażowej, nie koszcie operacyjnym. Zadaj sobie pytanie: ile jest warta jedna pozyskana współpraca dzięki stronie? Przy takiej perspektywie budżet często staje się jasny.' },
-      { type: 'p', text: 'Jeśli chcesz się dowiedzieć, ile konkretnie kosztowałaby strona dla Twojej firmy — napisz do nas na kontakt@getbuild.pl. Bezpłatny mockup i wycenę przygotujemy bez żadnych zobowiązań.' },
+      { type: 'p', text: 'Jeśli chcesz się dowiedzieć, ile konkretnie kosztowałaby strona dla Twojej firmy — napisz do nas na getbuild.pl@gmail.com. Bezpłatny mockup i wycenę przygotujemy bez żadnych zobowiązań.' },
     ],
   },
 
@@ -126,7 +126,7 @@ export const articles: Record<string, ArticleContent> = {
       { type: 'p', text: 'Realnych efektów SEO można spodziewać się po 3–6 miesiącach pracy — pierwsze poprawy widoczności, wzrosty na długim ogonie fraz. Silne pozycje na główne frazy konkurencyjne to zazwyczaj 12+ miesięcy systematycznej pracy. Każda agencja, która obiecuje inaczej, mija się z prawdą.' },
       { type: 'h2', text: 'Bezpłatny audyt SEO — jak skorzystać' },
       { type: 'p', text: 'W Getbuild oferujemy bezpłatny audyt SEO dla firm B2B, które zastanawiają się nad inwestycją w pozycjonowanie. Audyt obejmuje analizę techniczną strony, widoczność w Google, podstawową analizę słów kluczowych i wstępną ocenę profilu linków. To dobry punkt startowy, żeby wiedzieć, od czego zacząć — i żeby móc ocenić, czy agencja, którą wybierasz, ma właściwe podejście do Twojej sytuacji.' },
-      { type: 'p', text: 'Jeśli chcesz skorzystać z bezpłatnego audytu lub po prostu porozmawiać o SEO dla swojej firmy, napisz na kontakt@getbuild.pl — Adam osobiście odpowiada na każde zapytanie.' },
+      { type: 'p', text: 'Jeśli chcesz skorzystać z bezpłatnego audytu lub po prostu porozmawiać o SEO dla swojej firmy, napisz na getbuild.pl@gmail.com — Adam osobiście odpowiada na każde zapytanie.' },
     ],
   },
 
@@ -184,7 +184,7 @@ export const articles: Record<string, ArticleContent> = {
         'Współczynnik odrzuceń — jeśli jest wysoki, strona nie odpowiada na potrzeby odwiedzającego',
         'Czas spędzony na stronie — zwłaszcza na stronach produktowych',
       ]},
-      { type: 'p', text: 'Firmy produkcyjne z Trójmiasta i całej Polski, które zdecydowały się na profesjonalną stronę internetową, regularnie zgłaszają nam, że pierwsze kwalifikowane zapytania ofertowe pojawiają się w ciągu 2–4 miesięcy od wdrożenia — szczególnie gdy SEO jest integralną częścią projektu. Jeśli chcesz zobaczyć, jak mogłaby wyglądać Twoja nowa strona — napisz na kontakt@getbuild.pl.' },
+      { type: 'p', text: 'Firmy produkcyjne z Trójmiasta i całej Polski, które zdecydowały się na profesjonalną stronę internetową, regularnie zgłaszają nam, że pierwsze kwalifikowane zapytania ofertowe pojawiają się w ciągu 2–4 miesięcy od wdrożenia — szczególnie gdy SEO jest integralną częścią projektu. Jeśli chcesz zobaczyć, jak mogłaby wyglądać Twoja nowa strona — napisz na getbuild.pl@gmail.com.' },
     ],
   },
 
@@ -245,7 +245,7 @@ export const articles: Record<string, ArticleContent> = {
       ]},
       { type: 'h2', text: 'Jak zacząć: bezpłatny audyt SEO' },
       { type: 'p', text: 'Jeśli nie wiesz, od czego zacząć — zacznij od danych. Bezpłatny audyt SEO pokaże Ci, jaka jest Twoja obecna widoczność w Google, gdzie są największe luki techniczne i jakie frazy warto zaadresować w pierwszej kolejności.' },
-      { type: 'p', text: 'W Getbuild wykonujemy bezpłatne audyty SEO dla firm B2B z całej Polski. Pracujemy z firmami z Trójmiasta (Gdańsk, Gdynia, Sopot) i zdalnie z każdego miejsca w kraju. Jeśli chcesz wiedzieć, czy SEO ma sens w Twojej sytuacji — napisz do Adama na kontakt@getbuild.pl. Bez zobowiązań, bez presji.' },
+      { type: 'p', text: 'W Getbuild wykonujemy bezpłatne audyty SEO dla firm B2B z całej Polski. Pracujemy z firmami z Trójmiasta (Gdańsk, Gdynia, Sopot) i zdalnie z każdego miejsca w kraju. Jeśli chcesz wiedzieć, czy SEO ma sens w Twojej sytuacji — napisz do Adama na getbuild.pl@gmail.com. Bez zobowiązań, bez presji.' },
     ],
   },
 
@@ -302,7 +302,7 @@ export const articles: Record<string, ArticleContent> = {
         'Nie wymagaj natychmiastowych efektów — nawet doskonale wdrożone rekomendacje potrzebują czasu, żeby Google je zauważyło',
       ]},
       { type: 'h2', text: 'Jak zamówić bezpłatny audyt SEO w Getbuild' },
-      { type: 'p', text: 'Jeśli chcesz wiedzieć, jak Twoja strona wypada pod kątem SEO, zapraszamy do skorzystania z naszego bezpłatnego audytu. Obsługujemy firmy B2B z całej Polski — zarówno lokalnie z Trójmiasta (Gdańsk, Gdynia, Sopot), jak i zdalnie. Wystarczy napisać e-mail na kontakt@getbuild.pl z adresem swojej strony i krótką informacją o branży. Adam odezwie się osobiście.' },
+      { type: 'p', text: 'Jeśli chcesz wiedzieć, jak Twoja strona wypada pod kątem SEO, zapraszamy do skorzystania z naszego bezpłatnego audytu. Obsługujemy firmy B2B z całej Polski — zarówno lokalnie z Trójmiasta (Gdańsk, Gdynia, Sopot), jak i zdalnie. Wystarczy napisać e-mail na getbuild.pl@gmail.com z adresem swojej strony i krótką informacją o branży. Adam odezwie się osobiście.' },
     ],
   },
 }

@@ -160,7 +160,7 @@ export default function Nav() {
           </div>
 
           {/* Mobile menu */}
-          <div className={`nav-mobile-menu absolute inset-x-0 top-full overflow-hidden lg:hidden${open ? ' is-open' : ''}`} aria-hidden={!open}>
+          <div className={`nav-mobile-menu absolute inset-x-0 top-full overflow-hidden lg:hidden${open ? ' is-open' : ''}`} aria-hidden={!open} inert={!open}>
             <div className="mt-3 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] p-3">
               <div className="flex flex-col gap-1">
                 {allLinks.map(([label, href], i) =>

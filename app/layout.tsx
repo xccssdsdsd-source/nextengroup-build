@@ -116,20 +116,35 @@ export default function RootLayout({
           name: 'Getbuild',
           url: 'https://getbuild.pl',
           logo: 'https://getbuild.pl/getbuild-logo-og.png',
-          image: 'https://getbuild.pl/og-image.jpg',
+          image: 'https://getbuild.pl/getbuild-logo-og.png',
           description: 'W Getbuild.pl wdrażamy zaawansowane rozwiązania techniczne dla Twojej firmy. Tworzymy nowoczesne strony internetowe, automatyzujemy czasochłonne procesy biznesowe i wdrażamy inteligentnych agentów AI, którzy realnie odciążają zespół oraz zwiększają efektywność operacyjną. Oferujemy SEO i GEO (Generative Engine Optimization) — optymalizację widoczności w Google i wyszukiwarkach generatywnych AI.',
-          email: 'kontakt@getbuild.pl',
+          email: 'getbuild.pl@gmail.com',
           areaServed: {
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: 'od 39 zł/miesiąc',
+          priceRange: '39–3999 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',
             addressRegion: 'Trójmiasto',
             addressCountry: 'PL',
           },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5',
+            reviewCount: '1',
+            bestRating: '5',
+            worstRating: '1',
+          },
+          review: [
+            {
+              '@type': 'Review',
+              author: { '@type': 'Person', name: 'Patryk Zacharek' },
+              reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+              reviewBody: 'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
+            },
+          ],
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: 'Usługi Getbuild',
@@ -163,6 +178,23 @@ export default function RootLayout({
               }
             ]
           },
+          foundingDate: '2024',
+          founder: {
+            '@type': 'Person',
+            name: 'Adam',
+            url: 'https://getbuild.pl',
+            knowsAbout: ['strony internetowe', 'automatyzacje AI', 'agenci AI', 'SEO', 'GEO', 'Next.js', 'Cloudflare'],
+          },
+          knowsAbout: [
+            'Web design',
+            'AI automation',
+            'AI agents',
+            'Search Engine Optimization',
+            'Generative Engine Optimization',
+            'Next.js',
+            'Cloudflare Workers',
+            'B2B marketing',
+          ],
           sameAs: [
             'https://www.linkedin.com/company/getbuild',
             'https://www.instagram.com/getbuild.pl/',
@@ -196,7 +228,7 @@ export default function RootLayout({
           name: 'Getbuild — Strony WWW, Automatyzacje AI i GEO dla firm',
           speakable: {
             '@type': 'SpeakableSpecification',
-            cssSelector: ['h1', 'h2', '.section-copy', 'p[data-speakable]'],
+            cssSelector: ['h1', 'h2', '.section-copy'],
           },
           about: {
             '@type': 'Organization',
@@ -205,8 +237,11 @@ export default function RootLayout({
           mentions: [
             { '@type': 'Thing', name: 'SEO', sameAs: 'https://en.wikipedia.org/wiki/Search_engine_optimization' },
             { '@type': 'Thing', name: 'Generative Engine Optimization', alternateName: 'GEO' },
-            { '@type': 'Thing', name: 'Automatyzacja procesów biznesowych' },
-            { '@type': 'Thing', name: 'Agenci AI' },
+            { '@type': 'Thing', name: 'Automatyzacja procesów biznesowych', sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation' },
+            { '@type': 'Thing', name: 'Agenci AI', sameAs: 'https://en.wikipedia.org/wiki/Intelligent_agent' },
+            { '@type': 'Thing', name: 'ChatGPT', sameAs: 'https://en.wikipedia.org/wiki/ChatGPT' },
+            { '@type': 'Thing', name: 'Perplexity AI', sameAs: 'https://en.wikipedia.org/wiki/Perplexity_AI' },
+            { '@type': 'Thing', name: 'Strony internetowe dla firm' },
           ],
         }) }} />
       </head>

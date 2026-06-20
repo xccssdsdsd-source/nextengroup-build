@@ -251,10 +251,10 @@ export default async function ArticlePage({ params }: Props) {
               Getbuild to agencja z Trójmiasta obsługująca firmy z całej Polski. Oferujemy bezpłatny mockup strony, bezpłatny audyt SEO i wycenę bez zobowiązań.
             </p>
             <a
-              href="mailto:kontakt@getbuild.pl"
+              href="mailto:getbuild.pl@gmail.com"
               className="inline-flex items-center gap-2 rounded-lg bg-[#22D3EE] px-5 py-2.5 text-sm font-semibold text-[#06141A] hover:bg-[#5EEAFF] transition-colors"
             >
-              kontakt@getbuild.pl
+              getbuild.pl@gmail.com
             </a>
           </div>
 

@@ -44,9 +44,73 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Czym jest automatyzacja AI dla firmy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to zautomatyzowane systemy. Przykłady: automatyczne odpowiedzi na pytania klientów, wysyłanie e-maili z danymi z CRM, generowanie ofert na podstawie parametrów. Wynik: mniej błędów, szybsza obsługa klientów, więcej czasu dla zespołu.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czym jest agent AI i czym różni się od zwykłej automatyzacji?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Agent AI to bardziej zaawansowany system — nie tylko wykonuje zadania, ale podejmuje decyzje, działa niezależnie i obsługuje wieloetapowe procesy. Pracuje 24/7 i dostosowuje działania do kontekstu. W przeciwieństwie do prostej automatyzacji, agent AI może przeprowadzić rozmowę z klientem, kwalifikować leady, zaproponować rozwiązania i eskalować sprawę do człowieka gdy to konieczne.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile kosztuje automatyzacja AI lub agent AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Koszty są zmienne. Prosta automatyzacja (np. powiadomienia e-mail) może kosztować kilkaset złotych jednorazowo. Bardziej złożone systemy i agenci AI wymagają więcej pracy i kosztują więcej. Kluczowe pytanie to nie "ile kosztuje", ale "ile zaoszczędzi". Getbuild zawsze podaje konkretne liczby i porównanie nakładów do oszczędności przed wdrożeniem.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kiedy firma jest gotowa na automatyzacje AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Automatyzacja AI ma sens dla każdej firmy, która ma powtarzalne zadania wykonywane codziennie w ten sam sposób — niezależnie od wielkości. Dobre punkty startowe: odpowiadanie na te same pytania klientów, ręczne wysyłanie wiadomości po zamówieniu, kopiowanie danych między systemami, generowanie ofert, zarządzanie kalendarzem. Getbuild pracuje głównie z małymi i średnimi firmami usługowymi.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Czy strona internetowa może być zintegrowana z automatyzacją AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tak — i to jest miejsce, gdzie automatyzacja przynosi największą wartość. Formularz kontaktowy może automatycznie kwalifikować zapytanie i wysyłać spersonalizowaną odpowiedź. Chat obsługiwany przez agenta AI odpowiada 24/7. System rezerwacji może wysyłać automatyczne przypomnienia i follow-upy. Getbuild projektuje stronę i automatyzacje razem jako jeden spójny system.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile kosztuje strona internetowa dla małej firmy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'W Getbuild opieka nad stroną zaczyna się od 39 zł miesięcznie (hosting, obsługa, aktualizacje bezpieczeństwa, wsparcie). Przed jakimikolwiek zobowiązaniami finansowymi tworzony jest bezpłatny projekt — wizualizacja strony. Cena zależy od zakresu — strona dla fryzjera to inne koszty niż system dla firmy budowlanej.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile czasu trwa stworzenie strony internetowej?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Podstawowa profesjonalna strona może być gotowa w 72 godziny od zebrania materiałów. Bardziej złożone projekty zajmują więcej czasu. Getbuild najpierw przygotowuje bezpłatny mockup — wizualną koncepcję strony. Po zatwierdzeniu designu następuje wdrożenie.',
+      },
+    },
+  ],
+}
+
 export default function WiedzaAI() {
   return (
     <main className="overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <BreadcrumbSchema items={[
         { name: 'Getbuild', url: 'https://getbuild.pl' },

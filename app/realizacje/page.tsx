@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: 'https://getbuild.pl/logo-opt.png',
+        url: 'https://getbuild.pl/getbuild-logo-og.png',
         width: 1200,
         height: 630,
         alt: 'Portfolio i realizacje Getbuild - Case studies B2B',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
     description: 'Case studies i realizacje projektów dla firm B2B.',
-    images: ['https://getbuild.pl/logo-opt.png'],
+    images: ['https://getbuild.pl/getbuild-logo-og.png'],
   },
 }
 

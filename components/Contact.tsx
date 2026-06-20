@@ -138,6 +138,15 @@ export default function Contact() {
                 <p className="mt-3 text-[13px] leading-[1.7] text-[#A6B2C4]">
                   Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
                 </p>
+                <button
+                  onClick={() => setActiveTab('calendly')}
+                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#22D3EE] text-[#06141A] text-[13px] font-bold hover:bg-[#34E6FF] active:scale-[0.97] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 w-fit"
+                >
+                  Umów spotkanie
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
               </div>
 
               <div className="mt-8 flex flex-col gap-5">
@@ -186,7 +195,7 @@ export default function Contact() {
                           : 'border-[rgba(105,201,208,0.2)] bg-[rgba(105,201,208,0.06)] hover:bg-[rgba(105,201,208,0.14)] hover:border-[rgba(105,201,208,0.5)]'
                         }`}
                       >
-                        <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg ${
+                        <span className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg ${
                           s.label === 'Email' ? 'text-[#EA712A]'
                           : s.label === 'Instagram' ? 'text-[#E1306C]'
                           : s.label === 'Facebook' ? 'text-[#1877F2]'
@@ -194,12 +203,12 @@ export default function Contact() {
                           : s.label === 'Reddit' ? 'text-[#FF4500]'
                           : 'text-[#69C9D0]'
                         }`}>
-                          {s.label === 'Email' && <MdEmail size={20} />}
-                          {s.label === 'Instagram' && <FaInstagram size={20} />}
-                          {s.label === 'Facebook' && <FaFacebook size={20} />}
-                          {s.label === 'X' && <FaXTwitter size={20} />}
-                          {s.label === 'Reddit' && <FaRedditAlien size={20} />}
-                          {s.label === 'TikTok' && <FaTiktok size={20} />}
+                          {s.label === 'Email' && <MdEmail size={12} />}
+                          {s.label === 'Instagram' && <FaInstagram size={12} />}
+                          {s.label === 'Facebook' && <FaFacebook size={12} />}
+                          {s.label === 'X' && <FaXTwitter size={12} />}
+                          {s.label === 'Reddit' && <FaRedditAlien size={12} />}
+                          {s.label === 'TikTok' && <FaTiktok size={12} />}
                         </span>
                         <div className="min-w-0">
                           <p className="text-[12px] font-semibold text-[#EAF0F7] leading-tight">{s.label}</p>

@@ -126,6 +126,30 @@ function splitAtSentences(text: string, count: number): [string, string] {
   return [text, '']
 }
 
+function AgentBadge() {
+  return (
+    <div
+      className="flex items-center gap-2.5 rounded-full px-3.5 py-2"
+      style={{
+        background: 'linear-gradient(135deg, rgba(34,197,94,0.14) 0%, rgba(34,211,238,0.08) 100%)',
+        border: '1px solid rgba(34,197,94,0.28)',
+        boxShadow: '0 0 16px rgba(34,197,94,0.10), inset 0 1px 0 rgba(255,255,255,0.06)',
+      }}
+    >
+      <span
+        className="relative flex h-2.5 w-2.5 shrink-0"
+      >
+        <span className="absolute inline-flex h-full w-full rounded-full animate-ping" style={{ background: 'rgba(34,197,94,0.5)', animationDuration: '1.8s' }} />
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)' }} />
+      </span>
+      <div className="flex flex-col leading-none">
+        <span className="text-[11px] font-bold tracking-wide" style={{ color: '#86EFAC' }}>Przeglądanie agentowe</span>
+        <span className="text-[10px] mt-0.5" style={{ color: 'rgba(134,239,172,0.55)' }}>Zoptymalizowane pod AI</span>
+      </div>
+    </div>
+  )
+}
+
 function ScoreBadge({ value, label }: LighthouseScore) {
   const colors = value >= 90
     ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)' }
@@ -335,8 +359,11 @@ export default function Portfolio() {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 flex gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
-                      {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
+                    <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5 space-y-4">
+                      <AgentBadge />
+                      <div className="flex gap-4 flex-wrap">
+                        {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
+                      </div>
                     </div>
                   )}
                 </div>

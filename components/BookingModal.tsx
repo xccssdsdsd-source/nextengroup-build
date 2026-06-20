@@ -293,6 +293,15 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 transition={{ duration: 0.25, ease }}
               >
                 <div className="mb-4 pr-10">
+                  <button
+                    onClick={() => setStep('form')}
+                    className="flex items-center gap-1.5 text-[12px] text-[#7C879B] hover:text-[#EAF0F7] transition-colors mb-3"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Wróć do formularza
+                  </button>
                   <h3
                     id="booking-modal-title"
                     className="text-[17px] sm:text-[19px] font-bold text-[#EAF0F7]"

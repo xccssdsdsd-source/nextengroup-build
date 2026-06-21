@@ -438,7 +438,7 @@ export default function Portfolio() {
         </m.div>
 
         <div className="sr-only">
-          <h3>Wszystkie realizacje Getbuild</h3>
+          <p>Wszystkie realizacje Getbuild</p>
           {projects.map(p => (
             <article key={p.name}>
               <p><strong>{p.name}</strong></p>

@@ -53,7 +53,7 @@ export default function Testimonials() {
             onClick={(e) => { e.preventDefault(); scrollToSection('kontakt') }}
             className="btn btn-primary inline-flex items-center justify-center px-8 py-3.5 text-sm w-full sm:w-auto font-semibold"
           >
-            Umów spotkanie
+            Zacznij współpracę
           </a>
         </m.div>
       </div>

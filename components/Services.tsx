@@ -118,9 +118,9 @@ const aiTypes = [
 
 type AiType = typeof aiTypes[number]
 
-type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void }
+type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void; asHeading?: boolean }
 
-function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: number }) {
+function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inView: boolean; i: number; asHeading?: boolean }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
@@ -154,9 +154,15 @@ function PackageCard({ pkg, inView, i }: { pkg: Package; inView: boolean; i: num
       ) : (
         <div className="mb-3 mt-1 h-[22px]" />
       )}
-      <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
-        {pkg.name}
-      </h3>
+      {asHeading ? (
+        <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+          {pkg.name}
+        </h3>
+      ) : (
+        <div className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+          {pkg.name}
+        </div>
+      )}
       <p className="mt-2 text-[13.5px] leading-[1.6] text-[#A6B2C4]">{pkg.intro}</p>
       <ul className="mt-4 flex flex-col gap-2">
         {pkg.features.map((feature) => (
@@ -278,7 +284,7 @@ export default function Services() {
                   animate={inView1 ? { opacity: 1, x: 0 } : {}}
                   transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  <PackageCard pkg={pkg} inView={inView1} i={i} />
+                  <PackageCard pkg={pkg} inView={inView1} i={i} asHeading={false} />
                 </m.div>
               ))}
             </div>
@@ -441,7 +447,7 @@ export default function Services() {
                   animate={inView2 ? { opacity: 1, x: 0 } : {}}
                   transition={{ ...premiumSpring, delay: i * 0.12 }}
                 >
-                  <AiCard ai={ai} inView={inView2} i={i} />
+                  <AiCard ai={ai} inView={inView2} i={i} asHeading={false} />
                 </m.div>
               ))}
             </div>
@@ -474,7 +480,7 @@ export default function Services() {
   )
 }
 
-function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps) {
+function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = true }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [expandedExamples, setExpandedExamples] = useState(false)
   const isExpanded = allExpanded || expandedExamples
@@ -506,9 +512,15 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll }: AiCardProps
         </span>
       </div>
 
-      <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
-        {ai.name}
-      </h3>
+      {asHeading ? (
+        <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
+          {ai.name}
+        </h3>
+      ) : (
+        <div className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
+          {ai.name}
+        </div>
+      )}
 
       <div className="mb-7 p-6 rounded-xl border border-[rgba(34,211,238,0.2)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
         <ProcessFlowDiagram type={getProcessType()} />

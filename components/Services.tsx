@@ -276,7 +276,7 @@ export default function Services() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 overflow-hidden lg:hidden" aria-hidden="true">
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
               {packages.map((pkg, i) => (
                 <m.div
                   key={pkg.name}
@@ -439,7 +439,7 @@ export default function Services() {
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
-            <div className="flex flex-col gap-4 overflow-hidden lg:hidden" aria-hidden="true">
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
               {aiTypes.map((ai, i) => (
                 <m.div
                   key={ai.name}

@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: 'https://getbuild.pl',
-      lastModified: new Date('2026-06-04'),
+      lastModified: new Date('2026-06-21'),
       changeFrequency: 'weekly',
       priority: 1.0,
     },

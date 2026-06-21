@@ -36,9 +36,11 @@ export default function InView({
     }
   }, [rootMargin])
 
+  // Always render children so SSR HTML contains full page content for crawlers.
+  // minHeight reserves layout space on client until the section scrolls into view.
   return (
     <div ref={ref} style={show ? undefined : { minHeight }}>
-      {show ? children : null}
+      {children}
     </div>
   )
 }

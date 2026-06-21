@@ -11,9 +11,9 @@ import GSAPAnimations from '@/components/GSAPAnimations'
 import RippleCursor from '@/components/RippleCursor'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Nowoczesne Strony WWW i Automatyzacje AI dla Biznesu | Getbuild'
+const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
 const siteDescription =
-  'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla małych i średnich firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
+  'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
 
 const syne = Syne({
   subsets: ['latin'],

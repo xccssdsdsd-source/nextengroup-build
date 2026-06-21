@@ -254,7 +254,7 @@ export default function Services() {
               </div>
             </h2>
             <p className="section-copy mt-6">
-              Robimy strony, na których ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
+              Robimy strony, które pozyskują klientów — ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
             </p>
           </m.div>
 
@@ -270,7 +270,7 @@ export default function Services() {
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden" aria-hidden="true">
               {packages.map((pkg, i) => (
                 <m.div
                   key={pkg.name}
@@ -424,7 +424,7 @@ export default function Services() {
             <span className="section-kicker" suppressHydrationWarning>Automatyzacje i agenci AI</span>
             <h2 className="section-title" suppressHydrationWarning>Przestań robić to, co AI może zrobić za Ciebie</h2>
             <p className="section-copy">
-              Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Tłumaczymy raz, po ludzku.
+              Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Automatyzacje obsługują powtarzalne zadania za Ciebie — tłumaczymy raz, po ludzku.
             </p>
           </m.div>
 
@@ -433,7 +433,7 @@ export default function Services() {
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
             </div>
 
-            <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
+            <div className="flex flex-col gap-4 overflow-hidden lg:hidden" aria-hidden="true">
               {aiTypes.map((ai, i) => (
                 <m.div
                   key={ai.name}

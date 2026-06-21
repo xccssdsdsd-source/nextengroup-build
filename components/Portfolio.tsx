@@ -441,7 +441,7 @@ export default function Portfolio() {
           <h3>Wszystkie realizacje Getbuild</h3>
           {projects.map(p => (
             <article key={p.name}>
-              <h4>{p.name}</h4>
+              <p><strong>{p.name}</strong></p>
               <p>{p.tagline}</p>
               <p>{p.body}</p>
               <p>Czas wdrożenia: {p.time}</p>

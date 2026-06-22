@@ -35,14 +35,22 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [
     'strony www',
+    'strony www dla firm',
+    'tworzenie stron internetowych',
     'automatyzacje AI',
     'agenci AI',
-    'rozwiązania IT',
+    'rozwiązania IT dla firm',
     'Getbuild',
     'GEO',
     'Generative Engine Optimization',
     'SEO dla firm',
+    'SEO dla firm B2B',
+    'pozycjonowanie B2B',
+    'agencja SEO Trójmiasto',
+    'link building',
     'optymalizacja AI',
+    'widoczność w ChatGPT',
+    'Next.js agencja',
   ],
   openGraph: {
     type: 'website',
@@ -93,9 +101,12 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preload" href="/getbuild-logo-og.png" as="image" type="image/png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
@@ -178,12 +189,21 @@ export default function RootLayout({
               }
             ]
           },
+          slogan: 'Strony WWW i automatyzacje AI, które pracują za Twój biznes.',
+          contactPoint: {
+            '@type': 'ContactPoint',
+            email: 'getbuild.pl@gmail.com',
+            contactType: 'customer service',
+            availableLanguage: 'Polish',
+            areaServed: 'PL',
+          },
           foundingDate: '2024',
           founder: {
             '@type': 'Person',
             name: 'Adam',
             url: 'https://getbuild.pl',
-            knowsAbout: ['strony internetowe', 'automatyzacje AI', 'agenci AI', 'SEO', 'GEO', 'Next.js', 'Cloudflare'],
+            jobTitle: 'Założyciel i specjalista ds. stron WWW oraz AI',
+            knowsAbout: ['strony internetowe', 'automatyzacje AI', 'agenci AI', 'SEO', 'GEO', 'link building', 'Next.js', 'Cloudflare', 'B2B marketing'],
           },
           knowsAbout: [
             'Web design',
@@ -191,9 +211,13 @@ export default function RootLayout({
             'AI agents',
             'Search Engine Optimization',
             'Generative Engine Optimization',
+            'Link building',
+            'Backlink strategy',
             'Next.js',
             'Cloudflare Workers',
             'B2B marketing',
+            'Content marketing',
+            'Core Web Vitals',
           ],
           sameAs: [
             'https://www.linkedin.com/company/getbuild',
@@ -242,6 +266,10 @@ export default function RootLayout({
             { '@type': 'Thing', name: 'ChatGPT', sameAs: 'https://en.wikipedia.org/wiki/ChatGPT' },
             { '@type': 'Thing', name: 'Perplexity AI', sameAs: 'https://en.wikipedia.org/wiki/Perplexity_AI' },
             { '@type': 'Thing', name: 'Strony internetowe dla firm' },
+            { '@type': 'Thing', name: 'Link building', sameAs: 'https://en.wikipedia.org/wiki/Backlink' },
+            { '@type': 'Thing', name: 'Core Web Vitals', sameAs: 'https://en.wikipedia.org/wiki/Core_Web_Vitals' },
+            { '@type': 'Thing', name: 'Next.js', sameAs: 'https://en.wikipedia.org/wiki/Next.js' },
+            { '@type': 'Thing', name: 'Cloudflare', sameAs: 'https://en.wikipedia.org/wiki/Cloudflare' },
           ],
         }) }} />
       </head>

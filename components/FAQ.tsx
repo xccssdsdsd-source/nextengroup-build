@@ -68,10 +68,15 @@ const faqSchema = {
   })),
 }
 
+const VISIBLE_COUNT = 4
+
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
+  const [expanded, setExpanded] = useState(false)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-50px' })
+
+  const visible = expanded ? faqs : faqs.slice(0, VISIBLE_COUNT)
 
   return (
     <>
@@ -97,7 +102,7 @@ export default function FAQ() {
         </m.div>
 
         <div className="flex flex-col gap-2">
-          {faqs.map((faq, index) => {
+          {visible.map((faq, index) => {
             const isOpen = open === index
 
             return (
@@ -155,6 +160,27 @@ export default function FAQ() {
               </m.div>
             )
           })}
+
+          <AnimatePresence>
+            {!expanded && (
+              <m.div
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="relative"
+              >
+                <div className="absolute -top-16 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#060A10] pointer-events-none" />
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
+                  className="mt-2 w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3.5 text-[13.5px] font-medium text-[#A6B2C4] hover:border-white/20 hover:text-[#EAF0F7] transition-colors duration-200"
+                >
+                  <Plus size={14} strokeWidth={2} />
+                  Pokaż więcej pytań ({faqs.length - VISIBLE_COUNT})
+                </button>
+              </m.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

@@ -38,6 +38,14 @@ const faqs = [
     q: 'Czy strona będzie dopracowana na telefonie?',
     a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
   },
+  {
+    q: 'Jak backlinki wpływają na pozycję mojej strony w Google?',
+    a: 'Backlinki to linki z innych stron prowadzące do Twojej witryny. Google traktuje je jak "głosy zaufania" — im więcej wartościowych domen linkuje do Twojej strony, tym wyżej jesteś w wynikach. Budujemy profil linków z wiarygodnych, branżowych źródeł. Bez sztucznych katalogów i link farm. Każdy backlink powinien generować ruch i wzmacniać autorytet domeny (DR).',
+  },
+  {
+    q: 'Ile czasu zajmuje osiągnięcie pierwszych efektów SEO?',
+    a: 'Pierwsze ruchy w pozycjach widoczne są zwykle po 4–8 tygodniach. Trwałe, stabilne pozycje na trudniejsze frazy buduje się przez 6–12 miesięcy systematycznych działań. GEO (widoczność w ChatGPT i Gemini) może dawać efekty szybciej — modele AI aktualizują swoje bazy częściej niż Google indeksuje nowe strony.',
+  },
 ] as const
 
 const faqSchema = {

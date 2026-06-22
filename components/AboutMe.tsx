@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { m, useInView } from 'framer-motion'
+import Image from 'next/image'
 import { useRef } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -19,18 +20,18 @@ export default function AboutMe() {
           className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-12"
         >
           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-neutral-100 ring-1 ring-[var(--border)] sm:h-32 sm:w-32">
-            <img
+            <Image
               src="/owner.webp"
-              alt="[Imię Nazwisko] — założyciel Getbuild"
-              loading="lazy"
+              alt="Adam — założyciel Getbuild, specjalista ds. stron WWW i AI"
+              width={128}
+              height={128}
               className="h-full w-full object-cover"
-              onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
             />
           </div>
           <div className="max-w-xl">
             <span className="section-kicker">O mnie</span>
             <h2 className="section-title">
-              [Imię Nazwisko]
+              Adam — Getbuild
             </h2>
             <p className="section-copy">
               Buduję strony i automatyzacje dla małych firm. Pracuję samodzielnie, więc każde zlecenie robię osobiście. Najczęściej dla firm wykończeniowych, biur podróży i pracowni projektowych.

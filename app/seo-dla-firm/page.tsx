@@ -92,6 +92,30 @@ export default function SEODlaFirm() {
           text: 'Getbuild wdraża GEO poprzez: bogate dane strukturalne (Schema.org), treści formatowane jako bezpośrednie odpowiedzi na pytania, sekcje FAQ, autorytatywne treści merytoryczne, optymalizację entity i sygnały E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness).',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'Czym jest link building i jak wpływa na SEO?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Link building to proces pozyskiwania backlinków — linków z zewnętrznych stron internetowych prowadzących do Twojej witryny. Google interpretuje backlinki jako sygnały zaufania. Im wyższy autorytet domeny (DR) strony linkującej, tym większy wpływ na Twoje pozycje. Skuteczny link building skupia się na jakości: linki z branżowych serwisów, mediów i wiarygodnych witryn mają znacznie większą wartość niż setki linków z katalogów i spamerskich stron.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Ile backlinków potrzebuje strona B2B, żeby osiągnąć wysokie pozycje?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Nie ma jednej liczby — liczy się jakość, nie ilość. 10 linków z autorytarnych domen (DR 50+) jest warte więcej niż 1000 linków z katalogów. Dla branżowych fraz B2B w Polsce zazwyczaj wystarcza 20–50 wartościowych backlinków, żeby skutecznie walczyć o TOP 3. Ważne jest też, aby profil linków był naturalny: mix anchor textów, różne typy stron linkujących i regularny przyrost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Jak długo trwa budowanie widoczności SEO dla firmy B2B?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Pierwsze efekty SEO widoczne są zwykle po 4–8 tygodniach od wdrożenia zmian on-page. Stabilne pozycje na konkurencyjne frazy B2B buduje się przez 6–12 miesięcy. Podstawą jest dobra techniczna optymalizacja strony, wartościowy content odpowiadający na pytania klientów oraz systematyczny link building z jakościowych źródeł. GEO (widoczność w ChatGPT, Gemini, Perplexity) może dawać efekty szybciej.',
+        },
+      },
     ],
   }
 

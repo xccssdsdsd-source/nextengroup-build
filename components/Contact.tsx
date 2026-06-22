@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation'
 import { FaFacebook, FaInstagram, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
-import dynamic from 'next/dynamic'
-const BackgroundPathsContact = dynamic(() => import('./BackgroundPathsContact'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -120,7 +118,6 @@ export default function Contact() {
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
-      <BackgroundPathsContact />
       <m.div
         initial={false}
         animate={{ opacity: 1, y: 0 }}

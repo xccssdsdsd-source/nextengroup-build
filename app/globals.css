@@ -58,25 +58,12 @@ html {
 body {
   min-width: 320px;
   background: #000000;
-  background-image: radial-gradient(ellipse 80% 45% at 50% -5%, rgba(34,211,238,0.06) 0%, transparent 100%);
-  background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-dm-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overscroll-behavior-y: none;
-}
-
-@media (pointer: coarse) {
-  body {
-    /* fixed attachment forces repaint on every scroll pixel on Android —
-       switch to scroll to remove this bottleneck */
-    background-attachment: scroll;
-    /* disable the gradient entirely on mobile: saves the radial-gradient repaint cost
-       while keeping the solid #000000 background */
-    background-image: none;
-  }
 }
 
 a,

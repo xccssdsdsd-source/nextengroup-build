@@ -2,8 +2,6 @@
 
 import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import dynamic from 'next/dynamic'
-const BackgroundPathsProcess = dynamic(() => import('./BackgroundPathsProcess'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -45,12 +43,6 @@ export default function Process() {
 
   return (
     <section id="proces" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
-      <BackgroundPathsProcess />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 60%)' }}
-      />
-
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"

@@ -3,8 +3,6 @@
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
-const BackgroundPathsFAQ = dynamic(() => import('./BackgroundPathsFAQ'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -13,6 +11,18 @@ const faqs = [
   {
     q: 'W czym dokładnie możecie nam pomóc?',
     a: 'Tworzymy nowoczesne strony WWW dla firm, wdrażamy automatyzacje oparte na AI oraz budujemy agentów AI. Jedno źródło dla strony, która generuje zapytania, i dla rozwiązań, które odciążają zespół z powtarzalnej pracy.',
+  },
+  {
+    q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
+    a: 'Cena zależy od zakresu — prosta, profesjonalna strona-wizytówka zaczyna się od kilkuset złotych, a rozbudowane wdrożenia z automatyzacjami i agentem AI wyceniamy indywidualnie po analizie procesu. Zawsze podajemy konkretną, stałą kwotę przed startem — bez ukrytych kosztów i niespodzianek. Umów bezpłatną konsultację, a po krótkiej rozmowie dostaniesz wycenę dopasowaną do Twoich potrzeb.',
+  },
+  {
+    q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',
+    a: 'Nie ryzykujesz nic. Najpierw przygotowujemy bezpłatną wizualizację strony — widzisz efekt, zanim cokolwiek zapłacisz. W trakcie prac masz nielimitowaną liczbę poprawek, więc dopracowujemy projekt aż będziesz w pełni zadowolony. Płacisz dopiero za rezultat, który akceptujesz.',
+  },
+  {
+    q: 'Jak zacząć współpracę?',
+    a: 'Wystarczy jeden krok — umów bezpłatną konsultację lub wyślij zapytanie przez formularz. Odpowiadamy w ciągu 24 godzin. Na rozmowie poznajemy Twoje cele, doradzamy najlepszą ścieżkę i przygotowujemy wstępną wizualizację oraz wycenę. Bez zobowiązań i bez presji — decyzję podejmujesz dopiero, gdy zobaczysz, co możemy dla Ciebie zrobić.',
   },
   {
     q: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
@@ -73,7 +83,6 @@ export default function FAQ() {
       data-no-entrance
       suppressHydrationWarning
     >
-      <BackgroundPathsFAQ />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
           initial={false}

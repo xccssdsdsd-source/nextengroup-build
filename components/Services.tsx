@@ -2,11 +2,7 @@
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { useRef, useState, type MouseEvent } from 'react'
-import dynamic from 'next/dynamic'
 import { scrollToSection } from '@/lib/scrollToSection'
-
-const BackgroundParticlesServices = dynamic(() => import('./BackgroundParticlesServices'), { ssr: false })
-const BackgroundNetworkAnimation = dynamic(() => import('./BackgroundNetworkAnimation'), { ssr: false })
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -246,7 +242,6 @@ export default function Services() {
   return (
     <>
       <section id="uslugi" ref={ref1} className="section-shell relative" data-no-entrance suppressHydrationWarning>
-        <BackgroundParticlesServices />
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
@@ -417,9 +412,6 @@ export default function Services() {
         data-no-entrance
         suppressHydrationWarning
       >
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-none">
-          <BackgroundNetworkAnimation />
-        </div>
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"

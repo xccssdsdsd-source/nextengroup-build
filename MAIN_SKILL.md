@@ -7,6 +7,7 @@ No explanations unless asked. Code only. Action → what's next.
 Invoke `frontend-design` skill before any frontend code.
 Invoke `gsap-lenis` skill when adding animations or scroll effects.
 Invoke `premium-ui-components` skill when building landing pages in Next.js.
+Invoke `distribb` skill when working on SEO, backlinks, keyword research, content publishing, or improving search visibility.
 Commit to ONE aesthetic direction before first line. Execute without compromise.
 
 ## Project Type

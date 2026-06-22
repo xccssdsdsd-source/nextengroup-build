@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "distribb": {
+      "source": "Bomx/distribb-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "db9a49afe4d1bc2289ca19e9f7f7be3452268ef73f9469febd743c5db33f8c15"
+    },
     "redesign-existing-projects": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",

@@ -61,7 +61,7 @@ export default function ValueProps() {
             <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             </div>
-            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-syne)' }}>Widoczna dla AI i ChatGPT</span>
+            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-syne)' }}>Widoczna dla modeli AI</span>
           </div>
           <div className="flex items-center gap-2.5">
             <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)' }}>

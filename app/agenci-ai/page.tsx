@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
@@ -11,32 +11,23 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
-  description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji. Getbuild — agenci AI dla biznesu.',
-  keywords: ['agenci AI', 'chatbot AI', 'obsługa klienta AI', 'agent AI', 'sztuczna inteligencja', 'customer service bot', 'AI dla firmy'],
-  alternates: {
-    canonical: `${siteUrl}/agenci-ai`,
-  },
+  title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
+  description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych. Agent dostaje cel i sam decyduje, jak go osiągnąć. Getbuild.',
+  keywords: ['agenci AI', 'autonomiczny agent AI', 'obsługa klienta AI', 'agent AI', 'sztuczna inteligencja', 'AI dla firmy'],
+  alternates: { canonical: `${siteUrl}/agenci-ai` },
   openGraph: {
     type: 'website',
     url: `${siteUrl}/agenci-ai`,
-    title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
-    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
+    title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
+    description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
-    images: [
-      {
-        url: `${siteUrl}/getbuild-logo-og.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Agenci AI dla Firm | Getbuild',
-      },
-    ],
+    images: [{ url: `${siteUrl}/getbuild-logo-og.png`, width: 1200, height: 630, alt: 'Agenci AI dla Firm | Getbuild' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agenci AI dla Firm | Inteligentna Obsługa 24/7 | Getbuild',
-    description: 'Wdrażamy inteligentnych agentów AI pracujących za Ciebie całą dobę. Obsługa zapytań, porządkowanie danych, wsparcie decyzji.',
+    title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
+    description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych.',
     images: [`${siteUrl}/getbuild-logo-og.png`],
   },
 }
@@ -45,17 +36,10 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Agenci AI dla firm',
-  description: 'Inteligentni agenci AI pracujący 24/7. Obsługują zapytania, porządkują dane i wspierają decyzje biznesowe.',
+  description: 'Autonomiczni agenci AI pracujący 24/7 bez skryptów i reguł wewnętrznych. Dostają cel i samodzielnie decydują, jak go osiągnąć.',
   serviceType: 'Wdrożenia agentów AI',
-  provider: {
-    '@type': 'Organization',
-    '@id': 'https://getbuild.pl/#organization',
-    name: 'Getbuild',
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Polska',
-  },
+  provider: { '@type': 'Organization', '@id': 'https://getbuild.pl/#organization', name: 'Getbuild' },
+  areaServed: { '@type': 'Country', name: 'Polska' },
   url: 'https://getbuild.pl/agenci-ai',
 }
 
@@ -68,7 +52,7 @@ const faqSchema = {
       name: 'Czym agent AI różni się od zwykłego chatbota?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zwykły chatbot odpowiada na podstawie gotowych skryptów i słów kluczowych. Agent AI rozumie kontekst rozmowy, podejmuje decyzje i dostosowuje się do nowych sytuacji — jak człowiek, tylko bez przestojów i w dowolnym języku.',
+        text: 'Chatbot działa według skryptu. Jeśli pojawi się pytanie, którego nie ma w jego bazie, staje. Agent AI nie ma skryptu. Ma cel i sam decyduje, jak go osiągnąć. Rozumie kontekst, radzi sobie z sytuacjami, których nikt mu nie opisał, i działa dalej bez żadnej ingerencji z Twojej strony.',
       },
     },
     {
@@ -76,7 +60,7 @@ const faqSchema = {
       name: 'Czy agent będzie znał moją ofertę i procesy firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Szkolimy agenta na wiedzy o Twojej firmie, produktach, procesach i najczęstszych pytaniach klientów. Działa w Twoim języku i zna Twoją ofertę.',
+        text: 'Tak. Przed wdrożeniem zasilamy agenta wiedzą o Twojej firmie, produktach i procesach. Dzięki temu działa autonomicznie w Twoim kontekście, a nie w ogólnym. Wie, co może zdecydować sam, a co wymaga Twojej uwagi.',
       },
     },
     {
@@ -84,7 +68,7 @@ const faqSchema = {
       name: 'Na jakich kanałach może działać agent AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Agent może działać na stronie internetowej, emailu, portalach społecznościowych (Facebook, Instagram) lub w wewnętrznych systemach firmy. Integrujemy go z narzędziami, których już używasz.',
+        text: 'Na stronie, mailu, Facebooku, Instagramie i wewnętrznych systemach firmy. Agent działa równocześnie na wielu kanałach i sam decyduje, jak odpowiedzieć w każdym z nich.',
       },
     },
     {
@@ -92,7 +76,7 @@ const faqSchema = {
       name: 'Ile trwa wdrożenie agenta AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pierwsze działające demo agenta możesz zobaczyć już w kilka dni od pierwszego spotkania. Pełne wdrożenie z testami i integracjami zajmuje od 1 do 3 tygodni.',
+        text: 'Pierwsze działające demo masz zwykle w kilka dni od rozmowy. Pełne wdrożenie z testami i integracjami zajmuje od 1 do 3 tygodni, w zależności od tego, ile kanałów i systemów agent ma obsługiwać.',
       },
     },
   ],
@@ -100,9 +84,33 @@ const faqSchema = {
 
 const faqItems = faqSchema.mainEntity
 
+const capabilities = [
+  {
+    title: 'Pierwsza linia obsługi klienta',
+    desc: 'Odpowiada na pytania, rozwiązuje standardowe sprawy, a to, co wymaga człowieka, przekazuje dalej z gotowym kontekstem. Działa na chacie, mailu i social media.',
+  },
+  {
+    title: 'Analiza i raporty bez zlecania',
+    desc: 'Sam zbiera dane ze wskazanych źródeł, wyciąga wnioski i dostarcza raport. Nie trzeba go o to prosić co tydzień.',
+  },
+  {
+    title: 'Monitoring rynku i konkurencji',
+    desc: 'Śledzi zmiany w Twojej branży, nowe oferty konkurentów, wzmianki o firmie. Przesyła podsumowanie, kiedy coś wymaga Twojej uwagi.',
+  },
+  {
+    title: 'Koordynacja zadań wewnątrz firmy',
+    desc: 'Pilnuje, żeby zadania nie ginęły między działami. Wysyła przypomnienia, aktualizuje statusy, informuje o opóźnieniach. Bez Twojego udziału.',
+  },
+]
+
+const diff = [
+  { label: 'Chatbot', points: ['Odpowiada według skryptu', 'Staje gdy sytuacja jest nowa', 'Wymaga ciągłej aktualizacji reguł', 'Jeden kanał naraz'] },
+  { label: 'Agent AI', points: ['Ma cel, sam decyduje jak go osiągnąć', 'Radzi sobie z nowymi sytuacjami', 'Uczy się z kontekstu bez ręcznych reguł', 'Działa na wielu kanałach jednocześnie'], accent: true },
+]
+
 export default function AgenciAI() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-[#0A0E14]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
@@ -110,110 +118,155 @@ export default function AgenciAI() {
         { name: 'Getbuild', url: 'https://getbuild.pl' },
         { name: 'Agenci AI dla Firm' },
       ]} />
-      <section className="relative overflow-hidden bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+
+      <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <ProcessFlowBackground />
-        <div className="relative z-10 mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Agenci AI, którzy pracują za Ciebie 24/7
+        <div className="relative z-10 mx-auto max-w-4xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#22D3EE]/20 bg-[#22D3EE]/5 px-4 py-1.5 mb-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#22D3EE] animate-pulse" />
+            <span className="text-xs font-medium text-[#22D3EE] tracking-wide uppercase">Agenci AI</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Agent AI działa samodzielnie.<br className="hidden md:block" />
+            <span className="text-[#22D3EE]"> Bez reguł, bez nadzoru.</span>
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
-            Zaawansowani agenci AI pracujący bez przestojów. Obsługują zapytania, porządkują dane i wspierają Twoje decyzje biznesowe.
+          <p className="text-lg md:text-xl leading-[1.7] text-[#A6B2C4] mb-10 max-w-2xl" data-speakable>
+            Nie chatbot. Nie skrypt. Agent AI dostaje zadanie i sam decyduje, jak je wykonać. Działa w tle, przez całą dobę, bez żadnych instrukcji krok po kroku.
           </p>
-        </div>
-      </section>
-
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Czym się różnią agenci od automatyzacji
-          </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
-            <p>
-              Agenci AI to nie zwykła automatyzacja. Zwykła automatyzacja wykonuje powtarzalne zadania na podstawie ustalonych reguł. Agent AI jest inteligentny — rozumie kontekst, podejmuje decyzje i dostosowuje się do nowych sytuacji.
-            </p>
-            <p>
-              Agent AI może obsługiwać zapytania klientów w naturalnym języku, zrozumieć, czego naprawdę potrzebuje, i udzielić sensownej odpowiedzi. Może porządkować złożone dane z wielu źródeł, wyciągać wnioski i generować raporty. Może nawet wspierać Ciebie w podejmowaniu decyzji biznesowych.
-            </p>
-            <p>
-              Agenci pracują całą dobę, bez przestojów i zmęczenia. Nie poprawiają sobie kawy, nie biora wolnych, nie przychodzą do pracy w złym nastroju. Są zawsze dostępni i zawsze w formie.
-            </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/#kontakt"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Umów bezpłatną rozmowę
+            </a>
+            <a
+              href="#co-przejmuje"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-8 py-4 text-[15px] font-medium text-[#A6B2C4] hover:border-white/20 hover:text-[#EAF0F7] transition-colors duration-200"
+            >
+              Co przejmuje agent
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Jacy agenci mogą pracować dla Ciebie
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Chatbot kontra agent AI
           </h2>
-          <div className="space-y-4 text-[#A6B2C4] leading-[1.7]">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Agent obsługi klienta</h3>
-                <p>Odpowiada na pytania, rozwiązuje problemy i kieruje klientów do właściwych działów. Pracuje na chacie, emailu czy portalach społecznościowych.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Agent analityk</h3>
-                <p>Analizuje dane biznesowe, wyciąga wnioski i przygotowuje raporty. Dostrzega trendy i anomalie, które mogą Ci ujść.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Agent badawczy</h3>
-                <p>Przeszukuje internet, zbiera informacje o konkurentach, trendach i rynku. Oszczędza Ci wiele godzin ręcznej pracy.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Agent wsparcia decyzji</h3>
-                <p>Analizuje dane biznesowe i pomaga Ci w podejmowaniu strategicznych decyzji. Porównuje warianty, ocenia ryzyko i sugeruje najlepsze rozwiązania.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Najczęstsze pytania
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.name} className="border-b border-white/10 pb-6">
-                <h3 className="font-semibold text-[#EAF0F7] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
-                <p className="text-[#A6B2C4] leading-[1.7] text-[15px]">{item.acceptedAnswer.text}</p>
+          <p className="text-[#6B7A90] mb-10 text-[15px]">Różnica, która ma znaczenie w praktyce.</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {diff.map((col) => (
+              <div
+                key={col.label}
+                className={`rounded-2xl border p-8 ${col.accent
+                  ? 'bg-[#0F1A24] border-[#22D3EE]/25'
+                  : 'bg-[#0C1018] border-white/5'
+                }`}
+              >
+                <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[#22D3EE]' : 'text-[#4B5668]'}`} style={{ fontFamily: 'var(--font-syne)' }}>
+                  {col.label}
+                </div>
+                <ul className="space-y-4">
+                  {col.points.map((pt, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className={`mt-1 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${col.accent ? 'bg-[#22D3EE]/15' : 'bg-white/5'}`}>
+                        {col.accent
+                          ? <svg className="h-2.5 w-2.5 text-[#22D3EE]" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                          : <svg className="h-2 w-2 text-[#3B4455]" viewBox="0 0 8 8" fill="none"><path d="M2 4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                        }
+                      </span>
+                      <span className={`text-[14px] leading-[1.6] ${col.accent ? 'text-[#A6B2C4]' : 'text-[#4B5668]'}`}>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Chcesz wdrożyć agenta do Twojego biznesu?
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl bg-[#0F1520] border border-white/5 p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+              Jak to działa w praktyce
+            </h2>
+            <p className="text-[#7A8699] leading-[1.7] mb-6 text-[15px]">
+              Dajesz agentowi zadanie: "Sprawdź, czy przyszły nowe zapytania ofertowe, odpowiedz na proste, te bardziej skomplikowane prześlij do mnie z podsumowaniem."
+            </p>
+            <p className="text-[#7A8699] leading-[1.7] mb-6 text-[15px]">
+              Agent to rozumie. Sam decyduje, co jest proste, a co wymaga Twojej uwagi. Sam pisze odpowiedzi. Sam wybiera, komu i kiedy napisać. Nie ma listy reguł, którą musiałeś wcześniej przygotować.
+            </p>
+            <p className="text-[#A6B2C4] leading-[1.7] text-[15px]">
+              Jeśli pojawi się sytuacja, której nie było w żadnej instrukcji, agent nie staje. Analizuje kontekst i działa dalej. Tak samo jak człowiek, tylko bez przerw i bez końca dnia pracy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="co-przejmuje" className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Co agent może przejąć od Twojego zespołu
           </h2>
-          <a
-            href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0 8px 24px rgba(34,211,238,0.22)] hover:-translate-y-0.5"
-          >
-            Umów rozmowę
-          </a>
+          <p className="text-[#6B7A90] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {capabilities.map((c, i) => (
+              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#22D3EE]/20 transition-colors duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#22D3EE]/10 border border-[#22D3EE]/20 flex items-center justify-center">
+                    <svg className="h-4 w-4 text-[#22D3EE]" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#EAF0F7] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{c.title}</h3>
+                    <p className="text-[#7A8699] text-[14px] leading-[1.7]">{c.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-10 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Najczęstsze pytania
+          </h2>
+          <div className="space-y-0 divide-y divide-white/5">
+            {faqItems.map((item) => (
+              <div key={item.name} className="py-6">
+                <h3 className="font-semibold text-[#EAF0F7] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <p className="text-[#7A8699] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-16 md:py-24 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl bg-[#0F1520] border border-[#22D3EE]/15 p-10 md:p-14 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#22D3EE]/5 via-transparent to-transparent pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Powiedz nam, co chcesz oddać agentowi
+              </h2>
+              <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">
+                Na rozmowie pokażemy, jak agent działałby w Twoim przypadku. Demo masz w kilka dni.
+              </p>
+              <a
+                href="/#kontakt"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                Umów rozmowę
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -222,4 +275,3 @@ export default function AgenciAI() {
     </main>
   )
 }
-

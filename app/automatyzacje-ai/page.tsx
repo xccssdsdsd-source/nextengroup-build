@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
@@ -14,9 +14,7 @@ export const metadata: Metadata = {
   title: 'Automatyzacje AI dla Firm | Oszczędź Czas i Koszty | Getbuild',
   description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność. Wdrożenia automatyzacji AI dla firm — Getbuild.',
   keywords: ['automatyzacje AI', 'automatyzacje biznesowe', 'AI dla firm', 'RPA', 'wdrożenia AI', 'procesy biznesowe', 'inteligencja sztuczna'],
-  alternates: {
-    canonical: `${siteUrl}/automatyzacje-ai`,
-  },
+  alternates: { canonical: `${siteUrl}/automatyzacje-ai` },
   openGraph: {
     type: 'website',
     url: `${siteUrl}/automatyzacje-ai`,
@@ -24,14 +22,7 @@ export const metadata: Metadata = {
     description: 'Automatyzujemy procesy biznesowe z użyciem AI. Mniej ręcznej pracy, mniej błędów, większa efektywność.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
-    images: [
-      {
-        url: `${siteUrl}/getbuild-logo-og.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Automatyzacje AI dla Firm | Getbuild',
-      },
-    ],
+    images: [{ url: `${siteUrl}/getbuild-logo-og.png`, width: 1200, height: 630, alt: 'Automatyzacje AI dla Firm | Getbuild' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,15 +38,8 @@ const serviceSchema = {
   name: 'Automatyzacje AI dla firm',
   description: 'Automatyzujemy procesy biznesowe przy użyciu AI. Mniej ręcznej pracy, mniej błędów, większa efektywność operacyjna.',
   serviceType: 'Automatyzacje procesów biznesowych AI',
-  provider: {
-    '@type': 'Organization',
-    '@id': 'https://getbuild.pl/#organization',
-    name: 'Getbuild',
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Polska',
-  },
+  provider: { '@type': 'Organization', '@id': 'https://getbuild.pl/#organization', name: 'Getbuild' },
+  areaServed: { '@type': 'Country', name: 'Polska' },
   url: 'https://getbuild.pl/automatyzacje-ai',
 }
 
@@ -68,7 +52,7 @@ const faqSchema = {
       name: 'Jakie procesy możecie zautomatyzować dzięki AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów — CRM, e-mail, arkusze. Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
+        text: 'Najczęściej automatyzujemy to, co w firmach zajmuje czas, ale nie wymaga ludzkiego myślenia: sortowanie zapytań i maili, kierowanie leadów, generowanie raportów, przepisywanie danych między systemami. Jeśli ktoś w Twoim zespole robi to ręcznie, można to zautomatyzować.',
       },
     },
     {
@@ -76,7 +60,7 @@ const faqSchema = {
       name: 'Ile trwa wdrożenie automatyzacji AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Działające demo dostarczamy w kilka dni od pierwszego spotkania i zebrania materiałów. Pełne wdrożenie z testami zajmuje od tygodnia do kilku tygodni, zależnie od złożoności procesu.',
+        text: 'Działające demo masz zwykle w kilka dni od pierwszej rozmowy. Pełne wdrożenie z testami to od tygodnia do kilku tygodni, w zależności od tego, ile procesów obejmuje i jak są połączone z innymi systemami.',
       },
     },
     {
@@ -84,7 +68,7 @@ const faqSchema = {
       name: 'Czy automatyzacje da się połączyć z narzędziami, których już używam?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Łączymy automatyzacje z narzędziami, których już używasz — CRM, fakturowanie, e-mail, formularze, arkusze i inne systemy. Wszystko działa jako jeden spójny proces.',
+        text: 'Tak, i to jest punkt wyjścia. Nie wymagamy od Ciebie zmiany systemu. Podłączamy automatyzacje do tego, co już masz: CRM, arkusze, maile, fakturowanie, formularze. Działa w tle, nie widać połączeń.',
       },
     },
     {
@@ -92,7 +76,7 @@ const faqSchema = {
       name: 'Czy muszę znać się na technologii, żeby skorzystać z automatyzacji?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Nie. Przeprowadzamy całą analizę i wdrożenie od strony technicznej. Twoja rola to opisanie procesu, który chcesz usprawnić — resztą zajmujemy się my.',
+        text: 'Nie. Twoja rola to powiedzenie nam, co zjada czas Twojego zespołu. My robimy analizę, projekt i wdrożenie. Oddajesz nam gotowy problem, odbierasz gotowe rozwiązanie.',
       },
     },
   ],
@@ -100,9 +84,28 @@ const faqSchema = {
 
 const faqItems = faqSchema.mainEntity
 
+const features = [
+  {
+    title: 'Obsługa zapytań i maili',
+    desc: 'Przychodzące wiadomości są odczytywane, kategoryzowane i kierowane do właściwej osoby lub odpowiadane automatycznie. Bez czekania, bez pomyłek.',
+  },
+  {
+    title: 'Raporty i zestawienia',
+    desc: 'Dane z różnych źródeł łączą się w jeden raport, który trafia do skrzynki lub dashboardu o ustalonej godzinie. Nikt nie musi tego robić ręcznie.',
+  },
+  {
+    title: 'Przepływ danych między systemami',
+    desc: 'CRM, faktury, HR, magazyn. Kiedy coś się zmienia w jednym miejscu, reszta aktualizuje się sama. Koniec z kopiowaniem między zakładkami.',
+  },
+  {
+    title: 'Alerty i monitoring',
+    desc: 'Automatyzacja pilnuje procesów i wysyła powiadomienie, gdy coś wymaga uwagi. Dowiadujesz się o problemie, zanim urośnie.',
+  },
+]
+
 export default function AutomatyzacjeAI() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-[#0A0E14]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
@@ -110,113 +113,161 @@ export default function AutomatyzacjeAI() {
         { name: 'Getbuild', url: 'https://getbuild.pl' },
         { name: 'Automatyzacje AI dla Firm' },
       ]} />
-      <section className="relative overflow-hidden bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+
+      <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <ProcessFlowBackground />
-        <div className="relative z-10 mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Automatyzacje AI, które odciążają Twój zespół
+        <div className="relative z-10 mx-auto max-w-4xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#22D3EE]/20 bg-[#22D3EE]/5 px-4 py-1.5 mb-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#22D3EE] animate-pulse" />
+            <span className="text-xs font-medium text-[#22D3EE] tracking-wide uppercase">Automatyzacje AI</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Twój zespół robi rzeczy,<br className="hidden md:block" />
+            <span className="text-[#22D3EE]"> które AI może robić za niego</span>
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
-            Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność operacyjna.
+          <p className="text-lg md:text-xl leading-[1.7] text-[#A6B2C4] mb-10 max-w-2xl" data-speakable>
+            Przepisywanie danych, sortowanie maili, generowanie raportów. To godziny pracy tygodniowo, które AI przejmuje w ciągu kilku dni. Twoi ludzie zostają przy tym, co naprawdę ma znaczenie.
           </p>
-        </div>
-      </section>
-
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Po co automatyzować
-          </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
-            <p>
-              Każdy zespół ma procesy, które pochłaniają czas i generują błędy. Faktury do wysłania, raporty do przygotowania, dane do wprowadzenia do systemu. To wszystko można zautomatyzować.
-            </p>
-            <p>
-              Automatyzacje AI przyspeszają pracę, eliminują błędy ręczne i uwalniają czas Twoich pracowników do bardziej strategicznych zadań. Zmniejszają też koszty operacyjne — pracownicy zamiast przepisywać dane mogą zajmować się rozwojem biznesu.
-            </p>
-            <p>
-              Możemy zautomatyzować obsługę zapytań od klientów, porządkowanie informacji z emaili, wysyłanie powiadomień, generowanie raportów czy integrację różnych systemów. Wszystko zależy od tego, co Cię boli najbardziej.
-            </p>
-            <p>
-              Przeprowadzamy analizę procesów, określamy, co się da zautomatyzować, budujemy rozwiązanie i testujemy je. Pracujemy iteracyjnie — najpierw jedna automatyzacja, potem rozwijamy ją w miarę potrzeb.
-            </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/#kontakt"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Umów bezpłatną konsultację
+            </a>
+            <a
+              href="#co-automatyzujemy"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-8 py-4 text-[15px] font-medium text-[#A6B2C4] hover:border-white/20 hover:text-[#EAF0F7] transition-colors duration-200"
+            >
+              Zobacz przykłady
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Co możemy zautomatyzować
-          </h2>
-          <div className="space-y-4 text-[#A6B2C4] leading-[1.7]">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Obsługa zapytań i komunikacja</h3>
-                <p>Przychodzące emaile, wiadomości, zgłoszenia od klientów — mogą być automatycznie sortowane, odpowiadane i przypisywane zespołowi.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Przetwarzanie danych i raporty</h3>
-                <p>Zbieranie informacji z różnych źródeł, czyszczenie danych, generowanie raportów i wizualizacji — wszystko automatycznie.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Integracje między systemami</h3>
-                <p>Dane z jednego narzędzia mogą automatycznie przechodzić do innego. CRM, faktury, HR — wszystko synchronizowane bez ręcznego wprowadzania.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#22D3EE] text-[#06141A] text-sm font-bold">✓</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-[#EAF0F7] mb-1">Powiadomienia i monitoring</h3>
-                <p>Automatyczne alerty, notyfikacje i monitorowanie statusu procesów — wiesz zawsze, co się dzieje.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Najczęstsze pytania
-          </h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.name} className="border-b border-white/10 pb-6">
-                <h3 className="font-semibold text-[#EAF0F7] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
-                <p className="text-[#A6B2C4] leading-[1.7] text-[15px]">{item.acceptedAnswer.text}</p>
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid md:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
+            {[
+              { val: '2-5', unit: 'dni', label: 'do działającego demo' },
+              { val: '0', unit: 'zł', label: 'koszt analizy procesu' },
+              { val: '100%', unit: '', label: 'integracja z Twoimi narzędziami' },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-[#0F1520] px-8 py-10 flex flex-col gap-1">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-4xl font-bold text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>{stat.val}</span>
+                  {stat.unit && <span className="text-xl font-bold text-[#22D3EE]">{stat.unit}</span>}
+                </div>
+                <p className="text-sm text-[#6B7A90]">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-8" style={{ fontFamily: 'var(--font-syne)' }}>
-            Chcesz wiedzieć, co się daje zautomatyzować?
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Gdzie gubi się czas w Twojej firmie
+              </h2>
+              <div className="space-y-5 text-[#A6B2C4] leading-[1.7]">
+                <p>
+                  Większość firm nie ma jednego dużego problemu. Ma dziesiątki małych, powtarzalnych czynności, które zjadają czas po kawałku. Ktoś sprawdza maile i ręcznie wpisuje dane do arkusza. Ktoś inny przygotowuje ten sam raport co tydzień.
+                </p>
+                <p>
+                  Każda z tych czynności zajmuje 15 minut. W skali roku to setki godzin na coś, co powinno dziać się samo.
+                </p>
+                <p>
+                  Automatyzacje AI nie wymagają zmiany całej infrastruktury. Podpinamy je do narzędzi, z których już korzystasz, i ustawiamy tak, żeby pracowały w tle.
+                </p>
+              </div>
+            </div>
+            <div className="bg-[#0F1520] rounded-2xl border border-white/5 p-8 space-y-5">
+              {[
+                'Ręczne wpisywanie danych między systemami',
+                'Tworzenie tych samych raportów co tydzień',
+                'Sortowanie i przekierowywanie maili z zapytaniami',
+                'Sprawdzanie statusów zamówień i faktur',
+                'Powiadamianie zespołu o zmianach w projektach',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="mt-0.5 flex-shrink-0 h-5 w-5 rounded-full bg-[#22D3EE]/10 border border-[#22D3EE]/30 flex items-center justify-center">
+                    <svg className="h-2.5 w-2.5 text-[#22D3EE]" viewBox="0 0 10 10" fill="none">
+                      <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <span className="text-[15px] text-[#8A96A8] leading-[1.6]">{item}</span>
+                </div>
+              ))}
+              <p className="text-xs text-[#22D3EE]/60 pt-2 border-t border-white/5">To wszystko można zautomatyzować.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="co-automatyzujemy" className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Co najczęściej automatyzujemy
           </h2>
-          <a
-            href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0 8px 24px rgba(34,211,238,0.22)] hover:-translate-y-0.5"
-          >
-            Umów konsultację
-          </a>
+          <p className="text-[#6B7A90] mb-10 text-[15px]">Konkretne procesy, które trafiają do nas najczęściej.</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {features.map((f, i) => (
+              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#22D3EE]/20 transition-colors duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#22D3EE]/10 border border-[#22D3EE]/20 flex items-center justify-center">
+                    <svg className="h-4 w-4 text-[#22D3EE]" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#EAF0F7] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{f.title}</h3>
+                    <p className="text-[#7A8699] text-[14px] leading-[1.7]">{f.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-14 md:py-20 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-10 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+            Najczęstsze pytania
+          </h2>
+          <div className="space-y-0 divide-y divide-white/5">
+            {faqItems.map((item) => (
+              <div key={item.name} className="py-6">
+                <h3 className="font-semibold text-[#EAF0F7] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <p className="text-[#7A8699] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-16 md:py-24 px-6 md:px-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl bg-[#0F1520] border border-[#22D3EE]/15 p-10 md:p-14 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#22D3EE]/5 via-transparent to-transparent pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+                Powiedz nam, co zjada czas w Twoim zespole
+              </h2>
+              <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">
+                Na rozmowie pokażemy, co da się zautomatyzować i ile czasu to zwróci. Zero zobowiązań.
+              </p>
+              <a
+                href="/#kontakt"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                Umów konsultację
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -225,4 +276,3 @@ export default function AutomatyzacjeAI() {
     </main>
   )
 }
-

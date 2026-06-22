@@ -8,7 +8,6 @@ import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import GlobalPathsClient from '@/components/GlobalPathsClient'
 import GSAPProvider from '@/components/GSAPProvider'
 import GSAPAnimations from '@/components/GSAPAnimations'
-import RippleCursor from '@/components/RippleCursor'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
@@ -274,7 +273,6 @@ export default function RootLayout({
         }) }} />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
-        <RippleCursor />
         <GSAPProvider>
           <AnimatedBackground />
           <GlobalPathsClient />

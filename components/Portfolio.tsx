@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useCallback, useEffect, useId } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
 import LiveSiteButton from './ui/LiveSiteButton'
 
@@ -61,12 +61,12 @@ const projects: Project[] = [
     blurDataURL: 'data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoIAAUABUB8JZQC7ADZkPFAAP5Yc5shiBKga0xz0IkIAAAA',
     imgWidth: 1852,
     imgHeight: 916,
-    body: 'Strona internetowa dla PM Apartments - firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Patryk Zacharek miał stronę, ale bez optymalizacji pod względem SEO i słabo działającą na telefonie. Nowi potencjalni klienci teraz trafiają na estetyczny landing page. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz formularz kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
+    body: 'Strona internetowa dla PM Apartments, firmy zajmującej się wykończeniami pod klucz we Wrocławiu. Wcześniejsza strona PM Apartments nie była zoptymalizowana pod SEO i słabo działała na telefonie. Nowi potencjalni klienci teraz trafiają na estetyczny landing page. Zawiera galerię realizowanych projektów, opis usług, portfolio prac oraz formularz kontaktowy. Wdrożona w 72 godziny z pełną optymalizacją SEO i wydajnością.',
     time: '72h',
     lighthouse: [
       { label: 'Wydajność', value: 96 },
       { label: 'Dostępność', value: 93 },
-      { label: 'Best Practices', value: 100 },
+      { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 100 },
     ],
     owner: { name: 'Patryk Zacharek', role: 'Właściciel, PM Apartments', photo: '/owner-pm-apartments.jpg' },
@@ -85,7 +85,7 @@ const projects: Project[] = [
     lighthouse: [
       { label: 'Wydajność', value: 97 },
       { label: 'Dostępność', value: 93 },
-      { label: 'Best Practices', value: 100 },
+      { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 100 },
     ],
     owner: { name: 'Magdalena Sioła', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.jpg' },
@@ -106,7 +106,7 @@ const projects: Project[] = [
     lighthouse: [
       { label: 'Wydajność', value: 97 },
       { label: 'Dostępność', value: 96 },
-      { label: 'Best Practices', value: 96 },
+      { label: 'Dobre praktyki', value: 96 },
       { label: 'SEO', value: 100 },
     ],
     owner: { name: 'Dori', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.jpg' },
@@ -143,8 +143,8 @@ function AgentBadge() {
         <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)' }} />
       </span>
       <div className="flex flex-col leading-none">
-        <span className="text-[11px] font-bold tracking-wide" style={{ color: '#86EFAC' }}>Przeglądanie agentowe</span>
-        <span className="text-[10px] mt-0.5" style={{ color: 'rgba(134,239,172,0.55)' }}>Zoptymalizowane pod AI</span>
+        <span className="text-[11px] font-bold tracking-wide" style={{ color: '#86EFAC' }}>Widoczna dla AI i ChatGPT</span>
+        <span className="text-[10px] mt-0.5" style={{ color: 'rgba(134,239,172,0.55)' }}>Zoptymalizowana pod GEO</span>
       </div>
     </div>
   )
@@ -169,6 +169,92 @@ function ScoreBadge({ value, label }: LighthouseScore) {
         {value}
       </div>
       <span className="text-[9px] leading-tight text-[#A6B2C4] text-center max-w-[44px]">{label}</span>
+    </div>
+  )
+}
+
+function AnimatedLines() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const opacityRef = useRef(1)
+  const svgRef = useRef<SVGSVGElement>(null)
+  const uid = useId().replace(/:/g, '')
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    let raf = 0
+    const update = () => {
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight
+      const fadeStart = vh * 0.3
+      const fadeEnd = -rect.height * 0.4
+      const pos = rect.top
+      let o = 1
+      if (pos < fadeStart) o = Math.max(0, (pos - fadeEnd) / (fadeStart - fadeEnd))
+      opacityRef.current = o
+      if (svgRef.current) svgRef.current.style.opacity = String(o)
+      raf = requestAnimationFrame(update)
+    }
+    raf = requestAnimationFrame(update)
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  return (
+    <div ref={sectionRef} aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 0 }}>
+      <svg
+        ref={svgRef}
+        viewBox="0 0 1440 700"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ width: '100%', height: '100%', transition: 'opacity 0.15s linear' }}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <style>{`
+            @keyframes pf-flow-a { from { stroke-dashoffset: 2200 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-b { from { stroke-dashoffset: 2600 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-c { from { stroke-dashoffset: 1900 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-d { from { stroke-dashoffset: 2400 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-e { from { stroke-dashoffset: 2000 } to { stroke-dashoffset: 0 } }
+            @media (prefers-reduced-motion: no-preference) {
+              .pf-a { animation: pf-flow-a 18s linear infinite }
+              .pf-b { animation: pf-flow-b 24s linear infinite }
+              .pf-c { animation: pf-flow-c 20s linear infinite }
+              .pf-d { animation: pf-flow-d 28s linear infinite }
+              .pf-e { animation: pf-flow-e 22s linear infinite }
+            }
+          `}</style>
+          <linearGradient id={`${uid}-ga`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0" />
+            <stop offset="40%" stopColor="#22D3EE" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#5EEAFF" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`${uid}-gb`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#5EEAFF" stopOpacity="0" />
+            <stop offset="50%" stopColor="#5EEAFF" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#22D3EE" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`${uid}-gc`} x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#0E7490" stopOpacity="0" />
+            <stop offset="45%" stopColor="#22D3EE" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#5EEAFF" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        <path d="M -80 120 C 200 80 500 200 800 160 S 1200 60 1520 100" fill="none" stroke="rgba(34,211,238,0.07)" strokeWidth="1.2" />
+        <path d="M -80 120 C 200 80 500 200 800 160 S 1200 60 1520 100" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.2" strokeDasharray="340 1860" className="pf-a" />
+
+        <path d="M -80 300 C 180 240 460 380 760 340 S 1200 220 1520 260" fill="none" stroke="rgba(94,234,255,0.05)" strokeWidth="0.8" />
+        <path d="M -80 300 C 180 240 460 380 760 340 S 1200 220 1520 260" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="280 2320" className="pf-b" />
+
+        <path d="M 1520 180 C 1200 280 880 420 560 380 S 100 280 -80 460" fill="none" stroke="rgba(14,116,144,0.08)" strokeWidth="1.0" />
+        <path d="M 1520 180 C 1200 280 880 420 560 380 S 100 280 -80 460" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="1.0" strokeDasharray="300 1600" className="pf-c" />
+
+        <path d="M -80 500 C 300 440 620 560 940 520 S 1300 400 1520 440" fill="none" stroke="rgba(34,211,238,0.04)" strokeWidth="0.7" />
+        <path d="M -80 500 C 300 440 620 560 940 520 S 1300 400 1520 440" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.7" strokeDasharray="260 2140" className="pf-d" />
+
+        <path d="M 1520 560 C 1100 500 700 620 380 580 S 80 500 -80 640" fill="none" stroke="rgba(94,234,255,0.05)" strokeWidth="0.9" />
+        <path d="M 1520 560 C 1100 500 700 620 380 580 S 80 500 -80 640" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.9" strokeDasharray="310 1690" className="pf-e" />
+      </svg>
     </div>
   )
 }
@@ -238,7 +324,7 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }} data-no-entrance suppressHydrationWarning>
-
+      <AnimatedLines />
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
@@ -316,8 +402,8 @@ export default function Portfolio() {
                           suppressHydrationWarning
                         />
                       </a>
+                      <AgentBadge />
                     </div>
-                    <AgentBadge />
                   </div>
                 ) : (
                   <div className="flex flex-col gap-3">
@@ -361,7 +447,7 @@ export default function Portfolio() {
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="font-semibold text-[#22D3EE] hover:underline">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#22D3EE] underline hover:text-[#06EFFF]">Zobacz więcej</button></>
                     )}
                   </p>
 

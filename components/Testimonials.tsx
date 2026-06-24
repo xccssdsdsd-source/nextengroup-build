@@ -1,13 +1,32 @@
 ﻿'use client'
 
 import { m, useInView } from 'framer-motion'
-import { Star } from 'lucide-react'
+import { ArrowUpRight, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+
+const testimonials = [
+  {
+    quote:
+      'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
+    name: 'Patryk Zacharek',
+    href: 'https://pm-apartments.pl/',
+    site: 'pm-apartments.pl',
+    photo: '/patryk-zacharek.webp',
+  },
+  {
+    quote:
+      'Z pełnym przekonaniem polecam współpracę z Getbuild.pl. Firma stworzyła dla mnie stronę internetową MS Design Studio. Cały proces przebiegał sprawnie, komunikacja była na bardzo wysokim poziomie, a wszelkie uwagi były szybko wdrażane. Efekt końcowy spełnił moje oczekiwania zarówno pod względem estetyki, jak i funkcjonalności. Dziękuję za profesjonalne podejście i zaangażowanie.',
+    name: 'Magdalena Sioła',
+    href: 'https://msdesignstudio.pl/',
+    site: 'msdesignstudio.pl',
+    photo: '/owner-msdesignstudio.jpg',
+  },
+]
 
 export default function Testimonials() {
   const ref = useRef(null)
@@ -34,12 +53,14 @@ export default function Testimonials() {
         </m.div>
 
         <m.div
-          className="mt-14 flex justify-center"
+          className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6"
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...premiumSpring, delay: 0.12 }}
         >
-          <TestimonialCard />
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+          ))}
         </m.div>
 
         <m.div
@@ -61,12 +82,12 @@ export default function Testimonials() {
   )
 }
 
-function TestimonialCard() {
+function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[number] }) {
   return (
     <m.article
       whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 20px 50px rgba(0,0,0,0.5)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="testimonial-card relative w-full max-w-2xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
+      className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)] sm:p-8"
       style={{ willChange: 'transform' }}
     >
       <svg
@@ -84,30 +105,33 @@ function TestimonialCard() {
         ))}
       </div>
 
-      <p className="mt-5 text-[15px] leading-[1.82] text-[#A6B2C4]">
-        &ldquo;Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.&rdquo;
+      <p className="mt-5 flex-1 text-[15px] leading-[1.82] text-[#A6B2C4]">
+        &ldquo;{testimonial.quote}&rdquo;
       </p>
 
       <div className="mt-6 flex items-center gap-3.5 border-t border-[rgba(255,255,255,0.08)] pt-5">
-        <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.22)]">
+        <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.22)]">
           <Image
-            src="/patryk-zacharek.webp"
-            alt="Patryk Zacharek"
-            width={80}
-            height={80}
+            src={testimonial.photo}
+            alt={testimonial.name}
+            width={88}
+            height={88}
             loading="lazy"
-            className="object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
         <div>
-          <div className="text-[13px] font-semibold text-[#EAF0F7]">Patryk Zacharek</div>
+          <div className="text-[13px] font-semibold text-[#EAF0F7]">{testimonial.name}</div>
           <a
-            href="https://pm-apartments.pl/"
+            href={testimonial.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-medium text-[#22D3EE] hover:text-[#5EEAFF] transition-colors duration-150 uppercase tracking-[0.14em]"
+            className="group mt-1 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#22D3EE] transition-colors duration-150 hover:text-[#5EEAFF]"
           >
-            pm-apartments.pl
+            <span>{testimonial.site}</span>
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(34,211,238,0.12)] ring-1 ring-[rgba(34,211,238,0.22)] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[rgba(34,211,238,0.18)]">
+              <ArrowUpRight size={13} strokeWidth={2.4} aria-hidden="true" />
+            </span>
           </a>
         </div>
       </div>

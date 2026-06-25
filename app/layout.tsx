@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
-import { Syne, DM_Sans } from 'next/font/google'
+import { Sora, Inter } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import CookieConsent from '@/components/CookieConsent'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import GlobalPathsClient from '@/components/GlobalPathsClient'
-import GSAPProvider from '@/components/GSAPProvider'
 import GSAPAnimations from '@/components/GSAPAnimations'
 
 const siteUrl = 'https://getbuild.pl'
@@ -14,18 +13,18 @@ const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
 const siteDescription =
   'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
 
-const syne = Syne({
+const sora = Sora({
   subsets: ['latin'],
-  weight: ['700', '800'],
+  weight: ['500', '600', '700', '800'],
   variable: '--font-syne',
-  display: 'optional',
+  display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   variable: '--font-dm-sans',
-  display: 'optional',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -97,7 +96,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${syne.variable} ${dmSans.variable}`}
+      className={`${sora.variable} ${inter.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -272,8 +271,7 @@ export default function RootLayout({
           ],
         }) }} />
       </head>
-      <body className="antialiased" style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}>
-        <GSAPProvider>
+      <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
           <GlobalPathsClient />
           <CookieConsent />
@@ -284,7 +282,6 @@ export default function RootLayout({
               <GSAPAnimations />
             </div>
           </MotionProvider>
-        </GSAPProvider>
         <Analytics />
       </body>
     </html>

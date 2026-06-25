@@ -151,11 +151,11 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
         <div className="mb-3 mt-1 h-[22px]" />
       )}
       {asHeading ? (
-        <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+        <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-heading)' }}>
           {pkg.name}
         </h3>
       ) : (
-        <div className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-syne)' }}>
+        <div className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-heading)' }}>
           {pkg.name}
         </div>
       )}
@@ -249,7 +249,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>
+            <h2 className="section-title" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>
               <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]">
                 Strony internetowe
               </div>
@@ -291,7 +291,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.3 }}
           >
-            <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
               SEO i GEO wbudowane w każdą stronę
             </h3>
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
@@ -360,8 +360,7 @@ export default function Services() {
           >
             <button
               className="mb-0 lg:mb-4 flex w-full items-center justify-between text-left text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7] lg:pointer-events-none"
-              style={{ fontFamily: 'var(--font-syne)' }}
-              onClick={() => setCareExpanded((v) => !v)}
+                           onClick={() => setCareExpanded((v) => !v)}
               aria-expanded={careExpanded}
             >
               Co obejmuje opieka?
@@ -498,18 +497,13 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
       }`}
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
-      <div className="flex items-center gap-2 mb-2">
-        <span className="ai-tag inline-block px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#06141A]" style={{ background: '#22D3EE', borderRadius: '4px' }}>
-          {ai.tag}
-        </span>
-      </div>
 
       {asHeading ? (
-        <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
+        <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
           {ai.name}
         </h3>
       ) : (
-        <div className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-syne)' }}>
+        <div className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
           {ai.name}
         </div>
       )}
@@ -569,3 +563,4 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
     </m.div>
   )
 }
+

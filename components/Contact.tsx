@@ -129,7 +129,7 @@ export default function Contact() {
             <div className="w-full lg:w-[260px] xl:w-[280px] flex-shrink-0 flex flex-col">
               <div>
                 <span className="section-kicker" suppressHydrationWarning>Kontakt</span>
-                <h2 className="mt-2 text-[26px] sm:text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
+                <h2 className="mt-2 text-[26px] sm:text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                   Umów bezpłatną konsultację
                 </h2>
                 <p className="mt-3 text-[13px] leading-[1.7] text-[#A6B2C4]">
@@ -299,3 +299,4 @@ export default function Contact() {
     </section>
   )
 }
+

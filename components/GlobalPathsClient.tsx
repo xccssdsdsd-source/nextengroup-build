@@ -1,13 +1,12 @@
 'use client'
 
-const curve = (i: number, pos: number) =>
-  `M-${380 - i * 5 * pos} -${189 + i * 6}C-${380 - i * 5 * pos} -${189 + i * 6} -${312 - i * 5 * pos} ${216 - i * 6} ${152 - i * 5 * pos} ${343 - i * 6}C${616 - i * 5 * pos} ${470 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6} ${684 - i * 5 * pos} ${875 - i * 6}`
+import type { CSSProperties } from 'react'
 
 const threads = [
-  { d: curve(6, 1),   w: 0.8, dashDur: 52, fadeDur: 22, delay: 0,  color: '#22D3EE' },
-  { d: curve(20, 1),  w: 0.6, dashDur: 64, fadeDur: 28, delay: 9,  color: '#5EEAFF' },
-  { d: curve(12, -1), w: 0.7, dashDur: 58, fadeDur: 25, delay: 5,  color: '#5EEAFF' },
-  { d: curve(28, -1), w: 0.5, dashDur: 72, fadeDur: 31, delay: 14, color: '#22D3EE' },
+  { d: 'M -180 -80 C 180 40 360 178 620 312 S 1120 542 1620 820', w: 0.78, dashDur: 58, delay: 0, opacity: 0.18 },
+  { d: 'M -260 86 C 120 132 346 244 610 384 S 1080 616 1520 748', w: 0.56, dashDur: 72, delay: 16, opacity: 0.13 },
+  { d: 'M -120 220 C 170 210 420 322 690 456 S 1120 664 1600 900', w: 0.64, dashDur: 65, delay: 9, opacity: 0.145 },
+  { d: 'M 80 -120 C 288 80 520 210 820 362 S 1250 548 1600 680', w: 0.48, dashDur: 80, delay: 28, opacity: 0.1 },
 ]
 
 export default function GlobalPathsClient() {
@@ -17,41 +16,37 @@ export default function GlobalPathsClient() {
       style={{ zIndex: 0, contain: 'strict' }}
       aria-hidden="true"
     >
-      <style>{`
-        @keyframes gp-flow {
-          0%   { stroke-dashoffset: 2400; opacity: 0; }
-          12%  { opacity: 1; }
-          88%  { opacity: 1; }
-          100% { stroke-dashoffset: 0; opacity: 0; }
-        }
-        @keyframes gp-pulse {
-          0%, 100% { opacity: 0.05; }
-          50%       { opacity: 0.2; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .gp-path { animation: none !important; opacity: 0.08 !important; }
-        }
-      `}</style>
       <svg
         className="gp-svg w-full h-full"
-        viewBox="0 0 696 316"
+        viewBox="0 0 1440 760"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
       >
         {threads.map((t, i) => (
-          <path
-            key={i}
-            className="gp-path"
-            d={t.d}
-            stroke={t.color}
-            strokeWidth={t.w}
-            strokeLinecap="round"
-            fill="none"
-            strokeDasharray={2400}
-            style={{
-              animation: `gp-flow ${t.dashDur}s linear ${t.delay}s infinite, gp-pulse ${t.fadeDur}s ease-in-out ${t.delay}s infinite`,
-            }}
-          />
+          <g key={i}>
+            <path
+              d={t.d}
+              stroke="#22D3EE"
+              strokeWidth={t.w}
+              strokeLinecap="round"
+              fill="none"
+              opacity={0.04}
+            />
+            <path
+              className="gp-path"
+              d={t.d}
+              stroke="#22D3EE"
+              strokeWidth={t.w}
+              strokeLinecap="round"
+              fill="none"
+              strokeDasharray="480 1920"
+              style={{
+                filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.26))',
+                animation: `gp-flow ${t.dashDur}s linear ${t.delay}s infinite`,
+                opacity: t.opacity,
+              } as CSSProperties}
+            />
+          </g>
         ))}
       </svg>
     </div>

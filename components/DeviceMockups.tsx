@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useRef } from 'react'
 
@@ -348,7 +348,7 @@ export default function DeviceMockups() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-syne)' }}>Lighthouse 96</div>
+            <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-heading)' }}>Lighthouse 96</div>
             <div style={{ fontSize:'9px', color:'#A6B2C4', lineHeight:1.3 }}>Performance</div>
           </div>
         </div>
@@ -366,7 +366,7 @@ export default function DeviceMockups() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5B547" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
-            <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-syne)' }}>Wdrożenie 72h</div>
+            <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-heading)' }}>Wdrożenie 72h</div>
             <div style={{ fontSize:'9px', color:'#A6B2C4', lineHeight:1.3 }}>od startu do live</div>
           </div>
         </div>
@@ -374,3 +374,4 @@ export default function DeviceMockups() {
     </div>
   )
 }
+

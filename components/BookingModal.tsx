@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { AnimatePresence, m } from 'framer-motion'
 import { type FormEvent, useEffect, useRef, useState } from 'react'
@@ -190,7 +190,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                   <h3
                     id="booking-modal-title"
                     className="text-[20px] sm:text-[22px] font-bold text-[#EAF0F7] leading-tight"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                    style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     Umów bezpłatną konsultację
                   </h3>
@@ -305,7 +305,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                   <h3
                     id="booking-modal-title"
                     className="text-[17px] sm:text-[19px] font-bold text-[#EAF0F7]"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                    style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     Wybierz termin spotkania
                   </h3>
@@ -337,7 +337,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 <h3
                   id="booking-modal-title"
                   className="text-[22px] font-bold text-[#EAF0F7] mb-3"
-                  style={{ fontFamily: 'var(--font-syne)' }}
+                  style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   Spotkanie zarezerwowane!
                 </h3>
@@ -359,3 +359,4 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
     </AnimatePresence>
   )
 }
+

@@ -115,7 +115,7 @@ export default function Nav() {
           <a href="/" className="nav-island flex min-w-0 items-center gap-3 rounded-full py-2 pl-2 pr-4">
             <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-full object-contain" priority />
             <div className="min-w-0">
-              <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>Getbuild.pl</div>
+              <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>Getbuild.pl</div>
             </div>
           </a>
 
@@ -197,3 +197,4 @@ export default function Nav() {
     </>
   )
 }
+

@@ -46,7 +46,7 @@ export default function ValueProps() {
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl animate-breathe transition-[transform,box-shadow] duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(34,211,238,0.35)]" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)', animationDelay: `${idx * 0.5}s` }}>
                   <Icon size={20} strokeWidth={1.8} style={{ color: '#22D3EE' }} />
                 </div>
-                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug transition-colors duration-200 group-hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-syne)' }}>
+                <h3 className="text-[0.975rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug transition-colors duration-200 group-hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-heading)' }}>
                   {value.title}
                 </h3>
                 <p className="mt-2 text-[13.5px] leading-[1.65] text-[#A6B2C4]">
@@ -61,16 +61,17 @@ export default function ValueProps() {
             <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             </div>
-            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-syne)' }}>Widoczna dla modeli AI</span>
+            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-heading)' }}>Widoczna dla modeli AI</span>
           </div>
           <div className="flex items-center gap-2.5">
             <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(14,116,144,0.14) 100%)' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
-            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-syne)' }}>Zoptymalizowana pod GEO</span>
+            <span className="text-[13.5px] font-semibold text-[#EAF0F7] tracking-[-0.01em]" style={{ fontFamily: 'var(--font-heading)' }}>Zoptymalizowana pod GEO</span>
           </div>
         </div>
       </div>
     </section>
   )
 }
+

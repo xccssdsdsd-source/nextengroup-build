@@ -125,7 +125,7 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left border-b border-[rgba(255,255,255,0.06)]"
                 >
-                  <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-syne)' }}>
+                  <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#22D3EE]" style={{ fontFamily: 'var(--font-heading)' }}>
                     {faq.q}
                   </span>
                   <m.span
@@ -187,3 +187,4 @@ export default function FAQ() {
     </>
   )
 }
+

@@ -51,7 +51,7 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-6">
             <Image src="/getbuild-logo.webp" alt="Getbuild agencja usług cyfrowych" width={36} height={36} className="h-9 w-9 rounded-lg object-contain" />
             <div>
-              <div className="text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <div className="text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Getbuild
               </div>
               <div className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-[#7C879B]">
@@ -126,3 +126,4 @@ export default function Footer() {
     </footer>
   )
 }
+

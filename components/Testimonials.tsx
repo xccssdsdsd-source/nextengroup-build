@@ -49,7 +49,7 @@ export default function Testimonials() {
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker" suppressHydrationWarning>Opinie</span>
-          <h2 className="section-title" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>Co mówią nasi klienci</h2>
+          <h2 className="section-title" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Co mówią nasi klienci</h2>
         </m.div>
 
         <m.div
@@ -138,3 +138,4 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[n
     </m.article>
   )
 }
+

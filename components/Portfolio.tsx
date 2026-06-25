@@ -210,17 +210,20 @@ function AnimatedLines() {
       >
         <defs>
           <style>{`
-            @keyframes pf-flow-a { from { stroke-dashoffset: 2200 } to { stroke-dashoffset: 0 } }
-            @keyframes pf-flow-b { from { stroke-dashoffset: 2600 } to { stroke-dashoffset: 0 } }
-            @keyframes pf-flow-c { from { stroke-dashoffset: 1900 } to { stroke-dashoffset: 0 } }
-            @keyframes pf-flow-d { from { stroke-dashoffset: 2400 } to { stroke-dashoffset: 0 } }
-            @keyframes pf-flow-e { from { stroke-dashoffset: 2000 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-a { from { stroke-dashoffset: 2600 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-b { from { stroke-dashoffset: 2800 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-c { from { stroke-dashoffset: 2400 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-d { from { stroke-dashoffset: 3000 } to { stroke-dashoffset: 0 } }
+            @keyframes pf-flow-e { from { stroke-dashoffset: 2600 } to { stroke-dashoffset: 0 } }
             @media (prefers-reduced-motion: no-preference) {
-              .pf-a { animation: pf-flow-a 18s linear infinite }
-              .pf-b { animation: pf-flow-b 24s linear infinite }
-              .pf-c { animation: pf-flow-c 20s linear infinite }
-              .pf-d { animation: pf-flow-d 28s linear infinite }
-              .pf-e { animation: pf-flow-e 22s linear infinite }
+              .pf-a { animation: pf-flow-a 34s linear infinite }
+              .pf-b { animation: pf-flow-b 42s linear infinite }
+              .pf-c { animation: pf-flow-c 38s linear infinite }
+              .pf-d { animation: pf-flow-d 48s linear infinite }
+              .pf-e { animation: pf-flow-e 44s linear infinite }
+            }
+            @media (pointer: coarse), (max-width: 768px) {
+              .pf-a, .pf-b, .pf-c, .pf-d, .pf-e { opacity: 0.075 !important; }
             }
           `}</style>
           <linearGradient id={`${uid}-ga`} x1="0%" y1="0%" x2="100%" y2="0%">
@@ -234,26 +237,26 @@ function AnimatedLines() {
             <stop offset="100%" stopColor="#22D3EE" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gc`} x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#0E7490" stopOpacity="0" />
+            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0" />
             <stop offset="45%" stopColor="#22D3EE" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#5EEAFF" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        <path d="M -80 120 C 200 80 500 200 800 160 S 1200 60 1520 100" fill="none" stroke="rgba(34,211,238,0.07)" strokeWidth="1.2" />
-        <path d="M -80 120 C 200 80 500 200 800 160 S 1200 60 1520 100" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.2" strokeDasharray="340 1860" className="pf-a" />
+        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(34,211,238,0.065)" strokeWidth="1.1" />
+        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.1" strokeDasharray="520 2080" className="pf-a" />
 
-        <path d="M -80 300 C 180 240 460 380 760 340 S 1200 220 1520 260" fill="none" stroke="rgba(94,234,255,0.05)" strokeWidth="0.8" />
-        <path d="M -80 300 C 180 240 460 380 760 340 S 1200 220 1520 260" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="280 2320" className="pf-b" />
+        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(34,211,238,0.05)" strokeWidth="0.75" />
+        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.75" strokeDasharray="460 2340" className="pf-b" />
 
-        <path d="M 1520 180 C 1200 280 880 420 560 380 S 100 280 -80 460" fill="none" stroke="rgba(14,116,144,0.08)" strokeWidth="1.0" />
-        <path d="M 1520 180 C 1200 280 880 420 560 380 S 100 280 -80 460" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="1.0" strokeDasharray="300 1600" className="pf-c" />
+        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(34,211,238,0.055)" strokeWidth="0.95" />
+        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="0.95" strokeDasharray="500 1900" className="pf-c" />
 
-        <path d="M -80 500 C 300 440 620 560 940 520 S 1300 400 1520 440" fill="none" stroke="rgba(34,211,238,0.04)" strokeWidth="0.7" />
-        <path d="M -80 500 C 300 440 620 560 940 520 S 1300 400 1520 440" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.7" strokeDasharray="260 2140" className="pf-d" />
+        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(34,211,238,0.045)" strokeWidth="0.68" />
+        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.68" strokeDasharray="440 2560" className="pf-d" />
 
-        <path d="M 1520 560 C 1100 500 700 620 380 580 S 80 500 -80 640" fill="none" stroke="rgba(94,234,255,0.05)" strokeWidth="0.9" />
-        <path d="M 1520 560 C 1100 500 700 620 380 580 S 80 500 -80 640" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.9" strokeDasharray="310 1690" className="pf-e" />
+        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(34,211,238,0.045)" strokeWidth="0.8" />
+        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="480 2120" className="pf-e" />
       </svg>
     </div>
   )
@@ -334,7 +337,7 @@ export default function Portfolio() {
         >
           <div>
             <span className="section-kicker" suppressHydrationWarning>Nasze realizacje</span>
-            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
+            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
@@ -440,7 +443,7 @@ export default function Portfolio() {
                   <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#22D3EE', boxShadow: '0 2px 8px rgba(34,211,238,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
-                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>{project.name}</h3>
+                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
                     <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-all duration-200 group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
@@ -544,3 +547,4 @@ export default function Portfolio() {
     </section>
   )
 }
+

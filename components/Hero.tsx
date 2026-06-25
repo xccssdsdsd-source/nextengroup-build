@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import dynamic from 'next/dynamic'
 import { useEffect, useState, type MouseEvent } from 'react'
@@ -56,7 +56,8 @@ export default function Hero() {
       className="relative"
       style={{
         minHeight: '100dvh',
-        background: '#000000',
+        background:
+          'radial-gradient(640px 420px at 74% 46%, rgba(34, 211, 238, 0.10), transparent 68%), linear-gradient(180deg, rgba(5, 8, 13, 0.08) 0%, rgba(5, 8, 13, 0.0) 62%, rgba(5, 8, 13, 0.30) 100%)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -79,19 +80,24 @@ export default function Hero() {
           <div className="text-left" data-parallax-headline>
             <h1
               style={{
-                fontFamily: 'var(--font-syne)',
+                fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
-                fontSize: 'clamp(22px, 3.2vw, 48px)',
-                lineHeight: '1.09',
-                letterSpacing: '-0.025em',
-                color: '#EAF0F7',
+                fontSize: 'clamp(30px, 3.6vw, 58px)',
+                lineHeight: '1.05',
+                letterSpacing: '-0.03em',
               }}
             >
-              <span className="block text-balance" style={{ marginBottom: '0.06em' }}>Strony, które pozyskują klientów.</span>
-              <span className="block text-balance">Automatyzacje, które obsługują ich za Ciebie.</span>
+              <span className="block" style={{ color: '#EAF0F7', marginBottom: '0.04em' }}>
+                Strony, które{' '}
+                <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
+              </span>
+              <span className="block" style={{ color: '#C8D8E8' }}>
+                Automatyzacje, które{' '}
+                <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
+              </span>
             </h1>
 
-            <div className="hero-from-right mt-4 flex justify-start" style={{ animationDelay: '90ms' }}>
+            <div className="hero-from-right mt-5 flex justify-start" style={{ animationDelay: '90ms' }}>
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
                 Budujemy Twój biznes przez{' '}
                 <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
@@ -134,3 +140,4 @@ export default function Hero() {
     </section>
   )
 }
+

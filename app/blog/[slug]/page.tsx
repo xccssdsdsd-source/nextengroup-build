@@ -262,7 +262,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-12 pt-8 border-t border-white/10">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-all text-sm"
+              className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out text-sm"
             >
               ← Wszystkie artykuły
             </Link>

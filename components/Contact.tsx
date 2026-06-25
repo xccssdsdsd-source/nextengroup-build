@@ -137,7 +137,7 @@ export default function Contact() {
                 </p>
                 <button
                   onClick={() => setActiveTab('calendly')}
-                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#22D3EE] text-[#06141A] text-[13px] font-bold hover:bg-[#34E6FF] active:scale-[0.97] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 w-fit"
+                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#22D3EE] text-[#06141A] text-[13px] font-bold hover:bg-[#34E6FF] active:scale-[0.97] transition-[transform,background-color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 w-fit"
                 >
                   Umów spotkanie
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -152,13 +152,13 @@ export default function Contact() {
                   <div className="flex gap-2">
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all flex items-center"
+                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center"
                     >
                       <span className="text-[12px] font-semibold text-[#EAF0F7] break-all">{contactEmail}</span>
                     </a>
                     <button
                       onClick={copyEmail}
-                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-all flex items-center justify-center flex-shrink-0"
+                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center justify-center flex-shrink-0"
                       aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                       title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                     >
@@ -183,7 +183,7 @@ export default function Contact() {
                         href={s.href}
                         target={s.label !== 'Email' ? '_blank' : undefined}
                         rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 ${
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 ${
                           s.label === 'Email' ? 'border-[rgba(234,113,42,0.2)] bg-[rgba(234,113,42,0.06)] hover:bg-[rgba(234,113,42,0.14)] hover:border-[rgba(234,113,42,0.5)]'
                           : s.label === 'Instagram' ? 'border-[rgba(225,48,108,0.2)] bg-[rgba(225,48,108,0.06)] hover:bg-[rgba(225,48,108,0.14)] hover:border-[rgba(225,48,108,0.5)]'
                           : s.label === 'Facebook' ? 'border-[rgba(24,119,242,0.2)] bg-[rgba(24,119,242,0.06)] hover:bg-[rgba(24,119,242,0.14)] hover:border-[rgba(24,119,242,0.5)]'
@@ -225,7 +225,7 @@ export default function Contact() {
               <div className="flex gap-1 p-1 rounded-2xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)] mb-6 w-fit">
                 <button
                   onClick={() => setActiveTab('calendly')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
                     activeTab === 'calendly'
                       ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
                       : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
@@ -235,7 +235,7 @@ export default function Contact() {
                 </button>
                 <button
                   onClick={() => setActiveTab('form')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
                     activeTab === 'form'
                       ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
                       : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
@@ -264,7 +264,7 @@ export default function Contact() {
                           key={s}
                           type="button"
                           onClick={() => setFormData({ ...formData, subject: formData.subject === s ? '' : s })}
-                          className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                          className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-[border-color,background-color,color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
                             formData.subject === s
                               ? 'border-[#22D3EE] bg-[rgba(34,211,238,0.15)] text-[#22D3EE]'
                               : 'border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'

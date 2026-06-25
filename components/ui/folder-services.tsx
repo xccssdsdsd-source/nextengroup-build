@@ -187,7 +187,7 @@ export default function FolderServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.08, duration: 0.35 }}
                 onClick={() => setActiveService(i)}
-                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5 h-[140px] flex flex-col items-center justify-center"
+                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 h-[140px] flex flex-col items-center justify-center"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
                 <div className="text-4xl mb-3">{service.icon}</div>
@@ -212,7 +212,7 @@ export default function FolderServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08, duration: 0.35 }}
                 onClick={() => setActiveService(i === activeService ? null : i)}
-                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5"
+                className="cursor-pointer rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5"
                 style={{ borderTop: `3px solid ${service.color}` }}
               >
                 <div className="text-3xl mb-2">{service.icon}</div>

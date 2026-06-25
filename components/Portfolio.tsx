@@ -444,7 +444,7 @@ export default function Portfolio() {
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-all duration-200 group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
@@ -492,7 +492,7 @@ export default function Portfolio() {
               <m.button
                 onClick={prevProject}
                 whileTap={{ scale: 0.9 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Poprzednia realizacja"
               >
                 <ChevronLeft size={22} strokeWidth={2.5} />
@@ -503,7 +503,7 @@ export default function Portfolio() {
                   <button
                     key={i}
                     onClick={() => { setShowSwipeHint(false); setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
-                    className="relative rounded-full focus-visible:outline-none transition-all duration-300"
+                    className="relative rounded-full focus-visible:outline-none transition-[width,background] duration-300 ease-out"
                     style={{
                       width: i === currentIndex ? 22 : 8,
                       height: 8,
@@ -517,7 +517,7 @@ export default function Portfolio() {
               <m.button
                 onClick={nextProject}
                 whileTap={{ scale: 0.9 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-all duration-200 active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Następna realizacja"
               >
                 <ChevronRight size={22} strokeWidth={2.5} />

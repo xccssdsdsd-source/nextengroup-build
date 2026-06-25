@@ -249,7 +249,7 @@ export default function BeforeAfterSlider({
             type="button"
             onClick={() => goTo('before')}
             aria-pressed={mode === 'before'}
-            className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-all duration-200 ${
+            className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-[color,background-color,box-shadow,transform] duration-200 ease-out ${
               mode === 'before' ? 'bg-[#1C2433] text-[#EAF0F7] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
             }`}
           >
@@ -259,7 +259,7 @@ export default function BeforeAfterSlider({
             type="button"
             onClick={() => goTo('after')}
             aria-pressed={mode === 'after'}
-            className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-all duration-200 ${
+            className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-[color,background-color,box-shadow,transform] duration-200 ease-out ${
               mode === 'after' ? 'bg-[#22D3EE] text-[#06141A] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
             }`}
           >

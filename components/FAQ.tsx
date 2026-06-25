@@ -106,17 +106,14 @@ export default function FAQ() {
             const isOpen = open === index
 
             return (
-              <m.div
+              <div
                 key={faq.q}
-                layout="position"
-                initial={false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ ...premiumSpring, delay: index * 0.07 }}
-                className={`overflow-hidden rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
+                className={`rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#22D3EE] bg-[rgba(34,211,238,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(34,211,238,0.18)]'
                     : 'border-l-transparent bg-transparent'
                 }`}
+                style={{ display: 'grid' }}
               >
                 <button
                   type="button"
@@ -130,8 +127,8 @@ export default function FAQ() {
                   </span>
                   <m.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.26, ease }}
-                    className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
+                    transition={{ duration: 0.22, ease }}
+                    className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-200 ease-out ${
                       isOpen
                         ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
                         : 'bg-transparent text-[#22D3EE] border border-[rgba(34,211,238,0.3)]'
@@ -141,23 +138,22 @@ export default function FAQ() {
                   </m.span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <m.div
-                      id={`faq-answer-${index}`}
-                      role="region"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
-                        {faq.a}
-                      </p>
-                    </m.div>
-                  )}
-                </AnimatePresence>
-              </m.div>
+                <div
+                  id={`faq-answer-${index}`}
+                  role="region"
+                  style={{
+                    display: 'grid',
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    transition: 'grid-template-rows 220ms cubic-bezier(0.22,1,0.36,1)',
+                  }}
+                >
+                  <div style={{ overflow: 'hidden' }}>
+                    <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
             )
           })}
 

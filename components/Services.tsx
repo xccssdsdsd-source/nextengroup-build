@@ -556,7 +556,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
             setExpandedExamples(!expandedExamples)
           }
         }}
-        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#A6B2C4] text-left transition-all hover:text-[#5EEAFF] hover:translate-x-0.5"
+        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#A6B2C4] text-left transition-[color,transform] duration-200 ease-out hover:text-[#5EEAFF] hover:translate-x-0.5"
       >
         {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
       </button>

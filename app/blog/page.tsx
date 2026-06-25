@@ -89,7 +89,7 @@ export default function Blog() {
                 <p className="text-[#A6B2C4] mb-6">
                   {article.excerpt}
                 </p>
-                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-all">
+                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out">
                   Czytaj artykuł
                   <span>→</span>
                 </Link>

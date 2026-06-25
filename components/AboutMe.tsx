@@ -42,7 +42,7 @@ export default function AboutMe() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-[#2563eb] transition-[opacity,color] duration-200 hover:text-[#1d4ed8] hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
             >
-              Umów 15 min rozmowę
+              Umów spotkanie
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

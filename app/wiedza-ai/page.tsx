@@ -209,7 +209,7 @@ export default function WiedzaAI() {
               Pracujemy głównie z małymi i średnimi firmami usługowymi w Polsce — agentami nieruchomości, projektantami wnętrz, firmami budowlanymi, renowacyjnymi, usługami czyszczenia, doradcami prawnymi, doradcami finansowymi, producentami mebli. Żaden z nich nie miał wewnętrznego zespołu AI, ale wszystkim udało się automatyzować procesy, które im utrudniały życie.
             </p>
             <p>
-              Jeśli masz wątpliwości, czy coś się opłaca — zaproś nas do rozmowy. Często wystarczy 15 minut, żeby zobaczyć, czy automatyzacja ma sens w Twoim przypadku.
+              Jeśli masz wątpliwości, czy coś się opłaca — zaproś nas do rozmowy. Często wystarczy krótka rozmowa, żeby zobaczyć, czy automatyzacja ma sens w Twoim przypadku.
             </p>
           </div>
         </div>
@@ -284,7 +284,7 @@ export default function WiedzaAI() {
             Masz pytanie o AI lub stronę WWW?
           </h2>
           <p className="text-lg text-[#A6B2C4] mb-8">
-            Odpiszę tego samego dnia. Umów bezpłatną 15-minutową rozmowę lub napisz bezpośrednio.
+            Odpiszę tego samego dnia. Umów bezpłatną rozmowę lub napisz bezpośrednio.
           </p>
           <a
             href="/#kontakt"

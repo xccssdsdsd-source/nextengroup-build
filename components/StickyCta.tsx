@@ -20,7 +20,7 @@ export default function StickyCta() {
           href="https://calendly.com/getbuild-pl/30min"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Umów 15 min rozmowę"
+          aria-label="Umów spotkanie"
           initial={{ opacity: 0, y: 14, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 14, scale: 0.92 }}
@@ -33,8 +33,8 @@ export default function StickyCta() {
             <rect x="1.5" y="2.5" width="13" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />
             <path d="M5 1.5V3.5M11 1.5V3.5M1.5 6h13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
-          <span className="hidden sm:inline">Umów rozmowę</span>
-          <span className="sm:hidden">15 min</span>
+          <span className="hidden sm:inline">Umów spotkanie</span>
+          <span className="sm:hidden">Spotkanie</span>
         </m.a>
       )}
     </AnimatePresence>

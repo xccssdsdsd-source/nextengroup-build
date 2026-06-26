@@ -67,7 +67,7 @@ const clientEmail = (message: string) => `<!doctype html><html lang="pl"><body s
 </tr></table></td></tr>
 <!-- footer -->
 <tr><td align="center" style="padding:20px 40px 40px;">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#3D4A5C;"><a href="${SITE}" style="color:#3D4A5C;text-decoration:underline;">Getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
+<p style="margin:0;font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#3D4A5C;">Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
 </td></tr>
 </table>
 </td></tr>

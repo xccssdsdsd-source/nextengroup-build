@@ -10,32 +10,64 @@ const SITE = 'https://getbuild.pl'
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
 
-const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:40px 16px;">
+const clientEmail = (name: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#070B11;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070B11;padding:48px 16px;">
 <tr><td align="center">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
-<tr><td style="height:4px;background:linear-gradient(90deg,#22D3EE,#3B82F6);font-size:0;line-height:0;">&nbsp;</td></tr>
-<tr><td align="center" style="padding:40px 36px 0;">
-<img src="cid:logo" width="64" height="64" alt="Getbuild.pl" style="display:block;border-radius:16px;" />
-<p style="margin:14px 0 0;font-family:Arial,sans-serif;font-size:18px;font-weight:800;letter-spacing:0.04em;color:#EAF0F7;">Getbuild.pl</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#0F141C;border:1px solid rgba(255,255,255,0.07);border-radius:28px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(34,211,238,0.04);">
+<!-- top gradient bar -->
+<tr><td style="height:6px;background:linear-gradient(90deg,#22D3EE 0%,#6366F1 60%,#3B82F6 100%);font-size:0;line-height:0;">&nbsp;</td></tr>
+<!-- logo -->
+<tr><td align="center" style="padding:44px 40px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(34,211,238,0.18);">
+<img src="cid:logo" width="68" height="68" alt="Getbuild.pl" style="display:block;border-radius:20px;" />
+</td></tr></table>
+<p style="margin:16px 0 0;font-family:Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#5B687A;">Getbuild.pl</p>
 </td></tr>
-<tr><td align="center" style="padding:28px 36px 0;">
-<div style="width:60px;height:60px;border-radius:999px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);text-align:center;line-height:60px;font-size:28px;color:#22D3EE;">&#10003;</div>
+<!-- checkmark -->
+<tr><td align="center" style="padding:32px 40px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td width="72" height="72" align="center" valign="middle" style="width:72px;height:72px;border-radius:999px;background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(99,102,241,0.10));border:1px solid rgba(34,211,238,0.25);box-shadow:0 0 32px rgba(34,211,238,0.12);">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 16.5L13 22.5L25 10" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</td></tr></table>
 </td></tr>
-<tr><td align="center" style="padding:22px 36px 0;">
-<h1 style="margin:0 0 14px;font-family:Arial,sans-serif;font-size:27px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
-<p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">Otrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej, jak to możliwe.</p>
+<!-- heading -->
+<tr><td align="center" style="padding:24px 40px 0;">
+<h1 style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
+<p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#8A97AA;">Otrzymaliśmy Twoją wiadomość i odezwiemy się wkrótce.</p>
+<!-- response time badge -->
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:8px 18px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.22);border-radius:999px;">
+<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#22D3EE;">&#9679;&nbsp; Odpowiedź w ciągu 24–48 h</p>
+</td></tr></table>
 </td></tr>
-<tr><td align="center" style="padding:32px 36px 0;">
-<p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7C879B;">Obserwuj nas</p>
-<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="padding:0 8px;"><a href="${IG}"><img src="cid:ig" width="48" height="48" alt="Instagram" style="display:block;border-radius:14px;" /></a></td>
-<td style="padding:0 8px;"><a href="${FB}"><img src="cid:fb" width="48" height="48" alt="Facebook" style="display:block;border-radius:14px;" /></a></td>
+<!-- message echo -->
+<tr><td style="padding:32px 40px 0;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td width="3" style="width:3px;background:linear-gradient(180deg,#22D3EE,#6366F1);border-radius:2px;">&nbsp;</td>
+<td width="16" style="width:16px;">&nbsp;</td>
+<td>
+<p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#5B687A;">Twoja wiadomość</p>
+<p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.75;color:#8A97AA;white-space:pre-wrap;">${esc(message)}</p>
+</td>
 </tr></table>
 </td></tr>
-<tr><td style="padding:36px 36px 0;"><div style="height:1px;background:rgba(255,255,255,0.06);font-size:0;line-height:0;">&nbsp;</div></td></tr>
-<tr><td align="center" style="padding:22px 36px 36px;">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;line-height:1.6;color:#7C879B;"><a href="${SITE}" style="color:#7C879B;text-decoration:underline;">Getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
+<!-- CTA -->
+<tr><td align="center" style="padding:36px 40px 0;">
+<a href="${SITE}" style="display:inline-block;padding:15px 36px;background:linear-gradient(90deg,#22D3EE,#6366F1);border-radius:14px;font-family:Arial,sans-serif;font-size:14px;font-weight:800;color:#070B11;text-decoration:none;letter-spacing:0.04em;box-shadow:0 8px 24px rgba(34,211,238,0.25);">Wróć na stronę</a>
+</td></tr>
+<!-- social -->
+<tr><td align="center" style="padding:36px 40px 0;">
+<p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#5B687A;">Obserwuj nas</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="padding:0 6px;"><a href="${IG}"><img src="cid:ig" width="44" height="44" alt="Instagram" style="display:block;border-radius:12px;opacity:0.85;" /></a></td>
+<td style="padding:0 6px;"><a href="${FB}"><img src="cid:fb" width="44" height="44" alt="Facebook" style="display:block;border-radius:12px;opacity:0.85;" /></a></td>
+</tr></table>
+</td></tr>
+<!-- separator -->
+<tr><td style="padding:32px 40px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07) 30%,rgba(255,255,255,0.07) 70%,transparent);font-size:0;line-height:0;">&nbsp;</td>
+</tr></table></td></tr>
+<!-- footer -->
+<tr><td align="center" style="padding:20px 40px 40px;">
+<p style="margin:0;font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#3D4A5C;"><a href="${SITE}" style="color:#3D4A5C;text-decoration:underline;">Getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
 </td></tr>
 </table>
 </td></tr>
@@ -99,8 +131,8 @@ export async function POST(req: NextRequest) {
     await send({
       from: FROM,
       to: [email],
-      subject: 'Dziękujemy za kontakt z Getbuild.pl',
-      html: clientEmail(name),
+      subject: `Potwierdzenie zgłoszenia – Getbuild.pl`,
+      html: clientEmail(name, message),
       attachments: [
         { filename: 'logo.png', content: logoB64, content_id: 'logo' },
         { filename: 'instagram.png', content: igB64, content_id: 'ig' },

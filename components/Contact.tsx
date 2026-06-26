@@ -1,11 +1,12 @@
 ﻿'use client'
 
-import { m, useInView } from 'framer-motion'
+import { m, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { FaFacebook, FaInstagram, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
+import { Check, ChevronDown } from 'lucide-react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -60,7 +61,20 @@ export default function Contact() {
   const [gdprAccepted, setGdprAccepted] = useState(false)
   const [activeTab, setActiveTab] = useState<'calendly' | 'form'>('form')
   const [calendlyLoaded, setCalendlyLoaded] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+
+  useEffect(() => {
+    if (!dropdownOpen) return
+    const handleClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [dropdownOpen])
 
   useEffect(() => {
     if (activeTab !== 'calendly' || calendlyLoaded) return
@@ -256,24 +270,68 @@ export default function Contact() {
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="form-input" />
                   </div>
-                  <div>
-                    <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Czego dotyczy wiadomość?</label>
-                    <div className="flex flex-wrap gap-2">
-                      {subjects.map((s) => (
-                        <button
-                          key={s}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, subject: formData.subject === s ? '' : s })}
-                          className={`px-3 py-1.5 rounded-xl text-[12px] font-semibold border transition-[border-color,background-color,color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
-                            formData.subject === s
-                              ? 'border-[#22D3EE] bg-[rgba(34,211,238,0.15)] text-[#22D3EE]'
-                              : 'border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] text-[#A6B2C4] hover:border-[#22D3EE] hover:text-[#EAF0F7]'
-                          }`}
+                  <div ref={dropdownRef} className="relative">
+                    <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">
+                      Czego dotyczy wiadomość?
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setDropdownOpen(o => !o)}
+                      aria-haspopup="listbox"
+                      aria-expanded={dropdownOpen}
+                      className="form-input w-full flex items-center justify-between gap-3 text-left"
+                      style={{
+                        borderColor: dropdownOpen ? 'rgba(34,211,238,0.6)' : undefined,
+                        boxShadow: dropdownOpen ? '0 0 0 3px rgba(34,211,238,0.12)' : undefined,
+                      }}
+                    >
+                      <span className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#4A5568]'}>
+                        {formData.subject || 'Wybierz temat…'}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        className="flex-shrink-0 text-[#7C879B] transition-transform duration-200"
+                        style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {dropdownOpen && (
+                        <m.ul
+                          role="listbox"
+                          initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                          transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-xl border border-[rgba(34,211,238,0.18)] bg-[#161C28] shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.4)] list-none p-1.5 m-0"
                         >
-                          {s}
-                        </button>
-                      ))}
-                    </div>
+                          {subjects.map((s) => {
+                            const selected = formData.subject === s
+                            return (
+                              <li
+                                key={s}
+                                role="option"
+                                aria-selected={selected}
+                                onClick={() => {
+                                  setFormData({ ...formData, subject: s })
+                                  setDropdownOpen(false)
+                                }}
+                                className="flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg cursor-pointer text-[13px] font-medium transition-[background-color,color] duration-100 select-none"
+                                style={{
+                                  background: selected ? 'rgba(34,211,238,0.12)' : undefined,
+                                  color: selected ? '#22D3EE' : '#A6B2C4',
+                                }}
+                                onMouseEnter={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
+                                onMouseLeave={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = '' }}
+                              >
+                                {s}
+                                {selected && <Check size={14} strokeWidth={2.5} className="flex-shrink-0" />}
+                              </li>
+                            )
+                          })}
+                        </m.ul>
+                      )}
+                    </AnimatePresence>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>

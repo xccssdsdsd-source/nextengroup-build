@@ -78,6 +78,32 @@ export default function Hero() {
 
           {/* ── TEXT COLUMN ── */}
           <div className="text-left" data-parallax-headline>
+            <div className="hero-from-left mb-4 flex justify-start" style={{ animationDelay: '0ms' }}>
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold"
+                style={{
+                  background: 'rgba(34,211,238,0.08)',
+                  border: '1px solid rgba(34,211,238,0.22)',
+                  color: '#22D3EE',
+                  letterSpacing: '0.04em',
+                  fontFamily: 'var(--font-heading)',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: '#22D3EE',
+                    animation: 'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite',
+                    flexShrink: 0,
+                  }}
+                />
+                Przyjmujemy nowe projekty · lipiec 2025
+              </span>
+            </div>
+
             <h1
               style={{
                 fontFamily: 'var(--font-heading)',

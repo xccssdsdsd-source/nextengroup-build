@@ -10,7 +10,7 @@ const SITE = 'https://getbuild.pl'
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
 
-const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
+const clientEmail = (name: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:40px 16px;">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
@@ -24,7 +24,16 @@ const clientEmail = (name: string) => `<!doctype html><html lang="pl"><body styl
 </td></tr>
 <tr><td align="center" style="padding:22px 36px 0;">
 <h1 style="margin:0 0 14px;font-family:Arial,sans-serif;font-size:27px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
-<p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">Otrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej, jak to możliwe.</p>
+<p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#A6B2C4;">Otrzymaliśmy Twoją wiadomość i odezwiemy się w ciągu <strong style="color:#EAF0F7;">24–48 godzin</strong>.</p>
+</td></tr>
+<tr><td style="padding:28px 36px 0;">
+<p style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7C879B;">Twoja wiadomość</p>
+<div style="padding:16px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+<p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#A6B2C4;white-space:pre-wrap;">${esc(message)}</p>
+</div>
+</td></tr>
+<tr><td align="center" style="padding:28px 36px 0;">
+<a href="${SITE}" style="display:inline-block;padding:14px 32px;background:linear-gradient(90deg,#22D3EE,#3B82F6);border-radius:12px;font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#0A0E14;text-decoration:none;letter-spacing:0.02em;">Wróć na stronę</a>
 </td></tr>
 <tr><td align="center" style="padding:32px 36px 0;">
 <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7C879B;">Obserwuj nas</p>
@@ -99,8 +108,8 @@ export async function POST(req: NextRequest) {
     await send({
       from: FROM,
       to: [email],
-      subject: 'Dziękujemy za kontakt z Getbuild.pl',
-      html: clientEmail(name),
+      subject: `Potwierdzenie zgłoszenia – Getbuild.pl`,
+      html: clientEmail(name, message),
       attachments: [
         { filename: 'logo.png', content: logoB64, content_id: 'logo' },
         { filename: 'instagram.png', content: igB64, content_id: 'ig' },

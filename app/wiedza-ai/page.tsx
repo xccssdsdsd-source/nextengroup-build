@@ -53,7 +53,7 @@ const faqSchema = {
       name: 'Czym jest automatyzacja AI dla firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to zautomatyzowane systemy. Przykłady: automatyczne odpowiedzi na pytania klientów, wysyłanie e-maili z danymi z CRM, generowanie ofert na podstawie parametrów. Wynik: mniej błędów, szybsza obsługa klientów, więcej czasu dla zespołu.',
+        text: 'Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to zautomatyzowane systemy. Przykłady: automatyczne odpowiedzi na pytania klientów, wysyłanie e-maili z danymi z arkuszy, generowanie ofert na podstawie parametrów. Wynik: mniej błędów, szybsza obsługa klientów, więcej czasu dla zespołu.',
       },
     },
     {
@@ -137,7 +137,7 @@ export default function WiedzaAI() {
               Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi Twojej firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to za Ciebie zautomatyzowane systemy. To nie o zastępowaniu ludzi, ale o uwolnieniu Twojego zespołu od powtarzających się zadań.
             </p>
             <p>
-              Praktyczne przykłady: automatyczne odpowiedzi na najczęstsze pytania klientów, wysyłanie e-maili uzupełnionych danymi z systemu CRM, generowanie ofert na podstawie parametrów, sortowanie i klasyfikowanie zapytań. Każda z tych czynności, jeśli powtarza się codziennie, jest idealnym kandydatem do automatyzacji.
+              Praktyczne przykłady: automatyczne odpowiedzi na najczęstsze pytania klientów, wysyłanie e-maili uzupełnionych danymi z arkuszy, generowanie ofert na podstawie parametrów, sortowanie i klasyfikowanie zapytań. Każda z tych czynności, jeśli powtarza się codziennie, jest idealnym kandydatem do automatyzacji.
             </p>
             <p>
               W Getbuild zawsze zaczynamy od analizy — nie szukamy gotowych rozwiązań, ale rozumiemy dokładnie, jak pracuje Twoja firma, gdzie marnuje się czas i gdzie automatyzacja przyniesie największą korzyść.

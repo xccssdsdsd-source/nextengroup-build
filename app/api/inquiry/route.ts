@@ -10,7 +10,7 @@ const SITE = 'https://getbuild.pl'
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
 
-const clientEmail = (name: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#070B11;">
+const clientEmail = (message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#070B11;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070B11;padding:48px 16px;">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#0F141C;border:1px solid rgba(255,255,255,0.07);border-radius:28px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(34,211,238,0.04);">
@@ -31,7 +31,7 @@ const clientEmail = (name: string, message: string) => `<!doctype html><html lan
 </td></tr>
 <!-- heading -->
 <tr><td align="center" style="padding:24px 40px 0;">
-<h1 style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy, ${esc(name)}!</h1>
+<h1 style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy!</h1>
 <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#8A97AA;">Otrzymaliśmy Twoją wiadomość i odezwiemy się wkrótce.</p>
 <!-- response time badge -->
 <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:8px 18px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.22);border-radius:999px;">
@@ -74,7 +74,7 @@ const clientEmail = (name: string, message: string) => `<!doctype html><html lan
 </table>
 </body></html>`
 
-const ownerEmail = (name: string, email: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
+const ownerEmail = (email: string, subject: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:32px 16px;">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;">
@@ -84,9 +84,9 @@ const ownerEmail = (name: string, email: string, message: string) => `<!doctype 
 </td></tr>
 <tr><td style="padding:24px 36px 36px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;">
-<tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Imię i nazwisko</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;">${esc(name)}</p></td></tr>
-<tr><td height="10"></td></tr>
 <tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Email</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;"><a href="mailto:${esc(email)}" style="color:#22D3EE;text-decoration:none;">${esc(email)}</a></p></td></tr>
+${subject ? `<tr><td height="10"></td></tr>
+<tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Temat</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;">${esc(subject)}</p></td></tr>` : ''}
 <tr><td height="10"></td></tr>
 <tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Wiadomość</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#EAF0F7;white-space:pre-wrap;">${esc(message)}</p></td></tr>
 </table>
@@ -98,8 +98,8 @@ const ownerEmail = (name: string, email: string, message: string) => `<!doctype 
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json()
-    if (!name || !email || !message) {
+    const { email, subject, message } = await req.json()
+    if (!email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -119,8 +119,8 @@ export async function POST(req: NextRequest) {
       from: FROM,
       to: [OWNER_EMAIL],
       reply_to: email,
-      subject: `Nowe zapytanie od ${name}`,
-      html: ownerEmail(name, email, message),
+      subject: subject ? `Nowe zapytanie: ${subject}` : 'Nowe zapytanie z getbuild.pl',
+      html: ownerEmail(email, subject || '', message),
     })
 
     if (!ownerRes.ok) {
@@ -132,7 +132,7 @@ export async function POST(req: NextRequest) {
       from: FROM,
       to: [email],
       subject: `Potwierdzenie zgłoszenia – Getbuild.pl`,
-      html: clientEmail(name, message),
+      html: clientEmail(message),
       attachments: [
         { filename: 'logo.png', content: logoB64, content_id: 'logo' },
         { filename: 'instagram.png', content: igB64, content_id: 'ig' },

@@ -10,14 +10,14 @@ const Footer = dynamic(() => import('@/components/Footer'))
 export const metadata: Metadata = {
   metadataBase: new URL('https://getbuild.pl'),
   title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
-  description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje dla producentów, dostawców i firm technologicznych.',
+  description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, SEO i automatyzacje AI dla producentów, dostawców i firm technologicznych.',
   keywords: ['portfolio B2B', 'case studies', 'realizacje', 'strony dla firm', 'projekty B2B', 'portfolio web design', 'przykłady projektów'],
   alternates: {
     canonical: 'https://getbuild.pl/realizacje',
   },
   openGraph: {
     title: 'Portfolio i realizacje | Getbuild - Case studies B2B',
-    description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, sklepy e-commerce, SEO i automatyzacje.',
+    description: 'Case studies i realizacje projektów dla firm B2B. Strony WWW, SEO i automatyzacje AI.',
     url: 'https://getbuild.pl/realizacje',
     type: 'website',
     locale: 'pl_PL',

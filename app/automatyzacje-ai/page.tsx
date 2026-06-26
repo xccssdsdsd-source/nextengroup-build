@@ -68,7 +68,7 @@ const faqSchema = {
       name: 'Czy automatyzacje da się połączyć z narzędziami, których już używam?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak, i to jest punkt wyjścia. Nie wymagamy od Ciebie zmiany systemu. Podłączamy automatyzacje do tego, co już masz: CRM, arkusze, maile, fakturowanie, formularze. Działa w tle, nie widać połączeń.',
+        text: 'Tak, i to jest punkt wyjścia. Nie wymagamy od Ciebie zmiany systemu. Podłączamy automatyzacje do tego, co już masz: arkusze, maile, fakturowanie, formularze. Działa w tle, nie widać połączeń.',
       },
     },
     {
@@ -95,7 +95,7 @@ const features = [
   },
   {
     title: 'Przepływ danych między systemami',
-    desc: 'CRM, faktury, HR, magazyn. Kiedy coś się zmienia w jednym miejscu, reszta aktualizuje się sama. Koniec z kopiowaniem między zakładkami.',
+    desc: 'Faktury, HR, magazyn, arkusze. Kiedy coś się zmienia w jednym miejscu, reszta aktualizuje się sama. Koniec z kopiowaniem między zakładkami.',
   },
   {
     title: 'Alerty i monitoring',

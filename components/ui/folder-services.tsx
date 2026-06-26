@@ -27,7 +27,7 @@ const services = [
     title: 'Agenci AI',
     description:
       'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
-    tags: ['Agenci AI 24/7', 'Integracje z CRM', 'Monitoring i statystyki'],
+    tags: ['Agenci AI 24/7', 'Integracje z systemami', 'Monitoring i statystyki'],
     icon: '🤖',
     color: '#5EEAFF',
   },

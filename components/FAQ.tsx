@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: 'Jakie procesy możecie zautomatyzować dzięki AI?',
-    a: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów (CRM, e-mail, arkusze). Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
+    a: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów (e-mail, arkusze, fakturowanie). Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
   },
   {
     q: 'Czy automatyzacje i agenta AI da się połączyć z moją stroną i narzędziami?',

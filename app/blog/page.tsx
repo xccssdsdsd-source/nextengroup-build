@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://getbuild.pl'),
   title: 'Blog | Getbuild - Artykuły o SEO i stronach internetowych',
   description: 'Blog Getbuild: artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i marketingu internetowym. Praktyczne poradniki i wnioski z projektów.',
-  keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'e-commerce', 'marketing internetowy', 'tworzenie stron', 'automatyzacje AI'],
+  keywords: ['blog', 'artykuły SEO', 'poradniki', 'strony WWW', 'marketing internetowy', 'tworzenie stron', 'automatyzacje AI'],
   robots: {
     index: true,
     follow: true,

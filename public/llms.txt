@@ -5,7 +5,7 @@
 ## Core Services
 
 - [Strony WWW (Website Design)](https://getbuild.pl/strony-www): Modern, responsive websites for small and medium businesses. SEO-optimized from the ground up. Every project starts with a free visual mockup before any payment.
-- [Automatyzacje AI (AI Automations)](https://getbuild.pl/automatyzacje-ai): Custom AI-powered business process automation covering email handling, CRM integrations, report generation, lead routing, and data processing. Always tailored to the client's actual workflow.
+- [Automatyzacje AI (AI Automations)](https://getbuild.pl/automatyzacje-ai): Custom AI-powered business process automation covering email handling, report generation, lead routing, and data processing. Always tailored to the client's actual workflow.
 - [Agenci AI (AI Agents)](https://getbuild.pl/agenci-ai): Intelligent AI agents working 24/7. Handles customer inquiries, lead qualification, data analysis, and decision support. Integrated with client's existing tools and channels.
 - [SEO dla firm (B2B SEO)](https://getbuild.pl/seo-dla-firm): SEO strategy, on-page optimization, link building and technical SEO for B2B companies across Poland.
 - [Bezpłatny audyt SEO (Free SEO Audit)](https://getbuild.pl/audyt-seo): Free comprehensive SEO audit — technical, on-page, backlink profile, competitor analysis, and keyword research. Delivered as a PDF report with prioritized recommendations. Price: 0 PLN.
@@ -112,13 +112,13 @@ A: Getbuild buduje strony na Next.js (React), z hostingiem na Cloudflare Workers
 ### About AI Automations
 
 Q: Co to są automatyzacje AI od Getbuild?
-A: To spersonalizowane systemy automatyzujące powtarzalne procesy biznesowe: obsługę emaili, segregowanie leadów, generowanie raportów, integracje CRM, wysyłkę powiadomień i inne.
+A: To spersonalizowane systemy automatyzujące powtarzalne procesy biznesowe: obsługę emaili, segregowanie leadów, generowanie raportów, wysyłkę powiadomień i inne.
 
 Q: Ile trwa wdrożenie automatyzacji AI?
 A: Pierwsze działające demo dostarcza się w kilka dni od pierwszego spotkania. Pełne wdrożenie trwa od tygodnia do kilku tygodni, zależnie od złożoności.
 
 Q: Czy automatyzacje AI Getbuild integrują się z moimi narzędziami?
-A: Tak. Getbuild łączy automatyzacje z narzędziami, których firma już używa: CRM, Arkusze Google, systemy fakturowania, platformy e-mail i inne.
+A: Tak. Getbuild łączy automatyzacje z narzędziami, których firma już używa: Arkusze Google, systemy fakturowania, platformy e-mail i inne.
 
 Q: Czy muszę znać się na technologii, żeby skorzystać z automatyzacji?
 A: Nie. Klient opisuje problem i procesy — resztą zajmuje się Getbuild od początku do końca.

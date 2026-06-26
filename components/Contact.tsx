@@ -55,7 +55,7 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: '-50px' })
   const [copied, setCopied] = useState(false)
   const calendlyRef = useRef<HTMLDivElement>(null)
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+  const [formData, setFormData] = useState({ email: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
   const [gdprAccepted, setGdprAccepted] = useState(false)
@@ -106,7 +106,7 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const subjects = ['Strona internetowa', 'Sklep online', 'SEO', 'Agenci AI', 'Automatyzacje AI', 'Inne']
+  const subjects = ['Strona internetowa', 'SEO', 'Agenci AI', 'Automatyzacje AI', 'Inne']
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -262,10 +262,6 @@ export default function Contact() {
               <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '750px', height: '750px', display: activeTab === 'calendly' ? 'block' : 'none' }} />
               <div style={{ display: activeTab === 'form' ? 'block' : 'none' }} className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label htmlFor="name" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Imię i nazwisko *</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Jan Kowalski" className="form-input" />
-                  </div>
                   <div>
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="form-input" />

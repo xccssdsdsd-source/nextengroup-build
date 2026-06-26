@@ -114,7 +114,7 @@ export default function StronyInternetoweDlaFirm() {
             </div>
             <div className="p-6 border border-white/10 rounded-lg bg-[#161C28]">
               <h3 className="font-bold text-[#EAF0F7] mb-2">Integracje i analityka</h3>
-              <p className="text-sm text-[#A6B2C4]">Łączymy stronę z CRM, analityką i formularzami tak, aby nie gubić żadnego zapytania.</p>
+              <p className="text-sm text-[#A6B2C4]">Łączymy stronę z analityką i formularzami tak, aby nie gubić żadnego zapytania.</p>
             </div>
           </div>
         </div>

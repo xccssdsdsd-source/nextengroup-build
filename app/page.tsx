@@ -3,6 +3,8 @@ import Hero from '@/components/Hero'
 import InView from '@/components/InView'
 import dynamic from 'next/dynamic'
 
+const StatsBar = dynamic(() => import('@/components/StatsBar'))
+const SocialProofToast = dynamic(() => import('@/components/SocialProofToast'))
 const ValueProps = dynamic(() => import('@/components/ValueProps'))
 const Services = dynamic(() => import('@/components/Services'))
 const Process = dynamic(() => import('@/components/Process'))
@@ -17,6 +19,7 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <InView minHeight="100px"><StatsBar /></InView>
       <InView minHeight="480px"><ValueProps /></InView>
       <InView minHeight="600px"><Services /></InView>
       <InView minHeight="520px"><Process /></InView>
@@ -25,6 +28,7 @@ export default function Home() {
       <InView minHeight="520px"><FAQ /></InView>
       <InView minHeight="600px"><Contact /></InView>
       <InView minHeight="180px"><Footer /></InView>
+      <SocialProofToast />
     </main>
   )
 }

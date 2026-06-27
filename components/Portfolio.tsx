@@ -69,7 +69,7 @@ const projects: Project[] = [
       { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 100 },
     ],
-    owner: { name: 'Patryk Zacharek', role: 'Właściciel, PM Apartments', photo: '/owner-pm-apartments.jpg' },
+    owner: { name: 'Patryk Zacharek', role: 'Właściciel, PM Apartments', photo: '/owner-pm-apartments.webp' },
   },
   {
     kind: 'image',
@@ -88,7 +88,7 @@ const projects: Project[] = [
       { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 100 },
     ],
-    owner: { name: 'Magdalena Sioła', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.jpg' },
+    owner: { name: 'Magdalena Sioła', role: 'Właścicielka, MS Design Studio', photo: '/owner-msdesignstudio.webp' },
   },
   {
     kind: 'slider',
@@ -109,7 +109,7 @@ const projects: Project[] = [
       { label: 'Dobre praktyki', value: 96 },
       { label: 'SEO', value: 100 },
     ],
-    owner: { name: 'Dori', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.jpg' },
+    owner: { name: 'Dori', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.webp' },
   },
 ]
 

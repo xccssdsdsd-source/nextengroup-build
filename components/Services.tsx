@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
+import { ArrowRight, MonitorSmartphone, Sparkles } from 'lucide-react'
 import { useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
@@ -220,6 +221,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
 
 function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNavigate: (target: string) => void }) {
   const [isHovered, setIsHovered] = useState(false)
+  const Icon = item.target === 'strony' ? MonitorSmartphone : Sparkles
   return (
     <m.div
       initial={false}
@@ -228,21 +230,28 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
       whileHover={{ y: -6, scale: 1.01, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`overview-card relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
+      className={`overview-card group relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
         isHovered
-          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_18px_rgba(34,211,238,0.12)]'
+          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
-      <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#22D3EE]">{item.no}</span>
-      <h3 className="mt-3 text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-        {item.name}
-      </h3>
-      <p className="mt-3 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
+      <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
+
+      <div className="flex items-center gap-3.5">
+        <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
+          <Icon size={22} strokeWidth={1.8} className="text-[#5EEAFF]" aria-hidden="true" />
+        </span>
+        <h3 className="text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+          {item.name}
+        </h3>
+      </div>
+
+      <p className="mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
       <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
 
-      <ul className="mt-5 flex flex-col gap-3">
+      <ul className="mt-6 flex flex-col gap-3">
         {item.solves.map(([pain, fix]) => (
           <li key={pain} className="flex items-start gap-3">
             <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
@@ -257,10 +266,11 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
 
       <button
         onClick={() => onNavigate(item.target)}
-        className="mt-7 inline-flex items-center gap-1.5 self-start text-[14px] font-semibold text-[#22D3EE] transition-[color,transform] duration-200 ease-out hover:text-[#5EEAFF] hover:translate-x-0.5"
+        className="mt-7 inline-flex items-center gap-2 self-start rounded-full border border-[rgba(34,211,238,0.25)] px-4 py-2 text-[13.5px] font-semibold text-[#5EEAFF] transition-[color,background,border-color] duration-200 ease-out hover:bg-[rgba(34,211,238,0.1)] hover:border-[rgba(34,211,238,0.45)]"
+        style={{ background: 'rgba(34,211,238,0.04)' }}
       >
         {item.cta}
-        <span aria-hidden="true">→</span>
+        <ArrowRight size={15} strokeWidth={2.4} className="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true" />
       </button>
     </m.div>
   )

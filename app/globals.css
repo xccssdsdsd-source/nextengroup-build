@@ -1279,6 +1279,42 @@ select {
   }
 }
 
+/* Overview cards (Usługi — przegląd) */
+.overview-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.overview-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(34,211,238,0.0) 15%, #22D3EE 50%, rgba(34,211,238,0.0) 85%, transparent 100%);
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.overview-num {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 4.25rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(34,211,238,0.07);
+}
+.overview-icon {
+  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+@media (hover: hover) {
+  .overview-card:hover::before { opacity: 1; }
+  .overview-card:hover .overview-icon {
+    background: rgba(34,211,238,0.16) !important;
+    border-color: rgba(34,211,238,0.45) !important;
+    box-shadow: 0 0 18px rgba(34,211,238,0.25);
+  }
+}
+
 /* SEO sub-cards */
 .seo-card {
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease;

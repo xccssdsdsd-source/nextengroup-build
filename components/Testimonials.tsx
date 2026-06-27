@@ -24,7 +24,7 @@ const testimonials = [
     name: 'Magdalena Sioła',
     href: 'https://msdesignstudio.pl/',
     site: 'msdesignstudio.pl',
-    photo: '/owner-msdesignstudio.jpg',
+    photo: '/owner-msdesignstudio.webp',
   },
 ]
 

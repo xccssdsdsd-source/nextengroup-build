@@ -67,7 +67,46 @@ const careItems = [
   'Im wyższy pakiet, tym więcej zmian w cenie i tym szybciej je wdrażamy.',
 ]
 
+const seoCards = [
+  { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
+  { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
+  { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają, że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
+  { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
+  { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
+  { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
+]
+
+const overview = [
+  {
+    no: '01',
+    name: 'Strony internetowe',
+    problem: 'Twoja strona nie przynosi klientów — albo nie masz jej wcale.',
+    desc: 'Budujemy szybkie strony, które zamieniają wejście w telefon albo wiadomość. Widoczne w Google i w wyszukiwarkach AI, dopięte na telefonie, z treścią, która sprzedaje za Ciebie.',
+    solves: [
+      ['Nie widać Cię w Google', 'SEO i GEO wbudowane od pierwszego dnia'],
+      ['Klienci uciekają z wolnej strony', 'Błyskawiczne ładowanie i pełna responsywność'],
+      ['Strona nie oddaje jakości firmy', 'Projekt pod sprzedaż, nie pod ozdobę'],
+    ],
+    cta: 'Zobacz pakiety i ceny',
+    target: 'strony',
+  },
+  {
+    no: '02',
+    name: 'Automatyzacje i agenci AI',
+    problem: 'Tracisz godziny na powtarzalne zadania i ręczne przepisywanie.',
+    desc: 'Wdrażamy automatyzacje i agentów AI, którzy odpowiadają klientom, umawiają spotkania i ogarniają papierologię — całą dobę, bez Ciebie.',
+    solves: [
+      ['Zapytania stygną, zanim odpiszesz', 'Agent AI odpowiada od razu, 24/7'],
+      ['Przepisujesz dane między narzędziami', 'Automatyzacja robi to za Ciebie'],
+      ['Jesteś wąskim gardłem firmy', 'Proste zadania dzieją się bez Ciebie'],
+    ],
+    cta: 'Zobacz, jak to działa',
+    target: 'automatyzacje',
+  },
+] as const
+
 type Package = typeof packages[number]
+type Overview = typeof overview[number]
 
 const aiTypes = [
   {
@@ -179,6 +218,54 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
   )
 }
 
+function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNavigate: (target: string) => void }) {
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <m.div
+      initial={false}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      whileHover={{ y: -6, scale: 1.01, transition: hoverSpring }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`overview-card relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
+        isHovered
+          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_18px_rgba(34,211,238,0.12)]'
+          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
+      }`}
+      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
+    >
+      <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#22D3EE]">{item.no}</span>
+      <h3 className="mt-3 text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+        {item.name}
+      </h3>
+      <p className="mt-3 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
+      <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
+
+      <ul className="mt-5 flex flex-col gap-3">
+        {item.solves.map(([pain, fix]) => (
+          <li key={pain} className="flex items-start gap-3">
+            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+            <span className="text-[13.5px] leading-[1.55] text-[#A6B2C4]">
+              <span className="text-[#7C879B] line-through decoration-[rgba(124,135,155,0.5)]">{pain}</span>
+              <span className="mx-1.5 text-[#22D3EE]">→</span>
+              <span className="text-[#EAF0F7]">{fix}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <button
+        onClick={() => onNavigate(item.target)}
+        className="mt-7 inline-flex items-center gap-1.5 self-start text-[14px] font-semibold text-[#22D3EE] transition-[color,transform] duration-200 ease-out hover:text-[#5EEAFF] hover:translate-x-0.5"
+      >
+        {item.cta}
+        <span aria-hidden="true">→</span>
+      </button>
+    </m.div>
+  )
+}
+
 function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   if (type === 'simple') {
     return (
@@ -231,8 +318,7 @@ export default function Services() {
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
   const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
-  const [seoExpanded, setSeoExpanded] = useState(false)
-  const [careExpanded, setCareExpanded] = useState(false)
+  const [detailsExpanded, setDetailsExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -249,17 +335,36 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="section-title" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>
-              <div className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]">
-                Strony internetowe
-              </div>
-            </h2>
-            <p className="section-copy mt-6">
-              Robimy strony, które pozyskują klientów — ktoś wchodzi i naprawdę się odzywa. Szybkie, dopięte na telefonie, z treścią, która sprzedaje za Ciebie. Pierwszą wizualizację pokażemy Ci w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
+            <span className="section-kicker" suppressHydrationWarning>Usługi</span>
+            <h2 className="section-title" suppressHydrationWarning>Dwie rzeczy, które robimy dla Twojej firmy</h2>
+            <p className="section-copy">
+              Pracujemy z małymi i średnimi firmami usługowymi. Skupiamy się na dwóch rzeczach, które realnie przekładają się na klientów i Twój czas: stronach, które same pozyskują zapytania, i automatyzacjach, które przejmują powtarzalną robotę. Pierwszą wizualizację widzisz w 24 godziny, a płacisz dopiero wtedy, gdy wszystko gra.
             </p>
           </m.div>
 
-          <div className="mt-16">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6">
+            {overview.map((item, i) => (
+              <OverviewCard key={item.name} item={item} i={i} onNavigate={scrollToSection} />
+            ))}
+          </div>
+
+          {/* ── Część 2: Strony internetowe ── */}
+          <m.div
+            id="strony"
+            className="section-heading mt-24"
+            style={{ scrollMarginTop: 'var(--nav-h)' }}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <span className="section-kicker" suppressHydrationWarning>01 — Strony internetowe</span>
+            <h2 className="section-title" suppressHydrationWarning>Strona, która pozyskuje klientów za Ciebie</h2>
+            <p className="section-copy">
+              Wybierz zakres, który pasuje do etapu Twojej firmy. Każdy pakiet jest szybki, dopięty na telefonie i napisany pod sprzedaż — a SEO, GEO i opiekę masz wbudowane w cenę.
+            </p>
+          </m.div>
+
+          <div className="mt-12">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
               {packages.map((pkg, i) => (
                 <PackageCard
@@ -285,6 +390,7 @@ export default function Services() {
             </div>
           </div>
 
+          {/* ── Połączony box: SEO + opieka + hosting (szczegóły po rozwinięciu) ── */}
           <m.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
             initial={false}
@@ -292,14 +398,14 @@ export default function Services() {
             transition={{ duration: 0.6, ease, delay: 0.3 }}
           >
             <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-              SEO i GEO wbudowane w każdą stronę
+              SEO, opieka i hosting — wszystko w cenie
             </h3>
             <p className="text-[14px] leading-[1.7] text-[#A6B2C4]">
-              Każdą stronę robimy tak, żeby Google ją rozumiał, a ChatGPT, Gemini czy Perplexity chętnie się na Ciebie powoływały. SEO nie doklejamy na końcu — siedzi w środku od pierwszego dnia.
+              Każdą stronę robimy tak, żeby Google ją rozumiał, a ChatGPT, Gemini czy Perplexity chętnie się na Ciebie powoływały. Hosting, domenę, kopie zapasowe, aktualizacje i bieżące poprawki bierzemy na siebie — Ty zajmujesz się firmą, nie stroną.
             </p>
 
             <AnimatePresence initial={false}>
-              {seoExpanded && (
+              {detailsExpanded && (
                 <m.div
                   initial={false}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -307,89 +413,20 @@ export default function Services() {
                   transition={{ duration: 0.36, ease }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                    {[
-                      { label: 'SEO techniczne', desc: 'Szybkość, Core Web Vitals, indeksowanie, dane strukturalne Schema.org i linkowanie wewnętrzne gotowe od pierwszego dnia.' },
-                      { label: 'Treść pod słowa kluczowe', desc: 'Nagłówki, meta tagi i teksty pisane pod frazy, których szukają Twoi klienci, nie pod to, co brzmi ładnie.' },
-                      { label: 'GEO dla wyszukiwarek AI', desc: 'Sekcje FAQ, odpowiedzi na pytania i znaczniki, które sprawiają, że Twoja firma pojawia się w odpowiedziach ChatGPT i Gemini.' },
-                      { label: 'AI SEARCH — nowe wyszukiwarki', desc: 'Bieżąca optymalizacja pod nowe modele AI (Perplexity, Exa, DuckDuckGo AI i te, które się pojawią jutro). Żadna strona nie czeka na wyczerpanie się Google.' },
-                      { label: 'E-E-A-T i autorytet', desc: 'Sygnały doświadczenia i wiarygodności, które algorytmy Google i modele AI traktują jako potwierdzenie, że warto Cię pokazać.' },
-                      { label: 'Monitoring i raportowanie', desc: 'Masz dostęp do panelu z pozycjami, rankingami w AI, ruchem. Widzisz, co działa. Każdy miesiąc przygotowujemy raport z postępem.' },
-                    ].map((item) => (
+                  {/* SEO / GEO / AI SEARCH */}
+                  <p className="mt-7 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">SEO i GEO — widoczność w Google i w AI</p>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {seoCards.map((item) => (
                       <div key={item.label} className="seo-card rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
                         <p className="mb-1 text-[13.5px] font-semibold text-[#EAF0F7]">{item.label}</p>
                         <p className="text-[13px] leading-[1.65] text-[#A6B2C4]">{item.desc}</p>
                       </div>
                     ))}
                   </div>
-                </m.div>
-              )}
-            </AnimatePresence>
 
-            <button
-              onClick={() => setSeoExpanded((v) => !v)}
-              aria-expanded={seoExpanded}
-              className="mt-5 w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
-            >
-              {seoExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-            </button>
-          </m.div>
-
-          <m.div
-            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 0.38 }}
-          >
-            <p className="mb-3 text-[13.5px] font-semibold text-[#EAF0F7]">Opieka miesięczna (opcjonalna dla Landing i Strona kompletna):</p>
-            <ul className="mb-4 flex flex-col gap-1.5">
-              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Landing:</span> + 39 zł/mies.</li>
-              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona kompletna:</span> + 49 zł/mies.</li>
-              <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona z panelem:</span> + 99 zł/mies. (obowiązkowa)</li>
-            </ul>
-            <p className="text-[13px] leading-[1.6] text-[#A6B2C4]">
-              <span className="font-semibold text-[#EAF0F7]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
-            </p>
-          </m.div>
-
-          <m.div
-            className="mt-5 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 0.42 }}
-          >
-            <button
-              className="mb-0 lg:mb-4 flex w-full items-center justify-between text-left text-[15px] font-bold tracking-[-0.02em] text-[#EAF0F7] lg:pointer-events-none"
-                           onClick={() => setCareExpanded((v) => !v)}
-              aria-expanded={careExpanded}
-            >
-              Co obejmuje opieka?
-              <span className="block lg:hidden ml-2 text-[#22D3EE] text-[18px] leading-none" aria-hidden="true">
-                {careExpanded ? '−' : '+'}
-              </span>
-            </button>
-
-            {/* Desktop: always visible */}
-            <ul className="hidden lg:flex flex-col gap-2.5 mt-4">
-              {careItems.map((item, i) => (
-                <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
-                  <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            {/* Mobile: collapsible */}
-            <AnimatePresence initial={false}>
-              {careExpanded && (
-                <m.div
-                  className="block lg:hidden overflow-hidden"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.36, ease }}
-                >
-                  <ul className="flex flex-col gap-2.5 mt-4">
+                  {/* Co obejmuje opieka */}
+                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Co obejmuje opieka</p>
+                  <ul className="flex flex-col gap-2.5">
                     {careItems.map((item, i) => (
                       <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
                         <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
@@ -397,9 +434,31 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Cennik opieki miesięcznej */}
+                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Opieka miesięczna</p>
+                  <div className="rounded-xl border border-[rgba(255,255,255,0.08)] px-5 py-4 bg-[rgba(255,255,255,0.02)]">
+                    <p className="mb-3 text-[13.5px] text-[#A6B2C4]">Opcjonalna dla pakietów Landing i Strona kompletna, w cenie reszta:</p>
+                    <ul className="mb-3 flex flex-col gap-1.5">
+                      <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Landing:</span> + 39 zł/mies.</li>
+                      <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona kompletna:</span> + 49 zł/mies.</li>
+                      <li className="text-[14px] leading-[1.6] text-[#A6B2C4]"><span className="font-semibold text-[#EAF0F7]">Strona z panelem:</span> + 99 zł/mies. (obowiązkowa)</li>
+                    </ul>
+                    <p className="text-[13px] leading-[1.6] text-[#A6B2C4]">
+                      <span className="font-semibold text-[#EAF0F7]">To zawiera:</span> hosting i domenę, SEO, GEO, AI SEARCH, kopie zapasowe, aktualizacje i bieżące zmiany.
+                    </p>
+                  </div>
                 </m.div>
               )}
             </AnimatePresence>
+
+            <button
+              onClick={() => setDetailsExpanded((v) => !v)}
+              aria-expanded={detailsExpanded}
+              className="mt-5 w-full rounded-xl border border-[rgba(255,255,255,0.14)] bg-transparent px-5 py-3 text-[14px] font-semibold text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.2)]"
+            >
+              {detailsExpanded ? 'Pokaż mniej' : 'Pokaż szczegóły (SEO, opieka, cennik)'}
+            </button>
           </m.div>
         </div>
       </section>
@@ -418,10 +477,10 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <span className="section-kicker" suppressHydrationWarning>Automatyzacje i agenci AI</span>
+            <span className="section-kicker" suppressHydrationWarning>02 — Automatyzacje i agenci AI</span>
             <h2 className="section-title" suppressHydrationWarning>Przestań robić to, co AI może zrobić za Ciebie</h2>
             <p className="section-copy">
-              Trzy różne rzeczy, które wszyscy wrzucają do jednego worka. Automatyzacje obsługują powtarzalne zadania za Ciebie — tłumaczymy raz, po ludzku.
+              Trzy poziomy tego samego: od prostych reguł, przez AI rozumiejące treść, po agenta, który sam realizuje cel. Wszystkie zdejmują z Ciebie powtarzalną robotę — tłumaczymy raz, po ludzku. Szczegóły i kolejne przykłady chowamy pod rozwinięciem.
             </p>
           </m.div>
 

@@ -43,7 +43,7 @@ const StarIcon = () => (
 
 const TrustBadge = () => (
   <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
-    <div className="flex w-fit flex-col items-center gap-2">
+    <div className="flex w-fit flex-col items-start gap-2">
       <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
         {[0, 1, 2, 3, 4].map((i) => (
           <StarIcon key={i} />

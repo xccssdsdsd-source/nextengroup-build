@@ -1,12 +1,19 @@
 ﻿'use client'
 
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
+
+const trustOwners = [
+  { src: '/owner-pm-apartments.jpg', alt: 'Klient PM Apartments' },
+  { src: '/owner-dorimari.jpg', alt: 'Klient Dorimari' },
+  { src: '/owner-msdesignstudio.jpg', alt: 'Klient MS Design Studio' },
+]
 
 
 const badges = [
@@ -26,6 +33,39 @@ const CheckIcon = () => (
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="url(#chk-g)" />
     <polyline points="22 4 12 14.01 9 11.01" stroke="url(#chk-g)" />
   </svg>
+)
+
+const StarIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
+    <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.785 1.401 8.168L12 18.896l-7.335 3.868 1.401-8.168L.132 9.211l8.2-1.193z" />
+  </svg>
+)
+
+const TrustBadge = () => (
+  <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
+    <div className="flex w-fit flex-col items-center gap-2">
+      <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <StarIcon key={i} />
+        ))}
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="flex -space-x-2.5">
+          {trustOwners.map((o) => (
+            <span
+              key={o.src}
+              className="relative inline-block h-9 w-9 overflow-hidden rounded-full ring-2 ring-[#0B0F16]"
+            >
+              <Image src={o.src} alt={o.alt} fill sizes="36px" className="object-cover" />
+            </span>
+          ))}
+        </div>
+        <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#C8D8E8]">
+          Zaufali nam
+        </span>
+      </div>
+    </div>
+  </div>
 )
 
 export default function Hero() {
@@ -78,6 +118,7 @@ export default function Hero() {
 
           {/* ── TEXT COLUMN ── */}
           <div className="text-left" data-parallax-headline>
+            <TrustBadge />
             <h1
               style={{
                 fontFamily: 'var(--font-heading)',

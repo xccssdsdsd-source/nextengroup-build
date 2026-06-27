@@ -279,7 +279,7 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
 function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   if (type === 'simple') {
     return (
-      <svg viewBox="0 0 380 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
+      <svg viewBox="0 0 380 130" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
         <title id="diagram-simple-title">Schemat prostej automatyzacji: Proces A połączony z Procesem B</title>
         <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
         <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces A</text>
@@ -292,7 +292,7 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
   }
   if (type === 'ai') {
     return (
-      <svg viewBox="0 0 420 130" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
+      <svg viewBox="0 0 420 130" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
         <title id="diagram-ai-title">Schemat automatyzacji AI: Proces przechodzi przez model AI, który podejmuje decyzję i zwraca wynik</title>
         <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
         <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces</text>
@@ -308,7 +308,7 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     )
   }
   return (
-    <svg viewBox="0 0 380 200" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
+    <svg viewBox="0 0 380 200" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
       <title id="diagram-agent-title">Schemat agenta AI: centralny agent AI samodzielnie wybiera i łączy wiele narzędzi, żeby zrealizować cel</title>
       <line x1="117" y1="94" x2="286" y2="53" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
       <line x1="118" y1="100" x2="286" y2="100" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
@@ -567,33 +567,36 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
 
-      {asHeading ? (
-        <h3 className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-          {ai.name}
-        </h3>
-      ) : (
-        <div className="text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight mb-5" style={{ fontFamily: 'var(--font-heading)' }}>
-          {ai.name}
-        </div>
-      )}
+      <div className="mb-6">
+        <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#6B7485]">{ai.tag}</span>
+        {asHeading ? (
+          <h3 className="mt-2 text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+            {ai.name}
+          </h3>
+        ) : (
+          <div className="mt-2 text-[1.2rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+            {ai.name}
+          </div>
+        )}
+      </div>
 
-      <div className="mb-7 p-6 rounded-xl border border-[rgba(34,211,238,0.2)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
+      <div className="mb-6 flex h-[148px] items-center justify-center rounded-xl border border-[rgba(255,255,255,0.07)] px-5" style={{ background: 'rgba(255,255,255,0.025)' }}>
         <ProcessFlowDiagram type={getProcessType()} />
       </div>
 
-      <p className="text-[14px] leading-[1.72] text-[#A6B2C4] mb-5">{ai.desc}</p>
+      <p className="text-[14px] leading-[1.7] text-[#A6B2C4] mb-5 min-h-[2.75rem]">{ai.desc}</p>
 
       <div className="space-y-2.5 mb-6">
         {ai.bullets.map((bullet, idx) => (
-          <div key={idx} className="flex items-start gap-2.5">
-            <span className="text-[#22D3EE] mt-1 flex-shrink-0 text-sm">●</span>
-            <span className="text-[13.5px] leading-[1.6] text-[#A6B2C4]">{bullet}</span>
+          <div key={idx} className="flex items-center gap-2.5">
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[#22D3EE]" />
+            <span className="text-[13.5px] leading-[1.5] text-[#A6B2C4]">{bullet}</span>
           </div>
         ))}
       </div>
 
-      <div className="mb-5 rounded-xl px-4 py-3.5" style={{ background: 'rgba(34,211,238,0.08)' }}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Przykład</p>
+      <div className="mb-4 rounded-r-md border-l-2 border-[#22D3EE] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.03)' }}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">Przykład</p>
         <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[#A6B2C4]">{ai.examples[0]}</p>
       </div>
 
@@ -608,7 +611,7 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
           >
             <div className="space-y-3">
               {ai.examples.slice(1).map((example, idx) => (
-                <div key={idx} className="rounded-xl px-4 py-3.5" style={{ background: 'rgba(34,211,238,0.08)' }}>
+                <div key={idx} className="rounded-r-md border-l-2 border-[rgba(34,211,238,0.4)] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.025)' }}>
                   <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
                 </div>
               ))}

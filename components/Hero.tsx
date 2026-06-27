@@ -43,13 +43,13 @@ const StarIcon = () => (
 
 const TrustBadge = () => (
   <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
-    <div className="flex w-fit flex-col items-center gap-2">
-      <div className="flex items-center gap-0.5 self-start" aria-label="Ocena 5 na 5 gwiazdek">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <StarIcon key={i} />
-        ))}
-      </div>
-      <div className="flex items-center gap-3">
+    <div className="flex w-fit items-end gap-3">
+      <div className="flex flex-col items-center gap-2">
+        <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <StarIcon key={i} />
+          ))}
+        </div>
         <div className="flex -space-x-2.5">
           {trustOwners.map((o) => (
             <span
@@ -60,10 +60,10 @@ const TrustBadge = () => (
             </span>
           ))}
         </div>
-        <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#C8D8E8]">
-          Zaufali nam
-        </span>
       </div>
+      <span className="whitespace-nowrap pb-1 text-[13px] font-semibold tracking-wide text-[#C8D8E8]">
+        Zaufali nam
+      </span>
     </div>
   </div>
 )

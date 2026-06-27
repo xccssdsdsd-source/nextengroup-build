@@ -10,9 +10,9 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
 
 const trustOwners = [
-  { src: '/owner-pm-apartments.jpg', alt: 'Klient PM Apartments' },
-  { src: '/owner-dorimari.jpg', alt: 'Klient Dorimari' },
-  { src: '/owner-msdesignstudio.jpg', alt: 'Klient MS Design Studio' },
+  { src: '/owner-pm-apartments.png', alt: 'Klient PM Apartments' },
+  { src: '/owner-dorimari.png', alt: 'Klient Dorimari' },
+  { src: '/owner-msdesignstudio.png', alt: 'Klient MS Design Studio' },
 ]
 
 

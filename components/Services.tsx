@@ -559,10 +559,10 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`ai-card rounded-2xl border p-7 flex flex-col h-full ${
+      className={`ai-card rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
         isHovered
-          ? 'border-[rgba(255,255,255,0.14)]'
-          : 'border-[rgba(255,255,255,0.08)]'
+          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
+          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >

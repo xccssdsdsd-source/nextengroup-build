@@ -10,9 +10,9 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
 
 const trustOwners = [
-  { src: '/owner-pm-apartments.jpg', alt: 'Klient PM Apartments' },
-  { src: '/owner-dorimari.jpg', alt: 'Klient Dorimari' },
-  { src: '/owner-msdesignstudio.jpg', alt: 'Klient MS Design Studio' },
+  { src: '/owner-pm-apartments.png', alt: 'Klient PM Apartments' },
+  { src: '/owner-dorimari.png', alt: 'Klient Dorimari' },
+  { src: '/owner-msdesignstudio.png', alt: 'Klient MS Design Studio' },
 ]
 
 
@@ -43,7 +43,7 @@ const StarIcon = () => (
 
 const TrustBadge = () => (
   <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
-    <div className="flex w-fit flex-col items-center gap-2">
+    <div className="flex w-fit flex-col items-start gap-2">
       <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
         {[0, 1, 2, 3, 4].map((i) => (
           <StarIcon key={i} />

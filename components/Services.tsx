@@ -6,8 +6,9 @@ import { useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
+const premiumSpring = { type: 'spring' as const, stiffness: 90, damping: 22 }
 const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
+const fadeUp = { initial: { opacity: 0, y: 28 }, transition: { duration: 0.65, ease } }
 
 const packages = [
   {
@@ -151,9 +152,9 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      transition={{ ...premiumSpring, delay: i * 0.12 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -166,6 +167,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       }`}
       style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
     >
+      <div className="card-shimmer" aria-hidden="true" />
       {pkg.featured && (
         <>
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
@@ -215,9 +217,10 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
   const Icon = item.target === 'strony' ? MonitorSmartphone : Sparkles
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ ...premiumSpring, delay: i * 0.12 }}
       whileHover={{ y: -6, scale: 1.01, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -231,9 +234,20 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
       <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
 
       <div className="flex items-center gap-3.5">
-        <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
+        <m.span
+          className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]"
+          style={{ background: 'rgba(34,211,238,0.08)' }}
+          animate={{
+            boxShadow: [
+              '0 0 0px rgba(34,211,238,0)',
+              '0 0 18px rgba(34,211,238,0.3)',
+              '0 0 0px rgba(34,211,238,0)',
+            ],
+          }}
+          transition={{ duration: 3 + i * 0.6, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
+        >
           <Icon size={22} strokeWidth={1.8} className="text-[#5EEAFF]" aria-hidden="true" />
-        </span>
+        </m.span>
         <h3 className="text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
           {item.name}
         </h3>
@@ -272,12 +286,20 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 380 130" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-simple-title">
         <title id="diagram-simple-title">Schemat prostej automatyzacji: Proces A połączony z Procesem B</title>
-        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
-        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces A</text>
-        <line x1="152" y1="65" x2="210" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
-        <path d="M210 57 L224 65 L210 73 Z" fill="#EAF0F7" />
-        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
-        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces B</text>
+        <defs>
+          <linearGradient id="flow-grad-s" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0"/>
+            <stop offset="50%" stopColor="#22D3EE" stopOpacity="1"/>
+            <stop offset="100%" stopColor="#22D3EE" stopOpacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="39" width="120" height="52" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <text x="80" y="71" textAnchor="middle" fontFamily="inherit" fontSize="15" fontWeight="600" fill="#EAF0F7">Proces A</text>
+        <line x1="152" y1="65" x2="220" y2="65" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
+        <line x1="152" y1="65" x2="220" y2="65" stroke="url(#flow-grad-s)" strokeWidth="2" className="flow-line" />
+        <path d="M212 58 L224 65 L212 72 Z" fill="#22D3EE" opacity="0.8" />
+        <rect x="234" y="39" width="120" height="52" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <text x="294" y="71" textAnchor="middle" fontFamily="inherit" fontSize="15" fontWeight="600" fill="#EAF0F7">Proces B</text>
       </svg>
     )
   }
@@ -285,30 +307,55 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
     return (
       <svg viewBox="0 0 420 130" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-ai-title">
         <title id="diagram-ai-title">Schemat automatyzacji AI: Proces przechodzi przez model AI, który podejmuje decyzję i zwraca wynik</title>
-        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
-        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces</text>
-        <line x1="140" y1="65" x2="168" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
-        <path d="M168 57 L182 65 L168 73 Z" fill="#EAF0F7" />
-        <circle cx="212" cy="65" r="26" fill="#22D3EE" />
-        <text x="212" y="71" textAnchor="middle" fontFamily="inherit" fontSize="17" fontWeight="700" fill="#06141A">A</text>
-        <line x1="250" y1="65" x2="278" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
-        <path d="M278 57 L292 65 L278 73 Z" fill="#EAF0F7" />
-        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(255,255,255,0.06)" stroke="#EAF0F7" strokeWidth="2" />
-        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Wynik</text>
+        <defs>
+          <radialGradient id="ai-node-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#22D3EE" stopOpacity="1"/>
+            <stop offset="100%" stopColor="#0891B2" stopOpacity="1"/>
+          </radialGradient>
+        </defs>
+        <rect x="24" y="39" width="104" height="52" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="15" fontWeight="600" fill="#EAF0F7">Proces</text>
+        <line x1="140" y1="65" x2="180" y2="65" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <path d="M172 58 L184 65 L172 72 Z" fill="#22D3EE" opacity="0.7" />
+        <circle cx="212" cy="65" r="28" fill="url(#ai-node-glow)" />
+        <circle cx="212" cy="65" r="28" fill="transparent" stroke="#5EEAFF" strokeWidth="1" opacity="0.4" />
+        <text x="212" y="61" textAnchor="middle" fontFamily="inherit" fontSize="10" fontWeight="600" fill="#06141A" opacity="0.85">MODEL</text>
+        <text x="212" y="74" textAnchor="middle" fontFamily="inherit" fontSize="12" fontWeight="800" fill="#06141A">AI</text>
+        <line x1="252" y1="65" x2="292" y2="65" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <path d="M284 58 L296 65 L284 72 Z" fill="#22D3EE" opacity="0.7" />
+        <rect x="300" y="39" width="104" height="52" rx="12" fill="rgba(34,211,238,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
+        <text x="352" y="71" textAnchor="middle" fontFamily="inherit" fontSize="15" fontWeight="600" fill="#EAF0F7">Wynik</text>
       </svg>
     )
   }
   return (
     <svg viewBox="0 0 380 200" className="max-h-full w-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagram-agent-title">
       <title id="diagram-agent-title">Schemat agenta AI: centralny agent AI samodzielnie wybiera i łączy wiele narzędzi, żeby zrealizować cel</title>
-      <line x1="117" y1="94" x2="286" y2="53" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="118" y1="100" x2="286" y2="100" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
-      <line x1="117" y1="106" x2="286" y2="147" stroke="#EAF0F7" strokeWidth="2" strokeDasharray="4 6" />
-      <circle cx="300" cy="50" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
-      <circle cx="300" cy="100" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
-      <circle cx="300" cy="150" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
-      <circle cx="90" cy="100" r="28" fill="#22D3EE" />
-      <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="700" fill="#06141A">AI</text>
+      <defs>
+        <radialGradient id="agent-center-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#22D3EE"/>
+          <stop offset="100%" stopColor="#0E7490"/>
+        </radialGradient>
+        <filter id="agent-glow-filter">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      {/* Connecting lines */}
+      <line x1="118" y1="97" x2="282" y2="52" stroke="rgba(34,211,238,0.3)" strokeWidth="1.5" strokeDasharray="5 7" className="flow-line" />
+      <line x1="118" y1="100" x2="282" y2="100" stroke="rgba(34,211,238,0.3)" strokeWidth="1.5" strokeDasharray="5 7" className="flow-line" />
+      <line x1="118" y1="103" x2="282" y2="148" stroke="rgba(34,211,238,0.3)" strokeWidth="1.5" strokeDasharray="5 7" className="flow-line" />
+      {/* Tool nodes */}
+      <circle cx="298" cy="50" r="16" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.4)" strokeWidth="1.5" />
+      <text x="298" y="55" textAnchor="middle" fontFamily="inherit" fontSize="11" fontWeight="600" fill="#22D3EE">T1</text>
+      <circle cx="298" cy="100" r="16" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.4)" strokeWidth="1.5" />
+      <text x="298" y="105" textAnchor="middle" fontFamily="inherit" fontSize="11" fontWeight="600" fill="#22D3EE">T2</text>
+      <circle cx="298" cy="150" r="16" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.4)" strokeWidth="1.5" />
+      <text x="298" y="155" textAnchor="middle" fontFamily="inherit" fontSize="11" fontWeight="600" fill="#22D3EE">T3</text>
+      {/* Center AI node */}
+      <circle cx="90" cy="100" r="30" fill="url(#agent-center-glow)" filter="url(#agent-glow-filter)" />
+      <circle cx="90" cy="100" r="30" fill="transparent" stroke="#5EEAFF" strokeWidth="1" opacity="0.5" />
+      <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="800" fill="#06141A">AI</text>
     </svg>
   )
 }
@@ -331,8 +378,8 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
           >
             <span className="section-kicker" suppressHydrationWarning>Usługi</span>
@@ -353,8 +400,9 @@ export default function Services() {
             id="strony"
             className="section-heading mt-24"
             style={{ scrollMarginTop: 'var(--nav-h)' }}
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.7, ease }}
           >
             <span className="section-kicker" suppressHydrationWarning>01 — Strony internetowe</span>
@@ -367,12 +415,7 @@ export default function Services() {
           <div className="mt-12">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
               {packages.map((pkg, i) => (
-                <PackageCard
-                  key={pkg.name}
-                  pkg={pkg}
-                  inView={inView1}
-                  i={i}
-                />
+                <PackageCard key={pkg.name} pkg={pkg} inView={inView1} i={i} />
               ))}
             </div>
 
@@ -473,8 +516,8 @@ export default function Services() {
         <div className="relative mx-auto max-w-7xl">
           <m.div
             className="section-heading"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView2 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
           >
             <span className="section-kicker" suppressHydrationWarning>02 — Automatyzacje i agenci AI</span>
@@ -541,9 +584,9 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
 
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      transition={{ ...premiumSpring, delay: i * 0.14 }}
       whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

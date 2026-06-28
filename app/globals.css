@@ -1480,3 +1480,61 @@ select {
   .hero-rotate-word, .nav-icon-swap { animation: none !important; }
   .nav-tap, .nav-mobile-menu, .nav-mobile-link { transition: none !important; transform: none !important; }
 }
+
+/* ── Service icon glow animations ──────────────────────────────────────── */
+@keyframes svc-glow-cyan {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(34,211,238,0.25)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(34,211,238,0.65)); }
+}
+
+@keyframes svc-glow-amber {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(245,181,71,0.25)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(245,181,71,0.65)); }
+}
+
+@keyframes svc-glow-bright {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(94,234,255,0.25)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(94,234,255,0.65)); }
+}
+
+.svc-icon-cyan   { animation: svc-glow-cyan   3s ease-in-out infinite; will-change: filter; }
+.svc-icon-amber  { animation: svc-glow-amber  3.4s ease-in-out infinite 0.4s; will-change: filter; }
+.svc-icon-bright { animation: svc-glow-bright 2.8s ease-in-out infinite 0.8s; will-change: filter; }
+
+/* ── Premium card shimmer on hover ─────────────────────────────────────── */
+@keyframes card-shimmer {
+  from { transform: translateX(-110%); }
+  to   { transform: translateX(110%); }
+}
+
+.card-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,0.055) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  transform: translateX(-110%);
+  transition: transform 0s;
+}
+
+.pkg-card:hover .card-shimmer,
+.ai-card:hover .card-shimmer,
+.overview-card:hover .card-shimmer {
+  animation: card-shimmer 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Diagram flow-line animation tweak ─────────────────────────────────── */
+.flow-line {
+  stroke-dasharray: 5 8;
+  stroke-dashoffset: 0;
+  animation: dash-flow 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-icon-cyan, .svc-icon-amber, .svc-icon-bright { animation: none !important; }
+  .card-shimmer { display: none !important; }
+}

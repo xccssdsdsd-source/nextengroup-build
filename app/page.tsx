@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
+import SocialProof from '@/components/SocialProof'
 import InView from '@/components/InView'
 import dynamic from 'next/dynamic'
 
@@ -16,6 +17,7 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <SocialProof />
       <InView minHeight="600px"><Services /></InView>
       <InView minHeight="520px"><Process /></InView>
       <InView minHeight="580px"><Portfolio /></InView>

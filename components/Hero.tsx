@@ -19,24 +19,6 @@ const trustOwners = [
 ]
 
 
-const badges = [
-  { label: 'Nielimitowana liczba poprawek', mobile: true },
-  { label: 'Bezpłatna wizualizacja', mobile: true },
-  { label: 'Pełne wsparcie', mobile: false },
-]
-
-const CheckIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" strokeWidth="2">
-    <defs>
-      <linearGradient id="chk-g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#5EEAFF" />
-        <stop offset="100%" stopColor="#22D3EE" />
-      </linearGradient>
-    </defs>
-    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="url(#chk-g)" />
-    <polyline points="22 4 12 14.01 9 11.01" stroke="url(#chk-g)" />
-  </svg>
-)
 
 const StarIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
@@ -185,19 +167,6 @@ export default function Hero() {
                   </span>
                 </span>
               </p>
-            </div>
-
-            <div className="mt-3 flex items-center justify-start gap-5 text-xs text-[#A6B2C4]">
-              {badges.map((b, i) => (
-                <span
-                  key={b.label}
-                  className={`hero-badge flex items-center gap-1.5${!b.mobile ? ' hidden sm:flex' : ''}`}
-                  style={{ animationDelay: `${0.55 + i * 0.1}s` }}
-                >
-                  <CheckIcon />
-                  {b.label}
-                </span>
-              ))}
             </div>
 
             <div className="hero-from-left mt-6 flex flex-col gap-3 sm:flex-row justify-start sm:gap-4" style={{ animationDelay: '200ms' }}>

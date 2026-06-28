@@ -116,12 +116,9 @@ const aiTypes = [
     desc: 'Sztywne reguły: jeśli stanie się to, zrób tamto.',
     bullets: ['Działa zero jeden', 'Bez kontekstu', 'Najtańsza w utrzymaniu'],
     examples: [
-      'Klient wypełnia formularz, system sam wysyła maila powitalnego i dopisuje go do arkusza.',
-      'Nowe zgłoszenie z formularza ląduje od razu w arkuszu i na Twoim mailu, bez przepisywania ręcznie.',
-      'Po zakończonej usłudze klient dostaje automatycznie SMS z prośbą o opinię w Google.',
-      'Faktura tworzy się sama po opłaceniu zamówienia i trafia do klienta na maila.',
-      'Przypomnienie o wizycie wychodzi do klienta dzień wcześniej, sam nie musisz dzwonić.',
-      'Każdy nowy lead z reklamy od razu trafia na Twojego WhatsAppa z danymi kontaktowymi.',
+      'Klient wypełnia formularz → dostaje maila z potwierdzeniem, a Ty widzisz go od razu w arkuszu. Nic ręcznie.',
+      'Po wizycie klient dostaje SMS z prośbą o opinię w Google — sam, bez Twojego kliknięcia.',
+      'Nowy lead z reklamy trafia od razu na Twój WhatsApp z danymi kontaktowymi.',
     ],
   },
   {
@@ -130,11 +127,8 @@ const aiTypes = [
     desc: 'Automatyzacja z modelem AI, który rozumie treść i sam decyduje.',
     bullets: ['Rozumie treść', 'Decyduje sama', 'Obsługuje warianty'],
     examples: [
-      'Klient pisze wiadomość, AI rozpoznaje czego dotyczy, pisze dopasowaną odpowiedź i kieruje sprawę do właściwej osoby.',
-      'AI czyta przychodzące maile i sam segreguje je na pilne, oferty i spam.',
-      'Opinie klientów z Google są streszczane automatycznie, dostajesz raport co chwalą najczęściej i na co narzekają.',
-      'AI przygotowuje opis nieruchomości na podstawie zdjęć i kilku danych, gotowy do publikacji.',
-      'Z nagrania rozmowy z klientem AI wyciąga ustalenia i tworzy notatkę ze spotkania.',
+      'Klient pisze maila z pytaniem o cenę. AI czyta, rozumie o co chodzi i odpisuje dopasowaną wiadomością — zanim Ty zdążysz sprawdzić skrzynkę.',
+      'Nowe opinie w Google są streszczane co tydzień automatycznie: co klienci chwalą i na co narzekają.',
     ],
   },
   {
@@ -143,18 +137,15 @@ const aiTypes = [
     desc: 'Samodzielny pracownik cyfrowy, który dostaje cel i sam dobiera kroki.',
     bullets: ['Wykonuje cel', 'Używa narzędzi', 'Pracuje 24/7'],
     examples: [
-      'Agent odbiera zapytanie, sam dopytuje o szczegóły, sprawdza wolny termin w kalendarzu, umawia spotkanie i wysyła potwierdzenie. Całą dobę, bez Ciebie.',
-      'Klient pisze w nocy, agent odpowiada, kwalifikuje go i rezerwuje termin, rano masz gotowe spotkanie w kalendarzu.',
-      'Agent pilnuje skrzynki, sam odpowiada na typowe pytania, a trudniejsze przekazuje Tobie z gotowym podsumowaniem.',
-      'Agent dzwoni do klienta z przypomnieniem o płatności i odnotowuje wynik rozmowy.',
-      'Po zapytaniu o wycenę agent zbiera dane, przygotowuje wstępną ofertę i wysyła ją klientowi.',
+      'Klient pisze o 23:00 z pytaniem o termin. Agent odpowiada, pyta o szczegóły, sprawdza kalendarz i rezerwuje wizytę. Rano masz gotowe spotkanie.',
+      'Agent pilnuje skrzynki całą dobę: sam odpowiada na typowe pytania, trudniejsze przekazuje Tobie z gotowym streszczeniem wątku.',
     ],
   },
 ]
 
 type AiType = typeof aiTypes[number]
 
-type AiCardProps = { ai: AiType; inView: boolean; i: number; allExpanded?: boolean; onToggleAll?: () => void; asHeading?: boolean }
+type AiCardProps = { ai: AiType; inView: boolean; i: number; asHeading?: boolean }
 
 function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inView: boolean; i: number; asHeading?: boolean }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -327,7 +318,6 @@ export default function Services() {
   const ref2 = useRef(null)
   const inView1 = useInView(ref1, { once: true, margin: '-50px' })
   const inView2 = useInView(ref2, { once: true, margin: '-50px' })
-  const [allExamplesExpanded, setAllExamplesExpanded] = useState(false)
   const [detailsExpanded, setDetailsExpanded] = useState(false)
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -490,13 +480,13 @@ export default function Services() {
             <span className="section-kicker" suppressHydrationWarning>02 — Automatyzacje i agenci AI</span>
             <h2 className="section-title" suppressHydrationWarning>Przestań robić to, co AI może zrobić za Ciebie</h2>
             <p className="section-copy">
-              Trzy poziomy tego samego: od prostych reguł, przez AI rozumiejące treść, po agenta, który sam realizuje cel. Wszystkie zdejmują z Ciebie powtarzalną robotę — tłumaczymy raz, po ludzku. Szczegóły i kolejne przykłady chowamy pod rozwinięciem.
+              Trzy poziomy tego samego: od prostych reguł, przez AI rozumiejące treść, po agenta, który sam realizuje cel. Każdy z nich zdejmuje z Ciebie powtarzalną robotę — wyjaśniamy konkretnie, bez żargonu.
             </p>
           </m.div>
 
           <div className="mt-16">
             <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
-              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} allExpanded={allExamplesExpanded} onToggleAll={() => setAllExamplesExpanded(!allExamplesExpanded)} />)}
+              {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
             </div>
 
             <div className="flex flex-col gap-4 overflow-hidden lg:hidden">
@@ -540,10 +530,8 @@ export default function Services() {
   )
 }
 
-function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = true }: AiCardProps) {
+function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const [expandedExamples, setExpandedExamples] = useState(false)
-  const isExpanded = allExpanded || expandedExamples
 
   const getProcessType = () => {
     if (ai.name === 'Automatyzacja') return 'simple'
@@ -595,43 +583,16 @@ function AiCard({ ai, inView, i, allExpanded = false, onToggleAll, asHeading = t
         ))}
       </div>
 
-      <div className="mb-4 rounded-r-md border-l-2 border-[#22D3EE] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.03)' }}>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">Przykład</p>
-        <p className="mt-1.5 text-[13.5px] leading-[1.68] text-[#A6B2C4]">{ai.examples[0]}</p>
+      <div className="space-y-3">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">
+          {ai.examples.length > 1 ? 'Przykłady' : 'Przykład'}
+        </p>
+        {ai.examples.map((example, idx) => (
+          <div key={idx} className="rounded-r-md border-l-2 border-[#22D3EE] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.03)' }}>
+            <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
+          </div>
+        ))}
       </div>
-
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <m.div
-            initial={false}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease }}
-            className="overflow-hidden mb-4"
-          >
-            <div className="space-y-3">
-              {ai.examples.slice(1).map((example, idx) => (
-                <div key={idx} className="rounded-r-md border-l-2 border-[rgba(34,211,238,0.4)] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.025)' }}>
-                  <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
-                </div>
-              ))}
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        onClick={() => {
-          if (allExpanded) {
-            onToggleAll?.()
-          } else {
-            setExpandedExamples(!expandedExamples)
-          }
-        }}
-        className="mt-auto px-0 py-2.5 text-[13.5px] font-semibold text-[#A6B2C4] text-left transition-[color,transform] duration-200 ease-out hover:text-[#5EEAFF] hover:translate-x-0.5"
-      >
-        {isExpanded ? 'Ukryj przykłady' : 'Pokaż więcej przykładów'}
-      </button>
     </m.div>
   )
 }

@@ -9,6 +9,9 @@ const DeviceMockups = dynamic(() => import('./DeviceMockups'))
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
 
+const MOBILE_TITLE =
+  'Tworzymy strony, które pozyskują klientów, i automatyzujemy żmudne i czasochłonne procesy biznesowe.'
+
 const trustOwners = [
   { src: '/owner-pm-apartments.webp', alt: 'Klient PM Apartments' },
   { src: '/owner-dorimari.webp', alt: 'Klient Dorimari' },
@@ -45,7 +48,7 @@ const TrustBadge = () => (
   <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
     <div className="flex w-fit items-end gap-3">
       <div className="flex flex-col items-center gap-2">
-        <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
+        <div className="flex items-center gap-0.5" style={{ marginLeft: '6px' }} aria-label="Ocena 5 na 5 gwiazdek">
           {[0, 1, 2, 3, 4].map((i) => (
             <StarIcon key={i} />
           ))}
@@ -71,8 +74,35 @@ const TrustBadge = () => (
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [titleNumber, setTitleNumber] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [mobileTyped, setMobileTyped] = useState('')
+  const [mobileTypingDone, setMobileTypingDone] = useState(false)
 
   useEffect(() => { setIsMounted(true) }, [])
+
+  // Wykryj mobile + preferencję ograniczonego ruchu (typing animation tylko na mobile)
+  useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 639px)').matches
+    setIsMobile(mobile)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (mobile && reduceMotion) {
+      setMobileTyped(MOBILE_TITLE)
+      setMobileTypingDone(true)
+    }
+  }, [])
+
+  // Typing animation tytułu na mobile: wpisuje znak po znaku, kursor znika po zakończeniu
+  useEffect(() => {
+    if (!isMounted || !isMobile || mobileTypingDone) return
+    if (mobileTyped.length >= MOBILE_TITLE.length) {
+      setMobileTypingDone(true)
+      return
+    }
+    const timer = setTimeout(() => {
+      setMobileTyped(MOBILE_TITLE.slice(0, mobileTyped.length + 1))
+    }, 42)
+    return () => clearTimeout(timer)
+  }, [isMounted, isMobile, mobileTyped, mobileTypingDone])
 
   useEffect(() => {
     if (!isMounted) return
@@ -128,13 +158,21 @@ export default function Hero() {
                 letterSpacing: '-0.03em',
               }}
             >
-              <span className="block" style={{ color: '#EAF0F7', marginBottom: '0.04em' }}>
-                Strony, które{' '}
-                <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
+              {/* Desktop / tablet — oryginalny dwuwierszowy tytuł */}
+              <span className="hidden sm:block">
+                <span className="block" style={{ color: '#EAF0F7', marginBottom: '0.04em' }}>
+                  Strony, które{' '}
+                  <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
+                </span>
+                <span className="block" style={{ color: '#C8D8E8' }}>
+                  Automatyzacje, które{' '}
+                  <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
+                </span>
               </span>
-              <span className="block" style={{ color: '#C8D8E8' }}>
-                Automatyzacje, które{' '}
-                <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
+              {/* Mobile — typing animation nowego tytułu, kursor znika po wpisaniu */}
+              <span className="block sm:hidden" style={{ color: '#EAF0F7' }} aria-label={MOBILE_TITLE}>
+                <span aria-hidden="true">{mobileTyped}</span>
+                {!mobileTypingDone && <span className="typing-cursor" />}
               </span>
             </h1>
 

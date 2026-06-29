@@ -206,7 +206,7 @@ export default function Contact() {
                           : 'border-[rgba(105,201,208,0.2)] bg-[rgba(105,201,208,0.06)] hover:bg-[rgba(105,201,208,0.14)] hover:border-[rgba(105,201,208,0.5)]'
                         }`}
                       >
-                        <span className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg ${
+                        <span className={`flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg ${
                           s.label === 'Email' ? 'text-[#EA712A]'
                           : s.label === 'Instagram' ? 'text-[#E1306C]'
                           : s.label === 'Facebook' ? 'text-[#1877F2]'
@@ -214,12 +214,12 @@ export default function Contact() {
                           : s.label === 'Reddit' ? 'text-[#FF4500]'
                           : 'text-[#69C9D0]'
                         }`}>
-                          {s.label === 'Email' && <MdEmail size={12} />}
-                          {s.label === 'Instagram' && <FaInstagram size={12} />}
-                          {s.label === 'Facebook' && <FaFacebook size={12} />}
-                          {s.label === 'X' && <FaXTwitter size={12} />}
-                          {s.label === 'Reddit' && <FaRedditAlien size={12} />}
-                          {s.label === 'TikTok' && <FaTiktok size={12} />}
+                          {s.label === 'Email' && <MdEmail size={16} />}
+                          {s.label === 'Instagram' && <FaInstagram size={14} />}
+                          {s.label === 'Facebook' && <FaFacebook size={14} />}
+                          {s.label === 'X' && <FaXTwitter size={14} />}
+                          {s.label === 'Reddit' && <FaRedditAlien size={14} />}
+                          {s.label === 'TikTok' && <FaTiktok size={14} />}
                         </span>
                         <div className="min-w-0">
                           <p className="text-[12px] font-semibold text-[#EAF0F7] leading-tight">{s.label}</p>

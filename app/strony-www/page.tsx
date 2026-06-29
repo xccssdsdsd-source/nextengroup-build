@@ -145,7 +145,7 @@ export default function StonyWWW() {
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
-            Twoje strona będzie
+            Twoja strona będzie
           </h2>
           <div className="space-y-4 text-[#A6B2C4] leading-[1.7]">
             <div className="flex gap-4">

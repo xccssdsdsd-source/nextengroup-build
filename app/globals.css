@@ -1358,7 +1358,8 @@ select {
 
 /* Footer nav links */
 .footer-link {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   transition: transform 0.2s cubic-bezier(0.22,1,0.36,1), color 0.2s ease;
 }
 @media (hover: hover) {

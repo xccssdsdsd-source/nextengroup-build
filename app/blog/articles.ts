@@ -138,7 +138,7 @@ export const articles: Record<string, ArticleContent> = {
     related: [
       { label: 'SEO i GEO dla firm', href: '/seo-dla-firm' },
       { label: 'Bezpłatny audyt SEO', href: '/audyt-seo' },
-      { label: 'SEO dla firm B2B: czy warto inwestować', href: '/blog/seo-dla-firm-b2b-czy-warto-investowac' },
+      { label: 'SEO dla firm B2B: czy warto inwestować', href: '/blog/seo-dla-firm-b2b-czy-warto-inwestowac' },
       { label: 'Audyt SEO: co zawiera i ile kosztuje', href: '/blog/audyt-seo-co-zawiera-ile-kosztuje' },
     ],
   },
@@ -207,7 +207,7 @@ export const articles: Record<string, ArticleContent> = {
     ],
   },
 
-  'seo-dla-firm-b2b-czy-warto-investowac': {
+  'seo-dla-firm-b2b-czy-warto-inwestowac': {
     title: 'SEO dla firm B2B: czy warto inwestować',
     date: '2026-04-28',
     readTime: 9,
@@ -332,7 +332,7 @@ export const articles: Record<string, ArticleContent> = {
     related: [
       { label: 'Bezpłatny audyt SEO', href: '/audyt-seo' },
       { label: 'SEO i GEO dla firm', href: '/seo-dla-firm' },
-      { label: 'SEO dla firm B2B: czy warto inwestować', href: '/blog/seo-dla-firm-b2b-czy-warto-investowac' },
+      { label: 'SEO dla firm B2B: czy warto inwestować', href: '/blog/seo-dla-firm-b2b-czy-warto-inwestowac' },
       { label: 'Jak wybrać agencję SEO dla firmy B2B', href: '/blog/jak-wybrac-agencje-seo-dla-firmy-b2b' },
     ],
   },

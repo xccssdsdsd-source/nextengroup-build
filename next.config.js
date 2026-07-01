@@ -20,6 +20,11 @@ const nextConfig = {
         destination: 'https://getbuild.pl/:path*',
         permanent: true,
       },
+      {
+        source: '/kontakt',
+        destination: '/#kontakt',
+        permanent: true,
+      },
     ]
   },
   async headers() {

@@ -17,23 +17,23 @@ const stepVariants = {
 const steps = [
   {
     num: '01',
-    title: 'Rozmowa i dostosowanie',
-    desc: 'Poznajemy Twoją markę, cele i to, co ma naprawdę działać. Na tej podstawie definiujemy kierunek projektu i grupę odbiorców, do których chcesz trafić.',
+    title: 'Bezpłatna rozmowa (30 minut)',
+    desc: 'Poznajemy Twoją firmę, klientów i cele. Ustalamy kierunek i zakres projektu. Zero zobowiązań, zero presji.',
   },
   {
     num: '02',
-    title: 'Projekt i strategia',
-    desc: 'Projektujemy stronę tak, żeby każdy element skłaniał do działania. Układ, treść i przyciski mają jeden cel: zamieniać wejście w kontakt.',
+    title: 'Wizualizacja Twojej strony (od 24h)',
+    desc: 'Widzisz pierwszy projekt swojej strony w ciągu doby. Realny wygląd, nie makieta. Zgłaszasz uwagi, my poprawiamy, aż będzie dobrze.',
   },
   {
     num: '03',
-    title: 'Wdrożenie',
-    desc: 'Budujemy stronę szybką, dopracowaną na każdym urządzeniu i połączoną z narzędziami, których już używasz. Konfigurujemy widoczność w Google i oddajemy gotowy projekt z pełną dokumentacją.',
+    title: 'Wdrożenie (od 72h)',
+    desc: 'Budujemy stronę szybką, responsywną i widoczną w Google. Płacisz dopiero teraz, gdy wszystko Cię przekonuje. Zero ryzyka po Twojej stronie.',
   },
   {
     num: '04',
-    title: 'Opieka i wsparcie',
-    desc: 'Wspieramy Cię po starcie. Regularne aktualizacje, bezpieczeństwo i poprawki na bieżąco, żebyś mógł skupić się na swoim biznesie.',
+    title: 'Opieka po starcie',
+    desc: 'Aktualizacje, bezpieczeństwo i poprawki na bieżąco. Ty zajmujesz się firmą, my stroną.',
   },
 ] as const
 
@@ -51,9 +51,9 @@ export default function Process() {
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker" suppressHydrationWarning>Proces</span>
-          <h2 className="section-title" suppressHydrationWarning>Prosto od konsultacji do wsparcia</h2>
+          <h2 className="section-title" suppressHydrationWarning>Od pierwszej rozmowy do gotowej strony, krok po kroku</h2>
           <p className="section-copy">
-            Cztery etapy, które przeniosą Twoją ideę w działającą stronę. Wszystko w jednym miejscu, bez komplikacji.
+            Ty poświęcasz minimum czasu. My prowadzimy Cię przez cały proces, od pomysłu do live&apos;a.
           </p>
         </m.div>
 
@@ -64,6 +64,20 @@ export default function Process() {
           animate="show"
         >
           {steps.map((step) => <StepCard key={step.num} step={step} />)}
+        </m.div>
+
+        <m.div
+          className="mt-12 flex justify-center"
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease }}
+        >
+          <a
+            href="/#kontakt"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+          >
+            Umów bezpłatną rozmowę
+          </a>
         </m.div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Sora, Inter } from 'next/font/google'
+import { Sora, Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import CookieConsent from '@/components/CookieConsent'
@@ -17,6 +17,14 @@ const sora = Sora({
   subsets: ['latin'],
   weight: ['500', '600', '700', '800'],
   variable: '--font-syne',
+  display: 'swap',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin', 'latin-ext'],
+  weight: '400',
+  style: 'italic',
+  variable: '--font-serif',
   display: 'swap',
 })
 
@@ -85,7 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${sora.variable} ${inter.variable}`}
+      className={`${sora.variable} ${inter.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

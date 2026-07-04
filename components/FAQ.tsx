@@ -144,11 +144,11 @@ export default function FAQ() {
                   style={{
                     display: 'grid',
                     gridTemplateRows: isOpen ? '1fr' : '0fr',
-                    transition: 'grid-template-rows 220ms cubic-bezier(0.22,1,0.36,1)',
+                    transition: 'grid-template-rows 300ms cubic-bezier(0.22,1,0.36,1)',
                   }}
                 >
                   <div style={{ overflow: 'hidden' }}>
-                    <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
+                    <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]" style={{ opacity: isOpen ? 1 : 0, transform: isOpen ? 'none' : 'translateY(-4px)', transition: 'opacity 260ms ease 60ms, transform 300ms cubic-bezier(0.22,1,0.36,1)' }}>
                       {faq.a}
                     </p>
                   </div>

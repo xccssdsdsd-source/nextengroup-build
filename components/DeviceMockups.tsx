@@ -291,8 +291,9 @@ export default function DeviceMockups() {
               width: '44px', height: '4px', borderRadius: '2px',
               background: 'rgba(255,255,255,0.09)',
             }} />
-            <div style={{ borderRadius: '6px 6px 0 0', overflow: 'hidden', lineHeight: 0, border: '1px solid rgba(0,0,0,0.1)', borderBottom: 'none' }}>
+            <div style={{ borderRadius: '6px 6px 0 0', overflow: 'hidden', lineHeight: 0, border: '1px solid rgba(0,0,0,0.1)', borderBottom: 'none', position: 'relative' }}>
               <LaptopScreen />
+              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(112deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 24%, transparent 42%, transparent 78%, rgba(94,234,255,0.03) 100%)' }} />
             </div>
             <div style={{ height: '11px', background: 'linear-gradient(180deg,#1B2235 0%,#121720 100%)', borderRadius: '0 0 5px 5px', border: '1px solid rgba(0,0,0,0.14)', borderTop: '1px solid rgba(255,255,255,0.04)' }} />
             {/* glare */}
@@ -328,8 +329,9 @@ export default function DeviceMockups() {
             ].join(','),
           }}>
             <div style={{ position:'absolute', top:'5px', left:'50%', transform:'translateX(-50%)', width:'26px', height:'3.5px', borderRadius:'2px', background:'rgba(255,255,255,0.11)' }} />
-            <div style={{ borderRadius:'13px', overflow:'hidden', lineHeight:0, border:'1px solid rgba(0,0,0,0.08)' }}>
+            <div style={{ borderRadius:'13px', overflow:'hidden', lineHeight:0, border:'1px solid rgba(0,0,0,0.08)', position:'relative' }}>
               <PhoneScreen />
+              <div style={{ position:'absolute', inset:0, pointerEvents:'none', background:'linear-gradient(118deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 26%, transparent 46%)' }} />
             </div>
             <div style={{ position:'absolute', inset:0, borderRadius:'20px', background:'linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 40%)', pointerEvents:'none' }} />
           </div>

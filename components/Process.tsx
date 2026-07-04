@@ -96,8 +96,8 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
       variants={stepVariants}
       whileHover={{ y: -6, scale: 1.02, borderColor: 'rgba(34,211,238,0.4)', boxShadow: '0 1px 3px rgba(0,0,0,0.45), 0 12px 32px rgba(34,211,238,0.18)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="step-card group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
-      style={{ background: 'var(--bg-card)', willChange: 'transform' }}
+      className="step-card group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
+      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-card)', willChange: 'transform' }}
     >
       <div className="step-number animate-float" style={{ animationDelay: `${parseInt(step.num, 10) * 0.8}s` }}>
         {step.num}

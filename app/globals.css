@@ -20,6 +20,7 @@ body::-webkit-scrollbar,
   --nav-h: 100px;
   --font-heading: var(--font-syne), sans-serif;
   --font-body: var(--font-dm-sans), sans-serif;
+  --font-display: var(--font-serif), Georgia, serif;
   color-scheme: dark;
   --bg-base: #05080d;
   --bg-surface: #070a10;
@@ -123,15 +124,17 @@ select {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(620px 360px at 16% 20%, rgba(34, 211, 238, 0.045), transparent 68%),
-    radial-gradient(520px 300px at 84% 72%, rgba(255, 255, 255, 0.025), transparent 70%);
-  opacity: 0.66;
+    radial-gradient(900px 480px at 50% -8%, rgba(94, 234, 255, 0.055), transparent 62%),
+    radial-gradient(620px 380px at 18% 28%, rgba(34, 211, 238, 0.03), transparent 68%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0%, transparent 22%);
+  opacity: 0.85;
 }
 
 .section-shell:nth-of-type(odd)::before {
   background:
-    radial-gradient(680px 380px at 86% 16%, rgba(94, 234, 255, 0.04), transparent 70%),
-    radial-gradient(520px 340px at 14% 78%, rgba(245, 181, 71, 0.032), transparent 72%);
+    radial-gradient(900px 480px at 50% -8%, rgba(94, 234, 255, 0.05), transparent 62%),
+    radial-gradient(560px 360px at 82% 32%, rgba(245, 181, 71, 0.028), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0%, transparent 22%);
 }
 
 @media (min-width: 640px) {
@@ -191,9 +194,9 @@ select {
   scroll-margin-top: var(--nav-h);
   color: var(--text-primary);
   font-family: var(--font-heading);
-  font-size: clamp(26px, 3.6vw, 42px);
+  font-size: clamp(27px, 3.8vw, 46px);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;
   -webkit-font-smoothing: antialiased;
@@ -1007,6 +1010,23 @@ select {
   }
 }
 
+.serif-accent {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-size: 1.06em;
+  line-height: 1;
+}
+
+.card-sheen {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 8px 28px rgba(0, 0, 0, 0.38),
+    0 24px 64px -24px rgba(5, 8, 13, 0.9);
+}
+
 .hero-grid {
   grid-template-columns: 1fr 1fr;
 }
@@ -1263,7 +1283,7 @@ select {
 
 /* Realizacja cards */
 .realizacja-card {
-  background: var(--bg-elevated);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.022) 0%, rgba(255, 255, 255, 0) 30%), var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   overflow: hidden;

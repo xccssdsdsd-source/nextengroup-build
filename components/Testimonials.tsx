@@ -87,8 +87,8 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[n
     <m.article
       whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 20px 50px rgba(0,0,0,0.5)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] bg-[#161C28] p-7 shadow-[0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)] sm:p-8"
-      style={{ willChange: 'transform' }}
+      className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)] sm:p-8"
+      style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <svg
         className="absolute right-7 top-7 opacity-[0.12] animate-breathe"
@@ -105,7 +105,7 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[n
         ))}
       </div>
 
-      <p className="mt-5 flex-1 text-[15px] leading-[1.82] text-[#A6B2C4]">
+      <p className="mt-5 flex-1 text-[17px] leading-[1.72] text-[#C2CBDA]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 

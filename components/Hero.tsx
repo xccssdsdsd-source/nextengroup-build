@@ -144,11 +144,11 @@ export default function Hero() {
               <span className="hidden sm:block">
                 <span className="block" style={{ color: '#EAF0F7', marginBottom: '0.04em' }}>
                   Strony, które{' '}
-                  <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
+                  <span className="serif-accent" style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
                 </span>
                 <span className="block" style={{ color: '#C8D8E8' }}>
                   Automatyzacje, które{' '}
-                  <span style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
+                  <span className="serif-accent" style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
                 </span>
               </span>
               {/* Mobile — typing animation nowego tytułu, kursor znika po wpisaniu */}
@@ -178,20 +178,6 @@ export default function Hero() {
               </a>
             </div>
 
-            <ul className="hero-from-left mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[#A6B2C4]" style={{ animationDelay: '260ms' }}>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
-                Pierwsza wizualizacja w 24h
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
-                Płacisz dopiero, gdy wszystko gra
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
-                Wdrożenie od 72h
-              </li>
-            </ul>
           </div>
 
           {/* ── MOCKUP ROW ── */}

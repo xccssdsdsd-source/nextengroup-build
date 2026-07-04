@@ -136,7 +136,8 @@ export default function Contact() {
         initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[#11161F] shadow-[0_8px_40px_rgba(0,0,0,0.5)] p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(34,211,238,0.08)] p-6 sm:p-10 lg:p-14"
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 30%), #11161F' }}
       >
 
           <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">

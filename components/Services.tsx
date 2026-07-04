@@ -164,7 +164,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
           ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
+      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%) , var(--bg-elevated)', willChange: 'transform' }}
     >
       {pkg.featured && (
         <>
@@ -226,7 +226,7 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
+      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)', willChange: 'transform' }}
     >
       <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
 
@@ -555,7 +555,7 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
-      style={{ background: 'var(--bg-elevated)', willChange: 'transform' }}
+      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)', willChange: 'transform' }}
     >
 
       <div className="mb-6">

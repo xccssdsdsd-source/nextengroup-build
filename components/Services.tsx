@@ -362,6 +362,9 @@ export default function Services() {
             <p className="section-copy">
               Wybierz zakres, który pasuje do etapu Twojej firmy. Każdy pakiet jest szybki, dopięty na telefonie i napisany pod sprzedaż — a SEO, GEO i opiekę masz wbudowane w cenę.
             </p>
+            <p className="section-copy mt-3 text-[14px]">
+              Jednorazowa opłata za gotową stronę — bez abonamentu na start i bez prowizji od agencji. Jeden nowy klient pozyskany dzięki stronie zwykle zwraca cały koszt.
+            </p>
           </m.div>
 
           <div className="mt-12">

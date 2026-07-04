@@ -177,6 +177,21 @@ export default function Hero() {
                 Realizacje
               </a>
             </div>
+
+            <ul className="hero-from-left mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[#A6B2C4]" style={{ animationDelay: '260ms' }}>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
+                Pierwsza wizualizacja w 24h
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
+                Płacisz dopiero, gdy wszystko gra
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#22D3EE]" />
+                Wdrożenie od 72h
+              </li>
+            </ul>
           </div>
 
           {/* ── MOCKUP ROW ── */}

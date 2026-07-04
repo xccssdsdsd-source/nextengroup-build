@@ -14,7 +14,7 @@ const Footer = dynamic(() => import('@/components/Footer'))
 
 export default function Home() {
   return (
-    <main>
+    <main aria-label="Treść główna">
       <Nav />
       <Hero />
       <SocialProof />

@@ -67,7 +67,7 @@ export default function Process() {
         </m.div>
 
         <m.div
-          className="mt-12 flex justify-center"
+          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease }}
@@ -77,6 +77,12 @@ export default function Process() {
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
           >
             Umów bezpłatną rozmowę
+          </a>
+          <a
+            href="/#portfolio"
+            className="inline-flex items-center justify-center gap-2 text-[14px] font-medium text-[#A6B2C4] transition-colors duration-200 hover:text-[#EAF0F7]"
+          >
+            Najpierw zobacz nasze realizacje →
           </a>
         </m.div>
       </div>

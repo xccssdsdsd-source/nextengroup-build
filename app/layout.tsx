@@ -32,23 +32,12 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   keywords: [
-    'strony www',
     'strony www dla firm',
-    'tworzenie stron internetowych',
     'automatyzacje AI',
     'agenci AI',
-    'rozwiązania IT dla firm',
-    'Getbuild',
-    'GEO',
-    'Generative Engine Optimization',
     'SEO dla firm',
-    'SEO dla firm B2B',
-    'pozycjonowanie B2B',
-    'agencja SEO Trójmiasto',
-    'link building',
-    'optymalizacja AI',
-    'widoczność w ChatGPT',
-    'Next.js agencja',
+    'GEO Generative Engine Optimization',
+    'Getbuild',
   ],
   openGraph: {
     type: 'website',
@@ -112,11 +101,6 @@ export default function RootLayout({
           url: 'https://getbuild.pl',
           description: 'Nowoczesne strony WWW, automatyzacje AI i agenci AI dla polskich firm.',
           inLanguage: 'pl',
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: 'https://getbuild.pl/?q={search_term_string}',
-            'query-input': 'required name=search_term_string'
-          }
         }) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
@@ -142,7 +126,7 @@ export default function RootLayout({
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: '5',
-            reviewCount: '1',
+            reviewCount: '2',
             bestRating: '5',
             worstRating: '1',
           },
@@ -152,6 +136,12 @@ export default function RootLayout({
               author: { '@type': 'Person', name: 'Patryk Zacharek' },
               reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
               reviewBody: 'Współpraca przebiegała gładko, kontakt był błyskawiczny, a efekt końcowy w pełni spełnia moje oczekiwania. Strona jest nowoczesna, szybka i elegancka. Szczerze polecam każdemu, kto szuka rzetelnego partnera do stworzenia profesjonalnej wizytówki w sieci.',
+            },
+            {
+              '@type': 'Review',
+              author: { '@type': 'Person', name: 'Magdalena Sioła' },
+              reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+              reviewBody: 'Z pełnym przekonaniem polecam współpracę z Getbuild.pl. Firma stworzyła dla mnie stronę internetową MS Design Studio. Cały proces przebiegał sprawnie, komunikacja była na bardzo wysokim poziomie, a wszelkie uwagi były szybko wdrażane. Efekt końcowy spełnił moje oczekiwania zarówno pod względem estetyki, jak i funkcjonalności.',
             },
           ],
           hasOfferCatalog: {
@@ -222,16 +212,6 @@ export default function RootLayout({
             'https://www.instagram.com/getbuild.pl/',
             'https://www.facebook.com/profile.php?id=61588720012257',
           ],
-        }) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'SiteLinksSearchBox',
-          'url': 'https://getbuild.pl',
-          'potentialAction': {
-            '@type': 'SearchAction',
-            'target': 'https://getbuild.pl/?q={search_term_string}',
-            'query-input': 'required name=search_term_string'
-          }
         }) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Strony WWW', 'url': 'https://getbuild.pl/strony-www' },

@@ -16,7 +16,7 @@ function LaptopScreen() {
       <circle cx="50" cy="18" r="5" fill="#28C840" />
       <rect x="180" y="10" width="340" height="16" rx="5" fill="rgba(0,0,0,0.06)" />
       <rect x="196" y="14" width="12" height="8" rx="2" fill="rgba(0,0,0,0.16)" />
-      <text x="214" y="22" fontSize="9" fill="rgba(0,0,0,0.35)" fontFamily="system-ui,sans-serif">nextengroup.pl</text>
+      <text x="214" y="22" fontSize="9" fill="rgba(0,0,0,0.35)" fontFamily="system-ui,sans-serif">getbuild.pl</text>
       <rect x="572" y="11" width="18" height="14" rx="3" fill="rgba(0,0,0,0.05)" />
       <rect x="596" y="11" width="18" height="14" rx="3" fill="rgba(0,0,0,0.05)" />
       <rect x="620" y="11" width="18" height="14" rx="3" fill="rgba(0,0,0,0.05)" />

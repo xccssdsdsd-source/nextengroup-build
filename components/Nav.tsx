@@ -24,9 +24,16 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
 const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
+const ctaLabels = ['Kontakt', 'Bezpłatna konsultacja', 'Umów krótką rozmowę', 'Zobacz wizualizację']
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [ctaIndex, setCtaIndex] = useState(0)
+  const [displayText, setDisplayText] = useState(ctaLabels[0])
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const [typingEnabled, setTypingEnabled] = useState(false)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -47,6 +54,8 @@ export default function Nav() {
   }
 
   useEffect(() => {
+    setIsMounted(true)
+    setTypingEnabled(window.matchMedia('(min-width: 640px)').matches)
     if (window.location.hash.length > 1) {
       const id = decodeURIComponent(window.location.hash.slice(1))
       setTimeout(() => scrollToSection(id), 120)
@@ -56,6 +65,36 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!isMounted || !typingEnabled) return
+    const currentText = ctaLabels[ctaIndex]
+
+    let timer: NodeJS.Timeout
+
+    if (isDeleting) {
+      if (displayText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayText(prev => prev.slice(0, -1))
+        }, 65)
+      } else {
+        setIsDeleting(false)
+        setCtaIndex(prev => (prev + 1) % ctaLabels.length)
+      }
+    } else {
+      if (displayText.length < currentText.length) {
+        timer = setTimeout(() => {
+          setDisplayText(currentText.slice(0, displayText.length + 1))
+        }, 100)
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true)
+        }, 2500)
+      }
+    }
+
+    return () => clearTimeout(timer)
+  }, [displayText, isDeleting, ctaIndex, isMounted, typingEnabled])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -103,7 +142,8 @@ export default function Nav() {
               style={{ minWidth: 'auto' }}
             >
               <span className="inline-flex items-center">
-                Umów spotkanie
+                {displayText}
+                {isMounted && <span className="typing-cursor" />}
               </span>
             </a>
             <button

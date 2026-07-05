@@ -342,7 +342,7 @@ export default function Services() {
             </p>
           </m.div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
             {overview.map((item, i) => (
               <OverviewCard key={item.name} item={item} i={i} onNavigate={scrollToSection} />
             ))}
@@ -368,7 +368,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-12">
-            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5" data-stagger-group>
               {packages.map((pkg, i) => (
                 <PackageCard
                   key={pkg.name}
@@ -396,6 +396,7 @@ export default function Services() {
           {/* ── Połączony box: SEO + opieka + hosting (szczegóły po rozwinięciu) ── */}
           <m.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
+            data-fade-in
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.3 }}
@@ -488,7 +489,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr">
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr" data-stagger-group>
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
             </div>
 
@@ -508,6 +509,7 @@ export default function Services() {
 
           <m.div
             className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] px-6 py-5 bg-[rgba(255,255,255,0.02)]"
+            data-fade-in
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.35 }}

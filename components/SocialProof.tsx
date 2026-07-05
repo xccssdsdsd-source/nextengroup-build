@@ -69,7 +69,7 @@ export default function SocialProof() {
           </p>
         </m.div>
 
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85), 0 32px 90px -40px rgba(34,211,238,0.10)' }}>
+        <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85), 0 32px 90px -40px rgba(34,211,238,0.10)' }}>
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (

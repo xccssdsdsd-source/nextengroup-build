@@ -347,6 +347,7 @@ export default function Portfolio() {
         </m.div>
 
         <m.div
+          data-fade-in
           className="mt-7 relative"
           initial={false}
           animate={{ opacity: 1, y: 0 }}

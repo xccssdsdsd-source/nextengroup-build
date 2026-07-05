@@ -36,11 +36,20 @@ export default function GSAPAnimations() {
 
     const revealTargets: { el: HTMLElement; cls: string; delay?: number }[] = []
 
-    document.querySelectorAll<HTMLElement>('[data-fade-in], [data-stagger-group] > *, [data-img-reveal], [data-stat-block]').forEach((el, i) => {
-      const delay = parseFloat((el as HTMLElement).dataset.fadeIn || '0') || (el.closest('[data-stagger-group]') ? i * 0.07 : 0)
+    document.querySelectorAll<HTMLElement>('[data-fade-in], [data-img-reveal], [data-stat-block]').forEach((el) => {
+      const delay = parseFloat(el.dataset.fadeIn || '0')
       el.classList.add('io-reveal')
       if (delay) el.style.transitionDelay = `${delay}s`
       revealTargets.push({ el, cls: 'io-reveal' })
+    })
+
+    document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach((group) => {
+      Array.from(group.children).forEach((child, i) => {
+        const el = child as HTMLElement
+        el.classList.add('io-reveal')
+        if (i) el.style.transitionDelay = `${i * 0.07}s`
+        revealTargets.push({ el, cls: 'io-reveal' })
+      })
     })
 
     document.querySelectorAll<HTMLElement>('[data-img-reveal]').forEach((el) => {

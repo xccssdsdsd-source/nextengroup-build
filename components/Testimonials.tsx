@@ -54,6 +54,7 @@ export default function Testimonials() {
 
         <m.div
           className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6"
+          data-stagger-group
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...premiumSpring, delay: 0.12 }}

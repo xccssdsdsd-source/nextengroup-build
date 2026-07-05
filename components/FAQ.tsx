@@ -101,7 +101,7 @@ export default function FAQ() {
           </p>
         </m.div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2" data-stagger-group>
           {visible.map((faq, index) => {
             const isOpen = open === index
 

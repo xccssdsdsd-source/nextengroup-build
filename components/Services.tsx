@@ -1,8 +1,8 @@
 ﻿'use client'
 
-import { AnimatePresence, m, useInView } from 'framer-motion'
-import { ArrowRight, MonitorSmartphone, Sparkles } from 'lucide-react'
-import { useRef, useState, type MouseEvent } from 'react'
+import { AnimatePresence, m, useInView, useReducedMotion } from 'framer-motion'
+import { ArrowRight, ChevronDown, MonitorSmartphone, Sparkles } from 'lucide-react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -212,17 +212,42 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
 
 function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNavigate: (target: string) => void }) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isTapped, setIsTapped] = useState(false)
+  const [canHover, setCanHover] = useState(true)
+  const reduceMotion = useReducedMotion()
   const Icon = item.target === 'strony' ? MonitorSmartphone : Sparkles
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const update = () => setCanHover(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  const open = canHover ? isHovered : isTapped
+
   return (
     <m.div
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -6, scale: 1.01, transition: hoverSpring }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`overview-card group relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
-        isHovered
+      whileHover={canHover ? { y: -6, transition: hoverSpring } : undefined}
+      whileTap={!canHover ? { scale: 0.99 } : undefined}
+      onMouseEnter={() => canHover && setIsHovered(true)}
+      onMouseLeave={() => canHover && setIsHovered(false)}
+      onClick={() => !canHover && setIsTapped((v) => !v)}
+      role={!canHover ? 'button' : undefined}
+      tabIndex={!canHover ? 0 : undefined}
+      aria-expanded={!canHover ? open : undefined}
+      onKeyDown={(e) => {
+        if (!canHover && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault()
+          setIsTapped((v) => !v)
+        }
+      }}
+      className={`overview-card group relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${!canHover ? 'cursor-pointer' : ''} ${
+        open
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
       }`}
@@ -240,29 +265,64 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
       </div>
 
       <p className="mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
-      <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
 
-      <ul className="mt-6 flex flex-col gap-3">
-        {item.solves.map(([pain, fix]) => (
-          <li key={pain} className="flex items-start gap-3">
-            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
-            <span className="text-[13.5px] leading-[1.55] text-[#A6B2C4]">
-              <span className="text-[#7C879B] line-through decoration-[rgba(124,135,155,0.5)]">{pain}</span>
-              <span className="mx-1.5 text-[#22D3EE]">→</span>
-              <span className="text-[#EAF0F7]">{fix}</span>
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        onClick={() => onNavigate(item.target)}
-        className="mt-7 inline-flex items-center gap-2 self-start rounded-full border border-[rgba(34,211,238,0.25)] px-4 py-2 text-[13.5px] font-semibold text-[#5EEAFF] transition-[color,background,border-color] duration-200 ease-out hover:bg-[rgba(34,211,238,0.1)] hover:border-[rgba(34,211,238,0.45)]"
-        style={{ background: 'rgba(34,211,238,0.04)' }}
+      <m.div
+        initial={false}
+        animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+        transition={reduceMotion ? { duration: 0 } : { height: { duration: 0.42, ease }, opacity: { duration: open ? 0.32 : 0.18, ease, delay: open ? 0.06 : 0 } }}
+        className="overflow-hidden"
       >
-        {item.cta}
-        <ArrowRight size={15} strokeWidth={2.4} className="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true" />
-      </button>
+        <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
+
+        <ul className="mt-6 flex flex-col gap-3">
+          {item.solves.map(([pain, fix]) => (
+            <li key={pain} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+              <span className="text-[13.5px] leading-[1.55] text-[#A6B2C4]">
+                <span className="text-[#7C879B] line-through decoration-[rgba(124,135,155,0.5)]">{pain}</span>
+                <span className="mx-1.5 text-[#22D3EE]">→</span>
+                <span className="text-[#EAF0F7]">{fix}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onNavigate(item.target)
+          }}
+          className="mt-7 inline-flex items-center gap-2 self-start rounded-full border border-[rgba(34,211,238,0.25)] px-4 py-2 text-[13.5px] font-semibold text-[#5EEAFF] transition-[color,background,border-color] duration-200 ease-out hover:bg-[rgba(34,211,238,0.1)] hover:border-[rgba(34,211,238,0.45)]"
+          style={{ background: 'rgba(34,211,238,0.04)' }}
+        >
+          {item.cta}
+          <ArrowRight size={15} strokeWidth={2.4} className="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true" />
+        </button>
+      </m.div>
+
+      <AnimatePresence initial={false}>
+        {!open && (
+          <m.div
+            initial={false}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.24, ease }}
+            className="overflow-hidden"
+          >
+            <div className="mt-6 flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">
+              <span>{canHover ? 'Najedź, aby zobaczyć szczegóły' : 'Dotknij, aby rozwinąć'}</span>
+              <m.span
+                aria-hidden="true"
+                animate={reduceMotion ? undefined : { y: [0, 3, 0] }}
+                transition={{ duration: 1.4, ease: 'easeInOut', repeat: Infinity }}
+                className="flex"
+              >
+                <ChevronDown size={15} strokeWidth={2.4} />
+              </m.span>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </m.div>
   )
 }
@@ -342,7 +402,7 @@ export default function Services() {
             </p>
           </m.div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
+          <div className="mt-14 grid items-start gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
             {overview.map((item, i) => (
               <OverviewCard key={item.name} item={item} i={i} onNavigate={scrollToSection} />
             ))}

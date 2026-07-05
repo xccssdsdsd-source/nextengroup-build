@@ -141,7 +141,7 @@ export default function Nav() {
               className="btn btn-primary nav-tap !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
               style={{ minWidth: 'auto' }}
             >
-              <span className="inline-flex items-center">
+              <span className="inline-flex items-center" suppressHydrationWarning>
                 {displayText}
                 {isMounted && <span className="typing-cursor" />}
               </span>

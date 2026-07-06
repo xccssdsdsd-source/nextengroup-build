@@ -67,25 +67,7 @@ export default function Process() {
           {steps.map((step) => <StepCard key={step.num} step={step} />)}
         </m.div>
 
-        <m.div
-          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5, ease }}
-        >
-          <a
-            href="/#kontakt"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            Umów bezpłatną rozmowę
-          </a>
-          <a
-            href="/#portfolio"
-            className="inline-flex items-center justify-center gap-2 text-[14px] font-medium text-[#A6B2C4] transition-colors duration-200 hover:text-[#EAF0F7]"
-          >
-            Najpierw zobacz nasze realizacje →
-          </a>
-        </m.div>
+        {/* CTA removed from Process section to reduce action noise per design brief */}
       </div>
     </section>
   )
@@ -95,9 +77,9 @@ function StepCard({ step }: { step: (typeof steps)[number] }) {
   return (
     <m.article
       variants={stepVariants}
-      whileHover={{ y: -6, scale: 1.02, borderColor: 'rgba(34,211,238,0.4)', boxShadow: '0 1px 3px rgba(0,0,0,0.45), 0 12px 32px rgba(34,211,238,0.18)' }}
+      whileHover={{ y: -4, scale: 1.005, borderColor: 'rgba(190,220,230,0.16)', boxShadow: '0 1px 2px rgba(0,0,0,0.42), 0 18px 46px rgba(0,0,0,0.34)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="step-card group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
+      className="premium-card step-card group relative overflow-hidden rounded-2xl border border-[var(--border)] p-5 sm:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_2px_rgba(0,0,0,0.45),_0_2px_8px_rgba(0,0,0,0.4)]"
       style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-card)', willChange: 'transform' }}
     >
       <div className="step-number animate-float" style={{ animationDelay: `${parseInt(step.num, 10) * 0.8}s` }}>

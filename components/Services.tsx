@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
-import { ArrowRight, MonitorSmartphone, Sparkles } from 'lucide-react'
+import { MonitorSmartphone, Sparkles } from 'lucide-react'
 import { useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
@@ -88,7 +88,6 @@ const overview = [
       ['Klienci uciekają z wolnej strony', 'Błyskawiczne ładowanie i pełna responsywność'],
       ['Strona nie oddaje jakości firmy', 'Projekt pod sprzedaż, nie pod ozdobę'],
     ],
-    cta: 'Zobacz pakiety i ceny',
     target: 'strony',
   },
   {
@@ -101,7 +100,6 @@ const overview = [
       ['Przepisujesz dane między narzędziami', 'Automatyzacja robi to za Ciebie'],
       ['Jesteś wąskim gardłem firmy', 'Proste zadania dzieją się bez Ciebie'],
     ],
-    cta: 'Zobacz, jak to działa',
     target: 'automatyzacje',
   },
 ] as const
@@ -154,10 +152,10 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
+      whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`pkg-card relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col ${
+      className={`premium-card pkg-card relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col ${
         pkg.featured
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
           : isHovered
@@ -166,20 +164,15 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       }`}
       style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%) , var(--bg-elevated)', willChange: 'transform' }}
     >
-      {pkg.featured && (
-        <>
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#22D3EE] rounded-t-2xl" />
-          <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.16),transparent_70%)]" />
-        </>
-      )}
+      <div className="absolute inset-x-6 top-5 h-1 rounded-full bg-gradient-to-r from-[#22D3EE]/70 via-[#5EEAFF]/35 to-[#22D3EE]/20" />
       {pkg.featured ? (
-        <div className="mb-3 mt-1">
-          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full">
+        <div className="mb-3 mt-8">
+          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full shadow-[0_10px_30px_rgba(34,211,238,0.18)]">
             Najpopularniejszy
           </span>
         </div>
       ) : (
-        <div className="mb-3 mt-1 h-[22px]" />
+        <div className="mb-3 mt-8 h-[22px]" />
       )}
       {asHeading ? (
         <h3 className="text-[1.05rem] font-bold tracking-[-0.03em] text-[#EAF0F7] leading-snug" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -210,7 +203,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
   )
 }
 
-function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNavigate: (target: string) => void }) {
+function OverviewCard({ item, i }: { item: Overview; i: number }) {
   const [isHovered, setIsHovered] = useState(false)
   const Icon = item.target === 'strony' ? MonitorSmartphone : Sparkles
 
@@ -219,7 +212,7 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -6, transition: hoverSpring }}
+      whileHover={{ y: -4, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       data-active={isHovered ? 'true' : 'false'}
@@ -229,7 +222,7 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
       <span aria-hidden="true" className="overview-glow-border" />
 
       <div
-        className={`overview-card relative z-[1] flex h-full flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
+        className={`premium-card overview-card relative z-[1] flex h-full flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
           isHovered
             ? 'border-[rgba(34,211,238,0.35)] shadow-[0_16px_44px_rgba(0,0,0,0.5)]'
             : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
@@ -251,10 +244,14 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
 
         <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
 
-        <ul className="mt-6 flex flex-col gap-3">
+              <ul className="mt-6 flex flex-col gap-3">
           {item.solves.map(([pain, fix]) => (
             <li key={pain} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(34,211,238,0.15)' }} aria-hidden>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M5 13l4 4L19 7" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
               <span className="text-[13.5px] leading-[1.55] text-[#A6B2C4]">
                 <span className="text-[#7C879B] line-through decoration-[rgba(124,135,155,0.5)]">{pain}</span>
                 <span className="mx-1.5 text-[#22D3EE]">→</span>
@@ -264,17 +261,9 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
           ))}
         </ul>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onNavigate(item.target)
-          }}
-          className="mt-7 inline-flex items-center gap-2 self-start rounded-full border border-[rgba(34,211,238,0.25)] px-4 py-2 text-[13.5px] font-semibold text-[#5EEAFF] transition-[color,background,border-color] duration-200 ease-out hover:bg-[rgba(34,211,238,0.1)] hover:border-[rgba(34,211,238,0.45)]"
-          style={{ background: 'rgba(34,211,238,0.04)' }}
-        >
-          {item.cta}
-          <ArrowRight size={15} strokeWidth={2.4} className="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true" />
-        </button>
+        <div className="mt-auto pt-7" aria-hidden="true">
+          <span className="block h-px w-full bg-[linear-gradient(90deg,rgba(255,255,255,0.10),transparent)]" />
+        </div>
       </div>
     </m.div>
   )
@@ -357,7 +346,7 @@ export default function Services() {
 
           <div className="mt-14 grid items-start gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
             {overview.map((item, i) => (
-              <OverviewCard key={item.name} item={item} i={i} onNavigate={scrollToSection} />
+              <OverviewCard key={item.name} item={item} i={i} />
             ))}
           </div>
 
@@ -446,7 +435,11 @@ export default function Services() {
                   <ul className="flex flex-col gap-2.5">
                     {careItems.map((item, i) => (
                       <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
-                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[#22D3EE]" style={{ background: 'rgba(34,211,238,0.15)' }}>✓</span>
+                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(34,211,238,0.15)' }} aria-hidden>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+                            <path d="M5 13l4 4L19 7" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -532,16 +525,7 @@ export default function Services() {
             </p>
           </m.div>
 
-          <m.div
-            className="mt-8 flex justify-center"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 0.42 }}
-          >
-            <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary">
-              Umów spotkanie
-            </a>
-          </m.div>
+          {/* CTA removed per design: keep section clean and focused on offerings */}
         </div>
       </section>
     </>
@@ -562,10 +546,10 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02, transition: hoverSpring }}
+      whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`ai-card rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
+      className={`premium-card ai-card rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
         isHovered
           ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
           : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'

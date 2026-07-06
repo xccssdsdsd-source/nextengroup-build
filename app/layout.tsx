@@ -2,11 +2,9 @@ import type { Metadata } from 'next'
 import { Sora, Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
-import CookieConsent from '@/components/CookieConsent'
+import ClientShell from '@/components/ClientShell'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
-import GlobalPathsClient from '@/components/GlobalPathsClient'
-import GSAPAnimations from '@/components/GSAPAnimations'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
@@ -261,13 +259,11 @@ export default function RootLayout({
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
-          <GlobalPathsClient />
-          <CookieConsent />
+          <ClientShell />
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#22D3EE] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>
               {children}
-              <GSAPAnimations />
             </div>
           </MotionProvider>
         <Analytics />

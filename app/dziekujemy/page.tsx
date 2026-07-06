@@ -40,7 +40,6 @@ export default function Dziekujemy() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/realizacje" className="btn btn-primary inline-flex items-center justify-center px-7 py-3.5 text-sm">Zobacz nasze realizacje</a>
             <a href="/" className="btn btn-ghost inline-flex items-center justify-center px-7 py-3.5 text-sm">← Strona główna</a>
           </div>
         </div>

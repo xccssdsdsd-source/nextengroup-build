@@ -1,7 +1,6 @@
 'use client'
 
 import { m, useInView, animate } from 'framer-motion'
-import { RefreshCw, Smile, Clock, Wallet, type LucideIcon } from 'lucide-react'
 import { useRef, useEffect, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -17,14 +16,13 @@ interface StatItem {
   value: number | null
   suffix?: string
   label: string
-  icon: LucideIcon
 }
 
 const stats: StatItem[] = [
-  { value: null, label: 'Poprawek bez limitu', icon: RefreshCw },
-  { value: 100, suffix: '%', label: 'Zadowolonych klientów', icon: Smile },
-  { value: 24, suffix: 'h', label: 'Pierwsza wizualizacja', icon: Clock },
-  { value: 0, suffix: ' zł', label: 'Konsultacja i wycena', icon: Wallet },
+  { value: null, label: 'Poprawek bez limitu' },
+  { value: 100, suffix: '%', label: 'Zadowolonych klientów' },
+  { value: 24, suffix: 'h', label: 'Pierwsza wizualizacja' },
+  { value: 0, suffix: ' zł', label: 'Konsultacja i wycena' },
 ]
 
 function CountUp({ target, suffix, active, delay }: {
@@ -54,7 +52,7 @@ export default function SocialProof() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className="px-5 pb-14 sm:pb-20 sm:px-8">
+    <section ref={ref} className="social-proof-section px-5 pb-14 sm:pb-20 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <m.div
           className="section-heading"
@@ -71,7 +69,6 @@ export default function SocialProof() {
 
         <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85), 0 32px 90px -40px rgba(34,211,238,0.10)' }}>
           {stats.map((stat, i) => {
-            const Icon = stat.icon
             return (
               <m.div
                 key={stat.label}
@@ -90,8 +87,8 @@ export default function SocialProof() {
                   style={{ background: 'radial-gradient(circle at 50% 40%, rgba(34,211,238,0.07), transparent 68%)' }}
                 />
 
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#22D3EE]/15 bg-[#22D3EE]/8 text-[#22D3EE] transition-colors duration-300 group-hover:border-[#22D3EE]/30">
-                  <Icon size={18} strokeWidth={1.9} aria-hidden="true" />
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.025] font-mono text-[11px] font-semibold tracking-[0.12em] text-[#7C879B] transition-colors duration-300 group-hover:border-white/16 group-hover:text-[#EAF0F7]">
+                  {String(i + 1).padStart(2, '0')}
                 </span>
 
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">

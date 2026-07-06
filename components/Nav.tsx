@@ -24,14 +24,9 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
 const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
-const ctaLabels = ['Kontakt', 'Bezpłatna konsultacja', 'Umów krótką rozmowę', 'Zobacz wizualizację']
-
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [displayText, setDisplayText] = useState(ctaLabels[0])
-  const [isMounted, setIsMounted] = useState(false)
-  const [typingEnabled, setTypingEnabled] = useState(false)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -52,8 +47,6 @@ export default function Nav() {
   }
 
   useEffect(() => {
-    setIsMounted(true)
-    setTypingEnabled(window.matchMedia('(min-width: 640px)').matches)
     if (window.location.hash.length > 1) {
       const id = decodeURIComponent(window.location.hash.slice(1))
       setTimeout(() => scrollToSection(id), 120)
@@ -63,53 +56,6 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  // Typewriter CTA: wpisuje/kasuje wg realnego upływu czasu (rAF), nie licznika
-  // kroków w setTimeout — chwilowy lag main threada nie spowalnia animacji trwale
-  useEffect(() => {
-    if (!isMounted || !typingEnabled) return
-    const TYPE_MS = 100
-    const DELETE_MS = 65
-    const PAUSE_MS = 2500
-
-    let frame: number
-    let phase: 'typing' | 'pausing' | 'deleting' = 'typing'
-    let phaseStart = performance.now()
-    let index = 0
-    let text = ctaLabels[index]
-
-    const tick = (now: number) => {
-      const elapsed = now - phaseStart
-
-      if (phase === 'typing') {
-        const chars = Math.min(text.length, Math.floor(elapsed / TYPE_MS))
-        setDisplayText(text.slice(0, chars))
-        if (chars >= text.length) {
-          phase = 'pausing'
-          phaseStart = now
-        }
-      } else if (phase === 'pausing') {
-        if (elapsed >= PAUSE_MS) {
-          phase = 'deleting'
-          phaseStart = now
-        }
-      } else {
-        const removed = Math.min(text.length, Math.floor(elapsed / DELETE_MS))
-        setDisplayText(text.slice(0, text.length - removed))
-        if (removed >= text.length) {
-          index = (index + 1) % ctaLabels.length
-          text = ctaLabels[index]
-          phase = 'typing'
-          phaseStart = now
-        }
-      }
-
-      frame = requestAnimationFrame(tick)
-    }
-
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [isMounted, typingEnabled])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -153,12 +99,10 @@ export default function Nav() {
             <a
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary nav-tap !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
-              style={{ minWidth: 'auto' }}
+              className="btn btn-primary nav-tap !hidden h-[52px] w-[148px] overflow-hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
             >
-              <span className="inline-flex items-center">
-                {isMounted ? displayText : ctaLabels[0]}
-                {isMounted && <span className="typing-cursor" />}
+              <span className="inline-flex min-w-0 items-center justify-center whitespace-nowrap">
+                Kontakt
               </span>
             </a>
             <button

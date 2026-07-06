@@ -23,13 +23,13 @@ export default function GSAPAnimations() {
     /* ── CSS-BASED SCROLL REVEALS (IntersectionObserver) ── */
     const style = document.createElement('style')
     style.textContent = `
-      .io-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
-      .io-reveal.io-visible { opacity: 1; transform: none; }
-      .io-reveal-scale { opacity: 0; transform: scale(0.96); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-      .io-reveal-scale.io-visible { opacity: 1; transform: none; }
-      .io-kicker { opacity: 0; transform: translateX(-10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+      .io-reveal { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.985); filter: blur(6px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1), filter 0.8s cubic-bezier(0.22,1,0.36,1); will-change: transform, opacity, filter; }
+      .io-reveal.io-visible { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+      .io-reveal-scale { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.97); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); will-change: transform, opacity; }
+      .io-reveal-scale.io-visible { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+      .io-kicker { opacity: 0; transform: translateX(-10px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
       .io-kicker.io-visible { opacity: 1; transform: none; }
-      .io-divider { opacity: 0; transform: scaleX(0); transform-origin: center; transition: opacity 0.8s ease, transform 0.8s ease; }
+      .io-divider { opacity: 0; transform: scaleX(0); transform-origin: center; transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
       .io-divider.io-visible { opacity: 1; transform: scaleX(1); }
     `
     document.head.appendChild(style)
@@ -40,6 +40,12 @@ export default function GSAPAnimations() {
       const delay = parseFloat(el.dataset.fadeIn || '0')
       el.classList.add('io-reveal')
       if (delay) el.style.transitionDelay = `${delay}s`
+      revealTargets.push({ el, cls: 'io-reveal' })
+    })
+
+    document.querySelectorAll<HTMLElement>('.section-shell').forEach((el) => {
+      if (el.hasAttribute('data-no-entrance')) return
+      el.classList.add('io-reveal')
       revealTargets.push({ el, cls: 'io-reveal' })
     })
 

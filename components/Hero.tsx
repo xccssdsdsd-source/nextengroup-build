@@ -73,18 +73,26 @@ export default function Hero() {
     }
   }, [])
 
-  // Typing animation tytułu na mobile: wpisuje znak po znaku, kursor znika po zakończeniu
+  // Typing animation tytułu na mobile: wpisuje znak po znaku wg realnego upływu czasu
+  // (nie licznika kroków), więc chwilowy lag main threada nie spowalnia animacji trwale
   useEffect(() => {
     if (!isMounted || !isMobile || mobileTypingDone) return
-    if (mobileTyped.length >= MOBILE_TITLE.length) {
-      setMobileTypingDone(true)
-      return
+    const CHAR_MS = 42
+    const start = performance.now()
+    let frame: number
+
+    const tick = (now: number) => {
+      const chars = Math.min(MOBILE_TITLE.length, Math.floor((now - start) / CHAR_MS))
+      setMobileTyped(MOBILE_TITLE.slice(0, chars))
+      if (chars >= MOBILE_TITLE.length) {
+        setMobileTypingDone(true)
+        return
+      }
+      frame = requestAnimationFrame(tick)
     }
-    const timer = setTimeout(() => {
-      setMobileTyped(MOBILE_TITLE.slice(0, mobileTyped.length + 1))
-    }, 42)
-    return () => clearTimeout(timer)
-  }, [isMounted, isMobile, mobileTyped, mobileTypingDone])
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [isMounted, isMobile, mobileTypingDone])
 
   useEffect(() => {
     if (!isMounted) return

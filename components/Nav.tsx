@@ -29,9 +29,7 @@ const ctaLabels = ['Kontakt', 'Bezpłatna konsultacja', 'Umów krótką rozmowę
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [ctaIndex, setCtaIndex] = useState(0)
   const [displayText, setDisplayText] = useState(ctaLabels[0])
-  const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const [typingEnabled, setTypingEnabled] = useState(false)
 
@@ -66,35 +64,52 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Typewriter CTA: wpisuje/kasuje wg realnego upływu czasu (rAF), nie licznika
+  // kroków w setTimeout — chwilowy lag main threada nie spowalnia animacji trwale
   useEffect(() => {
     if (!isMounted || !typingEnabled) return
-    const currentText = ctaLabels[ctaIndex]
+    const TYPE_MS = 100
+    const DELETE_MS = 65
+    const PAUSE_MS = 2500
 
-    let timer: NodeJS.Timeout
+    let frame: number
+    let phase: 'typing' | 'pausing' | 'deleting' = 'typing'
+    let phaseStart = performance.now()
+    let index = 0
+    let text = ctaLabels[index]
 
-    if (isDeleting) {
-      if (displayText.length > 0) {
-        timer = setTimeout(() => {
-          setDisplayText(prev => prev.slice(0, -1))
-        }, 65)
+    const tick = (now: number) => {
+      const elapsed = now - phaseStart
+
+      if (phase === 'typing') {
+        const chars = Math.min(text.length, Math.floor(elapsed / TYPE_MS))
+        setDisplayText(text.slice(0, chars))
+        if (chars >= text.length) {
+          phase = 'pausing'
+          phaseStart = now
+        }
+      } else if (phase === 'pausing') {
+        if (elapsed >= PAUSE_MS) {
+          phase = 'deleting'
+          phaseStart = now
+        }
       } else {
-        setIsDeleting(false)
-        setCtaIndex(prev => (prev + 1) % ctaLabels.length)
+        const removed = Math.min(text.length, Math.floor(elapsed / DELETE_MS))
+        setDisplayText(text.slice(0, text.length - removed))
+        if (removed >= text.length) {
+          index = (index + 1) % ctaLabels.length
+          text = ctaLabels[index]
+          phase = 'typing'
+          phaseStart = now
+        }
       }
-    } else {
-      if (displayText.length < currentText.length) {
-        timer = setTimeout(() => {
-          setDisplayText(currentText.slice(0, displayText.length + 1))
-        }, 100)
-      } else {
-        timer = setTimeout(() => {
-          setIsDeleting(true)
-        }, 2500)
-      }
+
+      frame = requestAnimationFrame(tick)
     }
 
-    return () => clearTimeout(timer)
-  }, [displayText, isDeleting, ctaIndex, isMounted, typingEnabled])
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [isMounted, typingEnabled])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -141,8 +156,8 @@ export default function Nav() {
               className="btn btn-primary nav-tap !hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
               style={{ minWidth: 'auto' }}
             >
-              <span className="inline-flex items-center" suppressHydrationWarning>
-                {displayText}
+              <span className="inline-flex items-center">
+                {isMounted ? displayText : ctaLabels[0]}
                 {isMounted && <span className="typing-cursor" />}
               </span>
             </a>

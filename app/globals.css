@@ -1300,21 +1300,27 @@ select {
   }
 }
 
-/* Overview cards (Usługi — przegląd) */
+/* Overview cards (Usługi — przegląd) — animated gradient-glow (Uiverse-inspired) */
 .overview-card {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.overview-card::before {
+.overview-glow-border,
+.overview-glow-blur {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(34,211,238,0.0) 15%, #22D3EE 50%, rgba(34,211,238,0.0) 85%, transparent 100%);
-  opacity: 0.35;
-  transition: opacity 0.4s ease;
+  border-radius: inherit;
   pointer-events: none;
+}
+.overview-glow-border {
+  inset: -2px;
+  z-index: 0;
+  background: linear-gradient(120deg, #22D3EE 0%, #5EEAFF 30%, #2563EB 60%, #22D3EE 100%);
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+.overview-glow[data-active='true'] .overview-glow-border {
+  opacity: 1;
 }
 .overview-num {
   font-family: var(--font-heading);
@@ -1327,13 +1333,14 @@ select {
 .overview-icon {
   transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
-@media (hover: hover) {
-  .overview-card:hover::before { opacity: 1; }
-  .overview-card:hover .overview-icon {
-    background: rgba(34,211,238,0.16) !important;
-    border-color: rgba(34,211,238,0.45) !important;
-    box-shadow: 0 0 18px rgba(34,211,238,0.25);
-  }
+.overview-glow[data-active='true'] .overview-icon {
+  background: rgba(34,211,238,0.16) !important;
+  border-color: rgba(34,211,238,0.45) !important;
+  box-shadow: 0 0 18px rgba(34,211,238,0.25);
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview-glow-border { transition: opacity 0.3s ease; }
+  .overview-glow[data-active='true'] .overview-glow-border { background-position: 0% 50%; }
 }
 
 /* SEO sub-cards */

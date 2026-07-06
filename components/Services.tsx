@@ -1,8 +1,8 @@
 ﻿'use client'
 
-import { AnimatePresence, m, useInView, useReducedMotion } from 'framer-motion'
-import { ArrowRight, ChevronDown, MonitorSmartphone, Sparkles } from 'lucide-react'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { AnimatePresence, m, useInView } from 'framer-motion'
+import { ArrowRight, MonitorSmartphone, Sparkles } from 'lucide-react'
+import { useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -212,66 +212,43 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
 
 function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNavigate: (target: string) => void }) {
   const [isHovered, setIsHovered] = useState(false)
-  const [isTapped, setIsTapped] = useState(false)
-  const [canHover, setCanHover] = useState(true)
-  const reduceMotion = useReducedMotion()
   const Icon = item.target === 'strony' ? MonitorSmartphone : Sparkles
-
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
-    const update = () => setCanHover(mq.matches)
-    update()
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
-  }, [])
-
-  const open = canHover ? isHovered : isTapped
 
   return (
     <m.div
       initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={canHover ? { y: -6, transition: hoverSpring } : undefined}
-      whileTap={!canHover ? { scale: 0.99 } : undefined}
-      onMouseEnter={() => canHover && setIsHovered(true)}
-      onMouseLeave={() => canHover && setIsHovered(false)}
-      onClick={() => !canHover && setIsTapped((v) => !v)}
-      role={!canHover ? 'button' : undefined}
-      tabIndex={!canHover ? 0 : undefined}
-      aria-expanded={!canHover ? open : undefined}
-      onKeyDown={(e) => {
-        if (!canHover && (e.key === 'Enter' || e.key === ' ')) {
-          e.preventDefault()
-          setIsTapped((v) => !v)
-        }
-      }}
-      className={`overview-card group relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${!canHover ? 'cursor-pointer' : ''} ${
-        open
-          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
-          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
-      }`}
-      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)', willChange: 'transform' }}
+      whileHover={{ y: -6, transition: hoverSpring }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      data-active={isHovered ? 'true' : 'false'}
+      className="overview-glow group relative isolate rounded-2xl"
+      style={{ willChange: 'transform' }}
     >
-      <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
+      <span aria-hidden="true" className="overview-glow-border" />
 
-      <div className="flex items-center gap-3.5">
-        <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
-          <Icon size={22} strokeWidth={1.8} className="text-[#5EEAFF]" aria-hidden="true" />
-        </span>
-        <h3 className="text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-          {item.name}
-        </h3>
-      </div>
-
-      <p className="mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
-
-      <m.div
-        initial={false}
-        animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
-        transition={reduceMotion ? { duration: 0 } : { height: { duration: 0.42, ease }, opacity: { duration: open ? 0.32 : 0.18, ease, delay: open ? 0.06 : 0 } }}
-        className="overflow-hidden"
+      <div
+        className={`overview-card relative z-[1] flex h-full flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
+          isHovered
+            ? 'border-[rgba(34,211,238,0.35)] shadow-[0_16px_44px_rgba(0,0,0,0.5)]'
+            : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
+        }`}
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)' }}
       >
+        <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
+
+        <div className="flex items-center gap-3.5">
+          <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
+            <Icon size={22} strokeWidth={1.8} className="text-[#5EEAFF]" aria-hidden="true" />
+          </span>
+          <h3 className="text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+            {item.name}
+          </h3>
+        </div>
+
+        <p className="mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
+
         <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
 
         <ul className="mt-6 flex flex-col gap-3">
@@ -298,31 +275,7 @@ function OverviewCard({ item, i, onNavigate }: { item: Overview; i: number; onNa
           {item.cta}
           <ArrowRight size={15} strokeWidth={2.4} className="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true" />
         </button>
-      </m.div>
-
-      <AnimatePresence initial={false}>
-        {!open && (
-          <m.div
-            initial={false}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.24, ease }}
-            className="overflow-hidden"
-          >
-            <div className="mt-6 flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">
-              <span>{canHover ? 'Najedź, aby zobaczyć szczegóły' : 'Dotknij, aby rozwinąć'}</span>
-              <m.span
-                aria-hidden="true"
-                animate={reduceMotion ? undefined : { y: [0, 3, 0] }}
-                transition={{ duration: 1.4, ease: 'easeInOut', repeat: Infinity }}
-                className="flex"
-              >
-                <ChevronDown size={15} strokeWidth={2.4} />
-              </m.span>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+      </div>
     </m.div>
   )
 }

@@ -71,6 +71,15 @@ export default function GSAPAnimations() {
       revealTargets.push({ el, cls: 'io-divider' })
     })
 
+    // IntersectionObserver fires an initial callback with the current
+    // intersection state as soon as an element is observed, so elements
+    // already on screen at this point reveal immediately — no need for a
+    // separate synchronous getBoundingClientRect() precheck. (A precheck ran
+    // here previously, but this code executes after a requestIdleCallback
+    // delay of up to 2s; if the user scrolled past a section in that window,
+    // the stale rect said "not in view" and the section was only observed,
+    // never marked visible — permanently invisible since it doesn't re-enter
+    // the viewport on a scroll-down-only session.)
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -78,7 +87,7 @@ export default function GSAPAnimations() {
           io.unobserve(entry.target)
         }
       })
-    }, { threshold: 0.12 })
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' })
 
     revealTargets.forEach(({ el }) => io.observe(el))
 

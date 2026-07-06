@@ -362,10 +362,7 @@ export default function Services() {
             <span className="section-kicker" suppressHydrationWarning>01 — Strony internetowe</span>
             <h2 className="section-title" suppressHydrationWarning>Strona, która pozyskuje klientów za Ciebie</h2>
             <p className="section-copy">
-              Wybierz zakres, który pasuje do etapu Twojej firmy. Każdy pakiet jest szybki, dopięty na telefonie i napisany pod sprzedaż — a SEO, GEO i opiekę masz wbudowane w cenę.
-            </p>
-            <p className="section-copy mt-3 text-[14px]">
-              Jednorazowa opłata za gotową stronę — bez abonamentu na start i bez prowizji od agencji. Jeden nowy klient pozyskany dzięki stronie zwykle zwraca cały koszt.
+              Wybierz zakres, który pasuje do etapu Twojej firmy. Każdy pakiet jest szybki, dopięty na telefonie i napisany pod sprzedaż — a SEO, GEO i opiekę masz wbudowane w cenę. Zmiany i edycje na życzenie realizujemy w ramach miesięcznego abonamentu.
             </p>
           </m.div>
 

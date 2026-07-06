@@ -87,10 +87,6 @@ export default function SocialProof() {
                   style={{ background: 'radial-gradient(circle at 50% 40%, rgba(34,211,238,0.07), transparent 68%)' }}
                 />
 
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.025] font-mono text-[11px] font-semibold tracking-[0.12em] text-[#7C879B] transition-colors duration-300 group-hover:border-white/16 group-hover:text-[#EAF0F7]">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">
                   {stat.value === null ? (
                     <m.span

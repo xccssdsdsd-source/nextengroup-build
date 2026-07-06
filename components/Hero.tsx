@@ -1,7 +1,6 @@
 ﻿'use client'
 
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
@@ -12,42 +11,24 @@ const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
 const MOBILE_TITLE =
   'Tworzymy strony, które pozyskują klientów, i automatyzujemy żmudne i czasochłonne procesy biznesowe.'
 
-const trustOwners = [
-  { src: '/owner-pm-apartments.webp', alt: 'Klient PM Apartments' },
-  { src: '/owner-dorimari.webp', alt: 'Klient Dorimari' },
-  { src: '/owner-msdesignstudio.webp', alt: 'Klient MS Design Studio' },
-]
-
-
-
-const StarIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
-    <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.785 1.401 8.168L12 18.896l-7.335 3.868 1.401-8.168L.132 9.211l8.2-1.193z" />
-  </svg>
-)
+const gradientAccent = {
+  background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)',
+  WebkitBackgroundClip: 'text' as const,
+  WebkitTextFillColor: 'transparent' as const,
+  backgroundClip: 'text' as const,
+}
 
 const TrustBadge = () => (
   <div className="hero-from-left mb-5" style={{ animationDelay: '40ms' }}>
-    <div className="flex w-fit items-end gap-3">
-      <div className="flex flex-col items-center gap-2">
-        <div className="flex items-center gap-0.5" style={{ marginLeft: '6px' }} aria-label="Ocena 5 na 5 gwiazdek">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <StarIcon key={i} />
-          ))}
-        </div>
-        <div className="flex -space-x-2.5">
-          {trustOwners.map((o) => (
-            <span
-              key={o.src}
-              className="relative inline-block h-9 w-9 overflow-hidden rounded-full ring-2 ring-[#0B0F16]"
-            >
-              <Image src={o.src} alt={o.alt} fill sizes="36px" className="object-cover" />
-            </span>
-          ))}
-        </div>
-      </div>
-      <span className="whitespace-nowrap pb-1 text-[13px] font-semibold tracking-wide text-[#C8D8E8]">
-        Zaufali nam
+    <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-1.5 pr-4">
+      <span
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[13px] font-bold"
+        style={{ ...gradientAccent, WebkitTextFillColor: '#04141B', color: '#04141B', background: 'linear-gradient(135deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)' }}
+      >
+        3
+      </span>
+      <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#C8D8E8]">
+        zrealizowane projekty <span className="text-[#4E5D71]">·</span> Zaufali nam
       </span>
     </div>
   </div>
@@ -150,13 +131,32 @@ export default function Hero() {
             >
               {/* Desktop / tablet — oryginalny dwuwierszowy tytuł */}
               <span className="hidden sm:block">
-                <span className="block" style={{ color: '#EAF0F7', marginBottom: '0.04em' }}>
+                <span
+                  className="block"
+                  style={{
+                    color: '#EAF0F7',
+                    fontWeight: 800,
+                    fontSize: 'clamp(32px, 3.9vw, 62px)',
+                    lineHeight: '1.02',
+                    letterSpacing: '-0.038em',
+                    marginBottom: '0.16em',
+                  }}
+                >
                   Strony, które{' '}
-                  <span className="serif-accent" style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>pozyskują</span>{' '}klientów.
+                  <span className="serif-accent" style={gradientAccent}>pozyskują</span>{' '}klientów.
                 </span>
-                <span className="block" style={{ color: '#C8D8E8' }}>
+                <span
+                  className="block"
+                  style={{
+                    color: '#8DA0B8',
+                    fontWeight: 500,
+                    fontSize: 'clamp(18px, 1.85vw, 29px)',
+                    lineHeight: '1.3',
+                    letterSpacing: '-0.015em',
+                  }}
+                >
                   Automatyzacje, które{' '}
-                  <span className="serif-accent" style={{ background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>obsługują</span>{' '}ich za Ciebie.
+                  <span className="serif-accent" style={gradientAccent}>obsługują</span>{' '}ich za Ciebie.
                 </span>
               </span>
               {/* Mobile — typing animation nowego tytułu, kursor znika po wpisaniu */}
@@ -166,7 +166,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <div className="hero-from-right mt-5 flex justify-start" style={{ animationDelay: '90ms' }}>
+            <div className="hero-from-right mt-7 flex justify-start" style={{ animationDelay: '90ms' }}>
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]">
                 Budujemy Twój biznes przez{' '}
                 <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>

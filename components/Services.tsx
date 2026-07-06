@@ -155,15 +155,21 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`premium-card pkg-card relative overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col ${
-        pkg.featured
-          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
-          : isHovered
-          ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
-          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
-      }`}
-      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%) , var(--bg-elevated)', willChange: 'transform' }}
+      data-active={isHovered ? 'true' : 'false'}
+      className="overview-glow group relative isolate rounded-2xl"
+      style={{ willChange: 'transform' }}
     >
+      <span aria-hidden="true" className="overview-glow-border" />
+      <div
+        className={`premium-card pkg-card relative z-[1] overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
+          pkg.featured
+            ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
+            : isHovered
+            ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
+            : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
+        }`}
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%) , var(--bg-elevated)' }}
+      >
       <div className="absolute inset-x-6 top-5 h-1 rounded-full bg-gradient-to-r from-[#22D3EE]/70 via-[#5EEAFF]/35 to-[#22D3EE]/20" />
       {pkg.featured ? (
         <div className="mb-3 mt-8">
@@ -198,6 +204,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
           <span className="price-counter" data-counter-final={pkg.amount} suppressHydrationWarning>{pkg.amount}</span>
           <span className="text-[#A6B2C4] font-bold text-[1.15rem]">{pkg.priceSuffix}</span>
         </span>
+      </div>
       </div>
     </m.div>
   )
@@ -486,9 +493,6 @@ export default function Services() {
           >
             <span className="section-kicker" suppressHydrationWarning>02 — Automatyzacje i agenci AI</span>
             <h2 className="section-title" suppressHydrationWarning>Przestań robić to, co AI może zrobić za Ciebie</h2>
-            <p className="section-copy">
-              Trzy poziomy tego samego: od prostych reguł, przez AI rozumiejące treść, po agenta, który sam realizuje cel. Każdy z nich zdejmuje z Ciebie powtarzalną robotę — wyjaśniamy konkretnie, bez żargonu.
-            </p>
           </m.div>
 
           <div className="mt-16">
@@ -546,13 +550,19 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
       whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`premium-card ai-card rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
-        isHovered
-          ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
-          : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
-      }`}
-      style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)', willChange: 'transform' }}
+      data-active={isHovered ? 'true' : 'false'}
+      className="overview-glow group relative isolate rounded-2xl h-full"
+      style={{ willChange: 'transform' }}
     >
+      <span aria-hidden="true" className="overview-glow-border" />
+      <div
+        className={`premium-card ai-card relative z-[1] rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
+          isHovered
+            ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
+            : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
+        }`}
+        style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)' }}
+      >
 
       <div className="mb-6">
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#6B7485]">{ai.tag}</span>
@@ -591,6 +601,7 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
             <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
           </div>
         ))}
+      </div>
       </div>
     </m.div>
   )

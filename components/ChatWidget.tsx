@@ -1,9 +1,7 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-
-const MONO =
-  'ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
@@ -11,6 +9,12 @@ const SendIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
     <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
+)
+
+const Avatar = () => (
+  <span className="hero-chat__avatar">
+    <Image src="/getbuild-logo.webp" alt="" width={30} height={30} />
+  </span>
 )
 
 export default function ChatWidget() {
@@ -63,12 +67,12 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="hero-chat hero-chat--live" style={{ fontFamily: MONO }}>
+    <div className="hero-chat hero-chat--live">
       <div className="hero-chat__bar">
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
         </span>
-        <span className="hero-chat__title" aria-hidden="true">asystent-ai.getbuild</span>
+        <span className="hero-chat__title" aria-hidden="true">Asystent AI</span>
         <span className="hero-chat__status" aria-hidden="true">
           <span className="hero-chat__pulse" />online
         </span>
@@ -77,7 +81,7 @@ export default function ChatWidget() {
       <div className="hero-chat__thread hero-chat__thread--scroll" ref={threadRef}>
         {messages.length === 0 && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
-            <span className="hero-chat__avatar">AI</span>
+            <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
               Cześć! Zapytaj o ofertę, wycenę albo czas realizacji, chętnie pomogę.
             </div>
@@ -86,7 +90,7 @@ export default function ChatWidget() {
 
         {messages.map((m, i) => (
           <div key={i} className={`hero-chat__row hero-chat__row--${m.role === 'user' ? 'user' : 'ai'} hero-chat__pop`}>
-            {m.role === 'assistant' && <span className="hero-chat__avatar">AI</span>}
+            {m.role === 'assistant' && <Avatar />}
             <div className={`hero-chat__bubble hero-chat__bubble--${m.role === 'user' ? 'user' : 'ai'}`}>
               {m.content}
             </div>
@@ -95,7 +99,7 @@ export default function ChatWidget() {
 
         {loading && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
-            <span className="hero-chat__avatar">AI</span>
+            <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
               <span className="hero-chat__typing" aria-label="AI pisze">
                 <i /><i /><i />

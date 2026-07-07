@@ -170,7 +170,6 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
         }`}
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%) , var(--bg-elevated)' }}
       >
-      <div className="absolute inset-x-6 top-5 h-1 rounded-full bg-gradient-to-r from-[#22D3EE]/70 via-[#5EEAFF]/35 to-[#22D3EE]/20" />
       {pkg.featured ? (
         <div className="mb-3 mt-8">
           <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full shadow-[0_10px_30px_rgba(34,211,238,0.18)]">

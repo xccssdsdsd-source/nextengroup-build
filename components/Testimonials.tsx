@@ -53,14 +53,14 @@ export default function Testimonials() {
         </m.div>
 
         <m.div
-          className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6"
+          className="mt-14 grid gap-5 md:grid-cols-[1.3fr_1fr] lg:gap-6"
           data-stagger-group
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...premiumSpring, delay: 0.12 }}
         >
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+          {testimonials.map((testimonial, i) => (
+            <TestimonialCard key={testimonial.name} testimonial={testimonial} featured={i === 0} />
           ))}
         </m.div>
 
@@ -83,16 +83,16 @@ export default function Testimonials() {
   )
 }
 
-function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[number] }) {
+function TestimonialCard({ testimonial, featured }: { testimonial: (typeof testimonials)[number]; featured?: boolean }) {
   return (
     <m.article
       whileHover={{ y: -6, scale: 1.015, boxShadow: '0 8px 24px rgba(0,0,0,0.45), 0 20px 50px rgba(0,0,0,0.5)' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-      className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)] sm:p-8"
+      className={`testimonial-card relative flex h-full w-full flex-col overflow-hidden border border-[rgba(255,255,255,0.08)] border-l-4 border-l-[#22D3EE] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)] ${featured ? 'rounded-2xl p-8 sm:p-10' : 'rounded-lg p-6 sm:p-7'}`}
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <svg
-        className="absolute right-7 top-7 opacity-[0.12] animate-breathe"
+        className={`absolute right-7 top-7 opacity-[0.12] animate-breathe ${featured ? '' : 'scale-75'}`}
         width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true"
       >
         <path d="M0 48V29.6C0 12.8 8.8 3.2 26.4 0L28.8 4.8C20.8 6.4 15.2 10.4 12 16.8H22.4V48H0ZM36.8 48V29.6C36.8 12.8 45.6 3.2 63.2 0L65.6 4.8C57.6 6.4 52 10.4 48.8 16.8H59.2V48H36.8Z" fill="#22D3EE" />
@@ -106,7 +106,7 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[n
         ))}
       </div>
 
-      <p className="mt-5 flex-1 text-[17px] leading-[1.72] text-[#C2CBDA]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
+      <p className={`mt-5 flex-1 leading-[1.72] text-[#C2CBDA] ${featured ? 'text-[19px]' : 'text-[15px]'}`} style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 

@@ -5,11 +5,8 @@ import { useRef, useEffect, useState } from 'react'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const gradientStyle = {
-  background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)',
-  WebkitBackgroundClip: 'text' as const,
-  WebkitTextFillColor: 'transparent' as const,
-  backgroundClip: 'text' as const,
+const numberStyle = {
+  color: 'var(--accent-bright)',
 }
 
 interface StatItem {
@@ -87,14 +84,14 @@ export default function SocialProof() {
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">
                   {stat.value === null ? (
                     <m.span
-                      style={gradientStyle}
+                      style={numberStyle}
                       animate={{ opacity: [0.55, 1, 0.55] }}
                       transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                     >
                       ∞
                     </m.span>
                   ) : (
-                    <span style={gradientStyle}>
+                    <span style={numberStyle}>
                       <CountUp target={stat.value} suffix={stat.suffix} active={inView} delay={i * 0.1 + 0.15} />
                     </span>
                   )}

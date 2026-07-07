@@ -18,9 +18,8 @@ const config: Config = {
         'border-soft': '#e5e7eb',
       },
       fontFamily: {
-        syne: ['var(--font-syne)', 'sans-serif'],
-        figtree: ['var(--font-figtree)', 'sans-serif'],
-        barlow: ['var(--font-barlow)', 'sans-serif'],
+        heading: ['var(--font-heading)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
       },
     },
   },

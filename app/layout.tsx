@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Sora, Inter, Instrument_Serif } from 'next/font/google'
+import { Plus_Jakarta_Sans, Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import ClientShell from '@/components/ClientShell'
@@ -11,10 +11,10 @@ const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
 const siteDescription =
   'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
 
-const sora = Sora({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['600', '700'],
+  variable: '--font-heading',
   display: 'swap',
 })
 
@@ -28,8 +28,8 @@ const instrumentSerif = Instrument_Serif({
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-dm-sans',
+  weight: ['400', '500'],
+  variable: '--font-body',
   display: 'swap',
 })
 
@@ -91,7 +91,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${sora.variable} ${inter.variable} ${instrumentSerif.variable}`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

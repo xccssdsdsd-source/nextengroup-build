@@ -132,7 +132,7 @@ export default function SEODlaFirm() {
       <section className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.22), transparent 60%)' }} />
         <div className="mx-auto max-w-3xl relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             SEO i GEO dla firm B2B w Polsce
           </h1>
           <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>

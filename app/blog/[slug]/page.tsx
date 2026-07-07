@@ -149,7 +149,7 @@ export default async function ArticlePage({ params }: Props) {
           </Link>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.15]"
-            style={{ fontFamily: 'var(--font-syne)' }}
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             {article.title}
           </h1>
@@ -173,7 +173,7 @@ export default async function ArticlePage({ params }: Props) {
                   <h2
                     key={i}
                     className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#EAF0F7] mt-12 mb-4"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                    style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {section.text}
                   </h2>
@@ -184,7 +184,7 @@ export default async function ArticlePage({ params }: Props) {
                   <h3
                     key={i}
                     className="text-xl font-bold text-[#EAF0F7] mt-8 mb-3"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                    style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {section.text}
                   </h3>
@@ -247,7 +247,7 @@ export default async function ArticlePage({ params }: Props) {
             >
               <p
                 className="text-sm font-bold uppercase tracking-[0.08em] text-[#5EEAFF] mb-4"
-                style={{ fontFamily: 'var(--font-syne)' }}
+                style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Zobacz również
               </p>
@@ -271,7 +271,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-16 rounded-2xl border border-white/10 bg-[#161C28] px-8 py-8">
             <p
               className="text-lg font-bold text-[#EAF0F7] mb-2"
-              style={{ fontFamily: 'var(--font-syne)' }}
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               Masz pytania? Napisz do nas.
             </p>

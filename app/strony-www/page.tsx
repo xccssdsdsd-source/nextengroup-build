@@ -151,7 +151,7 @@ export default function StonyWWW() {
             <span className="h-1.5 w-1.5 rounded-full bg-[#22D3EE] animate-pulse" />
             <span className="text-xs font-medium text-[#22D3EE] tracking-wide uppercase">Strony WWW dla firm</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony WWW, które<br className="hidden md:block" />
             <span className="text-[#22D3EE]"> pracują dla Twojego biznesu</span>
           </h1>
@@ -181,7 +181,7 @@ export default function StonyWWW() {
             {stats.map((stat) => (
               <div key={stat.label} className="bg-[#0F1520] px-8 py-10 flex flex-col gap-1">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-[#EAF0F7]" style={{ fontFamily: 'var(--font-syne)' }}>{stat.val}</span>
+                  <span className="text-4xl font-bold text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{stat.val}</span>
                   {stat.unit && <span className="text-xl font-bold text-[#22D3EE]">{stat.unit}</span>}
                 </div>
                 <p className="text-sm text-[#6B7A90]">{stat.label}</p>
@@ -195,7 +195,7 @@ export default function StonyWWW() {
         <div className="mx-auto max-w-4xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Co robimy
               </h2>
               <div className="space-y-5 text-[#A6B2C4] leading-[1.7]">
@@ -229,7 +229,7 @@ export default function StonyWWW() {
 
       <section id="co-zyskujesz" className="relative py-14 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Twoja strona będzie
           </h2>
           <p className="text-[#6B7A90] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
@@ -243,7 +243,7 @@ export default function StonyWWW() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#EAF0F7] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{f.title}</h3>
+                    <h3 className="font-semibold text-[#EAF0F7] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{f.title}</h3>
                     <p className="text-[#7A8699] text-[14px] leading-[1.7]">{f.desc}</p>
                   </div>
                 </div>
@@ -255,13 +255,13 @@ export default function StonyWWW() {
 
       <section className="relative py-14 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-10 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-10 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Najczęstsze pytania
           </h2>
           <div className="space-y-0 divide-y divide-white/5">
             {faqItems.map((item) => (
               <div key={item.name} className="py-6">
-                <h3 className="font-semibold text-[#EAF0F7] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-syne)' }}>{item.name}</h3>
+                <h3 className="font-semibold text-[#EAF0F7] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{item.name}</h3>
                 <p className="text-[#7A8699] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
               </div>
             ))}
@@ -274,7 +274,7 @@ export default function StonyWWW() {
           <div className="rounded-2xl bg-[#0F1520] border border-[#22D3EE]/15 p-10 md:p-14 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-[#22D3EE]/5 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Gotów na stronę, która pracuje?
               </h2>
               <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">

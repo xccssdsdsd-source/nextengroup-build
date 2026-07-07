@@ -118,7 +118,7 @@ export default function WiedzaAI() {
       ]} />
       <article className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             AI dla firm — co warto wiedzieć przed wdrożeniem
           </h1>
           <p className="text-lg leading-[1.7] text-[#A6B2C4]">
@@ -129,7 +129,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czym jest automatyzacja AI dla firmy?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -151,7 +151,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czym jest agent AI i czym różni się od zwykłej automatyzacji?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -173,7 +173,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile kosztuje automatyzacja AI lub agent AI?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -195,7 +195,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Kiedy firma jest gotowa na automatyzacje AI?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -217,7 +217,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czy strona internetowa może być zintegrowana z automatyzacją AI?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -239,7 +239,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile kosztuje strona internetowa dla małej firmy?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -261,7 +261,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile czasu trwa stworzenie strony internetowej?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
@@ -280,7 +280,7 @@ export default function WiedzaAI() {
 
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             Masz pytanie o AI lub stronę WWW?
           </h2>
           <p className="text-lg text-[#A6B2C4] mb-8">

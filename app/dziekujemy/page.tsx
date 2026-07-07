@@ -29,7 +29,7 @@ export default function Dziekujemy() {
           </div>
 
           <span className="text-[11px] font-semibold uppercase tracking-widest text-[#22D3EE] mb-3 block">Wiadomość wysłana</span>
-          <h1 className="text-[36px] sm:text-[48px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+          <h1 className="text-[36px] sm:text-[48px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             Dziękujemy!
           </h1>
           <p className="text-[15px] sm:text-[16px] leading-[1.7] text-[#A6B2C4] mb-2">

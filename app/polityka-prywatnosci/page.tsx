@@ -28,7 +28,7 @@ export default function PolitykaPrywatnosci() {
         <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8">
           <div className="mb-12">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-[#22D3EE] mb-3 block">Bezpieczeństwo</span>
-            <h1 className="text-[40px] sm:text-[52px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+            <h1 className="text-[40px] sm:text-[52px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
               Polityka prywatności
             </h1>
             <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
@@ -38,14 +38,14 @@ export default function PolitykaPrywatnosci() {
 
           <div className="space-y-10">
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>1. Administrator danych</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>1. Administrator danych</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Administratorem Twoich danych osobowych jest Getbuild z siedzibą w Trójmieście, Polska.
               </p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>2. Jakie dane zbieramy</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>2. Jakie dane zbieramy</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4] mb-4">Zbieramy tylko dane, które podajesz dobrowolnie, np. w formularzu kontaktowym:</p>
               <ul className="space-y-2 text-[15px] leading-[1.7] text-[#A6B2C4] ml-6">
                 <li>• Imię i nazwisko</li>
@@ -57,33 +57,33 @@ export default function PolitykaPrywatnosci() {
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>3. Cel przetwarzania danych</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>3. Cel przetwarzania danych</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">Dane przetwarzamy w celu obsługi zapytań oraz kontaktu biznesowego, a także w celu zapewnienia poprawnego działania serwisu.</p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>4. Podstawa prawna</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>4. Podstawa prawna</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Przetwarzanie Twoich danych odbywa się na podstawie Twojej zgody (art. 6 ust. 1 lit. a RODO) oraz naszego uzasadnionego interesu biznesowego (art. 6 ust. 1 lit. f RODO).
               </p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>5. Udostępnianie danych</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>5. Udostępnianie danych</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Nie sprzedajemy Twoich danych. Możemy udostępniać niezbędne informacje podmiotom technicznym (np. dostawcy hostingu) w celu zapewnienia działania usługi.
               </p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>6. Przechowywanie danych</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>6. Przechowywanie danych</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Dane osobowe przechowujemy przez okres niezbędny do realizacji celu, dla którego zostały zebrane, nie dłużej niż 3 lata od ostatniego kontaktu.
               </p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>7. Twoje prawa</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>7. Twoje prawa</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4] mb-4">Masz prawo do:</p>
               <ul className="space-y-2 text-[15px] leading-[1.7] text-[#A6B2C4] ml-6">
                 <li>• Dostępu do swoich danych osobowych</li>
@@ -96,14 +96,14 @@ export default function PolitykaPrywatnosci() {
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>8. Pliki cookie</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>8. Pliki cookie</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Strona używa plików cookie niezbędnych do funkcjonowania serwisu (np. obsługa formularzy). Możesz zarządzać ustawieniami cookies w swojej przeglądarce. Dodatkowe narzędzia śledzące wymagają Twojej zgody.
               </p>
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>9. Kontakt</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>9. Kontakt</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4] mb-4">
                 W przypadku pytań dotyczących polityki prywatności skontaktuj się z nami:
               </p>
@@ -114,7 +114,7 @@ export default function PolitykaPrywatnosci() {
             </section>
 
             <section>
-              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-syne)' }}>10. Zmiany w polityce</h2>
+              <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>10. Zmiany w polityce</h2>
               <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">
                 Zastrzegamy sobie prawo do wprowadzania zmian w polityce prywatności. Aktualna wersja będzie zawsze publikowana na tej stronie.
               </p>

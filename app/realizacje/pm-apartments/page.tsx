@@ -61,7 +61,7 @@ export default function PMApartamentsCase() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#22D3EE] mb-4">Wykończenia wnętrz · Wrocław</p>
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[#EAF0F7] leading-[1.05] mb-6"
-            style={{ fontFamily: 'var(--font-syne)' }}
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Strona dla firmy wykończeniowej. Wdrożona w&nbsp;72h.
           </h1>
@@ -117,7 +117,7 @@ export default function PMApartamentsCase() {
               >
                 <div
                   className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#22D3EE] mb-1"
-                  style={{ fontFamily: 'var(--font-syne)' }}
+                  style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {m.value}
                 </div>
@@ -143,7 +143,7 @@ export default function PMApartamentsCase() {
                 >
                   {String(i + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-[0.95rem] font-bold tracking-[-0.02em] text-[#EAF0F7] mb-2" style={{ fontFamily: 'var(--font-syne)' }}>
+                <h3 className="text-[0.95rem] font-bold tracking-[-0.02em] text-[#EAF0F7] mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
                   {d.title}
                 </h3>
                 <p className="text-[13px] leading-[1.65] text-[#A6B2C4]">{d.body}</p>

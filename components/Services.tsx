@@ -397,6 +397,11 @@ export default function Services() {
                 </m.div>
               ))}
             </div>
+
+            <p className="mt-6 text-center text-[15px] sm:text-[17px] font-bold tracking-[-0.01em] text-[#EAF0F7]">
+              CHATBOT AI, KTÓRY ODPOWIADA NA PYTANIA KLIENTÓW ZGODNIE Z KONTEKSTEM I WSZYSTKIMI INFORMACJAMI O TWOJEJ FIRMIE
+              <span className="block sm:inline sm:ml-2 text-[13px] sm:text-[14px] font-semibold text-[#5EEAFF]">(MOŻLIWOŚĆ DODANIA W KAŻDYM WARIANCIE PO UZGODNIENIU)</span>
+            </p>
           </div>
 
           {/* ── Połączony box: SEO + opieka + hosting (szczegóły po rozwinięciu) ── */}

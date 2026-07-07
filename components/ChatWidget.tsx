@@ -79,7 +79,7 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              Cześć! Zapytaj o ofertę, wycenę albo czas realizacji, chętnie pomogę.
+              Cześć! Pytaj śmiało, odpowiadam od razu.
             </div>
           </div>
         )}

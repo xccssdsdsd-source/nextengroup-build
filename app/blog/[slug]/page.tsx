@@ -240,20 +240,20 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* Related links */}
-          {article.related && article.related.length > 0 && (
+          {(article.related?.length ?? 0) > 0 && (
             <nav
               aria-label="Powiązane treści"
               className="mt-16 rounded-2xl border border-white/10 bg-[#11161F] px-8 py-7"
             >
-              <p
+              <h2
                 className="text-sm font-bold uppercase tracking-[0.08em] text-[#5EEAFF] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Zobacz również
-              </p>
+              </h2>
               <ul className="space-y-2.5">
-                {article.related.map((link, i) => (
-                  <li key={i}>
+                {article.related!.map((link) => (
+                  <li key={link.href}>
                     <Link
                       href={link.href}
                       className="inline-flex items-center gap-2 text-[#A6B2C4] hover:text-[#22D3EE] transition-colors text-base"

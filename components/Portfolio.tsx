@@ -499,19 +499,24 @@ export default function Portfolio() {
                 <ChevronLeft size={22} strokeWidth={2.5} />
               </m.button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center">
                 {projects.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => { setShowSwipeHint(false); setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
-                    className="relative rounded-full focus-visible:outline-none transition-[width,background] duration-300 ease-out"
-                    style={{
-                      width: i === currentIndex ? 22 : 8,
-                      height: 8,
-                      background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
-                    }}
+                    className="relative flex items-center justify-center focus-visible:outline-none"
+                    style={{ width: 24, height: 24 }}
                     aria-label={`Realizacja ${i + 1}`}
-                  />
+                  >
+                    <span
+                      className="rounded-full transition-[width,background] duration-300 ease-out"
+                      style={{
+                        width: i === currentIndex ? 22 : 8,
+                        height: 8,
+                        background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
+                      }}
+                    />
+                  </button>
                 ))}
               </div>
 

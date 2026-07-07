@@ -163,10 +163,11 @@ export default function Nav() {
             <a
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
+              aria-label="Kontakt"
               className="btn btn-primary nav-tap !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
               style={{ width: ctaWidth ? `${ctaWidth}px` : undefined, transition: 'width 130ms cubic-bezier(0.22, 1, 0.36, 1)' }}
             >
-              <span ref={ctaContentRef} className="inline-flex items-center justify-center whitespace-nowrap">
+              <span ref={ctaContentRef} className="inline-flex items-center justify-center whitespace-nowrap" aria-hidden="true">
                 {isMounted ? displayText : ctaLabels[0]}
                 {isMounted && <span className="typing-cursor" />}
               </span>

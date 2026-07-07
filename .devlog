@@ -1,0 +1,20 @@
+
+> getbuild-build@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.129.79:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 7s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 2.7s (115 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 24.7s (1646 modules)
+ GET / 200 in 26734ms
+ ✓ Compiled in 2.6s (735 modules)
+ GET / 200 in 1324ms

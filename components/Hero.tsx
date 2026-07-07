@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useState, type MouseEvent } from 'react'
-import HeroChat from './HeroChat'
+import ChatWidget from './ChatWidget'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
@@ -224,7 +224,7 @@ export default function Hero() {
           {/* ── AI CHAT ── */}
           <div className="hero-from-right flex justify-center lg:justify-end mt-10 md:mt-0" style={{ animationDelay: '260ms' }}>
             <div className="w-full max-w-[500px]">
-              <HeroChat />
+              <ChatWidget />
             </div>
           </div>
         </div>

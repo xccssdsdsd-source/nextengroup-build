@@ -72,10 +72,6 @@ export default function ChatWidget() {
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
         </span>
-        <span className="hero-chat__title" aria-hidden="true">Asystent AI</span>
-        <span className="hero-chat__status" aria-hidden="true">
-          <span className="hero-chat__pulse" />online
-        </span>
       </div>
 
       <div className="hero-chat__thread hero-chat__thread--scroll" ref={threadRef}>

@@ -17,7 +17,7 @@ const stepVariants = {
 const steps = [
   {
     num: '01',
-    title: 'Bezpłatna rozmowa (30 minut)',
+    title: 'Bezpłatna, krótka rozmowa',
     desc: 'Poznajemy Twoją firmę, klientów i cele. Ustalamy kierunek i zakres projektu. Zero zobowiązań, zero presji.',
   },
   {

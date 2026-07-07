@@ -195,7 +195,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     Umów bezpłatną konsultację
                   </h3>
                   <p className="mt-2 text-[13px] leading-[1.65] text-[#A6B2C4]">
-                    Wypełnij formularz — w następnym kroku wybierzesz termin w kalendarzu. Spotkanie trwa 30 minut i jest bezpłatne.
+                    Wypełnij formularz — w następnym kroku wybierzesz termin w kalendarzu. Spotkanie jest krótkie i bezpłatne.
                   </p>
                 </div>
 
@@ -310,7 +310,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     Wybierz termin spotkania
                   </h3>
                   <p className="mt-1 text-[13px] text-[#A6B2C4]">
-                    Bezpłatna konsultacja · 30 minut · Online
+                    Bezpłatna konsultacja · Krótka rozmowa · Online
                   </p>
                 </div>
                 <div

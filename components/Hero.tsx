@@ -39,7 +39,7 @@ const TrustProof = () => (
           </span>
         ))}
       </div>
-      <div className="flex items-center gap-0.5" aria-label="Ocena 5 na 5 gwiazdek">
+      <div className="flex items-center gap-0.5" role="img" aria-label="Ocena 5 na 5 gwiazdek">
         {[0, 1, 2, 3, 4].map((i) => <StarIcon key={i} />)}
       </div>
     </div>

@@ -1,8 +1,10 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import CookieConsent from '@/components/CookieConsent'
 import GlobalPathsClient from '@/components/GlobalPathsClient'
-import GSAPAnimations from '@/components/GSAPAnimations'
+
+const GSAPAnimations = dynamic(() => import('@/components/GSAPAnimations'), { ssr: false })
 
 export default function ClientShell() {
   return (

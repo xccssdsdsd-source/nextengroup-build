@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
@@ -87,6 +87,12 @@ export const metadata: Metadata = {
     canonical: siteUrl,
     languages: { pl: siteUrl },
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0B0F16',
 }
 
 export default function RootLayout({

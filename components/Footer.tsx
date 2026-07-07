@@ -36,7 +36,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative overflow-hidden bg-[#11161F] px-6 py-8 sm:px-8 sm:py-16 border-t border-[rgba(255,255,255,0.08)]">
+    <footer className="relative overflow-hidden bg-[#05080d] px-6 py-8 sm:px-8 sm:py-16 border-t border-[rgba(255,255,255,0.08)]">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(34,211,238,0.22) 35%, rgba(34,211,238,0.14) 65%, transparent 100%)' }}

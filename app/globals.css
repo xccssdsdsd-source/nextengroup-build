@@ -111,7 +111,7 @@ select {
 
 .section-shell {
   position: relative;
-  padding: calc(var(--nav-h) + 2rem) 1.5rem 3.5rem;
+  padding: calc(var(--nav-h) + 1.5rem) 1.5rem 2.5rem;
   scroll-margin-top: var(--nav-h);
   isolation: isolate;
   overflow: hidden;
@@ -143,13 +143,13 @@ select {
 
 @media (min-width: 640px) {
   .section-shell {
-    padding: calc(var(--nav-h) + 2rem) 2rem 5rem;
+    padding: calc(var(--nav-h) + 1.5rem) 2rem 3rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section-shell {
-    padding: calc(var(--nav-h) + 2rem) 2rem 7rem;
+    padding: calc(var(--nav-h) + 1.5rem) 2rem 4rem;
   }
 }
 
@@ -1545,7 +1545,7 @@ body {
 .section-shell,
 .social-proof-section {
   background:
-    linear-gradient(180deg, rgba(5, 8, 13, 0) 0%, rgba(7, 10, 16, 0.82) 13%, rgba(7, 10, 16, 0.82) 87%, rgba(5, 8, 13, 0) 100%);
+    linear-gradient(180deg, rgba(6, 9, 15, 0.55) 0%, rgba(8, 11, 18, 0.88) 18%, rgba(8, 11, 18, 0.88) 82%, rgba(6, 9, 15, 0.55) 100%);
 }
 
 .section-shell::before {
@@ -1570,10 +1570,10 @@ body {
   left: 0;
   right: 0;
   bottom: -1px;
-  height: 150px;
+  height: 60px;
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(7, 10, 16, 0), #05080d 72%);
+  background: linear-gradient(180deg, rgba(7, 10, 16, 0), rgba(6, 9, 15, 0.5) 100%);
 }
 
 .social-proof-section {
@@ -1898,14 +1898,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 0.9rem;
-  padding: 1.1rem 1.25rem 1.5rem;
-  min-height: 236px;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem 1.6rem;
+  min-height: 280px;
 }
 
 .hero-chat__thread--scroll {
   justify-content: flex-start;
-  max-height: 360px;
+  max-height: 420px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(34, 211, 238, 0.25) transparent;
@@ -1937,27 +1937,28 @@ body {
 
 .hero-chat__bubble {
   max-width: 86%;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 1rem;
   border-radius: 14px;
   font-size: 13.5px;
-  line-height: 1.6;
+  line-height: 1.65;
   letter-spacing: -0.01em;
   word-break: break-word;
   overflow-wrap: anywhere;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .hero-chat__bubble--user {
   border-top-right-radius: 5px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  color: #C7D0DE;
+  background: rgba(255, 255, 255, 0.075);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #E7ECF3;
 }
 
 .hero-chat__bubble--ai {
   border-top-left-radius: 5px;
-  background: rgba(34, 211, 238, 0.07);
-  border: 1px solid rgba(34, 211, 238, 0.18);
-  color: #86ECF7;
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.24);
+  color: #DFFBFF;
   min-height: 2.2em;
 }
 
@@ -2019,16 +2020,22 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  margin: 0 1.1rem 1.1rem;
-  padding: 0.55rem 0.55rem 0.55rem 0.85rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.025);
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  margin: 0 1.2rem 1.2rem;
+  padding: 0.65rem 0.65rem 0.65rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
 }
 
 .hero-chat--live .hero-chat__composer {
-  border-color: rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.22);
+}
+
+.hero-chat__composer:focus-within {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
 }
 
 .hero-chat__field {
@@ -2064,9 +2071,9 @@ body {
   background: transparent;
   outline: none;
   font-family: inherit;
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.4;
-  color: #C7D0DE;
+  color: #E7ECF3;
 }
 
 .hero-chat__input::placeholder {
@@ -2082,14 +2089,21 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
   color: var(--accent-on);
   background: linear-gradient(135deg, #5EEAFF 0%, #22D3EE 100%);
   box-shadow: 0 2px 10px -2px rgba(34, 211, 238, 0.4);
   transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms ease, filter 200ms ease, opacity 200ms ease;
   cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-chat__send--active:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.18);
+  }
 }
 
 .hero-chat__send:disabled {

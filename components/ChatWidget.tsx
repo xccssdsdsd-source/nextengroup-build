@@ -22,6 +22,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -66,8 +67,17 @@ export default function ChatWidget() {
     send(input)
   }
 
+  const focusInput = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement
+    if (target.closest('button, a, input')) return
+    inputRef.current?.focus()
+  }
+
   return (
-    <div className="hero-chat hero-chat--live">
+    <div
+      className={`hero-chat hero-chat--live ${isFocused ? 'hero-chat--focused' : ''}`}
+      onClick={focusInput}
+    >
       <div className="hero-chat__bar">
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
@@ -114,6 +124,8 @@ export default function ChatWidget() {
             type="text"
             value={input}
             onChange={e => setInput(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             placeholder="Zadaj pytanie…"
             disabled={loading}
             className="hero-chat__input"

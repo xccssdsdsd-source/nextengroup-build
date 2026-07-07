@@ -137,6 +137,7 @@ export default function Hero() {
           <div className="text-left" data-parallax-headline>
             <TrustProof />
             <h1
+              aria-label="Strony, które pozyskują klientów. Automatyzacje, które obsługują ich za Ciebie."
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
@@ -146,7 +147,7 @@ export default function Hero() {
               }}
             >
               {/* Desktop / tablet — oryginalny dwuwierszowy tytuł */}
-              <span className="hidden sm:block">
+              <span className="hidden sm:block" aria-hidden="true">
                 <span
                   className="block"
                   style={{
@@ -177,8 +178,8 @@ export default function Hero() {
                 </span>
               </span>
               {/* Mobile — typing animation nowego tytułu, kursor znika po wpisaniu */}
-              <span className="block sm:hidden" style={{ color: '#EAF0F7' }} aria-label={MOBILE_TITLE}>
-                <span aria-hidden="true">{mobileTyped}</span>
+              <span className="block sm:hidden" style={{ color: '#EAF0F7' }} aria-hidden="true">
+                {mobileTyped}
                 {!mobileTypingDone && <span className="typing-cursor" />}
               </span>
             </h1>
@@ -187,6 +188,7 @@ export default function Hero() {
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]" style={{ minHeight: '1.7em' }}>
                 Budujemy Twój biznes przez{' '}
                 <span
+                  role="img"
                   aria-label={carouselWords[wordIndex]}
                   style={{ display: 'inline-block', position: 'relative', height: '1.6em', overflow: 'hidden', verticalAlign: 'bottom' }}
                 >

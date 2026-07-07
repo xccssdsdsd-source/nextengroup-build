@@ -337,7 +337,11 @@ export default function Contact() {
                   </div>
                   <div className="flex items-start gap-3">
                     <input type="checkbox" id="gdpr" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#22D3EE]" />
-                    <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
+                    <label
+                      htmlFor="gdpr"
+                      aria-label="Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z Polityką prywatności. Pole wymagane."
+                      className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer"
+                    >
                       Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z{' '}
                       <a href="/polityka-prywatnosci" className="text-[#22D3EE] hover:text-[#5EEAFF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
                     </label>

@@ -62,9 +62,6 @@ export default function SocialProof() {
         >
           <span className="section-kicker" suppressHydrationWarning>Dlaczego my</span>
           <h2 className="section-title" suppressHydrationWarning>Współpraca bez ryzyka</h2>
-          <p className="section-copy">
-            Zaczynamy od bezpłatnej wyceny i wizualizacji — płacisz dopiero wtedy, gdy efekt Cię przekona. Poprawki wprowadzamy bez limitu, aż będzie dobrze.
-          </p>
         </m.div>
 
         <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85), 0 32px 90px -40px rgba(34,211,238,0.10)' }}>

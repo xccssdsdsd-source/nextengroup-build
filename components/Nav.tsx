@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const anchorLinks = [
@@ -32,6 +32,8 @@ export default function Nav() {
   const [displayText, setDisplayText] = useState(ctaLabels[0])
   const [isMounted, setIsMounted] = useState(false)
   const [typingEnabled, setTypingEnabled] = useState(false)
+  const [ctaWidth, setCtaWidth] = useState<number>()
+  const ctaContentRef = useRef<HTMLSpanElement>(null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -111,6 +113,14 @@ export default function Nav() {
     return () => cancelAnimationFrame(frame)
   }, [isMounted, typingEnabled])
 
+  // Szerokość CTA śledzi treść (rośnie przy pisaniu, maleje przy kasowaniu);
+  // transition: width wygładza kroki litera-po-literze.
+  useEffect(() => {
+    const el = ctaContentRef.current
+    if (!el) return
+    setCtaWidth(el.scrollWidth + 40)
+  }, [displayText, typingEnabled])
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -153,9 +163,10 @@ export default function Nav() {
             <a
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary nav-tap !hidden h-[52px] w-[148px] overflow-hidden px-5 py-2 text-[13px] sm:!inline-flex flex items-center gap-1.5 whitespace-nowrap"
+              className="btn btn-primary nav-tap !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
+              style={{ width: ctaWidth ? `${ctaWidth}px` : undefined, transition: 'width 130ms cubic-bezier(0.22, 1, 0.36, 1)' }}
             >
-              <span className="inline-flex min-w-0 items-center justify-center whitespace-nowrap">
+              <span ref={ctaContentRef} className="inline-flex items-center justify-center whitespace-nowrap">
                 {isMounted ? displayText : ctaLabels[0]}
                 {isMounted && <span className="typing-cursor" />}
               </span>

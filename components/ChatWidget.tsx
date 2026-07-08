@@ -11,6 +11,12 @@ const SendIcon = () => (
   </svg>
 )
 
+const StopIcon = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+    <rect x="6" y="6" width="12" height="12" rx="2" />
+  </svg>
+)
+
 const Avatar = () => (
   <span className="hero-chat__avatar">
     <Image src="/getbuild-logo.webp" alt="" width={30} height={30} />
@@ -25,10 +31,13 @@ export default function ChatWidget() {
   const [isFocused, setIsFocused] = useState(false)
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const abortRef = useRef<AbortController | null>(null)
 
   useEffect(() => {
     threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior: 'smooth' })
   }, [messages, loading])
+
+  useEffect(() => () => abortRef.current?.abort(), [])
 
   const send = async (text: string) => {
     const trimmed = text.trim()
@@ -40,11 +49,15 @@ export default function ChatWidget() {
     setError('')
     setLoading(true)
 
+    const controller = new AbortController()
+    abortRef.current = controller
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: trimmed, history: nextMessages.slice(0, -1) }),
+        signal: controller.signal,
       })
       const data = await res.json().catch(() => null)
 
@@ -55,11 +68,19 @@ export default function ChatWidget() {
       }
 
       setMessages(prev => [...prev, { role: 'assistant', content: data?.reply || 'Coś poszło nie tak. Napisz do nas przez formularz kontaktowy.' }])
-    } catch {
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return
       setMessages(prev => [...prev, { role: 'assistant', content: 'Chwilowy problem z połączeniem. Napisz do nas przez formularz kontaktowy.' }])
     } finally {
       setLoading(false)
+      abortRef.current = null
     }
+  }
+
+  const cancelSend = () => {
+    abortRef.current?.abort()
+    abortRef.current = null
+    setLoading(false)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -84,7 +105,13 @@ export default function ChatWidget() {
         </span>
       </div>
 
-      <div className="hero-chat__thread hero-chat__thread--scroll" ref={threadRef}>
+      <div
+        className="hero-chat__thread hero-chat__thread--scroll"
+        ref={threadRef}
+        role="log"
+        aria-live="polite"
+        aria-relevant="additions"
+      >
         {messages.length === 0 && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
@@ -132,14 +159,25 @@ export default function ChatWidget() {
             aria-label="Wiadomość do asystenta AI"
           />
         </div>
-        <button
-          type="submit"
-          className={`hero-chat__send ${input.trim() ? 'hero-chat__send--active' : ''}`}
-          disabled={loading || !input.trim()}
-          aria-label="Wyślij wiadomość"
-        >
-          <SendIcon />
-        </button>
+        {loading ? (
+          <button
+            type="button"
+            className="hero-chat__send hero-chat__send--active"
+            onClick={cancelSend}
+            aria-label="Anuluj wysyłanie"
+          >
+            <StopIcon />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className={`hero-chat__send ${input.trim() ? 'hero-chat__send--active' : ''}`}
+            disabled={!input.trim()}
+            aria-label="Wyślij wiadomość"
+          >
+            <SendIcon />
+          </button>
+        )}
       </form>
     </div>
   )

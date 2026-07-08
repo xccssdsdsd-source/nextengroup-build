@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { logoB64, igB64, fbB64 } from './assets'
-export const runtime = 'edge'
 
 const OWNER_EMAIL = 'getbuild.pl@gmail.com'
 const FROM = 'Getbuild.pl <kontakt@getbuild.pl>'

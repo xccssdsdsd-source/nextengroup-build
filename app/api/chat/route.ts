@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { KNOWLEDGE_BASE } from './knowledge'
 
-export const runtime = 'edge'
-
 const MODEL = 'gemini-flash-lite-latest'
 const RATE_LIMIT = 8
 const RATE_WINDOW_MS = 60_000

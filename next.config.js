@@ -8,16 +8,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'gsap', 'react-icons'],
   },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.getbuild.pl' }],
-        destination: 'https://getbuild.pl/:path*',
-        permanent: true,
-      },
-    ]
-  },
   async headers() {
     return [
       {

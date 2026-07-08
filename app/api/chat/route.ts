@@ -10,8 +10,23 @@ const MIN_REPLY_DELAY_MS = 1_000
 const MAX_HISTORY_ITEMS = 60
 
 const hits = new Map<string, number[]>()
+let lastSweep = Date.now()
+
+// Prevents unbounded growth of `hits` between requests, since this Map never
+// otherwise loses entries for IPs that stop sending traffic.
+const sweepStaleEntries = (now: number) => {
+  if (now - lastSweep < RATE_WINDOW_MS) return
+  lastSweep = now
+  for (const [ip, timestamps] of hits) {
+    const fresh = timestamps.filter(t => now - t < RATE_WINDOW_MS)
+    if (fresh.length === 0) hits.delete(ip)
+    else hits.set(ip, fresh)
+  }
+}
+
 const isRateLimited = (ip: string) => {
   const now = Date.now()
+  sweepStaleEntries(now)
   const timestamps = (hits.get(ip) ?? []).filter(t => now - t < RATE_WINDOW_MS)
   if (timestamps.length >= RATE_LIMIT) {
     hits.set(ip, timestamps)
@@ -27,7 +42,9 @@ type HistoryItem = { role: 'user' | 'assistant'; content: string }
 export async function POST(req: NextRequest) {
   const startedAt = Date.now()
   try {
-    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('cf-connecting-ip') || 'unknown'
+    // cf-connecting-ip is set by Cloudflare's edge and can't be spoofed by the client;
+    // x-forwarded-for is attacker-controlled unless a proxy overwrites it, so it's only a fallback.
+    const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
     if (isRateLimited(ip)) {
       return NextResponse.json({ reply: 'Zbyt wiele wiadomości w krótkim czasie. Spróbuj ponownie za chwilę.' }, { status: 429 })
     }
@@ -59,10 +76,10 @@ export async function POST(req: NextRequest) {
     let res: Response | null = null
     for (const key of apiKeys) {
       const attempt = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
           body: JSON.stringify({
             contents,
             systemInstruction: { parts: [{ text: systemInstruction }] },
@@ -74,13 +91,12 @@ export async function POST(req: NextRequest) {
         res = attempt
         break
       }
-      if (attempt.status !== 429) {
-        res = attempt
-        break
-      }
+      res = attempt
+      // Any failure (rate limit, quota, transient 5xx) is worth trying the next key for, not just 429.
     }
 
     if (!res || !res.ok) {
+      console.error('chat: Gemini request failed', { status: res?.status, statusText: res?.statusText })
       return NextResponse.json({ reply: 'Coś poszło nie tak po naszej stronie. Napisz do nas przez formularz kontaktowy, odpowiemy szybko.' })
     }
 
@@ -97,7 +113,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ reply: reply.trim() })
-  } catch {
+  } catch (err) {
+    console.error('chat: unhandled error', err)
     return NextResponse.json({ reply: 'Coś poszło nie tak po naszej stronie. Napisz do nas przez formularz kontaktowy.' })
   }
 }

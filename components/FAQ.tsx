@@ -117,6 +117,7 @@ export default function FAQ() {
               >
                 <button
                   type="button"
+                  id={`faq-question-${index}`}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${index}`}
                   onClick={() => setOpen(isOpen ? null : index)}
@@ -141,6 +142,7 @@ export default function FAQ() {
                 <div
                   id={`faq-answer-${index}`}
                   role="region"
+                  aria-labelledby={`faq-question-${index}`}
                   style={{
                     display: 'grid',
                     gridTemplateRows: isOpen ? '1fr' : '0fr',

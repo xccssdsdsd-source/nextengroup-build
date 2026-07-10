@@ -184,7 +184,7 @@ export default function StonyWWW() {
                   <span className="text-4xl font-bold text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{stat.val}</span>
                   {stat.unit && <span className="text-xl font-bold text-[#22D3EE]">{stat.unit}</span>}
                 </div>
-                <p className="text-sm text-[#6B7A90]">{stat.label}</p>
+                <p className="text-sm text-[#7E8CA2]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -221,7 +221,7 @@ export default function StonyWWW() {
                   <span className="text-[15px] text-[#8A96A8] leading-[1.6]">{item}</span>
                 </div>
               ))}
-              <p className="text-xs text-[#22D3EE]/60 pt-2 border-t border-white/5">Wszystko w jednym, spójnym projekcie.</p>
+              <p className="text-xs text-[#22D3EE]/70 pt-2 border-t border-white/5">Wszystko w jednym, spójnym projekcie.</p>
             </div>
           </div>
         </div>
@@ -232,7 +232,7 @@ export default function StonyWWW() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Twoja strona będzie
           </h2>
-          <p className="text-[#6B7A90] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
+          <p className="text-[#7E8CA2] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {features.map((f, i) => (
               <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#22D3EE]/20 transition-colors duration-300">

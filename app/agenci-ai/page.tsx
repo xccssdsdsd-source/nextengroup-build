@@ -155,7 +155,7 @@ export default function AgenciAI() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Chatbot kontra agent AI
           </h2>
-          <p className="text-[#6B7A90] mb-10 text-[15px]">Różnica, która ma znaczenie w praktyce.</p>
+          <p className="text-[#7E8CA2] mb-10 text-[15px]">Różnica, która ma znaczenie w praktyce.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {diff.map((col) => (
               <div
@@ -165,7 +165,7 @@ export default function AgenciAI() {
                   : 'bg-[#0C1018] border-white/5'
                 }`}
               >
-                <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[#22D3EE]' : 'text-[#4B5668]'}`} style={{ fontFamily: 'var(--font-heading)' }}>
+                <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[#22D3EE]' : 'text-[#7C879B]'}`} style={{ fontFamily: 'var(--font-heading)' }}>
                   {col.label}
                 </div>
                 <ul className="space-y-4">
@@ -177,7 +177,7 @@ export default function AgenciAI() {
                           : <svg className="h-2 w-2 text-[#3B4455]" viewBox="0 0 8 8" fill="none"><path d="M2 4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                         }
                       </span>
-                      <span className={`text-[14px] leading-[1.6] ${col.accent ? 'text-[#A6B2C4]' : 'text-[#4B5668]'}`}>{pt}</span>
+                      <span className={`text-[14px] leading-[1.6] ${col.accent ? 'text-[#A6B2C4]' : 'text-[#7C879B]'}`}>{pt}</span>
                     </li>
                   ))}
                 </ul>
@@ -211,7 +211,7 @@ export default function AgenciAI() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Co agent może przejąć od Twojego zespołu
           </h2>
-          <p className="text-[#6B7A90] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
+          <p className="text-[#7E8CA2] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {capabilities.map((c, i) => (
               <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#22D3EE]/20 transition-colors duration-300">

@@ -262,7 +262,7 @@ function AnimatedLines() {
   )
 }
 
-export default function Portfolio() {
+export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-50px' })
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -337,7 +337,11 @@ export default function Portfolio() {
         >
           <div>
             <span className="section-kicker" suppressHydrationWarning>Nasze realizacje</span>
-            <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
+            {asH1 ? (
+              <h1 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h1>
+            ) : (
+              <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
+            )}
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
@@ -444,7 +448,11 @@ export default function Portfolio() {
                   <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#22D3EE', boxShadow: '0 2px 8px rgba(34,211,238,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
-                    <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
+                    {asH1 ? (
+                      <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h2>
+                    ) : (
+                      <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
+                    )}
                     <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>

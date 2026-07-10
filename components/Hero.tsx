@@ -144,6 +144,7 @@ export default function Hero() {
               <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]" style={{ minHeight: '1.7em' }}>
                 Budujemy Twój biznes przez{' '}
                 <span
+                  role="group"
                   aria-label={carouselWords[wordIndex]}
                   style={{ display: 'inline-block', position: 'relative', height: '1.6em', overflow: 'hidden', verticalAlign: 'bottom' }}
                 >

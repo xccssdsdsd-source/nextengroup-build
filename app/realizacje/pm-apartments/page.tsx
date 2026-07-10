@@ -90,7 +90,7 @@ export default function PMApartamentsCase() {
                 <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-                <div className="ml-2 rounded-md bg-[#1C2433] px-3 py-1 text-[11px] text-[#7C879B]">pm-apartments.pl</div>
+                <div className="ml-2 rounded-md bg-[#1C2433] px-3 py-1 text-[11px] text-[#909BAF]">pm-apartments.pl</div>
               </div>
             </div>
             <Image
@@ -130,7 +130,7 @@ export default function PMApartamentsCase() {
 
       <section className="px-6 sm:px-8 pb-20">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#22D3EE] mb-8">Co dostarczyliśmy</p>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#22D3EE] mb-8">Co dostarczyliśmy</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {deliverables.map((d, i) => (
               <div

@@ -13,9 +13,6 @@ const trustOwners = [
   { src: '/owner-msdesignstudio.webp', alt: 'Klient MS Design Studio' },
 ]
 
-const MOBILE_TITLE =
-  'Tworzymy strony, które pozyskują klientów, i automatyzujemy żmudne i czasochłonne procesy biznesowe.'
-
 const gradientAccent = {
   background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)',
   WebkitBackgroundClip: 'text' as const,
@@ -50,40 +47,8 @@ export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [wordIndex, setWordIndex] = useState(0)
   const [prevIndex, setPrevIndex] = useState(-1)
-  const [isMobile, setIsMobile] = useState(false)
-  const [mobileTyped, setMobileTyped] = useState('')
-  const [mobileTypingDone, setMobileTypingDone] = useState(false)
 
   useEffect(() => { setIsMounted(true) }, [])
-
-  useEffect(() => {
-    const mobile = window.matchMedia('(max-width: 639px)').matches
-    setIsMobile(mobile)
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (mobile && reduceMotion) {
-      setMobileTyped(MOBILE_TITLE)
-      setMobileTypingDone(true)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!isMounted || !isMobile || mobileTypingDone) return
-    const CHAR_MS = 42
-    const start = performance.now()
-    let frame: number
-
-    const tick = (now: number) => {
-      const chars = Math.min(MOBILE_TITLE.length, Math.floor((now - start) / CHAR_MS))
-      setMobileTyped(MOBILE_TITLE.slice(0, chars))
-      if (chars >= MOBILE_TITLE.length) {
-        setMobileTypingDone(true)
-        return
-      }
-      frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [isMounted, isMobile, mobileTypingDone])
 
   // Rotujące słowo: każde wjeżdża od dołu i wypycha poprzednie do góry.
   useEffect(() => {
@@ -145,41 +110,33 @@ export default function Hero() {
                 letterSpacing: '-0.03em',
               }}
             >
-              {/* Desktop / tablet — oryginalny dwuwierszowy tytuł */}
-              <span className="hidden sm:block">
-                <span
-                  className="block"
-                  style={{
-                    color: '#EAF0F7',
-                    fontWeight: 800,
-                    fontSize: 'clamp(32px, 3.9vw, 62px)',
-                    lineHeight: '1.02',
-                    letterSpacing: '-0.038em',
-                    marginBottom: '0.16em',
-                  }}
-                >
-                  Strony, które{' '}
-                  <span className="serif-accent" style={gradientAccent}>pozyskują</span>{' '}klientów.
-                </span>
-                <span
-                  className="block"
-                  style={{
-                    color: '#EAF0F7',
-                    fontWeight: 800,
-                    fontSize: 'clamp(32px, 3.9vw, 62px)',
-                    lineHeight: '1.02',
-                    letterSpacing: '-0.038em',
-                    marginBottom: '0.16em',
-                  }}
-                >
-                  Automatyzacje, które{' '}
-                  <span className="serif-accent" style={gradientAccent}>obsługują</span>{' '}ich za Ciebie.
-                </span>
+              <span
+                className="block"
+                style={{
+                  color: '#EAF0F7',
+                  fontWeight: 800,
+                  fontSize: 'clamp(28px, 3.9vw, 62px)',
+                  lineHeight: '1.02',
+                  letterSpacing: '-0.038em',
+                  marginBottom: '0.16em',
+                }}
+              >
+                Strony, które{' '}
+                <span className="serif-accent" style={gradientAccent}>pozyskują</span>{' '}klientów.
               </span>
-              {/* Mobile — typing animation nowego tytułu, kursor znika po wpisaniu */}
-              <span className="block sm:hidden" style={{ color: '#EAF0F7' }} aria-label={MOBILE_TITLE}>
-                <span aria-hidden="true">{mobileTyped}</span>
-                {!mobileTypingDone && <span className="typing-cursor" />}
+              <span
+                className="block"
+                style={{
+                  color: '#EAF0F7',
+                  fontWeight: 800,
+                  fontSize: 'clamp(28px, 3.9vw, 62px)',
+                  lineHeight: '1.02',
+                  letterSpacing: '-0.038em',
+                  marginBottom: '0.16em',
+                }}
+              >
+                Automatyzacje, które{' '}
+                <span className="serif-accent" style={gradientAccent}>obsługują</span>{' '}ich za Ciebie.
               </span>
             </h1>
 

@@ -78,8 +78,7 @@ export default function Hero() {
       className="relative"
       style={{
         minHeight: '100dvh',
-        background:
-          'radial-gradient(900px 560px at 78% 6%, rgba(94, 234, 255, 0.15), transparent 62%), radial-gradient(700px 520px at 6% 84%, rgba(14, 116, 144, 0.18), transparent 60%), radial-gradient(1100px 700px at 50% 102%, rgba(34, 211, 238, 0.09), transparent 65%), linear-gradient(180deg, rgba(3, 4, 5, 0.15) 0%, rgba(3, 4, 5, 0) 55%, rgba(3, 4, 5, 0.35) 100%), #030405',
+        background: 'transparent',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

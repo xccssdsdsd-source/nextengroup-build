@@ -5,7 +5,6 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 const Nav = dynamic(() => import('@/components/Nav'))
 const Contact = dynamic(() => import('@/components/Contact'))
 const Footer = dynamic(() => import('@/components/Footer'))
-const ProcessFlowBackground = dynamic(() => import('@/components/ProcessFlowBackgroundClient'))
 
 const siteUrl = 'https://getbuild.pl'
 
@@ -145,7 +144,6 @@ export default function StonyWWW() {
       ]} />
 
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
-        <ProcessFlowBackground />
         <div className="relative z-10 mx-auto max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#22D3EE]/20 bg-[#22D3EE]/5 px-4 py-1.5 mb-8">
             <span className="h-1.5 w-1.5 rounded-full bg-[#22D3EE] animate-pulse" />

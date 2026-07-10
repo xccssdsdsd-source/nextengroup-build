@@ -7,6 +7,7 @@ import { FaFacebook, FaInstagram, FaRedditAlien, FaTiktok } from 'react-icons/fa
 import { FaXTwitter } from 'react-icons/fa6'
 import { MdEmail } from 'react-icons/md'
 import { Check, ChevronDown } from 'lucide-react'
+import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
@@ -132,6 +133,7 @@ export default function Contact() {
 
   return (
     <section id="kontakt" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
+      <SectionGlow variant="contact" />
       <m.div
         initial={false}
         animate={{ opacity: 1, y: 0 }}

@@ -1,12 +1,7 @@
-/* ── Nebula background ────────────────────────────────────────────────
-   `.root` is `position: absolute; inset: 0` inside `<body>` (which is the
-   nearest positioned ancestor), so it stretches to the full document
-   height rather than one viewport. That makes it a single continuous
-   canvas the whole page scrolls through — sections don't carry their own
-   background, so there is nothing to "seam" between them; scrolling just
-   reveals a different part of the same painting.
-   `.overlay` stays `position: fixed` — grain and the shine sweep are
-   viewport-level texture, not part of the scroll story. */
+/* One continuous background for the entire document. No per-section
+   layers, no boundaries to seam against — this is the whole point:
+   the same field runs underneath every section, so there is nothing
+   that can visibly change at a section edge. */
 
 .root {
   position: absolute;
@@ -14,135 +9,36 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: linear-gradient(180deg, #050810 0%, #03050a 8%, #020308 100%);
+  background: #000000;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.baseGlow,
-.coreGlow,
-.stars,
-.rimGlow {
+.glow,
+.stars {
   position: absolute;
   inset: 0;
 }
 
-.shine,
-.grain {
-  position: absolute;
-  inset: 0;
-}
-
-/* Soft nebula pools placed at fixed points down the *page*, echoing the
-   reference photo's mostly-black frame with a couple of glowing pools —
-   not wall-to-wall color. Generous radii so each pool fades to nothing
-   with no hard edge, long before the next one begins. */
-.baseGlow {
+/* Soft blue accents, spread down the whole document at a handful of
+   points. Every stop stays under 0.1 alpha — an accent, not a block of
+   color — and each pool fades out long before it could reach a neighbor. */
+.glow {
   background:
-    radial-gradient(62rem 46rem at 82% 3%, rgba(58, 92, 224, 0.26), transparent 60%),
-    radial-gradient(50rem 40rem at 8% 4%, rgba(43, 74, 199, 0.14), transparent 62%),
-    radial-gradient(58rem 44rem at 14% 34%, rgba(51, 84, 214, 0.16), transparent 62%),
-    radial-gradient(54rem 42rem at 88% 64%, rgba(46, 78, 206, 0.15), transparent 62%),
-    radial-gradient(56rem 44rem at 10% 92%, rgba(58, 92, 224, 0.18), transparent 62%);
-}
-
-.coreGlow {
-  background:
-    radial-gradient(26rem 20rem at 84% 5%, rgba(124, 150, 255, 0.22), transparent 68%),
-    radial-gradient(22rem 18rem at 16% 35%, rgba(110, 138, 255, 0.13), transparent 70%),
-    radial-gradient(22rem 18rem at 86% 65%, rgba(110, 138, 255, 0.12), transparent 70%),
-    radial-gradient(24rem 19rem at 12% 93%, rgba(124, 150, 255, 0.15), transparent 70%);
-  opacity: 0.9;
-}
-
-.rimGlow {
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.38), transparent 26%, transparent 72%, rgba(0, 0, 0, 0.3)),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.4));
+    radial-gradient(38rem 30rem at 90% 6%, rgba(37, 99, 235, 0.08), transparent 60%),
+    radial-gradient(34rem 26rem at 6% 26%, rgba(18, 42, 120, 0.07), transparent 58%),
+    radial-gradient(30rem 24rem at 92% 48%, rgba(34, 211, 238, 0.05), transparent 56%),
+    radial-gradient(34rem 28rem at 8% 70%, rgba(37, 99, 235, 0.07), transparent 58%),
+    radial-gradient(30rem 24rem at 88% 92%, rgba(18, 42, 120, 0.07), transparent 58%);
 }
 
 .stars {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Ccircle cx='283.5' cy='261.6' r='0.81' fill='white' opacity='0.81'/%3E%3Ccircle cx='246.4' cy='179.8' r='0.68' fill='white' opacity='0.68'/%3E%3Ccircle cx='190.7' cy='17.3' r='0.67' fill='white' opacity='0.67'/%3E%3Ccircle cx='249.9' cy='227.3' r='0.46' fill='white' opacity='0.46'/%3E%3Ccircle cx='237.2' cy='303.2' r='0.83' fill='white' opacity='0.83'/%3E%3Ccircle cx='286.0' cy='58.5' r='0.35' fill='white' opacity='0.35'/%3E%3Ccircle cx='209.6' cy='266.3' r='0.37' fill='white' opacity='0.37'/%3E%3Ccircle cx='141.3' cy='100.0' r='0.55' fill='white' opacity='0.55'/%3E%3Ccircle cx='214.6' cy='13.0' r='0.58' fill='white' opacity='0.58'/%3E%3Ccircle cx='242.6' cy='138.6' r='0.68' fill='white' opacity='0.68'/%3E%3Ccircle cx='38.8' cy='290.1' r='0.54' fill='white' opacity='0.54'/%3E%3Ccircle cx='56.5' cy='280.8' r='0.38' fill='white' opacity='0.38'/%3E%3Ccircle cx='109.0' cy='244.2' r='0.44' fill='white' opacity='0.44'/%3E%3Ccircle cx='9.7' cy='313.5' r='0.38' fill='white' opacity='0.38'/%3E%3Ccircle cx='211.8' cy='302.0' r='0.45' fill='white' opacity='0.45'/%3E%3Ccircle cx='208.7' cy='23.2' r='0.31' fill='white' opacity='0.31'/%3E%3Ccircle cx='133.8' cy='250.2' r='0.76' fill='white' opacity='0.76'/%3E%3Ccircle cx='120.4' cy='156.6' r='0.37' fill='white' opacity='0.37'/%3E%3Ccircle cx='301.8' cy='195.5' r='0.46' fill='white' opacity='0.46'/%3E%3Ccircle cx='171.3' cy='180.3' r='0.72' fill='white' opacity='0.72'/%3E%3Ccircle cx='182.3' cy='244.4' r='0.82' fill='white' opacity='0.82'/%3E%3Ccircle cx='148.2' cy='201.1' r='0.45' fill='white' opacity='0.45'/%3E%3Ccircle cx='202.1' cy='183.8' r='0.38' fill='white' opacity='0.38'/%3E%3Ccircle cx='157.6' cy='5.6' r='0.30' fill='white' opacity='0.30'/%3E%3Ccircle cx='147.9' cy='120.1' r='0.43' fill='white' opacity='0.43'/%3E%3Ccircle cx='306.3' cy='20.5' r='0.45' fill='white' opacity='0.45'/%3E%3Ccircle cx='126.2' cy='160.2' r='0.60' fill='white' opacity='0.60'/%3E%3Ccircle cx='60.9' cy='32.4' r='0.54' fill='white' opacity='0.54'/%3E%3Ccircle cx='243.8' cy='90.6' r='0.51' fill='white' opacity='0.51'/%3E%3Ccircle cx='168.1' cy='148.0' r='0.74' fill='white' opacity='0.74'/%3E%3Ccircle cx='287.3' cy='18.1' r='0.36' fill='white' opacity='0.36'/%3E%3Ccircle cx='94.6' cy='154.0' r='0.70' fill='white' opacity='0.70'/%3E%3Ccircle cx='43.4' cy='49.2' r='0.33' fill='white' opacity='0.33'/%3E%3Ccircle cx='267.0' cy='157.0' r='0.58' fill='white' opacity='0.58'/%3E%3Ccircle cx='258.8' cy='290.8' r='0.59' fill='white' opacity='0.59'/%3E%3Ccircle cx='152.0' cy='263.8' r='0.59' fill='white' opacity='0.59'/%3E%3Ccircle cx='80.1' cy='209.3' r='0.79' fill='white' opacity='0.79'/%3E%3Ccircle cx='176.3' cy='260.9' r='0.34' fill='white' opacity='0.34'/%3E%3Ccircle cx='254.0' cy='231.6' r='0.56' fill='white' opacity='0.56'/%3E%3Ccircle cx='126.5' cy='255.0' r='0.58' fill='white' opacity='0.58'/%3E%3Ccircle cx='247.1' cy='144.3' r='0.63' fill='white' opacity='0.63'/%3E%3Ccircle cx='109.2' cy='32.8' r='0.39' fill='white' opacity='0.39'/%3E%3Ccircle cx='166.2' cy='54.0' r='0.63' fill='white' opacity='0.63'/%3E%3Ccircle cx='231.3' cy='21.0' r='0.49' fill='white' opacity='0.49'/%3E%3Ccircle cx='117.8' cy='67.4' r='0.75' fill='white' opacity='0.75'/%3E%3Ccircle cx='279.2' cy='6.3' r='0.53' fill='white' opacity='0.53'/%3E%3Ccircle cx='208.8' cy='291.1' r='0.62' fill='white' opacity='0.62'/%3E%3Ccircle cx='39.8' cy='95.2' r='0.69' fill='white' opacity='0.69'/%3E%3Ccircle cx='225.6' cy='191.9' r='0.42' fill='white' opacity='0.42'/%3E%3Ccircle cx='259.6' cy='74.5' r='0.60' fill='white' opacity='0.60'/%3E%3Ccircle cx='275.0' cy='196.4' r='0.34' fill='white' opacity='0.34'/%3E%3Ccircle cx='85.3' cy='50.9' r='0.44' fill='white' opacity='0.44'/%3E%3Ccircle cx='143.7' cy='91.3' r='0.56' fill='white' opacity='0.56'/%3E%3Ccircle cx='263.7' cy='130.9' r='0.40' fill='white' opacity='0.40'/%3E%3Ccircle cx='258.4' cy='303.2' r='0.72' fill='white' opacity='0.72'/%3E%3C/svg%3E");
-  background-size: 320px 320px;
-  opacity: 0.42;
-}
-
-/* Slow diagonal light sweep — desktop-only "shine", pinned to the
-   viewport so it always reads as gentle ambient life regardless of
-   scroll depth. Pure decoration: off under reduced motion / low GPU. */
-.shine {
-  background: linear-gradient(115deg, transparent 40%, rgba(140, 170, 255, 0.05) 48%, rgba(180, 205, 255, 0.09) 50%, rgba(140, 170, 255, 0.05) 52%, transparent 60%);
-  background-size: 260% 260%;
-  opacity: 0;
-}
-
-.grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: soft-light;
-  opacity: 0.3;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .stars {
-    animation: star-twinkle 9s ease-in-out infinite;
-  }
-}
-
-/* Desktop-only enhancements — animated shine sweep. Gated on pointer:fine
-   so touch devices (which can match wide min-width on tablets) skip it. */
-@media (prefers-reduced-motion: no-preference) and (pointer: fine) and (min-width: 1024px) {
-  .shine {
-    opacity: 1;
-    animation: shine-sweep 26s ease-in-out infinite;
-  }
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Ccircle cx='283' cy='261' r='0.7' fill='white' opacity='0.55'/%3E%3Ccircle cx='96' cy='180' r='0.55' fill='white' opacity='0.45'/%3E%3Ccircle cx='190' cy='17' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='349' cy='227' r='0.4' fill='white' opacity='0.35'/%3E%3Ccircle cx='237' cy='363' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='40' cy='58' r='0.35' fill='white' opacity='0.3'/%3E%3Ccircle cx='209' cy='266' r='0.35' fill='white' opacity='0.3'/%3E%3Ccircle cx='141' cy='340' r='0.45' fill='white' opacity='0.4'/%3E%3Ccircle cx='394' cy='113' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='58' cy='290' r='0.4' fill='white' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 420px 420px;
+  background-repeat: repeat;
+  opacity: 0.5;
 }
 
 @media (max-width: 1023px), (pointer: coarse) {
-  .coreGlow {
-    opacity: 0.65;
-  }
-
   .stars {
-    animation: none;
-    opacity: 0.32;
-    background-size: 280px 280px;
-  }
-
-  .grain {
-    opacity: 0.2;
-  }
-}
-
-@keyframes star-twinkle {
-  0%,
-  100% {
-    opacity: 0.36;
-  }
-  50% {
-    opacity: 0.48;
-  }
-}
-
-@keyframes shine-sweep {
-  0%,
-  100% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stars,
-  .shine {
-    animation: none !important;
+    opacity: 0.38;
   }
 }

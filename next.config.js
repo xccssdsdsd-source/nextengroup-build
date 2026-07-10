@@ -9,19 +9,24 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', 'gsap', 'react-icons'],
   },
   async headers() {
+    const isDev = process.env.NODE_ENV !== 'production'
     return [
-      {
-        source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2)',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
+      ...(isDev
+        ? []
+        : [
+            {
+              source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2)',
+              headers: [
+                { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+              ],
+            },
+            {
+              source: '/_next/static/:path*',
+              headers: [
+                { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+              ],
+            },
+          ]),
       {
         source: '/:path*',
         headers: [

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState, type MouseEvent } from 'react'
 import ChatWidget from './ChatWidget'
+import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
@@ -84,6 +85,7 @@ export default function Hero() {
         justifyContent: 'center',
       }}
     >
+      <SectionGlow variant="hero" />
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
         style={{ paddingTop: 'var(--nav-h)', paddingBottom: '1.5rem' }}

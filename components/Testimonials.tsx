@@ -5,6 +5,7 @@ import { ArrowUpRight, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
+import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -40,7 +41,7 @@ export default function Testimonials() {
       data-no-entrance
       suppressHydrationWarning
     >
-
+      <SectionGlow variant="testimonials" />
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"

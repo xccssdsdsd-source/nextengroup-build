@@ -6,6 +6,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useCallback, useEffect, useId } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
 import LiveSiteButton from './ui/LiveSiteButton'
+import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -327,6 +328,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
   return (
     <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }} data-no-entrance suppressHydrationWarning>
+      <SectionGlow variant="portfolio" />
       <AnimatedLines />
       <div className="relative mx-auto max-w-6xl">
         <m.div

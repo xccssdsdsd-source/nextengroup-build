@@ -2,6 +2,7 @@
 
 import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -43,6 +44,7 @@ export default function Process() {
 
   return (
     <section id="proces" ref={ref} className="section-shell relative" data-no-entrance suppressHydrationWarning>
+      <SectionGlow variant="process" />
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"

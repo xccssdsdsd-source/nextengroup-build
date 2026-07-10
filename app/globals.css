@@ -1499,14 +1499,15 @@ select {
 }
 
 /* Premium pass: unified surfaces, calm nav states.
-   All ambient color/glow/starfield/grain now lives in the single fixed
-   <AnimatedBackground> layer (components/ui/AnimatedBackground.tsx). It
-   never scrolls, so the same nebula reads through every section below —
-   sections themselves stay transparent, which removes the per-section
-   background bands that used to read as visible seams while scrolling. */
+   All ambient background color lives in one continuous layer
+   (<AnimatedBackground>, components/ui/AnimatedBackground.tsx), absolutely
+   positioned over the full document. Sections stay fully transparent —
+   there is no per-section background layer, so there is nothing that can
+   visibly change at a section boundary. Do not add per-section background
+   here; that has repeatedly caused visible seams. */
 body {
   position: relative;
-  background: var(--bg-base);
+  background: #000000;
 }
 
 .section-shell,
@@ -1647,25 +1648,6 @@ body {
 #hero {
   position: relative;
   isolation: isolate;
-}
-
-#hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-/* Mobile has no global body grain (perf) — make hero's grain the visible one */
-@media (hover: none), (pointer: coarse) {
-  #hero::after {
-    opacity: 0.28;
-  }
 }
 
 .nav-link::after {

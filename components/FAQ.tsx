@@ -3,6 +3,7 @@
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
+import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
@@ -88,6 +89,7 @@ export default function FAQ() {
       data-no-entrance
       suppressHydrationWarning
     >
+      <SectionGlow variant="faq" />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
         <m.div
           initial={false}

@@ -155,6 +155,12 @@ select {
   margin-left: auto;
   margin-right: auto;
   max-width: 48rem;
+  text-align: center;
+}
+
+.section-heading .section-copy {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-kicker {
@@ -896,7 +902,7 @@ select {
 .grain-overlay,
 .grain-drift {
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.24'/%3E%3C/svg%3E");
   background-size: 180px 180px;
 }
 
@@ -1497,9 +1503,49 @@ select {
 
 /* Premium pass: unified surfaces, softer section joins and calmer nav states */
 body {
+  position: relative;
   background:
-    radial-gradient(1100px 700px at 50% -220px, rgba(94, 234, 255, 0.045), transparent 68%),
+    radial-gradient(1100px 760px at 50% -220px, rgba(94, 234, 255, 0.11), transparent 68%),
+    radial-gradient(900px 640px at 100% 30%, rgba(34, 211, 238, 0.05), transparent 66%),
+    radial-gradient(900px 640px at 0% 62%, rgba(14, 116, 144, 0.06), transparent 66%),
+    radial-gradient(1000px 700px at 50% 100%, rgba(94, 234, 255, 0.045), transparent 68%),
     linear-gradient(180deg, #05080d 0%, #060910 42%, #05080d 100%);
+}
+
+/* ── Site-wide premium grain: fixed, warm-tinted, always visible over scroll ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: grain-drift 24s linear infinite;
+  will-change: transform;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 29;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+  background:
+    radial-gradient(1200px 800px at 12% 0%, rgba(245, 181, 71, 0.10), transparent 55%),
+    radial-gradient(1200px 800px at 88% 100%, rgba(245, 181, 71, 0.07), transparent 58%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none !important; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body::before { animation: none !important; opacity: 0.4; }
 }
 
 .section-shell,
@@ -1510,17 +1556,17 @@ body {
 
 .section-shell::before {
   background:
-    radial-gradient(900px 500px at 50% 0%, rgba(94, 234, 255, 0.042), transparent 64%),
-    radial-gradient(720px 420px at 18% 34%, rgba(255, 255, 255, 0.018), transparent 70%),
-    linear-gradient(180deg, rgba(255,255,255,0.012), transparent 32%);
+    radial-gradient(900px 500px at 50% 0%, rgba(94, 234, 255, 0.065), transparent 64%),
+    radial-gradient(720px 420px at 18% 34%, rgba(255, 255, 255, 0.026), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.016), transparent 32%);
   opacity: 1;
 }
 
 .section-shell:nth-of-type(odd)::before {
   background:
-    radial-gradient(900px 500px at 50% 0%, rgba(94, 234, 255, 0.042), transparent 64%),
-    radial-gradient(720px 420px at 82% 34%, rgba(255, 255, 255, 0.018), transparent 70%),
-    linear-gradient(180deg, rgba(255,255,255,0.012), transparent 32%);
+    radial-gradient(900px 500px at 50% 0%, rgba(94, 234, 255, 0.065), transparent 64%),
+    radial-gradient(720px 420px at 82% 34%, rgba(255, 255, 255, 0.026), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.016), transparent 32%);
 }
 
 .section-shell::after,
@@ -1641,6 +1687,42 @@ body {
     box-shadow 220ms ease,
     transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 220ms ease;
+}
+
+/* Nav links (Usługi/Proces/Realizacje/FAQ) share the same hover/active
+   language as .btn-ghost so the whole site reads as one button family. */
+@media (hover: hover) and (pointer: fine) {
+  .nav-link.nav-island:hover {
+    border-color: rgba(94, 234, 255, 0.45);
+    background: rgba(94, 234, 255, 0.10);
+    box-shadow:
+      inset 0 0 20px rgba(94, 234, 255, 0.14),
+      0 0 0 1px rgba(94, 234, 255, 0.22),
+      0 10px 30px -10px rgba(34, 211, 238, 0.35);
+    transform: translateY(-2px) scale(1.02);
+    filter: none;
+  }
+}
+
+.nav-link.nav-island:active {
+  transform: translateY(0) scale(0.97);
+}
+
+#hero {
+  position: relative;
+  isolation: isolate;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 .nav-link::after {

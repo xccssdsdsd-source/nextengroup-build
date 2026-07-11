@@ -112,7 +112,7 @@ export default function Hero() {
               }}
             >
               <span
-                className="block"
+                className="block hero-heading-line"
                 style={{
                   color: '#EAF0F7',
                   fontWeight: 800,
@@ -126,7 +126,7 @@ export default function Hero() {
                 <span className="serif-accent" style={gradientAccent}>pozyskują</span>{' '}klientów.
               </span>
               <span
-                className="block"
+                className="block hero-heading-line"
                 style={{
                   color: '#EAF0F7',
                   fontWeight: 800,

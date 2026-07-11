@@ -21,6 +21,43 @@ const gradientAccent = {
   backgroundClip: 'text' as const,
 }
 
+type HeroHeadlineWord = { text: string; accent?: boolean }
+
+const heroLine1: HeroHeadlineWord[] = [
+  { text: 'Strony,' },
+  { text: 'które' },
+  { text: 'pozyskują', accent: true },
+  { text: 'klientów.' },
+]
+
+const heroLine2: HeroHeadlineWord[] = [
+  { text: 'Automatyzacje,' },
+  { text: 'które' },
+  { text: 'obsługują', accent: true },
+  { text: 'ich' },
+  { text: 'za' },
+  { text: 'Ciebie.' },
+]
+
+const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) => (
+  <span className="hero-word-mask">
+    <span className="hero-word" style={{ animationDelay: `${delay}ms` }}>
+      {word.accent ? <span className="serif-accent" style={gradientAccent}>{word.text}</span> : word.text}
+    </span>
+  </span>
+)
+
+const HeroHeadlineLine = ({ words, startDelay }: { words: HeroHeadlineWord[]; startDelay: number }) => (
+  <>
+    {words.map((word, i) => (
+      <span key={word.text}>
+        {i > 0 ? ' ' : null}
+        <HeroWord word={word} delay={startDelay + i * 45} />
+      </span>
+    ))}
+  </>
+)
+
 const StarIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
     <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.785 1.401 8.168L12 18.896l-7.335 3.868 1.401-8.168L.132 9.211l8.2-1.193z" />
@@ -122,8 +159,7 @@ export default function Hero() {
                   marginBottom: '0.16em',
                 }}
               >
-                Strony, które{' '}
-                <span className="serif-accent" style={gradientAccent}>pozyskują</span>{' '}klientów.
+                <HeroHeadlineLine words={heroLine1} startDelay={60} />
               </span>
               <span
                 className="block hero-heading-line"
@@ -136,8 +172,7 @@ export default function Hero() {
                   marginBottom: '0.16em',
                 }}
               >
-                Automatyzacje, które{' '}
-                <span className="serif-accent" style={gradientAccent}>obsługują</span>{' '}ich za Ciebie.
+                <HeroHeadlineLine words={heroLine2} startDelay={60 + heroLine1.length * 45} />
               </span>
             </h1>
 

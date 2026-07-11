@@ -50,7 +50,15 @@ export default function FlowNetwork({ trigger }: FlowNetworkProps) {
   return (
     <div className="relative h-full overflow-hidden rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(4,12,24,0.98)_0%,rgba(2,7,16,1)_100%)] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_30px_100px_rgba(0,0,0,0.42),0_0_120px_rgba(0,140,255,0.08)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(61,148,255,0.2),transparent_20%),radial-gradient(circle_at_20%_18%,rgba(130,208,255,0.1),transparent_26%),radial-gradient(circle_at_80%_18%,rgba(11,69,255,0.14),transparent_28%)]" />
-      <div className="absolute inset-0 grain-overlay opacity-25" />
+      <div
+        className="absolute inset-0 grain-overlay opacity-25"
+        style={{
+          WebkitMaskImage:
+            'radial-gradient(circle at 50% 48%, #000, transparent 20%), radial-gradient(circle at 20% 18%, #000, transparent 26%), radial-gradient(circle at 80% 18%, #000, transparent 28%)',
+          maskImage:
+            'radial-gradient(circle at 50% 48%, #000, transparent 20%), radial-gradient(circle at 20% 18%, #000, transparent 26%), radial-gradient(circle at 80% 18%, #000, transparent 28%)',
+        }}
+      />
       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(143,234,255,0.4),transparent)]" />
 
       <div className="relative flex h-full flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-10">

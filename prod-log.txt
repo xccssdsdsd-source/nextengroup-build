@@ -7,4 +7,4 @@
    - Network:      http://169.254.129.79:3000
 
  ✓ Starting...
- ✓ Ready in 691ms
+ ✓ Ready in 1300ms

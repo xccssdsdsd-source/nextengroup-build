@@ -14,8 +14,6 @@
 
 .glow,
 .sheen,
-.stars,
-.starsGlow,
 .grain {
   position: absolute;
   inset: 0;
@@ -43,56 +41,28 @@
     radial-gradient(120% 70% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
 }
 
-/* Crisp pinpoint stars — dense, irregular, sub-pixel, blue-white so
-   they read as tiny stars rather than a flat dot pattern. Tile is
-   large (960px) and packed with ~50 points so the repeat never reads
-   as an obvious grid. */
-.stars {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960' viewBox='0 0 960 960'%3E%3Cg fill='%23EAF3FF'%3E%3Ccircle cx='60' cy='40' r='0.5' opacity='0.35'/%3E%3Ccircle cx='140' cy='120' r='0.4' opacity='0.3'/%3E%3Ccircle cx='230' cy='60' r='0.6' opacity='0.45'/%3E%3Ccircle cx='310' cy='160' r='0.45' opacity='0.35'/%3E%3Ccircle cx='410' cy='90' r='0.5' opacity='0.4'/%3E%3Ccircle cx='520' cy='50' r='0.4' opacity='0.3'/%3E%3Ccircle cx='610' cy='140' r='0.55' opacity='0.4'/%3E%3Ccircle cx='700' cy='70' r='0.45' opacity='0.35'/%3E%3Ccircle cx='790' cy='150' r='0.5' opacity='0.4'/%3E%3Ccircle cx='880' cy='60' r='0.4' opacity='0.3'/%3E%3Ccircle cx='90' cy='230' r='0.45' opacity='0.35'/%3E%3Ccircle cx='200' cy='280' r='0.5' opacity='0.4'/%3E%3Ccircle cx='330' cy='240' r='0.4' opacity='0.3'/%3E%3Ccircle cx='450' cy='300' r='0.55' opacity='0.45'/%3E%3Ccircle cx='560' cy='250' r='0.45' opacity='0.35'/%3E%3Ccircle cx='660' cy='320' r='0.5' opacity='0.4'/%3E%3Ccircle cx='760' cy='260' r='0.4' opacity='0.3'/%3E%3Ccircle cx='860' cy='310' r='0.5' opacity='0.4'/%3E%3Ccircle cx='930' cy='240' r='0.45' opacity='0.35'/%3E%3Ccircle cx='50' cy='400' r='0.5' opacity='0.4'/%3E%3Ccircle cx='150' cy='450' r='0.4' opacity='0.3'/%3E%3Ccircle cx='260' cy='410' r='0.55' opacity='0.45'/%3E%3Ccircle cx='370' cy='470' r='0.45' opacity='0.35'/%3E%3Ccircle cx='480' cy='420' r='0.5' opacity='0.4'/%3E%3Ccircle cx='590' cy='480' r='0.4' opacity='0.3'/%3E%3Ccircle cx='690' cy='430' r='0.5' opacity='0.4'/%3E%3Ccircle cx='800' cy='490' r='0.45' opacity='0.35'/%3E%3Ccircle cx='900' cy='440' r='0.5' opacity='0.4'/%3E%3Ccircle cx='70' cy='560' r='0.4' opacity='0.3'/%3E%3Ccircle cx='180' cy='620' r='0.5' opacity='0.4'/%3E%3Ccircle cx='290' cy='570' r='0.45' opacity='0.35'/%3E%3Ccircle cx='400' cy='630' r='0.55' opacity='0.45'/%3E%3Ccircle cx='510' cy='580' r='0.4' opacity='0.3'/%3E%3Ccircle cx='620' cy='640' r='0.5' opacity='0.4'/%3E%3Ccircle cx='730' cy='590' r='0.45' opacity='0.35'/%3E%3Ccircle cx='840' cy='650' r='0.5' opacity='0.4'/%3E%3Ccircle cx='940' cy='600' r='0.4' opacity='0.3'/%3E%3Ccircle cx='40' cy='700' r='0.45' opacity='0.35'/%3E%3Ccircle cx='150' cy='760' r='0.4' opacity='0.3'/%3E%3Ccircle cx='260' cy='710' r='0.5' opacity='0.4'/%3E%3Ccircle cx='370' cy='770' r='0.45' opacity='0.35'/%3E%3Ccircle cx='480' cy='720' r='0.55' opacity='0.45'/%3E%3Ccircle cx='590' cy='780' r='0.4' opacity='0.3'/%3E%3Ccircle cx='700' cy='730' r='0.5' opacity='0.4'/%3E%3Ccircle cx='810' cy='790' r='0.45' opacity='0.35'/%3E%3Ccircle cx='920' cy='740' r='0.5' opacity='0.4'/%3E%3Ccircle cx='90' cy='860' r='0.4' opacity='0.3'/%3E%3Ccircle cx='200' cy='910' r='0.5' opacity='0.4'/%3E%3Ccircle cx='310' cy='870' r='0.45' opacity='0.35'/%3E%3Ccircle cx='420' cy='930' r='0.5' opacity='0.4'/%3E%3Ccircle cx='530' cy='880' r='0.4' opacity='0.3'/%3E%3Ccircle cx='640' cy='940' r='0.45' opacity='0.35'/%3E%3Ccircle cx='750' cy='890' r='0.5' opacity='0.4'/%3E%3Ccircle cx='860' cy='930' r='0.4' opacity='0.3'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 960px 960px;
-  background-repeat: repeat;
-  opacity: 0.5;
-}
-
-/* A handful of brighter, softly-blurred stars with a cyan-white glow
-   core — these are the ones that should read as "a nice star", not a
-   flat dot. Slow, gentle twinkle; disabled for reduced-motion. */
-.starsGlow {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960' viewBox='0 0 960 960'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23F2FBFF' stop-opacity='0.95'/%3E%3Cstop offset='35%25' stop-color='%237FE0FF' stop-opacity='0.5'/%3E%3Cstop offset='100%25' stop-color='%237FE0FF' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23g)'%3E%3Ccircle cx='150' cy='180' r='7'/%3E%3Ccircle cx='430' cy='90' r='5.5'/%3E%3Ccircle cx='700' cy='320' r='6.5'/%3E%3Ccircle cx='860' cy='600' r='5'/%3E%3Ccircle cx='250' cy='700' r='6'/%3E%3Ccircle cx='600' cy='850' r='5.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 960px 960px;
-  background-repeat: repeat;
-  opacity: 0.55;
-  animation: star-twinkle 7s ease-in-out infinite;
-  will-change: opacity;
-}
-
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.75; }
-}
-
-/* Fine film-grain texture, extremely low opacity — adds tactile depth
-   without ever reading as noise or blotches. */
+/* Fine film-grain texture, masked to the blue accent pools so it only
+   lives where the nebula glows — grain over blue reads as premium
+   tactile depth, grain over flat black reads as noise. The mask matches
+   the .glow radial positions exactly. */
 .grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  opacity: 0.025;
-  mix-blend-mode: overlay;
+  opacity: 0.11;
+  mix-blend-mode: soft-light;
+  -webkit-mask-image:
+    radial-gradient(40rem 32rem at 88% 4%, #000 0%, transparent 60%),
+    radial-gradient(36rem 28rem at 4% 24%, #000 0%, transparent 58%),
+    radial-gradient(32rem 26rem at 94% 46%, #000 0%, transparent 56%),
+    radial-gradient(36rem 30rem at 6% 68%, #000 0%, transparent 58%),
+    radial-gradient(32rem 26rem at 90% 90%, #000 0%, transparent 58%),
+    radial-gradient(60rem 40rem at 50% 0%, #000 0%, transparent 62%);
+  mask-image:
+    radial-gradient(40rem 32rem at 88% 4%, #000 0%, transparent 60%),
+    radial-gradient(36rem 28rem at 4% 24%, #000 0%, transparent 58%),
+    radial-gradient(32rem 26rem at 94% 46%, #000 0%, transparent 56%),
+    radial-gradient(36rem 30rem at 6% 68%, #000 0%, transparent 58%),
+    radial-gradient(32rem 26rem at 90% 90%, #000 0%, transparent 58%),
+    radial-gradient(60rem 40rem at 50% 0%, #000 0%, transparent 62%);
 }
 
-@media (max-width: 1023px), (pointer: coarse) {
-  .stars {
-    opacity: 0.38;
-  }
-  .starsGlow {
-    opacity: 0.4;
-    animation: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .starsGlow {
-    animation: none;
-    opacity: 0.5;
-  }
-}

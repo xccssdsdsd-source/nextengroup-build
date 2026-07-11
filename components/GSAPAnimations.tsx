@@ -164,20 +164,20 @@ export default function GSAPAnimations() {
             if (!glare) {
               glare = document.createElement('div')
               glare.className = 'tilt-glare'
-              glare.style.cssText = 'position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%);opacity:0;z-index:1;'
+              glare.style.cssText = 'position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 60%);opacity:0;z-index:1;'
               el.style.position = 'relative'
               el.appendChild(glare)
             }
 
-            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.12, ease: 'none' })
-            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.12, ease: 'none' })
+            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.35, ease: 'power3' })
+            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.35, ease: 'power3' })
 
             const onMove = (e: MouseEvent) => {
               const rect = el.getBoundingClientRect()
-              rotX(-((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 7)
-              rotY(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 7)
+              rotX(-((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 4.5)
+              rotY(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 4.5)
               if (glare) {
-                glare.style.background = `radial-gradient(circle at ${((e.clientX - rect.left) / rect.width) * 100}% ${((e.clientY - rect.top) / rect.height) * 100}%, rgba(255,255,255,0.10) 0%, transparent 60%)`
+                glare.style.background = `radial-gradient(circle at ${((e.clientX - rect.left) / rect.width) * 100}% ${((e.clientY - rect.top) / rect.height) * 100}%, rgba(255,255,255,0.06) 0%, transparent 60%)`
                 glare.style.opacity = '1'
               }
             }

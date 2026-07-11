@@ -127,49 +127,30 @@ function splitAtSentences(text: string, count: number): [string, string] {
   return [text, '']
 }
 
-function AgentBadge() {
+function ScoreBadge({ value, label, geo = false }: LighthouseScore & { geo?: boolean }) {
+  const colors = geo
+    ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)', glow: 'rgba(34,197,94,0.45)' }
+    : value >= 90
+      ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)', glow: 'rgba(34,197,94,0.45)' }
+      : value >= 50
+        ? { bg: 'rgba(234,179,8,0.15)', fg: '#FACC15', ring: 'rgba(234,179,8,0.25)', glow: 'rgba(234,179,8,0.45)' }
+        : { bg: 'rgba(239,68,68,0.15)', fg: '#FCA5A5', ring: 'rgba(239,68,68,0.25)', glow: 'rgba(239,68,68,0.45)' }
   return (
-    <div
-      className="flex items-center gap-2.5 rounded-full px-3.5 py-2"
-      style={{
-        background: 'linear-gradient(135deg, rgba(34,197,94,0.14) 0%, rgba(34,211,238,0.08) 100%)',
-        border: '1px solid rgba(34,197,94,0.28)',
-        boxShadow: '0 0 16px rgba(34,197,94,0.10), inset 0 1px 0 rgba(255,255,255,0.06)',
-      }}
-    >
-      <span
-        className="relative flex h-2.5 w-2.5 shrink-0"
-      >
-        <span className="absolute inline-flex h-full w-full rounded-full animate-ping" style={{ background: 'rgba(34,197,94,0.5)', animationDuration: '1.8s' }} />
-        <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: '#22c55e', boxShadow: '0 0 6px rgba(34,197,94,0.8)' }} />
-      </span>
-      <div className="flex flex-col leading-none">
-        <span className="text-[11px] font-bold tracking-wide" style={{ color: '#86EFAC' }}>Widoczna dla AI i ChatGPT</span>
-        <span className="text-[10px] mt-0.5" style={{ color: 'rgba(134,239,172,0.55)' }}>Zoptymalizowana pod GEO</span>
-      </div>
-    </div>
-  )
-}
-
-function ScoreBadge({ value, label }: LighthouseScore) {
-  const colors = value >= 90
-    ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)' }
-    : value >= 50
-      ? { bg: 'rgba(234,179,8,0.15)', fg: '#FACC15', ring: 'rgba(234,179,8,0.25)' }
-      : { bg: 'rgba(239,68,68,0.15)', fg: '#FCA5A5', ring: 'rgba(239,68,68,0.25)' }
-  return (
-    <div className="score-badge flex flex-col items-center gap-1.5" suppressHydrationWarning>
+    <div className="score-badge group/score flex flex-col items-center gap-1.5" suppressHydrationWarning>
       <div
-        className={`flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold counter-${value}`}
+        className={`flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold counter-${value} transition-transform duration-200 ease-out group-hover/score:scale-[1.14]`}
         style={{
           background: colors.bg,
           color: colors.fg,
           boxShadow: `0 0 0 3px ${colors.ring}`,
+          transitionProperty: 'transform, box-shadow',
         }}
+        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 0 0 3px ${colors.ring}, 0 0 14px ${colors.glow}` }}
+        onMouseLeave={(e) => { e.currentTarget.style.boxShadow = `0 0 0 3px ${colors.ring}` }}
       >
         {value}
       </div>
-      <span className="text-[9px] leading-tight text-[#A6B2C4] text-center max-w-[44px]">{label}</span>
+      <span className="text-[9px] leading-tight text-[#A6B2C4] text-center max-w-[44px] transition-colors duration-200 ease-out group-hover/score:text-[#EAF0F7]">{geo ? 'GEO / AI' : label}</span>
     </div>
   )
 }
@@ -412,7 +393,6 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                           suppressHydrationWarning
                         />
                       </a>
-                      <AgentBadge />
                     </div>
                   </div>
                 ) : (
@@ -442,7 +422,6 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                         </div>
                       </div>
                     </div>
-                    <AgentBadge />
                   </div>
                 )}
 
@@ -473,6 +452,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
                       <div className="flex gap-4 flex-wrap">
                         {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
+                        <ScoreBadge label="GEO / AI" value={100} geo />
                       </div>
                     </div>
                   )}

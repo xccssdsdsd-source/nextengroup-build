@@ -352,7 +352,7 @@ export default function Services() {
             </p>
           </m.div>
 
-          <div className="mt-14 grid items-start gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
+          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
             {overview.map((item, i) => (
               <OverviewCard key={item.name} item={item} i={i} />
             ))}
@@ -542,6 +542,7 @@ export default function Services() {
 
 function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const [examplesOpen, setExamplesOpen] = useState(false)
 
   const getProcessType = () => {
     if (ai.name === 'Automatyzacja') return 'simple'
@@ -599,15 +600,52 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
         ))}
       </div>
 
-      <div className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">
-          {ai.examples.length > 1 ? 'Przykłady' : 'Przykład'}
-        </p>
-        {ai.examples.map((example, idx) => (
-          <div key={idx} className="rounded-r-md border-l-2 border-[#22D3EE] px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.03)' }}>
-            <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
-          </div>
-        ))}
+      <div className="mt-auto">
+        <button
+          type="button"
+          onClick={() => setExamplesOpen((v) => !v)}
+          aria-expanded={examplesOpen}
+          className="flex w-full items-center justify-between rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-3 text-left transition-colors hover:border-[rgba(34,211,238,0.3)] hover:bg-[rgba(255,255,255,0.03)]"
+        >
+          <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">
+            {ai.examples.length > 1 ? 'Przykłady' : 'Przykład'}
+          </span>
+          <m.svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            animate={{ rotate: examplesOpen ? 180 : 0 }}
+            transition={{ duration: 0.25, ease }}
+            aria-hidden
+          >
+            <path d="M6 9l6 6 6-6" stroke="#5EEAFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </m.svg>
+        </button>
+
+        <AnimatePresence initial={false}>
+          {examplesOpen && (
+            <m.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.32, ease }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-2.5 pt-3">
+                {ai.examples.map((example, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-[rgba(34,211,238,0.14)] px-4 py-3.5"
+                    style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.06), rgba(255,255,255,0.02))' }}
+                  >
+                    <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
+                  </div>
+                ))}
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
       </div>
       </div>
     </m.div>

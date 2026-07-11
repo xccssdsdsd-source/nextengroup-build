@@ -345,7 +345,8 @@ export default function Contact() {
                     </label>
                   </div>
                   {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}
-                  <button type="submit" disabled={sending || !gdprAccepted} className="w-full btn btn-primary py-3.5 font-semibold disabled:opacity-60 disabled:cursor-not-allowed">
+                  <button type="submit" disabled={sending || !gdprAccepted} className="w-full btn btn-primary py-3.5 font-semibold disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2">
+                    {sending && <span className="h-4 w-4 rounded-full border-2 border-[#06141A]/30 border-t-[#06141A] animate-spin" aria-hidden="true" />}
                     {sending ? 'Wysyłanie…' : 'Wyślij zapytanie'}
                   </button>
                   <p className="text-center text-[11px] text-[#7C879B]">Bez spamu. Bez zobowiązań. Odpowiadamy w&nbsp;ciągu 24&nbsp;h.</p>

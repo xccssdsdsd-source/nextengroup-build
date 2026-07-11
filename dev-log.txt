@@ -14,13 +14,16 @@
      · optimizePackageImports
 
  ✓ Starting...
- ✓ Ready in 3.8s
+ ✓ Ready in 3s
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 1071ms (115 modules)
+ ✓ Compiled /middleware in 830ms (115 modules)
  ○ Compiling / ...
- ✓ Compiled / in 19.5s (1664 modules)
+ ✓ Compiled / in 25.6s (1664 modules)
 Image with src "/portfolio/pm-apartments-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
- ✓ Compiled in 2.2s (740 modules)
- GET / 200 in 237ms
-[?25h
+ ✓ Compiled in 5.4s (740 modules)
+ GET / 200 in 28155ms
+ GET / 200 in 26238ms
+ GET / 200 in 190ms
+ GET / 200 in 222ms
+ GET / 200 in 241ms

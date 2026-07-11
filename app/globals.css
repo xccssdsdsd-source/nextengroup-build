@@ -1036,12 +1036,17 @@ select {
 }
 
 /* Hero headline: on mobile the desktop tracking/leading is too tight for wrapped
-   bold text, so loosen it for readability. */
+   bold text, so loosen it and balance the line breaks for a cleaner look. */
 @media (max-width: 639px) {
   .hero-heading-line {
-    font-size: clamp(26px, 8.2vw, 34px) !important;
-    line-height: 1.22 !important;
-    letter-spacing: -0.015em !important;
+    font-weight: 700 !important;
+    font-size: clamp(25px, 7.6vw, 32px) !important;
+    line-height: 1.28 !important;
+    letter-spacing: -0.01em !important;
+    text-wrap: balance;
+  }
+  .hero-heading-line .serif-accent {
+    font-size: 1.03em;
   }
 }
 

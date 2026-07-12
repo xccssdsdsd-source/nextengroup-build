@@ -14,11 +14,8 @@ const trustOwners = [
   { src: '/owner-msdesignstudio.webp', alt: 'Klient MS Design Studio' },
 ]
 
-const gradientAccent = {
-  background: 'linear-gradient(95deg, #5EEAFF 0%, #22D3EE 55%, #0E7490 100%)',
-  WebkitBackgroundClip: 'text' as const,
-  WebkitTextFillColor: 'transparent' as const,
-  backgroundClip: 'text' as const,
+const accentText = {
+  color: '#5EEAFF',
 }
 
 type HeroHeadlineWord = { text: string; accent?: boolean }
@@ -42,7 +39,7 @@ const heroLine2: HeroHeadlineWord[] = [
 const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) => (
   <span className="hero-word-mask">
     <span className="hero-word" style={{ animationDelay: `${delay}ms` }}>
-      {word.accent ? <span className="serif-accent" style={gradientAccent}>{word.text}</span> : word.text}
+      {word.accent ? <span className="serif-accent" style={accentText}>{word.text}</span> : word.text}
     </span>
   </span>
 )

@@ -92,18 +92,9 @@ function TestimonialCard({ testimonial, featured }: { testimonial: (typeof testi
       className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] p-7 sm:p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
-      <svg
-        className="absolute right-7 top-7 opacity-[0.12] animate-breathe scale-75"
-        width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true"
-      >
-        <path d="M0 48V29.6C0 12.8 8.8 3.2 26.4 0L28.8 4.8C20.8 6.4 15.2 10.4 12 16.8H22.4V48H0ZM36.8 48V29.6C36.8 12.8 45.6 3.2 63.2 0L65.6 4.8C57.6 6.4 52 10.4 48.8 16.8H59.2V48H36.8Z" fill="#22D3EE" />
-      </svg>
-
       <div className="flex gap-1 text-[#FBBF24]">
         {Array.from({ length: 5 }).map((_, i) => (
-          <span key={i} style={{ display: 'inline-flex', animation: 'heroFadeUp 0.4s ease-out both', animationDelay: `${0.3 + i * 0.1}s` }}>
-            <Star size={14} fill="currentColor" strokeWidth={0} />
-          </span>
+          <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
         ))}
       </div>
 

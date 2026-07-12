@@ -1,10 +1,9 @@
-/* Per-section ambient glow — one deep-blue accent per section, anchored to
+/* Per-section ambient light — one soft, low-contrast navy pool anchored to
    the left or right side at roughly mid-height (never near the top/bottom
-   edge), plus a hard edge-safety mask on top. Both together guarantee the
-   pool can never touch the section boundary regardless of real rendered
-   height — that combination is what actually stops the seam bug, not
-   precise coordinate-tuning. Stars are masked to the same pool shape, so
-   the "grain" of dots concentrates on the gradient, not the flat black. */
+   edge), plus a hard edge-safety mask so the pool can never touch the
+   section boundary regardless of real rendered height. Deliberately subtle:
+   it lifts the flat black just enough to give each section depth, without
+   the "nebula" look. */
 
 .glow {
   position: absolute;
@@ -16,114 +15,40 @@
   mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
 }
 
+/* Starfield removed — the dot grain read as a generic "space" template. */
 .stars {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Ccircle cx='283.5' cy='261.6' r='0.9' fill='white' opacity='0.85'/%3E%3Ccircle cx='246.4' cy='179.8' r='0.75' fill='white' opacity='0.72'/%3E%3Ccircle cx='190.7' cy='17.3' r='0.7' fill='white' opacity='0.68'/%3E%3Ccircle cx='249.9' cy='227.3' r='0.5' fill='white' opacity='0.5'/%3E%3Ccircle cx='237.2' cy='303.2' r='0.9' fill='white' opacity='0.85'/%3E%3Ccircle cx='286.0' cy='58.5' r='0.4' fill='white' opacity='0.4'/%3E%3Ccircle cx='209.6' cy='266.3' r='0.42' fill='white' opacity='0.42'/%3E%3Ccircle cx='141.3' cy='100.0' r='0.6' fill='white' opacity='0.58'/%3E%3Ccircle cx='214.6' cy='13.0' r='0.62' fill='white' opacity='0.6'/%3E%3Ccircle cx='242.6' cy='138.6' r='0.72' fill='white' opacity='0.7'/%3E%3Ccircle cx='38.8' cy='290.1' r='0.58' fill='white' opacity='0.56'/%3E%3Ccircle cx='56.5' cy='280.8' r='0.42' fill='white' opacity='0.4'/%3E%3Ccircle cx='109.0' cy='244.2' r='0.48' fill='white' opacity='0.46'/%3E%3Ccircle cx='9.7' cy='313.5' r='0.42' fill='white' opacity='0.4'/%3E%3Ccircle cx='211.8' cy='302.0' r='0.5' fill='white' opacity='0.48'/%3E%3Ccircle cx='208.7' cy='23.2' r='0.35' fill='white' opacity='0.34'/%3E%3Ccircle cx='133.8' cy='250.2' r='0.8' fill='white' opacity='0.78'/%3E%3Ccircle cx='120.4' cy='156.6' r='0.4' fill='white' opacity='0.4'/%3E%3Ccircle cx='301.8' cy='195.5' r='0.5' fill='white' opacity='0.48'/%3E%3Ccircle cx='171.3' cy='180.3' r='0.76' fill='white' opacity='0.74'/%3E%3Ccircle cx='182.3' cy='244.4' r='0.86' fill='white' opacity='0.84'/%3E%3Ccircle cx='148.2' cy='201.1' r='0.5' fill='white' opacity='0.48'/%3E%3Ccircle cx='202.1' cy='183.8' r='0.42' fill='white' opacity='0.4'/%3E%3Ccircle cx='157.6' cy='5.6' r='0.34' fill='white' opacity='0.32'/%3E%3Ccircle cx='147.9' cy='120.1' r='0.46' fill='white' opacity='0.44'/%3E%3Ccircle cx='306.3' cy='20.5' r='0.5' fill='white' opacity='0.48'/%3E%3Ccircle cx='126.2' cy='160.2' r='0.64' fill='white' opacity='0.62'/%3E%3Ccircle cx='60.9' cy='32.4' r='0.58' fill='white' opacity='0.56'/%3E%3Ccircle cx='243.8' cy='90.6' r='0.55' fill='white' opacity='0.53'/%3E%3Ccircle cx='168.1' cy='148.0' r='0.78' fill='white' opacity='0.76'/%3E%3Ccircle cx='287.3' cy='18.1' r='0.4' fill='white' opacity='0.38'/%3E%3Ccircle cx='94.6' cy='154.0' r='0.74' fill='white' opacity='0.72'/%3E%3Ccircle cx='43.4' cy='49.2' r='0.36' fill='white' opacity='0.35'/%3E%3Ccircle cx='267.0' cy='157.0' r='0.6' fill='white' opacity='0.58'/%3E%3Ccircle cx='258.8' cy='290.8' r='0.62' fill='white' opacity='0.6'/%3E%3Ccircle cx='152.0' cy='263.8' r='0.62' fill='white' opacity='0.6'/%3E%3Ccircle cx='80.1' cy='209.3' r='0.82' fill='white' opacity='0.8'/%3E%3Ccircle cx='176.3' cy='260.9' r='0.38' fill='white' opacity='0.36'/%3E%3Ccircle cx='254.0' cy='231.6' r='0.6' fill='white' opacity='0.58'/%3E%3Ccircle cx='126.5' cy='255.0' r='0.6' fill='white' opacity='0.58'/%3E%3Ccircle cx='247.1' cy='144.3' r='0.66' fill='white' opacity='0.64'/%3E%3Ccircle cx='109.2' cy='32.8' r='0.42' fill='white' opacity='0.4'/%3E%3Ccircle cx='166.2' cy='54.0' r='0.66' fill='white' opacity='0.64'/%3E%3Ccircle cx='231.3' cy='21.0' r='0.52' fill='white' opacity='0.5'/%3E%3Ccircle cx='117.8' cy='67.4' r='0.78' fill='white' opacity='0.76'/%3E%3Ccircle cx='279.2' cy='6.3' r='0.56' fill='white' opacity='0.54'/%3E%3Ccircle cx='208.8' cy='291.1' r='0.64' fill='white' opacity='0.62'/%3E%3Ccircle cx='39.8' cy='95.2' r='0.72' fill='white' opacity='0.7'/%3E%3Ccircle cx='225.6' cy='191.9' r='0.46' fill='white' opacity='0.44'/%3E%3Ccircle cx='259.6' cy='74.5' r='0.62' fill='white' opacity='0.6'/%3E%3Ccircle cx='275.0' cy='196.4' r='0.38' fill='white' opacity='0.36'/%3E%3Ccircle cx='85.3' cy='50.9' r='0.48' fill='white' opacity='0.46'/%3E%3Ccircle cx='143.7' cy='91.3' r='0.6' fill='white' opacity='0.58'/%3E%3Ccircle cx='263.7' cy='130.9' r='0.44' fill='white' opacity='0.42'/%3E%3Ccircle cx='258.4' cy='303.2' r='0.76' fill='white' opacity='0.74'/%3E%3C/svg%3E");
-  background-size: 320px 320px;
-  background-repeat: repeat;
-  opacity: 1;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  display: none;
 }
 
-/* Hero — right side, deep navy → medium blue core. No violet/white mixed
-   in; strictly the blue family. */
 .hero {
-  background:
-    radial-gradient(36rem 29rem at 92% 42%, rgba(21, 45, 122, 0.42), transparent 62%),
-    radial-gradient(16rem 12rem at 95% 40%, rgba(45, 92, 220, 0.38), transparent 56%);
-}
-.hero .stars {
-  -webkit-mask-image: radial-gradient(36rem 29rem at 92% 42%, #000, transparent 62%);
-  mask-image: radial-gradient(36rem 29rem at 92% 42%, #000, transparent 62%);
+  background: radial-gradient(38rem 30rem at 92% 42%, rgba(21, 45, 122, 0.20), transparent 66%);
 }
 
-/* Usługi (Services block 1) — left, two soft points at safe mid-range
-   heights (never closer than 30%/70% to an edge). */
 .services1 {
-  background:
-    radial-gradient(31rem 24rem at 8% 35%, rgba(21, 45, 122, 0.38), transparent 62%),
-    radial-gradient(13rem 11rem at 5% 33%, rgba(45, 92, 220, 0.33), transparent 56%),
-    radial-gradient(29rem 23rem at 10% 68%, rgba(21, 45, 122, 0.3), transparent 60%);
-}
-.services1 .stars {
-  -webkit-mask-image:
-    radial-gradient(31rem 24rem at 8% 35%, #000, transparent 62%),
-    radial-gradient(29rem 23rem at 10% 68%, #000, transparent 60%);
-  mask-image:
-    radial-gradient(31rem 24rem at 8% 35%, #000, transparent 62%),
-    radial-gradient(29rem 23rem at 10% 68%, #000, transparent 60%);
+  background: radial-gradient(34rem 26rem at 6% 42%, rgba(21, 45, 122, 0.16), transparent 66%);
 }
 
-/* Automatyzacje (Services block 2) — right, single deep-blue pool */
 .services2 {
-  background:
-    radial-gradient(33rem 26rem at 92% 50%, rgba(21, 45, 122, 0.4), transparent 62%),
-    radial-gradient(14rem 11rem at 95% 48%, rgba(45, 92, 220, 0.34), transparent 56%);
-}
-.services2 .stars {
-  -webkit-mask-image: radial-gradient(33rem 26rem at 92% 50%, #000, transparent 62%);
-  mask-image: radial-gradient(33rem 26rem at 92% 50%, #000, transparent 62%);
+  background: radial-gradient(34rem 27rem at 94% 50%, rgba(21, 45, 122, 0.17), transparent 66%);
 }
 
-/* Proces — left, deep navy */
 .process {
-  background:
-    radial-gradient(33rem 26rem at 8% 48%, rgba(21, 45, 122, 0.38), transparent 62%),
-    radial-gradient(14rem 11rem at 5% 46%, rgba(45, 92, 220, 0.33), transparent 56%);
-}
-.process .stars {
-  -webkit-mask-image: radial-gradient(33rem 26rem at 8% 48%, #000, transparent 62%);
-  mask-image: radial-gradient(33rem 26rem at 8% 48%, #000, transparent 62%);
+  background: radial-gradient(34rem 27rem at 6% 48%, rgba(21, 45, 122, 0.16), transparent 66%);
 }
 
-/* Portfolio — right, deep blue */
 .portfolio {
-  background:
-    radial-gradient(33rem 26rem at 92% 50%, rgba(21, 45, 122, 0.38), transparent 60%),
-    radial-gradient(14rem 11rem at 95% 48%, rgba(45, 92, 220, 0.33), transparent 54%);
-}
-.portfolio .stars {
-  -webkit-mask-image: radial-gradient(33rem 26rem at 92% 50%, #000, transparent 60%);
-  mask-image: radial-gradient(33rem 26rem at 92% 50%, #000, transparent 60%);
+  background: radial-gradient(34rem 27rem at 94% 50%, rgba(21, 45, 122, 0.16), transparent 64%);
 }
 
-/* Opinie (Testimonials) — left, deep blue */
 .testimonials {
-  background:
-    radial-gradient(31rem 24rem at 8% 45%, rgba(21, 45, 122, 0.38), transparent 60%),
-    radial-gradient(13rem 11rem at 5% 43%, rgba(45, 92, 220, 0.33), transparent 54%);
-}
-.testimonials .stars {
-  -webkit-mask-image: radial-gradient(31rem 24rem at 8% 45%, #000, transparent 60%);
-  mask-image: radial-gradient(31rem 24rem at 8% 45%, #000, transparent 60%);
+  background: radial-gradient(33rem 25rem at 6% 45%, rgba(21, 45, 122, 0.16), transparent 64%);
 }
 
-/* FAQ — right, deep navy */
 .faq {
-  background:
-    radial-gradient(31rem 24rem at 92% 50%, rgba(21, 45, 122, 0.38), transparent 60%),
-    radial-gradient(13rem 11rem at 95% 48%, rgba(45, 92, 220, 0.33), transparent 54%);
-}
-.faq .stars {
-  -webkit-mask-image: radial-gradient(31rem 24rem at 92% 50%, #000, transparent 60%);
-  mask-image: radial-gradient(31rem 24rem at 92% 50%, #000, transparent 60%);
+  background: radial-gradient(33rem 25rem at 94% 50%, rgba(21, 45, 122, 0.16), transparent 64%);
 }
 
-/* Kontakt — left, deep blue with a small cyan-accented core as the finale */
+/* Kontakt — the finale keeps a whisper of the cyan accent, still restrained. */
 .contact {
-  background:
-    radial-gradient(33rem 26rem at 8% 45%, rgba(21, 45, 122, 0.38), transparent 60%),
-    radial-gradient(14rem 11rem at 5% 43%, rgba(34, 211, 238, 0.2), transparent 54%);
-}
-.contact .stars {
-  -webkit-mask-image: radial-gradient(33rem 26rem at 8% 45%, #000, transparent 60%);
-  mask-image: radial-gradient(33rem 26rem at 8% 45%, #000, transparent 60%);
-}
-
-@media (max-width: 1023px), (pointer: coarse) {
-  .stars {
-    opacity: 0.78;
-  }
+  background: radial-gradient(34rem 27rem at 6% 45%, rgba(24, 78, 110, 0.18), transparent 64%);
 }

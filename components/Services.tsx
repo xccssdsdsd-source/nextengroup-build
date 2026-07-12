@@ -164,7 +164,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       <div
         className={`premium-card pkg-card relative z-[1] overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
           pkg.featured
-            ? 'border-[rgba(34,211,238,0.3)] shadow-[0_0_0_2px_rgba(34,211,238,0.1),_0_4px_24px_rgba(34,211,238,0.18),_0_0_40px_rgba(34,211,238,0.1)]'
+            ? 'border-[rgba(34,211,238,0.4)] shadow-[0_2px_16px_rgba(0,0,0,0.5)]'
             : isHovered
             ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
             : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
@@ -173,7 +173,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       >
       {pkg.featured ? (
         <div className="mb-3 mt-8">
-          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full shadow-[0_10px_30px_rgba(34,211,238,0.18)]">
+          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full">
             Najpopularniejszy
           </span>
         </div>

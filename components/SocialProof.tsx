@@ -61,7 +61,7 @@ export default function SocialProof() {
           <h2 className="section-title" suppressHydrationWarning>Współpraca bez ryzyka</h2>
         </m.div>
 
-        <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85), 0 32px 90px -40px rgba(34,211,238,0.10)' }}>
+        <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85)' }}>
           {stats.map((stat, i) => {
             return (
               <m.div
@@ -83,13 +83,7 @@ export default function SocialProof() {
 
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">
                   {stat.value === null ? (
-                    <m.span
-                      style={numberStyle}
-                      animate={{ opacity: [0.55, 1, 0.55] }}
-                      transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-                    >
-                      ∞
-                    </m.span>
+                    <span style={numberStyle}>∞</span>
                   ) : (
                     <span style={numberStyle}>
                       <CountUp target={stat.value} suffix={stat.suffix} active={inView} delay={i * 0.1 + 0.15} />

@@ -37,12 +37,21 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteTitle,
   description: siteDescription,
+  applicationName: 'Getbuild',
+  authors: [{ name: 'Getbuild', url: siteUrl }],
+  creator: 'Getbuild',
+  publisher: 'Getbuild',
+  category: 'technology',
+  formatDetection: { telephone: false, address: false, email: false },
   keywords: [
     'strony www dla firm',
+    'strony internetowe dla firm',
     'automatyzacje AI',
     'agenci AI',
+    'chatbot AI dla firmy',
     'SEO dla firm',
     'GEO Generative Engine Optimization',
+    'widoczność w ChatGPT',
     'Getbuild',
   ],
   openGraph: {
@@ -115,10 +124,12 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
+          '@id': 'https://getbuild.pl/#website',
           name: 'Getbuild',
           url: 'https://getbuild.pl',
           description: 'Nowoczesne strony WWW, automatyzacje AI i agenci AI dla polskich firm.',
           inLanguage: 'pl',
+          publisher: { '@id': 'https://getbuild.pl/#organization' },
         }) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
@@ -246,6 +257,12 @@ export default function RootLayout({
           '@id': 'https://getbuild.pl/#webpage',
           url: 'https://getbuild.pl',
           name: 'Getbuild — Strony WWW, Automatyzacje AI i GEO dla firm',
+          description: siteDescription,
+          inLanguage: 'pl',
+          isPartOf: { '@id': 'https://getbuild.pl/#website' },
+          primaryImageOfPage: { '@type': 'ImageObject', url: 'https://getbuild.pl/getbuild-logo-og.png' },
+          datePublished: '2024-01-01',
+          dateModified: '2026-07-12',
           speakable: {
             '@type': 'SpeakableSpecification',
             cssSelector: ['h1', 'h2', '.section-copy'],

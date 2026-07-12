@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { m, useScroll, useTransform } from 'framer-motion'
 import ChatWidget from './ChatWidget'
 import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
@@ -14,8 +15,10 @@ const trustOwners = [
   { src: '/owner-msdesignstudio.webp', alt: 'Klient MS Design Studio' },
 ]
 
+// Emphasis is carried by the italic serif; the colour is the calm brand
+// cyan, not the bright neon variant — deliberate, not a highlighter.
 const accentText = {
-  color: '#5EEAFF',
+  color: 'var(--accent)',
 }
 
 type HeroHeadlineWord = { text: string; accent?: boolean }
@@ -82,8 +85,24 @@ export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [wordIndex, setWordIndex] = useState(0)
   const [prevIndex, setPrevIndex] = useState(-1)
+  // Mobile-only scroll parallax: desktop keeps its GSAP parallax, so we only
+  // drive these transforms on touch/small screens to add depth as you scroll.
+  const [mobileParallax, setMobileParallax] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, 56])
+  const chatY = useTransform(scrollYProgress, [0, 1], [0, -34])
 
   useEffect(() => { setIsMounted(true) }, [])
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    setMobileParallax(window.matchMedia('(max-width: 768px)').matches && !reduce)
+  }, [])
 
   // Rotujące słowo: każde wjeżdża od dołu i wypycha poprzednie do góry.
   useEffect(() => {
@@ -107,6 +126,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={sectionRef}
       suppressHydrationWarning
       data-no-reveal
       data-no-entrance
@@ -134,7 +154,7 @@ export default function Hero() {
         >
 
           {/* ── TEXT COLUMN ── */}
-          <div className="text-left" data-parallax-headline>
+          <m.div className="text-left" data-parallax-headline style={mobileParallax ? { y: headlineY } : undefined}>
             <TrustProof />
             <h1
               style={{
@@ -191,7 +211,7 @@ export default function Hero() {
                         key={word}
                         aria-hidden="true"
                         className={cls}
-                        style={{ position: 'absolute', left: 0, top: 0, color: '#5EEAFF', fontWeight: 600, whiteSpace: 'nowrap' }}
+                        style={{ position: 'absolute', left: 0, top: 0, color: 'var(--accent)', fontWeight: 600, whiteSpace: 'nowrap' }}
                       >
                         {word}
                       </span>
@@ -210,14 +230,16 @@ export default function Hero() {
               </a>
             </div>
 
-          </div>
+          </m.div>
 
           {/* ── AI CHAT ── */}
-          <div className="hero-from-right flex justify-center lg:justify-end mt-10 md:mt-0" style={{ animationDelay: '260ms' }}>
-            <div className="w-full max-w-[500px]">
-              <ChatWidget />
+          <m.div style={mobileParallax ? { y: chatY } : undefined}>
+            <div className="hero-from-right flex justify-center lg:justify-end mt-10 md:mt-0" style={{ animationDelay: '260ms' }}>
+              <div className="hero-chat-float w-full max-w-[500px]">
+                <ChatWidget />
+              </div>
             </div>
-          </div>
+          </m.div>
         </div>
       </div>
     </section>

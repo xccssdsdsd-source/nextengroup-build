@@ -910,6 +910,29 @@ select {
   }
 }
 
+/* Gentle ambient float on the hero chat card — mobile only, where the
+   desktop scroll parallax / device treatments don't run, so the hero still
+   feels alive. Kept small and slow so it reads premium, not restless. */
+@keyframes hero-chat-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+
+@media (max-width: 768px) {
+  .hero-chat-float {
+    animation: hero-chat-float 6.5s ease-in-out infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-chat-float {
+    animation: none !important;
+    will-change: auto !important;
+  }
+}
+
 @keyframes heroDeviceTiltIn {
   from { opacity: 0; transform: rotateX(16deg) scale(0.97); }
   to   { opacity: 1; transform: rotateX(0deg)  scale(1); }

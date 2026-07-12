@@ -12,8 +12,8 @@ const siteDescription =
   'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['600', '700'],
+  subsets: ['latin', 'latin-ext'],
+  weight: ['600', '700', '800'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -27,7 +27,7 @@ const instrumentSerif = Instrument_Serif({
 })
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['400', '500'],
   variable: '--font-body',
   display: 'swap',

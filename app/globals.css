@@ -1009,18 +1009,20 @@ select {
   line-height: 1;
 }
 
-/* Hero headline: on mobile the desktop tracking/leading is too tight for wrapped
-   bold text, so loosen it and balance the line breaks for a cleaner look. */
+/* Hero headline on mobile: match the desktop treatment — same heavy weight,
+   tight tracking and impactful size — so the phone hero reads as polished as
+   desktop. Leading stays a touch looser than desktop's 1.02 so Polish
+   diacritics on wrapped lines never collide. */
 @media (max-width: 639px) {
   .hero-heading-line {
-    font-weight: 700 !important;
-    font-size: clamp(25px, 7.6vw, 32px) !important;
-    line-height: 1.28 !important;
-    letter-spacing: -0.01em !important;
+    font-weight: 800 !important;
+    font-size: clamp(28px, 8.2vw, 40px) !important;
+    line-height: 1.14 !important;
+    letter-spacing: -0.028em !important;
     text-wrap: balance;
   }
   .hero-heading-line .serif-accent {
-    font-size: 1.03em;
+    font-size: 1.04em;
   }
 }
 

@@ -1016,10 +1016,11 @@ select {
 @media (max-width: 639px) {
   .hero-heading-line {
     font-weight: 800 !important;
-    font-size: clamp(28px, 8.2vw, 40px) !important;
-    line-height: 1.14 !important;
-    letter-spacing: -0.028em !important;
+    font-size: clamp(27px, 7.6vw, 38px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.03em !important;
     text-wrap: balance;
+    margin-bottom: 0.22em !important;
   }
   .hero-heading-line .serif-accent {
     font-size: 1.04em;

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Inter, Instrument_Serif } from 'next/font/google'
+import { Plus_Jakarta_Sans, Inter, Instrument_Serif, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import ClientShell from '@/components/ClientShell'
@@ -30,6 +30,13 @@ const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   weight: ['400', '500'],
   variable: '--font-body',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['600', '700'],
+  variable: '--font-heading-mobile',
   display: 'swap',
 })
 
@@ -112,7 +119,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${plusJakartaSans.variable} ${inter.variable} ${instrumentSerif.variable}`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

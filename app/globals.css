@@ -1015,7 +1015,8 @@ select {
    diacritics on wrapped lines never collide. */
 @media (max-width: 639px) {
   .hero-heading-line {
-    font-weight: 800 !important;
+    font-family: var(--font-heading-mobile) !important;
+    font-weight: 700 !important;
     font-size: clamp(27px, 7.6vw, 38px) !important;
     line-height: 1.1 !important;
     letter-spacing: -0.03em !important;

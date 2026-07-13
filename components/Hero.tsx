@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
-import { m, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, m, useScroll, useTransform } from 'framer-motion'
 import ChatWidget from './ChatWidget'
 import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
@@ -11,6 +11,9 @@ const carouselWords = [
   'Pierwszy projekt widzisz w 24h',
   'Rozwiązania dobrane pod Twój biznes, po konsultacji',
   'Płacisz dopiero za efekt, który akceptujesz',
+  'Zero ukrytych kosztów — cena ustalona po konsultacji',
+  'Bez zobowiązań — decydujesz po rozmowie, nie przed nią',
+  'Wsparcie i poprawki po wdrożeniu w cenie',
 ]
 
 const trustOwners = [
@@ -88,7 +91,6 @@ const TrustProof = () => (
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false)
   const [wordIndex, setWordIndex] = useState(0)
-  const [prevIndex, setPrevIndex] = useState(-1)
   // Mobile-only scroll parallax: desktop keeps its GSAP parallax, so we only
   // drive these transforms on touch/small screens to add depth as you scroll.
   const [mobileParallax, setMobileParallax] = useState(false)
@@ -114,10 +116,7 @@ export default function Hero() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const interval = setInterval(() => {
-      setWordIndex((i) => {
-        setPrevIndex(i)
-        return (i + 1) % carouselWords.length
-      })
+      setWordIndex((i) => (i + 1) % carouselWords.length)
     }, 2400)
     return () => clearInterval(interval)
   }, [isMounted])
@@ -198,29 +197,20 @@ export default function Hero() {
             </h1>
 
             <div className="hero-from-right mt-7 flex justify-start" style={{ animationDelay: '90ms' }}>
-              <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]" style={{ minHeight: '2.9em' }}>
-                <span
-                  role="group"
-                  aria-label={carouselWords[wordIndex]}
-                  style={{ display: 'block', position: 'relative', overflow: 'hidden' }}
-                >
-                  <span aria-hidden="true" style={{ visibility: 'hidden', fontWeight: 600 }}>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ minHeight: '2.9em', position: 'relative' }} role="group" aria-label={carouselWords[wordIndex]}>
+                <AnimatePresence mode="wait">
+                  <m.span
+                    key={wordIndex}
+                    aria-hidden="true"
+                    initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -8, filter: 'blur(8px)' }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ display: 'block', color: '#EAF0F7', fontWeight: 600 }}
+                  >
                     {carouselWords[wordIndex]}
-                  </span>
-                  {carouselWords.map((word, i) => {
-                    const cls = i === wordIndex ? 'word-swap-in' : i === prevIndex ? 'word-swap-out' : 'word-swap-hidden'
-                    return (
-                      <span
-                        key={word}
-                        aria-hidden="true"
-                        className={cls}
-                        style={{ position: 'absolute', left: 0, top: 0, color: 'var(--accent)', fontWeight: 600 }}
-                      >
-                        {word}
-                      </span>
-                    )
-                  })}
-                </span>
+                  </m.span>
+                </AnimatePresence>
               </p>
             </div>
 

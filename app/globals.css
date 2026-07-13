@@ -1459,9 +1459,12 @@ select {
 .word-swap-out { animation: wordSwapOut 0.4s cubic-bezier(0.7, 0, 0.84, 0) both; }
 .word-swap-hidden { opacity: 0; visibility: hidden; }
 
+.phrase-fade { animation: wordSwapIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
 @media (prefers-reduced-motion: reduce) {
   .word-swap-in { animation: none; opacity: 1; transform: none; }
   .word-swap-out, .word-swap-hidden { display: none; }
+  .phrase-fade { animation: none; }
 }
 
 /* ── Nav interactions (CSS, replaces framer-motion) ── */

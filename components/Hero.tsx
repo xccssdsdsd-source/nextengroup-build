@@ -8,12 +8,12 @@ import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = [
-  'Pierwszy projekt widzisz w 24h',
-  'Rozwiązania dobrane pod Twój biznes, po konsultacji',
+  'Pierwszy projekt widzisz w 24 godziny',
+  'Rozwiązania dopasowane do Twojego biznesu',
   'Płacisz dopiero za efekt, który akceptujesz',
-  'Zero ukrytych kosztów — cena ustalona po konsultacji',
-  'Bez zobowiązań — decydujesz po rozmowie, nie przed nią',
-  'Wsparcie i poprawki po wdrożeniu w cenie',
+  'Cena jest jasna po krótkiej konsultacji',
+  'Decydujesz po rozmowie, bez zobowiązań',
+  'Poprawki i wsparcie po wdrożeniu są w cenie',
 ]
 
 const trustOwners = [
@@ -117,7 +117,7 @@ export default function Hero() {
 
     const interval = setInterval(() => {
       setWordIndex((i) => (i + 1) % carouselWords.length)
-    }, 2400)
+    }, 4200)
     return () => clearInterval(interval)
   }, [isMounted])
 

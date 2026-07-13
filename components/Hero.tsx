@@ -7,7 +7,11 @@ import ChatWidget from './ChatWidget'
 import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
 
-const carouselWords = ['strony internetowe', 'automatyzacje AI', 'agentów AI']
+const carouselWords = [
+  'Pierwszy projekt widzisz w 24h',
+  'Rozwiązania dobrane pod Twój biznes, po konsultacji',
+  'Płacisz dopiero za efekt, który akceptujesz',
+]
 
 const trustOwners = [
   { src: '/owner-pm-apartments.webp', alt: 'Klient PM Apartments' },
@@ -194,15 +198,14 @@ export default function Hero() {
             </h1>
 
             <div className="hero-from-right mt-7 flex justify-start" style={{ animationDelay: '90ms' }}>
-              <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]" style={{ minHeight: '1.7em' }}>
-                Budujemy Twój biznes przez{' '}
+              <p className="text-sm sm:text-base leading-relaxed text-[#A6B2C4]" style={{ minHeight: '2.9em' }}>
                 <span
                   role="group"
                   aria-label={carouselWords[wordIndex]}
-                  style={{ display: 'inline-block', position: 'relative', height: '1.6em', overflow: 'hidden', verticalAlign: 'bottom' }}
+                  style={{ display: 'block', position: 'relative', overflow: 'hidden' }}
                 >
-                  <span aria-hidden="true" style={{ visibility: 'hidden', fontWeight: 600, whiteSpace: 'nowrap' }}>
-                    strony internetowe
+                  <span aria-hidden="true" style={{ visibility: 'hidden', fontWeight: 600 }}>
+                    {carouselWords[wordIndex]}
                   </span>
                   {carouselWords.map((word, i) => {
                     const cls = i === wordIndex ? 'word-swap-in' : i === prevIndex ? 'word-swap-out' : 'word-swap-hidden'
@@ -211,7 +214,7 @@ export default function Hero() {
                         key={word}
                         aria-hidden="true"
                         className={cls}
-                        style={{ position: 'absolute', left: 0, top: 0, color: 'var(--accent)', fontWeight: 600, whiteSpace: 'nowrap' }}
+                        style={{ position: 'absolute', left: 0, top: 0, color: 'var(--accent)', fontWeight: 600 }}
                       >
                         {word}
                       </span>

@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
-    a: 'Cena zależy od zakresu — prosta, profesjonalna strona-wizytówka zaczyna się od 2099 zł, a rozbudowane wdrożenia z automatyzacjami i agentem AI wyceniamy indywidualnie po analizie procesu. Zawsze podajemy konkretną, stałą kwotę przed startem — bez ukrytych kosztów i niespodzianek. Umów bezpłatną konsultację, a po krótkiej rozmowie dostaniesz wycenę dopasowaną do Twoich potrzeb.',
+    a: 'Cena zależy od zakresu — prosta, profesjonalna strona-wizytówka zaczyna się od 1997 zł, a rozbudowane wdrożenia z automatyzacjami i agentem AI wyceniamy indywidualnie po analizie procesu. Zawsze podajemy konkretną, stałą kwotę przed startem — bez ukrytych kosztów i niespodzianek. Umów bezpłatną konsultację, a po krótkiej rozmowie dostaniesz wycenę dopasowaną do Twoich potrzeb.',
   },
   {
     q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',

@@ -28,9 +28,9 @@
 
 ## Pricing
 
-- Landing page: 2099 PLN (one-time)
-- Strona kompletna (full website): 2499 PLN, installment plans available
-- Strona z panelem (website + CMS): 3999 PLN + 99 PLN/month
+- Landing page: 1997 PLN (one-time)
+- Strona kompletna (full website): 2449 PLN, installment plans available
+- Strona z panelem (website + CMS): 3997 PLN + 99 PLN/month
 - Website maintenance (Landing & Kompletna, optional): 39 / 49 / 99 PLN/month
 - AI automations & agents: individual pricing after a free 15-minute discovery call
 - Free website mockup before any financial commitment
@@ -83,7 +83,7 @@ A: Getbuild założył i prowadzi Adam, specjalista od stron internetowych i wdr
 ### About Website Design
 
 Q: Ile kosztuje strona internetowa od Getbuild?
-A: Landing page kosztuje 2099 zł, strona kompletna 2499 zł (z możliwością ratalną), strona z panelem CMS 3999 zł + 99 zł/mies. Opieka techniczna dla pozostałych pakietów od 39 zł/mies. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
+A: Landing page kosztuje 1997 zł, strona kompletna 2449 zł (z możliwością ratalną), strona z panelem CMS 3997 zł + 99 zł/mies. Opieka techniczna dla pozostałych pakietów od 39 zł/mies. Każdy projekt zaczyna się od bezpłatnej wizualizacji.
 
 Q: Jak długo trwa stworzenie strony internetowej?
 A: Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów. Pełne wdrożenie zajmuje od tygodnia do 2–3 tygodni.

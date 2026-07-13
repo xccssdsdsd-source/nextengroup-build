@@ -28,10 +28,11 @@ function CountUp({ target, suffix, active, delay }: {
   active: boolean
   delay: number
 }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(target)
 
   useEffect(() => {
     if (!active) return
+    setCount(0)
     const controls = animate(0, target, {
       duration: 1.4,
       delay,

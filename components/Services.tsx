@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { AnimatePresence, m, useInView } from 'framer-motion'
 import { MonitorSmartphone, Sparkles } from 'lucide-react'
@@ -6,9 +6,8 @@ import { useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 import SectionGlow from './ui/SectionGlow'
 
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
 const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
-const hoverSpring = { type: 'spring' as const, stiffness: 200, damping: 20 }
 
 const packages = [
   {
@@ -150,10 +149,6 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
   const [isHovered, setIsHovered] = useState(false)
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       data-active={isHovered ? 'true' : 'false'}
@@ -164,7 +159,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       <div
         className={`premium-card pkg-card relative z-[1] overflow-hidden rounded-2xl border p-5 sm:p-7 transition-[border-color,box-shadow] duration-300 flex flex-col h-full ${
           pkg.featured
-            ? 'border-[rgba(34,211,238,0.4)] shadow-[0_2px_16px_rgba(0,0,0,0.5)]'
+            ? 'border-[rgba(58,175,232,0.4)] shadow-[0_2px_16px_rgba(0,0,0,0.5)]'
             : isHovered
             ? 'border-[rgba(255,255,255,0.14)] shadow-[0_12px_36px_rgba(0,0,0,0.5),_0_4px_12px_rgba(0,0,0,0.4)]'
             : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
@@ -173,7 +168,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       >
       {pkg.featured ? (
         <div className="mb-3 mt-8">
-          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#22D3EE] rounded-full">
+          <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#3AAFE8] rounded-full">
             Najpopularniejszy
           </span>
         </div>
@@ -193,7 +188,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       <ul className="mt-4 flex flex-col gap-2">
         {pkg.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2.5 text-[13.5px] leading-[1.55] text-[#A6B2C4]">
-            <span className="mt-[7px] flex-shrink-0 h-1.5 w-1.5 rounded-full bg-[#22D3EE]" />
+            <span className="mt-[7px] flex-shrink-0 h-1.5 w-1.5 rounded-full bg-[#3AAFE8]" />
             {feature}
           </li>
         ))}
@@ -216,10 +211,6 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
 
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -4, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       data-active={isHovered ? 'true' : 'false'}
@@ -231,7 +222,7 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
       <div
         className={`premium-card overview-card relative z-[1] flex h-full flex-col overflow-hidden rounded-2xl border p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 ${
           isHovered
-            ? 'border-[rgba(34,211,238,0.35)] shadow-[0_16px_44px_rgba(0,0,0,0.5)]'
+            ? 'border-[rgba(58,175,232,0.35)] shadow-[0_16px_44px_rgba(0,0,0,0.5)]'
             : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
         }`}
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)' }}
@@ -239,8 +230,8 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
         <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
 
         <div className="flex items-center gap-3.5">
-          <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(34,211,238,0.25)]" style={{ background: 'rgba(34,211,238,0.08)' }}>
-            <Icon size={22} strokeWidth={1.8} className="text-[#5EEAFF]" aria-hidden="true" />
+          <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(58,175,232,0.25)]" style={{ background: 'rgba(58,175,232,0.08)' }}>
+            <Icon size={22} strokeWidth={1.8} className="text-[#8CD8FF]" aria-hidden="true" />
           </span>
           <h3 className="text-[1.45rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
             {item.name}
@@ -254,14 +245,14 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
               <ul className="mt-6 flex flex-col gap-3">
           {item.solves.map(([pain, fix]) => (
             <li key={pain} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(34,211,238,0.15)' }} aria-hidden>
+              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(58,175,232,0.15)' }} aria-hidden>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path d="M5 13l4 4L19 7" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 13l4 4L19 7" stroke="#3AAFE8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
               <span className="text-[13.5px] leading-[1.55] text-[#A6B2C4]">
                 <span className="text-[#7C879B] line-through decoration-[rgba(124,135,155,0.5)]">{pain}</span>
-                <span className="mx-1.5 text-[#22D3EE]">→</span>
+                <span className="mx-1.5 text-[#3AAFE8]">→</span>
                 <span className="text-[#EAF0F7]">{fix}</span>
               </span>
             </li>
@@ -298,7 +289,7 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
         <text x="76" y="71" textAnchor="middle" fontFamily="inherit" fontSize="16" fontWeight="600" fill="#EAF0F7">Proces</text>
         <line x1="140" y1="65" x2="168" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
         <path d="M168 57 L182 65 L168 73 Z" fill="#EAF0F7" />
-        <circle cx="212" cy="65" r="26" fill="#22D3EE" />
+        <circle cx="212" cy="65" r="26" fill="#3AAFE8" />
         <text x="212" y="71" textAnchor="middle" fontFamily="inherit" fontSize="17" fontWeight="700" fill="#06141A">A</text>
         <line x1="250" y1="65" x2="278" y2="65" stroke="#EAF0F7" strokeWidth="2.5" />
         <path d="M278 57 L292 65 L278 73 Z" fill="#EAF0F7" />
@@ -316,7 +307,7 @@ function ProcessFlowDiagram({ type }: { type: 'simple' | 'ai' | 'agent' }) {
       <circle cx="300" cy="50" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
       <circle cx="300" cy="100" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
       <circle cx="300" cy="150" r="14" fill="rgba(255,255,255,0.08)" stroke="#EAF0F7" strokeWidth="2" />
-      <circle cx="90" cy="100" r="28" fill="#22D3EE" />
+      <circle cx="90" cy="100" r="28" fill="#3AAFE8" />
       <text x="90" y="106" textAnchor="middle" fontFamily="inherit" fontSize="18" fontWeight="700" fill="#06141A">AI</text>
     </svg>
   )
@@ -401,7 +392,7 @@ export default function Services() {
 
             <p className="mt-6 text-center text-[15px] sm:text-[17px] font-bold tracking-[-0.01em] text-[#EAF0F7]">
               Chatbot AI, który zna Twoją firmę i sam odpowiada klientom
-              <span className="block sm:inline sm:ml-2 text-[13px] sm:text-[14px] font-semibold text-[#5EEAFF]">(można dodać do każdego pakietu, do ustalenia)</span>
+              <span className="block sm:inline sm:ml-2 text-[13px] sm:text-[14px] font-semibold text-[#8CD8FF]">(można dodać do każdego pakietu, do ustalenia)</span>
             </p>
           </div>
 
@@ -426,11 +417,11 @@ export default function Services() {
                   initial={false}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.36, ease }}
+                  transition={{ duration: 0.24, ease }}
                   className="overflow-hidden"
                 >
                   {/* SEO / GEO / AI SEARCH */}
-                  <p className="mt-7 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">SEO i GEO — widoczność w Google i w AI</p>
+                  <p className="mt-7 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8CD8FF]">SEO i GEO — widoczność w Google i w AI</p>
                   <div className="grid gap-4 sm:grid-cols-2">
                     {seoCards.map((item) => (
                       <div key={item.label} className="seo-card rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-4 bg-[rgba(255,255,255,0.02)]">
@@ -441,13 +432,13 @@ export default function Services() {
                   </div>
 
                   {/* Co obejmuje opieka */}
-                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Co obejmuje opieka</p>
+                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8CD8FF]">Co obejmuje opieka</p>
                   <ul className="flex flex-col gap-2.5">
                     {careItems.map((item, i) => (
                       <li key={i} className="care-item flex items-start gap-3 rounded-xl px-3 py-2.5 text-[14px] leading-[1.65] text-[#A6B2C4]">
-                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(34,211,238,0.15)' }} aria-hidden>
+                        <span className="care-bullet mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(58,175,232,0.15)' }} aria-hidden>
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-                            <path d="M5 13l4 4L19 7" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M5 13l4 4L19 7" stroke="#3AAFE8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </span>
                         {item}
@@ -456,7 +447,7 @@ export default function Services() {
                   </ul>
 
                   {/* Cennik opieki miesięcznej */}
-                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#5EEAFF]">Opieka miesięczna</p>
+                  <p className="mt-8 mb-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8CD8FF]">Opieka miesięczna</p>
                   <div className="rounded-xl border border-[rgba(255,255,255,0.08)] px-5 py-4 bg-[rgba(255,255,255,0.02)]">
                     <p className="mb-3 text-[13.5px] text-[#A6B2C4]">Opcjonalna dla pakietów Landing i Strona kompletna, w cenie reszta:</p>
                     <ul className="mb-3 flex flex-col gap-1.5">
@@ -552,10 +543,6 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
 
   return (
     <m.div
-      initial={false}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...premiumSpring, delay: i * 0.1 }}
-      whileHover={{ y: -4, scale: 1.005, transition: hoverSpring }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       data-active={isHovered ? 'true' : 'false'}
@@ -566,7 +553,7 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
       <div
         className={`premium-card ai-card relative z-[1] rounded-2xl border p-7 flex flex-col h-full transition-[border-color,box-shadow] duration-300 ${
           isHovered
-            ? 'border-[rgba(34,211,238,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(34,211,238,0.14)]'
+            ? 'border-[rgba(58,175,232,0.3)] shadow-[0_16px_44px_rgba(0,0,0,0.5),_0_4px_22px_rgba(58,175,232,0.14)]'
             : 'border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.45)]'
         }`}
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 34%), var(--bg-elevated)' }}
@@ -594,7 +581,7 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
       <div className="space-y-2.5 mb-6">
         {ai.bullets.map((bullet, idx) => (
           <div key={idx} className="flex items-center gap-2.5">
-            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[#22D3EE]" />
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[#3AAFE8]" />
             <span className="text-[13.5px] leading-[1.5] text-[#A6B2C4]">{bullet}</span>
           </div>
         ))}
@@ -605,9 +592,9 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
           type="button"
           onClick={() => setExamplesOpen((v) => !v)}
           aria-expanded={examplesOpen}
-          className="flex w-full items-center justify-between rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-3 text-left transition-colors hover:border-[rgba(34,211,238,0.3)] hover:bg-[rgba(255,255,255,0.03)]"
+          className="flex w-full items-center justify-between rounded-xl border border-[rgba(255,255,255,0.08)] px-4 py-3 text-left transition-colors hover:border-[rgba(58,175,232,0.3)] hover:bg-[rgba(255,255,255,0.03)]"
         >
-          <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5EEAFF]">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8CD8FF]">
             {ai.examples.length > 1 ? 'Przykłady' : 'Przykład'}
           </span>
           <m.svg
@@ -619,7 +606,7 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
             transition={{ duration: 0.25, ease }}
             aria-hidden
           >
-            <path d="M6 9l6 6 6-6" stroke="#5EEAFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6 9l6 6 6-6" stroke="#8CD8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </m.svg>
         </button>
 
@@ -629,15 +616,15 @@ function AiCard({ ai, inView, i, asHeading = true }: AiCardProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.32, ease }}
+              transition={{ duration: 0.24, ease }}
               className="overflow-hidden"
             >
               <div className="space-y-2.5 pt-3">
                 {ai.examples.map((example, idx) => (
                   <div
                     key={idx}
-                    className="rounded-xl border border-[rgba(34,211,238,0.14)] px-4 py-3.5"
-                    style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.06), rgba(255,255,255,0.02))' }}
+                    className="rounded-xl border border-[rgba(58,175,232,0.14)] px-4 py-3.5"
+                    style={{ background: 'linear-gradient(135deg, rgba(58,175,232,0.06), rgba(255,255,255,0.02))' }}
                   >
                     <p className="text-[13.5px] leading-[1.68] text-[#A6B2C4]">{example}</p>
                   </div>

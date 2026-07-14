@@ -79,7 +79,7 @@ export default function SocialProof() {
                 />
                 <div
                   className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: 'radial-gradient(circle at 50% 40%, rgba(34,211,238,0.07), transparent 68%)' }}
+                  style={{ background: 'radial-gradient(circle at 50% 40%, rgba(58,175,232,0.07), transparent 68%)' }}
                 />
 
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">

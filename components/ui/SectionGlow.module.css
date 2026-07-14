@@ -20,35 +20,19 @@
   display: none;
 }
 
-.hero {
-  background: radial-gradient(38rem 30rem at 92% 42%, rgba(21, 45, 122, 0.20), transparent 66%);
-}
+.hero { background: radial-gradient(38rem 30rem at 92% 42%, rgba(43, 104, 218, 0.13), transparent 68%); }
 
-.services1 {
-  background: radial-gradient(34rem 26rem at 6% 42%, rgba(21, 45, 122, 0.16), transparent 66%);
-}
+.services1 { background: radial-gradient(34rem 26rem at 6% 42%, rgba(58, 175, 232, 0.10), transparent 68%); }
 
-.services2 {
-  background: radial-gradient(34rem 27rem at 94% 50%, rgba(21, 45, 122, 0.17), transparent 66%);
-}
+.services2 { background: radial-gradient(34rem 27rem at 94% 50%, rgba(43, 104, 218, 0.11), transparent 68%); }
 
-.process {
-  background: radial-gradient(34rem 27rem at 6% 48%, rgba(21, 45, 122, 0.16), transparent 66%);
-}
+.process { background: radial-gradient(34rem 27rem at 6% 48%, rgba(58, 175, 232, 0.09), transparent 68%); }
 
-.portfolio {
-  background: radial-gradient(34rem 27rem at 94% 50%, rgba(21, 45, 122, 0.16), transparent 64%);
-}
+.portfolio { background: radial-gradient(34rem 27rem at 94% 50%, rgba(43, 104, 218, 0.10), transparent 68%); }
 
-.testimonials {
-  background: radial-gradient(33rem 25rem at 6% 45%, rgba(21, 45, 122, 0.16), transparent 64%);
-}
+.testimonials { background: radial-gradient(33rem 25rem at 6% 45%, rgba(58, 175, 232, 0.09), transparent 68%); }
 
-.faq {
-  background: radial-gradient(33rem 25rem at 94% 50%, rgba(21, 45, 122, 0.16), transparent 64%);
-}
+.faq { background: radial-gradient(33rem 25rem at 94% 50%, rgba(43, 104, 218, 0.10), transparent 68%); }
 
 /* Kontakt — the finale keeps a whisper of the cyan accent, still restrained. */
-.contact {
-  background: radial-gradient(34rem 27rem at 6% 45%, rgba(24, 78, 110, 0.18), transparent 64%);
-}
+.contact { background: radial-gradient(34rem 27rem at 6% 45%, rgba(58, 175, 232, 0.12), transparent 68%); }

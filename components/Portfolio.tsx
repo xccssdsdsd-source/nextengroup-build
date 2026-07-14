@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
@@ -209,38 +209,112 @@ function AnimatedLines() {
             }
           `}</style>
           <linearGradient id={`${uid}-ga`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0" />
-            <stop offset="40%" stopColor="#22D3EE" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#5EEAFF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
+            <stop offset="40%" stopColor="#3AAFE8" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gb`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#5EEAFF" stopOpacity="0" />
-            <stop offset="50%" stopColor="#5EEAFF" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#22D3EE" stopOpacity="0" />
+            <stop offset="0%" stopColor="#8CD8FF" stopOpacity="0" />
+            <stop offset="50%" stopColor="#8CD8FF" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#3AAFE8" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gc`} x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#22D3EE" stopOpacity="0" />
-            <stop offset="45%" stopColor="#22D3EE" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#5EEAFF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
+            <stop offset="45%" stopColor="#3AAFE8" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(34,211,238,0.065)" strokeWidth="1.1" />
+        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(58,175,232,0.065)" strokeWidth="1.1" />
         <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.1" strokeDasharray="520 2080" className="pf-a" />
 
-        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(34,211,238,0.05)" strokeWidth="0.75" />
+        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(58,175,232,0.05)" strokeWidth="0.75" />
         <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.75" strokeDasharray="460 2340" className="pf-b" />
 
-        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(34,211,238,0.055)" strokeWidth="0.95" />
+        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(58,175,232,0.055)" strokeWidth="0.95" />
         <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="0.95" strokeDasharray="500 1900" className="pf-c" />
 
-        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(34,211,238,0.045)" strokeWidth="0.68" />
+        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.68" />
         <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.68" strokeDasharray="440 2560" className="pf-d" />
 
-        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(34,211,238,0.045)" strokeWidth="0.8" />
+        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.8" />
         <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="480 2120" className="pf-e" />
       </svg>
     </div>
+  )
+}
+
+function DesktopProjectCard({ project, index, asH1 }: { project: Project; index: number; asH1: boolean }) {
+  const [bodyPreview] = splitAtSentences(project.body, 2)
+  const featured = index === 0
+  const wide = index === 2
+
+  return (
+    <article
+      className={`portfolio-case group ${featured ? 'portfolio-case--featured' : ''} ${wide ? 'portfolio-case--wide' : ''}`}
+      data-img-reveal
+    >
+      <div className="portfolio-case__visual">
+        <div className="portfolio-case__owner">
+          <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/10">
+            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+          </div>
+          <div>
+            <p>{project.owner.name}</p>
+            <span>{project.owner.role}</span>
+          </div>
+        </div>
+
+        {project.kind === 'image' ? (
+          <a href={project.href} target="_blank" rel="noreferrer" className="portfolio-case__image-wrap">
+            <Image
+              src={project.preview}
+              alt={`${project.name} - ${project.tagline}`}
+              width={project.imgWidth}
+              height={project.imgHeight}
+              sizes={featured ? '(min-width: 1024px) 720px, 100vw' : '(min-width: 1024px) 480px, 100vw'}
+              className="portfolio-case__image"
+              quality={82}
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL={project.blurDataURL}
+            />
+          </a>
+        ) : (
+          <div className="portfolio-case__comparison">
+            <BeforeAfterSlider
+              beforeSrc={project.beforeSrc}
+              afterSrc={project.afterSrc}
+              beforeAlt={`${project.name} — strona przed redesignem`}
+              afterAlt={`${project.name} — strona po redesignie`}
+              width={project.sliderWidth}
+              height={project.sliderHeight}
+              beforeBlur={project.beforeBlur}
+              afterBlur={project.afterBlur}
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="portfolio-case__content">
+        <div className="portfolio-case__eyebrow"><span>0{index + 1}</span><span>Wdrożenie {project.time}</span></div>
+        <a href={project.href} target="_blank" rel="noreferrer" className="portfolio-case__title">
+          {asH1 ? <h2>{project.name}</h2> : <h3>{project.name}</h3>}
+          <ArrowUpRight size={20} strokeWidth={1.8} aria-hidden="true" />
+        </a>
+        <p className="portfolio-case__tagline">{project.tagline}</p>
+        <p className="portfolio-case__body">{bodyPreview}</p>
+
+        <div className="portfolio-case__footer">
+          <LiveSiteButton href={project.href} />
+          <div className="portfolio-case__scores" aria-label="Wyniki Lighthouse">
+            {project.lighthouse.map((score) => (
+              <span key={score.label}><strong>{score.value}</strong><small>{score.label}</small></span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </article>
   )
 }
 
@@ -308,9 +382,8 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
   const [bodyPreview, bodyRest] = splitAtSentences(project.body, 2)
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }} data-no-entrance suppressHydrationWarning>
+    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" data-no-entrance suppressHydrationWarning>
       <SectionGlow variant="portfolio" />
-      <AnimatedLines />
       <div className="relative mx-auto max-w-6xl">
         <m.div
           className="flex flex-wrap items-end justify-between gap-4"
@@ -321,21 +394,27 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
           <div>
             <span className="section-kicker" suppressHydrationWarning>Nasze realizacje</span>
             {asH1 ? (
-              <h1 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h1>
+              <h1 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h1>
             ) : (
-              <h2 className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
+              <h2 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
             )}
           </div>
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex lg:hidden items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
             <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
         </m.div>
 
+        <div className="portfolio-wall hidden lg:grid" data-stagger-group>
+          {projects.map((item, index) => (
+            <DesktopProjectCard key={item.name} project={item} index={index} asH1={asH1} />
+          ))}
+        </div>
+
         <m.div
           data-fade-in
-          className="mt-7 relative"
+          className="mt-7 relative lg:hidden"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12, ease }}
@@ -356,14 +435,14 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.48, ease }}
+                transition={{ duration: 0.24, ease }}
                 className="grid md:grid-cols-[1.35fr_1fr]"
               >
                 {project.kind === 'image' ? (
                   <div className="flex flex-col gap-3">
                     <div className="bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -399,7 +478,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <div className="flex flex-col gap-3">
                     <div className="bg-[#161C28] rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(34,211,238,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -426,7 +505,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 )}
 
                 <div className="flex flex-col justify-center p-6 sm:p-8 bg-[#11161F]">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#22D3EE', boxShadow: '0 2px 8px rgba(34,211,238,0.22)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#3AAFE8', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     {asH1 ? (
@@ -434,13 +513,13 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     ) : (
                       <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
                     )}
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#22D3EE] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#3AAFE8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#22D3EE] underline hover:text-[#06EFFF]">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#3AAFE8] underline hover:text-[#06EFFF]">Zobacz więcej</button></>
                     )}
                   </p>
 
@@ -469,7 +548,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.2, ease }}
                   className="flex items-center gap-1.5 text-[11px] text-[#7C879B] select-none"
                 >
                   <ChevronLeft size={11} strokeWidth={2.5} />
@@ -482,7 +561,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
             <div className="flex justify-center items-center gap-4">
               <m.button
                 onClick={prevProject}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.97 }}
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Poprzednia realizacja"
               >
@@ -498,7 +577,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     style={{
                       width: i === currentIndex ? 22 : 8,
                       height: 8,
-                      background: i === currentIndex ? '#22D3EE' : 'rgba(255,255,255,0.14)',
+                      background: i === currentIndex ? '#3AAFE8' : 'rgba(255,255,255,0.14)',
                     }}
                     aria-label={`Realizacja ${i + 1}`}
                   />
@@ -507,7 +586,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
               <m.button
                 onClick={nextProject}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.97 }}
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Następna realizacja"
               >

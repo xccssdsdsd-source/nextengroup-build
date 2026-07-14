@@ -11,7 +11,7 @@ const services = [
       'Nowoczesne strony, które budują wiarygodność firmy i aktywnie kierują klientów do kontaktu. Każdy element dopasowany do Twoich celów.',
     tags: ['Responsywność', 'Szybkie ładowanie', 'Integracje z systemami'],
     icon: '🌐',
-    color: '#22D3EE',
+    color: '#3AAFE8',
   },
   {
     id: 'ai',
@@ -29,7 +29,7 @@ const services = [
       'Zaawansowani agenci AI pracujący za Ciebie całą dobę bez przestojów. Obsługują zapytania, porządkują dane i wspierają decyzje.',
     tags: ['Agenci AI 24/7', 'Integracje z systemami', 'Monitoring i statystyki'],
     icon: '🤖',
-    color: '#5EEAFF',
+    color: '#8CD8FF',
   },
 ]
 
@@ -53,7 +53,7 @@ const FolderBackSVG = () => (
       <linearGradient id="sb-backGrad" x1="0" y1="0" x2="244" y2="188" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#0E7490" />
         <stop offset="40%" stopColor="#0891B2" />
-        <stop offset="100%" stopColor="#22D3EE" />
+        <stop offset="100%" stopColor="#3AAFE8" />
       </linearGradient>
     </defs>
     <rect x="0" y="0" width="244" height="188" rx="22" ry="22" fill="url(#sb-backGrad)" />
@@ -106,7 +106,7 @@ export default function FolderServices() {
           className="absolute -left-8 -right-8 top-12 -bottom-8 z-0 pointer-events-none rounded-full"
           style={{
             background:
-              'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(34,211,238,0.22) 0%, rgba(34,211,238,0.08) 50%, transparent 100%)',
+              'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(58,175,232,0.22) 0%, rgba(58,175,232,0.08) 50%, transparent 100%)',
             filter: 'blur(20px)',
           }}
         />
@@ -138,7 +138,7 @@ export default function FolderServices() {
             <defs>
               <linearGradient id="sb-flapGrad" x1="0" y1="22" x2="0" y2="150" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="rgba(94,234,255,0.7)" />
-                <stop offset="30%" stopColor="rgba(34,211,238,0.8)" />
+                <stop offset="30%" stopColor="rgba(58,175,232,0.8)" />
                 <stop offset="65%" stopColor="rgba(8,145,178,0.9)" />
                 <stop offset="100%" stopColor="rgba(14,116,144,0.97)" />
               </linearGradient>
@@ -157,7 +157,7 @@ export default function FolderServices() {
         <div
           className="absolute -bottom-2 left-[20%] right-[20%] h-4 z-[1] pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse, rgba(34,211,238,0.22) 0%, transparent 78%)',
+            background: 'radial-gradient(ellipse, rgba(58,175,232,0.22) 0%, transparent 78%)',
             filter: 'blur(6px)',
           }}
         />

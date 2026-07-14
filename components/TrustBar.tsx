@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { m, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
@@ -40,7 +40,7 @@ export default function TrustBar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: i * 0.08, ease }}
               whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#161C28] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(34,211,238,0.18),0_8px_28px_rgba(34,211,238,0.12)]"
+              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[#161C28] transition-[box-shadow,transform] duration-200 hover:shadow-[0_4px_16px_rgba(58,175,232,0.18),0_8px_28px_rgba(58,175,232,0.12)]"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <Image
@@ -53,7 +53,7 @@ export default function TrustBar() {
               </div>
               <div className="flex items-center justify-between px-3 py-2.5">
                 <span className="text-[12px] font-semibold text-[#EAF0F7]">{item.name}</span>
-                <ArrowUpRight size={14} className="text-[#7C879B] transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#22D3EE]" />
+                <ArrowUpRight size={14} className="text-[#7C879B] transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#3AAFE8]" />
               </div>
             </m.a>
           ))}

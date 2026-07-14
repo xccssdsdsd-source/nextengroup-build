@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { m } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
@@ -15,7 +15,6 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
       href={href}
       target="_blank"
       rel="noreferrer"
-      whileHover={{ y: -2 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 22 }}
       className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#0D0D0D] px-5 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_6px_20px_rgba(13,13,13,0.22)] ${className}`}

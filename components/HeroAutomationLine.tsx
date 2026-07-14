@@ -105,7 +105,7 @@ export default function HeroAutomationLine() {
           style={{
             whiteSpace: 'pre-wrap',
             wordBreak: 'break-word',
-            color: line === 1 ? '#94A3B8' : '#22D3EE',
+            color: line === 1 ? '#94A3B8' : '#3AAFE8',
             opacity: visible ? 1 : 0,
             transition: 'opacity 380ms ease',
           }}
@@ -120,7 +120,7 @@ export default function HeroAutomationLine() {
               width: '0.55ch',
               height: '1.05em',
               transform: 'translateY(0.14em)',
-              background: '#22D3EE',
+              background: '#3AAFE8',
               marginLeft: '0.1ch',
               animation: 'blink 1s steps(1) infinite',
             }}

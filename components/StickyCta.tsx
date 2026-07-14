@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { m, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -24,10 +24,10 @@ export default function StickyCta() {
           initial={{ opacity: 0, y: 14, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 14, scale: 0.92 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ y: -4, scale: 1.03 }}
-          whileTap={{ scale: 0.95 }}
-          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 rounded-full bg-[#22D3EE] px-5 py-3.5 text-[13px] font-semibold text-[#06141A] shadow-[0_4px_14px_rgba(34,211,238,0.22),_0_1px_3px_rgba(0,0,0,0.4)] transition-[background,box-shadow] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0_8px_24px_rgba(34,211,238,0.3),_0_2px_6px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2"
+          transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+          whileHover={{ y: -1, scale: 1.01 }}
+          whileTap={{ scale: 0.97 }}
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 rounded-full bg-[#3AAFE8] px-5 py-3.5 text-[13px] font-semibold text-[#06141A] shadow-[0_4px_14px_rgba(58,175,232,0.22),_0_1px_3px_rgba(0,0,0,0.4)] transition-[background,box-shadow] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0_8px_24px_rgba(58,175,232,0.3),_0_2px_6px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <rect x="1.5" y="2.5" width="13" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />

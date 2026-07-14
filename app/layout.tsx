@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Inter, Instrument_Serif, Space_Grotesk } from 'next/font/google'
+import { Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import ClientShell from '@/components/ClientShell'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
+import GSAPAnimations from '@/components/GSAPAnimations'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
@@ -13,7 +14,7 @@ const siteDescription =
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
-  weight: ['600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -23,20 +24,6 @@ const instrumentSerif = Instrument_Serif({
   weight: '400',
   style: 'italic',
   variable: '--font-serif',
-  display: 'swap',
-})
-
-const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500'],
-  variable: '--font-body',
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin', 'latin-ext'],
-  weight: ['600', '700'],
-  variable: '--font-heading-mobile',
   display: 'swap',
 })
 
@@ -119,9 +106,15 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${plusJakartaSans.variable} ${inter.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
+      className={`${plusJakartaSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('motion-ready')",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -295,6 +288,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
+          <GSAPAnimations />
           <ClientShell />
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#22D3EE] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>

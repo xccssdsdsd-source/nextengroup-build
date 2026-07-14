@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useRef } from 'react'
 
@@ -27,15 +27,15 @@ function LaptopScreen() {
       <rect x="0" y="37" width="58" height="403" fill="#1B2338" />
       <rect x="58" y="37" width="1" height="403" fill="rgba(255,255,255,0.05)" />
       {/* logo */}
-      <circle cx="29" cy="62" r="13" fill="rgba(34,211,238,0.15)" />
-      <circle cx="29" cy="62" r="5" fill="rgba(34,211,238,0.7)" />
+      <circle cx="29" cy="62" r="13" fill="rgba(58,175,232,0.15)" />
+      <circle cx="29" cy="62" r="5" fill="rgba(58,175,232,0.7)" />
       <rect x="12" y="86" width="34" height="3" rx="1.5" fill="rgba(255,255,255,0.09)" />
       {/* nav items */}
       {[0,1,2,3,4].map(i => (
         <g key={i}>
-          <rect x="9" y={104+i*38} width="40" height="30" rx="6" fill={i===0?'rgba(34,211,238,0.16)':'rgba(255,255,255,0.04)'} />
-          <rect x="18" y={112+i*38} width="22" height="4" rx="2" fill={i===0?'rgba(34,211,238,0.7)':'rgba(255,255,255,0.14)'} />
-          <rect x="18" y={119+i*38} width="16" height="3" rx="1.5" fill={i===0?'rgba(34,211,238,0.35)':'rgba(255,255,255,0.07)'} />
+          <rect x="9" y={104+i*38} width="40" height="30" rx="6" fill={i===0?'rgba(58,175,232,0.16)':'rgba(255,255,255,0.04)'} />
+          <rect x="18" y={112+i*38} width="22" height="4" rx="2" fill={i===0?'rgba(58,175,232,0.7)':'rgba(255,255,255,0.14)'} />
+          <rect x="18" y={119+i*38} width="16" height="3" rx="1.5" fill={i===0?'rgba(58,175,232,0.35)':'rgba(255,255,255,0.07)'} />
         </g>
       ))}
       {/* bottom user */}
@@ -53,7 +53,7 @@ function LaptopScreen() {
       <rect x="570" y="54" width="52" height="8" rx="2" fill="rgba(255,255,255,0.55)" />
       <circle cx="644" cy="58" r="9" fill="rgba(0,0,0,0.07)" />
       <circle cx="662" cy="58" r="9" fill="rgba(0,0,0,0.07)" />
-      <circle cx="680" cy="58" r="9" fill="#22D3EE" opacity="0.85" />
+      <circle cx="680" cy="58" r="9" fill="#3AAFE8" opacity="0.85" />
 
       {/* hero block */}
       <rect x="59" y="80" width="641" height="200" fill="url(#hg)" />
@@ -63,29 +63,29 @@ function LaptopScreen() {
           <stop offset="100%" stopColor="#0A0E18" />
         </linearGradient>
         <radialGradient id="cg" cx="65%" cy="35%" r="55%">
-          <stop offset="0%" stopColor="rgba(34,211,238,0.13)" />
+          <stop offset="0%" stopColor="rgba(58,175,232,0.13)" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
       </defs>
       <rect x="59" y="80" width="641" height="200" fill="url(#cg)" />
       {/* hero text */}
-      <rect x="80" y="102" width="90" height="8" rx="3" fill="rgba(34,211,238,0.25)" />
+      <rect x="80" y="102" width="90" height="8" rx="3" fill="rgba(58,175,232,0.25)" />
       <rect x="80" y="118" width="280" height="22" rx="4" fill="rgba(255,255,255,0.88)" />
       <rect x="80" y="146" width="240" height="20" rx="4" fill="rgba(255,255,255,0.65)" />
       <rect x="80" y="174" width="200" height="8" rx="3" fill="rgba(255,255,255,0.20)" />
       <rect x="80" y="186" width="160" height="8" rx="3" fill="rgba(255,255,255,0.14)" />
-      <rect x="80" y="208" width="96" height="28" rx="7" fill="#22D3EE" />
+      <rect x="80" y="208" width="96" height="28" rx="7" fill="#3AAFE8" />
       <rect x="186" y="208" width="80" height="28" rx="7" fill="rgba(255,255,255,0.08)" />
       {/* hero graphic cards */}
       <rect x="400" y="94" width="280" height="174" rx="10" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.07)" strokeWidth="1" />
-      <rect x="412" y="108" width="118" height="66" rx="7" fill="rgba(34,211,238,0.09)" stroke="rgba(34,211,238,0.18)" strokeWidth="1" />
-      <rect x="418" y="116" width="60" height="6" rx="2" fill="rgba(34,211,238,0.55)" />
-      <rect x="418" y="126" width="90" height="4" rx="2" fill="rgba(34,211,238,0.22)" />
-      <rect x="418" y="134" width="70" height="4" rx="2" fill="rgba(34,211,238,0.16)" />
-      <rect x="418" y="144" width="80" height="4" rx="2" fill="rgba(34,211,238,0.12)" />
-      <rect x="418" y="155" width="48" height="14" rx="4" fill="rgba(34,211,238,0.2)" />
+      <rect x="412" y="108" width="118" height="66" rx="7" fill="rgba(58,175,232,0.09)" stroke="rgba(58,175,232,0.18)" strokeWidth="1" />
+      <rect x="418" y="116" width="60" height="6" rx="2" fill="rgba(58,175,232,0.55)" />
+      <rect x="418" y="126" width="90" height="4" rx="2" fill="rgba(58,175,232,0.22)" />
+      <rect x="418" y="134" width="70" height="4" rx="2" fill="rgba(58,175,232,0.16)" />
+      <rect x="418" y="144" width="80" height="4" rx="2" fill="rgba(58,175,232,0.12)" />
+      <rect x="418" y="155" width="48" height="14" rx="4" fill="rgba(58,175,232,0.2)" />
       {/* spark */}
-      <circle cx="465" cy="162" r="3" fill="#22D3EE" opacity="0.8" />
+      <circle cx="465" cy="162" r="3" fill="#3AAFE8" opacity="0.8" />
       <rect x="542" y="108" width="126" height="66" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="1" />
       {[0,1,2,3].map(i=>(
         <rect key={i} x="552" y={118+i*12} width={[80,100,65,90][i]} height="4" rx="2" fill="rgba(255,255,255,0.14)" />
@@ -93,7 +93,7 @@ function LaptopScreen() {
       <rect x="412" y="184" width="256" height="6" rx="2" fill="rgba(255,255,255,0.05)" />
       <rect x="412" y="194" width="200" height="6" rx="2" fill="rgba(255,255,255,0.05)" />
       <rect x="412" y="204" width="230" height="6" rx="2" fill="rgba(255,255,255,0.05)" />
-      <rect x="412" y="220" width="56" height="14" rx="4" fill="rgba(34,211,238,0.18)" />
+      <rect x="412" y="220" width="56" height="14" rx="4" fill="rgba(58,175,232,0.18)" />
       <rect x="476" y="220" width="52" height="14" rx="4" fill="rgba(255,255,255,0.05)" />
       <rect x="536" y="220" width="52" height="14" rx="4" fill="rgba(255,255,255,0.05)" />
 
@@ -136,24 +136,24 @@ function PhoneScreen() {
           <stop offset="100%" stopColor="#111827" />
         </linearGradient>
         <radialGradient id="phg" cx="50%" cy="40%" r="60%">
-          <stop offset="0%" stopColor="rgba(34,211,238,0.12)" />
+          <stop offset="0%" stopColor="rgba(58,175,232,0.12)" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
       </defs>
       <circle cx="20" cy="46" r="11" fill="rgba(255,255,255,0.08)" />
-      <circle cx="20" cy="46" r="4" fill="rgba(34,211,238,0.6)" />
+      <circle cx="20" cy="46" r="4" fill="rgba(58,175,232,0.6)" />
       <rect x="37" y="41" width="52" height="10" rx="3" fill="rgba(255,255,255,0.16)" />
       <rect x="160" y="40" width="14" height="12" rx="3" fill="rgba(255,255,255,0.1)" />
       <rect x="178" y="40" width="14" height="12" rx="3" fill="rgba(255,255,255,0.1)" />
       {/* hero */}
       <rect y="68" width="200" height="148" fill="#0F172A" />
       <rect y="68" width="200" height="148" fill="url(#phg)" />
-      <rect x="16" y="86" width="70" height="7" rx="3" fill="rgba(34,211,238,0.25)" />
+      <rect x="16" y="86" width="70" height="7" rx="3" fill="rgba(58,175,232,0.25)" />
       <rect x="16" y="100" width="164" height="15" rx="3.5" fill="rgba(255,255,255,0.82)" />
       <rect x="16" y="120" width="140" height="13" rx="3.5" fill="rgba(255,255,255,0.58)" />
       <rect x="16" y="142" width="110" height="7" rx="3" fill="rgba(255,255,255,0.18)" />
       <rect x="16" y="153" width="86" height="7" rx="3" fill="rgba(255,255,255,0.12)" />
-      <rect x="16" y="170" width="78" height="24" rx="7" fill="#22D3EE" />
+      <rect x="16" y="170" width="78" height="24" rx="7" fill="#3AAFE8" />
       <rect x="102" y="170" width="78" height="24" rx="7" fill="rgba(255,255,255,0.07)" />
       {/* stats row */}
       <rect y="216" width="200" height="42" fill="white" />
@@ -281,7 +281,7 @@ export default function DeviceMockups() {
             boxShadow: [
               '0 0 0 1px rgba(255,255,255,0.07)',
               '0 0 0 2px rgba(255,255,255,0.03)',
-              '0 40px 100px rgba(34,211,238,0.16)',
+              '0 40px 100px rgba(58,175,232,0.16)',
               '0 20px 50px rgba(0,0,0,0.70)',
             ].join(','),
           }}>
@@ -325,7 +325,7 @@ export default function DeviceMockups() {
             boxShadow: [
               '0 0 0 1px rgba(255,255,255,0.08)',
               '0 18px 52px rgba(0,0,0,0.58)',
-              '0 6px 20px rgba(34,211,238,0.10)',
+              '0 6px 20px rgba(58,175,232,0.10)',
             ].join(','),
           }}>
             <div style={{ position:'absolute', top:'5px', left:'50%', transform:'translateX(-50%)', width:'26px', height:'3.5px', borderRadius:'2px', background:'rgba(255,255,255,0.11)' }} />
@@ -340,14 +340,14 @@ export default function DeviceMockups() {
         {/* badge — top left */}
         <div style={{
           position:'absolute', top:'10px', left: 'calc(-1 * clamp(10px,2vw,16px))',
-          background:'rgba(14,20,32,0.94)', border:'1px solid rgba(34,211,238,0.22)',
+          background:'rgba(14,20,32,0.94)', border:'1px solid rgba(58,175,232,0.22)',
           borderRadius:'12px', padding:'9px 13px',
           backdropFilter:'blur(14px)', WebkitBackdropFilter:'blur(14px)',
           display:'flex', alignItems:'center', gap:'10px',
           boxShadow:'0 8px 28px rgba(0,0,0,0.5)', zIndex:10, whiteSpace:'nowrap',
         }}>
-          <div style={{ width:'28px', height:'28px', borderRadius:'50%', flexShrink:0, background:'linear-gradient(135deg,rgba(34,211,238,0.18) 0%,rgba(34,211,238,0.05) 100%)', border:'1px solid rgba(34,211,238,0.28)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <div style={{ width:'28px', height:'28px', borderRadius:'50%', flexShrink:0, background:'linear-gradient(135deg,rgba(58,175,232,0.18) 0%,rgba(58,175,232,0.05) 100%)', border:'1px solid rgba(58,175,232,0.28)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3AAFE8" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
             <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-heading)' }}>Lighthouse 96</div>

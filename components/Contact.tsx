@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { m, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useEffect, useState, type FormEvent } from 'react'
@@ -139,7 +139,7 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
         data-fade-in
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(34,211,238,0.08)] p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14"
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 30%), #11161F' }}
       >
 
@@ -147,15 +147,15 @@ export default function Contact() {
             <div className="w-full lg:w-[260px] xl:w-[280px] flex-shrink-0 flex flex-col">
               <div>
                 <span className="section-kicker" suppressHydrationWarning>Kontakt</span>
-                <h2 className="mt-2 text-[26px] sm:text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+                <h2 data-motion-title className="mt-2 text-[26px] sm:text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                   Umów bezpłatną konsultację
                 </h2>
-                <p className="mt-3 text-[13px] leading-[1.7] text-[#A6B2C4]">
+                <p data-motion-copy className="mt-3 text-[13px] leading-[1.7] text-[#A6B2C4]">
                   Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
                 </p>
                 <button
                   onClick={() => setActiveTab('calendly')}
-                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#22D3EE] text-[#06141A] text-[13px] font-bold hover:bg-[#34E6FF] active:scale-[0.97] transition-[transform,background-color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 w-fit"
+                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3AAFE8] text-[#06141A] text-[13px] font-bold hover:bg-[#CEDDF7] active:scale-[0.97] transition-[transform,background-color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 w-fit"
                 >
                   Umów spotkanie
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -170,18 +170,18 @@ export default function Contact() {
                   <div className="flex gap-2">
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center"
+                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#3AAFE8] hover:bg-[rgba(58,175,232,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center"
                     >
                       <span className="text-[12px] font-semibold text-[#EAF0F7] break-all">{contactEmail}</span>
                     </a>
                     <button
                       onClick={copyEmail}
-                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#22D3EE] hover:bg-[rgba(34,211,238,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center justify-center flex-shrink-0"
+                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#3AAFE8] hover:bg-[rgba(58,175,232,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center justify-center flex-shrink-0"
                       aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                       title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                     >
                       {copied ? (
-                        <span className="text-[11px] font-semibold text-[#22D3EE]">OK</span>
+                        <span className="text-[11px] font-semibold text-[#3AAFE8]">OK</span>
                       ) : (
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#EAF0F7]">
                           <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
@@ -201,7 +201,7 @@ export default function Contact() {
                         href={s.href}
                         target={s.label !== 'Email' ? '_blank' : undefined}
                         rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] focus-visible:ring-offset-2 ${
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 ${
                           s.label === 'Email' ? 'border-[rgba(234,113,42,0.2)] bg-[rgba(234,113,42,0.06)] hover:bg-[rgba(234,113,42,0.14)] hover:border-[rgba(234,113,42,0.5)]'
                           : s.label === 'Instagram' ? 'border-[rgba(225,48,108,0.2)] bg-[rgba(225,48,108,0.06)] hover:bg-[rgba(225,48,108,0.14)] hover:border-[rgba(225,48,108,0.5)]'
                           : s.label === 'Facebook' ? 'border-[rgba(24,119,242,0.2)] bg-[rgba(24,119,242,0.06)] hover:bg-[rgba(24,119,242,0.14)] hover:border-[rgba(24,119,242,0.5)]'
@@ -243,9 +243,9 @@ export default function Contact() {
               <div className="flex gap-1 p-1 rounded-2xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)] mb-6 w-fit">
                 <button
                   onClick={() => setActiveTab('calendly')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] ${
                     activeTab === 'calendly'
-                      ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
+                      ? 'bg-[#3AAFE8] text-[#06141A] shadow-[0_2px_8px_rgba(58,175,232,0.3)]'
                       : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
                   }`}
                 >
@@ -253,9 +253,9 @@ export default function Contact() {
                 </button>
                 <button
                   onClick={() => setActiveTab('form')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22D3EE] ${
+                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] ${
                     activeTab === 'form'
-                      ? 'bg-[#22D3EE] text-[#06141A] shadow-[0_2px_8px_rgba(34,211,238,0.3)]'
+                      ? 'bg-[#3AAFE8] text-[#06141A] shadow-[0_2px_8px_rgba(58,175,232,0.3)]'
                       : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
                   }`}
                 >
@@ -264,7 +264,7 @@ export default function Contact() {
               </div>
 
               <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '750px', height: '750px', display: activeTab === 'calendly' ? 'block' : 'none' }} />
-              <div style={{ display: activeTab === 'form' ? 'block' : 'none' }} className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(34,211,238,0.12)]">
+              <div style={{ display: activeTab === 'form' ? 'block' : 'none' }} className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
@@ -281,8 +281,8 @@ export default function Contact() {
                       aria-expanded={dropdownOpen}
                       className="form-input w-full flex items-center justify-between gap-3 text-left"
                       style={{
-                        borderColor: dropdownOpen ? 'rgba(34,211,238,0.6)' : undefined,
-                        boxShadow: dropdownOpen ? '0 0 0 3px rgba(34,211,238,0.12)' : undefined,
+                        borderColor: dropdownOpen ? 'rgba(58,175,232,0.6)' : undefined,
+                        boxShadow: dropdownOpen ? '0 0 0 3px rgba(58,175,232,0.12)' : undefined,
                       }}
                     >
                       <span className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#4A5568]'}>
@@ -303,7 +303,7 @@ export default function Contact() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -6, scale: 0.98 }}
                           transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-xl border border-[rgba(34,211,238,0.18)] bg-[#161C28] shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.4)] list-none p-1.5 m-0"
+                          className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-xl border border-[rgba(58,175,232,0.18)] bg-[#161C28] shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.4)] list-none p-1.5 m-0"
                         >
                           {subjects.map((s) => {
                             const selected = formData.subject === s
@@ -318,8 +318,8 @@ export default function Contact() {
                                 }}
                                 className="flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg cursor-pointer text-[13px] font-medium transition-[background-color,color] duration-100 select-none"
                                 style={{
-                                  background: selected ? 'rgba(34,211,238,0.12)' : undefined,
-                                  color: selected ? '#22D3EE' : '#A6B2C4',
+                                  background: selected ? 'rgba(58,175,232,0.12)' : undefined,
+                                  color: selected ? '#3AAFE8' : '#A6B2C4',
                                 }}
                                 onMouseEnter={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
                                 onMouseLeave={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = '' }}
@@ -338,10 +338,10 @@ export default function Contact() {
                     <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Opisz swój projekt lub pytanie w kilku zdaniach — im więcej szczegółów, tym lepiej dopasujemy rozwiązanie." rows={5} className="form-input resize-none" />
                   </div>
                   <div className="flex items-start gap-3">
-                    <input type="checkbox" id="gdpr" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#22D3EE]" />
+                    <input type="checkbox" id="gdpr" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" />
                     <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
                       Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z{' '}
-                      <a href="/polityka-prywatnosci" className="text-[#22D3EE] hover:text-[#5EEAFF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
+                      <a href="/polityka-prywatnosci" className="text-[#3AAFE8] hover:text-[#8CD8FF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
                     </label>
                   </div>
                   {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { AnimatePresence, m } from 'framer-motion'
 import { type FormEvent, useEffect, useRef, useState } from 'react'
@@ -153,7 +153,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
             {step !== 'success' && (
               <div className="flex items-center gap-3 mb-6 pr-10">
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 transition-colors ${
-                  step === 'calendar' ? 'bg-[#22D3EE] text-[#06141A]' : 'bg-[#22D3EE] text-[#06141A]'
+                  step === 'calendar' ? 'bg-[#3AAFE8] text-[#06141A]' : 'bg-[#3AAFE8] text-[#06141A]'
                 }`}>
                   {step === 'calendar' ? (
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -161,14 +161,14 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     </svg>
                   ) : '1'}
                 </div>
-                <div className={`flex-1 h-px transition-colors ${step === 'calendar' ? 'bg-[#22D3EE]' : 'bg-[rgba(255,255,255,0.12)]'}`} />
+                <div className={`flex-1 h-px transition-colors ${step === 'calendar' ? 'bg-[#3AAFE8]' : 'bg-[rgba(255,255,255,0.12)]'}`} />
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 transition-colors ${
-                  step === 'calendar' ? 'bg-[#22D3EE] text-[#06141A]' : 'bg-[rgba(255,255,255,0.1)] text-[#7C879B]'
+                  step === 'calendar' ? 'bg-[#3AAFE8] text-[#06141A]' : 'bg-[rgba(255,255,255,0.1)] text-[#7C879B]'
                 }`}>
                   2
                 </div>
                 <span className={`text-[11px] font-semibold uppercase tracking-widest flex-shrink-0 transition-colors ${
-                  step === 'calendar' ? 'text-[#22D3EE]' : 'text-[#7C879B]'
+                  step === 'calendar' ? 'text-[#3AAFE8]' : 'text-[#7C879B]'
                 }`}>
                   {step === 'form' ? 'Dane' : 'Kalendarz'}
                 </span>
@@ -184,7 +184,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 transition={{ duration: 0.25, ease }}
               >
                 <div className="mb-6">
-                  <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#06141A] bg-[#22D3EE] rounded-full mb-3">
+                  <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#06141A] bg-[#3AAFE8] rounded-full mb-3">
                     {packageName}
                   </span>
                   <h3
@@ -202,7 +202,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                   <div>
                     <label htmlFor="bm-name" className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A6B2C4] mb-1.5">
-                      Imię i nazwisko <span className="text-[#22D3EE]">*</span>
+                      Imię i nazwisko <span className="text-[#3AAFE8]">*</span>
                     </label>
                     <input
                       id="bm-name"
@@ -221,7 +221,7 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
 
                   <div>
                     <label htmlFor="bm-email" className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A6B2C4] mb-1.5">
-                      Email <span className="text-[#22D3EE]">*</span>
+                      Email <span className="text-[#3AAFE8]">*</span>
                     </label>
                     <input
                       id="bm-email"
@@ -329,8 +329,8 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                 transition={{ duration: 0.35, ease }}
                 className="text-center py-6"
               >
-                <div className="w-16 h-16 rounded-full bg-[rgba(34,211,238,0.12)] border border-[rgba(34,211,238,0.25)] flex items-center justify-center mx-auto mb-5">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <div className="w-16 h-16 rounded-full bg-[rgba(58,175,232,0.12)] border border-[rgba(58,175,232,0.25)] flex items-center justify-center mx-auto mb-5">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3AAFE8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>

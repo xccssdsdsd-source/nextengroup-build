@@ -10,7 +10,7 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #04060b;
+  background: #050814;
 }
 
 .glow,
@@ -21,14 +21,33 @@
 }
 
 /* A single soft pool of light at the top of the page (behind the hero),
-   in the navy family — an accent, not a wash of color. */
+   in the navy family — an accent, not a wash of color. As the page scrolls
+   (--sp: 0 → 1, set on this element only so no children recalc), the field
+   drifts and its hue rotates cyan → indigo, so scrolling the whole document
+   reads as one slowly evolving light — no per-section boundary to seam. */
 .glow {
-  background: radial-gradient(60rem 40rem at 50% 0%, rgba(37, 99, 235, 0.06), transparent 62%);
+  --sp: 0;
+  background:
+    radial-gradient(56rem 34rem at 72% 0%, rgba(58, 175, 232, 0.055), transparent 64%),
+    radial-gradient(44rem 28rem at 8% 18%, rgba(58, 175, 232, 0.04), transparent 68%);
+  transform: translate3d(0, calc(var(--sp) * -5vh), 0);
+  filter: hue-rotate(calc(var(--sp) * 54deg)) saturate(calc(1 + var(--sp) * 0.35));
+  opacity: calc(0.85 + var(--sp) * 0.15);
+  will-change: transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+  .glow {
+    transform: none;
+    filter: none;
+    opacity: 1;
+    will-change: auto;
+  }
 }
 
 /* Soft vignette pulling the corners darker for depth. */
 .sheen {
-  background: radial-gradient(120% 70% at 50% 0%, transparent 58%, rgba(0, 0, 0, 0.35) 100%);
+  background: radial-gradient(120% 75% at 50% 0%, transparent 54%, rgba(2, 12, 38, 0.5) 100%);
 }
 
 /* Film grain removed — masked noise over a glow reads as a generic

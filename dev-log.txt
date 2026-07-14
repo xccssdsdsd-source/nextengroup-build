@@ -14,16 +14,34 @@
      · optimizePackageImports
 
  ✓ Starting...
- ✓ Ready in 3s
+ ✓ Ready in 2.5s
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 830ms (115 modules)
+ ✓ Compiled /middleware in 1434ms (115 modules)
  ○ Compiling / ...
- ✓ Compiled / in 25.6s (1664 modules)
+ ✓ Compiled / in 19.4s (1641 modules)
 Image with src "/portfolio/pm-apartments-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
- ✓ Compiled in 5.4s (740 modules)
- GET / 200 in 28155ms
- GET / 200 in 26238ms
- GET / 200 in 190ms
- GET / 200 in 222ms
- GET / 200 in 241ms
+Image with src "/portfolio/msdesignstudio-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/portfolio/dorimari-after.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/portfolio/dorimari-before.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 22268ms
+ ✓ Compiled in 3.2s (732 modules)
+ GET / 200 in 771ms
+ ✓ Compiled in 3.6s (1605 modules)
+ ✓ Compiled in 3.1s (1605 modules)
+ ✓ Compiled in 2.4s (1605 modules)
+ ✓ Compiled in 4s (1605 modules)
+Image with src "/portfolio/pm-apartments-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/portfolio/msdesignstudio-preview.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/portfolio/dorimari-after.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/portfolio/dorimari-before.webp" is using quality "82" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 2113ms
+ GET / 200 in 1081ms
+[?25h

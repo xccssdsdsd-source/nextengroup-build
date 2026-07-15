@@ -97,7 +97,7 @@ export default function FAQ() {
           transition={{ duration: 0.7, ease }}
         >
           <span className="section-kicker" suppressHydrationWarning>FAQ</span>
-          <h2 className="section-title max-w-[11ch]" suppressHydrationWarning>Najczęstsze pytania przed startem.</h2>
+          <h2 className="section-title max-w-[11ch]" suppressHydrationWarning>Wszystko co musisz wiedzieć przed startem.</h2>
           <p className="section-copy">
             To pytania, które najczęściej słyszymy przed rozpoczęciem współpracy.
           </p>

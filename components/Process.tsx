@@ -35,12 +35,15 @@ const steps = [
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.065 } },
+  show: { transition: { staggerChildren: 0.08 } },
 }
 
 const stepVariants = {
-  hidden: { opacity: 0, transform: 'translate3d(0, 30px, 0) scale(0.985)', filter: 'blur(7px)' },
-  show: { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)', filter: 'blur(0px)', transition: { duration: 0.76, ease } },
+  hidden: (index: number) => ({
+    opacity: 0,
+    transform: `translate3d(${index % 2 === 0 ? -38 : 38}px, 22px, 0) scale(0.985)`,
+  }),
+  show: { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)', transition: { duration: 0.78, ease } },
 }
 
 export default function Process() {
@@ -65,8 +68,8 @@ export default function Process() {
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
         >
-          {steps.map((step) => (
-            <m.li key={step.num} variants={stepVariants} className="process-step">
+          {steps.map((step, index) => (
+            <m.li key={step.num} custom={index} variants={stepVariants} className="process-step">
               <div className="process-marker" aria-hidden="true">
                 <span>{step.num}</span>
               </div>

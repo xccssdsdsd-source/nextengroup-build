@@ -17,7 +17,7 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { value: null, label: 'Poprawek bez limitu' },
-  { value: 100, suffix: '%', label: 'Zadowolonych klientów' },
+  { value: 72, suffix: 'h', label: 'Realny czas na pierwszy projekt' },
   { value: 24, suffix: 'h', label: 'Pierwsza wizualizacja' },
   { value: 0, suffix: ' zł', label: 'Konsultacja i wycena' },
 ]

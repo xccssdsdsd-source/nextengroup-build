@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState, useCallback, useEffect, useId } from 'react'
+import { useRef, useState, useCallback, useEffect, useId, type CSSProperties } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
 import LiveSiteButton from './ui/LiveSiteButton'
 import SectionGlow from './ui/SectionGlow'
@@ -114,6 +114,10 @@ const projects: Project[] = [
   },
 ]
 
+// The desktop composition reads best with two compact cases followed by the
+// panoramic PM Apartments showcase. Keep the same order in the mobile carousel.
+const portfolioProjects: Project[] = [projects[1], projects[2], projects[0]]
+
 function splitAtSentences(text: string, count: number): [string, string] {
   const regex = /[.!?]\s+/g
   let match
@@ -128,29 +132,17 @@ function splitAtSentences(text: string, count: number): [string, string] {
 }
 
 function ScoreBadge({ value, label, geo = false }: LighthouseScore & { geo?: boolean }) {
-  const colors = geo
-    ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)', glow: 'rgba(34,197,94,0.45)' }
-    : value >= 90
-      ? { bg: 'rgba(34,197,94,0.15)', fg: '#86EFAC', ring: 'rgba(34,197,94,0.25)', glow: 'rgba(34,197,94,0.45)' }
-      : value >= 50
-        ? { bg: 'rgba(234,179,8,0.15)', fg: '#FACC15', ring: 'rgba(234,179,8,0.25)', glow: 'rgba(234,179,8,0.45)' }
-        : { bg: 'rgba(239,68,68,0.15)', fg: '#FCA5A5', ring: 'rgba(239,68,68,0.25)', glow: 'rgba(239,68,68,0.45)' }
   return (
-    <div className="score-badge group/score flex flex-col items-center gap-1.5" suppressHydrationWarning>
-      <div
-        className={`flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold counter-${value} transition-transform duration-200 ease-out group-hover/score:scale-[1.14]`}
-        style={{
-          background: colors.bg,
-          color: colors.fg,
-          boxShadow: `0 0 0 3px ${colors.ring}`,
-          transitionProperty: 'transform, box-shadow',
-        }}
-        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 0 0 3px ${colors.ring}, 0 0 14px ${colors.glow}` }}
-        onMouseLeave={(e) => { e.currentTarget.style.boxShadow = `0 0 0 3px ${colors.ring}` }}
-      >
-        {value}
+    <div
+      className={`score-badge ${geo ? 'score-badge--geo' : ''}`}
+      style={{ '--score-progress': `${value}%` } as CSSProperties}
+      suppressHydrationWarning
+    >
+      <div className="score-badge__topline">
+        <span>{geo ? 'GEO / AI' : label}</span>
+        <strong className={`counter-${value}`}>{value}</strong>
       </div>
-      <span className="text-[9px] leading-tight text-[#A6B2C4] text-center max-w-[44px] transition-colors duration-200 ease-out group-hover/score:text-[#EAF0F7]">{geo ? 'GEO / AI' : label}</span>
+      <i aria-hidden="true"><span /></i>
     </div>
   )
 }
@@ -244,15 +236,15 @@ function AnimatedLines() {
   )
 }
 
-function DesktopProjectCard({ project, index, asH1 }: { project: Project; index: number; asH1: boolean }) {
+function DesktopProjectCard({ project, index, asH1, inView }: { project: Project; index: number; asH1: boolean; inView: boolean }) {
   const [bodyPreview] = splitAtSentences(project.body, 2)
   const featured = index === 0
   const wide = index === 2
 
   return (
     <article
-      className={`portfolio-case group ${featured ? 'portfolio-case--featured' : ''} ${wide ? 'portfolio-case--wide' : ''}`}
-      data-img-reveal
+      className={`portfolio-case group ${inView ? 'is-revealed' : ''} ${featured ? 'portfolio-case--featured' : ''} ${wide ? 'portfolio-case--wide' : ''}`}
+      style={{ '--reveal-delay': `${index * 130}ms` } as CSSProperties}
     >
       <div className="portfolio-case__visual">
         <div className="portfolio-case__owner">
@@ -266,7 +258,14 @@ function DesktopProjectCard({ project, index, asH1 }: { project: Project; index:
         </div>
 
         {project.kind === 'image' ? (
-          <a href={project.href} target="_blank" rel="noreferrer" className="portfolio-case__image-wrap">
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="portfolio-case__image-wrap"
+            data-parallax-media
+            style={{ '--portfolio-image-aspect': `${project.imgWidth} / ${project.imgHeight}` } as CSSProperties}
+          >
             <Image
               src={project.preview}
               alt={`${project.name} - ${project.tagline}`}
@@ -281,18 +280,25 @@ function DesktopProjectCard({ project, index, asH1 }: { project: Project; index:
             />
           </a>
         ) : (
-          <div className="portfolio-case__comparison">
-            <BeforeAfterSlider
-              beforeSrc={project.beforeSrc}
-              afterSrc={project.afterSrc}
-              beforeAlt={`${project.name} — strona przed redesignem`}
-              afterAlt={`${project.name} — strona po redesignie`}
-              width={project.sliderWidth}
-              height={project.sliderHeight}
-              beforeBlur={project.beforeBlur}
-              afterBlur={project.afterBlur}
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="portfolio-case__image-wrap"
+            data-parallax-media
+            style={{ '--portfolio-image-aspect': '1849 / 929' } as CSSProperties}
+          >
+            <Image
+              src="/portfolio/dorimari-preview.webp"
+              alt={`${project.name} - ${project.tagline}`}
+              width={1852}
+              height={916}
+              sizes="(min-width: 1024px) 480px, 100vw"
+              className="portfolio-case__image portfolio-case__image--dorimari"
+              quality={82}
+              loading="lazy"
             />
-          </div>
+          </a>
         )}
       </div>
 
@@ -307,10 +313,17 @@ function DesktopProjectCard({ project, index, asH1 }: { project: Project; index:
 
         <div className="portfolio-case__footer">
           <LiveSiteButton href={project.href} />
-          <div className="portfolio-case__scores" aria-label="Wyniki Lighthouse">
+          <div className="portfolio-case__scores" aria-label="Wyniki Lighthouse oraz widoczność GEO i AI">
             {project.lighthouse.map((score) => (
-              <span key={score.label}><strong>{score.value}</strong><small>{score.label}</small></span>
+              <span key={score.label}>
+                <strong data-counter-final={score.value} suppressHydrationWarning>{score.value}</strong>
+                <small>{score.label}</small>
+              </span>
             ))}
+            <span className="portfolio-case__score--geo">
+              <strong data-counter-final={100} suppressHydrationWarning>100</strong>
+              <small>GEO / AI</small>
+            </span>
           </div>
         </div>
       </div>
@@ -319,8 +332,8 @@ function DesktopProjectCard({ project, index, asH1 }: { project: Project; index:
 }
 
 export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const wallRef = useRef<HTMLDivElement>(null)
+  const wallInView = useInView(wallRef, { once: true, margin: '-80px' })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [bodyExpanded, setBodyExpanded] = useState(false)
@@ -340,12 +353,12 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
   const nextProject = useCallback(() => {
     setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
+    setCurrentIndex((prev) => (prev + 1) % portfolioProjects.length)
   }, [])
 
   const prevProject = useCallback(() => {
     setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    setCurrentIndex((prev) => (prev - 1 + portfolioProjects.length) % portfolioProjects.length)
   }, [])
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -378,15 +391,15 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
     }
   }, [])
 
-  const project = projects[currentIndex]
+  const project = portfolioProjects[currentIndex]
   const [bodyPreview, bodyRest] = splitAtSentences(project.body, 2)
 
   return (
-    <section id="portfolio" ref={ref} className="section-shell relative overflow-hidden" data-no-entrance suppressHydrationWarning>
+    <section id="portfolio" className="section-shell relative overflow-hidden" data-no-entrance suppressHydrationWarning>
       <SectionGlow variant="portfolio" />
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-7xl">
         <m.div
-          className="flex flex-wrap items-end justify-between gap-4"
+          className="portfolio-heading flex flex-wrap items-end justify-between gap-4"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
@@ -401,14 +414,14 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
           </div>
           <div className="hidden sm:flex lg:hidden items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
-            <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(projects.length).padStart(2, '0')}</span>
+            <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(portfolioProjects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
         </m.div>
 
-        <div className="portfolio-wall hidden lg:grid" data-stagger-group>
-          {projects.map((item, index) => (
-            <DesktopProjectCard key={item.name} project={item} index={index} asH1={asH1} />
+        <div ref={wallRef} className="portfolio-wall hidden lg:grid">
+          {portfolioProjects.map((item, index) => (
+            <DesktopProjectCard key={item.name} project={item} index={index} asH1={asH1} inView={wallInView} />
           ))}
         </div>
 
@@ -440,7 +453,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               >
                 {project.kind === 'image' ? (
                   <div className="flex flex-col gap-3">
-                    <div className="bg-[#161C28] border border-[rgba(255,255,255,0.08)] shadow-lg rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
+                    <div className="portfolio-preview-panel rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
                         <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
@@ -476,7 +489,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-3">
-                    <div className="bg-[#161C28] rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+                    <div className="portfolio-preview-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
                         <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
@@ -504,7 +517,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   </div>
                 )}
 
-                <div className="flex flex-col justify-center p-6 sm:p-8 bg-[#11161F]">
+                <div className="portfolio-mobile-content flex flex-col justify-center p-6 sm:p-8">
                   <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#3AAFE8', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
@@ -529,7 +542,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
                   {project.lighthouse && (
                     <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
-                      <div className="flex gap-4 flex-wrap">
+                      <div className="score-badge-grid">
                         {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
                         <ScoreBadge label="GEO / AI" value={100} geo />
                       </div>
@@ -569,7 +582,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               </m.button>
 
               <div className="flex items-center gap-2">
-                {projects.map((_, i) => (
+                {portfolioProjects.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => { setShowSwipeHint(false); setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i) }}
@@ -598,7 +611,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
         <div className="sr-only">
           <p>Wszystkie realizacje Getbuild</p>
-          {projects.map(p => (
+          {portfolioProjects.map(p => (
             <article key={p.name}>
               <p><strong>{p.name}</strong></p>
               <p>{p.tagline}</p>
@@ -608,6 +621,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 {p.lighthouse.map(s => (
                   <li key={s.label}>{s.label}: {s.value}/100</li>
                 ))}
+                <li>GEO / AI: 100/100</li>
               </ul>
               <p>Strona: {p.href}</p>
             </article>

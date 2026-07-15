@@ -12,12 +12,6 @@ import SectionGlow from './ui/SectionGlow'
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const contactEmail = 'getbuild.pl@gmail.com'
 
-interface CalendlyScriptWindow extends Window {
-  Calendly?: {
-    initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void
-  }
-}
-
 const socials = [
   {
     label: 'Email',
@@ -55,13 +49,10 @@ export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-50px' })
   const [copied, setCopied] = useState(false)
-  const calendlyRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({ email: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
   const [gdprAccepted, setGdprAccepted] = useState(false)
-  const [activeTab, setActiveTab] = useState<'calendly' | 'form'>('form')
-  const [calendlyLoaded, setCalendlyLoaded] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -76,30 +67,6 @@ export default function Contact() {
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
   }, [dropdownOpen])
-
-  useEffect(() => {
-    if (activeTab !== 'calendly' || calendlyLoaded) return
-    const existing = document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')
-    const initWidget = () => {
-      const w = window as CalendlyScriptWindow
-      if (w.Calendly && calendlyRef.current) {
-        w.Calendly.initInlineWidget({
-          url: 'https://calendly.com/getbuild-pl/30min',
-          parentElement: calendlyRef.current,
-        })
-        setCalendlyLoaded(true)
-      }
-    }
-    if (existing) {
-      initWidget()
-      return
-    }
-    const script = document.createElement('script')
-    script.src = 'https://assets.calendly.com/assets/external/widget.js'
-    script.async = true
-    script.onload = initWidget
-    document.body.appendChild(script)
-  }, [activeTab, calendlyLoaded])
 
   const copyEmail = () => {
     navigator.clipboard.writeText(contactEmail)
@@ -139,29 +106,20 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
         data-fade-in
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14 xl:p-16"
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 30%), #11161F' }}
       >
 
-          <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-12">
-            <div className="w-full lg:w-[260px] xl:w-[280px] flex-shrink-0 flex flex-col">
+          <div className="relative flex flex-col lg:flex-row gap-10 lg:gap-14 xl:gap-16">
+            <div className="w-full lg:w-[290px] xl:w-[320px] flex-shrink-0 flex flex-col">
               <div>
                 <span className="section-kicker" suppressHydrationWarning>Kontakt</span>
-                <h2 data-motion-title className="mt-2 text-[26px] sm:text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+                <h2 data-motion-title className="mt-3 text-[32px] sm:text-[38px] lg:text-[42px] font-extrabold leading-[1.07] tracking-[-0.04em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                   Umów bezpłatną konsultację
                 </h2>
-                <p data-motion-copy className="mt-3 text-[13px] leading-[1.7] text-[#A6B2C4]">
+                <p data-motion-copy className="mt-5 text-[15px] leading-[1.75] text-[#A6B2C4]">
                   Nie musisz podejmować decyzji od razu. Umów się na bezpłatną rozmowę i sprawdź, jaka ścieżka będzie dla Ciebie najlepsza.
                 </p>
-                <button
-                  onClick={() => setActiveTab('calendly')}
-                  className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#3AAFE8] text-[#06141A] text-[13px] font-bold hover:bg-[#CEDDF7] active:scale-[0.97] transition-[transform,background-color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 w-fit"
-                >
-                  Umów spotkanie
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
               </div>
 
               <div className="mt-8 flex flex-col gap-5">
@@ -239,32 +197,33 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="w-full flex-1 min-w-0 flex flex-col">
-              <div className="flex gap-1 p-1 rounded-2xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)] mb-6 w-fit">
-                <button
-                  onClick={() => setActiveTab('calendly')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] ${
-                    activeTab === 'calendly'
-                      ? 'bg-[#3AAFE8] text-[#06141A] shadow-[0_2px_8px_rgba(58,175,232,0.3)]'
-                      : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
-                  }`}
-                >
-                  Umów spotkanie
-                </button>
-                <button
-                  onClick={() => setActiveTab('form')}
-                  className={`px-5 py-2.5 rounded-xl text-[13px] font-semibold transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] ${
-                    activeTab === 'form'
-                      ? 'bg-[#3AAFE8] text-[#06141A] shadow-[0_2px_8px_rgba(58,175,232,0.3)]'
-                      : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
-                  }`}
-                >
-                  Wyślij zapytanie
-                </button>
+            <div className="w-full flex-1 min-w-0 grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] items-start">
+              <div className="min-w-0">
+                <div className="mb-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#3AAFE8] mb-2">Umów spotkanie</p>
+                  <h3 className="text-[20px] sm:text-[22px] font-extrabold leading-tight tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+                    Wybierz termin rozmowy
+                  </h3>
+                </div>
+                <div className="calendly-widget w-full overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '680px', height: '680px' }}>
+                  <iframe
+                    title="Umów spotkanie z Getbuild"
+                    src="https://calendly.com/getbuild-pl/30min?embed_type=Inline"
+                    loading="lazy"
+                    className="h-full w-full border-0"
+                    allow="camera; microphone; fullscreen"
+                  />
+                </div>
               </div>
 
-              <div ref={calendlyRef} className="calendly-widget w-full rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '750px', height: '750px', display: activeTab === 'calendly' ? 'block' : 'none' }} />
-              <div style={{ display: activeTab === 'form' ? 'block' : 'none' }} className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
+              <div className="min-w-0">
+                <div className="mb-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#3AAFE8] mb-2">Napisz do nas</p>
+                  <h3 className="text-[20px] sm:text-[22px] font-extrabold leading-tight tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+                    Wyślij krótkie zapytanie
+                  </h3>
+                </div>
+                <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
@@ -335,7 +294,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Opisz swój projekt lub pytanie w kilku zdaniach — im więcej szczegółów, tym lepiej dopasujemy rozwiązanie." rows={5} className="form-input resize-none" />
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="form-input resize-none" />
                   </div>
                   <div className="flex items-start gap-3">
                     <input type="checkbox" id="gdpr" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" />
@@ -351,6 +310,7 @@ export default function Contact() {
                   </button>
                   <p className="text-center text-[11px] text-[#7C879B]">Bez spamu. Bez zobowiązań. Odpowiadamy w&nbsp;ciągu 24&nbsp;h.</p>
                 </form>
+                </div>
               </div>
             </div>
           </div>

@@ -59,16 +59,38 @@ export default function GSAPAnimations() {
       const gr = group.getBoundingClientRect()
       const gcx = gr.left + gr.width / 2
       const half = gr.width / 2 || 1
+      const pattern = group.dataset.revealPattern
       Array.from(group.children).forEach((child, i) => {
         const el = child as HTMLElement
         if (processed.has(el)) return
         const r = el.getBoundingClientRect()
         const rel = (r.left + r.width / 2 - gcx) / half
         let tx = 0
-        let ty = 78
-        if (!isMobile && rel < -0.33) { tx = -96; ty = 40 }
+        let ty = isMobile ? 34 : 78
+        let scale = isMobile ? 0.985 : 0.93
+        if (!isMobile && pattern === 'split') {
+          tx = i % 2 === 0 ? -84 : 84
+          ty = 22
+          scale = 0.97
+        } else if (!isMobile && pattern === 'portfolio') {
+          tx = i === 0 ? -46 : i === 1 ? 46 : 0
+          ty = i === 2 ? 54 : 24
+          scale = 0.975
+        } else if (!isMobile && pattern === 'rise') {
+          tx = 0
+          ty = 52 + (i % 2) * 14
+          scale = 0.975
+        } else if (!isMobile && pattern === 'fan') {
+          tx = (i - 1) * 48
+          ty = i === 1 ? 58 : 38
+          scale = 0.975
+        } else if (!isMobile && pattern === 'soft') {
+          tx = 0
+          ty = 18 + i * 4
+          scale = 0.992
+        } else if (!isMobile && rel < -0.33) { tx = -96; ty = 40 }
         else if (!isMobile && rel > 0.33) { tx = 96; ty = 40 }
-        el.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(0.93)`
+        el.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${scale})`
         el.style.transitionDelay = i ? `${Math.min(i, 7) * 0.1}s` : ''
       })
     }
@@ -161,6 +183,7 @@ export default function GSAPAnimations() {
       push('.overview-num', 60)
       push('.step-number', 54)
       push('[data-parallax-slow]', -30)
+      push('[data-parallax-media]', 18)
       if (parallaxItems.length) {
         runParallax()
         window.addEventListener('scroll', onScroll, { passive: true })
@@ -214,7 +237,7 @@ export default function GSAPAnimations() {
 
         mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
           const tiltCards = document.querySelectorAll(
-            '.premium-card, .value-card, .realizacja-card, .ai-card, .pkg-card, .overview-card, .testimonial-card, [data-tilt-card]',
+            '.premium-card, .value-card, .realizacja-card, .ai-card, .pkg-card, .overview-card, [data-tilt-card]',
           )
           const cleanups: Array<() => void> = []
           tiltCards.forEach((card) => {

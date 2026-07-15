@@ -199,6 +199,16 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
           <span className="price-counter" data-counter-final={pkg.amount} suppressHydrationWarning>{pkg.amount}</span>
           <span className="text-[#A6B2C4] font-bold text-[1.15rem]">{pkg.priceSuffix}</span>
         </span>
+        <a
+          href="#kontakt"
+          onClick={(e) => {
+            e.preventDefault()
+            scrollToSection('kontakt')
+          }}
+          className={`mt-4 w-full btn ${pkg.featured ? 'btn-primary' : 'btn-ghost'} px-4 py-3 text-[13px] font-semibold`}
+        >
+          Zapytaj o {pkg.name.toLowerCase()}
+        </a>
       </div>
       </div>
     </m.div>
@@ -229,7 +239,7 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
       >
         <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{item.no}</span>
 
-        <div className="flex items-center gap-3.5">
+        <div className="overview-card__head flex items-center gap-3.5">
           <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(58,175,232,0.25)]" style={{ background: 'rgba(58,175,232,0.08)' }}>
             <Icon size={22} strokeWidth={1.8} className="text-[#8CD8FF]" aria-hidden="true" />
           </span>
@@ -238,11 +248,11 @@ function OverviewCard({ item, i }: { item: Overview; i: number }) {
           </h3>
         </div>
 
-        <p className="mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
+        <p className="overview-card__problem mt-5 text-[15px] font-semibold leading-snug text-[#EAF0F7]">{item.problem}</p>
 
-        <p className="mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
+        <p className="overview-card__description mt-2.5 text-[14px] leading-[1.7] text-[#A6B2C4]">{item.desc}</p>
 
-              <ul className="mt-6 flex flex-col gap-3">
+        <ul className="overview-card__list mt-6 flex flex-col gap-3">
           {item.solves.map(([pain, fix]) => (
             <li key={pain} className="flex items-start gap-3">
               <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(58,175,232,0.15)' }} aria-hidden>
@@ -343,7 +353,7 @@ export default function Services() {
             </p>
           </m.div>
 
-          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group>
+          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 lg:gap-6" data-stagger-group data-reveal-pattern="split">
             {overview.map((item, i) => (
               <OverviewCard key={item.name} item={item} i={i} />
             ))}
@@ -366,7 +376,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-12">
-            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5" data-stagger-group>
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-5" data-stagger-group data-reveal-pattern="fan">
               {packages.map((pkg, i) => (
                 <PackageCard
                   key={pkg.name}
@@ -398,7 +408,7 @@ export default function Services() {
 
           {/* ── Połączony box: SEO + opieka + hosting (szczegóły po rozwinięciu) ── */}
           <m.div
-            className="mt-8 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] px-6 py-6"
+            className="service-detail-panel mt-8 rounded-2xl border px-6 py-6"
             data-fade-in
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -494,7 +504,7 @@ export default function Services() {
           </m.div>
 
           <div className="mt-16">
-            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr" data-stagger-group>
+            <div className="hidden lg:grid gap-4 lg:grid-cols-3 lg:gap-6 auto-rows-fr" data-stagger-group data-reveal-pattern="fan">
               {aiTypes.map((ai, i) => <AiCard key={ai.name} ai={ai} inView={inView2} i={i} />)}
             </div>
 

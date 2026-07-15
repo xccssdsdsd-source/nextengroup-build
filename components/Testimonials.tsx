@@ -1,14 +1,12 @@
 'use client'
 
-import { m, useInView } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight, Star } from 'lucide-react'
 import Image from 'next/image'
-import { useRef } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const testimonials = [
   {
@@ -30,13 +28,9 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-50px' })
-
   return (
     <section
       id="opinie"
-      ref={ref}
       className="section-shell relative overflow-hidden"
       data-no-entrance
       suppressHydrationWarning
@@ -54,14 +48,15 @@ export default function Testimonials() {
         </m.div>
 
         <m.div
-          className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6 items-stretch"
+          className="testimonials-grid mt-14 grid gap-5 lg:grid-cols-2 items-stretch"
           data-stagger-group
+          data-reveal-pattern="soft"
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ ...premiumSpring, delay: 0.12 }}
+          transition={{ duration: 0.56, ease, delay: 0.12 }}
         >
           {testimonials.map((testimonial, i) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} featured={i === 0} />
+            <TestimonialCard key={testimonial.name} testimonial={testimonial} index={i} />
           ))}
         </m.div>
 
@@ -84,29 +79,32 @@ export default function Testimonials() {
   )
 }
 
-function TestimonialCard({ testimonial, featured }: { testimonial: (typeof testimonials)[number]; featured?: boolean }) {
+function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimonials)[number]; index: number }) {
   return (
     <m.article
-      className="testimonial-card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] p-7 sm:p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
+      className="testimonial-card group relative flex h-full min-h-[390px] w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] p-7 sm:p-10 lg:p-12 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
-      <div className="flex gap-1 text-[#FBBF24]">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
-        ))}
+      <div className="flex items-center justify-between gap-6">
+        <div className="flex gap-1 text-[#FBBF24]" aria-label="Ocena 5 na 5">
+          {Array.from({ length: 5 }).map((_, starIndex) => (
+            <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} />
+          ))}
+        </div>
+        <span className="font-mono text-[11px] tracking-[0.16em] text-[#627086]">OPINIA 0{index + 1}</span>
       </div>
 
-      <p className="mt-5 flex-1 text-[16px] leading-[1.72] text-[#C2CBDA]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
+      <p className="mt-8 flex-1 text-[clamp(14px,1.1vw,17px)] font-medium leading-[1.55] tracking-[-0.012em] text-[#D7E0EC]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
-      <div className="mt-6 flex items-center gap-3.5 border-t border-[rgba(255,255,255,0.08)] pt-5">
-        <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.22)]">
+      <div className="mt-8 flex items-center gap-4 border-t border-[rgba(255,255,255,0.08)] pt-6">
+        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-[15px] ring-1 ring-[rgba(58,175,232,0.24)]">
           <Image
             src={testimonial.photo}
             alt={testimonial.name}
-            width={88}
-            height={88}
+            width={72}
+            height={72}
             loading="lazy"
             className="h-full w-full object-cover"
           />
@@ -117,10 +115,10 @@ function TestimonialCard({ testimonial, featured }: { testimonial: (typeof testi
             href={testimonial.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-1 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#3AAFE8] transition-colors duration-150 hover:text-[#8CD8FF]"
+            className="group/link mt-1.5 inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#3AAFE8] transition-colors duration-150 hover:text-[#8CD8FF]"
           >
             <span>{testimonial.site}</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(58,175,232,0.12)] ring-1 ring-[rgba(58,175,232,0.22)] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[rgba(58,175,232,0.18)]">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-[rgba(58,175,232,0.12)] ring-1 ring-[rgba(58,175,232,0.22)] transition-transform duration-150 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:bg-[rgba(58,175,232,0.18)]">
               <ArrowUpRight size={13} strokeWidth={2.4} aria-hidden="true" />
             </span>
           </a>

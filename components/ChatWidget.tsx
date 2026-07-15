@@ -23,6 +23,26 @@ const Avatar = () => (
   </span>
 )
 
+const WORD_STEP_MS = 26
+
+const renderMessageContent = (text: string, animate: boolean) => {
+  if (!animate) return text
+
+  let wordIndex = 0
+  return text.split(/(\s+)/).map((chunk, idx) => {
+    if (!chunk) return null
+    if (/^\s+$/.test(chunk)) return chunk
+
+    const delay = wordIndex * WORD_STEP_MS
+    wordIndex += 1
+    return (
+      <span key={idx} className="hero-chat__word" style={{ animationDelay: `${delay}ms` }}>
+        {chunk}
+      </span>
+    )
+  })
+}
+
 export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -173,7 +193,7 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              Cześć! Pytaj śmiało, odpowiadam od razu.
+              {renderMessageContent('Cześć! Pytaj śmiało, odpowiadam od razu.', true)}
             </div>
           </div>
         )}
@@ -182,7 +202,7 @@ export default function ChatWidget() {
           <div key={i} className={`hero-chat__row hero-chat__row--${m.role === 'user' ? 'user' : 'ai'} hero-chat__pop`}>
             {m.role === 'assistant' && <Avatar />}
             <div className={`hero-chat__bubble hero-chat__bubble--${m.role === 'user' ? 'user' : 'ai'}`}>
-              {m.content}
+              {m.role === 'assistant' ? renderMessageContent(m.content, i === messages.length - 1) : m.content}
             </div>
           </div>
         ))}

@@ -62,7 +62,7 @@ export default function SocialProof() {
           <h2 className="section-title" suppressHydrationWarning>Współpraca bez ryzyka</h2>
         </m.div>
 
-        <div data-fade-in className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85)' }}>
+        <div data-fade-in className="social-proof-grid mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-[var(--border)]" style={{ background: 'var(--border)', boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -28px rgba(0,0,0,0.85)' }}>
           {stats.map((stat, i) => {
             return (
               <m.div
@@ -70,7 +70,7 @@ export default function SocialProof() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1, ease }}
-                className="group relative flex flex-col items-center justify-center gap-3 px-6 py-10 text-center overflow-hidden transition-colors duration-300"
+                className="social-proof-cell group relative flex flex-col items-center justify-center gap-3 px-6 py-10 text-center overflow-hidden transition-colors duration-300"
                 style={{ background: 'linear-gradient(180deg, #0F141D 0%, #0C1017 55%, #0A0E15 100%)' }}
               >
                 <div

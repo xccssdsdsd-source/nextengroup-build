@@ -132,17 +132,19 @@ function splitAtSentences(text: string, count: number): [string, string] {
 }
 
 function ScoreBadge({ value, label, geo = false }: LighthouseScore & { geo?: boolean }) {
+  const displayLabel = geo ? 'GEO / AI' : label
+
   return (
     <div
       className={`score-badge ${geo ? 'score-badge--geo' : ''}`}
-      style={{ '--score-progress': `${value}%` } as CSSProperties}
+      role="img"
+      aria-label={`${displayLabel}: ${value} na 100`}
       suppressHydrationWarning
     >
-      <div className="score-badge__topline">
-        <span>{geo ? 'GEO / AI' : label}</span>
+      <div className="score-badge__content">
         <strong className={`counter-${value}`}>{value}</strong>
+        <span>{displayLabel}</span>
       </div>
-      <i aria-hidden="true"><span /></i>
     </div>
   )
 }
@@ -412,14 +414,14 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               <h2 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
             )}
           </div>
-          <div className="hidden sm:flex lg:hidden items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2.5">
             <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
             <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(portfolioProjects.length).padStart(2, '0')}</span>
             <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
           </div>
         </m.div>
 
-        <div ref={wallRef} className="portfolio-wall hidden lg:grid">
+        <div ref={wallRef} className="portfolio-wall hidden">
           {portfolioProjects.map((item, index) => (
             <DesktopProjectCard key={item.name} project={item} index={index} asH1={asH1} inView={wallInView} />
           ))}
@@ -427,7 +429,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
 
         <m.div
           data-fade-in
-          className="mt-7 relative lg:hidden"
+          className="mt-7 relative"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12, ease }}

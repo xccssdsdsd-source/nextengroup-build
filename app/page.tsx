@@ -3,15 +3,13 @@ import Hero from '@/components/Hero'
 import SocialProof from '@/components/SocialProof'
 import InView from '@/components/InView'
 import StickyCta from '@/components/StickyCta'
-import dynamic from 'next/dynamic'
-
-const Services = dynamic(() => import('@/components/Services'))
-const Process = dynamic(() => import('@/components/Process'))
-const Portfolio = dynamic(() => import('@/components/Portfolio'))
-const Testimonials = dynamic(() => import('@/components/Testimonials'))
-const FAQ = dynamic(() => import('@/components/FAQ'))
-const Contact = dynamic(() => import('@/components/Contact'))
-const Footer = dynamic(() => import('@/components/Footer'))
+import Services from '@/components/Services'
+import Process from '@/components/Process'
+import Portfolio from '@/components/Portfolio'
+import Testimonials from '@/components/Testimonials'
+import FAQ from '@/components/FAQ'
+import Contact from '@/components/Contact'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (

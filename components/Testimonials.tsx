@@ -82,7 +82,7 @@ export default function Testimonials() {
 function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimonials)[number]; index: number }) {
   return (
     <m.article
-      className="testimonial-card group relative flex h-full min-h-[390px] w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] p-7 sm:p-10 lg:p-12 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
+      className="testimonial-card group relative flex h-full min-h-[340px] w-full flex-col overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] p-6 sm:p-8 lg:p-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_1px_3px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.5)]"
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <div className="flex items-center justify-between gap-6">
@@ -94,12 +94,12 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
         <span className="font-mono text-[11px] tracking-[0.16em] text-[#627086]">OPINIA 0{index + 1}</span>
       </div>
 
-      <p className="mt-8 flex-1 text-[clamp(14px,1.1vw,17px)] font-medium leading-[1.55] tracking-[-0.012em] text-[#D7E0EC]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
+      <p className="mt-6 flex-1 text-[clamp(13.5px,1vw,16px)] font-medium leading-[1.55] tracking-[-0.012em] text-[#D7E0EC]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
-      <div className="mt-8 flex items-center gap-4 border-t border-[rgba(255,255,255,0.08)] pt-6">
-        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-[15px] ring-1 ring-[rgba(58,175,232,0.24)]">
+      <div className="mt-6 flex items-center gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
+        <div className="testimonial-avatar relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-[rgba(58,175,232,0.24)]">
           <Image
             src={testimonial.photo}
             alt={testimonial.name}

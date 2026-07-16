@@ -1,9 +1,4 @@
-/* Per-section ambient light — one soft, low-contrast navy pool anchored to
-   the left or right side at roughly mid-height (never near the top/bottom
-   edge), plus a hard edge-safety mask so the pool can never touch the
-   section boundary regardless of real rendered height. Deliberately subtle:
-   it lifts the flat black just enough to give each section depth, without
-   the "nebula" look. */
+/* Local blue light reinforces the same visual language inside each section. */
 
 .glow {
   position: absolute;
@@ -11,28 +6,40 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+  background:
+    radial-gradient(ellipse 25% 88% at 8% 4%, rgba(18, 64, 124, 0.13), transparent 72%),
+    radial-gradient(ellipse 34% 96% at 58% 0%, rgba(30, 91, 172, 0.2), transparent 73%),
+    radial-gradient(ellipse 27% 90% at 82% 3%, rgba(58, 175, 232, 0.1), transparent 72%),
+    radial-gradient(ellipse 30% 94% at 104% 4%, rgba(43, 104, 218, 0.18), transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 88%, transparent 100%);
 }
 
-/* Starfield removed — the dot grain read as a generic "space" template. */
 .stars {
   display: none;
 }
 
-.hero { background: radial-gradient(38rem 30rem at 92% 42%, rgba(43, 104, 218, 0.13), transparent 68%); }
+.services1,
+.process,
+.testimonials,
+.contact {
+  transform: scaleX(-1);
+}
 
-.services1 { background: radial-gradient(34rem 26rem at 6% 42%, rgba(58, 175, 232, 0.10), transparent 68%); }
+.hero { opacity: 0.94; }
+.services1 { opacity: 0.78; }
+.services2 { opacity: 0.72; }
+.process { opacity: 0.76; }
+.portfolio { opacity: 0.78; }
+.testimonials { opacity: 0.7; }
+.faq { opacity: 0.72; }
+.contact { opacity: 0.84; }
 
-.services2 { background: radial-gradient(34rem 27rem at 94% 50%, rgba(43, 104, 218, 0.11), transparent 68%); }
-
-.process { background: radial-gradient(34rem 27rem at 6% 48%, rgba(58, 175, 232, 0.09), transparent 68%); }
-
-.portfolio { background: radial-gradient(34rem 27rem at 94% 50%, rgba(43, 104, 218, 0.10), transparent 68%); }
-
-.testimonials { background: radial-gradient(33rem 25rem at 6% 45%, rgba(58, 175, 232, 0.09), transparent 68%); }
-
-.faq { background: radial-gradient(33rem 25rem at 94% 50%, rgba(43, 104, 218, 0.10), transparent 68%); }
-
-/* Kontakt — the finale keeps a whisper of the cyan accent, still restrained. */
-.contact { background: radial-gradient(34rem 27rem at 6% 45%, rgba(58, 175, 232, 0.12), transparent 68%); }
+@media (max-width: 768px) {
+  .glow {
+    inset-inline: -30%;
+    opacity: 0.68;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+}

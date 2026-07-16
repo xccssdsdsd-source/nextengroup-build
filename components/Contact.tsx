@@ -106,7 +106,7 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
         data-fade-in
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14 xl:p-16"
+        className="contact-panel relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14 xl:p-16"
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 30%), #11161F' }}
       >
 
@@ -159,7 +159,7 @@ export default function Contact() {
                         href={s.href}
                         target={s.label !== 'Email' ? '_blank' : undefined}
                         rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 ${
+                        className={`contact-social group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 ${
                           s.label === 'Email' ? 'border-[rgba(234,113,42,0.2)] bg-[rgba(234,113,42,0.06)] hover:bg-[rgba(234,113,42,0.14)] hover:border-[rgba(234,113,42,0.5)]'
                           : s.label === 'Instagram' ? 'border-[rgba(225,48,108,0.2)] bg-[rgba(225,48,108,0.06)] hover:bg-[rgba(225,48,108,0.14)] hover:border-[rgba(225,48,108,0.5)]'
                           : s.label === 'Facebook' ? 'border-[rgba(24,119,242,0.2)] bg-[rgba(24,119,242,0.06)] hover:bg-[rgba(24,119,242,0.14)] hover:border-[rgba(24,119,242,0.5)]'
@@ -223,7 +223,7 @@ export default function Contact() {
                     Wyślij krótkie zapytanie
                   </h3>
                 </div>
-                <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
+                <div className="contact-form-card rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>

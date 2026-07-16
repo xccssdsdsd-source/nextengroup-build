@@ -32,10 +32,6 @@ export default function ChatWidget() {
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
-  const glowRef = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
-  const clickFxRef = useRef<HTMLDivElement>(null)
-  const pointerRafRef = useRef<number | null>(null)
 
   useEffect(() => {
     threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior: 'smooth' })
@@ -43,7 +39,6 @@ export default function ChatWidget() {
 
   useEffect(() => () => {
     abortRef.current?.abort()
-    if (pointerRafRef.current !== null) cancelAnimationFrame(pointerRafRef.current)
   }, [])
 
   const send = async (text: string) => {
@@ -101,59 +96,14 @@ export default function ChatWidget() {
     inputRef.current?.focus()
   }
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - left) / width - 0.5
-    const y = (e.clientY - top) / height - 0.5
-
-    if (pointerRafRef.current !== null) cancelAnimationFrame(pointerRafRef.current)
-    pointerRafRef.current = requestAnimationFrame(() => {
-      if (glowRef.current) glowRef.current.style.transform = `translate3d(${x * 54}px, ${y * 42}px, 0)`
-      if (gridRef.current) gridRef.current.style.transform = `translate3d(${x * -12}px, ${y * -10}px, 0)`
-    })
-  }
-
-  const handlePointerLeave = () => {
-    if (glowRef.current) glowRef.current.style.transform = 'translate3d(0, 0, 0)'
-    if (gridRef.current) gridRef.current.style.transform = 'translate3d(0, 0, 0)'
-  }
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const fx = clickFxRef.current
-    if (!fx || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const { left, top } = e.currentTarget.getBoundingClientRect()
-    fx.style.left = `${e.clientX - left}px`
-    fx.style.top = `${e.clientY - top}px`
-    if (typeof fx.animate !== 'function') return
-
-    try {
-      fx.getAnimations?.().forEach(animation => animation.cancel())
-      fx.animate(
-        [
-          { opacity: 0.55, transform: 'translate(-50%, -50%) scale(0.35)' },
-          { opacity: 0, transform: 'translate(-50%, -50%) scale(1.25)' },
-        ],
-        { duration: 520, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
-      )
-    } catch {
-      // The background response is decorative; unsupported animation APIs
-      // must never interrupt the chat interaction.
-    }
-  }
-
   return (
     <div
       className={`hero-chat hero-chat--live ${isFocused ? 'hero-chat--focused' : ''}`}
       onClick={focusInput}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onPointerDown={handlePointerDown}
     >
       <div className="hero-chat__interactive-bg" aria-hidden="true">
-        <div ref={gridRef} className="hero-chat__interactive-grid" />
-        <div ref={glowRef} className="hero-chat__interactive-glow" />
-        <div ref={clickFxRef} className="hero-chat__click-fx" />
+        <div className="hero-chat__interactive-grid" />
+        <div className="hero-chat__interactive-glow" />
       </div>
 
       <div className="hero-chat__bar">

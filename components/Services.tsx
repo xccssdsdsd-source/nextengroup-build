@@ -169,7 +169,7 @@ function PackageCard({ pkg, inView, i, asHeading = true }: { pkg: Package; inVie
       {pkg.featured ? (
         <div className="mb-3 mt-8">
           <span className="inline-block px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#06141A] bg-[#3AAFE8] rounded-full">
-            Najpopularniejszy
+            Najpopularniejsza opcja
           </span>
         </div>
       ) : (

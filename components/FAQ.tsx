@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, m, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import SectionGlow from './ui/SectionGlow'
@@ -103,14 +103,14 @@ export default function FAQ() {
           </p>
         </m.div>
 
-        <div className="flex flex-col gap-2" data-stagger-group>
+        <div className="flex flex-col gap-2">
           {visible.map((faq, index) => {
             const isOpen = open === index
 
             return (
               <div
                 key={faq.q}
-                className={`rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
+                className={`faq-item rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
                     ? 'border-l-[#3AAFE8] bg-[rgba(58,175,232,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(58,175,232,0.18)]'
                     : 'border-l-transparent bg-transparent'
@@ -161,26 +161,21 @@ export default function FAQ() {
             )
           })}
 
-          <AnimatePresence>
-            {!expanded && (
-              <m.div
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="relative"
-              >
-                <div className="absolute -top-16 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#060A10] pointer-events-none" />
-                <button
-                  type="button"
-                  onClick={() => setExpanded(true)}
-                  className="mt-2 w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3.5 text-[13.5px] font-medium text-[#A6B2C4] hover:border-white/20 hover:text-[#EAF0F7] transition-colors duration-200"
-                >
-                  <Plus size={14} strokeWidth={2} />
-                  Pokaż więcej pytań ({faqs.length - VISIBLE_COUNT})
-                </button>
-              </m.div>
-            )}
-          </AnimatePresence>
+          <button
+            type="button"
+            onClick={() => {
+              setExpanded((current) => !current)
+              if (expanded && open !== null && open >= VISIBLE_COUNT) setOpen(null)
+            }}
+            className="mt-2 w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3.5 text-[13.5px] font-medium text-[#A6B2C4] hover:border-white/20 hover:text-[#EAF0F7] transition-colors duration-200"
+          >
+            <Plus
+              size={14}
+              strokeWidth={2}
+              className={`transition-transform duration-200 ${expanded ? 'rotate-45' : ''}`}
+            />
+            {expanded ? 'Pokaż mniej pytań' : `Pokaż więcej pytań (${faqs.length - VISIBLE_COUNT})`}
+          </button>
         </div>
       </div>
     </section>

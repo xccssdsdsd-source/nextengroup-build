@@ -237,7 +237,7 @@ export default function GSAPAnimations() {
 
         mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
           const tiltCards = document.querySelectorAll(
-            '.premium-card, .value-card, .realizacja-card, .ai-card, .pkg-card, .overview-card, [data-tilt-card]',
+            '.premium-card, .value-card, .realizacja-card, .portfolio-case, .testimonial-card, .faq-item, .ai-card, .pkg-card, .overview-card, [data-tilt-card]',
           )
           const cleanups: Array<() => void> = []
           tiltCards.forEach((card) => {
@@ -246,21 +246,19 @@ export default function GSAPAnimations() {
             if (!glare) {
               glare = document.createElement('div')
               glare.className = 'tilt-glare'
-              glare.style.cssText =
-                'position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;z-index:1;transition:opacity 220ms ease;'
               if (getComputedStyle(el).position === 'static') el.style.position = 'relative'
               el.appendChild(glare)
             }
-            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.4, ease: 'power3.out' })
-            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.4, ease: 'power3.out' })
+            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.32, ease: 'power3.out' })
+            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.32, ease: 'power3.out' })
             const onMove = (e: MouseEvent) => {
               const rect = el.getBoundingClientRect()
               const px = (e.clientX - rect.left) / rect.width
               const py = (e.clientY - rect.top) / rect.height
-              rotX(-(py - 0.5) * 5)
-              rotY((px - 0.5) * 5)
+              rotX(-(py - 0.5) * 1.3)
+              rotY((px - 0.5) * 1.3)
               if (glare) {
-                glare.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(140,216,255,0.10) 0%, transparent 58%)`
+                glare.style.background = `radial-gradient(180px circle at ${px * 100}% ${py * 100}%, rgba(140,216,255,0.022) 0%, transparent 70%)`
                 glare.style.opacity = '1'
               }
             }
@@ -268,7 +266,7 @@ export default function GSAPAnimations() {
               gsap.to(el, {
                 rotationX: 0,
                 rotationY: 0,
-                duration: 0.55,
+                duration: 0.38,
                 ease: 'power3.out',
                 onComplete: () => gsap.set(el, { clearProps: 'rotationX,rotationY' }),
               })
@@ -285,26 +283,6 @@ export default function GSAPAnimations() {
           return () => cleanups.forEach((fn) => fn())
         })
 
-        mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
-          const cleanups: Array<() => void> = []
-          document.querySelectorAll<HTMLElement>('.btn-primary, [data-magnetic]').forEach((btn) => {
-            const moveX = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' })
-            const moveY = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' })
-            const onMove = (e: MouseEvent) => {
-              const rect = btn.getBoundingClientRect()
-              moveX(((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5)
-              moveY(((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 5)
-            }
-            const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'power3.out' })
-            btn.addEventListener('mousemove', onMove)
-            btn.addEventListener('mouseleave', onLeave)
-            cleanups.push(() => {
-              btn.removeEventListener('mousemove', onMove)
-              btn.removeEventListener('mouseleave', onLeave)
-            })
-          })
-          return () => cleanups.forEach((fn) => fn())
-        })
       })
     }
 

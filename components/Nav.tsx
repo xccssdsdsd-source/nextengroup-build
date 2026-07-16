@@ -7,13 +7,6 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
-const anchorLinks = [
-  ['Usługi', '#uslugi'],
-  ['Proces', '#proces'],
-  ['Realizacje', '#portfolio'],
-  ['FAQ', '#faq'],
-] as const
-
 const allLinks: readonly (readonly [string, string])[] = [
   ['Usługi', '#uslugi'],
   ['Proces', '#proces'],
@@ -24,16 +17,21 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
 const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
-const ctaLabels = ['Kontakt', 'Bezpłatna konsultacja', 'Umów krótką rozmowę', 'Zobacz wizualizację']
+const ctaLabels = [
+  'Kontakt',
+  'Bezpłatna konsultacja',
+  'Umów krótką rozmowę',
+  'Zobacz wizualizację',
+  'Zapytaj o projekt',
+  'Sprawdź możliwości',
+] as const
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [displayText, setDisplayText] = useState(ctaLabels[0])
-  const [isMounted, setIsMounted] = useState(false)
-  const [typingEnabled, setTypingEnabled] = useState(false)
+  const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
   const [ctaWidth, setCtaWidth] = useState<number>()
-  const ctaContentRef = useRef<HTMLSpanElement>(null)
+  const ctaRef = useRef<HTMLAnchorElement>(null)
+  const ctaTextRef = useRef<HTMLSpanElement>(null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -54,77 +52,87 @@ export default function Nav() {
   }
 
   useEffect(() => {
-    setIsMounted(true)
-    setTypingEnabled(window.matchMedia('(min-width: 640px)').matches)
     if (window.location.hash.length > 1) {
       const id = decodeURIComponent(window.location.hash.slice(1))
       setTimeout(() => scrollToSection(id), 120)
     }
-    const onScroll = () => setScrolled(window.scrollY > 80)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  // Typewriter CTA: wpisuje/kasuje wg realnego upływu czasu (rAF), nie licznika
-  // kroków w setTimeout — chwilowy lag main threada nie spowalnia animacji trwale
-  useEffect(() => {
-    if (!isMounted || !typingEnabled) return
-    const TYPE_MS = 100
-    const DELETE_MS = 65
-    const PAUSE_MS = 2500
-
-    let frame: number
-    let phase: 'typing' | 'pausing' | 'deleting' = 'typing'
-    let phaseStart = performance.now()
-    let index = 0
-    let text = ctaLabels[index]
-
-    const tick = (now: number) => {
-      const elapsed = now - phaseStart
-
-      if (phase === 'typing') {
-        const chars = Math.min(text.length, Math.floor(elapsed / TYPE_MS))
-        setDisplayText(text.slice(0, chars))
-        if (chars >= text.length) {
-          phase = 'pausing'
-          phaseStart = now
-        }
-      } else if (phase === 'pausing') {
-        if (elapsed >= PAUSE_MS) {
-          phase = 'deleting'
-          phaseStart = now
-        }
-      } else {
-        const removed = Math.min(text.length, Math.floor(elapsed / DELETE_MS))
-        setDisplayText(text.slice(0, text.length - removed))
-        if (removed >= text.length) {
-          index = (index + 1) % ctaLabels.length
-          text = ctaLabels[index]
-          phase = 'typing'
-          phaseStart = now
-        }
-      }
-
-      frame = requestAnimationFrame(tick)
-    }
-
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [isMounted, typingEnabled])
-
-  // Szerokość CTA śledzi treść (rośnie przy pisaniu, maleje przy kasowaniu);
-  // transition: width wygładza kroki litera-po-literze.
-  useEffect(() => {
-    const el = ctaContentRef.current
-    if (!el) return
-    setCtaWidth(el.scrollWidth + 40)
-  }, [displayText, typingEnabled])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const typingMs = 72
+    const deletingMs = 42
+    const holdMs = 1900
+    let labelIndex = 0
+    let phase: 'hold' | 'delete' | 'type' = 'hold'
+    let phaseStartedAt = performance.now()
+    let lastText: string = ctaLabels[0]
+    let frame = 0
+
+    const updateText = (nextText: string) => {
+      if (nextText === lastText) return
+      lastText = nextText
+      setDisplayText(nextText)
+    }
+
+    const animate = (now: number) => {
+      const label = ctaLabels[labelIndex]
+      const elapsed = now - phaseStartedAt
+
+      if (phase === 'hold') {
+        if (elapsed >= holdMs) {
+          phase = 'delete'
+          phaseStartedAt = now
+        }
+      } else if (phase === 'delete') {
+        const visibleCharacters = Math.max(0, label.length - Math.floor(elapsed / deletingMs) - 1)
+        updateText(label.slice(0, visibleCharacters))
+
+        if (elapsed >= label.length * deletingMs) {
+          labelIndex = (labelIndex + 1) % ctaLabels.length
+          phase = 'type'
+          phaseStartedAt = now
+          updateText('')
+        }
+      } else {
+        const nextLabel = ctaLabels[labelIndex]
+        const visibleCharacters = Math.min(nextLabel.length, Math.floor(elapsed / typingMs) + 1)
+        updateText(nextLabel.slice(0, visibleCharacters))
+
+        if (elapsed >= nextLabel.length * typingMs) {
+          phase = 'hold'
+          phaseStartedAt = now
+          updateText(nextLabel)
+        }
+      }
+
+      frame = window.requestAnimationFrame(animate)
+    }
+
+    frame = window.requestAnimationFrame(animate)
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
+
+  useEffect(() => {
+    const button = ctaRef.current
+    const text = ctaTextRef.current
+    if (!button || !text) return
+
+    const styles = window.getComputedStyle(button)
+    const horizontalChrome =
+      Number.parseFloat(styles.paddingLeft) +
+      Number.parseFloat(styles.paddingRight) +
+      Number.parseFloat(styles.borderLeftWidth) +
+      Number.parseFloat(styles.borderRightWidth)
+
+    setCtaWidth(Math.ceil(text.getBoundingClientRect().width + horizontalChrome))
+  }, [displayText])
 
   return (
     <>
@@ -161,14 +169,16 @@ export default function Nav() {
 
           <div className="flex items-center gap-3">
             <a
+              ref={ctaRef}
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary nav-tap !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
-              style={{ width: ctaWidth ? `${ctaWidth}px` : undefined, transition: 'width 130ms cubic-bezier(0.22, 1, 0.36, 1)' }}
+              className="btn btn-primary nav-tap nav-cta !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
+              style={ctaWidth ? { width: `${ctaWidth}px` } : undefined}
+              aria-label="Przejdź do kontaktu"
             >
-              <span ref={ctaContentRef} className="inline-flex items-center justify-center whitespace-nowrap">
-                {isMounted ? displayText : ctaLabels[0]}
-                {isMounted && <span className="typing-cursor" />}
+              <span ref={ctaTextRef} className="inline-flex items-center justify-center whitespace-nowrap" aria-hidden="true">
+                {displayText}
+                <span className="typing-cursor" aria-hidden="true" />
               </span>
             </a>
             <button
@@ -222,4 +232,3 @@ export default function Nav() {
     </>
   )
 }
-

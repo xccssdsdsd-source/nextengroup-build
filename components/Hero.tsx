@@ -1,10 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
-import { AnimatePresence, m, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useState, type MouseEvent } from 'react'
+import { AnimatePresence, m } from 'framer-motion'
 import ChatWidget from './ChatWidget'
-import SectionGlow from './ui/SectionGlow'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = [
@@ -14,7 +13,7 @@ const carouselWords = [
   'Cena jest jasna po krótkiej konsultacji',
   'Decydujesz po rozmowie, bez zobowiązań',
   'Poprawki i wsparcie po wdrożeniu są w cenie',
-]
+] as const
 
 const trustOwners = [
   { src: '/owner-pm-apartments.webp', alt: 'Klient PM Apartments' },
@@ -89,37 +88,16 @@ const TrustProof = () => (
 )
 
 export default function Hero() {
-  const [isMounted, setIsMounted] = useState(false)
   const [wordIndex, setWordIndex] = useState(0)
-  // Mobile-only scroll parallax: desktop keeps its GSAP parallax, so we only
-  // drive these transforms on touch/small screens to add depth as you scroll.
-  const [mobileParallax, setMobileParallax] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-  const headlineY = useTransform(scrollYProgress, [0, 1], [0, 56])
-  const chatY = useTransform(scrollYProgress, [0, 1], [0, -34])
-
-  useEffect(() => { setIsMounted(true) }, [])
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    setMobileParallax(window.matchMedia('(max-width: 768px)').matches && !reduce)
-  }, [])
-
-  // Rotujące słowo: każde wjeżdża od dołu i wypycha poprzednie do góry.
-  useEffect(() => {
-    if (!isMounted) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const interval = setInterval(() => {
-      setWordIndex((i) => (i + 1) % carouselWords.length)
-    }, 4200)
-    return () => clearInterval(interval)
-  }, [isMounted])
+    const interval = window.setInterval(
+      () => setWordIndex((current) => (current + 1) % carouselWords.length),
+      3600,
+    )
+    return () => window.clearInterval(interval)
+  }, [])
 
   const handleAnchorClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
@@ -129,7 +107,6 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      ref={sectionRef}
       suppressHydrationWarning
       data-no-reveal
       data-no-entrance
@@ -142,7 +119,6 @@ export default function Hero() {
         justifyContent: 'center',
       }}
     >
-      <SectionGlow variant="hero" />
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
         style={{ paddingTop: 'var(--nav-h)', paddingBottom: '1.5rem' }}
@@ -157,7 +133,7 @@ export default function Hero() {
         >
 
           {/* ── TEXT COLUMN ── */}
-          <m.div className="text-left" data-parallax-headline style={mobileParallax ? { y: headlineY } : undefined}>
+          <m.div className="text-left" data-parallax-headline>
             <TrustProof />
             <h1
               style={{
@@ -197,16 +173,15 @@ export default function Hero() {
             </h1>
 
             <div className="hero-from-right mt-7 flex justify-start" style={{ animationDelay: '90ms' }}>
-              <p className="text-sm sm:text-base leading-relaxed" style={{ minHeight: '2.9em', position: 'relative' }} role="group" aria-label={carouselWords[wordIndex]}>
-                <AnimatePresence mode="wait">
+              <p className="min-h-[3.4rem] max-w-xl text-sm font-medium leading-relaxed text-[var(--text-secondary)] sm:min-h-[1.7rem] sm:text-base">
+                <AnimatePresence mode="wait" initial={false}>
                   <m.span
-                    key={wordIndex}
-                    aria-hidden="true"
-                    initial={{ opacity: 0, y: 8, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -8, filter: 'blur(8px)' }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ display: 'block', color: '#EAF0F7', fontWeight: 600 }}
+                    key={carouselWords[wordIndex]}
+                    className="block"
+                    initial={{ opacity: 0, transform: 'translateY(6px)' }}
+                    animate={{ opacity: 1, transform: 'translateY(0)' }}
+                    exit={{ opacity: 0, transform: 'translateY(-4px)' }}
+                    transition={{ duration: 0.24, ease: [0.23, 1, 0.32, 1] }}
                   >
                     {carouselWords[wordIndex]}
                   </m.span>
@@ -226,7 +201,7 @@ export default function Hero() {
           </m.div>
 
           {/* ── AI CHAT ── */}
-          <m.div style={mobileParallax ? { y: chatY } : undefined}>
+          <m.div>
             <div className="hero-from-right flex justify-center lg:justify-end mt-10 md:mt-0" style={{ animationDelay: '260ms' }}>
               <div className="hero-chat-float w-full max-w-[500px]">
                 <ChatWidget />

@@ -94,7 +94,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
         <span className="font-mono text-[11px] tracking-[0.16em] text-[#627086]">OPINIA 0{index + 1}</span>
       </div>
 
-      <p className="mt-6 flex-1 text-[clamp(13.5px,1vw,16px)] font-medium leading-[1.55] tracking-[-0.012em] text-[#D7E0EC]" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
+      <p className="mt-6 flex-1 text-[clamp(14px,1vw,15.5px)] font-normal leading-[1.7] tracking-[-0.008em] text-[#C9D4E2]">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 

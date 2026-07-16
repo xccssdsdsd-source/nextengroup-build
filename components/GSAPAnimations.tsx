@@ -242,6 +242,7 @@ export default function GSAPAnimations() {
           const cleanups: Array<() => void> = []
           tiltCards.forEach((card) => {
             const el = card as HTMLElement
+            if (el.closest('.process-deck')) return
             let glare = el.querySelector<HTMLElement>('.tilt-glare')
             if (!glare) {
               glare = document.createElement('div')

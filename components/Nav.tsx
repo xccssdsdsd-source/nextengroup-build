@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const allLinks: readonly (readonly [string, string])[] = [
@@ -29,9 +29,6 @@ const ctaLabels = [
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
-  const [ctaWidth, setCtaWidth] = useState<number>()
-  const ctaRef = useRef<HTMLAnchorElement>(null)
-  const ctaTextRef = useRef<HTMLSpanElement>(null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -119,21 +116,6 @@ export default function Nav() {
     return () => window.cancelAnimationFrame(frame)
   }, [])
 
-  useEffect(() => {
-    const button = ctaRef.current
-    const text = ctaTextRef.current
-    if (!button || !text) return
-
-    const styles = window.getComputedStyle(button)
-    const horizontalChrome =
-      Number.parseFloat(styles.paddingLeft) +
-      Number.parseFloat(styles.paddingRight) +
-      Number.parseFloat(styles.borderLeftWidth) +
-      Number.parseFloat(styles.borderRightWidth)
-
-    setCtaWidth(Math.ceil(text.getBoundingClientRect().width + horizontalChrome))
-  }, [displayText])
-
   return (
     <>
       {open && (
@@ -169,16 +151,20 @@ export default function Nav() {
 
           <div className="flex items-center gap-3">
             <a
-              ref={ctaRef}
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
               className="btn btn-primary nav-tap nav-cta !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
-              style={ctaWidth ? { width: `${ctaWidth}px` } : undefined}
               aria-label="Przejdź do kontaktu"
             >
-              <span ref={ctaTextRef} className="inline-flex items-center justify-center whitespace-nowrap" aria-hidden="true">
-                {displayText}
-                <span className="typing-cursor" aria-hidden="true" />
+              <span className="relative inline-flex items-center justify-center whitespace-nowrap" aria-hidden="true">
+                <span className="invisible inline-flex items-center">
+                  Bezpłatna konsultacja
+                  <span className="typing-cursor" />
+                </span>
+                <span className="absolute inset-0 inline-flex items-center justify-center">
+                  {displayText}
+                  <span className="typing-cursor" />
+                </span>
               </span>
             </a>
             <button

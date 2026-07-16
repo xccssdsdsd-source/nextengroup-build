@@ -5,6 +5,12 @@ import { useEffect, useRef, useState } from 'react'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
+const suggestions = [
+  'Ile kosztuje strona internetowa?',
+  'Co może zrobić dla mnie agent AI?',
+  'Jak szybko zobaczę pierwszy projekt?',
+] as const
+
 const SendIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
     <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -136,6 +142,14 @@ export default function ChatWidget() {
             </div>
           </div>
         ))}
+
+        {messages.length === 0 && !loading && (
+          <div className="hero-chat__suggestions" aria-label="Przykładowe pytania">
+            {suggestions.map(s => (
+              <button key={s} type="button" className="hero-chat__chip" onClick={() => send(s)}>{s}</button>
+            ))}
+          </div>
+        )}
 
         {loading && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">

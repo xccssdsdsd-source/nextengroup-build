@@ -1,7 +1,7 @@
 'use client'
 
 import { useInView } from 'framer-motion'
-import { PhoneCall, LayoutTemplate, Rocket, ShieldCheck } from 'lucide-react'
+import { PhoneCall, LayoutTemplate, Rocket, ShieldCheck, ChevronsLeft, ChevronsRight } from 'lucide-react'
 import { useRef } from 'react'
 import SectionGlow from './ui/SectionGlow'
 
@@ -76,10 +76,18 @@ export default function Process() {
                 <div className="mt-auto pt-6" aria-hidden="true">
                   <span className="process-divider-track"><span className="process-divider-fill" /></span>
                 </div>
+
+                <span className="process-shade" aria-hidden="true" />
               </li>
             )
           })}
         </ol>
+
+        <div className="process-hint" aria-hidden="true">
+          <ChevronsLeft size={13} strokeWidth={2.2} className="process-hint-chev process-hint-chev--left" />
+          <span>Najedź na karty, aby zobaczyć kolejne kroki</span>
+          <ChevronsRight size={13} strokeWidth={2.2} className="process-hint-chev process-hint-chev--right" />
+        </div>
       </div>
     </section>
   )

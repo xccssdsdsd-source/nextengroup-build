@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const allLinks: readonly (readonly [string, string])[] = [
@@ -26,9 +26,24 @@ const ctaLabels = [
   'Sprawdź możliwości',
 ] as const
 
+const useAutoWidth = (ref: React.RefObject<HTMLElement | null>, dep: unknown) => {
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+    el.style.width = 'auto'
+    const target = el.offsetWidth
+    el.style.width = `${target}px`
+  }, [dep, ref])
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
+  const desktopCtaRef = useRef<HTMLAnchorElement>(null)
+  const mobileCtaRef = useRef<HTMLAnchorElement>(null)
+
+  useAutoWidth(desktopCtaRef, displayText)
+  useAutoWidth(mobileCtaRef, open ? displayText : null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -84,10 +99,10 @@ export default function Nav() {
       if (cancelled) return
       const label = ctaLabels[labelIndex]
       setDisplayText(label.slice(0, position))
-      if (position > 0) schedule(() => remove(position - 1), deletingMs)
+      if (position > 1) schedule(() => remove(position - 1), deletingMs)
       else {
         labelIndex = (labelIndex + 1) % ctaLabels.length
-        schedule(() => type(1), typingMs)
+        schedule(() => type(1), deletingMs)
       }
     }
 
@@ -133,20 +148,15 @@ export default function Nav() {
 
           <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
             <a
+              ref={desktopCtaRef}
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
               className="btn btn-primary nav-tap nav-cta !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
               aria-label="Przejdź do kontaktu"
             >
-              <span className="relative inline-flex items-center justify-center whitespace-nowrap" aria-hidden="true">
-                <span className="invisible inline-flex items-center">
-                  Bezpłatna konsultacja
-                  <span className="typing-cursor" />
-                </span>
-                <span className="absolute inset-0 inline-flex items-center justify-center">
-                  {displayText}
-                  <span className="typing-cursor" />
-                </span>
+              <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
+                {displayText}
+                <span className="typing-cursor" />
               </span>
             </a>
             <button
@@ -184,13 +194,18 @@ export default function Nav() {
                   )
                 )}
               </div>
-              <div className="mt-2 border-t border-[rgba(255,255,255,0.06)] pt-2">
+              <div className="mt-2 flex justify-center border-t border-[rgba(255,255,255,0.06)] pt-2">
                 <a
+                  ref={mobileCtaRef}
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                  className="btn btn-primary nav-tap inline-flex w-full justify-center px-5 py-3 text-sm"
+                  className="btn btn-primary nav-tap nav-cta inline-flex justify-center px-5 py-3 text-sm"
+                  aria-label="Przejdź do kontaktu"
                 >
-                  Umów rozmowę
+                  <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
+                    {displayText}
+                    <span className="typing-cursor" />
+                  </span>
                 </a>
               </div>
             </div>

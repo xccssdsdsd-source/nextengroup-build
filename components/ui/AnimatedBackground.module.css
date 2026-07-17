@@ -21,29 +21,26 @@
 .glow {
   inset: -2rem -5rem;
   background-image:
-    radial-gradient(ellipse 28rem 44rem at 8% 4%, rgba(18, 64, 124, 0.2), transparent 72%),
-    radial-gradient(ellipse 38rem 50rem at 58% 0%, rgba(30, 91, 172, 0.3), transparent 73%),
-    radial-gradient(ellipse 32rem 46rem at 82% 2%, rgba(58, 175, 232, 0.17), transparent 72%),
-    radial-gradient(ellipse 34rem 48rem at 104% 4%, rgba(43, 104, 218, 0.28), transparent 72%);
-  background-size: 100% 72rem;
+    radial-gradient(ellipse 30rem 46rem at 12% 3%, rgba(20, 62, 116, 0.14), transparent 70%),
+    radial-gradient(ellipse 40rem 52rem at 60% 0%, rgba(28, 82, 152, 0.19), transparent 72%),
+    radial-gradient(ellipse 34rem 48rem at 88% 2%, rgba(46, 138, 190, 0.11), transparent 71%);
+  background-size: 100% 108rem;
   background-repeat: repeat-y;
-  filter: blur(40px);
+  filter: blur(52px);
 }
 
 .aurora {
   inset: -2% -8%;
   background: linear-gradient(
-    90deg,
-    rgba(2, 4, 8, 0.99) 0%,
-    rgba(4, 11, 24, 0.9) 20%,
-    rgba(5, 9, 17, 0.93) 38%,
-    rgba(12, 37, 76, 0.42) 57%,
-    rgba(17, 67, 119, 0.34) 70%,
-    rgba(10, 30, 64, 0.48) 84%,
-    rgba(22, 66, 123, 0.35) 100%
+    100deg,
+    rgba(3, 5, 10, 0.98) 0%,
+    rgba(5, 11, 22, 0.9) 26%,
+    rgba(8, 22, 44, 0.62) 50%,
+    rgba(13, 42, 78, 0.4) 72%,
+    rgba(11, 34, 66, 0.44) 100%
   );
-  filter: blur(76px);
-  opacity: 0.92;
+  filter: blur(90px);
+  opacity: 0.85;
   transform: scale(1.08);
 }
 

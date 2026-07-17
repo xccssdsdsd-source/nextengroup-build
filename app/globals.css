@@ -3725,11 +3725,14 @@ html.motion-ready [data-motion-copy] {
    moving immediately instead of restarting from a slow ease-in-out ramp,
    which is what made the resize look like a jerky snap. */
 .nav-cta {
-  min-width: 6.5rem;
-  max-width: 14rem;
+  /* Small floor so the button can genuinely shrink to a compact pill and
+     then grow out to the full phrase width as the typing plays — not sit
+     locked at one width. The floor keeps it a clear tap target, never empty. */
+  min-width: 3rem;
+  max-width: 15rem;
   overflow: hidden;
   transition:
-    width 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 320ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
     background-color 180ms ease,
     border-color 180ms ease,

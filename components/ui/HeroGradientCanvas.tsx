@@ -20,7 +20,7 @@ export default function HeroGradientCanvas() {
     <ShaderGradientCanvas
       style={{ width: '100%', height: '100%' }}
       pointerEvents='none'
-      pixelDensity={compact ? 0.55 : 1}
+      pixelDensity={compact ? 0.5 : 0.75}
       fov={45}
     >
       <ShaderGradient

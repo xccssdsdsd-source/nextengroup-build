@@ -76,7 +76,19 @@
 }
 
 .mobileGrain {
-  display: none;
+  display: block;
+  z-index: 1;
+  inset: -16%;
+  opacity: 0.2;
+  background-image:
+    radial-gradient(circle, rgba(190, 226, 255, 0.66) 0 0.55px, transparent 0.85px),
+    radial-gradient(circle, rgba(76, 154, 216, 0.5) 0 0.45px, transparent 0.78px);
+  background-position: 7px 11px, 31px 19px;
+  background-size: 5px 5px, 8px 8px;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
+  mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
+  animation: mobile-grain-drift 9200ms ease-in-out infinite;
 }
 
 .veil {
@@ -103,6 +115,10 @@
   }
 
   .cursorGlow { display: none; }
+
+  .mobileGrain {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {

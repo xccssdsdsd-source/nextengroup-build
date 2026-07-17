@@ -9,6 +9,7 @@ const suggestions = [
   'Ile kosztuje strona internetowa?',
   'Co może zrobić dla mnie agent AI?',
   'Jak szybko zobaczę pierwszy projekt?',
+  'Chcesz takiego na swojej stronie? Przetestuj mnie tutaj.',
 ] as const
 
 const SendIcon = () => (

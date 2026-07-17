@@ -1132,12 +1132,12 @@ select {
 @media (hover: hover) {
   .value-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(58,175,232,0.30);
+    border-color: rgba(125,172,206,0.22);
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.12),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+      0 0 0 1px rgba(120,170,205,0.10),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
 }
 
@@ -1152,10 +1152,10 @@ select {
     transform: translateY(-6px);
     border-left-color: #3AAFE8 !important;
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.10),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+      0 0 0 1px rgba(120,170,205,0.08),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
   .step-card:hover .step-number {
     color: rgba(58,175,232,0.7);
@@ -1193,12 +1193,12 @@ select {
 @media (hover: hover) {
   .ai-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(58,175,232,0.30) !important;
+    border-color: rgba(125,172,206,0.22) !important;
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.12),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+      0 0 0 1px rgba(120,170,205,0.10),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
   .ai-card:hover .ai-tag {
     background: rgba(58,175,232,0.15) !important;
@@ -1219,12 +1219,12 @@ select {
 @media (hover: hover) {
   .pkg-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(58,175,232,0.30) !important;
+    border-color: rgba(125,172,206,0.22) !important;
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.12),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+      0 0 0 1px rgba(120,170,205,0.10),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
 }
 
@@ -1239,12 +1239,12 @@ select {
 @media (hover: hover) {
   .realizacja-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(58,175,232,0.30);
+    border-color: rgba(125,172,206,0.22);
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.12),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06);
+      0 0 0 1px rgba(120,170,205,0.10),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
 }
 
@@ -1291,7 +1291,7 @@ select {
 }
 @media (hover: hover) {
   .seo-card:hover {
-    border-color: rgba(58,175,232,0.25) !important;
+    border-color: rgba(125,172,206,0.20) !important;
     background: rgba(58,175,232,0.04) !important;
     transform: translateY(-3px);
     box-shadow: 0 4px 20px rgba(58,175,232,0.08);
@@ -1352,10 +1352,10 @@ select {
     transform: translateY(-8px);
     border-left-color: #3AAFE8 !important;
     box-shadow:
-      0 0 0 1px rgba(58,175,232,0.12),
-      0 8px 32px rgba(58,175,232,0.12),
-      0 20px 60px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.06) !important;
+      0 0 0 1px rgba(120,170,205,0.10),
+      0 6px 20px rgba(4,10,20,0.5),
+      0 22px 56px -20px rgba(0,0,0,0.72),
+      inset 0 1px 0 rgba(255,255,255,0.05) !important;
   }
 }
 
@@ -3335,14 +3335,14 @@ body {
 }
 
 .btn-primary {
-  border: 1px solid rgba(140, 216, 255, 0.52);
+  border: 1px solid rgba(43, 132, 190, 0.45);
   border-radius: 0.75rem;
-  background: linear-gradient(180deg, #50c1f1 0%, #3aafe8 100%);
+  background: linear-gradient(180deg, #3fb1e6 0%, #2f9dd4 100%);
   color: var(--accent-on);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    0 14px 32px -18px rgba(58, 175, 232, 0.74),
-    0 2px 7px rgba(0, 0, 0, 0.42);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 10px 22px -16px rgba(4, 10, 20, 0.9);
 }
 
 .btn-ghost {
@@ -3363,11 +3363,11 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover {
-    background: #69cbf3;
+    background: linear-gradient(180deg, #4ab9ec 0%, #38a7de 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.34),
-      0 16px 36px -18px rgba(58, 175, 232, 0.9),
-      0 2px 7px rgba(0, 0, 0, 0.4);
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 12px 26px -16px rgba(4, 10, 20, 0.9);
     transform: translateY(-1px);
   }
 

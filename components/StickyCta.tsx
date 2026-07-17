@@ -43,7 +43,7 @@ export default function StickyCta() {
           transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
           whileHover={{ y: -1, scale: 1.01 }}
           whileTap={{ scale: 0.97 }}
-          className="fixed bottom-6 right-6 z-50 hidden min-h-12 items-center gap-2.5 rounded-xl bg-[#3AAFE8] px-5 py-3 text-[13px] font-bold text-[#06141A] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),_0_14px_34px_-20px_rgba(58,175,232,0.9),_0_2px_8px_rgba(0,0,0,0.45)] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.34),_0_18px_42px_-22px_rgba(58,175,232,1),_0_3px_10px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 sm:inline-flex"
+          className="fixed bottom-6 right-6 z-50 hidden min-h-12 items-center gap-2.5 rounded-xl bg-[#2F9DD4] px-5 py-3 text-[13px] font-bold text-[#06141A] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),_0_1px_2px_rgba(0,0,0,0.4),_0_14px_30px_-18px_rgba(4,10,20,0.9)] transition-[background,box-shadow,transform] duration-200 hover:bg-[#38A7DE] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),_0_1px_2px_rgba(0,0,0,0.4),_0_16px_34px_-18px_rgba(4,10,20,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 sm:inline-flex"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <rect x="1.5" y="2.5" width="13" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />

@@ -1310,37 +1310,45 @@ select {
 .score-badge-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0;
+  gap: 0.35rem;
 }
 .score-badge__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.55rem;
   text-align: center;
 }
 .score-badge__content span {
-  color: rgba(184, 234, 201, 0.7);
-  font-size: clamp(0.44rem, 1.35vw, 0.56rem);
-  font-weight: 550;
-  line-height: 1.2;
-  letter-spacing: 0.015em;
+  color: rgba(184, 234, 201, 0.78);
+  font-size: clamp(0.5rem, 1.4vw, 0.62rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
   text-wrap: balance;
 }
 .score-badge__content strong {
   display: grid;
-  width: clamp(2.25rem, 10vw, 2.7rem);
+  width: clamp(2.6rem, 11vw, 3.15rem);
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(134, 239, 172, 0.42);
+  border: 1.5px solid rgba(134, 239, 172, 0.5);
   border-radius: 50%;
-  background: rgba(134, 239, 172, 0.055);
-  color: #b8eac8;
-  font-size: clamp(0.8rem, 2.8vw, 0.96rem);
+  background: radial-gradient(circle at 50% 30%, rgba(134, 239, 172, 0.14), rgba(134, 239, 172, 0.04));
+  box-shadow: 0 0 0 1px rgba(134, 239, 172, 0.08), 0 4px 16px rgba(134, 239, 172, 0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+  color: #d3f5df;
+  font-size: clamp(0.9rem, 3vw, 1.08rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease;
+}
+@media (hover: hover) {
+  .score-badge:hover .score-badge__content strong {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(134, 239, 172, 0.14), 0 8px 22px rgba(134, 239, 172, 0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
 }
 
 /* Testimonial cards */

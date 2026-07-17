@@ -86,9 +86,10 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <div className="flex items-center justify-between gap-6">
-        <div className="flex gap-1 text-[#FBBF24]" aria-label="Ocena 5 na 5">
+        <div className="flex gap-1 text-[#FBBF24]">
+          <span className="sr-only">Ocena 5 na 5</span>
           {Array.from({ length: 5 }).map((_, starIndex) => (
-            <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} />
+            <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} aria-hidden="true" />
           ))}
         </div>
         <span className="font-mono text-[11px] tracking-[0.16em] text-[#627086]">OPINIA 0{index + 1}</span>

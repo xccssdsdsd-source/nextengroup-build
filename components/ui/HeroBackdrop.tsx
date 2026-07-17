@@ -34,19 +34,28 @@ export default function HeroBackdrop() {
 
     let cancelled = false
     const start = () => {
-      cleanup()
       if (!supportsWebGL()) return
       void loadHeroGradientCanvas().then(() => {
         if (!cancelled) setWebGLAvailable(true)
       })
     }
-    const events = ['pointermove', 'pointerdown', 'keydown'] as const
-    const cleanup = () => events.forEach((event) => window.removeEventListener(event, start))
-    events.forEach((event) => window.addEventListener(event, start, { once: true, passive: true }))
+
+    // Load quietly once the browser is idle rather than waiting for the
+    // user's first pointer move/click — starting it on interaction meant
+    // the abrupt fade-in landed at the exact moment someone reached for a
+    // button, reading as the button itself glitching.
+    let idleId = 0
+    let timeoutId = 0
+    if (typeof requestIdleCallback !== 'undefined') {
+      idleId = requestIdleCallback(start, { timeout: 1500 })
+    } else {
+      timeoutId = window.setTimeout(start, 400)
+    }
 
     return () => {
       cancelled = true
-      cleanup()
+      if (idleId && typeof cancelIdleCallback !== 'undefined') cancelIdleCallback(idleId)
+      if (timeoutId) window.clearTimeout(timeoutId)
     }
   }, [])
 

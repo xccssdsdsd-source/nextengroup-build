@@ -26,14 +26,22 @@ const ctaLabels = [
   'Sprawdź możliwości',
 ] as const
 
-const useAutoWidth = (ref: React.RefObject<HTMLElement | null>, dep: unknown) => {
+// Measures against a hidden mirror rather than toggling the real button's
+// own width to 'auto' — flipping the live element to 'auto' and forcing a
+// reflow to read it back flushes 'auto' as a real transition keyframe,
+// which breaks the CSS width transition and makes the button snap instead
+// of growing/shrinking smoothly with the typing animation.
+const useAutoWidth = (
+  ref: React.RefObject<HTMLElement | null>,
+  mirrorRef: React.RefObject<HTMLElement | null>,
+  dep: unknown,
+) => {
   useLayoutEffect(() => {
     const el = ref.current
-    if (!el) return
-    el.style.width = 'auto'
-    const target = el.offsetWidth
-    el.style.width = `${target}px`
-  }, [dep, ref])
+    const mirror = mirrorRef.current
+    if (!el || !mirror) return
+    el.style.width = `${mirror.offsetWidth}px`
+  }, [dep, ref, mirrorRef])
 }
 
 export default function Nav() {
@@ -41,9 +49,11 @@ export default function Nav() {
   const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
   const desktopCtaRef = useRef<HTMLAnchorElement>(null)
   const mobileCtaRef = useRef<HTMLAnchorElement>(null)
+  const desktopCtaMirrorRef = useRef<HTMLSpanElement>(null)
+  const mobileCtaMirrorRef = useRef<HTMLSpanElement>(null)
 
-  useAutoWidth(desktopCtaRef, displayText)
-  useAutoWidth(mobileCtaRef, open ? displayText : null)
+  useAutoWidth(desktopCtaRef, desktopCtaMirrorRef, displayText)
+  useAutoWidth(mobileCtaRef, mobileCtaMirrorRef, open ? displayText : null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -159,6 +169,14 @@ export default function Nav() {
                 <span className="typing-cursor" />
               </span>
             </a>
+            <span
+              ref={desktopCtaMirrorRef}
+              aria-hidden="true"
+              className="btn btn-primary nav-cta pointer-events-none invisible fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+            >
+              {displayText}
+              <span className="typing-cursor" />
+            </span>
             <button
               type="button"
               aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -207,6 +225,14 @@ export default function Nav() {
                     <span className="typing-cursor" />
                   </span>
                 </a>
+                <span
+                  ref={mobileCtaMirrorRef}
+                  aria-hidden="true"
+                  className="btn btn-primary nav-cta pointer-events-none invisible fixed left-0 top-0 -z-10 inline-flex justify-center whitespace-nowrap px-5 py-3 text-sm"
+                >
+                  {displayText}
+                  <span className="typing-cursor" />
+                </span>
               </div>
             </div>
           </div>

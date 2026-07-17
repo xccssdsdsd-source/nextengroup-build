@@ -67,53 +67,35 @@ export default function Nav() {
     const deletingMs = 42
     const holdMs = 1900
     let labelIndex = 0
-    let phase: 'hold' | 'delete' | 'type' = 'hold'
-    let phaseStartedAt = performance.now()
-    let lastText: string = ctaLabels[0]
-    let frame = 0
+    let timer = 0
+    let cancelled = false
 
-    const updateText = (nextText: string) => {
-      if (nextText === lastText) return
-      lastText = nextText
-      setDisplayText(nextText)
+    const schedule = (callback: () => void, delay: number) => {
+      timer = window.setTimeout(callback, delay)
     }
-
-    const animate = (now: number) => {
+    const type = (position: number) => {
+      if (cancelled) return
       const label = ctaLabels[labelIndex]
-      const elapsed = now - phaseStartedAt
-
-      if (phase === 'hold') {
-        if (elapsed >= holdMs) {
-          phase = 'delete'
-          phaseStartedAt = now
-        }
-      } else if (phase === 'delete') {
-        const visibleCharacters = Math.max(0, label.length - Math.floor(elapsed / deletingMs) - 1)
-        updateText(label.slice(0, visibleCharacters))
-
-        if (elapsed >= label.length * deletingMs) {
-          labelIndex = (labelIndex + 1) % ctaLabels.length
-          phase = 'type'
-          phaseStartedAt = now
-          updateText('')
-        }
-      } else {
-        const nextLabel = ctaLabels[labelIndex]
-        const visibleCharacters = Math.min(nextLabel.length, Math.floor(elapsed / typingMs) + 1)
-        updateText(nextLabel.slice(0, visibleCharacters))
-
-        if (elapsed >= nextLabel.length * typingMs) {
-          phase = 'hold'
-          phaseStartedAt = now
-          updateText(nextLabel)
-        }
+      setDisplayText(label.slice(0, position))
+      if (position < label.length) schedule(() => type(position + 1), typingMs)
+      else schedule(() => remove(label.length), holdMs)
+    }
+    const remove = (position: number) => {
+      if (cancelled) return
+      const label = ctaLabels[labelIndex]
+      setDisplayText(label.slice(0, position))
+      if (position > 0) schedule(() => remove(position - 1), deletingMs)
+      else {
+        labelIndex = (labelIndex + 1) % ctaLabels.length
+        schedule(() => type(1), typingMs)
       }
-
-      frame = window.requestAnimationFrame(animate)
     }
 
-    frame = window.requestAnimationFrame(animate)
-    return () => window.cancelAnimationFrame(frame)
+    schedule(() => remove(ctaLabels[0].length), holdMs)
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+    }
   }, [])
 
   return (

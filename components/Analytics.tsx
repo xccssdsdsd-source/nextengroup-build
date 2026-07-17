@@ -3,18 +3,16 @@
 import { useEffect } from 'react'
 
 const GA_ID = 'G-6D0PC33PCQ'
+const CONSENT_KEY = 'getbuild_cookie_consent_v1'
+const CONSENT_EVENT = 'getbuild:analytics-consent'
 
 export default function Analytics() {
   useEffect(() => {
     let loaded = false
-    const events = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'] as const
-
-    const cleanup = () => events.forEach((e) => window.removeEventListener(e, load))
 
     const load = () => {
       if (loaded) return
       loaded = true
-      cleanup()
       const s = document.createElement('script')
       s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
       s.async = true
@@ -29,9 +27,16 @@ export default function Analytics() {
       gtag('config', GA_ID)
     }
 
-    events.forEach((e) => window.addEventListener(e, load, { once: true, passive: true }))
-    const t = setTimeout(load, 6000)
-    return () => { clearTimeout(t); cleanup() }
+    const onConsent = () => load()
+    window.addEventListener(CONSENT_EVENT, onConsent)
+
+    try {
+      if (localStorage.getItem(CONSENT_KEY) === 'accepted') load()
+    } catch {
+      // Storage may be unavailable in privacy mode. Analytics stays disabled.
+    }
+
+    return () => window.removeEventListener(CONSENT_EVENT, onConsent)
   }, [])
 
   return null

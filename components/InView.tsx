@@ -39,7 +39,15 @@ export default function InView({
   // Always render children so SSR HTML contains full page content for crawlers.
   // minHeight reserves layout space on client until the section scrolls into view.
   return (
-    <div ref={ref} style={show ? undefined : { minHeight }}>
+    <div
+      ref={ref}
+      data-deferred-section={show ? 'visible' : 'pending'}
+      style={show ? undefined : {
+        minHeight,
+        contentVisibility: 'auto',
+        containIntrinsicSize: `auto ${minHeight}`,
+      }}
+    >
       {children}
     </div>
   )

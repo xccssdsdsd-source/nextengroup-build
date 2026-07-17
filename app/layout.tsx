@@ -5,6 +5,7 @@ import Analytics from '@/components/Analytics'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import GSAPAnimations from '@/components/GSAPAnimations'
+import CookieConsent from '@/components/CookieConsent'
 
 const siteUrl = 'https://getbuild.pl'
 const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
@@ -119,6 +120,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="alternate" type="application/rss+xml" title="Blog Getbuild" href="/blog/feed.xml" />
         <link rel="preload" href="/getbuild-logo-og.png" as="image" type="image/png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
@@ -294,6 +296,7 @@ export default function RootLayout({
               {children}
             </div>
           </MotionProvider>
+        <CookieConsent />
         <Analytics />
       </body>
     </html>

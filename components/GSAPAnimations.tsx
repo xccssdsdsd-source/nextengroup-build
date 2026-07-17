@@ -40,6 +40,7 @@ export default function GSAPAnimations() {
 
     /* ── SCROLL REVEALS — resilient to lazily-mounted (InView/dynamic) sections ── */
     const processed = new WeakSet<Element>()
+    const processedGroups = new WeakSet<Element>()
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -101,10 +102,33 @@ export default function GSAPAnimations() {
       io.observe(el)
     }
 
+    const staggerIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          const group = entry.target as HTMLElement
+          assignStagger(group)
+          Array.from(group.children).forEach((child) => observeEl(child as HTMLElement))
+          staggerIo.unobserve(group)
+        })
+      },
+      { threshold: 0, rootMargin: '280px 0px 280px 0px' },
+    )
+
+    const observeStaggerGroup = (group: HTMLElement) => {
+      if (processedGroups.has(group)) return
+      processedGroups.add(group)
+      staggerIo.observe(group)
+    }
+
     const scan = () => {
-      // Directional start for grouped cards (computed from their column position).
-      document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach(assignStagger)
-      document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach(observeEl)
+      // Directional starts require layout reads. Prepare each group shortly
+      // before it reaches the viewport instead of measuring the full page at boot.
+      document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach(observeStaggerGroup)
+      document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
+        if (el.parentElement?.matches('[data-stagger-group]')) return
+        observeEl(el)
+      })
     }
 
     // Late-mounting sections (InView + next/dynamic) append after first paint;
@@ -127,6 +151,7 @@ export default function GSAPAnimations() {
       const vh = window.innerHeight
       document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
         if (el.classList.contains('io-visible')) return
+        if (el.closest('[data-deferred-section="pending"]')) return
         const r = el.getBoundingClientRect()
         if (r.top < vh * 0.92 && r.bottom > 0) {
           el.style.transform = ''
@@ -320,6 +345,7 @@ export default function GSAPAnimations() {
       window.removeEventListener('resize', onScroll)
       mo.disconnect()
       io.disconnect()
+      staggerIo.disconnect()
       counterIo?.disconnect()
       ctx?.revert()
       parallaxItems = []

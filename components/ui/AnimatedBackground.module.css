@@ -1,76 +1,137 @@
-/* Static black-and-blue light field. It keeps the page recognisably Getbuild
-   without turning the background into a decorative animation. */
-
 .root {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #03050a;
+  background: #02040a;
+  isolation: isolate;
 }
 
-.glow,
-.aurora,
-.sheen,
-.grain {
+.field {
+  position: absolute;
+  inset: -30%;
+  background-image:
+    radial-gradient(32% 38% at 18% 8%, rgba(36, 104, 190, 0.15), transparent 70%),
+    radial-gradient(30% 36% at 86% 18%, rgba(58, 175, 232, 0.09), transparent 72%),
+    radial-gradient(38% 42% at 64% 88%, rgba(25, 79, 164, 0.095), transparent 74%),
+    radial-gradient(32% 38% at 24% 74%, rgba(20, 65, 145, 0.075), transparent 74%);
+  filter: blur(72px);
+  opacity: 0.72;
+  transition: translate 560ms cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: translate;
+}
+
+.scrollBand {
+  position: absolute;
+  width: min(70rem, 108vw);
+  height: clamp(6rem, 13vw, 11rem);
+  border: 1px solid rgba(141, 208, 255, 0.06);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent 4%, rgba(77, 156, 226, 0.08) 32%, rgba(133, 218, 255, 0.11) 54%, transparent 94%);
+  box-shadow:
+    inset 0 1px rgba(206, 239, 255, 0.035),
+    0 0 72px rgba(31, 99, 190, 0.08);
+  filter: blur(0.2px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.bandA {
+  top: 24%;
+  left: -24%;
+  transform: rotate(-8deg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 72%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 72%, transparent);
+}
+
+.bandB {
+  right: -30%;
+  bottom: 15%;
+  transform: rotate(7deg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 26%, #000 84%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 26%, #000 84%, transparent);
+}
+
+.scrollGrain {
+  position: absolute;
+  width: min(66rem, 116vw);
+  height: min(30rem, 54vh);
+  left: 14%;
+  top: 42%;
+  background-image:
+    radial-gradient(circle, rgba(189, 230, 255, 0.6) 0 0.45px, transparent 0.75px),
+    radial-gradient(circle, rgba(61, 137, 207, 0.42) 0 0.4px, transparent 0.72px);
+  background-position: 11px 17px, 43px 29px;
+  background-size: 6px 6px, 9px 9px;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse, #000 0%, rgba(0, 0, 0, 0.52) 38%, transparent 74%);
+  mask-image: radial-gradient(ellipse, #000 0%, rgba(0, 0, 0, 0.52) 38%, transparent 74%);
+  will-change: transform, opacity;
+}
+
+.stars {
   position: absolute;
   inset: 0;
-}
-
-.glow {
-  inset: -2rem -5rem;
+  opacity: 0.055;
   background-image:
-    radial-gradient(ellipse 28rem 44rem at 8% 4%, rgba(18, 64, 124, 0.2), transparent 72%),
-    radial-gradient(ellipse 38rem 50rem at 58% 0%, rgba(30, 91, 172, 0.3), transparent 73%),
-    radial-gradient(ellipse 32rem 46rem at 82% 2%, rgba(58, 175, 232, 0.17), transparent 72%),
-    radial-gradient(ellipse 34rem 48rem at 104% 4%, rgba(43, 104, 218, 0.28), transparent 72%);
-  background-size: 100% 72rem;
-  background-repeat: repeat-y;
-  filter: blur(40px);
-}
-
-.aurora {
-  inset: -2% -8%;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 4, 8, 0.99) 0%,
-    rgba(4, 11, 24, 0.9) 20%,
-    rgba(5, 9, 17, 0.93) 38%,
-    rgba(12, 37, 76, 0.42) 57%,
-    rgba(17, 67, 119, 0.34) 70%,
-    rgba(10, 30, 64, 0.48) 84%,
-    rgba(22, 66, 123, 0.35) 100%
-  );
-  filter: blur(76px);
-  opacity: 0.92;
-  transform: scale(1.08);
+    radial-gradient(circle, rgba(196, 231, 255, 0.62) 0 0.55px, transparent 0.8px),
+    radial-gradient(circle, rgba(116, 190, 235, 0.5) 0 0.45px, transparent 0.72px);
+  background-position: 17px 11px, 61px 43px;
+  background-size: 137px 137px, 211px 211px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 54% at 58% 10%, #000 0%, transparent 82%);
+  mask-image: radial-gradient(ellipse 78% 54% at 58% 10%, #000 0%, transparent 82%);
+  will-change: transform;
 }
 
 .sheen {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 72% 18rem at 68% 0%, rgba(94, 194, 241, 0.07), transparent 72%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 15rem),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.58), transparent 15%, transparent 86%, rgba(0, 0, 0, 0.38));
+    radial-gradient(72% 22rem at 60% 0%, rgba(94, 194, 241, 0.035), transparent 74%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.58), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.58));
 }
 
-.grain {
-  opacity: 0.032;
-  background-image: repeating-radial-gradient(circle at 0 0, rgba(205, 230, 255, 0.3) 0 0.42px, transparent 0.62px 4px);
-  background-size: 4px 4px;
-  mix-blend-mode: soft-light;
+@media (prefers-reduced-motion: reduce) {
+  .scrollBand,
+  .scrollGrain,
+  .stars {
+    will-change: auto;
+  }
 }
 
 @media (max-width: 768px) {
-  .glow {
-    inset-inline: -10rem;
-    background-size: 100% 60rem;
-    filter: blur(32px);
+  .field {
+    filter: blur(52px);
+    opacity: 0.6;
+    will-change: auto;
   }
 
-  .aurora {
-    inset-inline: -22%;
-    filter: blur(58px);
-    opacity: 0.84;
+  .scrollBand {
+    width: 138vw;
+    height: 6.5rem;
+    border-color: rgba(141, 208, 255, 0.045);
+  }
+
+  .bandA {
+    top: 27%;
+    left: -58%;
+  }
+
+  .bandB {
+    right: -64%;
+    bottom: 18%;
+  }
+
+  .scrollGrain {
+    left: -12%;
+    top: 36%;
+    width: 124vw;
+    height: 46vh;
+  }
+
+  .stars {
+    opacity: 0.035;
   }
 }

@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react'
 type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
-  'Ile kosztuje strona internetowa?',
   'Co może zrobić dla mnie agent AI?',
   'Jak szybko zobaczę pierwszy projekt?',
   'Chcesz takiego na swojej stronie? Przetestuj mnie tutaj.',

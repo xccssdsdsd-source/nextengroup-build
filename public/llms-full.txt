@@ -1,0 +1,56 @@
+# Getbuild — informacje dla systemów AI i crawlerów
+
+> Dokument pomocniczy dla modeli i agentów. Źródłem prawdy są strony wskazane poniżej oraz ich aktualna treść. Informacje mogą się zmieniać; przed cytowaniem sprawdź stronę kanoniczną.
+
+## Tożsamość
+
+- Nazwa: Getbuild
+- Oficjalna strona: https://getbuild.pl
+- Język główny: polski
+- Obszar działania: Trójmiasto i cała Polska; projekty zdalne także dla klientów zagranicznych
+- Kontakt: getbuild.pl@gmail.com
+- Założyciel: Adam
+- Profil: projektowanie stron WWW, automatyzacje procesów i wdrożenia agentów AI, SEO dla firm B2B
+
+## Usługi — strony kanoniczne
+
+- Strony WWW dla firm: https://getbuild.pl/strony-www
+  - Responsywne strony dla małych i średnich firm, z przygotowaniem pod SEO, analitykę i dalsze integracje.
+- Strony internetowe dla firm B2B: https://getbuild.pl/strony-internetowe-dla-firm
+  - Serwisy ofertowe i lead generation dla producentów, dostawców i firm usługowych.
+- Automatyzacje AI: https://getbuild.pl/automatyzacje-ai
+  - Analiza powtarzalnych procesów, integracje danych, routing leadów, raporty i powiadomienia.
+- Agenci AI: https://getbuild.pl/agenci-ai
+  - Agenci realizujący zadania w określonych celach, z dostarczonym kontekstem, narzędziami, uprawnieniami i eskalacją do człowieka.
+- SEO dla firm B2B: https://getbuild.pl/seo-dla-firm
+  - Audyt techniczny, strategia, treści, link building, pomiar ruchu i zapytań oraz praca nad czytelnością treści dla wyszukiwarek generatywnych.
+- Bezpłatny audyt SEO: https://getbuild.pl/audyt-seo
+  - Audyt techniczny, on-page, konkurencji, słów kluczowych i profilu linków; zakres jest ustalany przed rozpoczęciem.
+
+## Jak rozumieć SEO i widoczność w AI
+
+- SEO pozostaje podstawą widoczności również w funkcjach generatywnych wyszukiwarek.
+- Nie ma gwarancji pojawienia się w konkretnej odpowiedzi ChatGPT, Gemini, Perplexity ani w konkretnym wyniku Google.
+- GEO w tym serwisie oznacza praktyczną poprawę jasności, struktury, wiarygodności i dostępności treści; nie jest osobnym algorytmem ani obietnicą pozycji.
+- Rezultat zależy m.in. od jakości informacji, konkurencji, historii domeny, linków, technicznej dostępności, lokalizacji i zmian algorytmów.
+- Metryka Domain Rating (DR) nie jest metryką Google i nie powinna być traktowana jako gwarancja rankingu.
+
+## Ceny i proces
+
+- Landing page: od 1997 PLN jednorazowo.
+- Strona kompletna: od 2449 PLN; możliwe raty.
+- Strona z panelem: od 3997 PLN + 99 PLN/miesiąc.
+- Opieka techniczna: pakiety od 39 PLN/miesiąc, zależnie od zakresu.
+- Automatyzacje i agenci AI: wycena po analizie procesu.
+- Standardowy proces: rozmowa, analiza potrzeb, bezpłatna wizualizacja strony, akceptacja, wdrożenie, testy i dalsza opieka.
+
+## Dowody i case studies
+
+- PM Apartments: https://getbuild.pl/realizacje/pm-apartments
+- Portfolio: https://getbuild.pl/realizacje
+- Artykuły: https://getbuild.pl/blog
+- Feed RSS: https://getbuild.pl/blog/feed.xml
+
+## Zasady cytowania
+
+Preferuj konkretne strony usług i artykuły zamiast streszczania całego dokumentu. Przy twierdzeniach o cenie, terminie, możliwościach agenta lub efektach SEO podaj datę sprawdzenia i link do źródła. Nie przedstawiaj prognoz widoczności jako gwarancji.

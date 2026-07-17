@@ -10,23 +10,23 @@ const siteUrl = 'https://getbuild.pl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
-  description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych. Agent dostaje cel i sam decyduje, jak go osiągnąć. Getbuild.',
+  title: 'Agenci AI dla firm | Automatyzacja obsługi i procesów | Getbuild',
+  description: 'Projektujemy agentów AI dla firm: obsługa zapytań, kwalifikacja leadów, raporty i integracje. Agent działa w określonych celach, narzędziach i uprawnieniach.',
   keywords: ['agenci AI', 'autonomiczny agent AI', 'obsługa klienta AI', 'agent AI', 'sztuczna inteligencja', 'AI dla firmy'],
   alternates: { canonical: `${siteUrl}/agenci-ai` },
   openGraph: {
     type: 'website',
     url: `${siteUrl}/agenci-ai`,
-    title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
-    description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych.',
+    title: 'Agenci AI dla firm | Automatyzacja obsługi i procesów | Getbuild',
+    description: 'Projektujemy agentów AI do obsługi zapytań, kwalifikacji leadów, raportów i integracji — w ramach jasno określonych celów i uprawnień.',
     siteName: 'Getbuild',
     locale: 'pl_PL',
     images: [{ url: `${siteUrl}/getbuild-logo-og.png`, width: 1200, height: 630, alt: 'Agenci AI dla Firm | Getbuild' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agenci AI dla Firm | Pełna Autonomia 24/7 | Getbuild',
-    description: 'Wdrażamy agentów AI działających w pełni autonomicznie. Bez skryptów, bez reguł wewnętrznych.',
+    title: 'Agenci AI dla firm | Automatyzacja obsługi i procesów | Getbuild',
+    description: 'Projektujemy agentów AI do obsługi zapytań, kwalifikacji leadów, raportów i integracji — w ramach jasno określonych celów i uprawnień.',
     images: [`${siteUrl}/getbuild-logo-og.png`],
   },
 }
@@ -35,7 +35,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Agenci AI dla firm',
-  description: 'Autonomiczni agenci AI pracujący 24/7 bez skryptów i reguł wewnętrznych. Dostają cel i samodzielnie decydują, jak go osiągnąć.',
+  description: 'Agenci AI dla firm wspierający obsługę klienta, kwalifikację leadów, raportowanie i pracę z narzędziami firmy. Działają według celów, kontekstu i nadanych uprawnień.',
   serviceType: 'Wdrożenia agentów AI',
   provider: { '@type': 'Organization', '@id': 'https://getbuild.pl/#organization', name: 'Getbuild' },
   areaServed: { '@type': 'Country', name: 'Polska' },
@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'Czym agent AI różni się od zwykłego chatbota?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Chatbot działa według skryptu. Jeśli pojawi się pytanie, którego nie ma w jego bazie, staje. Agent AI nie ma skryptu. Ma cel i sam decyduje, jak go osiągnąć. Rozumie kontekst, radzi sobie z sytuacjami, których nikt mu nie opisał, i działa dalej bez żadnej ingerencji z Twojej strony.',
+        text: 'Chatbot zwykle odpowiada według prostych reguł lub scenariuszy. Agent AI może planować wieloetapowe zadanie i korzystać z narzędzi, ale nadal działa w ramach dostarczonego kontekstu, celów i uprawnień. Dobre wdrożenie przewiduje eskalację do człowieka, logowanie i testy sytuacji nietypowych.',
       },
     },
     {
@@ -59,7 +59,7 @@ const faqSchema = {
       name: 'Czy agent będzie znał moją ofertę i procesy firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak. Przed wdrożeniem zasilamy agenta wiedzą o Twojej firmie, produktach i procesach. Dzięki temu działa autonomicznie w Twoim kontekście, a nie w ogólnym. Wie, co może zdecydować sam, a co wymaga Twojej uwagi.',
+        text: 'Tak. Przed wdrożeniem dostarczamy agentowi wiedzę o firmie, produktach i procesach oraz definiujemy, co może zrobić sam, a co wymaga akceptacji człowieka. Dzięki temu działa w Twoim kontekście, a nie na ogólnych założeniach.',
       },
     },
     {
@@ -67,7 +67,7 @@ const faqSchema = {
       name: 'Na jakich kanałach może działać agent AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Na stronie, mailu, Facebooku, Instagramie i wewnętrznych systemach firmy. Agent działa równocześnie na wielu kanałach i sam decyduje, jak odpowiedzieć w każdym z nich.',
+        text: 'Na stronie, w mailu, wybranych kanałach społecznościowych i wewnętrznych systemach firmy — zależnie od zakresu integracji. Dla każdego kanału definiujemy osobne zasady dostępu, eskalacji i odpowiedzialności.',
       },
     },
     {
@@ -86,25 +86,25 @@ const faqItems = faqSchema.mainEntity
 const capabilities = [
   {
     title: 'Pierwsza linia obsługi klienta',
-    desc: 'Odpowiada na pytania, rozwiązuje standardowe sprawy, a to, co wymaga człowieka, przekazuje dalej z gotowym kontekstem. Działa na chacie, mailu i social media.',
+    desc: 'Odpowiada na pytania, rozwiązuje standardowe sprawy, a to, co wymaga człowieka, przekazuje dalej z gotowym kontekstem. Działa na uzgodnionych kanałach i uprawnieniach.',
   },
   {
     title: 'Analiza i raporty bez zlecania',
-    desc: 'Sam zbiera dane ze wskazanych źródeł, wyciąga wnioski i dostarcza raport. Nie trzeba go o to prosić co tydzień.',
+    desc: 'Zbiera dane ze wskazanych źródeł, wyciąga wnioski i dostarcza raport według ustalonego harmonogramu. Zakres źródeł i decyzji jest jawny.',
   },
   {
     title: 'Monitoring rynku i konkurencji',
-    desc: 'Śledzi zmiany w Twojej branży, nowe oferty konkurentów, wzmianki o firmie. Przesyła podsumowanie, kiedy coś wymaga Twojej uwagi.',
+    desc: 'Może śledzić zmiany w branży, oferty konkurentów i wzmianki o firmie, a następnie wysyłać podsumowania według ustalonych kryteriów.',
   },
   {
     title: 'Koordynacja zadań wewnątrz firmy',
-    desc: 'Pilnuje, żeby zadania nie ginęły między działami. Wysyła przypomnienia, aktualizuje statusy, informuje o opóźnieniach. Bez Twojego udziału.',
+    desc: 'Pilnuje, żeby zadania nie ginęły między działami: wysyła przypomnienia, aktualizuje statusy i informuje o opóźnieniach zgodnie z ustalonym procesem.',
   },
 ]
 
 const diff = [
-  { label: 'Chatbot', points: ['Odpowiada według skryptu', 'Staje gdy sytuacja jest nowa', 'Wymaga ciągłej aktualizacji reguł', 'Jeden kanał naraz'] },
-  { label: 'Agent AI', points: ['Ma cel, sam decyduje jak go osiągnąć', 'Radzi sobie z nowymi sytuacjami', 'Uczy się z kontekstu bez ręcznych reguł', 'Działa na wielu kanałach jednocześnie'], accent: true },
+  { label: 'Chatbot', points: ['Odpowiada według scenariusza', 'Ma ograniczony zakres decyzji', 'Wymaga aktualizacji treści i reguł', 'Najczęściej obsługuje jeden kanał'] },
+  { label: 'Agent AI', points: ['Realizuje cel w kilku krokach', 'Korzysta z kontekstu i narzędzi', 'Działa w ramach nadanych uprawnień', 'Może łączyć kilka kanałów i systemów'], accent: true },
 ]
 
 export default function AgenciAI() {
@@ -195,10 +195,10 @@ export default function AgenciAI() {
               Dajesz agentowi zadanie: "Sprawdź, czy przyszły nowe zapytania ofertowe, odpowiedz na proste, te bardziej skomplikowane prześlij do mnie z podsumowaniem."
             </p>
             <p className="text-[#7A8699] leading-[1.7] mb-6 text-[15px]">
-              Agent to rozumie. Sam decyduje, co jest proste, a co wymaga Twojej uwagi. Sam pisze odpowiedzi. Sam wybiera, komu i kiedy napisać. Nie ma listy reguł, którą musiałeś wcześniej przygotować.
+              Agent analizuje kontekst, wykonuje kolejne kroki i przygotowuje odpowiedzi w ramach ustalonych celów oraz uprawnień. To, co wymaga Twojej uwagi, przekazuje dalej z podsumowaniem. Nie musisz opisywać ręcznie każdego wariantu, ale zakres decyzji i bezpieczne ścieżki eskalacji trzeba zaprojektować przed wdrożeniem.
             </p>
             <p className="text-[#A6B2C4] leading-[1.7] text-[15px]">
-              Jeśli pojawi się sytuacja, której nie było w żadnej instrukcji, agent nie staje. Analizuje kontekst i działa dalej. Tak samo jak człowiek, tylko bez przerw i bez końca dnia pracy.
+              Jeśli pojawi się sytuacja nietypowa, agent może zebrać kontekst i przekazać sprawę człowiekowi zamiast zgadywać. Takie ograniczenia, logi i testy są częścią dobrego wdrożenia — automatyzacja ma odciążać zespół, a nie ukrywać ryzyko.
             </p>
           </div>
         </div>

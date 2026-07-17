@@ -73,7 +73,7 @@ export default function SEODlaFirm() {
         name: 'Czym jest GEO (Generative Engine Optimization)?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'GEO (Generative Engine Optimization) to optymalizacja strony pod kątem wyszukiwarek generatywnych AI, takich jak ChatGPT, Gemini czy Perplexity. Dzięki GEO Twoja firma pojawia się w odpowiedziach generowanych przez AI, gdy potencjalni klienci zadają pytania dotyczące Twoich usług lub branży.',
+          text: 'GEO (Generative Engine Optimization) to praktyka poprawiania czytelności, wiarygodności i użyteczności treści dla wyszukiwarek generatywnych AI, takich jak ChatGPT, Gemini czy Perplexity. Nie gwarantuje publikacji w konkretnej odpowiedzi, ale zwiększa szansę, że dobrze udokumentowana firma zostanie poprawnie zrozumiana i zacytowana.',
         },
       },
       {
@@ -97,7 +97,7 @@ export default function SEODlaFirm() {
         name: 'Czym jest link building i jak wpływa na SEO?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Link building to proces pozyskiwania backlinków — linków z zewnętrznych stron internetowych prowadzących do Twojej witryny. Google interpretuje backlinki jako sygnały zaufania. Im wyższy autorytet domeny (DR) strony linkującej, tym większy wpływ na Twoje pozycje. Skuteczny link building skupia się na jakości: linki z branżowych serwisów, mediów i wiarygodnych witryn mają znacznie większą wartość niż setki linków z katalogów i spamerskich stron.',
+          text: 'Link building to proces zdobywania wartościowych wzmianek i linków z zewnętrznych stron. Linki mogą być jednym z sygnałów pomocnych w ocenie popularności i wiarygodności strony, ale Google nie używa metryki DR jako własnego czynnika rankingowego. Liczą się przede wszystkim kontekst, jakość źródła, naturalność i wartość dla czytelnika — nie sama liczba linków.',
         },
       },
       {
@@ -105,7 +105,7 @@ export default function SEODlaFirm() {
         name: 'Ile backlinków potrzebuje strona B2B, żeby osiągnąć wysokie pozycje?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Nie ma jednej liczby — liczy się jakość, nie ilość. 10 linków z autorytarnych domen (DR 50+) jest warte więcej niż 1000 linków z katalogów. Dla branżowych fraz B2B w Polsce zazwyczaj wystarcza 20–50 wartościowych backlinków, żeby skutecznie walczyć o TOP 3. Ważne jest też, aby profil linków był naturalny: mix anchor textów, różne typy stron linkujących i regularny przyrost.',
+          text: 'Nie ma uniwersalnej liczby. Trudność frazy, konkurencja, jakość treści, techniczna kondycja serwisu i reputacja domen zmieniają się między branżami. Zamiast obiecywać konkretną liczbę linków, oceniamy lukę względem konkurentów i budujemy naturalny profil z różnorodnych, tematycznie powiązanych źródeł.',
         },
       },
       {
@@ -113,7 +113,7 @@ export default function SEODlaFirm() {
         name: 'Jak długo trwa budowanie widoczności SEO dla firmy B2B?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Pierwsze efekty SEO widoczne są zwykle po 4–8 tygodniach od wdrożenia zmian on-page. Stabilne pozycje na konkurencyjne frazy B2B buduje się przez 6–12 miesięcy. Podstawą jest dobra techniczna optymalizacja strony, wartościowy content odpowiadający na pytania klientów oraz systematyczny link building z jakościowych źródeł. GEO (widoczność w ChatGPT, Gemini, Perplexity) może dawać efekty szybciej.',
+          text: 'Czas zależy od stanu domeny, konkurencji, zakresu zmian i tempa publikacji. Pierwsze sygnały mogą pojawić się po kilku tygodniach, ale stabilne pozycje na konkurencyjne frazy B2B często wymagają wielu miesięcy. Ta sama zasada dotyczy widoczności w odpowiedziach generatywnych — nie ma gwarantowanego terminu ani specjalnego skrótu omijającego podstawy SEO.',
         },
       },
     ],
@@ -136,7 +136,7 @@ export default function SEODlaFirm() {
             SEO i GEO dla firm B2B w Polsce
           </h1>
           <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8" data-speakable>
-            Getbuild specjalizuje się w SEO i GEO (Generative Engine Optimization) dla firm B2B w Polsce. Tworzymy strategie, które przekładają się na większą widoczność — zarówno w Google, jak i w wyszukiwarkach generatywnych AI takich jak ChatGPT, Gemini czy Perplexity. Efekt: więcej wartościowych zapytań ofertowych z każdego kanału.
+            Getbuild specjalizuje się w SEO i GEO (Generative Engine Optimization) dla firm B2B w Polsce. Tworzymy strategie, które poprawiają widoczność i zrozumienie oferty — zarówno w Google, jak i w wyszukiwarkach generatywnych AI takich jak ChatGPT, Gemini czy Perplexity. Mierzymy ruch, zapytania i jakość leadów zamiast obiecywać konkretną pozycję.
           </p>
         </div>
       </section>
@@ -193,7 +193,7 @@ export default function SEODlaFirm() {
                 <span className="flex-shrink-0 text-xs font-bold bg-[#22D3EE] text-[#06141A] px-2 py-0.5 rounded uppercase tracking-wide">Nowe</span>
                 <div>
                   <h3 className="font-bold text-[#EAF0F7] mb-2">GEO — Generative Engine Optimization</h3>
-                  <p className="text-sm text-[#A6B2C4]">Optymalizacja pod kątem wyszukiwarek AI (ChatGPT, Gemini, Perplexity). Twoja firma pojawia się w odpowiedziach generowanych przez AI, gdy klienci pytają o usługi z Twojej branży.</p>
+                  <p className="text-sm text-[#A6B2C4]">Poprawa czytelności i wiarygodności treści dla wyszukiwarek AI (ChatGPT, Gemini, Perplexity). Nie ma gwarancji cytowania, ale rzetelne źródła i jasna struktura zwiększają szansę na poprawne zrozumienie oferty.</p>
                 </div>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function SEODlaFirm() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-[#EAF0F7] mb-4">GEO — Generative Engine Optimization</h2>
           <p className="text-base leading-7 text-[#A6B2C4] mb-8">
-            Coraz więcej osób szuka firm i usług za pomocą ChatGPT, Google Gemini czy Perplexity. Zamiast klikać w listę linków, zadają pytania i dostają gotowe odpowiedzi. <strong className="text-[#EAF0F7]">Jeśli Twoja strona nie jest zoptymalizowana pod GEO, nie pojawisz się w tych odpowiedziach.</strong>
+            Coraz więcej osób szuka firm i usług za pomocą ChatGPT, Google Gemini czy Perplexity. Zamiast klikać w listę linków, zadają pytania i dostają gotowe odpowiedzi. <strong className="text-[#EAF0F7]">Nie istnieje techniczna gwarancja pojawienia się w konkretnej odpowiedzi — wygrywają jasne, pomocne i wiarygodne źródła.</strong>
           </p>
           <div className="grid gap-6 md:grid-cols-2 mb-8">
             <div className="p-6 border border-white/10 rounded-lg bg-[#161C28]">

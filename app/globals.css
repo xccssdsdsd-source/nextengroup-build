@@ -22,7 +22,7 @@ body::-webkit-scrollbar,
   --font-body: var(--font-heading), system-ui, sans-serif;
   --font-heading-mobile: var(--font-heading), system-ui, sans-serif;
   color-scheme: dark;
-  --bg-base: #050814;
+  --bg-base: #02040a;
   --bg-surface: #080d1a;
   --bg-elevated: #0b1223;
   --bg-card: #0d1528;
@@ -1515,7 +1515,11 @@ select {
    here; that has repeatedly caused visible seams. */
 body {
   position: relative;
-  background: #000000;
+  background: var(--bg-base);
+}
+
+html {
+  background: var(--bg-base);
 }
 
 .section-shell,
@@ -2387,10 +2391,10 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.75rem, 1.4vw, 1.5rem);
-  max-width: 84rem;
+  gap: clamp(0.9rem, 1.35vw, 1.35rem);
+  max-width: 82rem;
   margin: clamp(3rem, 6vw, 5.25rem) auto 0;
-  padding: 2.25rem 1rem 4rem;
+  padding: 2.5rem 1.25rem 4.75rem;
   list-style: none;
   perspective: 90rem;
   isolation: isolate;
@@ -2428,16 +2432,16 @@ body {
   z-index: 1;
   display: flex;
   min-width: 0;
-  min-height: clamp(21rem, 27vw, 24rem);
+  min-height: clamp(22rem, 27vw, 24rem);
   flex-direction: column;
   overflow: hidden;
-  padding: clamp(1.5rem, 2.2vw, 2rem);
+  padding: clamp(1.45rem, 1.85vw, 1.8rem);
   border: 1px solid transparent;
-  border-radius: 1.25rem;
+  border-radius: 1.25rem !important;
   transform: translate3d(var(--stack-x), var(--stack-y), 0) rotate(var(--stack-rotate)) scale(var(--stack-scale));
-  transform-origin: 50% 88%;
+  transform-origin: 50% 100%;
   transition:
-    transform 520ms cubic-bezier(0.34, 1.18, 0.42, 1),
+    transform 380ms var(--ease-ui),
     opacity 260ms cubic-bezier(0.23, 1, 0.32, 1),
     border-color 220ms ease,
     box-shadow 260ms ease;
@@ -2445,45 +2449,47 @@ body {
 }
 
 .process-card:nth-child(1) {
-  --stack-x: 140%;
-  --stack-y: 0.3rem;
-  --stack-rotate: -3deg;
-  --open-y: 0.55rem;
-  --open-rotate: -1.35deg;
+  --stack-x: 142%;
+  --stack-y: 0.7rem;
+  --stack-rotate: -2.4deg;
+  --open-y: 1.05rem;
+  --open-rotate: -1.05deg;
   z-index: 4;
   transition-delay: 45ms;
 }
 
 .process-card:nth-child(2) {
-  --stack-x: 42%;
-  --stack-y: 0.55rem;
-  --stack-rotate: 2.2deg;
-  --stack-scale: 0.975;
-  --shade: 0.32;
-  --open-rotate: -0.4deg;
+  --stack-x: 44%;
+  --stack-y: 0.3rem;
+  --stack-rotate: -0.8deg;
+  --stack-scale: 0.98;
+  --shade: 0.26;
+  --open-y: 0.15rem;
+  --open-rotate: -0.3deg;
   z-index: 3;
   transition-delay: 0ms;
 }
 
 .process-card:nth-child(3) {
-  --stack-x: -56%;
-  --stack-y: 0.85rem;
-  --stack-rotate: -1.6deg;
-  --stack-scale: 0.952;
-  --shade: 0.48;
-  --open-rotate: 0.4deg;
+  --stack-x: -54%;
+  --stack-y: 0.3rem;
+  --stack-rotate: 0.8deg;
+  --stack-scale: 0.96;
+  --shade: 0.42;
+  --open-y: 0.15rem;
+  --open-rotate: 0.3deg;
   z-index: 2;
   transition-delay: 0ms;
 }
 
 .process-card:nth-child(4) {
-  --stack-x: -154%;
-  --stack-y: 1.2rem;
-  --stack-rotate: 3.2deg;
-  --stack-scale: 0.93;
-  --shade: 0.6;
-  --open-y: 0.55rem;
-  --open-rotate: 1.35deg;
+  --stack-x: -152%;
+  --stack-y: 0.7rem;
+  --stack-rotate: 2.4deg;
+  --stack-scale: 0.94;
+  --shade: 0.55;
+  --open-y: 1.05rem;
+  --open-rotate: 1.05deg;
   z-index: 1;
   transition-delay: 45ms;
 }
@@ -2530,6 +2536,34 @@ body {
     background 260ms ease,
     border-color 260ms ease,
     box-shadow 260ms ease;
+}
+
+.process-card__header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.875rem;
+  min-height: 5.45rem;
+}
+
+.process-card__heading {
+  min-width: 0;
+  padding-top: 0.05rem;
+}
+
+.process-card__title {
+  min-height: 2.5em;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+.process-card__description {
+  position: relative;
+  z-index: 2;
+  max-width: 32ch;
+  text-wrap: pretty;
 }
 
 .process-card .overview-icon svg {
@@ -2618,7 +2652,7 @@ body {
   .process-deck:hover .process-card:hover {
     z-index: 5;
     border-color: rgba(210, 238, 245, 0.16) !important;
-    transform: translate3d(var(--joined-x), calc(var(--open-y) - 0.75rem), 0) rotate(var(--open-rotate)) scale(1.018);
+    transform: translate3d(var(--joined-x), var(--open-y), 0) rotate(var(--open-rotate)) scale(1);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
       0 8px 32px rgba(58, 175, 232, 0.12),
@@ -3262,7 +3296,7 @@ html.motion-ready .portfolio-case .portfolio-case__image-wrap::after { display: 
 
 /* Getbuild dark-blue system: near-black surfaces with one clear cyan accent. */
 :root {
-  --bg-base: #03050a;
+  --bg-base: #02040a;
   --bg-surface: rgba(5, 10, 19, 0.88);
   --bg-elevated: rgba(8, 15, 28, 0.9);
   --bg-card: rgba(9, 17, 32, 0.88);

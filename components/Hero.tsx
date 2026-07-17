@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState, type MouseEvent } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import ChatWidget from './ChatWidget'
+import HeroBackdrop from './ui/HeroBackdrop'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = [
@@ -119,6 +120,7 @@ export default function Hero() {
         justifyContent: 'center',
       }}
     >
+      <HeroBackdrop />
       <div
         className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10"
         style={{ paddingTop: 'var(--nav-h)', paddingBottom: '1.5rem' }}

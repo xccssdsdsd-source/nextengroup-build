@@ -78,34 +78,35 @@
   z-index: 1;
   top: 0;
   left: 0;
-  width: 32.5rem;
-  height: 32.5rem;
+  width: 37.5rem;
+  height: 37.5rem;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  background: radial-gradient(circle, rgba(78, 185, 237, 0.115), rgba(42, 103, 211, 0.052) 34%, transparent 70%);
-  filter: blur(18px);
+  background: radial-gradient(circle, rgba(96, 200, 250, 0.22), rgba(48, 120, 224, 0.1) 32%, rgba(36, 96, 200, 0.04) 54%, transparent 72%);
+  filter: blur(26px);
   mix-blend-mode: screen;
-  transition: opacity 240ms ease;
+  transition: opacity 320ms ease;
 }
 
 .root[data-active='true'] .cursorGlow {
   will-change: transform, opacity;
 }
 
+/* Organic film grain — fine SVG fractal-noise, desaturated and laid over the
+   deep-blue field with soft-light so it reads as a subtle dark-blue tonal
+   grain, not the mechanical dot-matrix grid it used to be. */
 .mobileGrain {
   display: block;
   z-index: 1;
-  inset: -16%;
-  opacity: 0.2;
+  inset: -18%;
+  opacity: 0.9;
   background-image:
-    radial-gradient(circle, rgba(190, 226, 255, 0.66) 0 0.55px, transparent 0.85px),
-    radial-gradient(circle, rgba(76, 154, 216, 0.5) 0 0.45px, transparent 0.78px);
-  background-position: 7px 11px, 31px 19px;
-  background-size: 5px 5px, 8px 8px;
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
-  mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.8'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: soft-light;
+  -webkit-mask-image: radial-gradient(ellipse 112% 88% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.82) 56%, transparent 92%);
+  mask-image: radial-gradient(ellipse 112% 88% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.82) 56%, transparent 92%);
   animation: mobile-grain-drift 9200ms ease-in-out infinite;
 }
 
@@ -220,18 +221,10 @@
   .cursorGlow { display: none; }
 
   .mobileGrain {
-    display: block;
-    z-index: 1;
-    inset: -16%;
-    opacity: 0.16;
-    background-image:
-      radial-gradient(circle, rgba(170, 222, 255, 0.62) 0 0.55px, transparent 0.85px),
-      radial-gradient(circle, rgba(58, 152, 224, 0.48) 0 0.45px, transparent 0.78px);
-    background-position: 7px 11px, 31px 19px;
-    background-size: 5px 5px, 8px 8px;
-    mix-blend-mode: screen;
-    -webkit-mask-image: radial-gradient(ellipse 96% 72% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
-    mask-image: radial-gradient(ellipse 96% 72% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
+    opacity: 0.42;
+    background-size: 200px 200px;
+    -webkit-mask-image: radial-gradient(ellipse 100% 76% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
+    mask-image: radial-gradient(ellipse 100% 76% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
   }
 
   .veil {

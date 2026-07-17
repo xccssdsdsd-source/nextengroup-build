@@ -119,14 +119,43 @@
   .mobileAurora {
     display: block;
     z-index: 1;
+    inset: -10% -18% 18% -18%;
     background-image:
-      radial-gradient(44% 34% at 72% 14%, rgba(61, 173, 231, 0.28), transparent 70%),
-      radial-gradient(52% 38% at 18% 30%, rgba(29, 91, 196, 0.22), transparent 72%),
-      linear-gradient(132deg, transparent 16%, rgba(104, 201, 238, 0.07) 36%, transparent 58%);
-    opacity: 0.92;
+      radial-gradient(42% 34% at 78% 12%, rgba(80, 202, 255, 0.44), transparent 72%),
+      radial-gradient(52% 40% at 20% 26%, rgba(42, 111, 232, 0.36), transparent 74%),
+      radial-gradient(52% 30% at 72% 58%, rgba(22, 74, 192, 0.28), transparent 72%),
+      linear-gradient(118deg, transparent 8%, rgba(83, 195, 244, 0.03) 21%, rgba(98, 210, 255, 0.26) 35%, rgba(47, 126, 229, 0.16) 48%, transparent 66%),
+      linear-gradient(146deg, transparent 19%, rgba(31, 95, 215, 0.18) 36%, rgba(90, 213, 255, 0.16) 52%, transparent 72%);
+    opacity: 1;
+    filter: saturate(1.08) contrast(1.04);
     mix-blend-mode: screen;
-    -webkit-mask-image: radial-gradient(ellipse 112% 78% at 58% 30%, #000 0%, rgba(0, 0, 0, 0.82) 54%, transparent 90%);
-    mask-image: radial-gradient(ellipse 112% 78% at 58% 30%, #000 0%, rgba(0, 0, 0, 0.82) 54%, transparent 90%);
+    transform: rotate(-3deg) translate3d(0, -1.4rem, 0);
+    -webkit-mask-image: radial-gradient(ellipse 112% 84% at 58% 32%, #000 0%, rgba(0, 0, 0, 0.94) 58%, rgba(0, 0, 0, 0.42) 78%, transparent 96%);
+    mask-image: radial-gradient(ellipse 112% 84% at 58% 32%, #000 0%, rgba(0, 0, 0, 0.94) 58%, rgba(0, 0, 0, 0.42) 78%, transparent 96%);
+  }
+
+  .mobileAurora::before,
+  .mobileAurora::after {
+    content: '';
+    position: absolute;
+    inset: 12% -8% 22% -8%;
+    border-radius: 999px;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .mobileAurora::before {
+    background:
+      linear-gradient(108deg, transparent 9%, rgba(57, 155, 232, 0.02) 22%, rgba(116, 226, 255, 0.24) 40%, rgba(42, 107, 222, 0.11) 57%, transparent 76%);
+    filter: blur(18px);
+    transform: translate3d(-4%, 8%, 0) rotate(-9deg);
+  }
+
+  .mobileAurora::after {
+    background:
+      linear-gradient(142deg, transparent 17%, rgba(40, 106, 222, 0.18) 39%, rgba(98, 214, 255, 0.16) 54%, transparent 77%);
+    filter: blur(22px);
+    transform: translate3d(8%, -8%, 0) rotate(8deg);
   }
 
   .cursorGlow { display: none; }
@@ -148,7 +177,7 @@
 
   .veil {
     background-image:
-      linear-gradient(180deg, rgba(2, 4, 10, 0.58) 0%, rgba(2, 4, 10, 0.34) 34%, rgba(2, 4, 10, 0.52) 60%, rgba(2, 4, 10, 0.78) 84%, #02040a 100%);
+      linear-gradient(180deg, rgba(2, 4, 10, 0.32) 0%, rgba(2, 4, 10, 0.2) 30%, rgba(2, 4, 10, 0.42) 62%, rgba(2, 4, 10, 0.74) 86%, #02040a 100%);
   }
 }
 
@@ -160,6 +189,10 @@
 }
 
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .mobileAurora {
+    transform: none;
+  }
+
   .mobileGrain {
     display: none;
     animation: none;

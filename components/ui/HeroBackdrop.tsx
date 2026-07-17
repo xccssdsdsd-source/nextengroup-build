@@ -174,6 +174,7 @@ export default function HeroBackdrop() {
     <div ref={rootRef} className={styles.root} data-hero-backdrop data-active={inRange} aria-hidden='true'>
       <div ref={stageRef} className={styles.stage}>
         <div className={styles.poster} />
+        <div className={styles.mobileAurora} />
         {renderCanvas ? (
           <div className={styles.canvas} data-hero-canvas>
             <CanvasErrorBoundary>

@@ -15,7 +15,8 @@ export default function CookieConsent() {
       stored = localStorage.getItem(CONSENT_KEY)
     } catch {}
     if (stored === 'accepted' || stored === 'rejected') return
-    setShow(true)
+    const timer = window.setTimeout(() => setShow(true), 1400)
+    return () => window.clearTimeout(timer)
   }, [])
 
   function accept() {

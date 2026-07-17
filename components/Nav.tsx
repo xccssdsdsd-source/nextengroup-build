@@ -107,12 +107,12 @@ export default function Nav() {
           aria-hidden="true"
         />
       )}
-      <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
-        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4">
-          <a href="/" className="nav-island flex min-w-0 items-center gap-3 rounded-full py-2 pl-2 pr-4">
-            <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="flex-shrink-0 rounded-full object-contain" priority />
+      <nav className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
+          <a href="/" className="nav-island flex max-w-[calc(100vw-5.75rem)] min-w-0 items-center gap-2 rounded-full py-2 pl-2 pr-3 sm:gap-3 sm:pr-4">
+            <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="h-9 w-9 flex-shrink-0 rounded-full object-contain" priority />
             <div className="min-w-0">
-              <div className="truncate font-sans text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>Getbuild.pl</div>
+              <div className="truncate font-sans text-[13px] font-bold uppercase tracking-[0.16em] text-[#EAF0F7] sm:text-sm sm:tracking-[0.2em]" style={{ fontFamily: 'var(--font-heading)' }}>Getbuild.pl</div>
             </div>
           </a>
 
@@ -131,7 +131,7 @@ export default function Nav() {
             )}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
             <a
               href={anchorHref('#kontakt')}
               onClick={(e) => handleAnchorClick(e, '#kontakt')}
@@ -154,7 +154,7 @@ export default function Nav() {
               aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
               aria-expanded={open}
               onClick={() => setOpen(prev => !prev)}
-              className="nav-island inline-flex h-11 w-11 items-center justify-center rounded-full text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] lg:hidden"
+              className="nav-island inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-[#EAF0F7] transition-colors hover:bg-[rgba(255,255,255,0.06)] lg:hidden"
             >
               <span key={open ? 'close' : 'open'} className="nav-icon-swap inline-flex">
                 {open ? <X size={17} /> : <Menu size={17} />}

@@ -26,6 +26,7 @@
 }
 
 .poster,
+.mobileAurora,
 .canvas,
 .mobileGrain,
 .veil {
@@ -39,6 +40,10 @@
     radial-gradient(34% 42% at 84% 20%, rgba(58, 175, 232, 0.12), transparent 68%),
     radial-gradient(46% 48% at 62% 88%, rgba(24, 74, 176, 0.14), transparent 72%);
   mix-blend-mode: screen;
+}
+
+.mobileAurora {
+  display: none;
 }
 
 .canvas {
@@ -109,6 +114,19 @@
     filter: saturate(0.78) contrast(1.08) brightness(0.9);
     -webkit-mask-image: radial-gradient(ellipse 104% 76% at 70% 25%, #000 0%, rgba(0, 0, 0, 0.78) 48%, transparent 88%);
     mask-image: radial-gradient(ellipse 104% 76% at 70% 25%, #000 0%, rgba(0, 0, 0, 0.78) 48%, transparent 88%);
+  }
+
+  .mobileAurora {
+    display: block;
+    z-index: 1;
+    background-image:
+      radial-gradient(44% 34% at 72% 14%, rgba(61, 173, 231, 0.28), transparent 70%),
+      radial-gradient(52% 38% at 18% 30%, rgba(29, 91, 196, 0.22), transparent 72%),
+      linear-gradient(132deg, transparent 16%, rgba(104, 201, 238, 0.07) 36%, transparent 58%);
+    opacity: 0.92;
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(ellipse 112% 78% at 58% 30%, #000 0%, rgba(0, 0, 0, 0.82) 54%, transparent 90%);
+    mask-image: radial-gradient(ellipse 112% 78% at 58% 30%, #000 0%, rgba(0, 0, 0, 0.82) 54%, transparent 90%);
   }
 
   .cursorGlow { display: none; }

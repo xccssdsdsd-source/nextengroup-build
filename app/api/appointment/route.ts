@@ -1,11 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const MAX_BODY_BYTES = 16_384
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const noStore = { headers: { 'Cache-Control': 'no-store' } }
+
+const cleanText = (value: unknown, max: number) =>
+  typeof value === 'string' ? value.trim().replace(/\r\n/g, '\n').slice(0, max) : ''
+
+const cleanHeaderText = (value: unknown, max: number) =>
+  typeof value === 'string' ? value.trim().replace(/[\r\n]+/g, ' ').slice(0, max) : ''
+
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, phone, message, package: pkg } = await req.json()
+    const contentLength = Number(req.headers.get('content-length') ?? 0)
+    if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: 'Request too large' }, { status: 413, ...noStore })
+    }
 
-    if (!name || !email) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    const payload = await req.json().catch(() => null)
+    const name = cleanHeaderText(payload?.name, 120)
+    const email = cleanHeaderText(payload?.email, 254).toLowerCase()
+    const phone = cleanHeaderText(payload?.phone, 64)
+    const message = cleanText(payload?.message, 2_000)
+    const pkg = cleanHeaderText(payload?.package, 120)
+
+    if (!name || !EMAIL_RE.test(email)) {
+      return NextResponse.json({ error: 'Invalid request' }, { status: 400, ...noStore })
     }
 
     const lines = [
@@ -27,8 +47,8 @@ export async function POST(req: NextRequest) {
       `&su=${encodeURIComponent(subject)}` +
       `&body=${encodeURIComponent(body)}`
 
-    return NextResponse.json({ success: true, redirectUrl: gmailUrl })
+    return NextResponse.json({ success: true, redirectUrl: gmailUrl }, noStore)
   } catch {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500, ...noStore })
   }
 }

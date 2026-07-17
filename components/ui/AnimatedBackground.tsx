@@ -34,6 +34,7 @@ export default function AnimatedBackground() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(max-width: 768px)').matches) return
 
     const bandA = bandARef.current
     const bandB = bandBRef.current

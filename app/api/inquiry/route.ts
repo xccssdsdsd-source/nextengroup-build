@@ -6,8 +6,47 @@ const FROM = 'Getbuild.pl <kontakt@getbuild.pl>'
 const IG = 'https://www.instagram.com/getbuild.pl/'
 const FB = 'https://www.facebook.com/profile.php?id=61588720012257'
 const SITE = 'https://getbuild.pl'
+const RATE_LIMIT = 5
+const RATE_WINDOW_MS = 10 * 60_000
+const MAX_BODY_BYTES = 16_384
+const MAX_MESSAGE_LENGTH = 5_000
+const MAX_SUBJECT_LENGTH = 160
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
+const noStore = { headers: { 'Cache-Control': 'no-store' } }
+
+const hits = new Map<string, number[]>()
+let lastSweep = Date.now()
+
+const sweepStaleEntries = (now: number) => {
+  if (now - lastSweep < RATE_WINDOW_MS) return
+  lastSweep = now
+  for (const [ip, timestamps] of hits) {
+    const fresh = timestamps.filter(t => now - t < RATE_WINDOW_MS)
+    if (fresh.length === 0) hits.delete(ip)
+    else hits.set(ip, fresh)
+  }
+}
+
+const isRateLimited = (ip: string) => {
+  const now = Date.now()
+  sweepStaleEntries(now)
+  const timestamps = (hits.get(ip) ?? []).filter(t => now - t < RATE_WINDOW_MS)
+  if (timestamps.length >= RATE_LIMIT) {
+    hits.set(ip, timestamps)
+    return true
+  }
+  timestamps.push(now)
+  hits.set(ip, timestamps)
+  return false
+}
+
+const cleanText = (value: unknown, max: number) =>
+  typeof value === 'string' ? value.trim().replace(/\r\n/g, '\n').slice(0, max) : ''
+
+const cleanHeaderText = (value: unknown, max: number) =>
+  typeof value === 'string' ? value.trim().replace(/[\r\n]+/g, ' ').slice(0, max) : ''
 
 const clientEmail = (message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#070B11;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070B11;padding:48px 16px;">
@@ -97,14 +136,28 @@ ${subject ? `<tr><td height="10"></td></tr>
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, subject, message } = await req.json()
-    if (!email || !message) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    const contentLength = Number(req.headers.get('content-length') ?? 0)
+    if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: 'Request too large' }, { status: 413, ...noStore })
+    }
+
+    const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429, ...noStore })
+    }
+
+    const body = await req.json().catch(() => null)
+    const email = cleanHeaderText(body?.email, 254).toLowerCase()
+    const subject = cleanHeaderText(body?.subject, MAX_SUBJECT_LENGTH)
+    const message = cleanText(body?.message, MAX_MESSAGE_LENGTH)
+
+    if (!EMAIL_RE.test(email) || !message) {
+      return NextResponse.json({ error: 'Invalid request' }, { status: 400, ...noStore })
     }
 
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
-      return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
+      return NextResponse.json({ error: 'Email service not configured' }, { status: 500, ...noStore })
     }
 
     const send = (payload: Record<string, unknown>) =>
@@ -123,8 +176,8 @@ export async function POST(req: NextRequest) {
     })
 
     if (!ownerRes.ok) {
-      const detail = await ownerRes.text()
-      return NextResponse.json({ error: 'Send failed', detail }, { status: 502 })
+      console.error('inquiry: Resend owner email failed', { status: ownerRes.status, statusText: ownerRes.statusText })
+      return NextResponse.json({ error: 'Send failed' }, { status: 502, ...noStore })
     }
 
     await send({
@@ -139,8 +192,9 @@ export async function POST(req: NextRequest) {
       ],
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true }, noStore)
   } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error('inquiry: unhandled error', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500, ...noStore })
   }
 }

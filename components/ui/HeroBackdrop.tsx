@@ -1,72 +1,15 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
-import CanvasErrorBoundary from './CanvasErrorBoundary'
+import HeroGradientCanvas from './HeroGradientCanvas'
 import styles from './HeroBackdrop.module.css'
 
-const loadHeroGradientCanvas = () => import('./HeroGradientCanvas')
-const HeroGradientCanvas = dynamic(loadHeroGradientCanvas, { ssr: false })
-
-const supportsWebGL = () => {
-  try {
-    const canvas = document.createElement('canvas')
-    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl2') || canvas.getContext('webgl')))
-  } catch {
-    return false
-  }
-}
-
-const shaderEligible = () => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
-
-  const connection = (navigator as Navigator & {
-    connection?: { saveData?: boolean; effectiveType?: string }
-  }).connection
-  if (connection?.saveData) return false
-  if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return false
-
-  // Mobile now gets the same shader gradient as desktop (kept fast via
-  // HeroGradientCanvas's compact settings), but low-memory/low-core
-  // phones fall back to the CSS aurora placeholder instead.
-  if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
-    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
-    if (deviceMemory !== undefined && deviceMemory < 4) return false
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return false
-  }
-
-  return supportsWebGL()
-}
-
-// Kick the canvas chunk off at module-evaluation time rather than from an
-// effect, so it downloads in parallel with hydration instead of after it.
-const canvasChunk = typeof window === 'undefined' || !shaderEligible() ? null : loadHeroGradientCanvas()
-
 export default function HeroBackdrop() {
-  const [webGLAvailable, setWebGLAvailable] = useState(false)
-  const [canvasFailed, setCanvasFailed] = useState(false)
   const [inRange, setInRange] = useState(true)
   const [pageVisible, setPageVisible] = useState(true)
   const rootRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const cursorGlowRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!canvasChunk) return
-    let cancelled = false
-
-    // Reveal the shader the moment its chunk resolves — no idle deferral — so
-    // the effect comes in with the page instead of appearing a beat later. The
-    // env map is self-hosted and preloaded from the homepage, so the first
-    // frame is not network-bound.
-    void canvasChunk.then(() => {
-      if (!cancelled) setWebGLAvailable(true)
-    })
-
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -186,7 +129,7 @@ export default function HeroBackdrop() {
     }
   }, [inRange])
 
-  const renderCanvas = webGLAvailable && !canvasFailed && inRange && pageVisible
+  const renderCanvas = inRange && pageVisible
 
   return (
     <div
@@ -201,9 +144,7 @@ export default function HeroBackdrop() {
         <div className={styles.poster} />
         {renderCanvas ? (
           <div className={styles.canvas} data-hero-canvas>
-            <CanvasErrorBoundary onError={() => setCanvasFailed(true)}>
-              <HeroGradientCanvas />
-            </CanvasErrorBoundary>
+            <HeroGradientCanvas />
           </div>
         ) : null}
       </div>

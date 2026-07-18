@@ -9,16 +9,11 @@ import Portfolio from '@/components/Portfolio'
 import Testimonials from '@/components/Testimonials'
 import FAQ from '@/components/FAQ'
 import Contact from '@/components/Contact'
-import ReactDOM from 'react-dom'
 import Footer from '@/components/Footer'
-import { shaderChunks } from '@/lib/shaderPreload'
 
 export default function Home() {
-  shaderChunks().forEach((src) => ReactDOM.preload(src, { as: 'script' }))
-
   return (
     <main aria-label="Treść główna">
-      <link rel="preload" as="fetch" href="/shader-hdr/city.hdr" crossOrigin="anonymous" />
       <Nav />
       <Hero />
       <SocialProof />

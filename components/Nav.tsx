@@ -88,9 +88,9 @@ export default function Nav() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const typingMs = 72
-    const deletingMs = 42
-    const holdMs = 1900
+    const typingMs = 92
+    const deletingMs = 58
+    const holdMs = 2100
     let labelIndex = 0
     let timer = 0
     let cancelled = false
@@ -157,18 +157,20 @@ export default function Nav() {
           </div>
 
           <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
-            <a
-              ref={desktopCtaRef}
-              href={anchorHref('#kontakt')}
-              onClick={(e) => handleAnchorClick(e, '#kontakt')}
-              className="btn btn-primary nav-tap nav-cta !hidden h-[52px] justify-center px-5 py-2 text-[13px] sm:!inline-flex flex items-center whitespace-nowrap"
-              aria-label="Przejdź do kontaktu"
-            >
-              <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
-                {displayText}
-                <span className="typing-cursor" />
-              </span>
-            </a>
+            <div className="nav-cta-slot hidden sm:flex">
+              <a
+                ref={desktopCtaRef}
+                href={anchorHref('#kontakt')}
+                onClick={(e) => handleAnchorClick(e, '#kontakt')}
+                className="btn btn-primary nav-tap nav-cta inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+                aria-label="Przejdź do kontaktu"
+              >
+                <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
+                  {displayText}
+                  <span className="typing-cursor" />
+                </span>
+              </a>
+            </div>
             <span
               ref={desktopCtaMirrorRef}
               aria-hidden="true"

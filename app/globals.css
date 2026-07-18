@@ -256,9 +256,6 @@ select {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), background-color 200ms ease, opacity 180ms ease;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 .btn.w-full {
@@ -3375,8 +3372,7 @@ body {
     background-color 180ms ease,
     border-color 180ms ease,
     color 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
+    box-shadow 180ms ease;
 }
 
 .btn-primary {
@@ -3408,13 +3404,13 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover {
-    background: linear-gradient(180deg, #50c1f1 0%, #3aafe8 100%);
-    filter: brightness(1.07);
+    background: linear-gradient(180deg, #63c9f4 0%, #43b8ec 100%);
+    transform: none;
+    filter: none;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.34),
       0 16px 36px -18px rgba(58, 175, 232, 0.9),
       0 2px 7px rgba(0, 0, 0, 0.4);
-    transform: translateY(-1px);
   }
 
   .btn-ghost:hover {
@@ -3723,17 +3719,26 @@ html.motion-ready [data-motion-copy] {
   }
 }
 
-/* The desktop CTA follows the typewriter's intrinsic text width. The
-   width target is retargeted on every keystroke (~50ms), faster than the
+/* The desktop CTA follows the typewriter's intrinsic text width. Its fixed
+   slot keeps the right edge anchored while the left edge follows the text.
+   The width target is retargeted on every keystroke, faster than the
    transition can finish — an ease-out curve keeps each retrigger visibly
    moving immediately instead of restarting from a slow ease-in-out ramp,
    which is what made the resize look like a jerky snap. */
+.nav-cta-slot {
+  width: 14rem;
+  flex: 0 0 14rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .nav-cta {
   min-width: 6.5rem;
   max-width: 14rem;
+  flex: none;
   overflow: hidden;
   transition:
-    width 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 160ms cubic-bezier(0.23, 1, 0.32, 1),
     transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
     background-color 180ms ease,
     border-color 180ms ease,

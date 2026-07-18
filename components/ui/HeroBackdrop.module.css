@@ -34,12 +34,27 @@
   inset: 0;
 }
 
+/* Instant, JS-free aurora — present from the very first paint so the hero
+   never renders as a flat gradient waiting for WebGL. The slow drift gives
+   real motion immediately; the WebGL canvas later blends gently on top. */
 .poster {
   background-image:
-    radial-gradient(38% 42% at 18% 12%, rgba(43, 104, 218, 0.2), transparent 68%),
-    radial-gradient(34% 42% at 84% 20%, rgba(58, 175, 232, 0.12), transparent 68%),
-    radial-gradient(46% 48% at 62% 88%, rgba(24, 74, 176, 0.14), transparent 72%);
+    radial-gradient(42% 46% at 16% 13%, rgba(43, 104, 218, 0.28), transparent 70%),
+    radial-gradient(38% 44% at 83% 18%, rgba(58, 175, 232, 0.19), transparent 70%),
+    radial-gradient(52% 54% at 60% 92%, rgba(24, 74, 176, 0.2), transparent 74%);
   mix-blend-mode: screen;
+  animation: aurora-drift 20s ease-in-out infinite alternate;
+}
+
+.poster::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  background:
+    conic-gradient(from 210deg at 64% 28%, transparent 0deg, rgba(82, 206, 255, 0.12) 42deg, rgba(35, 103, 229, 0.07) 92deg, transparent 150deg);
+  mix-blend-mode: screen;
+  filter: blur(34px);
+  animation: aurora-spin 42s linear infinite;
 }
 
 .mobileAurora {
@@ -52,7 +67,10 @@
 }
 
 .canvas {
-  animation: fade 720ms cubic-bezier(0.23, 1, 0.32, 1) 260ms forwards;
+  /* Slow, soft fade so the shader melts in over the aurora instead of
+     flashing — the sudden brightening was what made buttons look like they
+     vanished for a beat when someone reached for them. */
+  animation: fade 1600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
   mix-blend-mode: screen;
   filter: saturate(0.86) contrast(1.06);
@@ -65,34 +83,35 @@
   z-index: 1;
   top: 0;
   left: 0;
-  width: 32.5rem;
-  height: 32.5rem;
+  width: 37.5rem;
+  height: 37.5rem;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  background: radial-gradient(circle, rgba(78, 185, 237, 0.115), rgba(42, 103, 211, 0.052) 34%, transparent 70%);
-  filter: blur(18px);
+  background: radial-gradient(circle, rgba(96, 200, 250, 0.22), rgba(48, 120, 224, 0.1) 32%, rgba(36, 96, 200, 0.04) 54%, transparent 72%);
+  filter: blur(26px);
   mix-blend-mode: screen;
-  transition: opacity 240ms ease;
+  transition: opacity 320ms ease;
 }
 
 .root[data-active='true'] .cursorGlow {
   will-change: transform, opacity;
 }
 
+/* Organic film grain — fine SVG fractal-noise, desaturated and laid over the
+   deep-blue field with soft-light so it reads as a subtle dark-blue tonal
+   grain, not the mechanical dot-matrix grid it used to be. */
 .mobileGrain {
   display: block;
   z-index: 1;
-  inset: -16%;
-  opacity: 0.2;
+  inset: -18%;
+  opacity: 0.9;
   background-image:
-    radial-gradient(circle, rgba(190, 226, 255, 0.66) 0 0.55px, transparent 0.85px),
-    radial-gradient(circle, rgba(76, 154, 216, 0.5) 0 0.45px, transparent 0.78px);
-  background-position: 7px 11px, 31px 19px;
-  background-size: 5px 5px, 8px 8px;
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
-  mask-image: radial-gradient(ellipse 108% 84% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.76) 54%, transparent 90%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.8'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: soft-light;
+  -webkit-mask-image: radial-gradient(ellipse 112% 88% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.82) 56%, transparent 92%);
+  mask-image: radial-gradient(ellipse 112% 88% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.82) 56%, transparent 92%);
   animation: mobile-grain-drift 9200ms ease-in-out infinite;
 }
 
@@ -110,6 +129,16 @@
   }
 }
 
+@keyframes aurora-drift {
+  0%   { transform: translate3d(-1.6%, -1%, 0) scale(1.04); opacity: 0.88; }
+  50%  { transform: translate3d(1.6%, 0.8%, 0) scale(1.07); opacity: 1; }
+  100% { transform: translate3d(-0.4%, 1.6%, 0) scale(1.05); opacity: 0.92; }
+}
+
+@keyframes aurora-spin {
+  to { transform: rotate(360deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .canvas {
     animation: none;
@@ -117,6 +146,15 @@
   }
   .stage {
     transform: scale(1.08);
+  }
+
+  .poster {
+    animation: none;
+    transform: scale(1.05);
+  }
+
+  .poster::before {
+    animation: none;
   }
 
   .cursorGlow { display: none; }
@@ -184,18 +222,10 @@
   .cursorGlow { display: none; }
 
   .mobileGrain {
-    display: block;
-    z-index: 1;
-    inset: -16%;
-    opacity: 0.16;
-    background-image:
-      radial-gradient(circle, rgba(170, 222, 255, 0.62) 0 0.55px, transparent 0.85px),
-      radial-gradient(circle, rgba(58, 152, 224, 0.48) 0 0.45px, transparent 0.78px);
-    background-position: 7px 11px, 31px 19px;
-    background-size: 5px 5px, 8px 8px;
-    mix-blend-mode: screen;
-    -webkit-mask-image: radial-gradient(ellipse 96% 72% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
-    mask-image: radial-gradient(ellipse 96% 72% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
+    opacity: 0.42;
+    background-size: 200px 200px;
+    -webkit-mask-image: radial-gradient(ellipse 100% 76% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
+    mask-image: radial-gradient(ellipse 100% 76% at 64% 36%, #000 0%, rgba(0, 0, 0, 0.72) 52%, transparent 88%);
   }
 
   .veil {

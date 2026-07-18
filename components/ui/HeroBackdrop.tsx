@@ -152,7 +152,7 @@ export default function HeroBackdrop() {
       glowY += (targetGlowY - glowY) * 0.14
 
       stage.style.transform = `scale(1.08) translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotateX(${(-y * 0.018).toFixed(3)}deg) rotateY(${(x * 0.018).toFixed(3)}deg)`
-      cursorGlow.style.transform = `translate3d(${(glowX - 260).toFixed(1)}px, ${(glowY - 260).toFixed(1)}px, 0)`
+      cursorGlow.style.transform = `translate3d(${(glowX - 300).toFixed(1)}px, ${(glowY - 300).toFixed(1)}px, 0)`
 
       const moving = Math.abs(targetX - x) + Math.abs(targetY - y) + Math.abs(velocityX) + Math.abs(velocityY) > 0.04
       const glowMoving = Math.abs(targetGlowX - glowX) + Math.abs(targetGlowY - glowY) > 0.4

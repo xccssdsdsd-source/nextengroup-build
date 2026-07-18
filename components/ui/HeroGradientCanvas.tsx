@@ -37,7 +37,7 @@ export default function HeroGradientCanvas() {
         color3='#00030d'
         brightness={1}
         envPreset='city'
-        grain={compact ? 'off' : 'on'}
+        grain='on'
         lightType='env'
         reflection={0.1}
         positionX={0}

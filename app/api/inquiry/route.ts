@@ -48,64 +48,47 @@ const cleanText = (value: unknown, max: number) =>
 const cleanHeaderText = (value: unknown, max: number) =>
   typeof value === 'string' ? value.trim().replace(/[\r\n]+/g, ' ').slice(0, max) : ''
 
-const clientEmail = (message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#070B11;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070B11;padding:48px 16px;">
+const clientEmail = (message: string) => `<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><title>Potwierdzenie zgłoszenia</title></head><body style="margin:0;padding:0;background:#F4F5F8;-webkit-font-smoothing:antialiased;">
+<div style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden;opacity:0;">Otrzymaliśmy Twoje zgłoszenie — odpowiadamy w ciągu 24–48 godzin.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F5F8;padding:40px 16px;">
 <tr><td align="center">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#0F141C;border:1px solid rgba(255,255,255,0.07);border-radius:28px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(34,211,238,0.04);">
-<!-- top gradient bar -->
-<tr><td style="height:6px;background:linear-gradient(90deg,#22D3EE 0%,#6366F1 60%,#3B82F6 100%);font-size:0;line-height:0;">&nbsp;</td></tr>
-<!-- logo -->
-<tr><td align="center" style="padding:44px 40px 0;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(34,211,238,0.18);">
-<img src="cid:logo" width="68" height="68" alt="Getbuild.pl" style="display:block;border-radius:20px;" />
-</td></tr></table>
-<p style="margin:16px 0 0;font-family:Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#5B687A;">Getbuild.pl</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,64,0.04),0 12px 32px rgba(16,24,64,0.07);">
+<tr><td style="height:4px;background:#1A47E0;font-size:0;line-height:0;">&nbsp;</td></tr>
+<tr><td align="center" style="padding:52px 48px 0;">
+<img src="cid:logo" width="84" height="84" alt="Getbuild.pl" style="display:block;border:0;outline:none;" />
+<p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#8A93A8;">Getbuild.pl</p>
 </td></tr>
-<!-- checkmark -->
-<tr><td align="center" style="padding:32px 40px 0;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td width="72" height="72" align="center" valign="middle" style="width:72px;height:72px;border-radius:999px;background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(99,102,241,0.10));border:1px solid rgba(34,211,238,0.25);box-shadow:0 0 32px rgba(34,211,238,0.12);">
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 16.5L13 22.5L25 10" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</td></tr></table>
+<tr><td align="center" style="padding:40px 48px 0;">
+<h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.15;font-weight:400;letter-spacing:-0.02em;color:#101736;">Dziękujemy za&nbsp;kontakt</h1>
+<p style="margin:16px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;color:#5A6379;">Twoje zgłoszenie trafiło do nas bezpiecznie. Przeczytamy je osobiście i wrócimy z odpowiedzią.</p>
 </td></tr>
-<!-- heading -->
-<tr><td align="center" style="padding:24px 40px 0;">
-<h1 style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.03em;color:#EAF0F7;">Dziękujemy!</h1>
-<p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#8A97AA;">Otrzymaliśmy Twoją wiadomość i odezwiemy się wkrótce.</p>
-<!-- response time badge -->
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:8px 18px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.22);border-radius:999px;">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#22D3EE;">&#9679;&nbsp; Odpowiedź w ciągu 24–48 h</p>
+<tr><td align="center" style="padding:24px 48px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:9px 20px;background:#EEF1FE;border-radius:999px;">
+<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;color:#1A47E0;">Odpowiedź w ciągu 24–48 h</p>
 </td></tr></table>
 </td></tr>
-<!-- message echo -->
-<tr><td style="padding:32px 40px 0;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td width="3" style="width:3px;background:linear-gradient(180deg,#22D3EE,#6366F1);border-radius:2px;">&nbsp;</td>
-<td width="16" style="width:16px;">&nbsp;</td>
-<td>
-<p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#5B687A;">Twoja wiadomość</p>
-<p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.75;color:#8A97AA;white-space:pre-wrap;">${esc(message)}</p>
-</td>
-</tr></table>
+<tr><td style="padding:40px 48px 0;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F8FB;border-radius:16px;">
+<tr><td style="padding:22px 24px;">
+<p style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:#98A0B3;">Twoja wiadomość</p>
+<p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.8;color:#3A4257;white-space:pre-wrap;">${esc(message)}</p>
 </td></tr>
-<!-- CTA -->
-<tr><td align="center" style="padding:36px 40px 0;">
-<a href="${SITE}" style="display:inline-block;padding:15px 36px;background:linear-gradient(90deg,#22D3EE,#6366F1);border-radius:14px;font-family:Arial,sans-serif;font-size:14px;font-weight:800;color:#070B11;text-decoration:none;letter-spacing:0.04em;box-shadow:0 8px 24px rgba(34,211,238,0.25);">Wróć na stronę</a>
+</table>
 </td></tr>
-<!-- social -->
-<tr><td align="center" style="padding:36px 40px 0;">
-<p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#5B687A;">Obserwuj nas</p>
-<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="padding:0 6px;"><a href="${IG}"><img src="cid:ig" width="44" height="44" alt="Instagram" style="display:block;border-radius:12px;opacity:0.85;" /></a></td>
-<td style="padding:0 6px;"><a href="${FB}"><img src="cid:fb" width="44" height="44" alt="Facebook" style="display:block;border-radius:12px;opacity:0.85;" /></a></td>
-</tr></table>
+<tr><td align="center" style="padding:36px 48px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td align="center" style="background:#101736;border-radius:12px;">
+<a href="${SITE}" style="display:inline-block;padding:16px 38px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.02em;">Wróć na stronę</a>
+</td></tr></table>
 </td></tr>
-<!-- separator -->
-<tr><td style="padding:32px 40px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07) 30%,rgba(255,255,255,0.07) 70%,transparent);font-size:0;line-height:0;">&nbsp;</td>
+<tr><td style="padding:44px 48px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="height:1px;background:#E9EBF1;font-size:0;line-height:0;">&nbsp;</td>
 </tr></table></td></tr>
-<!-- footer -->
-<tr><td align="center" style="padding:20px 40px 40px;">
-<p style="margin:0;font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#3D4A5C;"><a href="${SITE}" style="color:#3D4A5C;text-decoration:underline;">Getbuild.pl</a> · Ten e-mail został wysłany automatycznie, ponieważ skontaktowano się z nami przez formularz na stronie.</p>
+<tr><td align="center" style="padding:28px 48px 44px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="padding:0 7px;"><a href="${IG}"><img src="cid:ig" width="34" height="34" alt="Instagram" style="display:block;border:0;border-radius:9px;" /></a></td>
+<td style="padding:0 7px;"><a href="${FB}"><img src="cid:fb" width="34" height="34" alt="Facebook" style="display:block;border:0;border-radius:9px;" /></a></td>
+</tr></table>
+<p style="margin:22px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.7;color:#A2A9B9;"><a href="${SITE}" style="color:#7A8394;text-decoration:none;font-weight:700;">getbuild.pl</a><br />Wiadomość wysłana automatycznie po wypełnieniu formularza kontaktowego.</p>
 </td></tr>
 </table>
 </td></tr>

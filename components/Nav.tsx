@@ -88,9 +88,9 @@ export default function Nav() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const typingMs = 92
-    const deletingMs = 58
-    const holdMs = 2100
+    const typingMs = 108
+    const deletingMs = 72
+    const holdMs = 2250
     let labelIndex = 0
     let timer = 0
     let cancelled = false
@@ -162,7 +162,7 @@ export default function Nav() {
                 ref={desktopCtaRef}
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                className="btn btn-primary nav-tap nav-cta inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+                className="btn btn-primary nav-tap nav-cta nav-cta--auto nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
                 aria-label="Przejdź do kontaktu"
               >
                 <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
@@ -174,7 +174,7 @@ export default function Nav() {
             <span
               ref={desktopCtaMirrorRef}
               aria-hidden="true"
-              className="btn btn-primary nav-cta pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+              className="btn btn-primary nav-cta nav-cta-measure pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
             >
               {displayText}
               <span className="typing-cursor" />
@@ -219,7 +219,7 @@ export default function Nav() {
                   ref={mobileCtaRef}
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                  className="btn btn-primary nav-tap nav-cta inline-flex justify-center px-5 py-3 text-sm"
+                  className="btn btn-primary nav-tap nav-cta nav-cta--auto inline-flex justify-center px-5 py-3 text-sm"
                   aria-label="Przejdź do kontaktu"
                 >
                   <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">

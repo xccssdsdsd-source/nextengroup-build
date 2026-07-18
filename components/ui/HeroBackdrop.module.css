@@ -6,7 +6,6 @@
   overflow: hidden;
   pointer-events: none;
   background: #02040a;
-  perspective: 75rem;
 }
 
 .root[data-active='true'] {
@@ -19,10 +18,6 @@
   isolation: isolate;
   transform: scale(1.08);
   transform-origin: center;
-}
-
-.root[data-active='true'] .stage {
-  will-change: transform;
 }
 
 .poster,
@@ -46,91 +41,26 @@
   animation: fade 360ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
   opacity: 0;
   mix-blend-mode: screen;
-  filter: saturate(0.86) contrast(1.06);
+  filter: saturate(1) contrast(1.06);
   -webkit-mask-image: radial-gradient(ellipse 108% 96% at 58% 42%, #000 0%, #000 62%, transparent 94%);
   mask-image: radial-gradient(ellipse 108% 96% at 58% 42%, #000 0%, #000 62%, transparent 94%);
 }
 
-.fluidSurface {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 62% 74% at 76% 34%, rgba(25, 82, 188, 0.38), transparent 72%),
-    radial-gradient(ellipse 68% 58% at 42% 92%, rgba(11, 51, 139, 0.34), transparent 76%),
-    #00030d;
-  transform: translateZ(0);
-}
-
-.fluidWave {
-  position: absolute;
-  inset: -28%;
-  border-radius: 44%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-.fluidWaveA {
-  background: radial-gradient(ellipse 48% 34% at 54% 50%, rgba(47, 123, 224, 0.72), rgba(11, 46, 143, 0.28) 52%, transparent 76%);
-  animation: fluid-wave-a 24s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-}
-
-.fluidWaveB {
-  background: radial-gradient(ellipse 42% 28% at 50% 52%, rgba(58, 175, 232, 0.42), rgba(20, 74, 176, 0.2) 48%, transparent 74%);
-  opacity: 0.72;
-  animation: fluid-wave-b 29s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-}
-
-.fluidWaveC {
-  background: radial-gradient(ellipse 38% 24% at 50% 50%, rgba(38, 101, 212, 0.46), rgba(8, 34, 105, 0.18) 52%, transparent 76%);
-  opacity: 0.64;
-  animation: fluid-wave-c 33s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-}
-
-@keyframes fluid-wave-a {
-  from { transform: translate3d(-7%, -3%, 0) rotate(-10deg) scale(1.04); opacity: 0.58; }
-  to { transform: translate3d(9%, 5%, 0) rotate(8deg) scale(1.12); opacity: 0.8; }
-}
-
-@keyframes fluid-wave-b {
-  from { transform: translate3d(12%, -8%, 0) rotate(14deg) scale(1.08); opacity: 0.52; }
-  to { transform: translate3d(-8%, 8%, 0) rotate(-7deg) scale(1.16); opacity: 0.72; }
-}
-
-@keyframes fluid-wave-c {
-  from { transform: translate3d(-4%, 12%, 0) rotate(4deg) scale(1.02); opacity: 0.44; }
-  to { transform: translate3d(13%, -5%, 0) rotate(-13deg) scale(1.14); opacity: 0.64; }
-}
-
-.cursorGlow {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 32.5rem;
-  height: 32.5rem;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(circle, rgba(78, 185, 237, 0.115), rgba(42, 103, 211, 0.052) 34%, transparent 70%);
-  filter: blur(18px);
-  mix-blend-mode: screen;
-  transition: opacity 240ms ease;
-}
-
-.root[data-active='true'] .cursorGlow {
-  will-change: transform, opacity;
+/* Keep the low-resolution WebGL buffer stretched across the entire hero. */
+.canvas canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .mobileGrain {
   display: block;
   z-index: 1;
   inset: -16%;
-  opacity: 0.2;
+  opacity: 0.26;
   background-image:
-    radial-gradient(circle, rgba(190, 226, 255, 0.66) 0 0.55px, transparent 0.85px),
-    radial-gradient(circle, rgba(76, 154, 216, 0.5) 0 0.45px, transparent 0.78px);
+    radial-gradient(circle, rgba(190, 226, 255, 0.7) 0 0.55px, transparent 0.85px),
+    radial-gradient(circle, rgba(76, 154, 216, 0.54) 0 0.45px, transparent 0.78px);
   background-position: 7px 11px, 31px 19px;
   background-size: 5px 5px, 8px 8px;
   mix-blend-mode: screen;
@@ -162,32 +92,23 @@
     transform: scale(1.08);
   }
 
-  .cursorGlow { display: none; }
-
   .mobileGrain {
     animation: none;
   }
 
-  .fluidWave {
-    animation: none;
-    will-change: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .cursorGlow { display: none; }
 }
 
 @keyframes mobile-grain-drift {
-  0% { transform: translate3d(-0.8%, -0.5%, 0) scale(1.02); opacity: 0.12; }
-  33% { transform: translate3d(0.6%, -0.2%, 0) scale(1.022); opacity: 0.16; }
-  66% { transform: translate3d(-0.25%, 0.65%, 0) scale(1.02); opacity: 0.14; }
-  100% { transform: translate3d(0.75%, 0.35%, 0) scale(1.022); opacity: 0.15; }
+  0% { transform: translate3d(-0.8%, -0.5%, 0) scale(1.02); opacity: 0.2; }
+  33% { transform: translate3d(0.6%, -0.2%, 0) scale(1.022); opacity: 0.28; }
+  66% { transform: translate3d(-0.25%, 0.65%, 0) scale(1.02); opacity: 0.24; }
+  100% { transform: translate3d(0.75%, 0.35%, 0) scale(1.022); opacity: 0.26; }
 }
 
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .mobileGrain {
-    display: none;
+    display: block;
+    opacity: 0.24;
     animation: none;
   }
 }

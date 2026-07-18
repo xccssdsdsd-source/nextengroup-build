@@ -12,12 +12,12 @@
   position: absolute;
   inset: -30%;
   background-image:
-    radial-gradient(32% 38% at 18% 8%, rgba(36, 104, 190, 0.15), transparent 70%),
-    radial-gradient(30% 36% at 86% 18%, rgba(58, 175, 232, 0.09), transparent 72%),
-    radial-gradient(38% 42% at 64% 88%, rgba(25, 79, 164, 0.095), transparent 74%),
-    radial-gradient(32% 38% at 24% 74%, rgba(20, 65, 145, 0.075), transparent 74%);
+    radial-gradient(32% 38% at 18% 8%, rgba(36, 104, 190, 0.18), transparent 70%),
+    radial-gradient(30% 36% at 86% 18%, rgba(58, 175, 232, 0.12), transparent 72%),
+    radial-gradient(38% 42% at 64% 88%, rgba(25, 79, 164, 0.12), transparent 74%),
+    radial-gradient(32% 38% at 24% 74%, rgba(20, 65, 145, 0.1), transparent 74%);
   filter: blur(72px);
-  opacity: 0.72;
+  opacity: 0.82;
   transition: translate 560ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: translate;
 }
@@ -85,6 +85,28 @@
   will-change: transform;
 }
 
+.ambientGrain {
+  position: absolute;
+  inset: -8%;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle, rgba(190, 226, 255, 0.6) 0 0.5px, transparent 0.8px),
+    radial-gradient(circle, rgba(74, 150, 214, 0.46) 0 0.42px, transparent 0.75px);
+  background-position: 9px 13px, 33px 21px;
+  background-size: 5px 5px, 8px 8px;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
+  animation: ambient-grain-drift 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes ambient-grain-drift {
+  0% { transform: translate3d(-0.6%, -0.4%, 0); }
+  50% { transform: translate3d(0.5%, 0.35%, 0); }
+  100% { transform: translate3d(-0.6%, -0.4%, 0); }
+}
+
 .sheen {
   position: absolute;
   inset: 0;
@@ -96,8 +118,12 @@
 @media (prefers-reduced-motion: reduce) {
   .scrollBand,
   .scrollGrain,
-  .stars {
+  .stars,
+  .ambientGrain {
     will-change: auto;
+  }
+  .ambientGrain {
+    animation: none;
   }
 }
 
@@ -133,5 +159,11 @@
 
   .stars {
     opacity: 0.035;
+  }
+
+  .ambientGrain {
+    opacity: 0.045;
+    animation: none;
+    will-change: auto;
   }
 }

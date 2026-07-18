@@ -17,6 +17,31 @@ const supportsWebGL = () => {
   }
 }
 
+const shaderEligible = () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+
+  const connection = (navigator as Navigator & {
+    connection?: { saveData?: boolean; effectiveType?: string }
+  }).connection
+  if (connection?.saveData) return false
+  if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return false
+
+  // Mobile now gets the same shader gradient as desktop (kept fast via
+  // HeroGradientCanvas's compact settings), but low-memory/low-core
+  // phones fall back to the CSS aurora placeholder instead.
+  if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+    if (deviceMemory !== undefined && deviceMemory < 4) return false
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return false
+  }
+
+  return supportsWebGL()
+}
+
+// Kick the canvas chunk off at module-evaluation time rather than from an
+// effect, so it downloads in parallel with hydration instead of after it.
+const canvasChunk = typeof window === 'undefined' || !shaderEligible() ? null : loadHeroGradientCanvas()
+
 export default function HeroBackdrop() {
   const [webGLAvailable, setWebGLAvailable] = useState(false)
   const [canvasFailed, setCanvasFailed] = useState(false)
@@ -27,62 +52,19 @@ export default function HeroBackdrop() {
   const cursorGlowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const connection = (navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string }
-    }).connection
-    if (connection?.saveData) return
-    if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return
-
-    // Mobile now gets the same shader gradient as desktop (kept fast via
-    // HeroGradientCanvas's compact settings), but low-memory/low-core
-    // phones fall back to the CSS aurora placeholder instead.
-    if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
-      const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
-      if (deviceMemory !== undefined && deviceMemory < 4) return
-      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return
-    }
-
-    if (!supportsWebGL()) return
+    if (!canvasChunk) return
     let cancelled = false
 
-    // Open the connection to the shader's HDR host and start fetching the
-    // JS chunk immediately, in parallel with the rest of the page's load,
-    // instead of waiting for idle to even begin the network request — that
-    // was serializing "wait for idle" and "wait for the download" instead
-    // of overlapping them, roughly doubling the time to first frame.
-    const preconnect = document.createElement('link')
-    preconnect.rel = 'preconnect'
-    preconnect.href = 'https://ruucm.github.io'
-    preconnect.crossOrigin = 'anonymous'
-    document.head.appendChild(preconnect)
-    const modulePromise = loadHeroGradientCanvas()
-
-    const reveal = () => {
-      void modulePromise.then(() => {
-        if (!cancelled) setWebGLAvailable(true)
-      })
-    }
-
-    // Reveal quietly once the browser is idle rather than waiting for the
-    // user's first pointer move/click — starting it on interaction meant
-    // the abrupt fade-in landed at the exact moment someone reached for a
-    // button, reading as the button itself glitching. The timeout is a
-    // worst-case ceiling, not the expected wait — idle usually fires well
-    // before it since the chunk is already downloading.
-    let idleId = 0
-    let timeoutId = 0
-    if (typeof requestIdleCallback !== 'undefined') {
-      idleId = requestIdleCallback(reveal, { timeout: 900 })
-    } else {
-      timeoutId = window.setTimeout(reveal, 250)
-    }
+    // Reveal the shader the moment its chunk resolves — no idle deferral — so
+    // the effect comes in with the page instead of appearing a beat later. The
+    // env map is self-hosted and preloaded from the homepage, so the first
+    // frame is not network-bound.
+    void canvasChunk.then(() => {
+      if (!cancelled) setWebGLAvailable(true)
+    })
 
     return () => {
       cancelled = true
-      if (idleId && typeof cancelIdleCallback !== 'undefined') cancelIdleCallback(idleId)
-      if (timeoutId) window.clearTimeout(timeoutId)
     }
   }, [])
 
@@ -217,7 +199,6 @@ export default function HeroBackdrop() {
     >
       <div ref={stageRef} className={styles.stage}>
         <div className={styles.poster} />
-        <div className={styles.mobileAurora} />
         {renderCanvas ? (
           <div className={styles.canvas} data-hero-canvas>
             <CanvasErrorBoundary onError={() => setCanvasFailed(true)}>

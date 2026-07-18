@@ -12,7 +12,7 @@ const nextConfig = {
         ? []
         : [
             {
-              source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2)',
+              source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2|hdr)',
               headers: [
                 { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
               ],

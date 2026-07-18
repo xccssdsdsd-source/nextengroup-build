@@ -3375,7 +3375,8 @@ body {
     background-color 180ms ease,
     border-color 180ms ease,
     color 180ms ease,
-    box-shadow 180ms ease;
+    box-shadow 180ms ease,
+    filter 180ms ease;
 }
 
 .btn-primary {
@@ -3407,7 +3408,8 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover {
-    background: #69cbf3;
+    background: linear-gradient(180deg, #50c1f1 0%, #3aafe8 100%);
+    filter: brightness(1.07);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.34),
       0 16px 36px -18px rgba(58, 175, 232, 0.9),

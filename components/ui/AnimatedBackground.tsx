@@ -87,6 +87,7 @@ export default function AnimatedBackground() {
       <div ref={bandBRef} className={`${styles.scrollBand} ${styles.bandB}`} />
       <div ref={grainRef} className={styles.scrollGrain} />
       <div ref={starsRef} className={styles.stars} />
+      <div className={styles.ambientGrain} />
       <div className={styles.sheen} />
     </div>
   )

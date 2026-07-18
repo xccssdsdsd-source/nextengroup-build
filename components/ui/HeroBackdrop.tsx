@@ -1,13 +1,44 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import HeroGradientCanvas from './HeroGradientCanvas'
+import dynamic from 'next/dynamic'
+import CanvasErrorBoundary from './CanvasErrorBoundary'
 import styles from './HeroBackdrop.module.css'
 
+const loadHeroGradientCanvas = () => import('./HeroGradientCanvas')
+const HeroGradientCanvas = dynamic(loadHeroGradientCanvas, { ssr: false })
+
+const supportsWebGL = () => {
+  try {
+    const canvas = document.createElement('canvas')
+    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl2') || canvas.getContext('webgl')))
+  } catch {
+    return false
+  }
+}
+
+// Download the isolated shader chunk immediately on the client. The heavy
+// renderer stays outside Hero's critical bundle but does not wait for an idle
+// callback before it can draw its first frame.
+const canvasChunk = typeof window === 'undefined' ? null : loadHeroGradientCanvas()
+
 export default function HeroBackdrop() {
+  const [webGLAvailable, setWebGLAvailable] = useState(false)
+  const [canvasFailed, setCanvasFailed] = useState(false)
   const [inRange, setInRange] = useState(true)
   const [pageVisible, setPageVisible] = useState(true)
   const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!canvasChunk || !supportsWebGL()) return
+    let cancelled = false
+    void canvasChunk.then(() => {
+      if (!cancelled) setWebGLAvailable(true)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -51,7 +82,7 @@ export default function HeroBackdrop() {
     }
   }, [inRange])
 
-  const renderCanvas = inRange && pageVisible
+  const renderCanvas = webGLAvailable && !canvasFailed && inRange && pageVisible
 
   return (
     <div
@@ -66,7 +97,9 @@ export default function HeroBackdrop() {
         <div className={styles.poster} />
         {renderCanvas ? (
           <div className={styles.canvas} data-hero-canvas>
-            <HeroGradientCanvas />
+            <CanvasErrorBoundary onError={() => setCanvasFailed(true)}>
+              <HeroGradientCanvas />
+            </CanvasErrorBoundary>
           </div>
         ) : null}
       </div>

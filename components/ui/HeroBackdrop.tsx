@@ -44,32 +44,39 @@ export default function HeroBackdrop() {
       if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return
     }
 
+    if (!supportsWebGL()) return
     let cancelled = false
-    const start = () => {
-      if (!supportsWebGL()) return
-      // Open the connection to the shader's HDR host in parallel with the
-      // JS chunk fetch, instead of only after the component mounts and
-      // requests it — shaves the DNS/TLS handshake off the critical path.
-      const preconnect = document.createElement('link')
-      preconnect.rel = 'preconnect'
-      preconnect.href = 'https://ruucm.github.io'
-      preconnect.crossOrigin = 'anonymous'
-      document.head.appendChild(preconnect)
-      void loadHeroGradientCanvas().then(() => {
+
+    // Open the connection to the shader's HDR host and start fetching the
+    // JS chunk immediately, in parallel with the rest of the page's load,
+    // instead of waiting for idle to even begin the network request — that
+    // was serializing "wait for idle" and "wait for the download" instead
+    // of overlapping them, roughly doubling the time to first frame.
+    const preconnect = document.createElement('link')
+    preconnect.rel = 'preconnect'
+    preconnect.href = 'https://ruucm.github.io'
+    preconnect.crossOrigin = 'anonymous'
+    document.head.appendChild(preconnect)
+    const modulePromise = loadHeroGradientCanvas()
+
+    const reveal = () => {
+      void modulePromise.then(() => {
         if (!cancelled) setWebGLAvailable(true)
       })
     }
 
-    // Load quietly once the browser is idle rather than waiting for the
+    // Reveal quietly once the browser is idle rather than waiting for the
     // user's first pointer move/click — starting it on interaction meant
     // the abrupt fade-in landed at the exact moment someone reached for a
-    // button, reading as the button itself glitching.
+    // button, reading as the button itself glitching. The timeout is a
+    // worst-case ceiling, not the expected wait — idle usually fires well
+    // before it since the chunk is already downloading.
     let idleId = 0
     let timeoutId = 0
     if (typeof requestIdleCallback !== 'undefined') {
-      idleId = requestIdleCallback(start, { timeout: 1500 })
+      idleId = requestIdleCallback(reveal, { timeout: 900 })
     } else {
-      timeoutId = window.setTimeout(start, 400)
+      timeoutId = window.setTimeout(reveal, 250)
     }
 
     return () => {

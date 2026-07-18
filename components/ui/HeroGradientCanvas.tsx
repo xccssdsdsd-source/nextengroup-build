@@ -1,26 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
 
 export default function HeroGradientCanvas() {
-  const [compact, setCompact] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches,
-  )
-
-  useEffect(() => {
-    const query = window.matchMedia('(max-width: 768px)')
-    const update = () => setCompact(query.matches)
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
-
   return (
     <ShaderGradientCanvas
       style={{ width: '100%', height: '100%' }}
       pointerEvents='none'
-      pixelDensity={compact ? 0.55 : 1}
+      pixelDensity={1}
       fov={45}
     >
       <ShaderGradient
@@ -49,7 +36,7 @@ export default function HeroGradientCanvas() {
         uAmplitude={0}
         uDensity={1.5}
         uFrequency={0}
-        uSpeed={compact ? 0.06 : 0.12}
+        uSpeed={0.12}
         uStrength={1.5}
         uTime={8}
       />

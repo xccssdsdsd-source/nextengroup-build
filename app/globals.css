@@ -18,9 +18,11 @@ body::-webkit-scrollbar,
 
 :root {
   --nav-h: 100px;
-  --font-display: var(--font-serif), Georgia, serif;
-  --font-body: var(--font-heading), system-ui, sans-serif;
-  --font-heading-mobile: var(--font-heading), system-ui, sans-serif;
+  --font-display: var(--font-clash), var(--font-sans), system-ui, sans-serif;
+  --font-accent: var(--font-serif), Georgia, serif;
+  --font-body: var(--font-sans), system-ui, sans-serif;
+  --font-heading: var(--font-clash), var(--font-sans), system-ui, sans-serif;
+  --font-heading-mobile: var(--font-sans), system-ui, sans-serif;
   color-scheme: dark;
   --bg-base: #02040a;
   --bg-surface: #080d1a;
@@ -201,9 +203,9 @@ select {
   color: var(--text-primary);
   font-family: var(--font-heading);
   font-size: clamp(27px, 3.8vw, 46px);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-weight: 650;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   text-wrap: balance;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -215,7 +217,7 @@ select {
   color: var(--text-secondary);
   font-size: 1.0rem;
   line-height: 1.7;
-  letter-spacing: -0.006em;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -736,7 +738,7 @@ select {
 
 .step-number {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 2.25rem;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -984,7 +986,7 @@ select {
 }
 
 .serif-accent {
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -1264,7 +1266,7 @@ select {
 }
 .overview-num {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 4.25rem;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -2940,9 +2942,9 @@ html.motion-ready .portfolio-wall .portfolio-case.is-revealed {
 }
 
 .portfolio-case__title { display: inline-flex; width: fit-content; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--text-primary); }
-.portfolio-case__title h2, .portfolio-case__title h3 { font-family: var(--font-heading); font-size: clamp(1.45rem, 2.5vw, 2.25rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.04em; }
+.portfolio-case__title h2, .portfolio-case__title h3 { font-family: var(--font-heading); font-size: clamp(1.45rem, 2.5vw, 2.25rem); font-weight: 650; line-height: 1.06; letter-spacing: -0.025em; }
 .portfolio-case__title svg { color: var(--text-muted); transition: color 180ms ease, transform 220ms var(--ease-ui); }
-.portfolio-case__tagline { margin-top: 0.55rem; color: var(--accent-bright); font-family: var(--font-display); font-size: 1.02rem; font-style: italic; }
+.portfolio-case__tagline { margin-top: 0.55rem; color: var(--accent-bright); font-family: var(--font-accent); font-size: 1.02rem; font-style: italic; }
 .portfolio-case__body { margin-top: 1rem; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.72; text-wrap: pretty; }
 
 .portfolio-case__footer { display: flex; flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: auto; padding-top: 1.75rem; }

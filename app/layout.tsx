@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import MotionProvider from '@/components/MotionProvider'
@@ -15,8 +16,15 @@ const siteDescription =
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
   weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-heading',
+  variable: '--font-sans',
   display: 'swap',
+})
+
+const clashDisplay = localFont({
+  src: '../public/fonts/ClashDisplay-Variable.woff2',
+  variable: '--font-clash',
+  display: 'swap',
+  weight: '200 700',
 })
 
 const instrumentSerif = Instrument_Serif({
@@ -107,7 +115,7 @@ export default function RootLayout({
     <html
       lang="pl"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${instrumentSerif.variable}`}
+      className={`${plusJakartaSans.variable} ${clashDisplay.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <script

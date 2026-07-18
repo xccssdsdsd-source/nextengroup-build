@@ -172,7 +172,7 @@ export default function Nav() {
             <span
               ref={desktopCtaMirrorRef}
               aria-hidden="true"
-              className="btn btn-primary nav-cta pointer-events-none invisible fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+              className="btn btn-primary nav-cta pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
             >
               {displayText}
               <span className="typing-cursor" />
@@ -228,7 +228,7 @@ export default function Nav() {
                 <span
                   ref={mobileCtaMirrorRef}
                   aria-hidden="true"
-                  className="btn btn-primary nav-cta pointer-events-none invisible fixed left-0 top-0 -z-10 inline-flex justify-center whitespace-nowrap px-5 py-3 text-sm"
+                  className="btn btn-primary nav-cta pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex justify-center whitespace-nowrap px-5 py-3 text-sm"
                 >
                   {displayText}
                   <span className="typing-cursor" />

@@ -19,6 +19,7 @@ const supportsWebGL = () => {
 
 export default function HeroBackdrop() {
   const [webGLAvailable, setWebGLAvailable] = useState(false)
+  const [canvasFailed, setCanvasFailed] = useState(false)
   const [inRange, setInRange] = useState(true)
   const [pageVisible, setPageVisible] = useState(true)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -27,14 +28,33 @@ export default function HeroBackdrop() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) return
 
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string }
+    }).connection
     if (connection?.saveData) return
+    if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return
+
+    // Mobile now gets the same shader gradient as desktop (kept fast via
+    // HeroGradientCanvas's compact settings), but low-memory/low-core
+    // phones fall back to the CSS aurora placeholder instead.
+    if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
+      const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+      if (deviceMemory !== undefined && deviceMemory < 4) return
+      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return
+    }
 
     let cancelled = false
     const start = () => {
       if (!supportsWebGL()) return
+      // Open the connection to the shader's HDR host in parallel with the
+      // JS chunk fetch, instead of only after the component mounts and
+      // requests it — shaves the DNS/TLS handshake off the critical path.
+      const preconnect = document.createElement('link')
+      preconnect.rel = 'preconnect'
+      preconnect.href = 'https://ruucm.github.io'
+      preconnect.crossOrigin = 'anonymous'
+      document.head.appendChild(preconnect)
       void loadHeroGradientCanvas().then(() => {
         if (!cancelled) setWebGLAvailable(true)
       })
@@ -177,16 +197,23 @@ export default function HeroBackdrop() {
     }
   }, [inRange])
 
-  const renderCanvas = webGLAvailable && inRange && pageVisible
+  const renderCanvas = webGLAvailable && !canvasFailed && inRange && pageVisible
 
   return (
-    <div ref={rootRef} className={styles.root} data-hero-backdrop data-active={inRange} aria-hidden='true'>
+    <div
+      ref={rootRef}
+      className={styles.root}
+      data-hero-backdrop
+      data-active={inRange}
+      data-canvas-active={renderCanvas}
+      aria-hidden='true'
+    >
       <div ref={stageRef} className={styles.stage}>
         <div className={styles.poster} />
         <div className={styles.mobileAurora} />
         {renderCanvas ? (
           <div className={styles.canvas} data-hero-canvas>
-            <CanvasErrorBoundary>
+            <CanvasErrorBoundary onError={() => setCanvasFailed(true)}>
               <HeroGradientCanvas />
             </CanvasErrorBoundary>
           </div>

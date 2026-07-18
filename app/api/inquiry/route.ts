@@ -48,53 +48,55 @@ const cleanText = (value: unknown, max: number) =>
 const cleanHeaderText = (value: unknown, max: number) =>
   typeof value === 'string' ? value.trim().replace(/[\r\n]+/g, ' ').slice(0, max) : ''
 
-const clientEmail = (message: string) => `<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><title>Potwierdzenie zgłoszenia</title></head><body style="margin:0;padding:0;background:#F4F5F8;-webkit-font-smoothing:antialiased;">
-<div style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden;opacity:0;">Otrzymaliśmy Twoje zgłoszenie — odpowiadamy w ciągu 24–48 godzin.</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F5F8;padding:40px 16px;">
+const clientEmail = (message: string) => `<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark only"><meta name="supported-color-schemes" content="dark only"><title>Potwierdzenie zg&#322;oszenia</title><style>@media (prefers-reduced-motion:no-preference){.grain{animation:grainShift 9s ease-in-out infinite alternate}}@keyframes grainShift{0%{background-position:0 0,12px 18px,0 0}100%{background-position:18px 24px,0 0,0 0}}</style></head><body style="margin:0;padding:0;background:#070A10;-webkit-font-smoothing:antialiased;">
+<div style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden;opacity:0;">Otrzymali&#347;my Twoje zg&#322;oszenie. Odpowiadamy w ci&#261;gu 24-48 godzin.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070A10;padding:34px 14px;">
 <tr><td align="center">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:24px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,64,0.04),0 12px 32px rgba(16,24,64,0.07);">
-<tr><td style="height:4px;background:#1A47E0;font-size:0;line-height:0;">&nbsp;</td></tr>
-<tr><td align="center" style="padding:52px 48px 0;">
-<img src="cid:logo" width="84" height="84" alt="Getbuild.pl" style="display:block;border:0;outline:none;" />
-<p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#8A93A8;">Getbuild.pl</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="grain" style="max-width:560px;background-color:#0D121B;background-image:radial-gradient(circle at 18% 8%,rgba(44,198,224,0.18),transparent 30%),radial-gradient(circle at 82% 0%,rgba(85,103,240,0.16),transparent 32%),radial-gradient(circle,rgba(190,226,255,0.18) 0 0.6px,transparent 0.9px);background-size:auto,auto,7px 7px;border:1px solid rgba(133,160,196,0.18);border-radius:26px;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,0.38);">
+<tr><td style="height:3px;background:#27C7E8;font-size:0;line-height:0;">&nbsp;</td></tr>
+<tr><td align="center" style="padding:46px 44px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td align="center" style="width:86px;height:86px;background:#F8FAFF;border-radius:20px;box-shadow:0 18px 44px rgba(28,199,232,0.18);">
+<img src="cid:logo" width="64" height="64" alt="Getbuild.pl" style="display:block;border:0;outline:none;" />
+</td></tr></table>
+<p style="margin:20px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#7F8DA4;">Getbuild.pl</p>
 </td></tr>
-<tr><td align="center" style="padding:40px 48px 0;">
-<h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.15;font-weight:400;letter-spacing:-0.02em;color:#101736;">Dziękujemy za&nbsp;kontakt</h1>
-<p style="margin:16px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;color:#5A6379;">Twoje zgłoszenie trafiło do nas bezpiecznie. Przeczytamy je osobiście i wrócimy z odpowiedzią.</p>
+<tr><td align="center" style="padding:38px 44px 0;">
+<h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:32px;line-height:1.16;font-weight:800;color:#F4F8FF;">Dzi&#281;kujemy za kontakt</h1>
+<p style="margin:16px auto 0;max-width:400px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#AAB7CA;">Otrzymali&#347;my Twoj&#261; wiadomo&#347;&#263; i wr&oacute;cimy z odpowiedzi&#261; po osobistym sprawdzeniu zg&#322;oszenia.</p>
 </td></tr>
-<tr><td align="center" style="padding:24px 48px 0;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:9px 20px;background:#EEF1FE;border-radius:999px;">
-<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;color:#1A47E0;">Odpowiedź w ciągu 24–48 h</p>
+<tr><td align="center" style="padding:24px 44px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding:10px 20px;background:rgba(39,199,232,0.1);border:1px solid rgba(39,199,232,0.24);border-radius:10px;">
+<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#2DD6F3;">Odpowied&#378; w ci&#261;gu 24-48 h</p>
 </td></tr></table>
 </td></tr>
-<tr><td style="padding:40px 48px 0;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F8FB;border-radius:16px;">
+<tr><td style="padding:38px 44px 0;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.035);border-left:3px solid #2DD6F3;border-radius:14px;">
 <tr><td style="padding:22px 24px;">
-<p style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:#98A0B3;">Twoja wiadomość</p>
-<p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.8;color:#3A4257;white-space:pre-wrap;">${esc(message)}</p>
+<p style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:#7F8DA4;">Twoja wiadomo&#347;&#263;</p>
+<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.75;color:#C8D3E4;white-space:pre-wrap;">${esc(message)}</p>
 </td></tr>
 </table>
 </td></tr>
-<tr><td align="center" style="padding:36px 48px 0;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td align="center" style="background:#101736;border-radius:12px;">
-<a href="${SITE}" style="display:inline-block;padding:16px 38px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.02em;">Wróć na stronę</a>
+<tr><td align="center" style="padding:36px 44px 0;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td align="center" style="background:#2DD6F3;border-radius:14px;box-shadow:0 16px 34px rgba(45,214,243,0.2);">
+<a href="${SITE}" style="display:inline-block;padding:16px 38px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:800;color:#061018;text-decoration:none;letter-spacing:0.02em;">Wr&oacute;&#263; na stron&#281;</a>
 </td></tr></table>
 </td></tr>
-<tr><td style="padding:44px 48px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="height:1px;background:#E9EBF1;font-size:0;line-height:0;">&nbsp;</td>
+<tr><td style="padding:44px 44px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="height:1px;background:rgba(151,169,199,0.16);font-size:0;line-height:0;">&nbsp;</td>
 </tr></table></td></tr>
-<tr><td align="center" style="padding:28px 48px 44px;">
+<tr><td align="center" style="padding:28px 44px 44px;">
+<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#7F8DA4;">Obserwuj nas</p>
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
 <td style="padding:0 7px;"><a href="${IG}"><img src="cid:ig" width="34" height="34" alt="Instagram" style="display:block;border:0;border-radius:9px;" /></a></td>
 <td style="padding:0 7px;"><a href="${FB}"><img src="cid:fb" width="34" height="34" alt="Facebook" style="display:block;border:0;border-radius:9px;" /></a></td>
 </tr></table>
-<p style="margin:22px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.7;color:#A2A9B9;"><a href="${SITE}" style="color:#7A8394;text-decoration:none;font-weight:700;">getbuild.pl</a><br />Wiadomość wysłana automatycznie po wypełnieniu formularza kontaktowego.</p>
+<p style="margin:22px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.7;color:#7F8DA4;"><a href="${SITE}" style="color:#AAB7CA;text-decoration:none;font-weight:700;">getbuild.pl</a><br />Wiadomo&#347;&#263; wys&#322;ana automatycznie po wype&#322;nieniu formularza kontaktowego.</p>
 </td></tr>
 </table>
 </td></tr>
 </table>
 </body></html>`
-
 const ownerEmail = (email: string, subject: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:32px 16px;">
 <tr><td align="center">

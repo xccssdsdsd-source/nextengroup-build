@@ -35,7 +35,7 @@ Jednorazowa cena jest ustalana indywidualnie po bezpłatnej konsultacji i analiz
 - pierwsza wizualizacja zwykle w 24 godziny po zebraniu materiałów,
 - poprawki bez limitu w ramach ustalonego zakresu do akceptacji,
 - płatność po zaakceptowaniu efektu,
-- możliwość stałej opieki i hostingu po okresie wsparcia startowego za 99 zł miesięcznie; usługa obejmuje hosting, monitoring, kopie zapasowe, bezpieczeństwo, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większa przebudowa są wyceniane osobno.
+- możliwość stałej opieki i hostingu po okresie wsparcia startowego: od 30 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji; usługa obejmuje hosting, monitoring, kopie zapasowe, bezpieczeństwo, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większa przebudowa są wyceniane osobno. Dodatkowe automatyzacje i funkcje AI mogą zmienić miesięczny koszt zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.
 
 Nie ma gwarancji pozycji w Google ani pojawienia się w konkretnej odpowiedzi ChatGPT, Gemini lub Perplexity.
 

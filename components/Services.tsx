@@ -24,7 +24,7 @@ const packages = [
     ],
     amount: 1799,
     featured: false,
-    support: '30 dni opieki w cenie, potem opcjonalnie 99 zł/mies.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Wybieram Landing',
   },
   {
@@ -44,7 +44,7 @@ const packages = [
     ],
     amount: 2299,
     featured: true,
-    support: '30 dni opieki w cenie, potem opcjonalnie 99 zł/mies.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Chcę stronę z AI',
   },
   {
@@ -64,7 +64,7 @@ const packages = [
     ],
     amount: 3099,
     featured: false,
-    support: '60 dni opieki w cenie, potem opcjonalnie 99 zł/mies.',
+    support: '60 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Potrzebuję pełnego pakietu',
   },
 ] as const
@@ -123,9 +123,12 @@ const detailPanels = [
         <div className="rounded-xl border border-[rgba(255,255,255,0.1)] bg-[#0D1219] p-5">
           <span className="text-[12px] font-medium text-[#8B97A8]">Stała opieka i hosting</span>
           <div className="mt-1 flex items-end gap-1.5">
-            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">99 zł</span>
+            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 30 do 99 zł</span>
             <span className="pb-1 text-[13px] font-medium text-[#8B97A8]">miesięcznie</span>
           </div>
+          <p className="mt-2 text-[12.5px] leading-[1.6] text-[#8CD8FF]">
+            Dokładna kwota zależy od Twojej strony i wybranej konfiguracji opieki — ustalamy ją indywidualnie przed startem.
+          </p>
           <ul className="mt-5 grid gap-2">
           {[
             'Hosting, monitoring i kopie zapasowe',
@@ -140,9 +143,29 @@ const detailPanels = [
           ))}
           </ul>
           <p className="mt-4 border-t border-[rgba(255,255,255,0.08)] pt-4 text-[12.5px] leading-[1.6] text-[#748094]">
-            Nowe podstrony, funkcje i większa przebudowa są zawsze wyceniane przed rozpoczęciem pracy.
+            Nowe podstrony, funkcje i większa przebudowa są zawsze wyceniane przed rozpoczęciem pracy. Przy dodatkowych automatyzacjach lub funkcjach AI cena może się różnić zależnie od kosztu używanych narzędzi, liczby operacji i wybranego modelu AI.
           </p>
         </div>
+      </div>
+    ),
+  },
+  {
+    id: 'podstawy',
+    title: 'Co jest wliczone w każdą stronę i nie wymaga dokupienia?',
+    summary: 'SEO, GEO i AEO to element wdrożenia, nie osobna usługa w naszej ofercie.',
+    content: (
+      <div>
+        <p className="text-[13.5px] leading-[1.75] text-[#A6B2C4]">
+          SEO, GEO i AEO są elementem wdrożenia strony, a nie osobną usługą w naszej ofercie — otrzymujesz je w ramach każdego z trzech pakietów.
+        </p>
+        <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+          {includedInEveryWebsite.map((item) => (
+            <li key={item} className="flex items-start gap-2.5 text-[13.5px] leading-[1.55] text-[#C4CFDC]">
+              <CheckMark />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
@@ -176,7 +199,7 @@ function CheckMark() {
   )
 }
 
-function PackageCard({ pkg }: { pkg: (typeof packages)[number] }) {
+function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[number]; onLearnMoreAboutCare: () => void }) {
   return (
     <article
       className={`relative h-full overflow-hidden rounded-2xl border ${
@@ -225,7 +248,14 @@ function PackageCard({ pkg }: { pkg: (typeof packages)[number] }) {
         </ul>
 
         <div className="mt-auto pt-6">
-          <p className="mb-4 text-center text-[11.5px] font-medium text-[#7C879B]">{pkg.support}</p>
+          <p className="text-center text-[11.5px] font-medium text-[#7C879B]">{pkg.support}</p>
+          <button
+            type="button"
+            onClick={onLearnMoreAboutCare}
+            className="mb-4 mt-1.5 block w-full text-center text-[11.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
+          >
+            Dowiedz się więcej o opiece przy Twojej stronie
+          </button>
           <a
             href="#kontakt"
             onClick={(event) => {
@@ -302,6 +332,11 @@ export default function Services() {
     scrollToSection('kontakt')
   }
 
+  const openDetailPanel = (id: string) => {
+    setOpenDetail(id)
+    window.setTimeout(() => document.getElementById('szczegoly-uslug')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40)
+  }
+
   return (
     <section id="uslugi" className="section-shell relative overflow-hidden !pt-20 sm:!pt-24 lg:!pt-28" data-no-entrance suppressHydrationWarning>
       <div className="relative mx-auto max-w-7xl">
@@ -376,45 +411,7 @@ export default function Services() {
           </div>
 
           <div id="strony" className="mt-10 grid items-stretch gap-5 lg:grid-cols-3">
-            {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
-          </div>
-
-          <aside className="care-summary" aria-labelledby="care-summary-title">
-            <div className="care-summary__price">
-              <span>Po okresie wsparcia w pakiecie</span>
-              <strong id="care-summary-title">Opieka i hosting</strong>
-              <p><b>99 zł</b><small>/ miesiąc</small></p>
-              <span>Opcjonalnie, po 30 lub 60 dniach wsparcia w cenie strony.</span>
-            </div>
-            <ul>
-              <li><CheckMark /><span><strong>Hosting i monitoring</strong>Stała dostępność, kopie zapasowe i kontrola działania.</span></li>
-              <li><CheckMark /><span><strong>Bezpieczeństwo</strong>Aktualizacje techniczne i reakcja na ewentualne błędy.</span></li>
-              <li><CheckMark /><span><strong>Drobne zmiany</strong>Aktualizacja treści, oferty i wiedzy chatbota bez limitu zgłoszeń.</span></li>
-            </ul>
-            <p className="care-summary__scope">
-              <strong>Jasna granica zakresu</strong>
-              Nowe podstrony, funkcje i większe przebudowy wyceniamy osobno przed rozpoczęciem pracy.
-            </p>
-          </aside>
-
-          <div className="mt-7 rounded-2xl border border-[rgba(255,255,255,0.09)] bg-[#0F141C] p-5 sm:p-6">
-            <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
-              <div>
-                <span className="text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#8CD8FF]">W każdej z trzech stron</span>
-                <h3 className="mt-2 text-[18px] font-extrabold tracking-[-0.025em] text-[#EAF0F7]">Podstawy, których nie musisz dokupować</h3>
-                <p className="mt-2 text-[12.5px] leading-[1.65] text-[#7C879B]">
-                  SEO, GEO i AEO są elementem wdrożenia strony, a nie osobną usługą w naszej ofercie.
-                </p>
-              </div>
-              <ul className="grid gap-2 sm:grid-cols-2">
-                {includedInEveryWebsite.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-[13px] leading-[1.55] text-[#C4CFDC]">
-                    <CheckMark />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} onLearnMoreAboutCare={() => openDetailPanel('opieka')} />)}
           </div>
 
           <article id="automatyzacje" className="mt-7 overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#10151D] p-6 sm:p-8 lg:p-10">
@@ -466,7 +463,7 @@ export default function Services() {
           <div className="mb-6">
             <span className="section-kicker">Więcej informacji</span>
             <h2 className="mt-3 text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-              Wszystko, co warto wiedzieć przed startem
+              Dodatkowe informacje, które przydadzą ci się przy rozpoczęciu współpracy ze stronami internetowymi i automatyzacjami AI
             </h2>
           </div>
           <div className="grid gap-3">

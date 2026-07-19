@@ -28,7 +28,7 @@ Getbuild does not offer CRM or e-commerce implementations. SEO, GEO and AEO are 
 - unlimited revisions within the agreed project scope before acceptance,
 - payment after acceptance of the result,
 - post-launch support: 30 days for the first two packages and 60 days for the full package.
-- optional ongoing care and hosting after the included support period: 99 PLN per month; includes hosting, monitoring, backups, security updates, unlimited requests for minor corrections, and content, offer or chatbot-knowledge updates. New pages, features and larger rebuilds are quoted separately.
+- optional ongoing care and hosting after the included support period: from 30 to 99 PLN per month, depending on the specific website and chosen configuration; includes hosting, monitoring, backups, security updates, unlimited requests for minor corrections, and content, offer or chatbot-knowledge updates. New pages, features and larger rebuilds are quoted separately. Additional automations and AI features may change the monthly cost depending on the tools, operation volume and selected AI model.
 
 A simple Landing can be deployed from 72 hours when the scope and materials are ready. This is not a guaranteed timeframe for larger projects.
 

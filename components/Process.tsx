@@ -38,8 +38,8 @@ const steps = [
     meta: 'Uruchomienie',
     title: 'Publikujemy, mierzymy i zapewniamy opiekę',
     desc: 'Po starcie obserwujemy działanie, usuwamy problemy i rozwijamy rozwiązanie wtedy, gdy firma tego potrzebuje.',
-    website: '30 lub 60 dni wsparcia w cenie; później opieka i hosting za 99 zł/mies.',
-    automation: 'Monitoring działania, poprawki i dalszy rozwój wyceniany według zakresu.',
+    website: '30 lub 60 dni wsparcia w cenie; później opieka i hosting za 50 lub 99 zł/mies., zależnie od pakietu.',
+    automation: 'Monitoring i rozwój wyceniamy według zakresu oraz kosztów używanych narzędzi lub modeli AI.',
     icon: Gauge,
   },
 ] as const

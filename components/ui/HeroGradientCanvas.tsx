@@ -38,7 +38,7 @@ export default function HeroGradientCanvas() {
         uAmplitude={0}
         uDensity={1.5}
         uFrequency={0}
-        uSpeed={0.09}
+        uSpeed={0.06}
         uStrength={1.5}
         uTime={8}
       />

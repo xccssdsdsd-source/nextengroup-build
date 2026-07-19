@@ -35,6 +35,8 @@ export default function HeroBackdrop() {
 
     let cancelled = false
     let started = false
+    let idleCallback = 0
+    let fallbackTimer: ReturnType<typeof setTimeout> | undefined
     const start = () => {
       if (started || !supportsWebGL()) return
       started = true
@@ -42,13 +44,26 @@ export default function HeroBackdrop() {
         if (!cancelled) setWebGLAvailable(true)
       })
     }
-    const timer = window.setTimeout(start, 1200)
-    window.addEventListener('pointerdown', start, { once: true, passive: true })
+
+    // The CSS poster is present in the first server-rendered frame. Load the
+    // heavier WebGL enhancement only after critical page resources are ready
+    // and the browser has an idle window, so it never competes with the hero.
+    const schedule = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        idleCallback = window.requestIdleCallback(start, { timeout: 1600 })
+      } else {
+        fallbackTimer = globalThis.setTimeout(start, 500)
+      }
+    }
+
+    if (document.readyState === 'complete') schedule()
+    else window.addEventListener('load', schedule, { once: true })
 
     return () => {
       cancelled = true
-      window.clearTimeout(timer)
-      window.removeEventListener('pointerdown', start)
+      window.removeEventListener('load', schedule)
+      if (idleCallback) window.cancelIdleCallback(idleCallback)
+      if (fallbackTimer) clearTimeout(fallbackTimer)
     }
   }, [])
 

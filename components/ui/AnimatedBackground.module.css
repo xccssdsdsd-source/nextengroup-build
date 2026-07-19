@@ -6,6 +6,7 @@
   overflow: hidden;
   background: #02040a;
   isolation: isolate;
+  contain: strict;
 }
 
 .field {
@@ -18,7 +19,7 @@
     radial-gradient(32% 38% at 24% 74%, rgba(20, 65, 145, 0.1), transparent 74%);
   filter: blur(72px);
   opacity: 0.82;
-  transition: translate 560ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: translate 900ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: translate;
 }
 
@@ -97,7 +98,7 @@
   mix-blend-mode: screen;
   -webkit-mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
   mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
-  animation: ambient-grain-drift 12s ease-in-out infinite;
+  animation: ambient-grain-drift 20s ease-in-out infinite;
   will-change: transform;
 }
 

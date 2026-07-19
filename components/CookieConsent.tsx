@@ -6,7 +6,7 @@ const CONSENT_KEY = 'getbuild_cookie_consent_v1'
 const CONSENT_EVENT = 'getbuild:analytics-consent'
 
 export default function CookieConsent() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
@@ -14,9 +14,7 @@ export default function CookieConsent() {
     try {
       stored = localStorage.getItem(CONSENT_KEY)
     } catch {}
-    if (stored === 'accepted' || stored === 'rejected') return
-    const timer = window.setTimeout(() => setShow(true), 1400)
-    return () => window.clearTimeout(timer)
+    if (stored === 'accepted' || stored === 'rejected') setShow(false)
   }, [])
 
   function accept() {
@@ -37,10 +35,12 @@ export default function CookieConsent() {
   if (!show || dismissed) return null
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-[70]" role="dialog" aria-label="Ustawienia plików cookie" aria-live="polite">
-      <div className="max-w-4xl mx-auto bg-[#11161F]/95 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div className="cookie-consent fixed bottom-4 left-4 right-4 z-[70]" role="dialog" aria-label="Ustawienia plików cookie" aria-live="polite">
+      <div className="max-w-4xl mx-auto bg-[#11161F] border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex-1 text-sm leading-relaxed text-[#A6B2C4]">
-          Korzystamy z plików cookie w celu prawidłowego działania serwisu oraz obsługi formularzy kontaktowych. Możesz zaakceptować lub odrzucić użycie dodatkowych narzędzi śledzących.
+          <span className="inline-block">Niezbędne cookies obsługują stronę i formularze.</span>{' '}
+          <span className="inline-block">Dodatkową analitykę uruchomimy</span>{' '}
+          <span className="inline-block">tylko za Twoją zgodą.</span>
         </div>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 whitespace-nowrap">
           <button onClick={reject} className="text-sm font-semibold rounded-xl border border-white/12 text-[#A6B2C4] bg-transparent px-6 py-3.5 transition-colors hover:bg-white/5 hover:text-[#EAF0F7]">Odrzuć</button>

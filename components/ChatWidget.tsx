@@ -7,7 +7,7 @@ type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
   'Ile kosztuje strona?',
-  'Co obejmuje opieka za 99 zł?',
+  'Co obejmuje opieka od 30 do 99 zł?',
   'Co mogę zautomatyzować?',
 ] as const
 
@@ -116,11 +116,6 @@ export default function ChatWidget() {
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
         </span>
-        <span className="hero-chat__title">Asystent Getbuild</span>
-        <span className="hero-chat__status">
-          <span className="hero-chat__pulse" aria-hidden="true" />
-          online
-        </span>
       </div>
 
       <div
@@ -134,7 +129,8 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              Zapytaj o zakres, cenę albo termin. Odpowiem na podstawie oferty Getbuild.
+              <span className="inline-block">Zapytaj o zakres, cenę albo termin.</span>{' '}
+              <span className="inline-block">Odpowiem na podstawie oferty Getbuild.</span>
             </div>
           </div>
         )}

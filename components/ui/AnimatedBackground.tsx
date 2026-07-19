@@ -22,7 +22,7 @@ export default function AnimatedBackground() {
         frame = 0
         const nx = (e.clientX / window.innerWidth - 0.5) * 2
         const ny = (e.clientY / window.innerHeight - 0.5) * 2
-        field.style.translate = `${(-nx * 24).toFixed(2)}px ${(-ny * 18).toFixed(2)}px`
+        field.style.translate = `${(-nx * 16).toFixed(2)}px ${(-ny * 12).toFixed(2)}px`
       })
     }
     window.addEventListener('mousemove', onMove, { passive: true })
@@ -53,16 +53,16 @@ export default function AnimatedBackground() {
       const waveA = Math.sin(phase * Math.PI * 0.62)
       const waveB = Math.cos(phase * Math.PI * 0.44)
 
-      bandA.style.transform = `translate3d(${(waveA * 42 * amplitude).toFixed(2)}px, ${(phase * -24 * amplitude).toFixed(2)}px, 0) rotate(${(-8 + waveB * 2.2).toFixed(2)}deg) scale(${(1.02 + Math.abs(waveA) * 0.035).toFixed(3)})`
+      bandA.style.transform = `translate3d(${(waveA * 30 * amplitude).toFixed(2)}px, ${(phase * -17 * amplitude).toFixed(2)}px, 0) rotate(${(-8 + waveB * 1.6).toFixed(2)}deg) scale(${(1.02 + Math.abs(waveA) * 0.026).toFixed(3)})`
       bandA.style.opacity = (0.2 + Math.abs(waveB) * 0.12).toFixed(3)
 
-      bandB.style.transform = `translate3d(${(waveB * -34 * amplitude).toFixed(2)}px, ${(phase * 18 * amplitude).toFixed(2)}px, 0) rotate(${(7 + waveA * 1.8).toFixed(2)}deg) scale(${(1.01 + Math.abs(waveB) * 0.04).toFixed(3)})`
+      bandB.style.transform = `translate3d(${(waveB * -24 * amplitude).toFixed(2)}px, ${(phase * 13 * amplitude).toFixed(2)}px, 0) rotate(${(7 + waveA * 1.3).toFixed(2)}deg) scale(${(1.01 + Math.abs(waveB) * 0.03).toFixed(3)})`
       bandB.style.opacity = (0.14 + Math.abs(waveA) * 0.1).toFixed(3)
 
-      grain.style.transform = `translate3d(${(waveB * 18 * amplitude).toFixed(2)}px, ${(waveA * 26 * amplitude).toFixed(2)}px, 0) rotate(${(waveA * 1.2).toFixed(2)}deg)`
+      grain.style.transform = `translate3d(${(waveB * 13 * amplitude).toFixed(2)}px, ${(waveA * 18 * amplitude).toFixed(2)}px, 0) rotate(${(waveA * 0.8).toFixed(2)}deg)`
       grain.style.opacity = (0.085 + Math.abs(waveA * waveB) * 0.07).toFixed(3)
 
-      stars.style.transform = `translate3d(${(waveA * -12 * amplitude).toFixed(2)}px, ${(waveB * 16 * amplitude).toFixed(2)}px, 0)`
+      stars.style.transform = `translate3d(${(waveA * -8 * amplitude).toFixed(2)}px, ${(waveB * 11 * amplitude).toFixed(2)}px, 0)`
     }
 
     const requestRender = () => {

@@ -17,13 +17,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
-  display: 'swap',
+  display: 'optional',
 })
 
 const clashDisplay = localFont({
   src: '../public/fonts/ClashDisplay-Variable.woff2',
   variable: '--font-clash',
-  display: 'swap',
+  display: 'optional',
   weight: '200 700',
 })
 
@@ -32,7 +32,7 @@ const instrumentSerif = Instrument_Serif({
   weight: '400',
   style: 'italic',
   variable: '--font-serif',
-  display: 'swap',
+  display: 'optional',
 })
 
 export const metadata: Metadata = {
@@ -121,6 +121,11 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('motion-ready')",
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "try{if(/^(accepted|rejected)$/.test(localStorage.getItem('getbuild_cookie_consent_v1')||''))document.documentElement.dataset.cookieConsent='saved'}catch(e){}",
           }}
         />
         <link rel="alternate" type="application/rss+xml" title="Blog Getbuild" href="/blog/feed.xml" />

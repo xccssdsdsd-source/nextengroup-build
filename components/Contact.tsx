@@ -74,7 +74,7 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const subjects = ['Strona internetowa', 'SEO', 'Agenci AI', 'Automatyzacje AI', 'Inne']
+  const subjects = ['Strona internetowa', 'Chatbot AI', 'Automatyzacja procesu', 'Inne']
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

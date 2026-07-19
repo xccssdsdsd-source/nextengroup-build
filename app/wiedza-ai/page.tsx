@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'W Getbuild opieka nad stroną zaczyna się od 39 zł miesięcznie (hosting, obsługa, aktualizacje bezpieczeństwa, wsparcie). Przed jakimikolwiek zobowiązaniami finansowymi tworzony jest bezpłatny projekt — wizualizacja strony. Cena zależy od zakresu — strona dla fryzjera to inne koszty niż system dla firmy budowlanej.',
+        text: 'Każdy pakiet Getbuild zawiera wsparcie po publikacji, a dalsza opieka i rozwój strony są ustalane zależnie od potrzeb firmy. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
       },
     },
     {
@@ -244,7 +244,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              W Getbuild opieka nad stroną zaczyna się od 39 zł miesięcznie, co obejmuje hosting, obsługę, aktualizacje bezpieczeństwa i bezpośrednie wsparcie. To znaczy — nie płacisz za stronę raz, ale za to, że Twoja strona zawsze działa, jest bezpieczna i wspierana.
+              Każdy pakiet Getbuild zawiera wsparcie po publikacji. Dalsza opieka może obejmować hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa i rozwój treści, a jej zakres ustalamy zależnie od potrzeb firmy.
             </p>
             <p>
               Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.

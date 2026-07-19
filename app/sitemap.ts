@@ -41,18 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: 'https://getbuild.pl/seo-dla-firm',
-      lastModified: new Date('2026-06-03'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://getbuild.pl/audyt-seo',
-      lastModified: new Date('2026-06-03'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
       url: 'https://getbuild.pl/realizacje',
       lastModified: new Date('2026-06-03'),
       changeFrequency: 'monthly',

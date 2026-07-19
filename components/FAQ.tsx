@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
-    a: 'Cena zależy od zakresu — prosta, profesjonalna strona-wizytówka zaczyna się od 1997 zł, a rozbudowane wdrożenia z automatyzacjami i agentem AI wyceniamy indywidualnie po analizie procesu. Zawsze podajemy konkretną, stałą kwotę przed startem — bez ukrytych kosztów i niespodzianek. Umów bezpłatną konsultację, a po krótkiej rozmowie dostaniesz wycenę dopasowaną do Twoich potrzeb.',
+    a: 'Landing kosztuje 1799 zł, strona z obsługą klienta i chatbotem AI 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania. Zawsze podajemy jednorazową cenę wdrożenia przed rozpoczęciem pracy.',
   },
   {
     q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
-    a: 'Tak. Każdą stronę projektujemy pod SEO i GEO (Generative Engine Optimization). SEO zapewnia widoczność w Google, a GEO sprawia, że Twoja firma pojawia się w odpowiedziach generowanych przez ChatGPT, Gemini i Perplexity. Wdrażamy dane strukturalne (Schema.org), FAQ, treści formatowane pod AI i sygnały E-E-A-T, które modele językowe cytują jako wiarygodne źródła.',
+    a: 'Tak. Techniczne podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony, a nie sprzedawane jako osobna usługa. Dbamy o szybkość, strukturę treści, metadane, dane strukturalne i czytelne odpowiedzi na pytania klientów. Nie obiecujemy konkretnej pozycji ani cytowania przez model AI, ale od początku tworzymy stronę tak, aby Google i systemy AI mogły ją poprawnie odczytać.',
   },
   {
     q: 'Czym jest agent AI i co może robić w mojej firmie?',
@@ -48,14 +48,6 @@ const faqs = [
   {
     q: 'Czy strona będzie dopracowana na telefonie?',
     a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
-  },
-  {
-    q: 'Jak backlinki wpływają na pozycję mojej strony w Google?',
-    a: 'Backlinki to linki z innych stron prowadzące do Twojej witryny. Google traktuje je jak "głosy zaufania" — im więcej wartościowych domen linkuje do Twojej strony, tym wyżej jesteś w wynikach. Budujemy profil linków z wiarygodnych, branżowych źródeł. Bez sztucznych katalogów i link farm. Każdy backlink powinien generować ruch i wzmacniać autorytet domeny (DR).',
-  },
-  {
-    q: 'Ile czasu zajmuje osiągnięcie pierwszych efektów SEO?',
-    a: 'Pierwsze ruchy w pozycjach widoczne są zwykle po 4–8 tygodniach. Trwałe, stabilne pozycje na trudniejsze frazy buduje się przez 6–12 miesięcy systematycznych działań. GEO (widoczność w ChatGPT i Gemini) może dawać efekty szybciej — modele AI aktualizują swoje bazy częściej niż Google indeksuje nowe strony.',
   },
 ] as const
 

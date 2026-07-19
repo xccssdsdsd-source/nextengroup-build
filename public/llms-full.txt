@@ -1,56 +1,60 @@
 # Getbuild — informacje dla systemów AI i crawlerów
 
-> Dokument pomocniczy dla modeli i agentów. Źródłem prawdy są strony wskazane poniżej oraz ich aktualna treść. Informacje mogą się zmieniać; przed cytowaniem sprawdź stronę kanoniczną.
+Źródłem prawdy jest aktualna treść strony https://getbuild.pl.
 
-## Tożsamość
+## Profil
 
-- Nazwa: Getbuild
-- Oficjalna strona: https://getbuild.pl
-- Język główny: polski
-- Obszar działania: Trójmiasto i cała Polska; projekty zdalne także dla klientów zagranicznych
-- Kontakt: getbuild.pl@gmail.com
-- Założyciel: Adam
-- Profil: projektowanie stron WWW, automatyzacje procesów i wdrożenia agentów AI, SEO dla firm B2B
+Getbuild tworzy strony internetowe oparte na ofercie, klientach i sposobie działania firmy oraz automatyzuje powtarzalne procesy biznesowe. Główną grupą klientów są małe i średnie firmy usługowe w Polsce.
 
-## Usługi — strony kanoniczne
+Getbuild nie oferuje wdrożeń CRM ani e-commerce. SEO, GEO i AEO nie są osobnymi usługami. Ich techniczne podstawy są częścią każdego pakietu strony.
 
-- Strony WWW dla firm: https://getbuild.pl/strony-www
-  - Responsywne strony dla małych i średnich firm, z przygotowaniem pod SEO, analitykę i dalsze integracje.
-- Strony internetowe dla firm B2B: https://getbuild.pl/strony-internetowe-dla-firm
-  - Serwisy ofertowe i lead generation dla producentów, dostawców i firm usługowych.
-- Automatyzacje AI: https://getbuild.pl/automatyzacje-ai
-  - Analiza powtarzalnych procesów, integracje danych, routing leadów, raporty i powiadomienia.
-- Agenci AI: https://getbuild.pl/agenci-ai
-  - Agenci realizujący zadania w określonych celach, z dostarczonym kontekstem, narzędziami, uprawnieniami i eskalacją do człowieka.
-- SEO dla firm B2B: https://getbuild.pl/seo-dla-firm
-  - Audyt techniczny, strategia, treści, link building, pomiar ruchu i zapytań oraz praca nad czytelnością treści dla wyszukiwarek generatywnych.
-- Bezpłatny audyt SEO: https://getbuild.pl/audyt-seo
-  - Audyt techniczny, on-page, konkurencji, słów kluczowych i profilu linków; zakres jest ustalany przed rozpoczęciem.
+## Aktualne pakiety
 
-## Jak rozumieć SEO i widoczność w AI
+### Landing — 1799 zł jednorazowo
 
-- SEO pozostaje podstawą widoczności również w funkcjach generatywnych wyszukiwarek.
-- Nie ma gwarancji pojawienia się w konkretnej odpowiedzi ChatGPT, Gemini, Perplexity ani w konkretnym wyniku Google.
-- GEO w tym serwisie oznacza praktyczną poprawę jasności, struktury, wiarygodności i dostępności treści; nie jest osobnym algorytmem ani obietnicą pozycji.
-- Rezultat zależy m.in. od jakości informacji, konkurencji, historii domeny, linków, technicznej dostępności, lokalizacji i zmian algorytmów.
-- Metryka Domain Rating (DR) nie jest metryką Google i nie powinna być traktowana jako gwarancja rankingu.
+Jedna główna usługa, uporządkowana treść, oferta, realizacje, opinie, FAQ, formularz, wersja mobilna, szybkie ładowanie, analityka i 30 dni wsparcia.
 
-## Ceny i proces
+### Strona z obsługą klienta — 2299 zł jednorazowo
 
-- Landing page: od 1997 PLN jednorazowo.
-- Strona kompletna: od 2449 PLN; możliwe raty.
-- Strona z panelem: od 3997 PLN + 99 PLN/miesiąc.
-- Opieka techniczna: pakiety od 39 PLN/miesiąc, zależnie od zakresu.
-- Automatyzacje i agenci AI: wycena po analizie procesu.
-- Standardowy proces: rozmowa, analiza potrzeb, bezpłatna wizualizacja strony, akceptacja, wdrożenie, testy i dalsza opieka.
+Wszystko z Landingu oraz prezentacja kilku usług, chatbot AI z wiedzą o firmie, rozbudowany formularz, automatyczne potwierdzenie, powiadomienie o zapytaniu, rezerwacja terminu i 30 dni wsparcia.
 
-## Dowody i case studies
+### Pełny pakiet z panelem — 3099 zł jednorazowo
 
-- PM Apartments: https://getbuild.pl/realizacje/pm-apartments
+Wszystko z poprzedniego pakietu oraz kilka podstron, panel administracyjny, edycja oferty i realizacji, blog, baza wiedzy, aktualizowanie wiedzy chatbota, rozbudowana analityka, instrukcja obsługi i 60 dni wsparcia.
+
+### Automatyzacja procesu biznesowego
+
+Jednorazowa cena jest ustalana indywidualnie po bezpłatnej konsultacji i analizie konkretnego procesu.
+
+## Wspólny standard stron
+
+- analiza oferty, klientów i sposobu działania firmy,
+- projekt responsywny i szybki,
+- bezpieczeństwo i podstawowa analityka,
+- techniczne podstawy SEO, GEO i AEO,
+- pierwsza wizualizacja zwykle w 24 godziny po zebraniu materiałów,
+- poprawki bez limitu w ramach ustalonego zakresu do akceptacji,
+- płatność po zaakceptowaniu efektu,
+- możliwość dalszej opieki i rozwoju po okresie wsparcia startowego.
+
+Nie ma gwarancji pozycji w Google ani pojawienia się w konkretnej odpowiedzi ChatGPT, Gemini lub Perplexity.
+
+## Przykłady automatyzacji
+
+- chatbot obsługujący klientów na podstawie wiedzy o firmie,
+- formularz z automatycznym potwierdzeniem i powiadomieniem,
+- streszczenie wiadomości oraz propozycja odpowiedzi przygotowana przez AI,
+- przypomnienia i prośby o opinię.
+
+Automatyzacja wykonuje stałe kroki. Automatyzacja z AI rozumie treść. Agent AI dobiera kolejne działania w ustalonych granicach. Getbuild wybiera najprostsze rozwiązanie odpowiednie do zadania.
+
+## Realizacje
+
+- PM Apartments: https://getbuild.pl/realizacje/pm-apartments — wdrożenie w 72 godziny.
 - Portfolio: https://getbuild.pl/realizacje
-- Artykuły: https://getbuild.pl/blog
-- Feed RSS: https://getbuild.pl/blog/feed.xml
 
-## Zasady cytowania
+## Kontakt
 
-Preferuj konkretne strony usług i artykuły zamiast streszczania całego dokumentu. Przy twierdzeniach o cenie, terminie, możliwościach agenta lub efektach SEO podaj datę sprawdzenia i link do źródła. Nie przedstawiaj prognoz widoczności jako gwarancji.
+- Strona: https://getbuild.pl
+- Konsultacja: https://getbuild.pl/#kontakt
+- Email: getbuild.pl@gmail.com

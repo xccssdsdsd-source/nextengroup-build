@@ -3,9 +3,9 @@
 import { useEffect } from 'react'
 
 const counterTargets = [
-  { selector: '.counter-1997', final: 1997 },
-  { selector: '.counter-2449', final: 2449 },
-  { selector: '.counter-3997', final: 3997 },
+  { selector: '.counter-1799', final: 1799 },
+  { selector: '.counter-2299', final: 2299 },
+  { selector: '.counter-3099', final: 3099 },
   { selector: '.counter-247', final: 24, suffix: '/7' },
   { selector: '.counter-24h', final: 24, suffix: 'h' },
   { selector: '.counter-72h', final: 72, suffix: 'h' },

@@ -31,14 +31,14 @@ export async function POST(req: NextRequest) {
     const lines = [
       `Nowa rezerwacja spotkania przez stronę getbuild.pl`,
       ``,
-      `Pakiet: ${pkg ?? 'Strona kompletna'}`,
+      `Pakiet: ${pkg ?? 'Strona z obsługą klienta'}`,
       `Imię i nazwisko: ${name}`,
       `Email: ${email}`,
       phone ? `Telefon: ${phone}` : null,
       message ? `\nProjekt / notatka:\n${message}` : null,
     ].filter(Boolean) as string[]
 
-    const subject = `Rezerwacja: ${pkg ?? 'Strona kompletna'} — ${name}`
+    const subject = `Rezerwacja: ${pkg ?? 'Strona z obsługą klienta'} — ${name}`
     const body = lines.join('\n')
 
     const gmailUrl =

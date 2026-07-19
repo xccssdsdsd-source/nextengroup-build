@@ -61,11 +61,12 @@ Zawsze podkreślaj, że dobieramy najprostsze rozwiązanie wystarczające do kon
 
 ## Proces współpracy
 
-1. Bezpłatna rozmowa o firmie, ofercie, klientach i problemie.
-2. Pierwsza realna wizualizacja strony zwykle w 24 godziny po zebraniu materiałów.
-3. Poprawki bez limitu w ramach ustalonego zakresu do akceptacji.
-4. Wdrożenie i publikacja. Prosty landing może być gotowy nawet od 72 godzin.
-5. Wsparcie startowe, a później opcjonalna dalsza opieka i rozwój.
+Każde wdrożenie przechodzi przez cztery etapy: diagnozę, prototyp, wdrożenie i opiekę po starcie.
+
+1. Diagnoza: dla strony analizujemy ofertę, odbiorców, treści i ścieżkę kontaktu; dla automatyzacji mapujemy obecny proces, ręczne kroki, wyjątki i używane narzędzia.
+2. Prototyp: pierwszy kierunek strony pokazujemy zwykle w 24 godziny; przy automatyzacji przygotowujemy schemat działania i demo kluczowego scenariusza w kilka dni.
+3. Wdrożenie: stronę dopracowujemy na telefonie, podłączamy formularze i analitykę oraz wdrażamy podstawy SEO, GEO i AEO; w automatyzacji konfigurujemy integracje, reguły, uprawnienia, obsługę błędów i monitoring.
+4. Uruchomienie i opieka: po publikacji obserwujemy działanie, usuwamy problemy i rozwijamy rozwiązanie wtedy, gdy firma tego potrzebuje. Prosty landing może być gotowy nawet od 72 godzin.
 
 ## Opieka po wdrożeniu
 

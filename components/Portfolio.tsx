@@ -131,21 +131,17 @@ function splitAtSentences(text: string, count: number): [string, string] {
   return [text, '']
 }
 
-function ScoreBadge({ value, label, geo = false }: LighthouseScore & { geo?: boolean }) {
-  const displayLabel = geo ? 'GEO / AI' : label
-
+function AuditMetric({ value, label }: LighthouseScore) {
   return (
-    <div
-      className={`score-badge ${geo ? 'score-badge--geo' : ''}`}
+    <span
+      className="audit-metric"
       role="img"
-      aria-label={`${displayLabel}: ${value} na 100`}
+      aria-label={`${label}: ${value} na 100`}
       suppressHydrationWarning
     >
-      <div className="score-badge__content">
-        <strong className={`counter-${value}`}>{value}</strong>
-        <span>{displayLabel}</span>
-      </div>
-    </div>
+      <small>{label}</small>
+      <strong className={`counter-${value}`}>{value}<i>/100</i></strong>
+    </span>
   )
 }
 
@@ -275,7 +271,6 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
               height={project.imgHeight}
               sizes={featured ? '(min-width: 1024px) 720px, 100vw' : '(min-width: 1024px) 480px, 100vw'}
               className="portfolio-case__image"
-              quality={82}
               loading="lazy"
               placeholder="blur"
               blurDataURL={project.blurDataURL}
@@ -297,7 +292,6 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
               height={916}
               sizes="(min-width: 1024px) 480px, 100vw"
               className="portfolio-case__image portfolio-case__image--dorimari"
-              quality={82}
               loading="lazy"
             />
           </a>
@@ -315,17 +309,16 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
 
         <div className="portfolio-case__footer">
           <LiveSiteButton href={project.href} />
-          <div className="portfolio-case__scores" aria-label="Wyniki Lighthouse oraz widoczność GEO i AI">
-            {project.lighthouse.map((score) => (
-              <span key={score.label}>
-                <strong data-counter-final={score.value} suppressHydrationWarning>{score.value}</strong>
-                <small>{score.label}</small>
-              </span>
-            ))}
-            <span className="portfolio-case__score--geo">
-              <strong data-counter-final={100} suppressHydrationWarning>100</strong>
-              <small>GEO / AI</small>
-            </span>
+          <div className="portfolio-case__audit">
+            <div className="portfolio-case__audit-head">
+              <span>Audyt techniczny</span>
+              <small>Google Lighthouse · wynik /100</small>
+            </div>
+            <div className="portfolio-case__scores" aria-label="Wyniki audytu Google Lighthouse">
+              {project.lighthouse.map((score) => (
+                <AuditMetric key={score.label} {...score} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -480,7 +473,6 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                           sizes="(min-width: 768px) 720px, 100vw"
                           data-parallax-image
                           className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                          quality={82}
                           loading="lazy"
                           placeholder="blur"
                           blurDataURL={project.blurDataURL}
@@ -543,10 +535,13 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
-                      <div className="score-badge-grid">
-                        {project.lighthouse.map(s => <ScoreBadge key={s.label} {...s} />)}
-                        <ScoreBadge label="GEO / AI" value={100} geo />
+                    <div className="portfolio-mobile-audit mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
+                      <div className="portfolio-case__audit-head">
+                        <span>Audyt techniczny</span>
+                        <small>Google Lighthouse · wynik /100</small>
+                      </div>
+                      <div className="score-badge-grid" aria-label="Wyniki audytu Google Lighthouse">
+                        {project.lighthouse.map(s => <AuditMetric key={s.label} {...s} />)}
                       </div>
                     </div>
                   )}
@@ -623,7 +618,6 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 {p.lighthouse.map(s => (
                   <li key={s.label}>{s.label}: {s.value}/100</li>
                 ))}
-                <li>GEO / AI: 100/100</li>
               </ul>
               <p>Strona: {p.href}</p>
             </article>

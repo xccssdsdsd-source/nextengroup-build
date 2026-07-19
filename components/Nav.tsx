@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const allLinks: readonly (readonly [string, string])[] = [
@@ -17,43 +17,8 @@ const allLinks: readonly (readonly [string, string])[] = [
 const linkClass = 'nav-link text-[12.5px] font-medium text-[#EAF0F7]'
 const mobileLinkClass = 'rounded-xl px-4 py-2.5 text-[14px] font-medium text-[#EAF0F7] transition-colors duration-150 hover:bg-[rgba(255,255,255,0.06)] hover:text-[#EAF0F7]'
 
-const ctaLabels = [
-  'Kontakt',
-  'Bezpłatna konsultacja',
-  'Umów krótką rozmowę',
-  'Zobacz wizualizację',
-  'Zapytaj o projekt',
-  'Sprawdź możliwości',
-] as const
-
-// Measures against a hidden mirror rather than toggling the real button's
-// own width to 'auto' — flipping the live element to 'auto' and forcing a
-// reflow to read it back flushes 'auto' as a real transition keyframe,
-// which breaks the CSS width transition and makes the button snap instead
-// of growing/shrinking smoothly with the typing animation.
-const useAutoWidth = (
-  ref: React.RefObject<HTMLElement | null>,
-  mirrorRef: React.RefObject<HTMLElement | null>,
-  dep: unknown,
-) => {
-  useLayoutEffect(() => {
-    const el = ref.current
-    const mirror = mirrorRef.current
-    if (!el || !mirror) return
-    el.style.width = `${mirror.offsetWidth}px`
-  }, [dep, ref, mirrorRef])
-}
-
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
-  const desktopCtaRef = useRef<HTMLAnchorElement>(null)
-  const mobileCtaRef = useRef<HTMLAnchorElement>(null)
-  const desktopCtaMirrorRef = useRef<HTMLSpanElement>(null)
-  const mobileCtaMirrorRef = useRef<HTMLSpanElement>(null)
-
-  useAutoWidth(desktopCtaRef, desktopCtaMirrorRef, displayText)
-  useAutoWidth(mobileCtaRef, mobileCtaMirrorRef, open ? displayText : null)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -84,44 +49,6 @@ export default function Nav() {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const typingMs = 108
-    const deletingMs = 72
-    const holdMs = 2250
-    let labelIndex = 0
-    let timer = 0
-    let cancelled = false
-
-    const schedule = (callback: () => void, delay: number) => {
-      timer = window.setTimeout(callback, delay)
-    }
-    const type = (position: number) => {
-      if (cancelled) return
-      const label = ctaLabels[labelIndex]
-      setDisplayText(label.slice(0, position))
-      if (position < label.length) schedule(() => type(position + 1), typingMs)
-      else schedule(() => remove(label.length), holdMs)
-    }
-    const remove = (position: number) => {
-      if (cancelled) return
-      const label = ctaLabels[labelIndex]
-      setDisplayText(label.slice(0, position))
-      if (position > 1) schedule(() => remove(position - 1), deletingMs)
-      else {
-        labelIndex = (labelIndex + 1) % ctaLabels.length
-        schedule(() => type(1), deletingMs)
-      }
-    }
-
-    schedule(() => remove(ctaLabels[0].length), holdMs)
-    return () => {
-      cancelled = true
-      window.clearTimeout(timer)
-    }
-  }, [])
 
   return (
     <>
@@ -159,26 +86,13 @@ export default function Nav() {
           <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
             <div className="nav-cta-slot hidden sm:flex">
               <a
-                ref={desktopCtaRef}
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                className="btn btn-primary nav-tap nav-cta nav-cta--auto nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
-                aria-label="Przejdź do kontaktu"
+                className="btn btn-primary nav-tap nav-cta nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
               >
-                <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
-                  {displayText}
-                  <span className="typing-cursor" />
-                </span>
+                Umów konsultację
               </a>
             </div>
-            <span
-              ref={desktopCtaMirrorRef}
-              aria-hidden="true"
-              className="btn btn-primary nav-cta nav-cta-measure pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
-            >
-              {displayText}
-              <span className="typing-cursor" />
-            </span>
             <button
               type="button"
               aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -216,25 +130,12 @@ export default function Nav() {
               </div>
               <div className="mt-2 flex justify-center border-t border-[rgba(255,255,255,0.06)] pt-2">
                 <a
-                  ref={mobileCtaRef}
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                  className="btn btn-primary nav-tap nav-cta nav-cta--auto inline-flex justify-center px-5 py-3 text-sm"
-                  aria-label="Przejdź do kontaktu"
+                  className="btn btn-primary nav-tap nav-cta inline-flex justify-center px-5 py-3 text-sm"
                 >
-                  <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
-                    {displayText}
-                    <span className="typing-cursor" />
-                  </span>
+                  Umów konsultację
                 </a>
-                <span
-                  ref={mobileCtaMirrorRef}
-                  aria-hidden="true"
-                  className="btn btn-primary nav-cta pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex justify-center whitespace-nowrap px-5 py-3 text-sm"
-                >
-                  {displayText}
-                  <span className="typing-cursor" />
-                </span>
               </div>
             </div>
           </div>

@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from 'react'
 type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
-  'Co może zrobić dla mnie agent AI?',
-  'Jak szybko zobaczę pierwszy projekt?',
-  'Chcesz takiego na swojej stronie? Przetestuj mnie tutaj.',
+  'Ile kosztuje strona?',
+  'Co obejmuje opieka za 99 zł?',
+  'Co mogę zautomatyzować?',
 ] as const
 
 const SendIcon = () => (
@@ -116,6 +116,11 @@ export default function ChatWidget() {
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
         </span>
+        <span className="hero-chat__title">Asystent Getbuild</span>
+        <span className="hero-chat__status">
+          <span className="hero-chat__pulse" aria-hidden="true" />
+          online
+        </span>
       </div>
 
       <div
@@ -129,7 +134,7 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              Cześć! Pytaj śmiało, odpowiadam od razu.
+              Zapytaj o zakres, cenę albo termin. Odpowiem na podstawie oferty Getbuild.
             </div>
           </div>
         )}

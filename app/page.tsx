@@ -14,7 +14,6 @@ import Footer from '@/components/Footer'
 export default function Home() {
   return (
     <main aria-label="Treść główna">
-      <link rel="preload" as="fetch" href="/shader-hdr/city.hdr" crossOrigin="anonymous" />
       <Nav />
       <Hero />
       <SocialProof />

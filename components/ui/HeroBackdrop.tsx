@@ -17,11 +17,6 @@ const supportsWebGL = () => {
   }
 }
 
-// Download the isolated shader chunk immediately on the client. The heavy
-// renderer stays outside Hero's critical bundle but does not wait for an idle
-// callback before it can draw its first frame.
-const canvasChunk = typeof window === 'undefined' ? null : loadHeroGradientCanvas()
-
 export default function HeroBackdrop() {
   const [webGLAvailable, setWebGLAvailable] = useState(false)
   const [canvasFailed, setCanvasFailed] = useState(false)
@@ -30,13 +25,30 @@ export default function HeroBackdrop() {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!canvasChunk || !supportsWebGL()) return
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string }
+    }).connection
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    const slowConnection = connection?.saveData || connection?.effectiveType === '2g'
+    if (reducedMotion || !finePointer || slowConnection) return
+
     let cancelled = false
-    void canvasChunk.then(() => {
-      if (!cancelled) setWebGLAvailable(true)
-    })
+    let started = false
+    const start = () => {
+      if (started || !supportsWebGL()) return
+      started = true
+      void loadHeroGradientCanvas().then(() => {
+        if (!cancelled) setWebGLAvailable(true)
+      })
+    }
+    const timer = window.setTimeout(start, 1200)
+    window.addEventListener('pointerdown', start, { once: true, passive: true })
+
     return () => {
       cancelled = true
+      window.clearTimeout(timer)
+      window.removeEventListener('pointerdown', start)
     }
   }, [])
 

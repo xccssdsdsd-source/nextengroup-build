@@ -379,6 +379,24 @@ export default function Services() {
             {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
           </div>
 
+          <aside className="care-summary" aria-labelledby="care-summary-title">
+            <div className="care-summary__price">
+              <span>Po okresie wsparcia w pakiecie</span>
+              <strong id="care-summary-title">Opieka i hosting</strong>
+              <p><b>99 zł</b><small>/ miesiąc</small></p>
+              <span>Opcjonalnie, po 30 lub 60 dniach wsparcia w cenie strony.</span>
+            </div>
+            <ul>
+              <li><CheckMark /><span><strong>Hosting i monitoring</strong>Stała dostępność, kopie zapasowe i kontrola działania.</span></li>
+              <li><CheckMark /><span><strong>Bezpieczeństwo</strong>Aktualizacje techniczne i reakcja na ewentualne błędy.</span></li>
+              <li><CheckMark /><span><strong>Drobne zmiany</strong>Aktualizacja treści, oferty i wiedzy chatbota bez limitu zgłoszeń.</span></li>
+            </ul>
+            <p className="care-summary__scope">
+              <strong>Jasna granica zakresu</strong>
+              Nowe podstrony, funkcje i większe przebudowy wyceniamy osobno przed rozpoczęciem pracy.
+            </p>
+          </aside>
+
           <div className="mt-7 rounded-2xl border border-[rgba(255,255,255,0.09)] bg-[#0F141C] p-5 sm:p-6">
             <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
               <div>

@@ -18,6 +18,10 @@ const faqs = [
     a: 'Landing kosztuje 1799 zł, strona z obsługą klienta i chatbotem AI 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania. Zawsze podajemy jednorazową cenę wdrożenia przed rozpoczęciem pracy.',
   },
   {
+    q: 'Ile kosztuje opieka nad stroną i hosting?',
+    a: 'Po wsparciu zawartym w pakiecie możesz wybrać stałą opiekę i hosting za 99 zł miesięcznie. Cena obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno przed rozpoczęciem pracy.',
+  },
+  {
     q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',
     a: 'Nie ryzykujesz nic. Najpierw przygotowujemy bezpłatną wizualizację strony — widzisz efekt, zanim cokolwiek zapłacisz. W trakcie prac masz nielimitowaną liczbę poprawek, więc dopracowujemy projekt aż będziesz w pełni zadowolony. Płacisz dopiero za rezultat, który akceptujesz.',
   },

@@ -303,7 +303,7 @@ export default function Services() {
   }
 
   return (
-    <section id="uslugi" className="section-shell relative overflow-hidden" data-no-entrance suppressHydrationWarning>
+    <section id="uslugi" className="section-shell relative overflow-hidden !pt-20 sm:!pt-24 lg:!pt-28" data-no-entrance suppressHydrationWarning>
       <div className="relative mx-auto max-w-7xl">
         <m.div
           className="section-heading"
@@ -375,7 +375,7 @@ export default function Services() {
             </p>
           </div>
 
-          <div id="strony" className="mt-14 grid items-stretch gap-5 lg:grid-cols-3" data-stagger-group data-reveal-pattern="fan">
+          <div id="strony" className="mt-10 grid items-stretch gap-5 lg:grid-cols-3">
             {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
           </div>
 

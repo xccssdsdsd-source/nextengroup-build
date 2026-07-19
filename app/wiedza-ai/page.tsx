@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Każdy pakiet Getbuild zawiera wsparcie po publikacji, a dalsza opieka i rozwój strony są ustalane zależnie od potrzeb firmy. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
+        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują 99 zł miesięcznie. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
       },
     },
     {
@@ -244,16 +244,16 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Każdy pakiet Getbuild zawiera wsparcie po publikacji. Dalsza opieka może obejmować hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa i rozwój treści, a jej zakres ustalamy zależnie od potrzeb firmy.
+              Każdy pakiet Getbuild zawiera wsparcie po publikacji: 30 dni w dwóch pierwszych pakietach i 60 dni w pełnym pakiecie z panelem. Później stała opieka i hosting kosztują 99 zł miesięcznie. Obejmują hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno przed rozpoczęciem pracy.
             </p>
             <p>
               Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.
             </p>
             <p>
-              Cena zawsze zależy od zakresu — mała strona dla fryzjera to inne pieniądze niż rozbudowany system dla firmy budowlanej. Zawsze omawiamy to szczegółowo, aby znaleźć rozwiązanie, które pasuje do Twojego budżetu.
+              Ceny wdrożenia są jasno podane w pakietach: Landing kosztuje 1799 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
             </p>
             <p>
-              Przesunięcia, zmiany i nowe funkcje możesz zlecać Adamowi w dowolnym momencie — e-mail, Instagram, rozmowa. Zmiany są wprowadzane bezpośrednio, bez dodatkowych umów czy zamówień.
+              Drobne zmiany w ramach stałej opieki możesz zgłaszać bez limitu. Jeżeli potrzebujesz nowej funkcji, podstrony albo większej przebudowy, najpierw otrzymujesz osobną wycenę.
             </p>
           </div>
         </div>

@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują od 30 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
+        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
       },
     },
     {
@@ -244,7 +244,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Każdy pakiet Getbuild zawiera wsparcie po publikacji: 30 dni w dwóch pierwszych pakietach i 60 dni w pełnym pakiecie z panelem. Później stała opieka i hosting kosztują od 30 do 99 zł miesięcznie — dokładna kwota zależy od Twojej strony i wybranej konfiguracji opieki. Obejmują hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Dodatkowe automatyzacje lub funkcje AI mogą zmienić miesięczny koszt zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.
+              Każdy pakiet Getbuild zawiera wsparcie po publikacji: 30 dni w dwóch pierwszych pakietach i 60 dni w pełnym pakiecie z panelem. Później stała opieka i hosting kosztują od 29 do 99 zł miesięcznie — dokładna kwota zależy od Twojej strony i wybranej konfiguracji opieki. Obejmują hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Dodatkowe automatyzacje lub funkcje AI mogą zmienić miesięczny koszt zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.
             </p>
             <p>
               Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.

@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     q: 'Ile kosztuje opieka nad stroną i hosting?',
-    a: 'Po wsparciu zawartym w pakiecie możesz wybrać stałą opiekę i hosting: od 30 do 99 zł miesięcznie, zależnie od Twojej strony i wybranej konfiguracji. Cena obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Przy dodatkowych automatyzacjach lub funkcjach AI miesięczny koszt może się różnić zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.',
+    a: 'Po wsparciu zawartym w pakiecie możesz wybrać stałą opiekę i hosting: od 29 do 99 zł miesięcznie, zależnie od Twojej strony i wybranej konfiguracji. Cena obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Przy dodatkowych automatyzacjach lub funkcjach AI miesięczny koszt może się różnić zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.',
   },
   {
     q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',

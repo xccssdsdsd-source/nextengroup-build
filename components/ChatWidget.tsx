@@ -7,7 +7,7 @@ type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
   'Ile kosztuje strona?',
-  'Co obejmuje opieka od 30 do 99 zł?',
+  'Co obejmuje opieka od 29 do 99 zł?',
   'Co mogę zautomatyzować?',
 ] as const
 

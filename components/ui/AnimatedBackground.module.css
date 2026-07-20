@@ -9,6 +9,10 @@
   contain: strict;
 }
 
+.mobileFallback {
+  display: none;
+}
+
 .field {
   position: absolute;
   inset: -30%;
@@ -129,42 +133,26 @@
 }
 
 @media (max-width: 768px) {
-  .field {
-    filter: blur(52px);
-    opacity: 0.6;
-    will-change: auto;
+  /* Mobile ambience is static post-load (no scroll/mousemove drivers run
+     below 768px, see AnimatedBackground.tsx) — a pre-rendered pixel match
+     of the same layers replaces the live blur/mix-blend-mode stack, which
+     is one of the most expensive paint patterns on mobile GPUs. Same look,
+     no runtime filter/blend cost. Regenerate via scripts/gen-mobile-bg.mjs. */
+  .mobileFallback {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background-image: url('/bg-mobile.webp');
+    background-size: cover;
+    background-position: center;
   }
 
-  .scrollBand {
-    width: 138vw;
-    height: 6.5rem;
-    border-color: rgba(141, 208, 255, 0.045);
-  }
-
-  .bandA {
-    top: 27%;
-    left: -58%;
-  }
-
-  .bandB {
-    right: -64%;
-    bottom: 18%;
-  }
-
-  .scrollGrain {
-    left: -12%;
-    top: 36%;
-    width: 124vw;
-    height: 46vh;
-  }
-
-  .stars {
-    opacity: 0.035;
-  }
-
-  .ambientGrain {
-    opacity: 0.045;
-    animation: none;
-    will-change: auto;
+  .field,
+  .scrollBand,
+  .scrollGrain,
+  .stars,
+  .ambientGrain,
+  .sheen {
+    display: none;
   }
 }

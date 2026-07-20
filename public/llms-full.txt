@@ -50,11 +50,11 @@ Automatyzacja wykonuje stałe kroki. Automatyzacja z AI rozumie treść. Agent A
 
 ## Realizacje
 
-- PM Apartments: https://getbuild.pl/realizacje/pm-apartments — wdrożenie w 72 godziny.
-- Portfolio: https://getbuild.pl/realizacje
+- [PM Apartments](https://getbuild.pl/realizacje/pm-apartments): wdrożenie w 72 godziny.
+- [Portfolio](https://getbuild.pl/realizacje): pełna lista realizacji.
 
 ## Kontakt
 
-- Strona: https://getbuild.pl
-- Konsultacja: https://getbuild.pl/#kontakt
+- [Strona](https://getbuild.pl)
+- [Konsultacja](https://getbuild.pl/#kontakt)
 - Email: getbuild.pl@gmail.com

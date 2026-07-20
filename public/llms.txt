@@ -1,13 +1,13 @@
 # Getbuild — websites and business process automations
 
-Getbuild is a Polish digital studio building business-led websites and automations for small and medium service companies.
+> Getbuild is a Polish digital studio building business-led websites and automations for small and medium service companies.
 
 ## Core offer
 
-- Website packages: https://getbuild.pl/#pakiety
-- Business process automation: https://getbuild.pl/#automatyzacje
-- Case studies: https://getbuild.pl/realizacje
-- Contact and free consultation: https://getbuild.pl/#kontakt
+- [Website packages](https://getbuild.pl/#pakiety): pricing and scope of the three website tiers.
+- [Business process automation](https://getbuild.pl/#automatyzacje): AI automation examples and how quoting works.
+- [Case studies](https://getbuild.pl/realizacje): completed projects with outcomes.
+- [Contact and free consultation](https://getbuild.pl/#kontakt): how to reach Getbuild and start a project.
 
 Getbuild does not offer CRM or e-commerce implementations. SEO, GEO and AEO are not sold as separate services; their technical foundations are built into every website package.
 

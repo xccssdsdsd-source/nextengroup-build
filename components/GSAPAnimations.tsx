@@ -58,10 +58,14 @@ export default function GSAPAnimations() {
       const gcx = gr.left + gr.width / 2
       const half = gr.width / 2 || 1
       const pattern = group.dataset.revealPattern
-      Array.from(group.children).forEach((child, i) => {
-        const el = child as HTMLElement
+      const children = Array.from(group.children) as HTMLElement[]
+      // Read phase: batch every getBoundingClientRect() before any style write
+      // below, otherwise each write forces the next read to trigger a fresh
+      // synchronous layout (layout thrashing) across the whole group.
+      const rects = children.map((el) => (processed.has(el) ? null : el.getBoundingClientRect()))
+      children.forEach((el, i) => {
         if (processed.has(el)) return
-        const r = el.getBoundingClientRect()
+        const r = rects[i]!
         const rel = (r.left + r.width / 2 - gcx) / half
         let tx = 0
         let ty = isMobile ? 34 : 78
@@ -146,10 +150,13 @@ export default function GSAPAnimations() {
     // animate in as they are scrolled to.
     const revealInView = () => {
       const vh = window.innerHeight
-      document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
-        if (el.classList.contains('io-visible')) return
-        if (el.closest('[data-deferred-section="pending"]')) return
-        const r = el.getBoundingClientRect()
+      const candidates = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)).filter(
+        (el) => !el.classList.contains('io-visible') && !el.closest('[data-deferred-section="pending"]'),
+      )
+      // Read phase, then write phase — same layout-thrashing fix as assignStagger.
+      const rects = candidates.map((el) => el.getBoundingClientRect())
+      candidates.forEach((el, i) => {
+        const r = rects[i]
         if (r.top < vh * 0.92 && r.bottom > 0) {
           el.style.transform = ''
           el.classList.add('io-visible')
@@ -178,12 +185,14 @@ export default function GSAPAnimations() {
     const runParallax = () => {
       parallaxRaf = 0
       const vh = window.innerHeight
-      for (const { el, speed } of parallaxItems) {
-        const r = el.getBoundingClientRect()
-        if (r.bottom < -200 || r.top > vh + 200) continue
+      // Read phase, then write phase — avoids forced layout on every item.
+      const rects = parallaxItems.map(({ el }) => el.getBoundingClientRect())
+      parallaxItems.forEach(({ el, speed }, i) => {
+        const r = rects[i]
+        if (r.bottom < -200 || r.top > vh + 200) return
         const progress = (r.top + r.height / 2 - vh / 2) / vh
         el.style.transform = `translate3d(0, ${(progress * speed).toFixed(2)}px, 0)`
-      }
+      })
     }
     const onScroll = () => {
       if (!parallaxRaf) parallaxRaf = requestAnimationFrame(runParallax)

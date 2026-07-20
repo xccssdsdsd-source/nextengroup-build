@@ -81,7 +81,8 @@ export default function AnimatedBackground() {
   }, [])
 
   return (
-    <div className={styles.root} aria-hidden="true">
+    <div className={styles.root} data-bg-root aria-hidden="true">
+      <div className={styles.mobileFallback} />
       <div ref={fieldRef} className={styles.field} />
       <div ref={bandARef} className={`${styles.scrollBand} ${styles.bandA}`} />
       <div ref={bandBRef} className={`${styles.scrollBand} ${styles.bandB}`} />

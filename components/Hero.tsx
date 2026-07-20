@@ -77,7 +77,7 @@ const TrustProof = () => (
       <div className="flex -space-x-2.5">
         {trustOwners.map((o) => (
           <span key={o.src} className="relative inline-block h-10 w-10 overflow-hidden rounded-full">
-            <Image src={o.src} alt={o.alt} fill sizes="40px" className="object-cover" />
+            <Image src={o.src} alt={o.alt} fill sizes="40px" className="object-cover" priority />
           </span>
         ))}
       </div>

@@ -24,7 +24,7 @@ const packages = [
     ],
     amount: 1799,
     featured: false,
-    support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Wybieram Landing',
   },
   {
@@ -44,7 +44,7 @@ const packages = [
     ],
     amount: 2299,
     featured: true,
-    support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Chcę stronę z AI',
   },
   {
@@ -64,7 +64,7 @@ const packages = [
     ],
     amount: 3099,
     featured: false,
-    support: '60 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '60 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Potrzebuję pełnego pakietu',
   },
 ] as const
@@ -123,7 +123,7 @@ const detailPanels = [
         <div className="rounded-xl border border-[rgba(255,255,255,0.1)] bg-[#0D1219] p-5">
           <span className="text-[12px] font-medium text-[#8B97A8]">Stała opieka i hosting</span>
           <div className="mt-1 flex items-end gap-1.5">
-            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 29 do 99 zł</span>
+            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 30 do 99 zł</span>
             <span className="pb-1 text-[13px] font-medium text-[#8B97A8]">miesięcznie</span>
           </div>
           <p className="mt-2 text-[12.5px] leading-[1.6] text-[#8CD8FF]">
@@ -202,21 +202,26 @@ function CheckMark() {
 function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[number]; onLearnMoreAboutCare: () => void }) {
   return (
     <article
-      className={`relative h-full overflow-hidden rounded-2xl border ${
+      className={`group relative h-full overflow-hidden rounded-2xl border transition-[transform,box-shadow,border-color] duration-300 ${
         pkg.featured
-          ? 'border-[rgba(75,168,209,0.42)] bg-[#121A23]'
-          : 'border-[rgba(255,255,255,0.08)] bg-[#10151D]'
+          ? 'border-[rgba(58,175,232,0.5)] bg-[#121A23] shadow-[0_0_0_1px_rgba(58,175,232,0.12),0_8px_32px_-8px_rgba(58,175,232,0.28),0_24px_64px_-32px_rgba(58,175,232,0.22)] hover:-translate-y-1.5 hover:shadow-[0_0_0_1px_rgba(58,175,232,0.22),0_10px_36px_-8px_rgba(58,175,232,0.4),0_28px_72px_-28px_rgba(58,175,232,0.32)]'
+          : 'border-[rgba(255,255,255,0.08)] bg-[#10151D] hover:-translate-y-1 hover:border-[rgba(255,255,255,0.16)] hover:shadow-[0_12px_36px_-12px_rgba(0,0,0,0.6)]'
       }`}
     >
       <div
         className="flex h-full flex-col p-5 sm:p-7"
       >
-        {pkg.featured && <span className="absolute inset-x-0 top-0 h-[2px] bg-[#4BA8D1]" aria-hidden="true" />}
+        {pkg.featured && (
+          <span
+            className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#4BA8D1] to-transparent"
+            aria-hidden="true"
+          />
+        )}
         <div className="lg:min-h-[82px]">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[12px] font-medium text-[#8B97A8]">{pkg.eyebrow}</span>
             {pkg.featured && (
-              <span className="flex-shrink-0 text-[10.5px] font-semibold text-[#75C0E2]">
+              <span className="flex-shrink-0 rounded-full bg-[rgba(58,175,232,0.12)] px-2.5 py-1 text-[10.5px] font-semibold text-[#75C0E2] shadow-[0_0_16px_rgba(58,175,232,0.18)]">
                 Najczęściej wybierany
               </span>
             )}

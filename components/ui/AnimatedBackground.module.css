@@ -17,14 +17,21 @@
   position: absolute;
   inset: -30%;
   background-image:
-    radial-gradient(32% 38% at 18% 8%, rgba(36, 104, 190, 0.18), transparent 70%),
-    radial-gradient(30% 36% at 86% 18%, rgba(58, 175, 232, 0.12), transparent 72%),
-    radial-gradient(38% 42% at 64% 88%, rgba(25, 79, 164, 0.12), transparent 74%),
-    radial-gradient(32% 38% at 24% 74%, rgba(20, 65, 145, 0.1), transparent 74%);
+    radial-gradient(34% 40% at 18% 8%, rgba(43, 120, 212, 0.26), transparent 70%),
+    radial-gradient(32% 38% at 86% 18%, rgba(70, 195, 245, 0.18), transparent 72%),
+    radial-gradient(40% 44% at 64% 88%, rgba(32, 92, 188, 0.2), transparent 74%),
+    radial-gradient(34% 40% at 24% 74%, rgba(24, 76, 168, 0.16), transparent 74%),
+    radial-gradient(26% 30% at 50% 44%, rgba(150, 214, 255, 0.08), transparent 74%);
   filter: blur(72px);
-  opacity: 0.82;
+  opacity: 0.9;
   transition: translate 900ms cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: translate;
+  animation: field-drift 46s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: translate, transform;
+}
+
+@keyframes field-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(1.6%, -1.2%, 0) scale(1.05); }
 }
 
 .scrollBand {
@@ -93,23 +100,24 @@
 .ambientGrain {
   position: absolute;
   inset: -8%;
-  opacity: 0.06;
-  background-image:
-    radial-gradient(circle, rgba(190, 226, 255, 0.6) 0 0.5px, transparent 0.8px),
-    radial-gradient(circle, rgba(74, 150, 214, 0.46) 0 0.42px, transparent 0.75px);
-  background-position: 9px 13px, 33px 21px;
-  background-size: 5px 5px, 8px 8px;
-  mix-blend-mode: screen;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
   -webkit-mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
   mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
-  animation: ambient-grain-drift 20s ease-in-out infinite;
+  animation: ambient-grain-drift 12s steps(6) infinite;
   will-change: transform;
 }
 
 @keyframes ambient-grain-drift {
-  0% { transform: translate3d(-0.6%, -0.4%, 0); }
-  50% { transform: translate3d(0.5%, 0.35%, 0); }
-  100% { transform: translate3d(-0.6%, -0.4%, 0); }
+  0% { transform: translate3d(0, 0, 0); }
+  16% { transform: translate3d(-2%, 1%, 0); }
+  33% { transform: translate3d(1.5%, -2%, 0); }
+  50% { transform: translate3d(-1%, 2%, 0); }
+  66% { transform: translate3d(2%, 1%, 0); }
+  83% { transform: translate3d(-1.5%, -1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 .sheen {
@@ -124,10 +132,12 @@
   .scrollBand,
   .scrollGrain,
   .stars,
-  .ambientGrain {
+  .ambientGrain,
+  .field {
     will-change: auto;
   }
-  .ambientGrain {
+  .ambientGrain,
+  .field {
     animation: none;
   }
 }

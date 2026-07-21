@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'react-icons', 'gsap'],
+  },
   async headers() {
     const isDev = process.env.NODE_ENV !== 'production'
     return [

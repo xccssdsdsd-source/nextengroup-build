@@ -98,6 +98,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
     languages: { pl: siteUrl },
   },
+  other: {
+    'facebook-domain-verification': 'unlaytx9wgitknn08geytxtw1w2g7z',
+  },
 }
 
 export const viewport: Viewport = {

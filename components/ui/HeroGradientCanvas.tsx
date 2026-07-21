@@ -7,7 +7,7 @@ export default function HeroGradientCanvas() {
     <ShaderGradientCanvas
       style={{ width: '100%', height: '100%' }}
       pointerEvents='none'
-      pixelDensity={1}
+      pixelDensity={0.75}
       fov={45}
       envBasePath='/shader-hdr/'
       lazyLoad={false}
@@ -25,10 +25,9 @@ export default function HeroGradientCanvas() {
         color2='#2f7be0'
         color3='#00030d'
         brightness={1}
-        envPreset='city'
         grain='on'
-        lightType='env'
-        reflection={0.1}
+        lightType='3d'
+        reflection={0}
         positionX={0}
         positionY={0}
         positionZ={0}

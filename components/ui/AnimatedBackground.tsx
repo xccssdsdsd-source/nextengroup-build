@@ -13,6 +13,7 @@ export default function AnimatedBackground() {
       <div className={styles.stars} />
       <div className={styles.ambientGrain} />
       <div className={styles.fineGrain} />
+      <div className={styles.coarseGrain} />
       <div className={styles.sheen} />
       <div className={styles.vignette} />
     </div>

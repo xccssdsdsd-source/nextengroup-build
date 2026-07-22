@@ -244,7 +244,7 @@ export default function Contact() {
                         boxShadow: dropdownOpen ? '0 0 0 3px rgba(58,175,232,0.12)' : undefined,
                       }}
                     >
-                      <span className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#4A5568]'}>
+                      <span className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#7C879B]'}>
                         {formData.subject || 'Wybierz temat…'}
                       </span>
                       <ChevronDown

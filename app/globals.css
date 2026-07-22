@@ -52,7 +52,7 @@ body::-webkit-scrollbar,
   --accent-on: #020c26;
   --text-primary: #f9fbfe;
   --text-secondary: #b9c3d7;
-  --text-muted: #72809c;
+  --text-muted: #7f8ca4;
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -219,6 +219,21 @@ select {
 
 .section-kicker::after {
   content: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background-color: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 0.8s step-end infinite;
 }
 
 .section-title {
@@ -3546,7 +3561,7 @@ html.motion-ready .portfolio-case .portfolio-case__image-wrap::after { display: 
   --accent-on: #020c16;
   --text-primary: #f5f9fd;
   --text-secondary: #b6c2d3;
-  --text-muted: #75849a;
+  --text-muted: #8290a8;
   --shadow-surface:
     inset 0 1px 0 rgba(190, 226, 255, 0.055),
     0 26px 70px -46px rgba(20, 72, 145, 0.72);
@@ -3936,21 +3951,42 @@ html.motion-ready [data-motion-copy] {
   }
 }
 
+/* The slot never changes size, so the CTA can follow the typed text without
+   moving the rest of the navigation. Flex-end pins its right edge in place;
+   only the left edge travels as the width transition is retargeted. */
 .nav-cta-slot {
-  width: 12.5rem;
-  flex: 0 0 12.5rem;
+  width: 14rem;
+  flex: 0 0 14rem;
   align-items: center;
   justify-content: flex-end;
+  contain: layout style;
 }
 
 .nav-cta {
-  min-width: 12.5rem;
+  min-width: 6.5rem;
+  max-width: 14rem;
   flex: none;
+  overflow: hidden;
   transition:
     transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
     background-color 180ms ease,
     border-color 180ms ease,
     box-shadow 180ms ease;
+}
+
+.nav-cta--auto {
+  transition:
+    width 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.nav-cta-measure {
+  width: max-content !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

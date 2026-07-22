@@ -92,7 +92,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
             <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} aria-hidden="true" />
           ))}
         </div>
-        <span className="font-mono text-[11px] tracking-[0.16em] text-[#627086]">OPINIA 0{index + 1}</span>
+        <span className="font-mono text-[11px] tracking-[0.16em] text-[#8A96A8]">OPINIA 0{index + 1}</span>
       </div>
 
       <p className="mt-6 flex-1 text-[clamp(14px,1vw,15.5px)] font-normal leading-[1.7] tracking-[-0.008em] text-[#C9D4E2]">

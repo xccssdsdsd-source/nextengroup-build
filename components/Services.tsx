@@ -24,7 +24,7 @@ const packages = [
     ],
     amount: 1799,
     featured: false,
-    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Wybieram Landing',
   },
   {
@@ -44,7 +44,7 @@ const packages = [
     ],
     amount: 2299,
     featured: true,
-    support: '30 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Chcę stronę z AI',
   },
   {
@@ -64,7 +64,7 @@ const packages = [
     ],
     amount: 3099,
     featured: false,
-    support: '60 dni opieki w cenie, potem opcjonalnie od 30 do 99 zł/mies. zależnie od konfiguracji.',
+    support: '60 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Potrzebuję pełnego pakietu',
   },
 ] as const
@@ -123,7 +123,7 @@ const detailPanels = [
         <div className="rounded-xl border border-[rgba(255,255,255,0.1)] bg-[#0D1219] p-5">
           <span className="text-[12px] font-medium text-[#8B97A8]">Stała opieka i hosting</span>
           <div className="mt-1 flex items-end gap-1.5">
-            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 30 do 99 zł</span>
+            <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 29 do 99 zł</span>
             <span className="pb-1 text-[13px] font-medium text-[#8B97A8]">miesięcznie</span>
           </div>
           <p className="mt-2 text-[12.5px] leading-[1.6] text-[#8CD8FF]">
@@ -142,7 +142,7 @@ const detailPanels = [
             </li>
           ))}
           </ul>
-          <p className="mt-4 border-t border-[rgba(255,255,255,0.08)] pt-4 text-[12.5px] leading-[1.6] text-[#748094]">
+          <p className="mt-4 border-t border-[rgba(255,255,255,0.08)] pt-4 text-[12.5px] leading-[1.6] text-[#94A0B4]">
             Nowe podstrony, funkcje i większa przebudowa są zawsze wyceniane przed rozpoczęciem pracy. Przy dodatkowych automatyzacjach lub funkcjach AI cena może się różnić zależnie od kosztu używanych narzędzi, liczby operacji i wybranego modelu AI.
           </p>
         </div>
@@ -235,7 +235,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
         <p className="mt-3 lg:min-h-[90px] text-[13.5px] leading-[1.65] text-[#A6B2C4]">{pkg.outcome}</p>
 
         <div className="mt-5 border-y border-[rgba(255,255,255,0.08)] py-5">
-          <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#6B7891]">Cena jednorazowa</span>
+          <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#8A96A8]">Cena jednorazowa</span>
           <span className="mt-1 block text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7] tabular-nums">
             <span>{pkg.amount}</span>
             <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
@@ -430,7 +430,7 @@ export default function Services() {
                   Pokaż nam zadanie, które regularnie zabiera Ci czas. Na bezpłatnej konsultacji sprawdzimy, czy da się je bezpiecznie uprościć i jaki rodzaj automatyzacji ma w Twojej firmie sens.
                 </p>
                 <div className="mt-6 border-y border-[rgba(255,255,255,0.08)] py-5">
-                  <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#6B7891]">Koszt wdrożenia</span>
+                  <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#8A96A8]">Koszt wdrożenia</span>
                   <span className="mt-1 block text-[1.65rem] font-extrabold tracking-[-0.035em] text-[#EAF0F7]">Wycena po konsultacji</span>
                   <span className="mt-1 block text-[12px] text-[#7C879B]">Jednorazowa cena ustalona przed rozpoczęciem pracy.</span>
                 </div>

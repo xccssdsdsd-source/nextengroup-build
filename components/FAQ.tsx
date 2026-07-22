@@ -15,15 +15,15 @@ const faqs = [
   },
   {
     q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
-    a: 'Landing kosztuje 1799 zł, strona z obsługą klienta i chatbotem AI 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania. Zawsze podajemy jednorazową cenę wdrożenia przed rozpoczęciem pracy.',
+    a: 'Pakiety strony wyceniamy od 1799 do 3099 zł, w zależności od zakresu — szczegóły znajdziesz w cenniku pakietów wyżej. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania.',
   },
   {
     q: 'Ile kosztuje opieka nad stroną i hosting?',
-    a: 'Po wsparciu zawartym w pakiecie możesz wybrać stałą opiekę i hosting: od 29 do 99 zł miesięcznie, zależnie od Twojej strony i wybranej konfiguracji. Cena obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Przy dodatkowych automatyzacjach lub funkcjach AI miesięczny koszt może się różnić zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.',
+    a: 'Stała opieka i hosting to od 29 do 99 zł miesięcznie, zależnie od wybranej konfiguracji — obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa i drobne poprawki bez limitu zgłoszeń. Nowe podstrony i większą przebudowę wyceniamy osobno.',
   },
   {
     q: 'Co jeśli projekt mi się nie spodoba? Czy coś ryzykuję?',
-    a: 'Nie ryzykujesz nic. Najpierw przygotowujemy bezpłatną wizualizację strony — widzisz efekt, zanim cokolwiek zapłacisz. W trakcie prac masz nielimitowaną liczbę poprawek, więc dopracowujemy projekt aż będziesz w pełni zadowolony. Płacisz dopiero za rezultat, który akceptujesz.',
+    a: 'Nie ryzykujesz nic — płacisz dopiero za rezultat, który akceptujesz. Zasady poprawek i bezpłatnej wizualizacji opisaliśmy wyżej.',
   },
   {
     q: 'Jak zacząć współpracę?',
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
-    a: 'Tak. Techniczne podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony, a nie sprzedawane jako osobna usługa. Dbamy o szybkość, strukturę treści, metadane, dane strukturalne i czytelne odpowiedzi na pytania klientów. Nie obiecujemy konkretnej pozycji ani cytowania przez model AI, ale od początku tworzymy stronę tak, aby Google i systemy AI mogły ją poprawnie odczytać.',
+    a: 'Tak, podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony. Nie obiecujemy konkretnej pozycji ani cytowania przez model AI, ale od początku tworzymy stronę tak, aby Google i systemy AI mogły ją poprawnie odczytać.',
   },
   {
     q: 'Czym jest agent AI i co może robić w mojej firmie?',

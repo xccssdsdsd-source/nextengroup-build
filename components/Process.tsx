@@ -38,7 +38,7 @@ const steps = [
     meta: 'Uruchomienie',
     title: 'Publikujemy, mierzymy i zapewniamy opiekę',
     desc: 'Po starcie obserwujemy działanie, usuwamy problemy i rozwijamy rozwiązanie wtedy, gdy firma tego potrzebuje.',
-    website: '30 lub 60 dni wsparcia w cenie; później opieka i hosting od 30 do 99 zł/mies.',
+    website: '30 lub 60 dni wsparcia w cenie; później opieka i hosting od 29 do 99 zł/mies.',
     automation: 'Monitoring i rozwój wyceniamy według zakresu oraz kosztów narzędzi lub modeli AI.',
     icon: Gauge,
   },
@@ -77,7 +77,7 @@ export default function Process() {
                     <Icon size={22} strokeWidth={1.8} className="text-[#8CD8FF]" aria-hidden="true" />
                   </span>
                   <div>
-                    <span className="process-meta text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#6B7485]">{step.meta}</span>
+                    <span className="process-meta text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#8A96A8]">{step.meta}</span>
                     <h3 className="mt-1 text-[1.2rem] font-bold tracking-[-0.03em] leading-tight text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                       {step.title}
                     </h3>

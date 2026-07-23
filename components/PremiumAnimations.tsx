@@ -133,18 +133,6 @@ export default function PremiumAnimations() {
       })
     }
 
-    // Late-mounting sections (InView + next/dynamic) append after first paint;
-    // rescan on DOM mutations so nothing is left permanently hidden.
-    let scanScheduled = 0
-    const scheduleScan = () => {
-      if (scanScheduled) return
-      scanScheduled = requestAnimationFrame(() => {
-        scanScheduled = 0
-        scan()
-      })
-    }
-    const mo = new MutationObserver(scheduleScan)
-
     // Safety net: reveal only elements actually IN the viewport that the
     // observer somehow missed — never off-screen content (that would defeat
     // the scroll animation). Off-screen elements stay hidden for the IO to
@@ -164,21 +152,15 @@ export default function PremiumAnimations() {
         }
       })
     }
-    const safety1 = window.setTimeout(revealInView, 500)
-    const safety2 = window.setTimeout(revealInView, 1500)
-    const safety3 = window.setTimeout(revealInView, 3000)
+    const safety1 = window.setTimeout(revealInView, 900)
 
     let raf1 = 0
     let raf2 = 0
     raf1 = requestAnimationFrame(() => {
       raf2 = requestAnimationFrame(() => {
         scan()
-        mo.observe(document.body, { childList: true, subtree: true })
       })
     })
-    // Belt-and-suspenders passes for dynamic import chunks that resolve later.
-    const t1 = window.setTimeout(scan, 350)
-    const t2 = window.setTimeout(scan, 1200)
 
     /* ── LIGHTWEIGHT PARALLAX (desktop, transform-only, single rAF loop) ── */
     let parallaxItems: { el: HTMLElement; speed: number }[] = []
@@ -306,10 +288,22 @@ export default function PremiumAnimations() {
     /* ── boot ── */
     const boot = () => {
       counterIo = runCounters()
-      if (!reduce && !isMobile && finePointer) {
-        initParallax()
-        initAnime()
-      }
+    }
+
+    // Pointer effects and parallax are enhancements for real interaction.
+    // Loading anime.js and measuring the full page during initial hydration
+    // creates avoidable long tasks, so initialize them on the first desktop
+    // interaction instead of competing with the first paint.
+    let desktopMotionStarted = false
+    const startDesktopMotion = () => {
+      if (desktopMotionStarted || reduce || isMobile || !finePointer) return
+      desktopMotionStarted = true
+      initParallax()
+      initAnime()
+    }
+    if (!reduce && !isMobile && finePointer) {
+      window.addEventListener('pointermove', startDesktopMotion, { once: true, passive: true })
+      window.addEventListener('scroll', startDesktopMotion, { once: true, passive: true })
     }
 
     let idle = 0
@@ -324,18 +318,14 @@ export default function PremiumAnimations() {
       disposed = true
       cancelAnimationFrame(raf1)
       cancelAnimationFrame(raf2)
-      if (scanScheduled) cancelAnimationFrame(scanScheduled)
       if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
-      clearTimeout(t1)
-      clearTimeout(t2)
       clearTimeout(safety1)
-      clearTimeout(safety2)
-      clearTimeout(safety3)
       clearTimeout(bootT)
       if (typeof cancelIdleCallback !== 'undefined' && idle) cancelIdleCallback(idle)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
-      mo.disconnect()
+      window.removeEventListener('pointermove', startDesktopMotion)
+      window.removeEventListener('scroll', startDesktopMotion)
       io.disconnect()
       staggerIo.disconnect()
       counterIo?.disconnect()

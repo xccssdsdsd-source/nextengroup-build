@@ -163,7 +163,7 @@ export default function Nav() {
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
                 className="btn btn-primary nav-tap nav-cta nav-cta--auto nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
-                aria-label="Przejdź do kontaktu"
+                aria-label="Bezpłatna konsultacja"
               >
                 <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
                   {displayText}
@@ -220,7 +220,7 @@ export default function Nav() {
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
                   className="btn btn-primary nav-tap nav-cta nav-cta--auto inline-flex justify-center px-5 py-3 text-sm"
-                  aria-label="Przejdź do kontaktu"
+                  aria-label="Bezpłatna konsultacja"
                 >
                   <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
                     {displayText}

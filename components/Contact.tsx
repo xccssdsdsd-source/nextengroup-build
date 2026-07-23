@@ -224,20 +224,34 @@ export default function Contact() {
                   </h3>
                 </div>
                 <div className="contact-form-card rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                  {...{
+                    toolname: 'send_business_inquiry',
+                    tooldescription: 'Sends a business inquiry to Getbuild about a website, AI chatbot, or process automation.',
+                  }}
+                >
                   <div>
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="form-input" />
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="form-input" autoComplete="email" {...{ toolparamdescription: 'Email address where Getbuild should send the reply.' }} />
                   </div>
                   <div ref={dropdownRef} className="relative">
-                    <label className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">
+                    <label id="inquiry-subject-label" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">
                       Czego dotyczy wiadomość?
                     </label>
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value={formData.subject}
+                      {...{ toolparamdescription: 'Inquiry topic: website, AI chatbot, process automation, or another subject.' }}
+                    />
                     <button
                       type="button"
                       onClick={() => setDropdownOpen(o => !o)}
                       aria-haspopup="listbox"
                       aria-expanded={dropdownOpen}
+                      aria-labelledby="inquiry-subject-label"
                       className="form-input w-full flex items-center justify-between gap-3 text-left"
                       style={{
                         borderColor: dropdownOpen ? 'rgba(58,175,232,0.6)' : undefined,
@@ -294,10 +308,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Wiadomość *</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="form-input resize-none" />
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="form-input resize-none" {...{ toolparamdescription: 'Short description of the company, project, and help needed.' }} />
                   </div>
                   <div className="flex items-start gap-3">
-                    <input type="checkbox" id="gdpr" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" />
+                    <input type="checkbox" id="gdpr" name="privacy_consent" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }} />
                     <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
                       Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z{' '}
                       <a href="/polityka-prywatnosci" className="text-[#3AAFE8] hover:text-[#8CD8FF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *

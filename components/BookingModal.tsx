@@ -199,7 +199,15 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                  noValidate
+                  {...{
+                    toolname: 'prepare_free_consultation',
+                    tooldescription: 'Collects contact details before the user chooses a time for a free Getbuild consultation.',
+                  }}
+                >
                   <div>
                     <label htmlFor="bm-name" className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A6B2C4] mb-1.5">
                       Imię i nazwisko <span className="text-[#3AAFE8]">*</span>
@@ -207,12 +215,15 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     <input
                       id="bm-name"
                       type="text"
+                      name="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Jan Kowalski"
                       className={`form-input ${errors.name ? 'border-red-500/60 focus:border-red-500' : ''}`}
                       aria-invalid={!!errors.name}
                       aria-describedby={errors.name ? 'bm-name-error' : undefined}
+                      {...{ toolparamdescription: 'Full name of the person booking the consultation.' }}
+                      autoComplete="name"
                     />
                     {errors.name && (
                       <p id="bm-name-error" className="mt-1 text-[11px] text-red-400">{errors.name}</p>
@@ -226,12 +237,15 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     <input
                       id="bm-email"
                       type="email"
+                      name="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="jan@example.com"
                       className={`form-input ${errors.email ? 'border-red-500/60 focus:border-red-500' : ''}`}
                       aria-invalid={!!errors.email}
                       aria-describedby={errors.email ? 'bm-email-error' : undefined}
+                      {...{ toolparamdescription: 'Email address used to arrange and confirm the consultation.' }}
+                      autoComplete="email"
                     />
                     {errors.email && (
                       <p id="bm-email-error" className="mt-1 text-[11px] text-red-400">{errors.email}</p>
@@ -245,10 +259,13 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     <input
                       id="bm-phone"
                       type="tel"
+                      name="phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+48 123 456 789"
                       className="form-input"
+                      {...{ toolparamdescription: 'Optional phone number including country code.' }}
+                      autoComplete="tel"
                     />
                   </div>
 
@@ -258,11 +275,13 @@ export default function BookingModal({ isOpen, onClose, packageName }: Props) {
                     </label>
                     <textarea
                       id="bm-message"
+                      name="message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Krótko opisz swój projekt lub to, czego szukasz…"
                       rows={3}
                       className="form-input resize-none"
+                      {...{ toolparamdescription: 'Optional short description of the project or business need.' }}
                     />
                   </div>
 

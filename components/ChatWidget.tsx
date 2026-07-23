@@ -167,19 +167,28 @@ export default function ChatWidget() {
 
       {error && <p className="hero-chat__error">{error}</p>}
 
-      <form className="hero-chat__composer" onSubmit={handleSubmit}>
+      <form
+        className="hero-chat__composer"
+        onSubmit={handleSubmit}
+        {...{
+          toolname: 'ask_getbuild',
+          tooldescription: 'Asks the Getbuild assistant a question about services, pricing, delivery, or business automation.',
+        }}
+      >
         <div className="hero-chat__field">
           <input
             ref={inputRef}
             type="text"
+            name="question"
             value={input}
             onChange={e => setInput(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder="Zadaj pytanie…"
+            aria-label="Pytanie do asystenta Getbuild"
+            {...{ toolparamdescription: 'Question about Getbuild services, pricing, delivery, websites, chatbots, or automations.' }}
             disabled={loading}
             className="hero-chat__input"
-            aria-label="Wiadomość do asystenta AI"
           />
         </div>
         {loading ? (

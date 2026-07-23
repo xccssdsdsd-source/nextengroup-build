@@ -132,6 +132,7 @@ export default function RootLayout({
           }}
         />
         <link rel="alternate" type="application/rss+xml" title="Blog Getbuild" href="/blog/feed.xml" />
+        <link rel="alternate" type="text/plain" title="Getbuild llms.txt" href="/llms.txt" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',

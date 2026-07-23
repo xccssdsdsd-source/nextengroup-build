@@ -19,3 +19,8 @@
  ✓ Compiled /middleware in 1264ms (115 modules)
  ○ Compiling / ...
  ✓ Compiled / in 17.8s (1677 modules)
+ ✓ Compiled in 2.6s (742 modules)
+ GET / 200 in 657ms
+ GET / 200 in 1095ms
+ GET / 200 in 512ms
+ GET / 200 in 971ms

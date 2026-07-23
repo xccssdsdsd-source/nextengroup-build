@@ -19,6 +19,10 @@ try {
   await page.evaluate(() => {
     const bg = document.querySelector('[data-bg-root]') || document.querySelector('body > div[aria-hidden="true"]')
     if (!bg) throw new Error('AnimatedBackground root not found')
+    Array.from(bg.children).forEach((layer, index) => {
+      layer.style.setProperty('display', index === 0 ? 'none' : 'block', 'important')
+      layer.style.setProperty('animation', 'none', 'important')
+    })
     Array.from(document.body.children).forEach((el) => {
       if (el !== bg) el.style.setProperty('display', 'none', 'important')
     })

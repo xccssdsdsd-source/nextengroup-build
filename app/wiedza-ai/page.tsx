@@ -250,7 +250,7 @@ export default function WiedzaAI() {
               Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.
             </p>
             <p>
-              Ceny wdrożenia są jasno podane w pakietach: Landing kosztuje 1799 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
+              Ceny wdrożenia są jasno podane w pakietach: Landing kosztuje 1997 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
             </p>
             <p>
               Drobne zmiany w ramach stałej opieki możesz zgłaszać bez limitu. Jeżeli potrzebujesz nowej funkcji, podstrony albo większej przebudowy, najpierw otrzymujesz osobną wycenę.

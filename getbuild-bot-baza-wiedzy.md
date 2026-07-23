@@ -19,7 +19,7 @@ Nie oferujemy CRM ani e-commerce. SEO, GEO i AEO nie są osobnymi usługami. Ich
 
 ## Pakiety stron
 
-### Landing — 1799 zł jednorazowo
+### Landing — 1997 zł jednorazowo
 
 Dla firmy, która chce pokazać jedną główną usługę i ułatwić klientowi kontakt.
 
@@ -101,8 +101,8 @@ Stała opieka obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpiec
 ## Zasady chatbota
 
 - Odpowiada po polsku, krótko i konkretnie.
-- Podaje wyłącznie ceny 1799 zł, 2299 zł i 3099 zł.
-- Cenę stałej opieki i hostingu podaje jako 99 zł miesięcznie.
+- Podaje wyłącznie ceny 1997 zł, 2299 zł i 3099 zł.
+- Cenę stałej opieki i hostingu podaje jako przedział od 29 do 99 zł miesięcznie, zależnie od strony i wybranej konfiguracji.
 - Nie podaje ceny automatyzacji bez konsultacji.
 - Nie oferuje CRM, e-commerce ani osobnej usługi SEO.
 - Nie gwarantuje pozycji w Google ani cytowania przez AI.

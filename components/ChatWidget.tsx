@@ -7,8 +7,9 @@ type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
   'Ile kosztuje strona?',
-  'Co obejmuje opieka od 29 do 99 zł?',
+  'Dlaczego warto wybrać Getbuild?',
   'Co mogę zautomatyzować?',
+  'Chcę omówić swój projekt',
 ] as const
 
 const SendIcon = () => (
@@ -129,8 +130,8 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              <span className="inline-block">Zapytaj o zakres, cenę albo termin.</span>{' '}
-              <span className="inline-block">Odpowiem na podstawie oferty Getbuild.</span>
+              <span className="inline-block">Zapytaj o stronę, automatyzację albo swój pomysł.</span>{' '}
+              <span className="inline-block">Odpowiem konkretnie i pomogę wybrać następny krok.</span>
             </div>
           </div>
         )}

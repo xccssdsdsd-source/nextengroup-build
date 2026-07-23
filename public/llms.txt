@@ -13,7 +13,7 @@ Getbuild does not offer CRM or e-commerce implementations. SEO, GEO and AEO are 
 
 ## Website pricing
 
-- Landing: 1799 PLN one-time.
+- Landing: 1997 PLN one-time.
 - Customer-service website with a company-trained AI chatbot: 2299 PLN one-time.
 - Full website with admin panel, blog and knowledge base: 3099 PLN one-time.
 - Business process automation: individual one-time quote after a free consultation.

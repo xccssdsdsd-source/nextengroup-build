@@ -5,7 +5,7 @@ import './globals.css'
 import Analytics from '@/components/Analytics'
 import MotionProvider from '@/components/MotionProvider'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
-import GSAPAnimations from '@/components/GSAPAnimations'
+import PremiumAnimations from '@/components/PremiumAnimations'
 import CookieConsent from '@/components/CookieConsent'
 
 const siteUrl = 'https://getbuild.pl'
@@ -156,7 +156,7 @@ export default function RootLayout({
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: '1799–3099 PLN',
+          priceRange: '1997–3099 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',
@@ -298,7 +298,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
-          <GSAPAnimations />
+          <PremiumAnimations />
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#22D3EE] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>

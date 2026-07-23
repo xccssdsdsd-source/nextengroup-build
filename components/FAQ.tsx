@@ -1,6 +1,6 @@
 'use client'
 
-import { m, useInView } from 'framer-motion'
+import { AnimatePresence, m, useInView } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import SectionGlow from './ui/SectionGlow'
@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
-    a: 'Pakiety strony wyceniamy od 1799 do 3099 zł, w zależności od zakresu — szczegóły znajdziesz w cenniku pakietów wyżej. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania.',
+    a: 'Pakiety strony wyceniamy od 1997 do 3099 zł, w zależności od zakresu — szczegóły znajdziesz w cenniku pakietów wyżej. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania.',
   },
   {
     q: 'Ile kosztuje opieka nad stroną i hosting?',
@@ -87,17 +87,13 @@ export default function FAQ() {
     >
       <SectionGlow variant="faq" />
       <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
-        <m.div
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease }}
-        >
+        <div>
           <span className="section-kicker" suppressHydrationWarning>FAQ</span>
           <h2 className="section-title max-w-[11ch]" suppressHydrationWarning>Wszystko co musisz wiedzieć przed startem.</h2>
           <p className="section-copy">
             To pytania, które najczęściej słyszymy przed rozpoczęciem współpracy.
           </p>
-        </m.div>
+        </div>
 
         <div className="flex flex-col gap-2">
           {visible.map((faq, index) => {
@@ -137,22 +133,23 @@ export default function FAQ() {
                   </m.span>
                 </button>
 
-                <div
-                  id={`faq-answer-${index}`}
-                  role="region"
-                  aria-labelledby={`faq-question-${index}`}
-                  style={{
-                    display: 'grid',
-                    gridTemplateRows: isOpen ? '1fr' : '0fr',
-                    transition: 'grid-template-rows 300ms cubic-bezier(0.22,1,0.36,1)',
-                  }}
-                >
-                  <div style={{ overflow: 'hidden' }}>
-                    <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]" style={{ opacity: isOpen ? 1 : 0, transform: isOpen ? 'none' : 'translateY(-4px)', transition: 'opacity 260ms ease 60ms, transform 300ms cubic-bezier(0.22,1,0.36,1)' }}>
-                      {faq.a}
-                    </p>
-                  </div>
-                </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <m.div
+                      id={`faq-answer-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
+                      initial={{ opacity: 0, transform: 'translateY(-4px)' }}
+                      animate={{ opacity: 1, transform: 'translateY(0)' }}
+                      exit={{ opacity: 0, transform: 'translateY(-2px)' }}
+                      transition={{ duration: 0.18, ease }}
+                    >
+                      <p className="px-5 py-5 text-[14px] leading-[1.72] text-[#A6B2C4]">
+                        {faq.a}
+                      </p>
+                    </m.div>
+                  )}
+                </AnimatePresence>
               </div>
             )
           })}

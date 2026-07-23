@@ -15,12 +15,13 @@ const counterTargets = [
 const REVEAL_SELECTOR =
   '[data-fade-in], [data-stat-block], [data-stagger-group] > *, .section-title, [data-motion-title], .section-copy, [data-motion-copy], [data-img-reveal], .section-kicker, .section-divider'
 
-export default function GSAPAnimations() {
+export default function PremiumAnimations() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isMobile = window.matchMedia('(max-width: 768px)').matches
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let ctx: any = null
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    let disposed = false
+    const animeCleanups: Array<() => void> = []
 
     /* ── Injected reveal states not covered by the pre-hydration globals block ── */
     const style = document.createElement('style')
@@ -259,71 +260,55 @@ export default function GSAPAnimations() {
     }
     let counterIo: IntersectionObserver | undefined
 
-    /* ── DESKTOP: GSAP tilt + magnetic so cards react to the pointer ── */
-    const initGsap = async () => {
-      const { gsap } = await import('gsap')
+    /* ── DESKTOP: Anime.js pointer response, loaded only when the browser is idle ── */
+    const initAnime = async () => {
+      const { animate } = await import('animejs')
+      if (disposed) return
 
-      ctx = gsap.context(() => {
-        const mm = gsap.matchMedia()
+      const tiltCards = document.querySelectorAll<HTMLElement>(
+        '[data-anime-card]',
+      )
 
-        mm.add('(min-width: 769px) and (hover: hover) and (pointer: fine)', () => {
-          const tiltCards = document.querySelectorAll(
-            '.premium-card, .value-card, .realizacja-card, .portfolio-case, .testimonial-card, .faq-item, .ai-card, .pkg-card, .overview-card, [data-tilt-card]',
-          )
-          const cleanups: Array<() => void> = []
-          tiltCards.forEach((card) => {
-            const el = card as HTMLElement
-            if (el.closest('.process-deck')) return
-            let glare = el.querySelector<HTMLElement>('.tilt-glare')
-            if (!glare) {
-              glare = document.createElement('div')
-              glare.className = 'tilt-glare'
-              if (getComputedStyle(el).position === 'static') el.style.position = 'relative'
-              el.appendChild(glare)
-            }
-            const rotX = gsap.quickTo(el, 'rotationX', { duration: 0.32, ease: 'power3.out' })
-            const rotY = gsap.quickTo(el, 'rotationY', { duration: 0.32, ease: 'power3.out' })
-            const onMove = (e: MouseEvent) => {
-              const rect = el.getBoundingClientRect()
-              const px = (e.clientX - rect.left) / rect.width
-              const py = (e.clientY - rect.top) / rect.height
-              rotX(-(py - 0.5) * 1.3)
-              rotY((px - 0.5) * 1.3)
-              if (glare) {
-                glare.style.background = `radial-gradient(180px circle at ${px * 100}% ${py * 100}%, rgba(140,216,255,0.022) 0%, transparent 70%)`
-                glare.style.opacity = '1'
-              }
-            }
-            const onLeave = () => {
-              gsap.to(el, {
-                rotationX: 0,
-                rotationY: 0,
-                duration: 0.38,
-                ease: 'power3.out',
-                onComplete: () => gsap.set(el, { clearProps: 'rotationX,rotationY' }),
-              })
-              if (glare) glare.style.opacity = '0'
-            }
-            el.style.transformStyle = 'preserve-3d'
-            el.addEventListener('mousemove', onMove)
-            el.addEventListener('mouseleave', onLeave)
-            cleanups.push(() => {
-              el.removeEventListener('mousemove', onMove)
-              el.removeEventListener('mouseleave', onLeave)
-            })
-          })
-          return () => cleanups.forEach((fn) => fn())
+      tiltCards.forEach((el) => {
+        let glare = el.querySelector<HTMLElement>('.tilt-glare')
+        if (!glare) {
+          glare = document.createElement('span')
+          glare.className = 'tilt-glare'
+          glare.setAttribute('aria-hidden', 'true')
+          if (getComputedStyle(el).position === 'static') el.style.position = 'relative'
+          el.appendChild(glare)
+        }
+
+        let cardMotion: ReturnType<typeof animate> | null = null
+        let glareMotion: ReturnType<typeof animate> | null = null
+        const onEnter = () => {
+          cardMotion = animate(el, { y: -2, duration: 220, ease: 'outQuart' })
+          glareMotion = animate(glare, { opacity: 1, duration: 180, ease: 'outQuart' })
+        }
+        const onLeave = () => {
+          cardMotion = animate(el, { y: 0, duration: 180, ease: 'outQuart' })
+          glareMotion = animate(glare, { opacity: 0, duration: 140, ease: 'outQuart' })
+        }
+
+        el.style.transformStyle = 'preserve-3d'
+        el.addEventListener('mouseenter', onEnter)
+        el.addEventListener('mouseleave', onLeave)
+        animeCleanups.push(() => {
+          el.removeEventListener('mouseenter', onEnter)
+          el.removeEventListener('mouseleave', onLeave)
+          cardMotion?.revert()
+          glareMotion?.revert()
+          glare.remove()
         })
-
       })
     }
 
     /* ── boot ── */
     const boot = () => {
       counterIo = runCounters()
-      if (!reduce && !isMobile) {
+      if (!reduce && !isMobile && finePointer) {
         initParallax()
-        initGsap()
+        initAnime()
       }
     }
 
@@ -336,6 +321,7 @@ export default function GSAPAnimations() {
     }
 
     return () => {
+      disposed = true
       cancelAnimationFrame(raf1)
       cancelAnimationFrame(raf2)
       if (scanScheduled) cancelAnimationFrame(scanScheduled)
@@ -353,7 +339,7 @@ export default function GSAPAnimations() {
       io.disconnect()
       staggerIo.disconnect()
       counterIo?.disconnect()
-      ctx?.revert()
+      animeCleanups.forEach((cleanup) => cleanup())
       parallaxItems = []
       style.remove()
     }

@@ -22,7 +22,7 @@ const packages = [
       'Pełna wersja mobilna i szybkie ładowanie',
       'Analityka i mierzenie najważniejszych kliknięć',
     ],
-    amount: 1799,
+    amount: 1997,
     featured: false,
     support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
     cta: 'Wybieram Landing',
@@ -83,28 +83,25 @@ const includedInEveryWebsite = [
   'SEO, GEO i AEO wbudowane w strukturę strony',
 ] as const
 
-const detailPanels = [
+const clientQuestions = [
   {
-    id: 'realizacja',
-    title: 'Jak wygląda realizacja strony?',
-    summary: 'Od krótkiej rozmowy do pierwszej wizualizacji i publikacji.',
-    content: (
-      <div className="grid gap-4 md:grid-cols-4">
-        {[
-          ['01', 'Poznajemy firmę', 'Rozmawiamy o ofercie, klientach, przewagach i o tym, jak dziś wygląda kontakt z Twoją firmą.'],
-          ['02', 'Pierwszy kierunek w 24h', 'Po zebraniu materiałów pokazujemy realną wizualizację strony. Nie wybierasz projektu wyłącznie z opisu.'],
-          ['03', 'Dopracowujemy bez limitu', 'W ramach ustalonego zakresu zgłaszasz uwagi, a my poprawiamy projekt aż do akceptacji.'],
-          ['04', 'Wdrażamy i publikujemy', 'Prosty landing może być gotowy nawet od 72 godzin. Większy projekt otrzymuje termin po ustaleniu zakresu.'],
-        ].map(([no, title, desc]) => (
-          <div key={no} className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.025)] p-4">
-            <span className="font-mono text-[11px] font-semibold text-[#3AAFE8]">{no}</span>
-            <h4 className="mt-2 text-[14px] font-bold text-[#EAF0F7]">{title}</h4>
-            <p className="mt-2 text-[13px] leading-[1.65] text-[#A6B2C4]">{desc}</p>
-          </div>
-        ))}
-      </div>
-    ),
+    label: 'Strona',
+    question: 'Klient trafia na stronę, ale nadal nie rozumie, dlaczego ma wybrać właśnie Ciebie?',
+    answer: 'Porządkujemy ofertę i pokazujemy wartość firmy językiem decyzji klienta — bez pustych haseł i przypadkowych sekcji.',
   },
+  {
+    label: 'Strona + obsługa',
+    question: 'Te same pytania wracają przed każdym telefonem, mailem lub wyceną?',
+    answer: 'Strona odpowiada wcześniej, zbiera właściwe informacje i prowadzi klienta do kontaktu albo rezerwacji terminu.',
+  },
+  {
+    label: 'Automatyzacja',
+    question: 'Zespół ręcznie przepisuje dane, pilnuje statusów i wykonuje w kółko te same kroki?',
+    answer: 'Najpierw upraszczamy proces, a potem automatyzujemy tylko tę część, która realnie oszczędza czas i ogranicza błędy.',
+  },
+] as const
+
+const detailPanels = [
   {
     id: 'opieka',
     title: 'Jak wygląda opieka po wdrożeniu?',
@@ -202,10 +199,12 @@ function CheckMark() {
 function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[number]; onLearnMoreAboutCare: () => void }) {
   return (
     <article
-      className={`group relative h-full overflow-hidden rounded-2xl border transition-[transform,box-shadow,border-color] duration-300 ${
+      data-anime-card
+      data-featured={pkg.featured ? 'true' : 'false'}
+      className={`service-package-card group relative h-full overflow-hidden rounded-2xl border transition-[box-shadow,border-color] duration-300 ${
         pkg.featured
-          ? 'border-[rgba(58,175,232,0.5)] bg-[#121A23] shadow-[0_0_0_1px_rgba(58,175,232,0.12),0_8px_32px_-8px_rgba(58,175,232,0.28),0_24px_64px_-32px_rgba(58,175,232,0.22)] hover:-translate-y-1.5 hover:shadow-[0_0_0_1px_rgba(58,175,232,0.22),0_10px_36px_-8px_rgba(58,175,232,0.4),0_28px_72px_-28px_rgba(58,175,232,0.32)]'
-          : 'border-[rgba(255,255,255,0.08)] bg-[#10151D] hover:-translate-y-1 hover:border-[rgba(255,255,255,0.16)] hover:shadow-[0_12px_36px_-12px_rgba(0,0,0,0.6)]'
+          ? 'border-[rgba(58,175,232,0.5)] bg-[#121A23] shadow-[0_0_0_1px_rgba(58,175,232,0.12),0_8px_32px_-8px_rgba(58,175,232,0.28),0_24px_64px_-32px_rgba(58,175,232,0.22)]'
+          : 'border-[rgba(255,255,255,0.08)] bg-[#10151D]'
       }`}
     >
       <div
@@ -236,7 +235,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
 
         <div className="mt-5 border-y border-[rgba(255,255,255,0.08)] py-5">
           <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#8A96A8]">Cena jednorazowa</span>
-          <span className="mt-1 block text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7] tabular-nums">
+          <span className="package-price mt-1 block text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7] tabular-nums">
             <span>{pkg.amount}</span>
             <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
           </span>
@@ -253,11 +252,11 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
         </ul>
 
         <div className="mt-auto pt-6">
-          <p className="text-center text-[11.5px] font-medium text-[#7C879B]">{pkg.support}</p>
+          <p className="text-left text-[11.5px] font-medium leading-[1.55] text-[#7C879B]">{pkg.support}</p>
           <button
             type="button"
             onClick={onLearnMoreAboutCare}
-            className="mb-4 mt-1.5 block w-full text-center text-[11.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
+            className="mb-4 mt-1.5 block w-full text-left text-[11.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
           >
             Dowiedz się więcej o opiece przy Twojej stronie
           </button>
@@ -308,11 +307,10 @@ function DetailPanel({ panel, open, onToggle }: {
         {open && (
           <m.div
             id={`service-detail-${panel.id}`}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.26, ease }}
-            className="overflow-hidden"
+            initial={{ opacity: 0, transform: 'translateY(-4px)' }}
+            animate={{ opacity: 1, transform: 'translateY(0)' }}
+            exit={{ opacity: 0, transform: 'translateY(-2px)' }}
+            transition={{ duration: 0.2, ease }}
           >
             <div className="border-t border-[rgba(255,255,255,0.08)] px-5 py-6 sm:px-6">
               {panel.content}
@@ -345,65 +343,51 @@ export default function Services() {
   return (
     <section id="uslugi" className="section-shell relative overflow-hidden !pt-20 sm:!pt-24 lg:!pt-28" data-no-entrance suppressHydrationWarning>
       <div className="relative mx-auto max-w-7xl">
-        <m.div
-          className="section-heading"
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease }}
-        >
+        <div className="section-heading">
           <span className="section-kicker" suppressHydrationWarning>Usługi</span>
           <h2 className="section-title io-visible max-w-[18ch]" suppressHydrationWarning>
             Strony i automatyzacje dopasowane do tego, jak naprawdę działa Twoja firma
           </h2>
-          <p className="section-copy io-visible max-w-[720px]">
-            Najpierw poznajemy Twoją ofertę, klientów i codzienny sposób pracy. Stronę budujemy wokół prawdziwej wartości, którą dajesz klientom, a automatyzację wokół procesu, który niepotrzebnie zabiera czas. Pierwszy kierunek strony widzisz zwykle w 24 godziny, prosty Landing możemy wdrożyć nawet od 72 godzin, a płacisz dopiero po zaakceptowaniu efektu.
+          <p className="section-copy io-visible max-w-[680px]">
+            Zaczynamy od sytuacji, którą chcesz zmienić — nie od wyboru technologii. Pierwszy kierunek strony widzisz zwykle w 24 godziny, prosty Landing możemy wdrożyć nawet od 72 godzin, a płacisz dopiero po zaakceptowaniu efektu.
           </p>
-        </m.div>
+        </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <article className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#10151D] p-6 sm:p-8">
-            <span className="text-[12px] font-medium text-[#8B97A8]">Strony internetowe</span>
-            <h3 className="mt-3 text-[1.45rem] font-bold tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-              Pokazujemy prawdziwą wartość Twojej firmy
-            </h3>
-            <p className="mt-5 text-[15px] font-semibold leading-[1.55] text-[#EAF0F7]">
-              Klient szybko rozumie, co robisz, komu pomagasz i dlaczego warto wybrać właśnie Ciebie.
-            </p>
-            <p className="mt-3 text-[14px] leading-[1.72] text-[#A6B2C4]">
-              Wyciągamy z Twojej oferty to, co naprawdę ważne: problem klienta, sposób, w jaki go rozwiązujesz, oraz przewagi wynikające z doświadczenia i obsługi. Na tej podstawie układamy treść i drogę do wiadomości, telefonu lub rezerwacji.
-            </p>
-            <a href="#pakiety" onClick={handlePackageScroll} className="mt-7 inline-flex items-center gap-2 text-[13.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]">
-              Zobacz pakiety stron <span aria-hidden="true">↓</span>
-            </a>
-          </article>
-
-          <article className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#10151D] p-6 sm:p-8">
-            <span className="text-[12px] font-medium text-[#8B97A8]">Procesy biznesowe</span>
-            <h3 className="mt-3 text-[1.45rem] font-bold tracking-[-0.03em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-              Porządkujemy i automatyzujemy sposób pracy
-            </h3>
-            <p className="mt-5 text-[15px] font-semibold leading-[1.55] text-[#EAF0F7]">
-              Mniej ręcznego pilnowania, przepisywania i odpowiadania na te same pytania.
-            </p>
-            <p className="mt-3 text-[14px] leading-[1.72] text-[#A6B2C4]">
-              Najpierw rozpisujemy, jak zadanie wygląda dzisiaj, usuwamy niepotrzebne kroki i dopiero potem automatyzujemy powtarzalną część. Dzięki temu narzędzie rzeczywiście oszczędza czas i zasoby zamiast dokładać kolejny system do obsługi.
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={() => {
-                  setOpenDetail(openDetail === 'roznice-ai' ? null : 'roznice-ai')
-                  window.setTimeout(() => document.getElementById('szczegoly-uslug')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40)
-                }}
-                className="text-left text-[13.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
-              >
-                Poznaj przykłady i różnice ↓
-              </button>
-              <a href="#kontakt" onClick={handleContactClick} className="text-[13.5px] font-semibold text-[#EAF0F7] transition-colors hover:text-[#8CD8FF] sm:border-l sm:border-white/10 sm:pl-3">
-                Sprawdź proces na konsultacji
+        <div className="service-diagnostic mt-12 grid overflow-hidden rounded-[1.35rem] border border-[rgba(140,216,255,0.12)] lg:grid-cols-[0.78fr_1.22fr]">
+          <div className="service-diagnostic__intro flex flex-col justify-between p-6 sm:p-8 lg:p-10">
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8CD8FF]">Zacznij od problemu</span>
+              <h3 className="mt-4 max-w-[13ch] text-[clamp(1.55rem,3vw,2.45rem)] font-extrabold leading-[1.06] tracking-[-0.04em] text-[#F5F9FD]" style={{ fontFamily: 'var(--font-heading)' }}>
+                Co dziś blokuje klienta albo Twój zespół?
+              </h3>
+              <p className="mt-5 max-w-[38ch] text-[13.5px] leading-[1.72] text-[#A6B2C4]">
+                Nie musisz wiedzieć, czy potrzebujesz strony, AI czy automatyzacji. Wystarczy opisać moment, w którym tracisz czas, zapytania albo uwagę klienta.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3">
+              <a href="#pakiety" onClick={handlePackageScroll} className="service-text-link inline-flex items-center gap-2 text-[13px] font-semibold text-[#DDF3FF]">
+                Zobacz pakiety <span aria-hidden="true">↓</span>
+              </a>
+              <a href="#kontakt" onClick={handleContactClick} className="service-text-link inline-flex items-center gap-2 text-[13px] font-semibold text-[#8CD8FF]">
+                Opisz swój problem <span aria-hidden="true">↗</span>
               </a>
             </div>
-          </article>
+          </div>
+
+          <div className="service-question-list" data-stagger-group data-reveal-pattern="soft">
+            {clientQuestions.map((item, index) => (
+              <article key={item.question} className="service-question">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="service-question__label">{item.label}</span>
+                  <span className="font-mono text-[10px] text-[#68778D]" aria-hidden="true">0{index + 1}</span>
+                </div>
+                <h4 className="mt-4 max-w-[48ch] text-[15px] font-bold leading-[1.48] tracking-[-0.015em] text-[#F0F6FC]">
+                  {item.question}
+                </h4>
+                <p className="mt-2 max-w-[60ch] text-[13.5px] leading-[1.68] text-[#A6B2C4]">{item.answer}</p>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div id="pakiety" className="mt-16 scroll-mt-28">
@@ -419,7 +403,7 @@ export default function Services() {
             {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} onLearnMoreAboutCare={() => openDetailPanel('opieka')} />)}
           </div>
 
-          <article id="automatyzacje" className="mt-7 overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#10151D] p-6 sm:p-8 lg:p-10">
+          <article id="automatyzacje" data-anime-card className="service-automation-card mt-7 overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#10151D] p-6 sm:p-8 lg:p-10">
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
               <div className="flex flex-col">
                 <span className="text-[12px] font-medium text-[#8B97A8]">Automatyzacja procesu biznesowego</span>
@@ -468,7 +452,7 @@ export default function Services() {
           <div className="mb-6">
             <span className="section-kicker">Więcej informacji</span>
             <h2 className="mt-3 text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-              Dodatkowe informacje, które przydadzą ci się przy rozpoczęciu współpracy ze stronami internetowymi i automatyzacjami AI
+              Odpowiedzi, które ułatwią Ci wybór właściwego zakresu
             </h2>
           </div>
           <div className="grid gap-3">

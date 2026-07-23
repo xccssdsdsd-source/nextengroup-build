@@ -57,8 +57,7 @@ const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) =>
 const HeroHeadlineLine = ({ words, startDelay }: { words: HeroHeadlineWord[]; startDelay: number }) => (
   <>
     {words.map((word, i) => (
-      <span key={word.text}>
-        {i > 0 ? ' ' : null}
+      <span key={word.text} className="hero-headline-token">
         <HeroWord word={word} delay={startDelay + i * 45} />
       </span>
     ))}
@@ -140,21 +139,21 @@ export default function Hero() {
             <h1
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                fontSize: 'clamp(30px, 3.6vw, 58px)',
-                lineHeight: '1.05',
-                letterSpacing: '-0.03em',
+                fontWeight: 600,
+                fontSize: 'clamp(30px, 3.7vw, 58px)',
+                lineHeight: '1.08',
+                letterSpacing: '-0.026em',
               }}
             >
               <span
                 className="block hero-heading-line"
                 style={{
                   color: '#EAF0F7',
-                  fontWeight: 800,
-                  fontSize: 'clamp(28px, 3.9vw, 62px)',
-                  lineHeight: '1.02',
-                  letterSpacing: '-0.038em',
-                  marginBottom: '0.16em',
+                  fontWeight: 600,
+                  fontSize: 'clamp(28px, 3.7vw, 58px)',
+                  lineHeight: '1.08',
+                  letterSpacing: '-0.026em',
+                  marginBottom: '0.12em',
                 }}
               >
                 <HeroHeadlineLine words={heroLine1} startDelay={60} />
@@ -163,11 +162,11 @@ export default function Hero() {
                 className="block hero-heading-line"
                 style={{
                   color: '#EAF0F7',
-                  fontWeight: 800,
-                  fontSize: 'clamp(28px, 3.9vw, 62px)',
-                  lineHeight: '1.02',
-                  letterSpacing: '-0.038em',
-                  marginBottom: '0.16em',
+                  fontWeight: 600,
+                  fontSize: 'clamp(28px, 3.7vw, 58px)',
+                  lineHeight: '1.08',
+                  letterSpacing: '-0.026em',
+                  marginBottom: '0.12em',
                 }}
               >
                 <HeroHeadlineLine words={heroLine2} startDelay={60 + heroLine1.length * 45} />

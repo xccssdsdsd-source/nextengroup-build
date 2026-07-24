@@ -133,27 +133,6 @@ export default function PremiumAnimations() {
       })
     }
 
-    // Safety net: reveal only elements actually IN the viewport that the
-    // observer somehow missed — never off-screen content (that would defeat
-    // the scroll animation). Off-screen elements stay hidden for the IO to
-    // animate in as they are scrolled to.
-    const revealInView = () => {
-      const vh = window.innerHeight
-      const candidates = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)).filter(
-        (el) => !el.classList.contains('io-visible') && !el.closest('[data-deferred-section="pending"]'),
-      )
-      // Read phase, then write phase — same layout-thrashing fix as assignStagger.
-      const rects = candidates.map((el) => el.getBoundingClientRect())
-      candidates.forEach((el, i) => {
-        const r = rects[i]
-        if (r.top < vh * 0.92 && r.bottom > 0) {
-          el.style.transform = ''
-          el.classList.add('io-visible')
-        }
-      })
-    }
-    const safety1 = window.setTimeout(revealInView, 900)
-
     let raf1 = 0
     let raf2 = 0
     raf1 = requestAnimationFrame(() => {
@@ -319,7 +298,6 @@ export default function PremiumAnimations() {
       cancelAnimationFrame(raf1)
       cancelAnimationFrame(raf2)
       if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
-      clearTimeout(safety1)
       clearTimeout(bootT)
       if (typeof cancelIdleCallback !== 'undefined' && idle) cancelIdleCallback(idle)
       window.removeEventListener('scroll', onScroll)

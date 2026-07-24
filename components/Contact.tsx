@@ -251,14 +251,17 @@ export default function Contact() {
                       onClick={() => setDropdownOpen(o => !o)}
                       aria-haspopup="listbox"
                       aria-expanded={dropdownOpen}
-                      aria-labelledby="inquiry-subject-label"
+                      aria-labelledby="inquiry-subject-label inquiry-subject-value"
                       className="form-input w-full flex items-center justify-between gap-3 text-left"
                       style={{
                         borderColor: dropdownOpen ? 'rgba(58,175,232,0.6)' : undefined,
                         boxShadow: dropdownOpen ? '0 0 0 3px rgba(58,175,232,0.12)' : undefined,
                       }}
                     >
-                      <span className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#7C879B]'}>
+                      <span
+                        id="inquiry-subject-value"
+                        className={formData.subject ? 'text-[#EAF0F7]' : 'text-[#7C879B]'}
+                      >
                         {formData.subject || 'Wybierz temat…'}
                       </span>
                       <ChevronDown

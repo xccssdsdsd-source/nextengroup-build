@@ -3436,7 +3436,6 @@ html.motion-ready .section-copy.io-visible,
 html.motion-ready [data-motion-copy].io-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  filter: blur(0);
   clip-path: inset(0 0 0 0);
 }
 

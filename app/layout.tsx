@@ -17,13 +17,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
-  display: 'optional',
+  display: 'swap',
 })
 
 const clashDisplay = localFont({
   src: '../public/fonts/ClashDisplay-Variable.woff2',
   variable: '--font-clash',
-  display: 'optional',
+  display: 'swap',
   weight: '200 700',
 })
 
@@ -32,7 +32,7 @@ const instrumentSerif = Instrument_Serif({
   weight: '400',
   style: 'italic',
   variable: '--font-serif',
-  display: 'optional',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {

@@ -45,13 +45,21 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
     if (!root || !wash || !grain || !stars) return
 
     let frame = 0
+    let offsetTop = 0
+    let height = 0
+
+    const measure = () => {
+      const r = root.getBoundingClientRect()
+      offsetTop = r.top + window.scrollY
+      height = r.height
+    }
 
     const render = () => {
       frame = 0
-      const bounds = root.getBoundingClientRect()
+      const top = offsetTop - window.scrollY
       const viewport = Math.max(window.innerHeight, 1)
-      const travel = viewport + bounds.height
-      const progress = Math.max(0, Math.min(1, (viewport - bounds.top) / travel))
+      const travel = viewport + height
+      const progress = Math.max(0, Math.min(1, (viewport - top) / travel))
       const offset = progress - 0.5
       const compact = window.innerWidth <= 768
       const amplitude = compact ? 0.68 : 1
@@ -66,14 +74,19 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
     const requestRender = () => {
       if (!frame) frame = window.requestAnimationFrame(render)
     }
+    const requestRemeasure = () => {
+      measure()
+      requestRender()
+    }
 
+    measure()
     render()
     window.addEventListener('scroll', requestRender, { passive: true })
-    window.addEventListener('resize', requestRender, { passive: true })
+    window.addEventListener('resize', requestRemeasure, { passive: true })
 
     return () => {
       window.removeEventListener('scroll', requestRender)
-      window.removeEventListener('resize', requestRender)
+      window.removeEventListener('resize', requestRemeasure)
       if (frame) window.cancelAnimationFrame(frame)
     }
   }, [visible])

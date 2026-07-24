@@ -1,0 +1,20 @@
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3001
+   - Network:      http://169.254.129.79:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 4.9s
+ ✓ Compiled /middleware in 337ms (115 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 9.3s (1735 modules)
+ ✓ Compiled in 2.4s (789 modules)
+ GET / 200 in 11829ms
+ GET / 200 in 552ms
+ ✓ Compiled in 1022ms (1726 modules)
+ ✓ Compiled in 1166ms (1726 modules)
+ GET / 200 in 1237ms
+ GET / 200 in 478ms
+[?25h

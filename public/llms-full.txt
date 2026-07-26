@@ -10,13 +10,13 @@ Getbuild nie oferuje wdrożeń CRM ani e-commerce. SEO, GEO i AEO nie są osobny
 
 ## Aktualne pakiety
 
-### Landing — 1997 zł jednorazowo
+### Strona dla jednej usługi — 1997 zł jednorazowo
 
 Jedna główna usługa, uporządkowana treść, oferta, realizacje, opinie, FAQ, formularz, wersja mobilna, szybkie ładowanie, analityka i 30 dni wsparcia.
 
 ### Strona z obsługą klienta — 2299 zł jednorazowo
 
-Wszystko z Landingu oraz prezentacja kilku usług, chatbot AI z wiedzą o firmie, rozbudowany formularz, automatyczne potwierdzenie, powiadomienie o zapytaniu, rezerwacja terminu i 30 dni wsparcia.
+Wszystko ze Strony dla jednej usługi oraz prezentacja kilku usług, chatbot AI z wiedzą o firmie, rozbudowany formularz, automatyczne potwierdzenie, powiadomienie o zapytaniu, rezerwacja terminu i 30 dni wsparcia.
 
 ### Pełny pakiet z panelem — 3099 zł jednorazowo
 
@@ -32,7 +32,7 @@ Jednorazowa cena jest ustalana indywidualnie po bezpłatnej konsultacji i analiz
 - projekt responsywny i szybki,
 - bezpieczeństwo i podstawowa analityka,
 - techniczne podstawy SEO, GEO i AEO,
-- pierwsza wizualizacja zwykle w 24 godziny po zebraniu materiałów,
+- pierwsza wizualizacja zwykle od 24 godzin po zebraniu materiałów, gotowa strona od 72 godzin — zależnie od projektu,
 - poprawki bez limitu w ramach ustalonego zakresu do akceptacji,
 - płatność po zaakceptowaniu efektu,
 - możliwość stałej opieki i hostingu po okresie wsparcia startowego: od 29 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji; usługa obejmuje hosting, monitoring, kopie zapasowe, bezpieczeństwo, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większa przebudowa są wyceniane osobno. Dodatkowe automatyzacje i funkcje AI mogą zmienić miesięczny koszt zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.

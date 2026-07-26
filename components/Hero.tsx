@@ -8,7 +8,7 @@ import HeroBackdrop from './ui/HeroBackdrop'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = [
-  'Pierwszy projekt widzisz w 24 godziny',
+  'Pierwszą wizualizację widzisz od 24 godzin',
   'Rozwiązania dopasowane do Twojego biznesu',
   'Płacisz dopiero za efekt, który akceptujesz',
   'Cena jest jasna po krótkiej konsultacji',
@@ -31,19 +31,25 @@ const accentText = {
 type HeroHeadlineWord = { text: string; accent?: boolean }
 
 const heroLine1: HeroHeadlineWord[] = [
-  { text: 'Strony,' },
-  { text: 'które' },
-  { text: 'pozyskują', accent: true },
-  { text: 'klientów.' },
+  { text: 'Nowa' },
+  { text: 'strona,' },
+  { text: 'która' },
+  { text: 'wie' },
+  { text: 'wszystko', accent: true },
+  { text: 'o' },
+  { text: 'Twojej' },
+  { text: 'firmie' },
+  { text: 'bez' },
+  { text: 'ryzyka.' },
 ]
 
 const heroLine2: HeroHeadlineWord[] = [
-  { text: 'Automatyzacje,' },
-  { text: 'które' },
-  { text: 'obsługują', accent: true },
-  { text: 'ich' },
-  { text: 'za' },
-  { text: 'Ciebie.' },
+  { text: 'Zobacz' },
+  { text: 'pierwszy' },
+  { text: 'projekt' },
+  { text: 'od' },
+  { text: '24', accent: true },
+  { text: 'godzin.' },
 ]
 
 const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) => (

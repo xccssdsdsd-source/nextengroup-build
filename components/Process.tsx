@@ -20,7 +20,7 @@ const steps = [
     meta: 'Prototyp',
     title: 'Pokazujemy rozwiązanie przed pełnym wdrożeniem',
     desc: 'Najpierw dostajesz coś, co można zobaczyć i sprawdzić. Uwagi zbieramy na konkretnym materiale, nie na obietnicach.',
-    website: 'Pierwszy kierunek wizualny zwykle w 24 godziny.',
+    website: 'Pierwszy kierunek wizualny zwykle od 24 godzin.',
     automation: 'Schemat działania i demo kluczowego scenariusza w kilka dni.',
     icon: Blocks,
   },

@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
+        text: 'Strona dla jednej usługi i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
       },
     },
     {
@@ -101,7 +101,7 @@ const faqSchema = {
       name: 'Ile czasu trwa stworzenie strony internetowej?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Podstawowa profesjonalna strona może być gotowa w 72 godziny od zebrania materiałów. Bardziej złożone projekty zajmują więcej czasu. Getbuild najpierw przygotowuje bezpłatny mockup — wizualną koncepcję strony. Po zatwierdzeniu designu następuje wdrożenie.',
+        text: 'Pierwszą wizualizację pokazujemy od 24 godzin, a podstawowa profesjonalna strona może być gotowa od 72 godzin od zebrania materiałów. Bardziej złożone projekty zajmują więcej czasu. Getbuild najpierw przygotowuje bezpłatny mockup — wizualną koncepcję strony. Po zatwierdzeniu designu następuje wdrożenie.',
       },
     },
   ],
@@ -250,7 +250,7 @@ export default function WiedzaAI() {
               Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.
             </p>
             <p>
-              Ceny wdrożenia są jasno podane w pakietach: Landing kosztuje 1997 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
+              Ceny wdrożenia są jasno podane w pakietach: Strona dla jednej usługi kosztuje 1997 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
             </p>
             <p>
               Drobne zmiany w ramach stałej opieki możesz zgłaszać bez limitu. Jeżeli potrzebujesz nowej funkcji, podstrony albo większej przebudowy, najpierw otrzymujesz osobną wycenę.
@@ -266,7 +266,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Podstawowa strona profesjonalna może być gotowa w ciągu 72 godzin od zebrania materiałów. To znaczy — jak dostarczysz nam teksty, zdjęcia i wiadomi, jakie informacje chcesz na stronie — w 3 dni projekt jest gotowy.
+              Pierwszą wizualizację pokazujemy zwykle od 24 godzin od zebrania materiałów. Podstawowa strona profesjonalna może być gotowa od 72 godzin — jak dostarczysz nam teksty, zdjęcia i informacje, jakie treści chcesz na stronie, projekt zwykle jest gotowy w kilka dni.
             </p>
             <p>
               Bardziej złożone projekty zajmują więcej czasu. Ale najpierw robimy Ci bezpłatny mockup — wizualną koncepcję strony. Zatwierdzisz design, a potem wdrażamy.

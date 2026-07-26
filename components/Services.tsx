@@ -9,7 +9,7 @@ const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
 
 const packages = [
   {
-    name: 'Landing',
+    name: 'Strona dla jednej usługi',
     eyebrow: 'Jedna usługa, jeden konkretny cel',
     problem: 'Potrzebujesz profesjonalnie pokazać ofertę i ułatwić klientowi kontakt.',
     outcome: 'Otrzymujesz gotową stronę opartą na Twojej ofercie, sposobie pracy i pytaniach, które zadają klienci.',
@@ -25,7 +25,7 @@ const packages = [
     amount: 1997,
     featured: false,
     support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
-    cta: 'Wybieram Landing',
+    cta: 'Wybieram tę stronę',
   },
   {
     name: 'Strona z obsługą klienta',
@@ -33,7 +33,7 @@ const packages = [
     problem: 'Klienci pytają o to samo, czekają na odpowiedź albo rezygnują przed kontaktem.',
     outcome: 'Strona przedstawia ofertę, odpowiada na typowe pytania i prowadzi klienta do wiadomości lub rezerwacji terminu.',
     features: [
-      'Wszystko, co zawiera pakiet Landing',
+      'Wszystko, co zawiera pakiet Strona dla jednej usługi',
       'Rozbudowana prezentacja kilku usług',
       'Chatbot AI z wiedzą o Twojej firmie',
       'Rozbudowany formularz dopasowany do usługi',
@@ -244,7 +244,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
         <p className="mt-5 text-[12px] font-semibold text-[#8B97A8]">W pakiecie otrzymujesz</p>
         <ul className="mt-4 flex flex-col gap-2.5">
           {pkg.features.map((feature, index) => (
-            <li key={feature} className={`flex items-start gap-2.5 text-[13.5px] leading-[1.55] ${index === 0 && pkg.name !== 'Landing' ? 'font-semibold text-[#EAF0F7]' : 'text-[#A6B2C4]'}`}>
+            <li key={feature} className={`flex items-start gap-2.5 text-[13.5px] leading-[1.55] ${index === 0 && pkg.name !== 'Strona dla jednej usługi' ? 'font-semibold text-[#EAF0F7]' : 'text-[#A6B2C4]'}`}>
               <CheckMark />
               {feature}
             </li>
@@ -349,7 +349,7 @@ export default function Services() {
             Strony i automatyzacje dopasowane do tego, jak naprawdę działa Twoja firma
           </h2>
           <p className="section-copy io-visible max-w-[680px]">
-            Zaczynamy od sytuacji, którą chcesz zmienić — nie od wyboru technologii. Pierwszy kierunek strony widzisz zwykle w 24 godziny, prosty Landing możemy wdrożyć nawet od 72 godzin, a płacisz dopiero po zaakceptowaniu efektu.
+            Zaczynamy od sytuacji, którą chcesz zmienić — nie od wyboru technologii. Pierwszą wizualizację widzisz zwykle od 24 godzin, prostą stronę dla jednej usługi możemy wdrożyć od 72 godzin — zależnie od projektu, a płacisz dopiero po zaakceptowaniu efektu.
           </p>
         </div>
 

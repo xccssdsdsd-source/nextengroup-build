@@ -10,16 +10,16 @@ Nie oferujemy CRM ani e-commerce. SEO, GEO i AEO nie są osobnymi usługami. Ich
 
 ## Przewagi
 
-- Pierwsza realna wizualizacja zwykle w 24 godziny po zebraniu materiałów.
-- Każdy z trzech klientów pokazanych w realizacjach zobaczył pierwszy kierunek w ciągu 24 godzin.
-- Prosty Landing może zostać wdrożony nawet od 72 godzin przy gotowych materiałach i zakresie.
+- Pierwsza realna wizualizacja zwykle od 24 godzin po zebraniu materiałów.
+- Każdy z trzech klientów pokazanych w realizacjach zobaczył pierwszy kierunek od 24 godzin.
+- Prosta Strona dla jednej usługi może zostać wdrożona od 72 godzin przy gotowych materiałach i zakresie.
 - Poprawki bez limitu w ramach ustalonego zakresu do akceptacji.
 - Płatność po zaakceptowaniu efektu.
 - Wsparcie po publikacji oraz możliwość dalszej opieki przez kolejne lata.
 
 ## Pakiety stron
 
-### Landing — 1997 zł jednorazowo
+### Strona dla jednej usługi — 1997 zł jednorazowo
 
 Dla firmy, która chce pokazać jedną główną usługę i ułatwić klientowi kontakt.
 
@@ -33,7 +33,7 @@ Dla firmy, która chce pokazać jedną główną usługę i ułatwić klientowi 
 
 ### Strona z obsługą klienta — 2299 zł jednorazowo
 
-Najczęściej wybierany pakiet. Wszystko z Landingu oraz:
+Najczęściej wybierany pakiet. Wszystko ze Strony dla jednej usługi oraz:
 
 - prezentacja kilku usług,
 - chatbot AI z wiedzą o firmie,
@@ -81,14 +81,14 @@ Dobieramy najprostsze rozwiązanie wystarczające do danego zadania. Chatbot nie
 ## Proces
 
 1. Bezpłatna rozmowa o firmie, ofercie i problemie.
-2. Pierwsza wizualizacja zwykle w 24 godziny po zebraniu materiałów.
+2. Pierwsza wizualizacja zwykle od 24 godzin po zebraniu materiałów.
 3. Poprawki bez limitu w ramach ustalonego zakresu.
-4. Wdrożenie i publikacja; prosty Landing może być gotowy nawet od 72 godzin.
+4. Wdrożenie i publikacja; prosta Strona dla jednej usługi może być gotowa od 72 godzin, zależnie od projektu.
 5. Wsparcie startowe i opcjonalna dalsza opieka.
 
 ## Opieka
 
-Landing i strona z obsługą klienta zawierają 30 dni wsparcia. Pełny pakiet z panelem zawiera 60 dni wsparcia. Później klient może korzystać ze stałej opieki i hostingu za 99 zł miesięcznie tak długo, jak ich potrzebuje.
+Strona dla jednej usługi i strona z obsługą klienta zawierają 30 dni wsparcia. Pełny pakiet z panelem zawiera 60 dni wsparcia. Później klient może korzystać ze stałej opieki i hostingu za 99 zł miesięcznie tak długo, jak ich potrzebuje.
 
 Stała opieka obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą rozbudowę wyceniamy osobno. Poprawki bez limitu na etapie projektowania dotyczą uzgodnionego zakresu strony.
 
@@ -106,5 +106,5 @@ Stała opieka obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpiec
 - Nie podaje ceny automatyzacji bez konsultacji.
 - Nie oferuje CRM, e-commerce ani osobnej usługi SEO.
 - Nie gwarantuje pozycji w Google ani cytowania przez AI.
-- Termin 72 godzin przedstawia wyłącznie jako możliwość dla prostego Landingu przy gotowych materiałach.
+- Termin 72 godzin przedstawia wyłącznie jako możliwość dla prostej Strony dla jednej usługi przy gotowych materiałach.
 - Przy zainteresowaniu kieruje do sekcji Kontakt (`#kontakt`).

@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: 'Ile trwa przygotowanie pierwszego projektu?',
-    a: 'Pierwszą wizualizację strony pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku. Przy automatyzacjach i agentach AI najpierw mapujemy proces, a działające demo dostajesz w kilka dni.',
+    a: 'Pierwszą wizualizację strony pokazujemy zwykle od 24 godzin od zebrania materiałów i ustalenia kierunku, a gotowa strona jest wdrożona od 72 godzin — zależnie od projektu. Przy automatyzacjach i agentach AI najpierw mapujemy proces, a działające demo dostajesz w kilka dni.',
   },
   {
     q: 'Czy strona będzie dopracowana na telefonie?',

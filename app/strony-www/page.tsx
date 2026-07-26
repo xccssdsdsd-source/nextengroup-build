@@ -67,7 +67,7 @@ const faqSchema = {
       name: 'Ile trwa stworzenie strony WWW?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pierwszą wizualizację pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku. Pełne wdrożenie zajmuje od tygodnia do 2–3 tygodni zależnie od zakresu.',
+        text: 'Pierwszą wizualizację pokazujemy zwykle od 24 godzin od zebrania materiałów i ustalenia kierunku. Gotowa strona jest wdrożona od 72 godzin — dokładny czas zależy od zakresu projektu.',
       },
     },
     {
@@ -100,7 +100,7 @@ const faqSchema = {
 const faqItems = faqSchema.mainEntity
 
 const stats = [
-  { val: '24', unit: 'h', label: 'do pierwszej wizualizacji' },
+  { val: '24', unit: 'h', label: 'od pierwszej wizualizacji' },
   { val: '0', unit: 'zł', label: 'wycena i konsultacja' },
   { val: '100%', unit: '', label: 'responsywność i SEO/GEO' },
 ]
@@ -110,7 +110,7 @@ const processPoints = [
   'Czytelna hierarchia i mocne call-to-action',
   'Optymalizacja pod SEO i wyszukiwarki AI (GEO)',
   'Wersja mobilna dopracowana tak samo jak desktop',
-  'Pierwsza wizualizacja zwykle w ciągu 24 godzin',
+  'Pierwsza wizualizacja zwykle od 24 godzin',
 ]
 
 const features = [
@@ -276,7 +276,7 @@ export default function StonyWWW() {
                 Gotów na stronę, która pracuje?
               </h2>
               <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">
-                Umów bezpłatną konsultację — pierwszą wizualizację zobaczysz zwykle w ciągu 24 godzin. Zero zobowiązań.
+                Umów bezpłatną konsultację — pierwszą wizualizację zobaczysz zwykle od 24 godzin. Zero zobowiązań.
               </p>
               <a
                 href="/#kontakt"

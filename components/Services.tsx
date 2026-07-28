@@ -235,8 +235,6 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
           <span className="package-price mt-1 block text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7] tabular-nums">
             <span>{pkg.amount}</span>
             <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
-            <span>{pkg.amount}</span>
-            <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
           </span>
         </div>
 

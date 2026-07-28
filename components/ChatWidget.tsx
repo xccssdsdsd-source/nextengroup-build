@@ -6,10 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 type Message = { role: 'user' | 'assistant'; content: string }
 
 const suggestions = [
-  'Ile kosztuje strona?',
-  'Dlaczego warto wybrać Getbuild?',
-  'Co mogę zautomatyzować?',
-  'Chcę omówić swój projekt',
+  'Ile kosztuje strona dla agenta?',
+  'Jak działa AI Agent 24/7?',
+  'Jak działa panel dodawania ofert?',
+  'Darmowa wizualizacja w 24h',
 ] as const
 
 const SendIcon = () => (
@@ -130,8 +130,8 @@ export default function ChatWidget() {
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              <span className="inline-block">Zapytaj o stronę, automatyzację albo swój pomysł.</span>{' '}
-              <span className="inline-block">Odpowiem konkretnie i pomogę wybrać następny krok.</span>
+              <span className="inline-block">Cześć! Tworzymy dedykowane strony dla agentów nieruchomości z AI agentem 24/7 i panelem do dodawania ofert.</span>{' '}
+              <span className="inline-block">Darmową wizualizację otrzymujesz w 24h. O co chcesz zapytać?</span>
             </div>
           </div>
         )}

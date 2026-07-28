@@ -8,12 +8,12 @@ import HeroBackdrop from './ui/HeroBackdrop'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const carouselWords = [
-  'Pierwszy projekt widzisz w 24 godziny',
-  'Rozwiązania dopasowane do Twojego biznesu',
+  'Darmowa wizualizacja strony w 24 godziny',
+  'Agent AI z pełną wiedzą o Twoim biurze 24/7',
+  'Intuicyjny panel do samodzielnego dodawania ofert',
+  'Kwalifikacja klientów i umawianie prezentacji',
+  'Bez płacenia z góry i bez ryzyka',
   'Płacisz dopiero za efekt, który akceptujesz',
-  'Cena jest jasna po krótkiej konsultacji',
-  'Decydujesz po rozmowie, bez zobowiązań',
-  'Poprawki i wsparcie po wdrożeniu są w cenie',
 ] as const
 
 const trustOwners = [
@@ -31,19 +31,21 @@ const accentText = {
 type HeroHeadlineWord = { text: string; accent?: boolean }
 
 const heroLine1: HeroHeadlineWord[] = [
-  { text: 'Strony,' },
-  { text: 'które' },
-  { text: 'pozyskują', accent: true },
-  { text: 'klientów.' },
+  { text: 'Strony' },
+  { text: 'WWW' },
+  { text: 'dla' },
+  { text: 'agentów' },
+  { text: 'nieruchomości,', accent: true },
 ]
 
 const heroLine2: HeroHeadlineWord[] = [
-  { text: 'Automatyzacje,' },
-  { text: 'które' },
-  { text: 'obsługują', accent: true },
-  { text: 'ich' },
-  { text: 'za' },
-  { text: 'Ciebie.' },
+  { text: 'z' },
+  { text: 'AI' },
+  { text: 'agentem' },
+  { text: '24/7' },
+  { text: 'i' },
+  { text: 'panelem', accent: true },
+  { text: 'ofert.' },
 ]
 
 const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) => (

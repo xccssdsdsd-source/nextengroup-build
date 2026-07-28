@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
@@ -240,20 +240,11 @@ export default function WiedzaAI() {
       <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-            Ile kosztuje strona internetowa dla małej firmy?
+            Ile kosztuje strona dla agenta nieruchomości?
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Każdy pakiet Getbuild zawiera wsparcie po publikacji: 30 dni w dwóch pierwszych pakietach i 60 dni w pełnym pakiecie z panelem. Później stała opieka i hosting kosztują od 29 do 99 zł miesięcznie — dokładna kwota zależy od Twojej strony i wybranej konfiguracji opieki. Obejmują hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą przebudowę wyceniamy osobno. Dodatkowe automatyzacje lub funkcje AI mogą zmienić miesięczny koszt zależnie od używanych narzędzi, liczby operacji i wybranego modelu AI.
-            </p>
-            <p>
-              Przed jakimikolwiek zobowiązaniami finansowymi tworzymy dla Ciebie bezpłatny projekt — wizualizację strony, którą widzisz przed opłaceniem czegokolwiek. To Ty decydujesz, czy projekt Ci się podoba i czy chcesz iść dalej.
-            </p>
-            <p>
-              Ceny wdrożenia są jasno podane w pakietach: Landing kosztuje 1997 zł, strona z obsługą klienta 2299 zł, a pełny pakiet z panelem 3099 zł. Automatyzacje procesów wyceniamy indywidualnie po poznaniu konkretnego zadania.
-            </p>
-            <p>
-              Drobne zmiany w ramach stałej opieki możesz zgłaszać bez limitu. Jeżeli potrzebujesz nowej funkcji, podstrony albo większej przebudowy, najpierw otrzymujesz osobną wycenę.
+              Ceny wdrożenia są jasno podane w pakietach: Strona na jedną usługę kosztuje 1997 zł, strona z chatbotem AI 2397 zł, a strona z panelem do zarządzania 2997 zł. Pierwszą wizualizację strony wykonujemy w 24 godziny bez zobowiązań.
             </p>
           </div>
         </div>

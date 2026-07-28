@@ -9,9 +9,9 @@ import PremiumAnimations from '@/components/PremiumAnimations'
 import CookieConsent from '@/components/CookieConsent'
 
 const siteUrl = 'https://getbuild.pl'
-const siteTitle = 'Strony WWW i Automatyzacje AI dla Firm | Getbuild'
+const siteTitle = 'Strony WWW dla Agentów Nieruchomości z AI Agentem 24/7 i Panelem Ofert | Getbuild'
 const siteDescription =
-  'Tworzymy nowoczesne strony internetowe i wdrażamy automatyzacje AI dla firm w Polsce. Getbuild — technologia, która pracuje za Twój biznes.'
+  'Tworzymy nowoczesne strony WWW dla agentów i biur nieruchomości z AI agentem 24/7 znającym Twoją firmę i panelem do dodawania ofert. Zobacz darmową wizualizację w 24h!'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -46,14 +46,12 @@ export const metadata: Metadata = {
   category: 'technology',
   formatDetection: { telephone: false, address: false, email: false },
   keywords: [
-    'strony www dla firm',
-    'strony internetowe dla firm',
-    'automatyzacje AI',
-    'agenci AI',
-    'chatbot AI dla firmy',
-    'SEO dla firm',
-    'GEO Generative Engine Optimization',
-    'widoczność w ChatGPT',
+    'strony www dla agentów nieruchomości',
+    'strony dla biur nieruchomości',
+    'agent ai dla nieruchomości',
+    'panel dodawania ofert nieruchomości',
+    'chatbot dla agenta nieruchomości',
+    'strony internetowe dla agentów nieruchomości',
     'Getbuild',
   ],
   openGraph: {
@@ -157,7 +155,7 @@ export default function RootLayout({
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: '1997–3099 PLN',
+          priceRange: '1997–2997 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',

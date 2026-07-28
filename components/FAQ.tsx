@@ -6,16 +6,15 @@ import { useRef, useState } from 'react'
 import SectionGlow from './ui/SectionGlow'
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const premiumSpring = { type: 'spring' as const, stiffness: 120, damping: 24 }
 
 const faqs = [
   {
     q: 'W czym dokładnie możecie nam pomóc?',
-    a: 'Tworzymy nowoczesne strony WWW dla firm, wdrażamy automatyzacje oparte na AI oraz budujemy agentów AI. Jedno źródło dla strony, która generuje zapytania, i dla rozwiązań, które odciążają zespół z powtarzalnej pracy.',
+    a: 'Tworzymy nowoczesne strony WWW dla agentów i biur nieruchomości z wbudowanym Agentem AI 24/7 oraz intuicyjnym panelem do samodzielnego zarządzania ofertami.',
   },
   {
-    q: 'Ile kosztuje strona internetowa lub wdrożenie AI?',
-    a: 'Pakiety strony wyceniamy od 1997 do 3099 zł, w zależności od zakresu — szczegóły znajdziesz w cenniku pakietów wyżej. Automatyzacje procesów wyceniamy indywidualnie po bezpłatnej konsultacji, ponieważ ich zakres zależy od konkretnego zadania.',
+    q: 'Ile kosztuje strona dla agenta nieruchomości?',
+    a: 'Pakiety strony wyceniamy od 1997 zł (Strona na jedną usługę), przez 2397 zł (Strona z chatbotem AI) do 2997 zł (Strona z panelem do zarządzania ofertami). Pierwszą wizualizację otrzymujesz w 24h bez zobowiązań.',
   },
   {
     q: 'Ile kosztuje opieka nad stroną i hosting?',
@@ -26,32 +25,16 @@ const faqs = [
     a: 'Nie ryzykujesz nic — płacisz dopiero za rezultat, który akceptujesz. Zasady poprawek i bezpłatnej wizualizacji opisaliśmy wyżej.',
   },
   {
-    q: 'Jak zacząć współpracę?',
-    a: 'Wystarczy jeden krok — umów bezpłatną konsultację lub wyślij zapytanie przez formularz. Odpowiadamy w ciągu 24 godzin. Na rozmowie poznajemy Twoje cele, doradzamy najlepszą ścieżkę i przygotowujemy wstępną wizualizację oraz wycenę. Bez zobowiązań i bez presji — decyzję podejmujesz dopiero, gdy zobaczysz, co możemy dla Ciebie zrobić.',
-  },
-  {
     q: 'Czy strona będzie zoptymalizowana pod SEO i GEO?',
-    a: 'Tak, podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony. Nie obiecujemy konkretnej pozycji ani cytowania przez model AI, ale od początku tworzymy stronę tak, aby Google i systemy AI mogły ją poprawnie odczytać.',
+    a: 'Tak, podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony. Od początku tworzymy stronę tak, aby Google i systemy AI (np. ChatGPT) mogły ją poprawnie odczytać i rekomendować.',
   },
   {
-    q: 'Czym jest agent AI i co może robić w mojej firmie?',
-    a: 'Agent AI to inteligentny asystent pracujący 24/7. Odpowiada na zapytania klientów, kwalifikuje leady, umawia spotkania i wspiera decyzje. Budujemy go pod konkretne procesy w Twojej firmie, więc działa w Twoim języku i zna Twoją ofertę.',
-  },
-  {
-    q: 'Jakie procesy możecie zautomatyzować dzięki AI?',
-    a: 'Najczęściej automatyzujemy obsługę zapytań, segregowanie i kierowanie leadów, generowanie raportów oraz integrację systemów (e-mail, arkusze, fakturowanie). Efekt to mniej ręcznej pracy, mniej błędów i więcej czasu dla zespołu na to, co naprawdę ważne.',
-  },
-  {
-    q: 'Czy automatyzacje i agenta AI da się połączyć z moją stroną i narzędziami?',
-    a: 'Tak. Łączymy stronę, formularze i agenta AI z narzędziami, których już używasz, tak aby zapytanie od razu trafiało do właściwej osoby lub systemu. Wszystko działa jako jeden spójny proces, a nie osobne wyspy.',
-  },
-  {
-    q: 'Ile trwa przygotowanie pierwszego projektu?',
-    a: 'Pierwszą wizualizację strony pokazujemy zwykle w ciągu 24 godzin od zebrania materiałów i ustalenia kierunku. Przy automatyzacjach i agentach AI najpierw mapujemy proces, a działające demo dostajesz w kilka dni.',
+    q: 'Czym jest agent AI i co może robić na stronie agenta?',
+    a: 'Agent AI to inteligentny asystent pracujący 24/7. Odpowiada na zapytania klientów o lokacjach i cenach, kwalifikuje kupujących/sprzedających i prowadzi ich do umawiania prezentacji.',
   },
   {
     q: 'Czy strona będzie dopracowana na telefonie?',
-    a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, odstępy i hierarchia treści dobrze działają także na małych ekranach — a szybkie ładowanie na telefonie dodatkowo wspiera pozycję w Google.',
+    a: 'Tak. Projektujemy z myślą o urządzeniach mobilnych, więc czytelność, zdjęcia nieruchomości i wyszukiwarka działają idealnie na małych ekranach.',
   },
 ] as const
 
@@ -175,4 +158,3 @@ export default function FAQ() {
     </>
   )
 }
-

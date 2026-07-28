@@ -9,95 +9,92 @@ const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
 
 const packages = [
   {
-    name: 'Landing',
-    eyebrow: 'Jedna usługa, jeden konkretny cel',
-    problem: 'Potrzebujesz profesjonalnie pokazać ofertę i ułatwić klientowi kontakt.',
-    outcome: 'Otrzymujesz gotową stronę opartą na Twojej ofercie, sposobie pracy i pytaniach, które zadają klienci.',
+    name: 'Strona na jedną usługę',
+    eyebrow: 'Pozyskiwanie wyłączności lub dedykowana usługa',
+    problem: 'Chcesz przekonać sprzedającego do umowy na wyłączność lub promować konkretny rejon/inwestycję.',
+    outcome: 'Otrzymujesz dopracowaną stronę sprzedażową skupioną na pozyskiwaniu leadów i budowaniu zaufania.',
     features: [
-      'Struktura strony ułożona pod Twój biznes',
-      'Komplet najważniejszych sekcji sprzedażowych',
-      'Pomoc w uporządkowaniu i napisaniu treści',
-      'Oferta, realizacje, opinie, FAQ i kontakt',
-      'Formularz kontaktowy z powiadomieniem',
+      'Struktura ułożona pod pozyskiwanie wyłączności i klientów',
+      'Sekcja zaufania, opinii klientów i wyników sprzedaży',
+      'Formularz darmowej wyceny / zgłoszenia nieruchomości',
+      'Pomoc w uporządkowaniu i napisaniu przekonujących treści',
       'Pełna wersja mobilna i szybkie ładowanie',
-      'Analityka i mierzenie najważniejszych kliknięć',
+      'Analityka i mierzenie zgłoszeń klientów',
     ],
     amount: 1997,
     featured: false,
     support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
-    cta: 'Wybieram Landing',
+    cta: 'Wybieram stronę na jedną usługę',
   },
   {
-    name: 'Strona z obsługą klienta',
-    eyebrow: 'Strona, która odpowiada i umawia',
-    problem: 'Klienci pytają o to samo, czekają na odpowiedź albo rezygnują przed kontaktem.',
-    outcome: 'Strona przedstawia ofertę, odpowiada na typowe pytania i prowadzi klienta do wiadomości lub rezerwacji terminu.',
+    name: 'Strona z chatbotem AI',
+    eyebrow: 'Obsługa klientów i kwalifikacja 24/7',
+    problem: 'Klienci pytają o nieruchomości wieczorami i w weekendy, a Ty tracisz czas na niekwalifikowane rozmowy.',
+    outcome: 'Strona z Agentem AI 24/7, który odpowiada na pytania o lokale, zbiera wymagania i umawia prezentacje.',
     features: [
-      'Wszystko, co zawiera pakiet Landing',
-      'Rozbudowana prezentacja kilku usług',
-      'Chatbot AI z wiedzą o Twojej firmie',
-      'Rozbudowany formularz dopasowany do usługi',
-      'Automatyczne potwierdzenie dla klienta',
-      'Natychmiastowe powiadomienie o zapytaniu',
-      'Rezerwacja terminu spotkania',
-      'Dodatkowe scenariusze obsługi najczęstszych pytań',
+      'Wszystko, co zawiera pakiet Strona na jedną usługę',
+      'Rozbudowana prezentacja wszystkich usług biura',
+      'Agent AI 24/7 z pełną wiedzą o Twojej firmie i rejonie',
+      'Wstępna kwalifikacja kupujących (budżet, metraż, lokalizacja)',
+      'Automatyczne umawianie spotkań i prezentacji',
+      'Natychmiastowe powiadomienie o gorącym zapytaniu',
+      'Dedykowane scenariusze odpowiedzi dla kupujących i sprzedających',
     ],
-    amount: 2299,
+    amount: 2397,
     featured: true,
     support: '30 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
-    cta: 'Chcę stronę z AI',
+    cta: 'Chcę stronę z AI agentem',
   },
   {
-    name: 'Pełny pakiet z panelem',
-    eyebrow: 'Dla firmy, która regularnie się rozwija',
-    problem: 'Chcesz samodzielnie rozwijać ofertę, publikować wiedzę i aktualizować materiały dla klientów oraz AI.',
-    outcome: 'Otrzymujesz pełną stronę z panelem, blogiem, bazą wiedzy i możliwością dalszego rozwoju bez budowania wszystkiego od nowa.',
+    name: 'Strona z panelem do zarządzania',
+    eyebrow: 'Twój własny portal nieruchomości z AI',
+    problem: 'Chcesz błyskawicznie samemu dodawać i edytować oferty bez znajomości kodowania i drogich abonamentów.',
+    outcome: 'Otrzymujesz pełną stronę biura z intuicyjnym panelem oraz AI agentem połączonym z aktualną bazą ofert.',
     features: [
-      'Wszystko, co zawiera pakiet z obsługą klienta',
-      'Pełna strona z kilkoma podstronami',
-      'Panel administracyjny po polsku',
-      'Samodzielna edycja oferty i realizacji',
-      'Dodawanie wpisów na blogu i do bazy wiedzy',
-      'Aktualizowanie wiedzy chatbota AI',
-      'Rozbudowana analityka zachowań klientów',
-      'Instrukcja obsługi i wdrożenie do panelu',
+      'Wszystko, co zawiera pakiet Strona z chatbotem AI',
+      'Dedykowany panel administracyjny w języku polskim',
+      'Dodawanie i edycja ofert w 2 minuty (zdjęcia, cena, parametry)',
+      'Automatyczna synchronizacja bazy ofert z wiedzą AI Agenta',
+      'Moduł bloga / bazy wiedzy o rynku nieruchomości (SEO)',
+      'Rozbudowana analityka popularności ofert',
+      'Instrukcja wideo i przeszkolenie z obsługi panelu',
     ],
-    amount: 3099,
+    amount: 2997,
     featured: false,
     support: '60 dni opieki w cenie, potem opcjonalnie od 29 do 99 zł/mies. zależnie od konfiguracji.',
-    cta: 'Potrzebuję pełnego pakietu',
+    cta: 'Potrzebuję strony z panelem',
   },
 ] as const
 
 const automationExamples = [
-  'Chatbot zna Twoją ofertę, odpowiada klientom i przekazuje trudniejsze pytania Tobie.',
-  'Klient wysyła formularz, od razu dostaje potwierdzenie, a Ty komplet informacji o zapytaniu.',
-  'AI czyta długą wiadomość, przygotowuje krótkie podsumowanie i propozycję odpowiedzi.',
-  'Po wykonaniu usługi klient automatycznie otrzymuje przypomnienie lub prośbę o opinię.',
+  'Chatbot zna Twoje nieruchomości, odpowiada klientom 24/7 i zbiera kryteria wyszukiwania.',
+  'Formularz zgłoszenia mieszkania automatycznie powiadamia agenta i wysyła potwierdzenie sprzedającemu.',
+  'AI czyta zapytanie inwestora, przygotowuje dopasowane zestawienie i propozycję kontaktu.',
+  'Po udanej transakcji lub prezentacji klient automatycznie dostaje podsumowanie i prośbę o opinię.',
 ] as const
 
 const includedInEveryWebsite = [
-  'Analiza oferty i sposobu działania firmy',
-  'Projekt dopasowany do telefonu i komputera',
+  'Analiza oferty i specyfiki rynku nieruchomości',
+  'Projekt idealnie dopasowany do telefonu i komputera',
   'Szybkość, bezpieczeństwo i podstawowa analityka',
   'SEO, GEO i AEO wbudowane w strukturę strony',
 ] as const
 
 const clientQuestions = [
   {
-    label: 'Strona',
-    question: 'Klient trafia na stronę, ale nadal nie rozumie, dlaczego ma wybrać właśnie Ciebie?',
-    answer: 'Porządkujemy ofertę i pokazujemy wartość firmy językiem decyzji klienta — bez pustych haseł i przypadkowych sekcji.',
+    label: 'Strona na usługę',
+    question: 'Właściciel nieruchomości nie rozumie, dlaczego ma powierzyć sprzedaż właśnie Tobie na wyłączność?',
+    answer: 'Porządkujemy Twoją ofertę i udowadniamy wartość Twojej pracy językiem korzyści dla sprzedającego — budując natychmiastowe zaufanie.',
   },
   {
-    label: 'Strona + obsługa',
-    question: 'Te same pytania wracają przed każdym telefonem, mailem lub wyceną?',
-    answer: 'Strona odpowiada wcześniej, zbiera właściwe informacje i prowadzi klienta do kontaktu albo rezerwacji terminu.',
+    label: 'Strona + AI Agent',
+    question: 'Telefon dzwoni po godzinach pracy, a pytania o metraż i cenę powtarzają się bez końca?',
+    answer: 'Agent AI odpowiada 24/7 na pytania o rejony i nieruchomości, zbiera wymagania klienta i umawia prezentację bezpośrednio do Twojego kalendarza.',
   },
   {
-    label: 'Automatyzacja',
-    question: 'Zespół ręcznie przepisuje dane, pilnuje statusów i wykonuje w kółko te same kroki?',
-    answer: 'Najpierw upraszczamy proces, a potem automatyzujemy tylko tę część, która realnie oszczędza czas i ogranicza błędy.',
+    label: 'Strona z panelem',
+    question: 'Wprowadzanie nowych ofert na własną stronę jest powolne lub płacisz wysokie abonamenty?',
+    answer: 'Przekazujemy Ci banalnie prosty panel po polsku — dodajesz ofertę w 2 minuty, a chatbot AI od razu poznaje nowe nieruchomości.',
   },
 ] as const
 
@@ -238,13 +235,15 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
           <span className="package-price mt-1 block text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7] tabular-nums">
             <span>{pkg.amount}</span>
             <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
+            <span>{pkg.amount}</span>
+            <span className="ml-1 text-[1rem] font-bold text-[#A6B2C4]">zł</span>
           </span>
         </div>
 
         <p className="mt-5 text-[12px] font-semibold text-[#8B97A8]">W pakiecie otrzymujesz</p>
         <ul className="mt-4 flex flex-col gap-2.5">
           {pkg.features.map((feature, index) => (
-            <li key={feature} className={`flex items-start gap-2.5 text-[13.5px] leading-[1.55] ${index === 0 && pkg.name !== 'Landing' ? 'font-semibold text-[#EAF0F7]' : 'text-[#A6B2C4]'}`}>
+            <li key={feature} className={`flex items-start gap-2.5 text-[13.5px] leading-[1.55] ${index === 0 && pkg.name !== 'Strona na jedną usługę' ? 'font-semibold text-[#EAF0F7]' : 'text-[#A6B2C4]'}`}>
               <CheckMark />
               {feature}
             </li>

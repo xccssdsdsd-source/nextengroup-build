@@ -214,7 +214,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
           />
         )}
         <div className="lg:min-h-[82px]">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex min-h-[26px] items-center justify-between gap-3">
             <span className="text-[12px] font-medium text-[#8B97A8]">{pkg.eyebrow}</span>
             {pkg.featured && (
               <span className="flex-shrink-0 rounded-full bg-[rgba(58,175,232,0.12)] px-2.5 py-1 text-[10.5px] font-semibold text-[#75C0E2] shadow-[0_0_16px_rgba(58,175,232,0.18)]">

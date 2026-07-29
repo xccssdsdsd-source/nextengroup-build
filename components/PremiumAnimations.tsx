@@ -49,6 +49,12 @@ export default function PremiumAnimations() {
           el.style.transform = ''
           el.classList.add('io-visible')
           io.unobserve(el)
+          // Drop the promoted layer once the reveal is done. Leaving elements
+          // permanently composited let Chrome keep a stale pre-webfont paint
+          // around, which showed up as ghosted/doubled headings and prices.
+          window.setTimeout(() => {
+            el.style.willChange = 'auto'
+          }, 1200)
         })
       },
       { threshold: 0, rootMargin: '0px 0px -6% 0px' },

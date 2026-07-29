@@ -1047,8 +1047,11 @@ select {
   display: inline;
 }
 
-.hero-headline-token + .hero-headline-token {
-  margin-left: 0.2em;
+/* A real space rather than a left margin: a margin survives a line break and
+   pushed every wrapped line 0.2em to the right, leaving the headline with a
+   ragged left edge on narrow viewports. */
+.hero-headline-token + .hero-headline-token::before {
+  content: ' ';
 }
 
 .card-sheen {
@@ -3689,6 +3692,44 @@ body {
   display: none;
 }
 
+/* Clash Display's weight axis stops at 700. Any heavier value made the browser
+   fake the weight by double-drawing each glyph, which smeared the strokes and
+   closed up the word gaps ("Strony i automatyzacje" read as one word). The hero
+   was the only heading already inside the axis, and the only one rendering
+   cleanly — the rest of the display type now matches it. */
+*,
+*::before,
+*::after {
+  font-synthesis: none;
+  font-synthesis-weight: none;
+}
+
+[style*="--font-heading"],
+[style*="--font-display"],
+.section-title,
+.hero-heading-line {
+  font-weight: 620;
+  letter-spacing: -0.026em;
+  word-spacing: 0.045em;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.9vw, 3.1rem);
+  line-height: 1.06;
+}
+
+.package-price {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 640px) {
+  [style*="--font-heading"],
+  .section-title {
+    letter-spacing: -0.022em;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .nav-island:hover {
     border-color: rgba(140, 216, 255, 0.22);
@@ -3960,8 +4001,8 @@ html.motion-ready [data-motion-copy] {
    moving the rest of the navigation. Flex-end pins its right edge in place;
    only the left edge travels as the width transition is retargeted. */
 .nav-cta-slot {
-  width: 14rem;
-  flex: 0 0 14rem;
+  width: 15.5rem;
+  flex: 0 0 15.5rem;
   align-items: center;
   justify-content: flex-end;
   contain: layout style;
@@ -3969,7 +4010,7 @@ html.motion-ready [data-motion-copy] {
 
 .nav-cta {
   min-width: 6.5rem;
-  max-width: 14rem;
+  max-width: 15.5rem;
   flex: none;
   overflow: hidden;
   transition:

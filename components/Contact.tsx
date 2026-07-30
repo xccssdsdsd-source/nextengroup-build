@@ -208,7 +208,7 @@ export default function Contact() {
                 <div className="calendly-widget w-full overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '680px', height: '680px' }}>
                   <iframe
                     title="Umów spotkanie z Getbuild"
-                    src="https://calendly.com/getbuild-pl/30min?embed_type=Inline"
+                    src="https://calendly.com/getbuild-pl/30min?embed_type=Inline&background_color=0d1528&text_color=eaf0f7&primary_color=3aafe8&hide_gdpr_banner=1"
                     loading="lazy"
                     className="h-full w-full border-0"
                     allow="camera; microphone; fullscreen"

@@ -195,15 +195,20 @@ export default function DeviceMockups() {
     let mx = 0, my = 0
     let cx = 0, cy = 0
     let scrollY = 0
+    let heroH = window.innerHeight
     let active = false
     let ready = false
+
+    const measureHero = () => {
+      const hero = document.getElementById('hero')
+      heroH = hero?.offsetHeight ?? window.innerHeight
+    }
+    measureHero()
 
     const tick = () => {
       cx += (mx - cx) * 0.055
       cy += (my - cy) * 0.055
 
-      const hero = document.getElementById('hero')
-      const heroH = hero?.offsetHeight ?? window.innerHeight
       const sp = Math.min(scrollY / heroH, 1)
       const rotX = -sp * 18
       const tY   = -sp * 40
@@ -218,8 +223,9 @@ export default function DeviceMockups() {
           `translate(${(cx*7).toFixed(2)}px,${(cy*5+tY*0.88+16).toFixed(2)}px) rotateX(${(rotX*0.85).toFixed(2)}deg) scale(${(scl*0.97).toFixed(4)})`
       }
 
-      const settled = Math.abs(mx-cx)<0.003 && Math.abs(my-cy)<0.003 && sp===0
-      if (settled) { active=false; return }
+      const cursorSettled = Math.abs(mx-cx)<0.003 && Math.abs(my-cy)<0.003
+      const scrollSettled = sp===0 || sp>=1
+      if (cursorSettled && scrollSettled) { active=false; return }
       raf = requestAnimationFrame(tick)
     }
 
@@ -231,20 +237,26 @@ export default function DeviceMockups() {
     }
     const onLeave = () => { mx=0; my=0 }
     const onScroll = () => {
+      const prevSp = Math.min(scrollY / heroH, 1)
       scrollY = window.scrollY
+      const nextSp = Math.min(scrollY / heroH, 1)
+      if (prevSp === nextSp) return
       if (!active) { active=true; raf=requestAnimationFrame(tick) }
     }
+    const onResize = () => measureHero()
 
     const readyTimer = setTimeout(() => { ready = true }, 900)
 
     window.addEventListener('mousemove', onMove, { passive: true })
     window.addEventListener('scroll',    onScroll, { passive: true })
+    window.addEventListener('resize',    onResize)
     document.addEventListener('mouseleave', onLeave)
     return () => {
       clearTimeout(readyTimer)
       cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
       document.removeEventListener('mouseleave', onLeave)
     }
   }, [])

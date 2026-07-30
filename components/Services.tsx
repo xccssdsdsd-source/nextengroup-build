@@ -196,7 +196,6 @@ function CheckMark() {
 function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[number]; onLearnMoreAboutCare: () => void }) {
   return (
     <article
-      data-anime-card
       data-featured={pkg.featured ? 'true' : 'false'}
       className={`service-package-card group relative h-full overflow-hidden rounded-2xl border transition-[box-shadow,border-color] duration-300 ${
         pkg.featured

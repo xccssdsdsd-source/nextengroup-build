@@ -249,10 +249,14 @@ export default function PremiumAnimations() {
         let cardMotion: ReturnType<typeof animate> | null = null
         let glareMotion: ReturnType<typeof animate> | null = null
         const onEnter = () => {
+          cardMotion?.revert()
+          glareMotion?.revert()
           cardMotion = animate(el, { y: -2, duration: 220, ease: 'outQuart' })
           glareMotion = animate(glare, { opacity: 1, duration: 180, ease: 'outQuart' })
         }
         const onLeave = () => {
+          cardMotion?.revert()
+          glareMotion?.revert()
           cardMotion = animate(el, { y: 0, duration: 180, ease: 'outQuart' })
           glareMotion = animate(glare, { opacity: 0, duration: 140, ease: 'outQuart' })
         }

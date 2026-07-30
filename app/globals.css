@@ -1043,15 +1043,13 @@ select {
   text-shadow: none;
 }
 
+/* Spacing between words is a real text-node space rendered by
+   HeroHeadlineLine, not CSS margin or generated content — both of those
+   survive a line break and push wrapped rows to the right, leaving the
+   headline with a ragged left edge. A real space collapses correctly at
+   the wrap point like normal text. */
 .hero-headline-token {
   display: inline;
-}
-
-/* A real space rather than a left margin: a margin survives a line break and
-   pushed every wrapped line 0.2em to the right, leaving the headline with a
-   ragged left edge on narrow viewports. */
-.hero-headline-token + .hero-headline-token::before {
-  content: ' ';
 }
 
 .card-sheen {

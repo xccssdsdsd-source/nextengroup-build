@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { Fragment, useEffect, useState, type MouseEvent } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
 import ChatWidget from './ChatWidget'
 import HeroBackdrop from './ui/HeroBackdrop'
@@ -59,9 +59,12 @@ const HeroWord = ({ word, delay }: { word: HeroHeadlineWord; delay: number }) =>
 const HeroHeadlineLine = ({ words, startDelay }: { words: HeroHeadlineWord[]; startDelay: number }) => (
   <>
     {words.map((word, i) => (
-      <span key={word.text} className="hero-headline-token">
-        <HeroWord word={word} delay={startDelay + i * 45} />
-      </span>
+      <Fragment key={word.text}>
+        {i > 0 && ' '}
+        <span className="hero-headline-token">
+          <HeroWord word={word} delay={startDelay + i * 45} />
+        </span>
+      </Fragment>
     ))}
   </>
 )

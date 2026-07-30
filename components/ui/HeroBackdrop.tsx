@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { subscribeScroll } from '@/lib/scrollTicker'
 import styles from './HeroBackdrop.module.css'
 
 export default function HeroBackdrop() {
@@ -23,24 +24,16 @@ export default function HeroBackdrop() {
   useEffect(() => {
     const root = rootRef.current
     if (!root) return
-    let frame = 0
     const onScroll = () => {
-      if (frame || !inRangeRef.current) return
-      frame = window.requestAnimationFrame(() => {
-        frame = 0
-        const h = (window.innerHeight || 1) * 0.94
-        const p = Math.min(Math.max(window.scrollY / h, 0), 1)
-        const eased = p * p * (3 - 2 * p)
-        root.style.opacity = String(1 - eased)
-        root.style.transform = `translate3d(0, ${(window.scrollY * 0.2).toFixed(1)}px, 0)`
-      })
+      if (!inRangeRef.current) return
+      const h = (window.innerHeight || 1) * 0.94
+      const p = Math.min(Math.max(window.scrollY / h, 0), 1)
+      const eased = p * p * (3 - 2 * p)
+      root.style.opacity = String(1 - eased)
+      root.style.transform = `translate3d(0, ${(window.scrollY * 0.2).toFixed(1)}px, 0)`
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
+    return subscribeScroll(onScroll)
   }, [])
 
   return (

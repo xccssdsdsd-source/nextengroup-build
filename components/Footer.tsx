@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-[12.5px] leading-[1.7] text-[#A6B2C4]">
-            Projektujemy i wdrażamy rozwiązania IT. Tworzymy strony WWW, automatyzacje AI i agentów AI wspierających Twój biznes.
+            Projektujemy i wdrażamy strony WWW oraz agentów AI wspierających Twój biznes.
           </p>
         </m.div>
 

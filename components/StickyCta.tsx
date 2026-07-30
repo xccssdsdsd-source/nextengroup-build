@@ -3,6 +3,7 @@
 import { m, AnimatePresence } from 'framer-motion'
 import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
+import { subscribeScroll } from '@/lib/scrollTicker'
 
 export default function StickyCta() {
   const [visible, setVisible] = useState(false)
@@ -17,10 +18,10 @@ export default function StickyCta() {
       setContactInView(Boolean(rect && rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12))
     }
     onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
+    const unsubscribeScroll = subscribeScroll(onScroll)
     window.addEventListener('resize', onScroll)
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      unsubscribeScroll()
       window.removeEventListener('resize', onScroll)
     }
   }, [])

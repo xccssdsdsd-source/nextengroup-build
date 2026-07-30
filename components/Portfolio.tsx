@@ -526,7 +526,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#3AAFE8] underline hover:text-[#06EFFF]">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#3AAFE8] underline hover:text-[#3AAFE8]">Zobacz więcej</button></>
                     )}
                   </p>
 

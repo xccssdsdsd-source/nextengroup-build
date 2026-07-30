@@ -14,15 +14,6 @@ const services = [
     color: '#3AAFE8',
   },
   {
-    id: 'ai',
-    title: 'Automatyzacje AI',
-    description:
-      'Automatyzujemy procesy biznesowe przy użyciu AI i zaawansowanych systemów. Mniej błędów, mniej ręcznej pracy, większa efektywność.',
-    tags: ['Automatyzacja procesów', 'Integracje z systemami', 'Monitoring i raportowanie'],
-    icon: '⚡',
-    color: '#F5B547',
-  },
-  {
     id: 'agents',
     title: 'Agenci AI',
     description:
@@ -81,7 +72,7 @@ const PAGES_CONFIG = [
     open: { rotate: 16, x: 90, y: -85 },
     transition: { type: 'spring' as const, duration: 0.56, bounce: 0.17, stiffness: 165, damping: 20 },
     zIndex: 4,
-    serviceIndex: 2,
+    serviceIndex: 1,
   },
 ]
 
@@ -137,7 +128,7 @@ export default function FolderServices() {
           <svg viewBox="0 0 210 150" preserveAspectRatio="none" className="w-full h-full block" style={{ overflow: 'visible' }}>
             <defs>
               <linearGradient id="sb-flapGrad" x1="0" y1="22" x2="0" y2="150" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="rgba(94,234,255,0.7)" />
+                <stop offset="0%" stopColor="rgba(140,216,255,0.7)" />
                 <stop offset="30%" stopColor="rgba(58,175,232,0.8)" />
                 <stop offset="65%" stopColor="rgba(8,145,178,0.9)" />
                 <stop offset="100%" stopColor="rgba(14,116,144,0.97)" />

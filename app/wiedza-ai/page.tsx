@@ -53,7 +53,7 @@ const faqSchema = {
       name: 'Czym jest automatyzacja AI dla firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to zautomatyzowane systemy. Przykłady: automatyczne odpowiedzi na pytania klientów, wysyłanie e-maili z danymi z arkuszy, generowanie ofert na podstawie parametrów. Wynik: mniej błędów, szybsza obsługa klientów, więcej czasu dla zespołu.',
+        text: 'Automatyzacja AI łączy narzędzia sztucznej inteligencji z procesami firmy — odpowiedzi na maile, przypomnienia, kwalifikacja leadów czy generowanie dokumentów dzieją się bez ręcznej pracy. Efekt: mniej błędów i więcej czasu dla zespołu.',
       },
     },
     {
@@ -61,7 +61,7 @@ const faqSchema = {
       name: 'Czym jest agent AI i czym różni się od zwykłej automatyzacji?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Agent AI to bardziej zaawansowany system — nie tylko wykonuje zadania, ale podejmuje decyzje, działa niezależnie i obsługuje wieloetapowe procesy. Pracuje 24/7 i dostosowuje działania do kontekstu. W przeciwieństwie do prostej automatyzacji, agent AI może przeprowadzić rozmowę z klientem, kwalifikować leady, zaproponować rozwiązania i eskalować sprawę do człowieka gdy to konieczne.',
+        text: 'Agent AI nie tylko wykonuje zadania, ale podejmuje decyzje i obsługuje wieloetapowe procesy 24/7. Może prowadzić rozmowę z klientem, kwalifikować leady i eskalować sprawę do człowieka, gdy to konieczne.',
       },
     },
     {
@@ -69,7 +69,7 @@ const faqSchema = {
       name: 'Ile kosztuje automatyzacja AI lub agent AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Koszty są zmienne. Prosta automatyzacja (np. powiadomienia e-mail) może kosztować kilkaset złotych jednorazowo. Bardziej złożone systemy i agenci AI wymagają więcej pracy i kosztują więcej. Kluczowe pytanie to nie "ile kosztuje", ale "ile zaoszczędzi". Getbuild zawsze podaje konkretne liczby i porównanie nakładów do oszczędności przed wdrożeniem.',
+        text: 'Koszty są zmienne — proste automatyzacje to zwykle kilkaset złotych jednorazowo, bardziej złożone systemy wymagają więcej pracy. Ważniejsze pytanie niż "ile kosztuje" to "ile zaoszczędzi".',
       },
     },
     {
@@ -77,7 +77,7 @@ const faqSchema = {
       name: 'Kiedy firma jest gotowa na automatyzacje AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Automatyzacja AI ma sens dla każdej firmy, która ma powtarzalne zadania wykonywane codziennie w ten sam sposób — niezależnie od wielkości. Dobre punkty startowe: odpowiadanie na te same pytania klientów, ręczne wysyłanie wiadomości po zamówieniu, kopiowanie danych między systemami, generowanie ofert, zarządzanie kalendarzem. Getbuild pracuje głównie z małymi i średnimi firmami usługowymi.',
+        text: 'Wtedy, gdy zespół codziennie wykonuje te same czynności ręcznie: odpowiada na powtarzalne pytania, kopiuje dane między systemami, generuje oferty czy zarządza kalendarzem.',
       },
     },
     {
@@ -85,7 +85,7 @@ const faqSchema = {
       name: 'Czy strona internetowa może być zintegrowana z automatyzacją AI?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Tak — i to jest miejsce, gdzie automatyzacja przynosi największą wartość. Formularz kontaktowy może automatycznie kwalifikować zapytanie i wysyłać spersonalizowaną odpowiedź. Chat obsługiwany przez agenta AI odpowiada 24/7. System rezerwacji może wysyłać automatyczne przypomnienia i follow-upy. Getbuild projektuje stronę i automatyzacje razem jako jeden spójny system.',
+        text: 'Tak. Formularz kontaktowy może kwalifikować zapytania i wysyłać spersonalizowaną odpowiedź, a chat z agentem AI odpowiada 24/7 — strona i automatyzacja działają razem jako jeden system.',
       },
     },
     {
@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, a pełny pakiet z panelem 60 dni. Po tym okresie stała opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konkretnej strony i wybranej konfiguracji. Przed zobowiązaniem finansowym klient otrzymuje pierwszą wizualizację i poznaje pełny zakres projektu.',
+        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, pełny pakiet z panelem 60 dni. Później opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konfiguracji.',
       },
     },
     {
@@ -101,7 +101,7 @@ const faqSchema = {
       name: 'Ile czasu trwa stworzenie strony internetowej?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Podstawowa profesjonalna strona może być gotowa w 72 godziny od zebrania materiałów. Bardziej złożone projekty zajmują więcej czasu. Getbuild najpierw przygotowuje bezpłatny mockup — wizualną koncepcję strony. Po zatwierdzeniu designu następuje wdrożenie.',
+        text: 'Podstawowa strona może być gotowa w 72 godziny od zebrania materiałów — bardziej złożone projekty zajmują więcej czasu. Najpierw powstaje bezpłatny mockup, a wdrożenie następuje po jego akceptacji.',
       },
     },
   ],
@@ -134,16 +134,10 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Automatyzacja AI to połączenie narzędzi sztucznej inteligencji z procesami biznesowymi Twojej firmy. Zamiast ręcznie odpowiadać na maile, wysyłać przypomnienia, kwalifikować leady czy generować dokumenty — robią to za Ciebie zautomatyzowane systemy. To nie o zastępowaniu ludzi, ale o uwolnieniu Twojego zespołu od powtarzających się zadań.
+              Automatyzacja AI łączy narzędzia sztucznej inteligencji z procesami firmy — odpowiedzi na maile, przypomnienia, kwalifikacja leadów czy generowanie dokumentów dzieją się bez ręcznej pracy. Dobry kandydat to każda czynność, która powtarza się codziennie w ten sam sposób.
             </p>
             <p>
-              Praktyczne przykłady: automatyczne odpowiedzi na najczęstsze pytania klientów, wysyłanie e-maili uzupełnionych danymi z arkuszy, generowanie ofert na podstawie parametrów, sortowanie i klasyfikowanie zapytań. Każda z tych czynności, jeśli powtarza się codziennie, jest idealnym kandydatem do automatyzacji.
-            </p>
-            <p>
-              W Getbuild zawsze zaczynamy od analizy — nie szukamy gotowych rozwiązań, ale rozumiemy dokładnie, jak pracuje Twoja firma, gdzie marnuje się czas i gdzie automatyzacja przyniesie największą korzyść.
-            </p>
-            <p>
-              Rezultat? Mniej błędów, szybsza obsługa klientów, więcej czasu dla Twojego zespołu na pracę, która rzeczywiście tworzy wartość.
+              Efekt: mniej błędów, szybsza obsługa klientów i więcej czasu dla zespołu na pracę, która realnie tworzy wartość.
             </p>
           </div>
         </div>
@@ -156,16 +150,10 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Agent AI to bardziej zaawansowany system — nie tylko wykonuje zadania, ale także podejmuje decyzje, działa niezależnie i potrafi obsługiwać wieloetapowe procesy. Agent pracuje 24/7, uczy się z każdą interakcją i dostosowuje swoje działania do kontekstu.
+              Agent AI nie tylko wykonuje zadania, ale podejmuje decyzje i obsługuje wieloetapowe procesy 24/7. W przeciwieństwie do prostej automatyzacji może prowadzić rozmowę z klientem, kwalifikować leady, proponować rozwiązania i eskalować sprawę do człowieka, gdy to konieczne.
             </p>
             <p>
-              W przeciwieństwie do prostej automatyzacji (np. wysłanie mejla po złożeniu zamówienia), agent AI może: przeprowadzić rozmowę z potencjalnym klientem, odpowiedzieć na zmieniające się pytania, samodzielnie kwalifikować leady, zaproponować rozwiązania, a w razie potrzeby eskalować sprawę do człowieka.
-            </p>
-            <p>
-              Praktyczne przykłady agentów AI: agent obsługujący zapytania klientów przez chat na stronie, agent sprzedażowy, który prowadzi rozmowę i umawia spotkania, agent analizy danych, który monitoruje metryki biznesowe i wysyła codzienne raporty.
-            </p>
-            <p>
-              Agent to inwestycja na dłużej — im więcej z nim pracuje Twoja firma, tym lepiej się uczy i tym bardziej staje się dostosowany do Twoich procesów.
+              Przykłady: agent obsługujący zapytania przez chat na stronie, agent sprzedażowy umawiający spotkania, agent analityczny wysyłający codzienne raporty.
             </p>
           </div>
         </div>
@@ -178,16 +166,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Koszty są bardzo zmienne. Prosta automatyzacja — np. wysyłanie e-maili powiadomień lub powiadomienia o nowych zapytaniach — może kosztować kilkaset złotych jako jednorazowa konfiguracja. Bardziej złożone systemy i agenci wymagają więcej pracy i kosztują więcej.
-            </p>
-            <p>
-              Kluczowe pytanie to nie „ile to będzie kosztować", ale „ile ta automatyzacja mi zaoszczędzi". Jeśli Twój zespół spędza 5 godzin tygodniowo na ręcznym sortowaniu e-maili, a automatyzacja to skraca do 30 minut — ta oszczędność szybko zwraca się z nawiązką.
-            </p>
-            <p>
-              Naszą rekomendacją jest zawsze zacząć z jednym procesem — tym, który marnuje Ci teraz najwięcej czasu. Zmierz wynik, zobacz korzyści, a potem rozwiń na kolejne obszary biznesu. W Getbuild nie namęcimy Cię na drogi system, jeśli prosty lepiej odpowiada Twoim potrzebom.
-            </p>
-            <p>
-              Zawsze najpierw mówimy o konkretnych liczbach, porównaniu nakładów do oszczędności i doradzimy, czy wdrożenie ma sens biznesowy dla Twojej firmy.
+              Koszty są zmienne — proste automatyzacje to zwykle kilkaset złotych jednorazowo, bardziej złożone systemy wymagają więcej pracy. Ważniejsze pytanie niż „ile kosztuje" to „ile zaoszczędzi": zaczynamy od jednego procesu, mierzymy efekt i dopiero potem rozwijamy dalej.
             </p>
           </div>
         </div>
@@ -200,16 +179,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Nie potrzebujesz być dużą firmą ani mieć wewnętrznych IT-owców. Automatyzacja AI ma sens dla każdej firmy, która ma powtarzalne zadania robione w ten sam sposób codziennie. Czy to jedna osoba, czy pięciu pracowników — jeśli spędzają czas na czynności, które można zautomatyzować, to jest potencjał.
-            </p>
-            <p>
-              Dobre punkty startowe: odpowiadanie na te same pytania od klientów w kółko, ręczne wysyłanie wiadomości po zamówieniu, kopiowanie danych z jednego systemu do drugiego, generowanie ofert lub protokołów, zarządzanie kalendarzem i umawianiem spotkań.
-            </p>
-            <p>
-              Pracujemy głównie z małymi i średnimi firmami usługowymi w Polsce — agentami nieruchomości, projektantami wnętrz, firmami budowlanymi, renowacyjnymi, usługami czyszczenia, doradcami prawnymi, doradcami finansowymi, producentami mebli. Żaden z nich nie miał wewnętrznego zespołu AI, ale wszystkim udało się automatyzować procesy, które im utrudniały życie.
-            </p>
-            <p>
-              Jeśli masz wątpliwości, czy coś się opłaca — zaproś nas do rozmowy. Często wystarczy krótka rozmowa, żeby zobaczyć, czy automatyzacja ma sens w Twoim przypadku.
+              Nie musisz być dużą firmą ani mieć własnego IT. Wystarczy, że zespół codziennie wykonuje te same czynności ręcznie: odpowiada na powtarzalne pytania, kopiuje dane między systemami, generuje oferty czy zarządza kalendarzem.
             </p>
           </div>
         </div>
@@ -222,16 +192,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Tak — i to jest właśnie tam, gdzie automatyzacja zazwyczaj zaczyna przynosić największą wartość. Strona internetowa to naturalny punkt wejścia dla automatyzacji.
-            </p>
-            <p>
-              Przykłady: formularz kontaktowy, który zamiast wysłać mejla do skrzynki, automatycznie kwalifikuje zapytanie i wysyła spersonalizowaną odpowiedź? Chat na stronie obsługiwany przez agenta AI, który odpowiada na pytania 24/7? System rezerwacji, który nie tylko ustawia spotkanie w kalendarzu, ale wysyła automatyczne przypomnienia i follow-upy?
-            </p>
-            <p>
-              Budując stronę, możemy od razu zaprojektować ją w taki sposób, aby dobrze współpracowała z automatyzacją. To znaczy — formularz zbiera dokładnie te dane, które agent będzie musiał przeanalizować, a przepływ informacji jest płynny i nie wymaga ręcznego kopiowania.
-            </p>
-            <p>
-              W Getbuild projektujemy stronę i automatyzacje razem, jako jeden spójny system — jeśli chcesz, aby Twoja strona nie tylko wyglądała dobrze, ale także pracowała dla Twojego biznesu.
+              Tak. Formularz kontaktowy może kwalifikować zapytania i wysyłać spersonalizowaną odpowiedź, a chat z agentem AI odpowiada 24/7. Stronę projektujemy tak, by dobrze współpracowała z automatyzacją od początku — strona i automatyzacja działają razem jako jeden system.
             </p>
           </div>
         </div>
@@ -257,13 +218,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
             <p>
-              Podstawowa strona profesjonalna może być gotowa w ciągu 72 godzin od zebrania materiałów. To znaczy — jak dostarczysz nam teksty, zdjęcia i wiadomi, jakie informacje chcesz na stronie — w 3 dni projekt jest gotowy.
-            </p>
-            <p>
-              Bardziej złożone projekty zajmują więcej czasu. Ale najpierw robimy Ci bezpłatny mockup — wizualną koncepcję strony. Zatwierdzisz design, a potem wdrażamy.
-            </p>
-            <p>
-              Po uruchomieniu możesz w dowolnym momencie prosić o zmiany — Adam zajmie się nimi bezpośrednio.
+              Podstawowa strona może być gotowa w 72 godziny od zebrania materiałów — bardziej złożone projekty zajmują więcej czasu. Najpierw powstaje bezpłatny mockup, a wdrożenie następuje po jego akceptacji.
             </p>
           </div>
         </div>
@@ -279,7 +234,7 @@ export default function WiedzaAI() {
           </p>
           <a
             href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#22D3EE] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#5EEAFF] hover:shadow-[0 8px 24px rgba(34,211,238,0.22)] hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0 8px 24px rgba(58,175,232,0.22)] hover:-translate-y-0.5"
           >
             Skontaktuj się
           </a>

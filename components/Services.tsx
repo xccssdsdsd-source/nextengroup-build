@@ -66,13 +66,6 @@ const packages = [
   },
 ] as const
 
-const automationExamples = [
-  'Chatbot zna Twoje nieruchomości, odpowiada klientom 24/7 i zbiera kryteria wyszukiwania.',
-  'Formularz zgłoszenia mieszkania automatycznie powiadamia agenta i wysyła potwierdzenie sprzedającemu.',
-  'AI czyta zapytanie inwestora, przygotowuje dopasowane zestawienie i propozycję kontaktu.',
-  'Po udanej transakcji lub prezentacji klient automatycznie dostaje podsumowanie i prośbę o opinię.',
-] as const
-
 const includedInEveryWebsite = [
   'Analiza oferty i specyfiki rynku nieruchomości',
   'Projekt idealnie dopasowany do telefonu i komputera',
@@ -137,7 +130,7 @@ const detailPanels = [
           ))}
           </ul>
           <p className="mt-4 border-t border-[rgba(255,255,255,0.08)] pt-4 text-[12.5px] leading-[1.6] text-[#94A0B4]">
-            Nowe podstrony, funkcje i większa przebudowa są zawsze wyceniane przed rozpoczęciem pracy. Przy dodatkowych automatyzacjach lub funkcjach AI cena może się różnić zależnie od kosztu używanych narzędzi, liczby operacji i wybranego modelu AI.
+            Nowe podstrony, funkcje i większa przebudowa są zawsze wyceniane przed rozpoczęciem pracy.
           </p>
         </div>
       </div>
@@ -160,28 +153,6 @@ const detailPanels = [
             </li>
           ))}
         </ul>
-      </div>
-    ),
-  },
-  {
-    id: 'roznice-ai',
-    title: 'Automatyzacja, AI i agent AI — czym się różnią?',
-    summary: 'Dobieramy najprostsze rozwiązanie, które naprawdę wystarczy do wykonania zadania.',
-    content: (
-      <div className="grid gap-4 md:grid-cols-3">
-        {[
-          ['Automatyzacja', 'Wykonuje stałą sekwencję kroków.', 'Po formularzu wysyła potwierdzenie, zapisuje dane i powiadamia Cię o zapytaniu.'],
-          ['Automatyzacja z AI', 'Rozumie treść wiadomości lub dokumentu.', 'Czyta pytanie klienta, przygotowuje podsumowanie albo dopasowuje wersję odpowiedzi.'],
-          ['Agent AI', 'Dobiera kolejne działania w ustalonych granicach.', 'Prowadzi rozmowę, dopytuje o brakujące informacje i może zaproponować lub zarezerwować termin.'],
-        ].map(([title, desc, example]) => (
-          <div key={title} className="rounded-xl border border-[rgba(255,255,255,0.09)] bg-[#0D1219] p-5">
-            <h4 className="text-[15px] font-bold text-[#EAF0F7]">{title}</h4>
-            <p className="mt-2 text-[13.5px] leading-[1.65] text-[#A6B2C4]">{desc}</p>
-            <p className="mt-4 border-t border-[rgba(255,255,255,0.08)] pt-4 text-[13px] leading-[1.65] text-[#C4CFDC]">
-              <span className="font-semibold text-[#8CD8FF]">Przykład: </span>{example}
-            </p>
-          </div>
-        ))}
       </div>
     ),
   },
@@ -342,7 +313,7 @@ export default function Services() {
         <div className="section-heading">
           <span className="section-kicker" suppressHydrationWarning>Usługi</span>
           <h2 className="section-title io-visible max-w-[18ch]" suppressHydrationWarning>
-            Strony i automatyzacje dopasowane do tego, jak naprawdę działa Twoja firma
+            Strony dopasowane do tego, jak naprawdę działa Twoja firma
           </h2>
           <p className="section-copy io-visible max-w-[680px]">
             Zaczynamy od sytuacji, którą chcesz zmienić — nie od wyboru technologii. Pierwszy kierunek strony widzisz zwykle w 24 godziny, prosty Landing możemy wdrożyć nawet od 72 godzin, a płacisz dopiero po zaakceptowaniu efektu.
@@ -357,7 +328,7 @@ export default function Services() {
                 Co dziś blokuje klienta albo Twój zespół?
               </h3>
               <p className="mt-5 max-w-[38ch] text-[13.5px] leading-[1.72] text-[#A6B2C4]">
-                Nie musisz wiedzieć, czy potrzebujesz strony, AI czy automatyzacji. Wystarczy opisać moment, w którym tracisz czas, zapytania albo uwagę klienta.
+                Nie musisz wiedzieć, czy potrzebujesz strony czy AI. Wystarczy opisać moment, w którym tracisz czas, zapytania albo uwagę klienta.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3">
@@ -391,57 +362,13 @@ export default function Services() {
             <span className="section-kicker">Nasze pakiety</span>
             <h2 className="section-title io-visible max-w-[15ch]">Wybierz zakres dopasowany do etapu firmy</h2>
             <p className="section-copy io-visible max-w-[690px]">
-              Każda strona powstaje na podstawie Twojego biznesu. Pakiety różnią się zakresem obsługi klienta, możliwością samodzielnej edycji i poziomem automatyzacji.
+              Każda strona powstaje na podstawie Twojego biznesu. Pakiety różnią się zakresem obsługi klienta i możliwością samodzielnej edycji.
             </p>
           </div>
 
           <div id="strony" className="mt-10 grid items-stretch gap-5 lg:grid-cols-3">
             {packages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} onLearnMoreAboutCare={() => openDetailPanel('opieka')} />)}
           </div>
-
-          <article id="automatyzacje" data-anime-card className="service-automation-card mt-7 overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#10151D] p-6 sm:p-8 lg:p-10">
-            <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
-              <div className="flex flex-col">
-                <span className="text-[12px] font-medium text-[#8B97A8]">Automatyzacja procesu biznesowego</span>
-                <h3 className="mt-4 text-[clamp(25px,3vw,38px)] font-extrabold leading-[1.06] tracking-[-0.04em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
-                  Oddaj powtarzalny proces systemowi
-                </h3>
-                <p className="mt-5 text-[14px] leading-[1.75] text-[#A6B2C4]">
-                  Pokaż nam zadanie, które regularnie zabiera Ci czas. Na bezpłatnej konsultacji sprawdzimy, czy da się je bezpiecznie uprościć i jaki rodzaj automatyzacji ma w Twojej firmie sens.
-                </p>
-                <div className="mt-6 border-y border-[rgba(255,255,255,0.08)] py-5">
-                  <span className="block text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[#8A96A8]">Koszt wdrożenia</span>
-                  <span className="mt-1 block text-[1.65rem] font-extrabold tracking-[-0.035em] text-[#EAF0F7]">Wycena po konsultacji</span>
-                  <span className="mt-1 block text-[12px] text-[#7C879B]">Jednorazowa cena ustalona przed rozpoczęciem pracy.</span>
-                </div>
-                <a href="#kontakt" onClick={handleContactClick} className="btn btn-primary mt-6 w-full px-5 py-3.5 text-[13px] font-semibold sm:w-auto">
-                  Omów mój proces
-                </a>
-              </div>
-
-              <div>
-                <p className="text-[12px] font-semibold text-[#8B97A8]">Przykładowe zastosowania</p>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {automationExamples.map((example) => (
-                    <li key={example} className="flex items-start gap-3 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#0D1219] p-4 text-[13px] leading-[1.65] text-[#C4CFDC]">
-                      <CheckMark />
-                      {example}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpenDetail(openDetail === 'roznice-ai' ? null : 'roznice-ai')
-                    window.setTimeout(() => document.getElementById('szczegoly-uslug')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40)
-                  }}
-                  className="mt-5 text-left text-[13.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
-                >
-                  Dowiedz się, czym różni się automatyzacja od agenta AI ↓
-                </button>
-              </div>
-            </div>
-          </article>
         </div>
 
         <div id="szczegoly-uslug" className="mt-12 scroll-mt-28">

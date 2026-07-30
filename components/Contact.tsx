@@ -74,7 +74,7 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const subjects = ['Strona internetowa', 'Chatbot AI', 'Automatyzacja procesu', 'Inne']
+  const subjects = ['Strona internetowa', 'Chatbot AI', 'Inne']
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -229,7 +229,7 @@ export default function Contact() {
                   className="space-y-5"
                   {...{
                     toolname: 'send_business_inquiry',
-                    tooldescription: 'Sends a business inquiry to Getbuild about a website, AI chatbot, or process automation.',
+                    tooldescription: 'Sends a business inquiry to Getbuild about a website or AI chatbot.',
                   }}
                 >
                   <div>
@@ -244,7 +244,7 @@ export default function Contact() {
                       type="hidden"
                       name="subject"
                       value={formData.subject}
-                      {...{ toolparamdescription: 'Inquiry topic: website, AI chatbot, process automation, or another subject.' }}
+                      {...{ toolparamdescription: 'Inquiry topic: website, AI chatbot, or another subject.' }}
                     />
                     <button
                       type="button"

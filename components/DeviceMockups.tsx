@@ -305,7 +305,7 @@ export default function DeviceMockups() {
             }} />
             <div style={{ borderRadius: '6px 6px 0 0', overflow: 'hidden', lineHeight: 0, border: '1px solid rgba(0,0,0,0.1)', borderBottom: 'none', position: 'relative' }}>
               <LaptopScreen />
-              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(112deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 24%, transparent 42%, transparent 78%, rgba(94,234,255,0.03) 100%)' }} />
+              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(112deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 24%, transparent 42%, transparent 78%, rgba(140,216,255,0.03) 100%)' }} />
             </div>
             <div style={{ height: '11px', background: 'linear-gradient(180deg,#1B2235 0%,#121720 100%)', borderRadius: '0 0 5px 5px', border: '1px solid rgba(0,0,0,0.14)', borderTop: '1px solid rgba(255,255,255,0.04)' }} />
             {/* glare */}
@@ -377,7 +377,7 @@ export default function DeviceMockups() {
           boxShadow:'0 8px 28px rgba(0,0,0,0.5)', zIndex:10, whiteSpace:'nowrap',
         }}>
           <div style={{ width:'28px', height:'28px', borderRadius:'50%', flexShrink:0, background:'linear-gradient(135deg,rgba(245,181,71,0.18) 0%,rgba(245,181,71,0.04) 100%)', border:'1px solid rgba(245,181,71,0.28)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5B547" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3AAFE8" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
             <div style={{ fontSize:'10.5px', fontWeight:700, color:'#EAF0F7', lineHeight:1.25, fontFamily:'var(--font-heading)' }}>Wdrożenie 72h</div>

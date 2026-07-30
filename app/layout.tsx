@@ -137,7 +137,7 @@ export default function RootLayout({
           '@id': 'https://getbuild.pl/#website',
           name: 'Getbuild',
           url: 'https://getbuild.pl',
-          description: 'Nowoczesne strony WWW, automatyzacje AI i agenci AI dla polskich firm.',
+          description: 'Nowoczesne strony WWW i agenci AI dla polskich firm.',
           inLanguage: 'pl',
           publisher: { '@id': 'https://getbuild.pl/#organization' },
         }) }} />
@@ -149,7 +149,7 @@ export default function RootLayout({
           url: 'https://getbuild.pl',
           logo: 'https://getbuild.pl/getbuild-logo-og.png',
           image: 'https://getbuild.pl/getbuild-logo-og.png',
-          description: 'W Getbuild.pl tworzymy strony internetowe oparte na ofercie i sposobie działania firmy oraz automatyzujemy czasochłonne procesy biznesowe. Techniczne podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony, a nie sprzedawane jako osobna usługa.',
+          description: 'W Getbuild.pl tworzymy strony internetowe oparte na ofercie i sposobie działania firmy. Techniczne podstawy SEO, GEO i AEO są wbudowane w każdy pakiet strony, a nie sprzedawane jako osobna usługa.',
           email: 'getbuild.pl@gmail.com',
           areaServed: {
             '@type': 'Country',
@@ -200,15 +200,6 @@ export default function RootLayout({
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Automatyzacje AI',
-                  description: 'Automatyzacje procesów biznesowych dopasowane do konkretnej firmy. Analiza procesu przed wdrożeniem.',
-                  url: 'https://getbuild.pl/automatyzacje-ai'
-                }
-              },
-              {
-                '@type': 'Offer',
-                itemOffered: {
-                  '@type': 'Service',
                   name: 'Agenci AI',
                   description: 'Inteligentni agenci AI pracujący 24/7. Obsługa zapytań, kwalifikacja leadów, wsparcie decyzji.',
                   url: 'https://getbuild.pl/agenci-ai'
@@ -216,7 +207,7 @@ export default function RootLayout({
               }
             ]
           },
-          slogan: 'Strony WWW i automatyzacje AI, które pracują za Twój biznes.',
+          slogan: 'Strony WWW i agenci AI, które pracują za Twój biznes.',
           contactPoint: {
             '@type': 'ContactPoint',
             email: 'getbuild.pl@gmail.com',
@@ -230,11 +221,10 @@ export default function RootLayout({
             name: 'Adam',
             url: 'https://getbuild.pl',
             jobTitle: 'Założyciel i specjalista ds. stron WWW oraz AI',
-            knowsAbout: ['strony internetowe', 'automatyzacje AI', 'agenci AI', 'SEO', 'GEO', 'link building', 'Next.js', 'Cloudflare', 'B2B marketing'],
+            knowsAbout: ['strony internetowe', 'agenci AI', 'SEO', 'GEO', 'link building', 'Next.js', 'Cloudflare', 'B2B marketing'],
           },
           knowsAbout: [
             'Web design',
-            'AI automation',
             'AI agents',
             'Search Engine Optimization',
             'Generative Engine Optimization',
@@ -254,7 +244,6 @@ export default function RootLayout({
         }) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Strony WWW', 'url': 'https://getbuild.pl/strony-www' },
-          { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Automatyzacje AI', 'url': 'https://getbuild.pl/automatyzacje-ai' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Agenci AI', 'url': 'https://getbuild.pl/agenci-ai' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Realizacje', 'url': 'https://getbuild.pl/realizacje' },
           { '@context': 'https://schema.org', '@type': 'SiteNavigationElement', 'name': 'Blog', 'url': 'https://getbuild.pl/blog' },
@@ -265,7 +254,7 @@ export default function RootLayout({
           '@type': 'WebPage',
           '@id': 'https://getbuild.pl/#webpage',
           url: 'https://getbuild.pl',
-          name: 'Getbuild — Strony WWW i automatyzacje dla firm',
+          name: 'Getbuild — Strony WWW i agenci AI dla firm',
           description: siteDescription,
           inLanguage: 'pl',
           isPartOf: { '@id': 'https://getbuild.pl/#website' },
@@ -283,7 +272,6 @@ export default function RootLayout({
           mentions: [
             { '@type': 'Thing', name: 'SEO', sameAs: 'https://en.wikipedia.org/wiki/Search_engine_optimization' },
             { '@type': 'Thing', name: 'Generative Engine Optimization', alternateName: 'GEO' },
-            { '@type': 'Thing', name: 'Automatyzacja procesów biznesowych', sameAs: 'https://en.wikipedia.org/wiki/Business_process_automation' },
             { '@type': 'Thing', name: 'Agenci AI', sameAs: 'https://en.wikipedia.org/wiki/Intelligent_agent' },
             { '@type': 'Thing', name: 'ChatGPT', sameAs: 'https://en.wikipedia.org/wiki/ChatGPT' },
             { '@type': 'Thing', name: 'Perplexity AI', sameAs: 'https://en.wikipedia.org/wiki/Perplexity_AI' },
@@ -298,7 +286,7 @@ export default function RootLayout({
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
           <PremiumAnimations />
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#22D3EE] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#3AAFE8] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>
               {children}

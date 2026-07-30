@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { subscribeScroll } from '@/lib/scrollTicker'
 import styles from './SectionGlow.module.css'
 
 type Variant =
@@ -81,11 +82,11 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
 
     measure()
     render()
-    window.addEventListener('scroll', requestRender, { passive: true })
+    const unsubscribeScroll = subscribeScroll(render)
     window.addEventListener('resize', requestRemeasure, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', requestRender)
+      unsubscribeScroll()
       window.removeEventListener('resize', requestRemeasure)
       if (frame) window.cancelAnimationFrame(frame)
     }

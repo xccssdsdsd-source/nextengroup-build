@@ -29,12 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: 'https://getbuild.pl/automatyzacje-ai',
-      lastModified: new Date('2026-06-03'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: 'https://getbuild.pl/agenci-ai',
       lastModified: new Date('2026-06-03'),
       changeFrequency: 'monthly',

@@ -137,13 +137,13 @@ export default async function ArticlePage({ params }: Props) {
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.12), transparent 60%)',
+              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)',
           }}
         />
         <div className="mx-auto max-w-3xl relative z-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-[#A6B2C4] hover:text-[#22D3EE] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-[#A6B2C4] hover:text-[#3AAFE8] transition-colors mb-6"
           >
             ← Wróć do bloga
           </Link>
@@ -209,7 +209,7 @@ export default async function ArticlePage({ params }: Props) {
                         className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
                         <span
-                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#22D3EE]"
+                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#3AAFE8]"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -226,7 +226,7 @@ export default async function ArticlePage({ params }: Props) {
                         key={j}
                         className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1C2433] text-[#5EEAFF] text-xs font-bold flex items-center justify-center mt-[0.15em]">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1C2433] text-[#8CD8FF] text-xs font-bold flex items-center justify-center mt-[0.15em]">
                           {j + 1}
                         </span>
                         <span>{item}</span>
@@ -246,7 +246,7 @@ export default async function ArticlePage({ params }: Props) {
               className="mt-16 rounded-2xl border border-white/10 bg-[#11161F] px-8 py-7"
             >
               <p
-                className="text-sm font-bold uppercase tracking-[0.08em] text-[#5EEAFF] mb-4"
+                className="text-sm font-bold uppercase tracking-[0.08em] text-[#8CD8FF] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Zobacz również
@@ -256,9 +256,9 @@ export default async function ArticlePage({ params }: Props) {
                   <li key={i}>
                     <Link
                       href={link.href}
-                      className="inline-flex items-center gap-2 text-[#A6B2C4] hover:text-[#22D3EE] transition-colors text-base"
+                      className="inline-flex items-center gap-2 text-[#A6B2C4] hover:text-[#3AAFE8] transition-colors text-base"
                     >
-                      <span aria-hidden="true" className="text-[#22D3EE]">→</span>
+                      <span aria-hidden="true" className="text-[#3AAFE8]">→</span>
                       {link.label}
                     </Link>
                   </li>
@@ -280,7 +280,7 @@ export default async function ArticlePage({ params }: Props) {
             </p>
             <a
               href="mailto:getbuild.pl@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#22D3EE] px-5 py-2.5 text-sm font-semibold text-[#06141A] hover:bg-[#5EEAFF] transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#3AAFE8] px-5 py-2.5 text-sm font-semibold text-[#06141A] hover:bg-[#8CD8FF] transition-colors"
             >
               getbuild.pl@gmail.com
             </a>
@@ -290,7 +290,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-12 pt-8 border-t border-white/10">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[#5EEAFF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out text-sm"
+              className="inline-flex items-center gap-2 text-[#8CD8FF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out text-sm"
             >
               ← Wszystkie artykuły
             </Link>

@@ -34,13 +34,13 @@ export default function AboutMe() {
               Adam — Getbuild
             </h2>
             <p className="section-copy">
-              Buduję strony i automatyzacje dla małych firm. Pracuję samodzielnie, więc każde zlecenie robię osobiście. Najczęściej dla firm wykończeniowych, biur podróży i pracowni projektowych.
+              Buduję strony dla małych firm. Pracuję samodzielnie, więc każde zlecenie robię osobiście. Najczęściej dla firm wykończeniowych, biur podróży i pracowni projektowych.
             </p>
             <a
               href="https://calendly.com/getbuild"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-[#2563eb] transition-[opacity,color] duration-200 hover:text-[#1d4ed8] hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
+              className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-[#3AAFE8] transition-[opacity,color] duration-200 hover:text-[#8CD8FF] hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2"
             >
               Umów spotkanie
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

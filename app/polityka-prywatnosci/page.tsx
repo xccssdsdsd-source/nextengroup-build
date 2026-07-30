@@ -58,7 +58,7 @@ export default function PolitykaPrywatnosci() {
 
             <section>
               <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.02em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>3. Cel przetwarzania danych</h2>
-              <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">Dane przetwarzamy w celu obsługi zapytań oraz kontaktu biznesowego, a także w celu zapewnienia poprawnego działania serwisu.</p>
+              <p className="text-[15px] leading-[1.7] text-[#A6B2C4]">Dane przetwarzamy w celu obsługi zapytań oraz kontaktu biznesowego — w tym kontaktu mailowego oraz telefonicznego (rozmowa, SMS), jeśli podałeś/aś numer telefonu — a także w celu zapewnienia poprawnego działania serwisu.</p>
             </section>
 
             <section>

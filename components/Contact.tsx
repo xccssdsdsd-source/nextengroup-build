@@ -49,7 +49,7 @@ export default function Contact() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-50px' })
   const [copied, setCopied] = useState(false)
-  const [formData, setFormData] = useState({ email: '', subject: '', message: '' })
+  const [formData, setFormData] = useState({ email: '', phone: '', subject: '', message: '' })
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(false)
   const [gdprAccepted, setGdprAccepted] = useState(false)
@@ -236,6 +236,10 @@ export default function Contact() {
                     <label htmlFor="email" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Email *</label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="form-input" autoComplete="email" {...{ toolparamdescription: 'Email address where Getbuild should send the reply.' }} />
                   </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">Telefon (opcjonalnie)</label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder="+48 600 000 000" className="form-input" autoComplete="tel" {...{ toolparamdescription: 'Optional phone number where Getbuild may call the inquirer back.' }} />
+                  </div>
                   <div ref={dropdownRef} className="relative">
                     <label id="inquiry-subject-label" className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-[#A6B2C4] mb-2">
                       Czego dotyczy wiadomość?
@@ -316,7 +320,7 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <input type="checkbox" id="gdpr" name="privacy_consent" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }} />
                     <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
-                      Wyrażam zgodę na przetwarzanie moich danych osobowych przez Getbuild w celu odpowiedzi na zapytanie, zgodnie z{' '}
+                      Wyrażam zgodę na przetwarzanie moich danych osobowych (w tym numeru telefonu, jeśli został podany) przez Getbuild w celu odpowiedzi na zapytanie, w tym drogą mailową oraz telefoniczną (rozmowa, SMS), zgodnie z{' '}
                       <a href="/polityka-prywatnosci" className="text-[#3AAFE8] hover:text-[#8CD8FF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
                     </label>
                   </div>

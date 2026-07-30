@@ -12,6 +12,7 @@ const MAX_BODY_BYTES = 16_384
 const MAX_MESSAGE_LENGTH = 5_000
 const MAX_SUBJECT_LENGTH = 160
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_RE = /^[+\d][\d\s()-]{6,19}$/
 
 const esc = (s: string) => s.replace(/[<>&]/g, c => (c === '<' ? '&lt;' : c === '>' ? '&gt;' : '&amp;'))
 const noStore = { headers: { 'Cache-Control': 'no-store' } }
@@ -97,7 +98,7 @@ const clientEmail = (message: string) => `<!doctype html><html lang="pl"><head><
 </td></tr>
 </table>
 </body></html>`
-const ownerEmail = (email: string, subject: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
+const ownerEmail = (email: string, phone: string, subject: string, message: string) => `<!doctype html><html lang="pl"><body style="margin:0;padding:0;background:#0A0E14;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0E14;padding:32px 16px;">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#11161F;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;">
@@ -108,6 +109,8 @@ const ownerEmail = (email: string, subject: string, message: string) => `<!docty
 <tr><td style="padding:24px 36px 36px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;">
 <tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Email</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;"><a href="mailto:${esc(email)}" style="color:#3AAFE8;text-decoration:none;">${esc(email)}</a></p></td></tr>
+${phone ? `<tr><td height="10"></td></tr>
+<tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Telefon</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;"><a href="tel:${esc(phone)}" style="color:#3AAFE8;text-decoration:none;">${esc(phone)}</a></p></td></tr>` : ''}
 ${subject ? `<tr><td height="10"></td></tr>
 <tr><td style="padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;"><p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7C879B;">Temat</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#EAF0F7;">${esc(subject)}</p></td></tr>` : ''}
 <tr><td height="10"></td></tr>
@@ -133,10 +136,11 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json().catch(() => null)
     const email = cleanHeaderText(body?.email, 254).toLowerCase()
+    const phone = cleanHeaderText(body?.phone, 32)
     const subject = cleanHeaderText(body?.subject, MAX_SUBJECT_LENGTH)
     const message = cleanText(body?.message, MAX_MESSAGE_LENGTH)
 
-    if (!EMAIL_RE.test(email) || !message) {
+    if (!EMAIL_RE.test(email) || !message || (phone && !PHONE_RE.test(phone))) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400, ...noStore })
     }
 
@@ -157,7 +161,7 @@ export async function POST(req: NextRequest) {
       to: [OWNER_EMAIL],
       reply_to: email,
       subject: subject ? `Nowe zapytanie: ${subject}` : 'Nowe zapytanie z getbuild.pl',
-      html: ownerEmail(email, subject || '', message),
+      html: ownerEmail(email, phone, subject || '', message),
     })
 
     if (!ownerRes.ok) {

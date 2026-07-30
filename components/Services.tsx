@@ -310,12 +310,16 @@ export default function Services() {
   return (
     <section id="uslugi" className="section-shell relative overflow-hidden !pt-20 sm:!pt-24 lg:!pt-28" data-no-entrance suppressHydrationWarning>
       <div className="relative mx-auto max-w-7xl">
-        <div className="section-heading">
+        {/* Inline centering here: the shared .section-heading/.section-copy CSS
+            rules further down globals.css hardcode text-align/margin to left
+            and beat Tailwind's text-center/mx-auto in the cascade — only an
+            inline style reliably wins without touching those shared rules. */}
+        <div className="section-heading services-heading-wide" style={{ textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
           <span className="section-kicker" suppressHydrationWarning>Usługi</span>
-          <h2 className="section-title io-visible max-w-[18ch]" suppressHydrationWarning>
-            Strony dopasowane do tego, jak naprawdę działa Twoja firma
+          <h2 className="section-title services-title-center io-visible lg:whitespace-nowrap" suppressHydrationWarning>
+            Strony dopasowane do Twojej firmy
           </h2>
-          <p className="section-copy io-visible max-w-[680px]">
+          <p className="section-copy io-visible max-w-[680px]" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Zaczynamy od sytuacji, którą chcesz zmienić — nie od wyboru technologii. Pierwszy kierunek strony widzisz zwykle w 24 godziny, prosty Landing możemy wdrożyć nawet od 72 godzin, a płacisz dopiero po zaakceptowaniu efektu.
           </p>
         </div>

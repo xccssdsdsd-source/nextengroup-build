@@ -4252,3 +4252,22 @@ html.motion-ready [data-motion-copy] {
       opacity 160ms ease !important;
   }
 }
+
+/* Services "Usługi" heading: centered, single line on desktop. Placed last
+   in the file on purpose — earlier .section-title { max-width: 18ch } and
+   .section-heading { text-align: left } rules further up otherwise win. */
+.services-heading-wide {
+  max-width: 64rem;
+}
+
+.services-title-center {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+  .services-title-center {
+    font-size: clamp(1.9rem, 2.7vw, 2.55rem);
+  }
+}

@@ -281,8 +281,14 @@ export default function PremiumAnimations() {
 
     // Pointer effects and parallax are enhancements for real interaction.
     // Loading anime.js and measuring the full page during initial hydration
-    // creates avoidable long tasks, so initialize them on the first desktop
-    // interaction instead of competing with the first paint.
+    // creates avoidable long tasks, so it's deferred past first paint — but
+    // gating it behind the user's first scroll/pointermove meant the dynamic
+    // import (network fetch + parse + eval of the anime.js chunk) landed
+    // exactly on the frame the user started scrolling, showing up as a
+    // multi-hundred-ms freeze on the very first gesture (measured: dropped
+    // to ~12fps with 1900ms+ stalls on a cold first scroll, vs ~24fps once
+    // warm). Warming it on idle instead keeps the same "don't block first
+    // paint" benefit without janking the user's first interaction.
     let desktopMotionStarted = false
     const startDesktopMotion = () => {
       if (desktopMotionStarted || reduce || isMobile || !finePointer) return
@@ -290,17 +296,16 @@ export default function PremiumAnimations() {
       initParallax()
       initAnime()
     }
-    if (!reduce && !isMobile && finePointer) {
-      window.addEventListener('pointermove', startDesktopMotion, { once: true, passive: true })
-      window.addEventListener('scroll', startDesktopMotion, { once: true, passive: true })
-    }
 
     let idle = 0
+    let motionIdle = 0
     let bootT = 0
     if (typeof requestIdleCallback !== 'undefined') {
       idle = requestIdleCallback(() => boot(), { timeout: 1800 })
+      motionIdle = requestIdleCallback(() => startDesktopMotion(), { timeout: 2500 })
     } else {
       bootT = window.setTimeout(boot, 400)
+      window.setTimeout(startDesktopMotion, 1200)
     }
 
     return () => {
@@ -310,10 +315,9 @@ export default function PremiumAnimations() {
       if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
       clearTimeout(bootT)
       if (typeof cancelIdleCallback !== 'undefined' && idle) cancelIdleCallback(idle)
+      if (typeof cancelIdleCallback !== 'undefined' && motionIdle) cancelIdleCallback(motionIdle)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
-      window.removeEventListener('pointermove', startDesktopMotion)
-      window.removeEventListener('scroll', startDesktopMotion)
       io.disconnect()
       staggerIo.disconnect()
       counterIo?.disconnect()

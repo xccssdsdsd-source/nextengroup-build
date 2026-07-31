@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { subscribeScroll } from '@/lib/scrollTicker'
 
 /* ─── Laptop screen SVG ─── */
 function LaptopScreen() {
@@ -248,14 +249,14 @@ export default function DeviceMockups() {
     const readyTimer = setTimeout(() => { ready = true }, 900)
 
     window.addEventListener('mousemove', onMove, { passive: true })
-    window.addEventListener('scroll',    onScroll, { passive: true })
+    const unsubscribeScroll = subscribeScroll(onScroll)
     window.addEventListener('resize',    onResize)
     document.addEventListener('mouseleave', onLeave)
     return () => {
       clearTimeout(readyTimer)
       cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('scroll', onScroll)
+      unsubscribeScroll()
       window.removeEventListener('resize', onResize)
       document.removeEventListener('mouseleave', onLeave)
     }

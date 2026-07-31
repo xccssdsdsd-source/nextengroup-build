@@ -35,7 +35,7 @@ body::-webkit-scrollbar,
   --font-heading: var(--font-clash), var(--font-sans), system-ui, sans-serif;
   --font-heading-mobile: var(--font-clash), var(--font-sans), system-ui, sans-serif;
   color-scheme: dark;
-  --bg-base: #02040a;
+  --bg-base: #050505;
   --bg-surface: #080d1a;
   --bg-elevated: #0b1223;
   --bg-card: #0d1528;
@@ -3550,7 +3550,7 @@ html.motion-ready .portfolio-case .portfolio-case__image-wrap::after { display: 
 
 /* Getbuild dark-blue system: near-black surfaces with one clear cyan accent. */
 :root {
-  --bg-base: #02040a;
+  --bg-base: #050505;
   --bg-surface: rgba(5, 10, 19, 0.88);
   --bg-elevated: rgba(8, 15, 28, 0.9);
   --bg-card: rgba(9, 17, 32, 0.88);

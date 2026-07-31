@@ -1,0 +1,9 @@
+
+> getbuild-build@0.1.0 predev
+> node scripts/free-dev-port.js
+
+[free-dev-port] killed stale process 46548 on port 3005
+
+> getbuild-build@0.1.0 dev
+> next dev
+

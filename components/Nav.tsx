@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 const allLinks: readonly (readonly [string, string])[] = [
@@ -26,34 +26,10 @@ const ctaLabels = [
   'Sprawdź możliwości',
 ] as const
 
-// Measures against a hidden mirror rather than toggling the real button's
-// own width to 'auto' — flipping the live element to 'auto' and forcing a
-// reflow to read it back flushes 'auto' as a real transition keyframe,
-// which breaks the CSS width transition and makes the button snap instead
-// of growing/shrinking smoothly with the typing animation.
-const useAutoWidth = (
-  ref: React.RefObject<HTMLElement | null>,
-  mirrorRef: React.RefObject<HTMLElement | null>,
-  dep: unknown,
-) => {
-  useLayoutEffect(() => {
-    const el = ref.current
-    const mirror = mirrorRef.current
-    if (!el || !mirror) return
-    el.style.width = `${mirror.offsetWidth}px`
-  }, [dep, ref, mirrorRef])
-}
-
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const [displayText, setDisplayText] = useState<string>(ctaLabels[0])
-  const desktopCtaRef = useRef<HTMLAnchorElement>(null)
-  const mobileCtaRef = useRef<HTMLAnchorElement>(null)
-  const desktopCtaMirrorRef = useRef<HTMLSpanElement>(null)
-  const mobileCtaMirrorRef = useRef<HTMLSpanElement>(null)
-
-  useAutoWidth(desktopCtaRef, desktopCtaMirrorRef, displayText)
-  useAutoWidth(mobileCtaRef, mobileCtaMirrorRef, open ? displayText : null)
+  const [labelIndex, setLabelIndex] = useState(0)
+  const [labelShown, setLabelShown] = useState(true)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -85,38 +61,30 @@ export default function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  // The label rotates by crossfading whole phrases inside a fixed-width
+  // button. The previous per-character typewriter retargeted a 200ms width
+  // transition every 108ms, so the button never reached the width its text
+  // needed and `overflow: hidden` clipped the label permanently.
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const typingMs = 108
-    const deletingMs = 72
-    const holdMs = 2250
-    let labelIndex = 0
+    const holdMs = 3400
+    const fadeMs = 260
     let timer = 0
     let cancelled = false
 
-    const schedule = (callback: () => void, delay: number) => {
-      timer = window.setTimeout(callback, delay)
-    }
-    const type = (position: number) => {
+    const cycle = () => {
       if (cancelled) return
-      const label = ctaLabels[labelIndex]
-      setDisplayText(label.slice(0, position))
-      if (position < label.length) schedule(() => type(position + 1), typingMs)
-      else schedule(() => remove(label.length), holdMs)
-    }
-    const remove = (position: number) => {
-      if (cancelled) return
-      const label = ctaLabels[labelIndex]
-      setDisplayText(label.slice(0, position))
-      if (position > 1) schedule(() => remove(position - 1), deletingMs)
-      else {
-        labelIndex = (labelIndex + 1) % ctaLabels.length
-        schedule(() => type(1), deletingMs)
-      }
+      setLabelShown(false)
+      timer = window.setTimeout(() => {
+        if (cancelled) return
+        setLabelIndex(prev => (prev + 1) % ctaLabels.length)
+        setLabelShown(true)
+        timer = window.setTimeout(cycle, holdMs)
+      }, fadeMs)
     }
 
-    schedule(() => remove(ctaLabels[0].length), holdMs)
+    timer = window.setTimeout(cycle, holdMs)
     return () => {
       cancelled = true
       window.clearTimeout(timer)
@@ -133,6 +101,9 @@ export default function Nav() {
         />
       )}
       <nav className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
+        {/* Full-bleed scrim: the pills alone left transparent gaps that section
+            headings scrolled through, which made them unreadable. */}
+        <div className="nav-scrim" aria-hidden="true" />
         <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
           <a href="/" className="nav-island flex max-w-[calc(100vw-5.75rem)] min-w-0 items-center gap-2 rounded-full py-2 pl-2 pr-3 sm:gap-3 sm:pr-4">
             <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="h-9 w-9 flex-shrink-0 rounded-full object-contain" priority />
@@ -159,26 +130,16 @@ export default function Nav() {
           <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
             <div className="nav-cta-slot hidden sm:flex">
               <a
-                ref={desktopCtaRef}
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                className="btn btn-primary nav-tap nav-cta nav-cta--auto nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
+                className="btn btn-primary nav-tap nav-cta nav-cta--desktop inline-flex h-[52px] flex-none items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
                 aria-label="Bezpłatna konsultacja"
               >
-                <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
-                  {displayText}
-                  <span className="typing-cursor" />
+                <span className={`nav-cta-label${labelShown ? ' is-shown' : ''}`} aria-hidden="true">
+                  {ctaLabels[labelIndex]}
                 </span>
               </a>
             </div>
-            <span
-              ref={desktopCtaMirrorRef}
-              aria-hidden="true"
-              className="btn btn-primary nav-cta nav-cta-measure pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex h-[52px] items-center justify-center whitespace-nowrap px-5 py-2 text-[13px]"
-            >
-              {displayText}
-              <span className="typing-cursor" />
-            </span>
             <button
               type="button"
               aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -216,25 +177,12 @@ export default function Nav() {
               </div>
               <div className="mt-2 flex justify-center border-t border-[rgba(255,255,255,0.06)] pt-2">
                 <a
-                  ref={mobileCtaRef}
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                  className="btn btn-primary nav-tap nav-cta nav-cta--auto inline-flex justify-center px-5 py-3 text-sm"
-                  aria-label="Bezpłatna konsultacja"
+                  className="btn btn-primary nav-tap inline-flex w-full justify-center px-5 py-3 text-sm"
                 >
-                  <span className="inline-flex items-center whitespace-nowrap" aria-hidden="true">
-                    {displayText}
-                    <span className="typing-cursor" />
-                  </span>
+                  Bezpłatna konsultacja
                 </a>
-                <span
-                  ref={mobileCtaMirrorRef}
-                  aria-hidden="true"
-                  className="btn btn-primary nav-cta pointer-events-none invisible !fixed left-0 top-0 -z-10 inline-flex justify-center whitespace-nowrap px-5 py-3 text-sm"
-                >
-                  {displayText}
-                  <span className="typing-cursor" />
-                </span>
               </div>
             </div>
           </div>

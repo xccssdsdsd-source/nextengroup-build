@@ -10,7 +10,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const url = process.argv[2] || 'http://localhost:3111/'
 const out = path.join(__dirname, '..', 'public', 'bg-mobile.webp')
 
-const browser = await puppeteer.launch({ headless: 'new' })
+const browser = await puppeteer.launch({
+  headless: 'new',
+  // Honour a preinstalled browser (CI images set PUPPETEER_EXECUTABLE_PATH)
+  // instead of requiring puppeteer's own download.
+  ...(process.env.PUPPETEER_EXECUTABLE_PATH ? { executablePath: process.env.PUPPETEER_EXECUTABLE_PATH } : {}),
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+})
 try {
   const page = await browser.newPage()
   await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 })

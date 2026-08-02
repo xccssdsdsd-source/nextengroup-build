@@ -17,8 +17,6 @@ type Variant =
 export default function SectionGlow({ variant }: { variant: Variant }) {
   const rootRef = useRef<HTMLDivElement>(null)
   const washRef = useRef<HTMLDivElement>(null)
-  const grainRef = useRef<HTMLDivElement>(null)
-  const starsRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -41,9 +39,7 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
 
     const root = rootRef.current
     const wash = washRef.current
-    const grain = grainRef.current
-    const stars = starsRef.current
-    if (!root || !wash || !grain || !stars) return
+    if (!root || !wash) return
 
     let frame = 0
     let offsetTop = 0
@@ -67,9 +63,6 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
 
       wash.style.transform = `translate3d(${(offset * 64 * amplitude).toFixed(2)}px, ${(offset * -42 * amplitude).toFixed(2)}px, 0) rotate(${(offset * 5).toFixed(2)}deg) scale(${(1.02 + Math.abs(offset) * 0.08).toFixed(3)})`
       wash.style.opacity = (0.32 + (1 - Math.abs(offset) * 2) * 0.24).toFixed(3)
-
-      grain.style.transform = `translate3d(-50%, -50%, 0) translate3d(${(offset * -34 * amplitude).toFixed(2)}px, ${(offset * 46 * amplitude).toFixed(2)}px, 0) rotate(${(-1.5 + offset * 4).toFixed(2)}deg) scale(${(1 + Math.abs(offset) * 0.055).toFixed(3)})`
-      stars.style.transform = `translate3d(${(offset * 22 * amplitude).toFixed(2)}px, ${(offset * -30 * amplitude).toFixed(2)}px, 0)`
     }
 
     const requestRender = () => {
@@ -100,8 +93,6 @@ export default function SectionGlow({ variant }: { variant: Variant }) {
       aria-hidden='true'
     >
       <div ref={washRef} className={styles.scrollWash} />
-      <div ref={grainRef} className={styles.grain} />
-      <div ref={starsRef} className={styles.stars} />
     </div>
   )
 }

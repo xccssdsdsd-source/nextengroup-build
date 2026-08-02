@@ -1,7 +1,7 @@
 'use client'
 
 import { useInView } from 'framer-motion'
-import { Blocks, ChevronsLeft, ChevronsRight, Gauge, ScanSearch, Workflow } from 'lucide-react'
+import { Blocks, Gauge, ScanSearch, Workflow } from 'lucide-react'
 import { useRef } from 'react'
 import SectionGlow from './ui/SectionGlow'
 
@@ -63,7 +63,9 @@ export default function Process() {
               <li key={step.num} className="process-card premium-card overview-card group">
                 <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{step.num}</span>
 
-                <div className="flex items-center gap-3.5">
+                {/* Sized to the longest title (4 lines) so the rails below line
+                    up across the row regardless of how the copy wraps. */}
+                <div className="flex items-start gap-3.5 lg:min-h-[126px]">
                   <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(58,175,232,0.25)]" style={{ background: 'rgba(58,175,232,0.08)' }}>
                     <Icon size={22} strokeWidth={1.8} className="text-[#8CD8FF]" aria-hidden="true" />
                   </span>
@@ -75,7 +77,9 @@ export default function Process() {
                   </div>
                 </div>
 
-                <p className="mt-4 text-[13.5px] leading-[1.65] text-[#A6B2C4] transition-colors duration-300 group-hover:text-[#C0CCDC]">{step.desc}</p>
+                {/* min-height keeps the "Strona" blocks on one line across the
+                    row even though the descriptions run 3–4 lines. */}
+                <p className="mt-4 text-[13.5px] leading-[1.65] text-[#A6B2C4] transition-colors duration-300 group-hover:text-[#C0CCDC] lg:min-h-[92px]">{step.desc}</p>
 
                 <div className="mt-4 flex flex-col gap-2">
                   <div className="process-output process-output--site">
@@ -88,18 +92,11 @@ export default function Process() {
                   <span className="process-divider-track"><span className="process-divider-fill" /></span>
                 </div>
 
-                <span className="process-shade" aria-hidden="true" />
                 <span className="process-shine" aria-hidden="true" />
               </li>
             )
           })}
         </ol>
-
-        <div className="process-hint" aria-hidden="true">
-          <ChevronsLeft size={13} strokeWidth={2.2} className="process-hint-chev process-hint-chev--left" />
-          <span>Najedź na karty, aby zobaczyć kolejne kroki</span>
-          <ChevronsRight size={13} strokeWidth={2.2} className="process-hint-chev process-hint-chev--right" />
-        </div>
       </div>
     </section>
   )

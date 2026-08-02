@@ -7,14 +7,10 @@ export default function AnimatedBackground() {
     <div className={styles.root} data-bg-root aria-hidden="true">
       <div className={styles.mobileFallback} />
       <div className={styles.field} />
-      <div className={`${styles.scrollBand} ${styles.bandA}`} />
-      <div className={`${styles.scrollBand} ${styles.bandB}`} />
-      <div className={styles.scrollGrain} />
-      <div className={styles.stars} />
-      <div className={styles.ambientGrain} />
-      <div className={styles.fineGrain} />
-      <div className={styles.coarseGrain} />
-      <div className={styles.sheen} />
+      <div className={`${styles.aurora} ${styles.auroraA}`} />
+      <div className={`${styles.aurora} ${styles.auroraB}`} />
+      <div className={styles.band} />
+      <div className={styles.dither} />
       <div className={styles.vignette} />
     </div>
   )

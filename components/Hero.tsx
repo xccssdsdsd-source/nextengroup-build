@@ -70,7 +70,7 @@ const HeroHeadlineLine = ({ words, startDelay }: { words: HeroHeadlineWord[]; st
 )
 
 const StarIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent-warm)" aria-hidden="true">
     <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.785 1.401 8.168L12 18.896l-7.335 3.868 1.401-8.168L.132 9.211l8.2-1.193z" />
   </svg>
 )
@@ -158,7 +158,6 @@ export default function Hero() {
                   fontSize: 'clamp(28px, 3.7vw, 58px)',
                   lineHeight: '1.08',
                   letterSpacing: '-0.026em',
-                  marginBottom: '0.12em',
                 }}
               >
                 <HeroHeadlineLine words={heroLine1} startDelay={60} />
@@ -171,7 +170,6 @@ export default function Hero() {
                   fontSize: 'clamp(28px, 3.7vw, 58px)',
                   lineHeight: '1.08',
                   letterSpacing: '-0.026em',
-                  marginBottom: '0.12em',
                 }}
               >
                 <HeroHeadlineLine words={heroLine2} startDelay={60 + heroLine1.length * 45} />

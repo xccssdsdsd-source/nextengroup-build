@@ -2,6 +2,9 @@
 const nextConfig = {
   compress: true,
   poweredByHeader: false,
+  // The dev overlay badge sits in the bottom-left corner, on top of page
+  // content, and shows up in every design screenshot.
+  devIndicators: false,
   images: {
     unoptimized: true,
   },

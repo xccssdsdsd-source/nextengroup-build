@@ -10,12 +10,22 @@ export default function StickyCta() {
   const [contactInView, setContactInView] = useState(false)
 
   useEffect(() => {
+    // The bar hides whenever a section that carries its own primary CTA is on
+    // screen — otherwise it parked on top of the pricing buttons and the
+    // portfolio carousel controls, which sit in the same bottom-right corner.
+    const isBlocked = (viewportHeight: number) => {
+      const zones = document.querySelectorAll('[data-cta-zone], #kontakt')
+      for (const zone of zones) {
+        const rect = zone.getBoundingClientRect()
+        if (rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12) return true
+      }
+      return false
+    }
+
     const onScroll = () => {
       const viewportHeight = window.innerHeight ?? 600
-      const contact = document.getElementById('kontakt')
-      const rect = contact?.getBoundingClientRect()
       setVisible(window.scrollY > viewportHeight * 0.9)
-      setContactInView(Boolean(rect && rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12))
+      setContactInView(isBlocked(viewportHeight))
     }
     onScroll()
     const unsubscribeScroll = subscribeScroll(onScroll)

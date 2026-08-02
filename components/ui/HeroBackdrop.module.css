@@ -1,3 +1,6 @@
+/* Transparent, not #02040a: an opaque base here blocked the page-wide
+   AnimatedBackground inside the hero, so when this backdrop faded out on
+   scroll the page cut from rich blue to flat black at a visible seam. */
 .root {
   --canvas-opacity: 0.82;
   position: absolute;
@@ -5,7 +8,7 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #02040a;
+  background: transparent;
 }
 
 .root[data-active='true'] {
@@ -99,12 +102,15 @@
   animation: mobile-grain-drift 9200ms ease-in-out infinite;
 }
 
+/* Both gradients now end transparent. The bottom one used to land on solid
+   #02040a, which drew the seam; the side one crushed the left third of the
+   hero to near-black and made the composition read lopsided. */
 .veil {
   z-index: 2;
   pointer-events: none;
   background-image:
-    linear-gradient(90deg, rgba(2, 4, 10, 0.7) 0%, rgba(2, 4, 10, 0.34) 34%, rgba(2, 4, 10, 0.08) 62%, rgba(2, 4, 10, 0) 100%),
-    linear-gradient(180deg, rgba(2, 4, 10, 0) 58%, rgba(2, 4, 10, 0.44) 82%, #02040a 100%);
+    linear-gradient(90deg, rgba(2, 4, 10, 0.42) 0%, rgba(2, 4, 10, 0.18) 34%, rgba(2, 4, 10, 0.04) 62%, rgba(2, 4, 10, 0) 100%),
+    linear-gradient(180deg, rgba(2, 4, 10, 0) 62%, rgba(3, 6, 15, 0.28) 84%, rgba(3, 6, 15, 0.55) 100%);
 }
 
 @keyframes fade {

@@ -61,6 +61,7 @@ export default function Testimonials() {
         </m.div>
 
         <m.div
+          data-cta-zone
           className="mt-10 flex justify-center"
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +87,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <div className="flex items-center justify-between gap-6">
-        <div className="flex gap-1 text-[#FBBF24]">
+        <div className="flex gap-1 text-[var(--accent-warm)]">
           <span className="sr-only">Ocena 5 na 5</span>
           {Array.from({ length: 5 }).map((_, starIndex) => (
             <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} aria-hidden="true" />

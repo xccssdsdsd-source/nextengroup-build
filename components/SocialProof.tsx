@@ -84,7 +84,10 @@ export default function SocialProof() {
 
                 <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">
                   {stat.value === null ? (
-                    <span style={numberStyle}>∞</span>
+                    // The infinity glyph draws well below digit cap height, so
+                    // at a shared font-size it read about half the size of the
+                    // numbers beside it and broke the row.
+                    <span style={{ ...numberStyle, fontSize: '1.32em', lineHeight: 0.74, display: 'inline-block', verticalAlign: '-0.04em' }}>∞</span>
                   ) : (
                     <span style={numberStyle}>
                       <CountUp target={stat.value} suffix={stat.suffix} active={inView} delay={i * 0.1 + 0.15} />
@@ -92,7 +95,9 @@ export default function SocialProof() {
                   )}
                 </div>
 
-                <p className="text-[12px] sm:text-[13px] font-medium text-[#7C879B] leading-snug max-w-[140px]">
+                {/* Two-line box: labels of differing length otherwise pushed
+                    each cell's centred content to a different height. */}
+                <p className="text-[12px] sm:text-[13px] font-medium text-[#7C879B] leading-snug max-w-[140px] min-h-[2.6em]">
                   {stat.label}
                 </p>
               </m.div>

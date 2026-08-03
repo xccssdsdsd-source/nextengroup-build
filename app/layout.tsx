@@ -286,7 +286,7 @@ export default function RootLayout({
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
           <PremiumAnimations />
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#3AAFE8] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#4C82EA] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>
               {children}

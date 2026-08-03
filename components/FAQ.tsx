@@ -87,7 +87,7 @@ export default function FAQ() {
                 key={faq.q}
                 className={`faq-item rounded-xl border-l-[3px] transition-[border-color,background-color,box-shadow] duration-200 ${
                   isOpen
-                    ? 'border-l-[#3AAFE8] bg-[rgba(58,175,232,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(58,175,232,0.18)]'
+                    ? 'border-l-[#4C82EA] bg-[rgba(76, 130, 234,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.5),_0_6px_16px_rgba(76, 130, 234,0.18)]'
                     : 'border-l-transparent bg-transparent'
                 }`}
                 style={{ display: 'grid' }}
@@ -100,7 +100,7 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left border-b border-[rgba(255,255,255,0.06)]"
                 >
-                  <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#3AAFE8]" style={{ fontFamily: 'var(--font-heading)' }}>
+                  <span className="text-[14.5px] font-semibold leading-snug text-[#EAF0F7] transition-colors duration-200 hover:text-[#4C82EA]" style={{ fontFamily: 'var(--font-heading)' }}>
                     {faq.q}
                   </span>
                   <m.span
@@ -108,8 +108,8 @@ export default function FAQ() {
                     transition={{ duration: 0.22, ease }}
                     className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-200 ease-out ${
                       isOpen
-                        ? 'bg-[#3AAFE8] text-[#06141A] shadow-[0_2px_8px_rgba(58,175,232,0.3)]'
-                        : 'bg-transparent text-[#3AAFE8] border border-[rgba(58,175,232,0.3)]'
+                        ? 'bg-[#4C82EA] text-[#06141A] shadow-[0_2px_8px_rgba(76, 130, 234,0.3)]'
+                        : 'bg-transparent text-[#4C82EA] border border-[rgba(76, 130, 234,0.3)]'
                     }`}
                   >
                     <Plus size={14} strokeWidth={2.2} />

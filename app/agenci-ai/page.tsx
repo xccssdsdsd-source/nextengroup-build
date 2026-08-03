@@ -120,13 +120,13 @@ export default function AgenciAI() {
 
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <div className="relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#3AAFE8]/20 bg-[#3AAFE8]/5 px-4 py-1.5 mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#3AAFE8] animate-pulse" />
-            <span className="text-xs font-medium text-[#3AAFE8] tracking-wide uppercase">Agenci AI</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#4C82EA]/20 bg-[#4C82EA]/5 px-4 py-1.5 mb-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#4C82EA] animate-pulse" />
+            <span className="text-xs font-medium text-[#4C82EA] tracking-wide uppercase">Agenci AI</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Agent AI działa samodzielnie.<br className="hidden md:block" />
-            <span className="text-[#3AAFE8]"> Bez reguł, bez nadzoru.</span>
+            <span className="text-[#4C82EA]"> Bez reguł, bez nadzoru.</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[#A6B2C4] mb-10 max-w-2xl" data-speakable>
             Nie chatbot. Nie skrypt. Agent AI dostaje zadanie i sam decyduje, jak je wykonać. Działa w tle, przez całą dobę, bez żadnych instrukcji krok po kroku.
@@ -134,7 +134,7 @@ export default function AgenciAI() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/#kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#4C82EA] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#9DBBEC] hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
             >
               Umów bezpłatną rozmowę
             </a>
@@ -159,19 +159,19 @@ export default function AgenciAI() {
               <div
                 key={col.label}
                 className={`rounded-2xl border p-8 ${col.accent
-                  ? 'bg-[#0F1A24] border-[#3AAFE8]/25'
+                  ? 'bg-[#0F1A24] border-[#4C82EA]/25'
                   : 'bg-[#0C1018] border-white/5'
                 }`}
               >
-                <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[#3AAFE8]' : 'text-[#7C879B]'}`} style={{ fontFamily: 'var(--font-heading)' }}>
+                <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[#4C82EA]' : 'text-[#7C879B]'}`} style={{ fontFamily: 'var(--font-heading)' }}>
                   {col.label}
                 </div>
                 <ul className="space-y-4">
                   {col.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className={`mt-1 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${col.accent ? 'bg-[#3AAFE8]/15' : 'bg-white/5'}`}>
+                      <span className={`mt-1 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${col.accent ? 'bg-[#4C82EA]/15' : 'bg-white/5'}`}>
                         {col.accent
-                          ? <svg className="h-2.5 w-2.5 text-[#3AAFE8]" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                          ? <svg className="h-2.5 w-2.5 text-[#4C82EA]" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                           : <svg className="h-2 w-2 text-[#3B4455]" viewBox="0 0 8 8" fill="none"><path d="M2 4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                         }
                       </span>
@@ -212,10 +212,10 @@ export default function AgenciAI() {
           <p className="text-[#7E8CA2] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {capabilities.map((c, i) => (
-              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#3AAFE8]/20 transition-colors duration-300">
+              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#4C82EA]/20 transition-colors duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#3AAFE8]/10 border border-[#3AAFE8]/20 flex items-center justify-center">
-                    <svg className="h-4 w-4 text-[#3AAFE8]" viewBox="0 0 16 16" fill="none">
+                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#4C82EA]/10 border border-[#4C82EA]/20 flex items-center justify-center">
+                    <svg className="h-4 w-4 text-[#4C82EA]" viewBox="0 0 16 16" fill="none">
                       <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
@@ -248,8 +248,8 @@ export default function AgenciAI() {
 
       <section className="relative py-16 md:py-24 px-6 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <div className="rounded-2xl bg-[#0F1520] border border-[#3AAFE8]/15 p-10 md:p-14 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#3AAFE8]/5 via-transparent to-transparent pointer-events-none" />
+          <div className="rounded-2xl bg-[#0F1520] border border-[#4C82EA]/15 p-10 md:p-14 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#4C82EA]/5 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Powiedz nam, co chcesz oddać agentowi
@@ -259,7 +259,7 @@ export default function AgenciAI() {
               </p>
               <a
                 href="/#kontakt"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#4C82EA] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#9DBBEC] hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 Umów rozmowę
               </a>

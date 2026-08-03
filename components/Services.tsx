@@ -113,7 +113,7 @@ const detailPanels = [
             <span className="text-[2rem] font-extrabold tracking-[-0.04em] text-[#EAF0F7]">od 29 do 99 zł</span>
             <span className="pb-1 text-[13px] font-medium text-[#8B97A8]">miesięcznie</span>
           </div>
-          <p className="mt-2 text-[12.5px] leading-[1.6] text-[#8CD8FF]">
+          <p className="mt-2 text-[12.5px] leading-[1.6] text-[#9DBBEC]">
             Dokładna kwota zależy od Twojej strony i wybranej konfiguracji opieki — ustalamy ją indywidualnie przed startem.
           </p>
           <ul className="mt-5 grid gap-2">
@@ -170,7 +170,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
       data-featured={pkg.featured ? 'true' : 'false'}
       className={`service-package-card group relative h-full overflow-hidden rounded-2xl border transition-[box-shadow,border-color] duration-300 ${
         pkg.featured
-          ? 'border-[rgba(58,175,232,0.5)] bg-[#121A23] shadow-[0_0_0_1px_rgba(58,175,232,0.12),0_8px_32px_-8px_rgba(58,175,232,0.28),0_24px_64px_-32px_rgba(58,175,232,0.22)]'
+          ? 'border-[rgba(76, 130, 234,0.5)] bg-[#121A23] shadow-[0_0_0_1px_rgba(76, 130, 234,0.12),0_8px_32px_-8px_rgba(76, 130, 234,0.28),0_24px_64px_-32px_rgba(76, 130, 234,0.22)]'
           : 'border-[rgba(255,255,255,0.08)] bg-[#10151D]'
       }`}
     >
@@ -187,7 +187,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
           <div className="flex min-h-[26px] items-center justify-between gap-3">
             <span className="text-[12px] font-medium text-[#8B97A8]">{pkg.eyebrow}</span>
             {pkg.featured && (
-              <span className="flex-shrink-0 rounded-full bg-[rgba(58,175,232,0.12)] px-2.5 py-1 text-[10.5px] font-semibold text-[#75C0E2] shadow-[0_0_16px_rgba(58,175,232,0.18)]">
+              <span className="flex-shrink-0 rounded-full bg-[rgba(76, 130, 234,0.12)] px-2.5 py-1 text-[10.5px] font-semibold text-[#75C0E2] shadow-[0_0_16px_rgba(76, 130, 234,0.18)]">
                 Najczęściej wybierany
               </span>
             )}
@@ -223,7 +223,7 @@ function PackageCard({ pkg, onLearnMoreAboutCare }: { pkg: (typeof packages)[num
           <button
             type="button"
             onClick={onLearnMoreAboutCare}
-            className="mb-4 mt-1.5 block w-full text-left text-[11.5px] font-semibold text-[#8CD8FF] transition-colors hover:text-[#EAF0F7]"
+            className="mb-4 mt-1.5 block w-full text-left text-[11.5px] font-semibold text-[#9DBBEC] transition-colors hover:text-[#EAF0F7]"
           >
             Dowiedz się więcej o opiece przy Twojej stronie
           </button>
@@ -249,7 +249,7 @@ function DetailPanel({ panel, open, onToggle }: {
   onToggle: () => void
 }) {
   return (
-    <div className={`overflow-hidden rounded-2xl border transition-[border-color,background-color] duration-200 ${open ? 'border-[rgba(58,175,232,0.32)] bg-[rgba(58,175,232,0.055)]' : 'border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]'}`}>
+    <div className={`overflow-hidden rounded-2xl border transition-[border-color,background-color] duration-200 ${open ? 'border-[rgba(76, 130, 234,0.32)] bg-[rgba(76, 130, 234,0.055)]' : 'border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]'}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -264,7 +264,7 @@ function DetailPanel({ panel, open, onToggle }: {
         <m.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.22, ease }}
-          className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border ${open ? 'border-[#3AAFE8] bg-[#3AAFE8] text-[#06141A]' : 'border-[rgba(58,175,232,0.28)] text-[#3AAFE8]'}`}
+          className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border ${open ? 'border-[#4C82EA] bg-[#4C82EA] text-[#06141A]' : 'border-[rgba(76, 130, 234,0.28)] text-[#4C82EA]'}`}
         >
           <Plus size={16} strokeWidth={2.2} aria-hidden="true" />
         </m.span>
@@ -324,10 +324,10 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="service-diagnostic mt-12 grid overflow-hidden rounded-[1.35rem] border border-[rgba(140,216,255,0.12)] lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="service-diagnostic mt-12 grid overflow-hidden rounded-[1.35rem] border border-[rgba(186, 206, 240,0.12)] lg:grid-cols-[0.78fr_1.22fr]">
           <div className="service-diagnostic__intro flex flex-col justify-between p-6 sm:p-8 lg:p-10">
             <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8CD8FF]">Zacznij od problemu</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9DBBEC]">Zacznij od problemu</span>
               <h3 className="mt-4 max-w-[13ch] text-[clamp(1.55rem,3vw,2.45rem)] font-extrabold leading-[1.06] tracking-[-0.04em] text-[#F5F9FD]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Co dziś blokuje klienta albo Twój zespół?
               </h3>
@@ -339,7 +339,7 @@ export default function Services() {
               <a href="#pakiety" onClick={handlePackageScroll} className="service-text-link inline-flex items-center gap-2 text-[13px] font-semibold text-[#DDF3FF]">
                 Zobacz pakiety <span aria-hidden="true">↓</span>
               </a>
-              <a href="#kontakt" onClick={handleContactClick} className="service-text-link inline-flex items-center gap-2 text-[13px] font-semibold text-[#8CD8FF]">
+              <a href="#kontakt" onClick={handleContactClick} className="service-text-link inline-flex items-center gap-2 text-[13px] font-semibold text-[#9DBBEC]">
                 Opisz swój problem <span aria-hidden="true">↗</span>
               </a>
             </div>

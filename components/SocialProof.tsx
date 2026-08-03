@@ -71,7 +71,7 @@ export default function SocialProof() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1, ease }}
                 className="social-proof-cell group relative flex flex-col items-center justify-center gap-3 px-6 py-10 text-center overflow-hidden transition-colors duration-300"
-                style={{ background: 'linear-gradient(180deg, #0F141D 0%, #0C1017 55%, #0A0E15 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #15181F 0%, #101319 55%, #0C0E13 100%)' }}
               >
                 <div
                   className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -79,10 +79,10 @@ export default function SocialProof() {
                 />
                 <div
                   className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: 'radial-gradient(circle at 50% 40%, rgba(58,175,232,0.07), transparent 68%)' }}
+                  style={{ background: 'radial-gradient(circle at 50% 40%, rgba(76,130,234,0.07), transparent 68%)' }}
                 />
 
-                <div className="text-[2.6rem] sm:text-[3.25rem] font-extrabold leading-none tracking-tighter">
+                <div className="text-[2.35rem] sm:text-[2.9rem] font-semibold leading-none tracking-[-0.03em]" style={{ fontFamily: 'var(--font-heading)', fontVariantNumeric: 'tabular-nums' }}>
                   {stat.value === null ? (
                     <span style={numberStyle}>∞</span>
                   ) : (
@@ -92,7 +92,7 @@ export default function SocialProof() {
                   )}
                 </div>
 
-                <p className="text-[12px] sm:text-[13px] font-medium text-[#7C879B] leading-snug max-w-[140px]">
+                <p className="max-w-[150px] text-[12.5px] font-medium leading-snug text-[var(--text-muted)] sm:text-[13px]">
                   {stat.label}
                 </p>
               </m.div>

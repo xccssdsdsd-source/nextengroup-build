@@ -48,17 +48,17 @@ export default function PMApartamentsCase() {
       <section className="relative pt-28 pb-20 px-6 sm:px-8 bg-[#0A0E14] overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 60% 40% at 80% 20%, rgba(58,175,232,0.12) 0%, transparent 60%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 40% at 80% 20%, rgba(76, 130, 234,0.12) 0%, transparent 60%)' }}
         />
         <div className="relative max-w-4xl mx-auto">
           <a
             href="/realizacje"
-            className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7C879B] hover:text-[#3AAFE8] transition-[color] duration-200 mb-8"
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7C879B] hover:text-[#4C82EA] transition-[color] duration-200 mb-8"
           >
             ← Realizacje
           </a>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3AAFE8] mb-4">Wykończenia wnętrz · Wrocław</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4C82EA] mb-4">Wykończenia wnętrz · Wrocław</p>
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[#EAF0F7] leading-[1.05] mb-6"
             style={{ fontFamily: 'var(--font-heading)' }}
@@ -74,7 +74,7 @@ export default function PMApartamentsCase() {
               href="https://pm-apartments.pl/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#3AAFE8] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4C82EA] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(76, 130, 234,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA]"
             >
               Zobacz stronę <ArrowUpRight size={15} strokeWidth={2.5} />
             </a>
@@ -116,7 +116,7 @@ export default function PMApartamentsCase() {
                 style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
               >
                 <div
-                  className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#3AAFE8] mb-1"
+                  className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#4C82EA] mb-1"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {m.value}
@@ -130,7 +130,7 @@ export default function PMApartamentsCase() {
 
       <section className="px-6 sm:px-8 pb-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3AAFE8] mb-8">Co dostarczyliśmy</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4C82EA] mb-8">Co dostarczyliśmy</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {deliverables.map((d, i) => (
               <div
@@ -139,7 +139,7 @@ export default function PMApartamentsCase() {
                 style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
               >
                 <div
-                  className="text-[11px] font-black uppercase tracking-[0.15em] text-[#3AAFE8] mb-3"
+                  className="text-[11px] font-black uppercase tracking-[0.15em] text-[#4C82EA] mb-3"
                 >
                   {String(i + 1).padStart(2, '0')}
                 </div>
@@ -167,7 +167,7 @@ export default function PMApartamentsCase() {
             </p>
             <a
               href="/#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-[#3AAFE8] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4C82EA] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(76, 130, 234,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA]"
             >
               Umów bezpłatną rozmowę
             </a>

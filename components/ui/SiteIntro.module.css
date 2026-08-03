@@ -32,7 +32,7 @@
   width: min(46rem, 82vw);
   aspect-ratio: 1.65;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(36, 112, 206, 0.11), rgba(58, 175, 232, 0.025) 38%, transparent 72%);
+  background: radial-gradient(ellipse, rgba(36, 112, 206, 0.11), rgba(76, 130, 234, 0.025) 38%, transparent 72%);
   filter: blur(34px);
   opacity: 0;
   transform: translate3d(7%, 4%, 0) scale(0.94);
@@ -71,12 +71,12 @@
 }
 
 .signal::before {
-  background: linear-gradient(90deg, transparent, rgba(140, 216, 255, 0.72), transparent);
+  background: linear-gradient(90deg, transparent, rgba(186, 206, 240, 0.72), transparent);
 }
 
 .signal span {
   filter: blur(5px);
-  background: linear-gradient(90deg, transparent, rgba(58, 175, 232, 0.58), transparent);
+  background: linear-gradient(90deg, transparent, rgba(76, 130, 234, 0.58), transparent);
 }
 
 @keyframes intro-bloom {

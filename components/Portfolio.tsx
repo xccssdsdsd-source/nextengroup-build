@@ -199,35 +199,35 @@ function AnimatedLines() {
             }
           `}</style>
           <linearGradient id={`${uid}-ga`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
-            <stop offset="40%" stopColor="#3AAFE8" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#4C82EA" stopOpacity="0" />
+            <stop offset="40%" stopColor="#4C82EA" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#9DBBEC" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gb`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8CD8FF" stopOpacity="0" />
-            <stop offset="50%" stopColor="#8CD8FF" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#3AAFE8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#9DBBEC" stopOpacity="0" />
+            <stop offset="50%" stopColor="#9DBBEC" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#4C82EA" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gc`} x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
-            <stop offset="45%" stopColor="#3AAFE8" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#4C82EA" stopOpacity="0" />
+            <stop offset="45%" stopColor="#4C82EA" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#9DBBEC" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(58,175,232,0.065)" strokeWidth="1.1" />
+        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(76, 130, 234,0.065)" strokeWidth="1.1" />
         <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.1" strokeDasharray="520 2080" className="pf-a" />
 
-        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(58,175,232,0.05)" strokeWidth="0.75" />
+        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(76, 130, 234,0.05)" strokeWidth="0.75" />
         <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.75" strokeDasharray="460 2340" className="pf-b" />
 
-        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(58,175,232,0.055)" strokeWidth="0.95" />
+        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(76, 130, 234,0.055)" strokeWidth="0.95" />
         <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="0.95" strokeDasharray="500 1900" className="pf-c" />
 
-        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.68" />
+        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(76, 130, 234,0.045)" strokeWidth="0.68" />
         <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.68" strokeDasharray="440 2560" className="pf-d" />
 
-        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.8" />
+        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(76, 130, 234,0.045)" strokeWidth="0.8" />
         <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="480 2120" className="pf-e" />
       </svg>
     </div>
@@ -450,7 +450,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(76, 130, 234,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -485,7 +485,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(76, 130, 234,0.3)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -512,7 +512,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 )}
 
                 <div className="portfolio-mobile-content flex flex-col justify-center p-6 sm:p-8">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#3AAFE8', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#4C82EA', boxShadow: '0 2px 8px rgba(76, 130, 234,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     {asH1 ? (
@@ -520,13 +520,13 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     ) : (
                       <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
                     )}
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#3AAFE8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#4C82EA] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
                   <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#3AAFE8] underline hover:text-[#3AAFE8]">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#4C82EA] underline hover:text-[#4C82EA]">Zobacz więcej</button></>
                     )}
                   </p>
 
@@ -587,7 +587,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     style={{
                       width: i === currentIndex ? 22 : 8,
                       height: 8,
-                      background: i === currentIndex ? '#3AAFE8' : 'rgba(255,255,255,0.14)',
+                      background: i === currentIndex ? '#4C82EA' : 'rgba(255,255,255,0.14)',
                     }}
                     aria-label={`Realizacja ${i + 1}`}
                   />

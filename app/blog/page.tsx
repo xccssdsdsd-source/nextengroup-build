@@ -60,7 +60,7 @@ export default function Blog() {
       ]} />
 
       <section className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
-        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(76, 130, 234,0.12), transparent 60%)' }} />
         <div className="mx-auto max-w-3xl relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Blog Getbuild
@@ -77,7 +77,7 @@ export default function Blog() {
             {articles.map((article) => (
               <article key={article.slug} className="border border-white/10 rounded-lg p-8 bg-[#161C28] hover:shadow-lg transition-shadow">
                 <Link href={`/blog/${article.slug}`}>
-                  <h2 className="text-2xl font-bold text-[#EAF0F7] mb-3 hover:text-[#3AAFE8] transition-colors">
+                  <h2 className="text-2xl font-bold text-[#EAF0F7] mb-3 hover:text-[#4C82EA] transition-colors">
                     {article.title}
                   </h2>
                 </Link>
@@ -89,7 +89,7 @@ export default function Blog() {
                 <p className="text-[#A6B2C4] mb-6">
                   {article.excerpt}
                 </p>
-                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[#8CD8FF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out">
+                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[#9DBBEC] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out">
                   Czytaj artykuł
                   <span>→</span>
                 </Link>

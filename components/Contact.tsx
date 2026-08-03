@@ -106,7 +106,7 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
         data-fade-in
-        className="contact-panel relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(58,175,232,0.08)] p-6 sm:p-10 lg:p-14 xl:p-16"
+        className="contact-panel relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.08)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_8px_40px_rgba(0,0,0,0.5),_0_40px_100px_-40px_rgba(76, 130, 234,0.08)] p-6 sm:p-10 lg:p-14 xl:p-16"
         style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 30%), #11161F' }}
       >
 
@@ -128,18 +128,18 @@ export default function Contact() {
                   <div className="flex gap-2">
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#3AAFE8] hover:bg-[rgba(58,175,232,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center"
+                      className="flex-1 px-3 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#4C82EA] hover:bg-[rgba(76, 130, 234,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center"
                     >
                       <span className="text-[12px] font-semibold text-[#EAF0F7] break-all">{contactEmail}</span>
                     </a>
                     <button
                       onClick={copyEmail}
-                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#3AAFE8] hover:bg-[rgba(58,175,232,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center justify-center flex-shrink-0"
+                      className="px-2.5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#161C28] hover:border-[#4C82EA] hover:bg-[rgba(76, 130, 234,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA] focus-visible:ring-offset-2 transition-[border-color,background-color] duration-200 ease-out flex items-center justify-center flex-shrink-0"
                       aria-label={copied ? 'Skopiowane!' : 'Skopiuj adres email'}
                       title={copied ? 'Skopiowane!' : 'Skopiuj email'}
                     >
                       {copied ? (
-                        <span className="text-[11px] font-semibold text-[#3AAFE8]">OK</span>
+                        <span className="text-[11px] font-semibold text-[#4C82EA]">OK</span>
                       ) : (
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#EAF0F7]">
                           <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
@@ -159,7 +159,7 @@ export default function Contact() {
                         href={s.href}
                         target={s.label !== 'Email' ? '_blank' : undefined}
                         rel={s.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className={`contact-social group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2 ${
+                        className={`contact-social group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-[border-color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA] focus-visible:ring-offset-2 ${
                           s.label === 'Email' ? 'border-[rgba(234,113,42,0.2)] bg-[rgba(234,113,42,0.06)] hover:bg-[rgba(234,113,42,0.14)] hover:border-[rgba(234,113,42,0.5)]'
                           : s.label === 'Instagram' ? 'border-[rgba(225,48,108,0.2)] bg-[rgba(225,48,108,0.06)] hover:bg-[rgba(225,48,108,0.14)] hover:border-[rgba(225,48,108,0.5)]'
                           : s.label === 'Facebook' ? 'border-[rgba(24,119,242,0.2)] bg-[rgba(24,119,242,0.06)] hover:bg-[rgba(24,119,242,0.14)] hover:border-[rgba(24,119,242,0.5)]'
@@ -200,7 +200,7 @@ export default function Contact() {
             <div className="w-full flex-1 min-w-0 grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] items-start">
               <div className="min-w-0">
                 <div className="mb-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#3AAFE8] mb-2">Umów spotkanie</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#4C82EA] mb-2">Umów spotkanie</p>
                   <h3 className="text-[20px] sm:text-[22px] font-extrabold leading-tight tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                     Wybierz termin rozmowy
                   </h3>
@@ -208,7 +208,7 @@ export default function Contact() {
                 <div className="calendly-widget w-full overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)]" style={{ minHeight: '680px', height: '680px' }}>
                   <iframe
                     title="Umów spotkanie z Getbuild"
-                    src="https://calendly.com/getbuild-pl/30min?embed_type=Inline&background_color=0d1528&text_color=eaf0f7&primary_color=3aafe8&hide_gdpr_banner=1"
+                    src="https://calendly.com/getbuild-pl/30min?embed_type=Inline&background_color=14171e&text_color=edeff3&primary_color=4c82ea&hide_gdpr_banner=1"
                     loading="lazy"
                     className="h-full w-full border-0"
                     allow="camera; microphone; fullscreen"
@@ -218,12 +218,12 @@ export default function Contact() {
 
               <div className="min-w-0">
                 <div className="mb-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#3AAFE8] mb-2">Napisz do nas</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#4C82EA] mb-2">Napisz do nas</p>
                   <h3 className="text-[20px] sm:text-[22px] font-extrabold leading-tight tracking-[-0.02em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
                     Wyślij krótkie zapytanie
                   </h3>
                 </div>
-                <div className="contact-form-card rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(58,175,232,0.12)]">
+                <div className="contact-form-card rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(76, 130, 234,0.12)]">
                 <form
                   onSubmit={handleSubmit}
                   className="space-y-5"
@@ -258,8 +258,8 @@ export default function Contact() {
                       aria-labelledby="inquiry-subject-label inquiry-subject-value"
                       className="form-input w-full flex items-center justify-between gap-3 text-left"
                       style={{
-                        borderColor: dropdownOpen ? 'rgba(58,175,232,0.6)' : undefined,
-                        boxShadow: dropdownOpen ? '0 0 0 3px rgba(58,175,232,0.12)' : undefined,
+                        borderColor: dropdownOpen ? 'rgba(76, 130, 234,0.6)' : undefined,
+                        boxShadow: dropdownOpen ? '0 0 0 3px rgba(76, 130, 234,0.12)' : undefined,
                       }}
                     >
                       <span
@@ -283,7 +283,7 @@ export default function Contact() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -6, scale: 0.98 }}
                           transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-xl border border-[rgba(58,175,232,0.18)] bg-[#161C28] shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.4)] list-none p-1.5 m-0"
+                          className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-xl border border-[rgba(76, 130, 234,0.18)] bg-[#161C28] shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.4)] list-none p-1.5 m-0"
                         >
                           {subjects.map((s) => {
                             const selected = formData.subject === s
@@ -298,8 +298,8 @@ export default function Contact() {
                                 }}
                                 className="flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg cursor-pointer text-[13px] font-medium transition-[background-color,color] duration-100 select-none"
                                 style={{
-                                  background: selected ? 'rgba(58,175,232,0.12)' : undefined,
-                                  color: selected ? '#3AAFE8' : '#A6B2C4',
+                                  background: selected ? 'rgba(76, 130, 234,0.12)' : undefined,
+                                  color: selected ? '#4C82EA' : '#A6B2C4',
                                 }}
                                 onMouseEnter={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
                                 onMouseLeave={e => { if (!selected) (e.currentTarget as HTMLElement).style.background = '' }}
@@ -318,10 +318,10 @@ export default function Contact() {
                     <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="form-input resize-none" {...{ toolparamdescription: 'Short description of the company, project, and help needed.' }} />
                   </div>
                   <div className="flex items-start gap-3">
-                    <input type="checkbox" id="gdpr" name="privacy_consent" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#3AAFE8]" {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }} />
+                    <input type="checkbox" id="gdpr" name="privacy_consent" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border border-[rgba(255,255,255,0.2)] bg-[#161C28] accent-[#4C82EA]" {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }} />
                     <label htmlFor="gdpr" className="text-[12px] leading-[1.6] text-[#7C879B] cursor-pointer">
                       Wyrażam zgodę na przetwarzanie moich danych osobowych (w tym numeru telefonu, jeśli został podany) przez Getbuild w celu odpowiedzi na zapytanie, w tym drogą mailową oraz telefoniczną (rozmowa, SMS), zgodnie z{' '}
-                      <a href="/polityka-prywatnosci" className="text-[#3AAFE8] hover:text-[#8CD8FF] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
+                      <a href="/polityka-prywatnosci" className="text-[#4C82EA] hover:text-[#9DBBEC] underline underline-offset-2 transition-colors">Polityką prywatności</a>. *
                     </label>
                   </div>
                   {error && <p className="text-[13px] text-red-400" role="alert">Coś poszło nie tak. Spróbuj ponownie lub napisz na getbuild.pl@gmail.com.</p>}

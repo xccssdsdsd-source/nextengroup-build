@@ -234,7 +234,7 @@ export default function WiedzaAI() {
           </p>
           <a
             href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0 8px 24px rgba(58,175,232,0.22)] hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 rounded-xl bg-[#4C82EA] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#9DBBEC] hover:shadow-[0 8px 24px rgba(76, 130, 234,0.22)] hover:-translate-y-0.5"
           >
             Skontaktuj się
           </a>

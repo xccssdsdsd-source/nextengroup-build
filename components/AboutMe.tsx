@@ -40,7 +40,7 @@ export default function AboutMe() {
               href="https://calendly.com/getbuild"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-[#3AAFE8] transition-[opacity,color] duration-200 hover:text-[#8CD8FF] hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8] focus-visible:ring-offset-2"
+              className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-[#4C82EA] transition-[opacity,color] duration-200 hover:text-[#9DBBEC] hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4C82EA] focus-visible:ring-offset-2"
             >
               Umów spotkanie
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

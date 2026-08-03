@@ -66,7 +66,7 @@ export default function StronyInternetoweDlaFirm() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
       <section className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
-        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.22), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(76, 130, 234,0.22), transparent 60%)' }} />
         <div className="mx-auto max-w-3xl relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony internetowe dla firm B2B
@@ -84,11 +84,11 @@ export default function StronyInternetoweDlaFirm() {
             Brak profesjonalnej obecności online sprawia, że firma traci część szans sprzedażowych:
           </p>
           <ul className="space-y-3 mb-8 text-[#A6B2C4]">
-            <li className="flex gap-3"><span className="text-[#3AAFE8]">•</span> Potencjalni klienci nie znajdują Twojej oferty w Google.</li>
-            <li className="flex gap-3"><span className="text-[#3AAFE8]">•</span> Konkurencja szybciej buduje zaufanie dzięki lepszej stronie.</li>
-            <li className="flex gap-3"><span className="text-[#3AAFE8]">•</span> Oferta jest nieczytelna i trudna do szybkiego zrozumienia.</li>
-            <li className="flex gap-3"><span className="text-[#3AAFE8]">•</span> Brakuje jasnej ścieżki prowadzącej do kontaktu.</li>
-            <li className="flex gap-3"><span className="text-[#3AAFE8]">•</span> Strona nie wspiera sprzedaży ani działań marketingowych.</li>
+            <li className="flex gap-3"><span className="text-[#4C82EA]">•</span> Potencjalni klienci nie znajdują Twojej oferty w Google.</li>
+            <li className="flex gap-3"><span className="text-[#4C82EA]">•</span> Konkurencja szybciej buduje zaufanie dzięki lepszej stronie.</li>
+            <li className="flex gap-3"><span className="text-[#4C82EA]">•</span> Oferta jest nieczytelna i trudna do szybkiego zrozumienia.</li>
+            <li className="flex gap-3"><span className="text-[#4C82EA]">•</span> Brakuje jasnej ścieżki prowadzącej do kontaktu.</li>
+            <li className="flex gap-3"><span className="text-[#4C82EA]">•</span> Strona nie wspiera sprzedaży ani działań marketingowych.</li>
           </ul>
         </div>
       </section>
@@ -125,35 +125,35 @@ export default function StronyInternetoweDlaFirm() {
           <h2 className="text-3xl font-bold text-[#EAF0F7] mb-6">Proces współpracy</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#3AAFE8] text-[#06141A] rounded-lg flex items-center justify-center font-bold">1</div>
+              <div className="flex-shrink-0 w-12 h-12 bg-[#4C82EA] text-[#06141A] rounded-lg flex items-center justify-center font-bold">1</div>
               <div>
                 <h3 className="font-bold text-[#EAF0F7] mb-1">Bezpłatna konsultacja</h3>
                 <p className="text-sm text-[#A6B2C4]">Poznajemy Twoją firmę, ofertę, konkurencję i cele biznesowe.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#3AAFE8] text-[#06141A] rounded-lg flex items-center justify-center font-bold">2</div>
+              <div className="flex-shrink-0 w-12 h-12 bg-[#4C82EA] text-[#06141A] rounded-lg flex items-center justify-center font-bold">2</div>
               <div>
                 <h3 className="font-bold text-[#EAF0F7] mb-1">Analiza i strategia</h3>
                 <p className="text-sm text-[#A6B2C4]">Układamy strukturę strony, priorytety komunikacyjne i założenia SEO.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#3AAFE8] text-[#06141A] rounded-lg flex items-center justify-center font-bold">3</div>
+              <div className="flex-shrink-0 w-12 h-12 bg-[#4C82EA] text-[#06141A] rounded-lg flex items-center justify-center font-bold">3</div>
               <div>
                 <h3 className="font-bold text-[#EAF0F7] mb-1">Projekt i wdrożenie</h3>
                 <p className="text-sm text-[#A6B2C4]">Tworzymy projekt, wdrażamy stronę i integrujemy potrzebne narzędzia.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#3AAFE8] text-[#06141A] rounded-lg flex items-center justify-center font-bold">4</div>
+              <div className="flex-shrink-0 w-12 h-12 bg-[#4C82EA] text-[#06141A] rounded-lg flex items-center justify-center font-bold">4</div>
               <div>
                 <h3 className="font-bold text-[#EAF0F7] mb-1">Testy i publikacja</h3>
                 <p className="text-sm text-[#A6B2C4]">Sprawdzamy działanie strony na różnych urządzeniach i publikujemy gotową wersję.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-[#3AAFE8] text-[#06141A] rounded-lg flex items-center justify-center font-bold">5</div>
+              <div className="flex-shrink-0 w-12 h-12 bg-[#4C82EA] text-[#06141A] rounded-lg flex items-center justify-center font-bold">5</div>
               <div>
                 <h3 className="font-bold text-[#EAF0F7] mb-1">Monitoring i rozwój</h3>
                 <p className="text-sm text-[#A6B2C4]">Analizujemy wyniki i rozwijamy stronę na podstawie danych.</p>

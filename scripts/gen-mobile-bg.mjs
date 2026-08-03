@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const url = process.argv[2] || 'http://localhost:3111/'
 const out = path.join(__dirname, '..', 'public', 'bg-mobile.webp')
 
-const browser = await puppeteer.launch({ headless: 'new' })
+const browser = await puppeteer.launch({ headless: 'new', args: process.env.PPTR_NO_SANDBOX ? ['--no-sandbox'] : [] })
 try {
   const page = await browser.newPage()
   await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 })
@@ -26,7 +26,7 @@ try {
     Array.from(document.body.children).forEach((el) => {
       if (el !== bg) el.style.setProperty('display', 'none', 'important')
     })
-    document.documentElement.style.setProperty('background', '#02040a', 'important')
+    document.documentElement.style.setProperty('background', '#08090c', 'important')
   })
 
   await new Promise((r) => setTimeout(r, 300))

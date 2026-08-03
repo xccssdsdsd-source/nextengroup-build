@@ -86,7 +86,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
       style={{ willChange: 'transform', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 36%), #161C28' }}
     >
       <div className="flex items-center justify-between gap-6">
-        <div className="flex gap-1 text-[#FBBF24]">
+        <div className="flex gap-1 text-[var(--accent-warm)]">
           <span className="sr-only">Ocena 5 na 5</span>
           {Array.from({ length: 5 }).map((_, starIndex) => (
             <Star key={starIndex} size={17} fill="currentColor" strokeWidth={0} aria-hidden="true" />
@@ -100,7 +100,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
       </p>
 
       <div className="mt-6 flex items-center gap-4 border-t border-[rgba(255,255,255,0.08)] pt-5">
-        <div className="testimonial-avatar relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-[rgba(58,175,232,0.24)]">
+        <div className="testimonial-avatar relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-[rgba(76, 130, 234,0.24)]">
           <Image
             src={testimonial.photo}
             alt={testimonial.name}
@@ -116,10 +116,10 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
             href={testimonial.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link mt-1.5 inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#3AAFE8] transition-colors duration-150 hover:text-[#8CD8FF]"
+            className="group/link mt-1.5 inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#4C82EA] transition-colors duration-150 hover:text-[#9DBBEC]"
           >
             <span>{testimonial.site}</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-[rgba(58,175,232,0.12)] ring-1 ring-[rgba(58,175,232,0.22)] transition-transform duration-150 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:bg-[rgba(58,175,232,0.18)]">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-[rgba(76, 130, 234,0.12)] ring-1 ring-[rgba(76, 130, 234,0.22)] transition-transform duration-150 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:bg-[rgba(76, 130, 234,0.18)]">
               <ArrowUpRight size={13} strokeWidth={2.4} aria-hidden="true" />
             </span>
           </a>

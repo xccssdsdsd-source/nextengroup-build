@@ -145,13 +145,13 @@ export default function StonyWWW() {
 
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <div className="relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#3AAFE8]/20 bg-[#3AAFE8]/5 px-4 py-1.5 mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#3AAFE8] animate-pulse" />
-            <span className="text-xs font-medium text-[#3AAFE8] tracking-wide uppercase">Strony WWW dla firm</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#4C82EA]/20 bg-[#4C82EA]/5 px-4 py-1.5 mb-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#4C82EA] animate-pulse" />
+            <span className="text-xs font-medium text-[#4C82EA] tracking-wide uppercase">Strony WWW dla firm</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony WWW, które<br className="hidden md:block" />
-            <span className="text-[#3AAFE8]"> pracują dla Twojego biznesu</span>
+            <span className="text-[#4C82EA]"> pracują dla Twojego biznesu</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[#A6B2C4] mb-10 max-w-2xl" data-speakable>
             Nowoczesne strony internetowe budują wiarygodność Twojej firmy i aktywnie kierują klientów do kontaktu. Każdy element projektujemy z myślą o Twoich celach biznesowych.
@@ -159,7 +159,7 @@ export default function StonyWWW() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/#kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#4C82EA] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#9DBBEC] hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
             >
               Umów bezpłatną konsultację
             </a>
@@ -180,7 +180,7 @@ export default function StonyWWW() {
               <div key={stat.label} className="bg-[#0F1520] px-8 py-10 flex flex-col gap-1">
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{stat.val}</span>
-                  {stat.unit && <span className="text-xl font-bold text-[#3AAFE8]">{stat.unit}</span>}
+                  {stat.unit && <span className="text-xl font-bold text-[#4C82EA]">{stat.unit}</span>}
                 </div>
                 <p className="text-sm text-[#7E8CA2]">{stat.label}</p>
               </div>
@@ -211,15 +211,15 @@ export default function StonyWWW() {
             <div className="bg-[#0F1520] rounded-2xl border border-white/5 p-8 space-y-5">
               {processPoints.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex-shrink-0 h-5 w-5 rounded-full bg-[#3AAFE8]/10 border border-[#3AAFE8]/30 flex items-center justify-center">
-                    <svg className="h-2.5 w-2.5 text-[#3AAFE8]" viewBox="0 0 10 10" fill="none">
+                  <div className="mt-0.5 flex-shrink-0 h-5 w-5 rounded-full bg-[#4C82EA]/10 border border-[#4C82EA]/30 flex items-center justify-center">
+                    <svg className="h-2.5 w-2.5 text-[#4C82EA]" viewBox="0 0 10 10" fill="none">
                       <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <span className="text-[15px] text-[#8A96A8] leading-[1.6]">{item}</span>
                 </div>
               ))}
-              <p className="text-xs text-[#3AAFE8]/70 pt-2 border-t border-white/5">Wszystko w jednym, spójnym projekcie.</p>
+              <p className="text-xs text-[#4C82EA]/70 pt-2 border-t border-white/5">Wszystko w jednym, spójnym projekcie.</p>
             </div>
           </div>
         </div>
@@ -233,10 +233,10 @@ export default function StonyWWW() {
           <p className="text-[#7E8CA2] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {features.map((f, i) => (
-              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#3AAFE8]/20 transition-colors duration-300">
+              <div key={i} className="group rounded-2xl bg-[#0F1520] border border-white/5 p-6 hover:border-[#4C82EA]/20 transition-colors duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#3AAFE8]/10 border border-[#3AAFE8]/20 flex items-center justify-center">
-                    <svg className="h-4 w-4 text-[#3AAFE8]" viewBox="0 0 16 16" fill="none">
+                  <div className="flex-shrink-0 mt-0.5 h-8 w-8 rounded-lg bg-[#4C82EA]/10 border border-[#4C82EA]/20 flex items-center justify-center">
+                    <svg className="h-4 w-4 text-[#4C82EA]" viewBox="0 0 16 16" fill="none">
                       <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
@@ -269,8 +269,8 @@ export default function StonyWWW() {
 
       <section className="relative py-16 md:py-24 px-6 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <div className="rounded-2xl bg-[#0F1520] border border-[#3AAFE8]/15 p-10 md:p-14 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#3AAFE8]/5 via-transparent to-transparent pointer-events-none" />
+          <div className="rounded-2xl bg-[#0F1520] border border-[#4C82EA]/15 p-10 md:p-14 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#4C82EA]/5 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Gotów na stronę, która pracuje?
@@ -280,7 +280,7 @@ export default function StonyWWW() {
               </p>
               <a
                 href="/#kontakt"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#4C82EA] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#9DBBEC] hover:shadow-[0_8px_24px_rgba(76, 130, 234,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 Umów spotkanie
               </a>

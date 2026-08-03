@@ -64,8 +64,8 @@ export default function Process() {
                 <span aria-hidden="true" className="overview-num pointer-events-none absolute right-5 top-3 select-none">{step.num}</span>
 
                 <div className="flex items-center gap-3.5">
-                  <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(58,175,232,0.25)]" style={{ background: 'rgba(58,175,232,0.08)' }}>
-                    <Icon size={22} strokeWidth={1.8} className="text-[#8CD8FF]" aria-hidden="true" />
+                  <span className="overview-icon flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[rgba(76, 130, 234,0.25)]" style={{ background: 'rgba(76, 130, 234,0.08)' }}>
+                    <Icon size={22} strokeWidth={1.8} className="text-[#9DBBEC]" aria-hidden="true" />
                   </span>
                   <div>
                     <span className="process-meta text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#8A96A8]">{step.meta}</span>

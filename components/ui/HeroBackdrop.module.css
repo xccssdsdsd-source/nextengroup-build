@@ -5,7 +5,7 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #02040a;
+  background: #06070a;
 }
 
 .root[data-active='true'] {
@@ -30,7 +30,7 @@
 
 .poster {
   overflow: hidden;
-  background: radial-gradient(130% 105% at 50% 0%, #0c2264 0%, #050f36 46%, #030716 74%, #02040a 100%);
+  background: radial-gradient(130% 105% at 50% 0%, #17224a 0%, #0d1330 44%, #08090f 74%, #06070a 100%);
   -webkit-mask-image: radial-gradient(ellipse 108% 96% at 58% 42%, #000 0%, #000 62%, transparent 94%);
   mask-image: radial-gradient(ellipse 108% 96% at 58% 42%, #000 0%, #000 62%, transparent 94%);
 }
@@ -47,22 +47,22 @@
 }
 
 .blobA {
-  background: radial-gradient(32% 36% at 28% 22%, rgba(58, 130, 246, 0.42), transparent 70%);
+  background: radial-gradient(32% 36% at 28% 22%, rgba(76, 130, 234, 0.26), transparent 70%);
   animation: drift-a 24s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .blobB {
-  background: radial-gradient(30% 34% at 80% 30%, rgba(80, 200, 255, 0.3), transparent 70%);
+  background: radial-gradient(30% 34% at 80% 30%, rgba(108, 158, 240, 0.17), transparent 70%);
   animation: drift-b 30s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .blobC {
-  background: radial-gradient(40% 42% at 52% 86%, rgba(30, 90, 210, 0.34), transparent 72%);
+  background: radial-gradient(40% 42% at 52% 86%, rgba(44, 82, 176, 0.22), transparent 72%);
   animation: drift-c 36s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .blobD {
-  background: radial-gradient(26% 30% at 60% 46%, rgba(140, 210, 255, 0.16), transparent 74%);
+  background: radial-gradient(26% 30% at 60% 46%, rgba(176, 200, 240, 0.09), transparent 74%);
   animation: drift-d 42s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
@@ -103,8 +103,8 @@
   z-index: 2;
   pointer-events: none;
   background-image:
-    linear-gradient(90deg, rgba(2, 4, 10, 0.7) 0%, rgba(2, 4, 10, 0.34) 34%, rgba(2, 4, 10, 0.08) 62%, rgba(2, 4, 10, 0) 100%),
-    linear-gradient(180deg, rgba(2, 4, 10, 0) 58%, rgba(2, 4, 10, 0.44) 82%, #02040a 100%);
+    linear-gradient(90deg, rgba(6, 7, 10, 0.74) 0%, rgba(6, 7, 10, 0.38) 34%, rgba(6, 7, 10, 0.1) 62%, rgba(6, 7, 10, 0) 100%),
+    linear-gradient(180deg, rgba(6, 7, 10, 0) 58%, rgba(6, 7, 10, 0.48) 82%, #08090c 100%);
 }
 
 @keyframes fade {

@@ -50,6 +50,7 @@ export default function Testimonials() {
         <m.div
           className="testimonials-grid mt-14 grid gap-5 lg:grid-cols-2 items-stretch"
           data-stagger-group
+          data-reveal-bloom
           data-reveal-pattern="soft"
           initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}

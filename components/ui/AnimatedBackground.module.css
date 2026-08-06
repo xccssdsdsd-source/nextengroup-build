@@ -1,10 +1,17 @@
 .root {
+  /* Scroll depth, written by AnimatedBackground.tsx. --sp is linear, --spe is
+     smoothstep-eased; both stay 0 for reduced motion and on mobile. */
+  --sp: 0;
+  --spe: 0;
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #08090c;
+  background:
+    radial-gradient(46% 52% at 78% 68%, rgba(46, 84, 168, 0.10), transparent 78%),
+    radial-gradient(38% 46% at 16% 8%, rgba(150, 176, 224, 0.09), transparent 72%),
+    linear-gradient(158deg, #08090c 0%, #0a0c11 32%, #06070a 64%, #030304 100%);
   isolation: isolate;
   contain: strict;
 }
@@ -13,26 +20,130 @@
   display: none;
 }
 
-.field {
+/* ── Aurora mesh ────────────────────────────────────────────────────────────
+   Two full-bleed meshes of soft radial lobes, cross-faded by scroll depth.
+   The cool set carries the brand blue and owns the top of the page; the warm
+   set adds indigo/violet with a single amber lobe and takes over toward the
+   footer. Each mesh drifts on its own long, prime-ish period so the two never
+   line up into a repeating pattern. Blur is applied once per mesh (not per
+   lobe) to keep this at two composited layers. */
+.auroraCool,
+.auroraWarm {
   position: absolute;
-  inset: -18%;
-  background-image:
-    radial-gradient(38% 46% at 16% 8%, rgba(150, 176, 224, 0.13), transparent 72%),
-    radial-gradient(32% 40% at 88% 22%, rgba(120, 152, 214, 0.09), transparent 76%),
-    radial-gradient(46% 52% at 78% 68%, rgba(46, 84, 168, 0.11), transparent 78%),
-    radial-gradient(40% 46% at 10% 62%, rgba(90, 126, 200, 0.05), transparent 78%),
-    radial-gradient(34% 40% at 15% 92%, rgba(216, 163, 75, 0.022), transparent 78%),
-    linear-gradient(158deg, #08090c 0%, #0a0c11 32%, #06070a 64%, #030304 100%);
-  filter: blur(60px);
-  opacity: 0.5;
-  transition: translate 900ms cubic-bezier(0.23, 1, 0.32, 1);
-  animation: field-drift 72s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  will-change: translate, transform;
+  inset: -26%;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
 }
 
-@keyframes field-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(1%, -0.8%, 0) scale(1.03); }
+.auroraCool {
+  background-image:
+    radial-gradient(42% 48% at 22% 18%, rgba(76, 130, 234, 0.26), rgba(76, 130, 234, 0.07) 46%, transparent 78%),
+    radial-gradient(38% 44% at 78% 26%, rgba(96, 178, 236, 0.14), rgba(96, 178, 236, 0.04) 48%, transparent 80%),
+    radial-gradient(48% 52% at 62% 74%, rgba(44, 84, 178, 0.22), rgba(44, 84, 178, 0.06) 46%, transparent 80%),
+    radial-gradient(36% 40% at 12% 66%, rgba(112, 96, 226, 0.13), rgba(112, 96, 226, 0.04) 48%, transparent 80%);
+  opacity: calc(0.78 - var(--spe) * 0.34);
+  animation: aurora-cool 58s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.auroraWarm {
+  background-image:
+    radial-gradient(44% 48% at 74% 22%, rgba(122, 98, 232, 0.22), rgba(122, 98, 232, 0.06) 46%, transparent 80%),
+    radial-gradient(40% 44% at 24% 44%, rgba(64, 106, 210, 0.18), rgba(64, 106, 210, 0.05) 48%, transparent 80%),
+    radial-gradient(42% 46% at 56% 82%, rgba(150, 106, 216, 0.14), rgba(150, 106, 216, 0.04) 48%, transparent 80%),
+    radial-gradient(30% 34% at 86% 72%, rgba(216, 163, 75, 0.09), transparent 78%);
+  opacity: calc(0.14 + var(--spe) * 0.62);
+  animation: aurora-warm 71s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes aurora-cool {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate3d(2.5%, -2%, 0) scale(1.08) rotate(2deg); }
+  66% { transform: translate3d(-2%, 2.5%, 0) scale(1.04) rotate(-1.5deg); }
+}
+
+@keyframes aurora-warm {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.04) rotate(0deg); }
+  40% { transform: translate3d(-3%, 2%, 0) scale(1.1) rotate(-2.5deg); }
+  75% { transform: translate3d(2%, -2.5%, 0) scale(1.02) rotate(1.5deg); }
+}
+
+/* Slowly rotating conic sweep — the layer that reads as "aurora" rather than
+   as a set of blobs, because its hue transition is angular instead of radial.
+   Masked to an off-centre ellipse so the seam of the conic gradient never
+   lands anywhere visible. */
+.ribbon {
+  position: absolute;
+  inset: -40%;
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(76, 130, 234, 0) 0deg,
+    rgba(76, 130, 234, 0.16) 46deg,
+    rgba(126, 100, 232, 0.13) 104deg,
+    rgba(96, 186, 238, 0.09) 158deg,
+    rgba(76, 130, 234, 0) 214deg,
+    rgba(44, 84, 178, 0.12) 286deg,
+    rgba(76, 130, 234, 0) 360deg
+  );
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  -webkit-mask-image: radial-gradient(ellipse 62% 58% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%);
+  mask-image: radial-gradient(ellipse 62% 58% at 58% 34%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%);
+  animation: ribbon-turn 150s linear infinite;
+  will-change: transform;
+}
+
+@keyframes ribbon-turn {
+  from { transform: rotate(0deg) scale(1.02); }
+  to { transform: rotate(360deg) scale(1.02); }
+}
+
+/* Two wide, near-vertical shafts of light that sweep across on a long cycle.
+   Off-screen for most of their period, so the page mostly reads as still and
+   the sweep arrives as an occasional accent rather than a loop. */
+.beam {
+  position: absolute;
+  top: -60%;
+  height: 220%;
+  width: clamp(16rem, 30vw, 30rem);
+  /* The only blur left in the stack: a beam is a narrow strip, so the pass is
+     cheap, and without it the rotated edge reads as a line rather than light. */
+  filter: blur(16px);
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(150, 180, 240, 0.05) 34%,
+    rgba(186, 210, 250, 0.085) 50%,
+    rgba(150, 180, 240, 0.05) 66%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 26%, #000 50%, rgba(0, 0, 0, 0.55) 74%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 26%, #000 50%, rgba(0, 0, 0, 0.55) 74%, transparent 100%);
+  will-change: transform, opacity;
+}
+
+.beamA {
+  left: -30%;
+  animation: beam-sweep-a 34s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.beamB {
+  left: -30%;
+  animation: beam-sweep-b 47s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes beam-sweep-a {
+  0% { transform: translate3d(0, 0, 0) rotate(14deg); opacity: 0; }
+  8% { opacity: 0.9; }
+  46% { opacity: 0.55; }
+  60%, 100% { transform: translate3d(150vw, 0, 0) rotate(14deg); opacity: 0; }
+}
+
+@keyframes beam-sweep-b {
+  0%, 24% { transform: translate3d(0, 0, 0) rotate(-11deg); opacity: 0; }
+  34% { opacity: 0.6; }
+  72% { opacity: 0.35; }
+  86%, 100% { transform: translate3d(150vw, 0, 0) rotate(-11deg); opacity: 0; }
 }
 
 .scrollBand {
@@ -163,21 +274,29 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(72% 22rem at 60% 0%, rgba(158, 182, 226, 0.055), transparent 74%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.6), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.6));
+    radial-gradient(72% 22rem at 60% 0%, rgba(158, 182, 226, 0.06), transparent 74%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.44), transparent 20%, transparent 80%, rgba(0, 0, 0, 0.44));
 }
 
 .vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(135% 110% at 50% 42%, transparent 48%, rgba(0, 0, 0, 0.78) 100%);
+  background: radial-gradient(140% 116% at 50% 42%, transparent 52%, rgba(0, 0, 0, 0.66) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .scrollBand,
   .ambientGrain,
-  .field {
+  .auroraCool,
+  .auroraWarm,
+  .ribbon {
     animation: none;
+  }
+
+  /* A sweeping light is the one layer with no still equivalent — drop it
+     rather than freeze it mid-travel. */
+  .beam {
+    display: none;
   }
 }
 
@@ -196,7 +315,10 @@
     background-position: center;
   }
 
-  .field,
+  .auroraCool,
+  .auroraWarm,
+  .ribbon,
+  .beam,
   .scrollBand,
   .scrollGrain,
   .stars,

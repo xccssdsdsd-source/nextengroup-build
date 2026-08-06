@@ -36,6 +36,59 @@ export default function PremiumAnimations() {
     `
     document.head.appendChild(style)
 
+    /* ── HEADING WORD CASCADE ──────────────────────────────────────────
+       Each word gets a mask span it rises out of, so a heading assembles
+       itself instead of sliding in as one block. Element children (the
+       italic serif accents) are wrapped whole rather than descended into,
+       which keeps their markup and styling intact. Titles that ship with
+       .io-visible already applied lose it here: that class is the no-JS
+       guarantee that the heading is visible, and once the split has run
+       the observer below takes over that job. */
+    const splitHeading = (el: HTMLElement) => {
+      if (el.dataset.split || el.dataset.noSplit !== undefined) return
+      const words: HTMLElement[] = []
+      const frag = document.createDocumentFragment()
+      let bail = false
+
+      const wrap = (content: Node) => {
+        const outer = document.createElement('span')
+        outer.className = 'rv-w'
+        const inner = document.createElement('span')
+        inner.className = 'rv-w-i'
+        inner.appendChild(content)
+        outer.appendChild(inner)
+        words.push(inner)
+        return outer
+      }
+
+      Array.from(el.childNodes).forEach((node) => {
+        if (bail) return
+        if (node.nodeType === Node.TEXT_NODE) {
+          const parts = (node.textContent || '').split(/(\s+)/)
+          parts.forEach((part) => {
+            if (!part) return
+            if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part))
+            else frag.appendChild(wrap(document.createTextNode(part)))
+          })
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          frag.appendChild(wrap(node.cloneNode(true)))
+        } else {
+          // Comments and anything else: leave the heading alone rather than
+          // risk dropping content we do not understand.
+          bail = true
+        }
+      })
+
+      // Long headings would cascade for well over a second; they read better
+      // as a single reveal, which is what the untouched element already does.
+      if (bail || !words.length || words.length > 14) return
+
+      words.forEach((word, i) => word.style.setProperty('--wi', String(i)))
+      el.replaceChildren(frag)
+      el.dataset.split = '1'
+      el.classList.remove('io-visible')
+    }
+
     /* ── SCROLL REVEALS — resilient to lazily-mounted (InView/dynamic) sections ── */
     const processed = new WeakSet<Element>()
     const processedGroups = new WeakSet<Element>()
@@ -117,6 +170,9 @@ export default function PremiumAnimations() {
           const group = entry.target as HTMLElement
           assignStagger(group)
           Array.from(group.children).forEach((child) => observeEl(child as HTMLElement))
+          // The bloom is keyed off the group, not its children, so it swells
+          // once behind the whole grid rather than per card.
+          if (group.dataset.revealBloom !== undefined) group.classList.add('is-bloom')
           staggerIo.unobserve(group)
         })
       },
@@ -133,6 +189,11 @@ export default function PremiumAnimations() {
       // Directional starts require layout reads. Prepare each group shortly
       // before it reaches the viewport instead of measuring the full page at boot.
       document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach(observeStaggerGroup)
+      if (!reduce) {
+        document
+          .querySelectorAll<HTMLElement>('.section-title, [data-motion-title]')
+          .forEach(splitHeading)
+      }
       document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
         if (el.parentElement?.matches('[data-stagger-group]')) return
         observeEl(el)
@@ -274,6 +335,60 @@ export default function PremiumAnimations() {
       })
     }
 
+    /* ── POINTER-TRACKED CARD LIGHT ────────────────────────────────────
+       A soft highlight under the cursor on every card surface. Kept off
+       transform on purpose: most of these cards are stagger-group children
+       carrying a long transform transition for their entrance, and writing
+       transform on mousemove would retarget that transition every frame.
+       Only two custom properties and one class are touched, on a dedicated
+       overlay span that owns its own opacity transition. */
+    const glowCleanups: Array<() => void> = []
+    const initCardGlow = () => {
+      const cards = document.querySelectorAll<HTMLElement>(
+        // FAQ rows are left out on purpose: they already carry their own
+        // open/hover border treatment, which the lit-state edge would fight.
+        '.premium-card, .testimonial-card, .service-question, .pkg-card, .realizacja-card',
+      )
+      cards.forEach((el) => {
+        if (el.querySelector(':scope > .tilt-glare')) return
+        const glare = document.createElement('span')
+        glare.className = 'tilt-glare'
+        glare.setAttribute('aria-hidden', 'true')
+        if (getComputedStyle(el).position === 'static') el.style.position = 'relative'
+        el.appendChild(glare)
+
+        let raf = 0
+        let px = 50
+        let py = 0
+        const apply = () => {
+          raf = 0
+          glare.style.setProperty('--gx', `${px.toFixed(1)}%`)
+          glare.style.setProperty('--gy', `${py.toFixed(1)}%`)
+        }
+        const onMove = (event: MouseEvent) => {
+          const rect = el.getBoundingClientRect()
+          if (!rect.width || !rect.height) return
+          px = ((event.clientX - rect.left) / rect.width) * 100
+          py = ((event.clientY - rect.top) / rect.height) * 100
+          if (!raf) raf = requestAnimationFrame(apply)
+        }
+        const onEnter = () => el.classList.add('is-lit')
+        const onLeave = () => el.classList.remove('is-lit')
+
+        el.addEventListener('mouseenter', onEnter)
+        el.addEventListener('mouseleave', onLeave)
+        el.addEventListener('mousemove', onMove, { passive: true })
+        glowCleanups.push(() => {
+          el.removeEventListener('mouseenter', onEnter)
+          el.removeEventListener('mouseleave', onLeave)
+          el.removeEventListener('mousemove', onMove)
+          if (raf) cancelAnimationFrame(raf)
+          el.classList.remove('is-lit')
+          glare.remove()
+        })
+      })
+    }
+
     /* ── boot ── */
     const boot = () => {
       counterIo = runCounters()
@@ -294,6 +409,7 @@ export default function PremiumAnimations() {
       if (desktopMotionStarted || reduce || isMobile || !finePointer) return
       desktopMotionStarted = true
       initParallax()
+      initCardGlow()
       initAnime()
     }
 
@@ -322,6 +438,7 @@ export default function PremiumAnimations() {
       staggerIo.disconnect()
       counterIo?.disconnect()
       animeCleanups.forEach((cleanup) => cleanup())
+      glowCleanups.forEach((cleanup) => cleanup())
       parallaxItems = []
       style.remove()
     }

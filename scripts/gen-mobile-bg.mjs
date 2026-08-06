@@ -19,10 +19,20 @@ try {
   await page.evaluate(() => {
     const bg = document.querySelector('[data-bg-root]') || document.querySelector('body > div[aria-hidden="true"]')
     if (!bg) throw new Error('AnimatedBackground root not found')
+    // Freezing an animation leaves it on its first keyframe. That is what we
+    // want for the drifting layers (their first frame is a representative
+    // resting position) but not for the sweeping beams, whose first frame
+    // parks them half on screen as a hard-edged band. They are marked
+    // data-transient in the component and skipped here.
     Array.from(bg.children).forEach((layer, index) => {
-      layer.style.setProperty('display', index === 0 ? 'none' : 'block', 'important')
+      const skip = index === 0 || layer.hasAttribute('data-transient')
+      layer.style.setProperty('display', skip ? 'none' : 'block', 'important')
       layer.style.setProperty('animation', 'none', 'important')
     })
+    // Mid-page scroll depth, so the still sits between the cool and warm
+    // aurora palettes instead of committing to the top-of-page one.
+    bg.style.setProperty('--sp', '0.4')
+    bg.style.setProperty('--spe', '0.35')
     Array.from(document.body.children).forEach((el) => {
       if (el !== bg) el.style.setProperty('display', 'none', 'important')
     })

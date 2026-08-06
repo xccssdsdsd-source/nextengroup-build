@@ -44,6 +44,7 @@ export default function HeroBackdrop() {
           <div className={styles.blobB} />
           <div className={styles.blobC} />
           <div className={styles.blobD} />
+          <div className={styles.blobE} />
         </div>
       </div>
       <div className={styles.mobileGrain} />

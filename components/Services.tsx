@@ -345,7 +345,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="service-question-list" data-stagger-group data-reveal-pattern="soft">
+          <div className="service-question-list" data-stagger-group data-reveal-bloom data-reveal-pattern="soft">
             {clientQuestions.map((item, index) => (
               <article key={item.question} className="service-question">
                 <div className="flex items-center justify-between gap-4">

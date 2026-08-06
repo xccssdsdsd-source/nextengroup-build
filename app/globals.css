@@ -4478,3 +4478,272 @@ nav.fixed::before {
 .process-hint {
   margin-top: -0.5rem;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOTION & COLOUR PASS
+   Two things live here: the per-section gradient horizons that stop the
+   page below the hero from reading as flat black, and the entrance layer
+   that gives every revealed element depth (blur → sharp, word cascade on
+   headings, bloom behind cards) instead of a single translate.
+   Last block in the file because it deliberately overrides the reveal
+   states declared higher up.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft-back: cubic-bezier(0.34, 1.18, 0.42, 1);
+}
+
+/* ── Section horizons ──────────────────────────────────────────────────
+   Each section carries its own light source: a wide bloom entering from
+   one side plus a hairline horizon at the top edge. Sections alternate
+   sides and hue, so scrolling reads as travelling through a gradient
+   rather than past repeated black panels. Painted on the existing
+   ::before (z-index: -1), so nothing new is inserted into the DOM. */
+.section-shell::before {
+  --horizon-x: 50%;
+  --horizon-1: rgba(76, 130, 234, 0.10);
+  --horizon-2: rgba(126, 100, 232, 0.06);
+  background:
+    radial-gradient(58% 44% at var(--horizon-x) 0%, var(--horizon-1), transparent 72%),
+    radial-gradient(46% 40% at calc(100% - var(--horizon-x)) 88%, var(--horizon-2), transparent 74%),
+    linear-gradient(180deg, rgba(186, 206, 240, 0.045), transparent 1px);
+  opacity: 1;
+  transform: none;
+}
+
+#uslugi.section-shell::before {
+  --horizon-x: 26%;
+  --horizon-1: rgba(76, 130, 234, 0.13);
+  --horizon-2: rgba(96, 178, 236, 0.055);
+}
+
+#proces.section-shell::before {
+  --horizon-x: 74%;
+  --horizon-1: rgba(96, 148, 240, 0.11);
+  --horizon-2: rgba(126, 100, 232, 0.07);
+}
+
+#portfolio.section-shell::before {
+  --horizon-x: 22%;
+  --horizon-1: rgba(112, 96, 226, 0.11);
+  --horizon-2: rgba(76, 130, 234, 0.075);
+}
+
+#opinie.section-shell::before {
+  --horizon-x: 78%;
+  --horizon-1: rgba(76, 130, 234, 0.095);
+  --horizon-2: rgba(150, 106, 216, 0.06);
+}
+
+#faq.section-shell::before {
+  --horizon-x: 30%;
+  --horizon-1: rgba(126, 100, 232, 0.095);
+  --horizon-2: rgba(76, 130, 234, 0.06);
+}
+
+#kontakt.section-shell::before {
+  --horizon-x: 70%;
+  --horizon-1: rgba(76, 130, 234, 0.14);
+  --horizon-2: rgba(216, 163, 75, 0.035);
+}
+
+/* ── Entrance depth ────────────────────────────────────────────────────
+   Text arrives from slightly out of focus. Restricted to text: putting a
+   filter on the cards would create a containing block and kill the
+   backdrop-filter on every glass surface inside them. */
+html.motion-ready .section-title,
+html.motion-ready [data-motion-title],
+html.motion-ready .section-copy,
+html.motion-ready [data-motion-copy] {
+  filter: blur(7px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 900ms var(--ease-out-expo),
+    filter 760ms var(--ease-out-expo);
+}
+
+html.motion-ready .section-title.io-visible,
+html.motion-ready [data-motion-title].io-visible,
+html.motion-ready .section-copy.io-visible,
+html.motion-ready [data-motion-copy].io-visible {
+  filter: blur(0);
+}
+
+/* Cards settle rather than slide: a longer, softly overshooting curve on
+   the transform with the opacity landing first reads as weight. */
+html.motion-ready [data-fade-in],
+html.motion-ready [data-stat-block],
+html.motion-ready [data-stagger-group] > * {
+  transition:
+    opacity 520ms var(--ease-out-expo),
+    transform 780ms var(--ease-soft-back);
+}
+
+/* ── Word cascade on headings ──────────────────────────────────────────
+   PremiumAnimations wraps each word in .rv-w > .rv-w-i; the outer span is
+   the mask the inner one rises through. The padding/margin pair gives
+   descenders room inside overflow: hidden without changing line boxes. */
+html.motion-ready [data-split='1'] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+
+.rv-w {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+  vertical-align: bottom;
+}
+
+html.motion-ready [data-split='1'] .rv-w-i {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 105%, 0) rotate(2.5deg);
+  transition:
+    opacity 560ms var(--ease-out-expo),
+    transform 880ms var(--ease-out-expo);
+  transition-delay: calc(var(--wi, 0) * 52ms);
+  will-change: transform, opacity;
+}
+
+html.motion-ready [data-split='1'].io-visible .rv-w-i {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+/* ── Bloom behind an arriving group ────────────────────────────────────
+   A wide glow that swells behind a grid as its cards land, so the entrance
+   carries light and not just motion. It lives on the group wrapper rather
+   than on the cards: the cards clip their own overflow and carry
+   !important shadows, either of which would swallow it. */
+html.motion-ready [data-stagger-group][data-reveal-bloom] {
+  position: relative;
+  isolation: isolate;
+}
+
+html.motion-ready [data-stagger-group][data-reveal-bloom]::before {
+  content: '';
+  position: absolute;
+  inset: -12% -6%;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(76, 130, 234, 0.22), rgba(126, 100, 232, 0.10) 46%, transparent 74%);
+  filter: blur(3rem);
+  opacity: 0;
+  transform: scale(0.86);
+}
+
+html.motion-ready [data-stagger-group][data-reveal-bloom].is-bloom::before {
+  animation: reveal-bloom 2200ms var(--ease-out-expo) forwards;
+}
+
+@keyframes reveal-bloom {
+  0% { opacity: 0; transform: scale(0.86); }
+  40% { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 0.34; transform: scale(1.08); }
+}
+
+/* ── Kicker: the rule draws itself before the label fades in ─────────── */
+html.motion-ready .section-kicker::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 680ms var(--ease-out-expo) 90ms;
+}
+
+html.motion-ready .section-kicker.io-visible::before {
+  transform: scaleX(1);
+}
+
+/* ── Reading progress ──────────────────────────────────────────────────
+   Fixed hairline across the top of the viewport, scaled by --sp (written
+   once per frame by AnimatedBackground). Transform-only, so it costs a
+   composite and nothing else. */
+.read-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 2px;
+  pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(var(--read-p, 0));
+  background: linear-gradient(90deg, rgba(76, 130, 234, 0.9), rgba(126, 100, 232, 0.85) 52%, rgba(157, 187, 236, 0.9));
+  box-shadow: 0 0 12px rgba(76, 130, 234, 0.45);
+  opacity: calc(0.25 + var(--read-p, 0) * 0.75);
+}
+
+/* ── Pointer-tracked card highlight ────────────────────────────────────
+   The glare that anime.js already fades in on hover now follows the
+   cursor, via two custom properties written on pointermove. */
+.tilt-glare {
+  background: radial-gradient(
+    20rem 15rem at var(--gx, 50%) var(--gy, 0%),
+    rgba(174, 228, 255, 0.11),
+    rgba(76, 130, 234, 0.04) 40%,
+    transparent 72%
+  );
+  transition: opacity 260ms var(--ease-out-expo);
+}
+
+.is-lit > .tilt-glare {
+  opacity: 1;
+}
+
+/* A card that lights up should also pick up an accent edge — the highlight
+   alone reads as a smudge without an edge to belong to. */
+.is-lit {
+  border-color: rgba(146, 178, 240, 0.28) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .section-title,
+  html.motion-ready [data-motion-title],
+  html.motion-ready .section-copy,
+  html.motion-ready [data-motion-copy] {
+    filter: none;
+    transition: opacity 200ms ease;
+  }
+
+  html.motion-ready [data-split='1'] .rv-w-i {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html.motion-ready [data-stagger-group][data-reveal-bloom].is-bloom::before {
+    animation: none;
+  }
+
+  html.motion-ready .section-kicker::before,
+  html.motion-ready .section-kicker.io-visible::before {
+    transform: none;
+    transition: none;
+  }
+
+  .read-progress {
+    display: none;
+  }
+}
+
+/* The blur pass is the one entrance effect worth dropping on phones — it
+   is a full-screen-width filter on the largest text on the page. */
+@media (max-width: 768px) {
+  html.motion-ready .section-title,
+  html.motion-ready [data-motion-title],
+  html.motion-ready .section-copy,
+  html.motion-ready [data-motion-copy] {
+    filter: none;
+  }
+
+  html.motion-ready [data-split='1'] .rv-w-i {
+    transition-delay: calc(var(--wi, 0) * 34ms);
+  }
+
+  html.motion-ready [data-stagger-group][data-reveal-bloom]::before {
+    display: none;
+  }
+}

@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --nav-h: 84px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --nav-h: calc(84px + var(--safe-top));
 
   --font-display: var(--font-clash), var(--font-sans), system-ui, sans-serif;
   --font-heading: var(--font-clash), var(--font-sans), system-ui, sans-serif;
@@ -968,6 +969,12 @@ h4 {
   background: linear-gradient(90deg, var(--brand-700), var(--brand), var(--electric));
 }
 
+.site-nav {
+  padding-top: calc(0.75rem + var(--safe-top));
+  padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-pill::after {
     transition: opacity 150ms ease;
@@ -1295,11 +1302,60 @@ html.motion-ready [data-no-reveal] .section-divider {
    scroll-scrubbed sequence instead of scrolling away with the 232vh stage. */
 .hero-mesh {
   inset: 0;
-  opacity: 0.7;
+  opacity: 0.9;
+  background-image:
+    radial-gradient(34% 42% at 82% 16%, rgba(11, 79, 209, 0.13), transparent 72%),
+    radial-gradient(26% 30% at 8% 86%, rgba(63, 125, 238, 0.08), transparent 76%),
+    linear-gradient(rgba(7, 16, 35, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 16, 35, 0.075) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
   background-position: calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px);
   transform: scale(calc(1 + var(--mesh-p, 0) * 0.06));
   transition: opacity 400ms ease;
   will-change: background-position, transform;
+}
+
+/* A single tracked signal gives the grid a job: it records scroll progress
+   like a drafting cursor instead of adding another ambient gradient blob. */
+.hero-scroll-signal {
+  position: absolute;
+  left: 21%;
+  top: 52%;
+  z-index: 0;
+  width: min(48rem, 58vw);
+  height: 1px;
+  pointer-events: none;
+  opacity: 0.62;
+  transform: translate3d(180px, 92px, 0) rotate(-18deg);
+  transform-origin: 50% 50%;
+  background: linear-gradient(90deg, transparent, rgba(11, 79, 209, 0.18) 18%, rgba(11, 79, 209, 0.78) 52%, rgba(11, 79, 209, 0.14) 84%, transparent);
+  box-shadow: 0 0 24px rgba(11, 79, 209, 0.16);
+  will-change: transform;
+}
+
+.hero-scroll-signal::before,
+.hero-scroll-signal::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 4.25rem;
+  height: 1px;
+  background: rgba(11, 79, 209, 0.42);
+}
+
+.hero-scroll-signal::before { left: 12%; transform: rotate(90deg); }
+.hero-scroll-signal::after { right: 9%; transform: rotate(90deg); }
+
+.hero-scroll-signal__node {
+  position: absolute;
+  left: 52%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(11, 79, 209, 0.74);
+  background: rgba(255, 255, 255, 0.94);
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 0 5px rgba(11, 79, 209, 0.07), 0 0 22px rgba(11, 79, 209, 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1560,7 +1616,24 @@ html.motion-ready [data-no-reveal] .section-divider {
 
 @media (max-width: 640px) {
   .hero-stage {
-    height: 178vh;
+    height: 178svh;
+  }
+
+  .hero-copy {
+    padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    padding-bottom: min(8rem, 16svh);
+  }
+
+  .hero-mesh {
+    background-size: auto, auto, 48px 48px, 48px 48px;
+  }
+
+  .hero-scroll-signal {
+    left: 9%;
+    top: 48%;
+    width: 82vw;
+    opacity: 0.46;
+    transform: translate3d(72px, 42px, 0) rotate(-18deg);
   }
 
   .hero-actions .btn {
@@ -1617,6 +1690,32 @@ html.motion-ready [data-no-reveal] .section-divider {
   }
 }
 
+/* Short phones need a different optical centre. The old 12rem bottom offset
+   pushed the headline underneath the navigation when the viewport was low. */
+@media (max-width: 640px) and (max-height: 740px) {
+  .hero-copy {
+    justify-content: flex-start;
+    padding-top: calc(var(--nav-h) + 2.25rem);
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-h1 {
+    font-size: clamp(1.7rem, 8.1vw, 2rem);
+    line-height: 1.08;
+  }
+
+  .hero-sub { margin-top: 0.8rem; font-size: 0.94rem; line-height: 1.5; }
+  .hero-actions { margin-top: 1.15rem; gap: 0.55rem; }
+  .hero-actions .btn { min-height: 44px; padding-block: 0.65rem; }
+  .hero-note { margin-top: 0.7rem; font-size: 0.72rem; line-height: 1.45; }
+  .hero-cue { margin-top: 1rem; }
+}
+
+@media (max-width: 640px) and (max-height: 620px) {
+  .hero-copy { padding-top: calc(var(--nav-h) + 1.4rem); }
+  .hero-cue { display: none; }
+}
+
 /* Reduced motion / no JS: the stage collapses to an ordinary static hero.
    Nothing is pinned, nothing is offset, and both the copy and the product are
    in flow — so the section is complete without a single scroll-driven value. */
@@ -1662,6 +1761,11 @@ html.motion-ready [data-no-reveal] .section-divider {
 
   .hero-float-badge {
     animation: none;
+  }
+
+  .hero-scroll-signal {
+    transform: translate3d(0, 0, 0) rotate(-18deg);
+    opacity: 0.28;
   }
 }
 
@@ -2407,13 +2511,14 @@ h4,
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 1.1rem;
+  right: auto;
+  width: 7.5rem;
   height: 2px;
   z-index: 3;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent, var(--brand-400), transparent);
-  opacity: 0.7;
+  border-radius: 0 0 2px 2px;
+  background: var(--brand);
+  opacity: 0.82;
 }
 
 .compare-wrap::after {
@@ -2446,6 +2551,10 @@ h4,
 .compare__hint svg {
   color: var(--brand-400);
   animation: compare-hint 2.6s var(--ease-in-out) infinite;
+}
+
+.compare-mobile {
+  display: none;
 }
 
 @keyframes compare-hint {
@@ -2537,11 +2646,167 @@ h4,
   display: block;
   margin-bottom: 0.4rem;
   padding: 0.15rem 0.55rem;
-  border-radius: var(--radius-pill);
+  border-radius: 4px;
   background: var(--brand);
   color: #fff;
   font-size: 0.65rem;
   letter-spacing: 0.06em;
+}
+
+@media (max-width: 720px) {
+  .compare-desktop {
+    display: none;
+  }
+
+  .compare-mobile {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .compare-mobile__item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .compare-mobile__item::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--brand);
+    opacity: 0.7;
+  }
+
+  .compare-mobile__heading {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.55rem;
+    padding: 0.9rem 0.85rem 0.8rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .compare-mobile__heading h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+    text-wrap: pretty;
+  }
+
+  .compare-mobile__index {
+    padding-top: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+  }
+
+  .compare-mobile__values {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .compare-mobile__value {
+    min-width: 0;
+    min-height: 4.5rem;
+    padding: 0.65rem 0.18rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.45rem;
+    text-align: center;
+    border-right: 1px solid var(--line-soft);
+  }
+
+  .compare-mobile__value:last-child {
+    border-right: 0;
+  }
+
+  .compare-mobile__value--own {
+    background: var(--brand-50);
+    box-shadow: inset 0 -2px 0 var(--brand-300);
+  }
+
+  .compare-mobile__value--alt {
+    background: rgba(15, 122, 77, 0.06);
+    box-shadow: inset 0 -2px 0 rgba(15, 122, 77, 0.34);
+  }
+
+  .compare-mobile__provider {
+    max-width: 100%;
+    font-family: var(--font-mono);
+    font-size: clamp(0.48rem, 2.1vw, 0.58rem);
+    font-weight: 650;
+    line-height: 1.25;
+    letter-spacing: 0.015em;
+    color: var(--ink-3);
+    overflow-wrap: anywhere;
+  }
+
+  .compare-mobile__value--own .compare-mobile__provider {
+    color: var(--brand);
+  }
+
+  .compare-mobile__answer {
+    display: grid;
+    place-items: center;
+    min-height: 1.25rem;
+    color: var(--ink-2);
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .compare-mobile__item--text .compare-mobile__values {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-mobile__item--text .compare-mobile__value {
+    min-height: 0;
+    padding: 0.65rem 0.85rem;
+    display: grid;
+    grid-template-columns: minmax(5.25rem, 0.38fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 0.8rem;
+    text-align: left;
+    border-right: 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .compare-mobile__item--text .compare-mobile__value:last-child {
+    border-bottom: 0;
+  }
+
+  .compare-mobile__item--text .compare-mobile__provider {
+    padding-top: 0.12rem;
+    font-size: 0.61rem;
+    overflow-wrap: normal;
+  }
+
+  .compare-mobile__item--text .compare-mobile__answer {
+    display: block;
+    min-height: 0;
+    font-size: 0.75rem;
+    text-align: left;
+  }
+
+  .compare__legend {
+    margin-top: 1.15rem;
+    row-gap: 0.45rem;
+  }
+
+  .compare__verdict {
+    margin-top: 1.25rem;
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
 }
 
 .compare tbody tr {
@@ -2592,8 +2857,8 @@ h4,
 
 [data-scene-ready] .compare tbody .compare__own .mark,
 .compare-wrap[data-scene-ready] tbody .compare__own .mark {
-  opacity: 0;
-  transform: scale(0.7);
+  opacity: 0.34;
+  transform: scale(0.9);
   transition:
     opacity 300ms var(--ease-out) 120ms,
     transform 420ms var(--ease-snap) 120ms;
@@ -3244,6 +3509,10 @@ h4,
   align-items: start;
 }
 
+.contact > * {
+  min-width: 0;
+}
+
 .contact__form-wrap {
   padding: clamp(1.5rem, 3vw, 2.25rem);
   background: #fff;
@@ -3433,6 +3702,7 @@ h4,
 
 .contact__social {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
   margin-top: 1.5rem;
   padding-top: 1.25rem;

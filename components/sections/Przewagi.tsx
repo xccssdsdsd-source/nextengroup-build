@@ -1,4 +1,4 @@
-import { PiArrowsHorizontalBold, PiCheckBold, PiMinusBold, PiQuestionBold, PiXBold } from 'react-icons/pi'
+import { PiCheckBold, PiMinusBold, PiQuestionBold, PiXBold } from 'react-icons/pi'
 
 type MarkCell = { kind: 'mark'; v: 'yes' | 'no' | 'partial' | 'depends' }
 type TextCell = { kind: 'text'; v: string }
@@ -8,6 +8,7 @@ const mark = (v: MarkCell['v']): MarkCell => ({ kind: 'mark', v })
 const text = (v: string): TextCell => ({ kind: 'text', v })
 
 const cols = ['Getbuild', 'Kreator (Wix, WordPress)', 'Generator AI (Lovable, v0)', 'Agencja', 'Freelancer'] as const
+const mobileCols = ['Getbuild', 'Kreator', 'Generator AI', 'Agencja', 'Freelancer'] as const
 
 // `win` marks which column(s) actually earn the highlighted tint for that row.
 // Every row defaults to Getbuild — except the one row where that would be
@@ -53,7 +54,7 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
   {
     label: 'Koszt startowy',
     cells: [
-      text('1997–3099 zł jednorazowo'),
+      text('1997–2997 zł jednorazowo'),
       text('od ok. 300 zł rocznie + Twój czas'),
       text('ok. 100 zł mies. → ok. 1500 zł rocznie'),
       text('zwykle od 8000 zł'),
@@ -102,7 +103,7 @@ export default function Przewagi() {
           </p>
         </div>
 
-        <div className="compare-wrap" data-fade-in data-scene data-scene-marks="tbody .compare__own" data-scene-from="0.7">
+        <div className="compare-wrap compare-desktop" data-fade-in data-scene data-scene-marks="tbody .compare__own" data-scene-from="0.7">
           <div className="compare-scroll" tabIndex={0} role="group" aria-label="Tabela porównania, przewijana w poziomie">
           <table className="compare">
             <caption className="sr-only">Porównanie Getbuild z kreatorem, generatorem AI, agencją i freelancerem</caption>
@@ -143,9 +144,44 @@ export default function Przewagi() {
           </div>
         </div>
 
-        <p className="compare__hint" aria-hidden="true">
-          <PiArrowsHorizontalBold size={13} /> przesuń tabelę w bok
-        </p>
+        <div className="compare-mobile" aria-label="Porównanie Getbuild z kreatorem, generatorem AI, agencją i freelancerem">
+          {rows.map((r, rowIndex) => {
+            const winners = r.win ?? [0]
+            const textRow = r.cells[0].kind === 'text'
+            return (
+              <article
+                key={r.label}
+                className={`compare-mobile__item${textRow ? ' compare-mobile__item--text' : ''}`}
+                data-fade-in
+              >
+                <div className="compare-mobile__heading">
+                  <span className="compare-mobile__index tnum">{String(rowIndex + 1).padStart(2, '0')}</span>
+                  <h3>{r.label}</h3>
+                </div>
+                <div className="compare-mobile__values">
+                  {r.cells.map((cell, i) => {
+                    const isOwn = i === 0
+                    const isWin = winners.includes(i)
+                    const className = [
+                      'compare-mobile__value',
+                      isOwn ? 'compare-mobile__value--own' : '',
+                      isWin ? 'compare-mobile__value--win' : '',
+                      isWin && !isOwn ? 'compare-mobile__value--alt' : '',
+                    ].filter(Boolean).join(' ')
+                    return (
+                      <div key={cols[i]} className={className}>
+                        <span className="compare-mobile__provider">{mobileCols[i]}</span>
+                        <span className="compare-mobile__answer">
+                          {cell.kind === 'mark' ? <Mark v={cell.v} /> : <span className="tnum">{cell.v}</span>}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </article>
+            )
+          })}
+        </div>
 
         <p className="compare__legend">
           <PiCheckBold size={14} className="mark mark--yes" aria-hidden="true" /> tak

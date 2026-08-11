@@ -155,7 +155,7 @@ export default function RootLayout({
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: '1997–3099 PLN',
+          priceRange: '1997–2997 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',

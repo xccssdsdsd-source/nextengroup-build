@@ -14,7 +14,7 @@ const items = [
   },
   {
     q: 'Czy dam radę sam dodawać oferty?',
-    a: 'Panel jest po polsku i wygląda jak formularz: zdjęcia, cena, metraż, liczba pokoi, status. Jest w pełnym pakiecie za 3099 zł i dostajesz do niego instrukcję. Jeśli coś przestanie być oczywiste, przez okres wsparcia po prostu piszesz do nas.',
+    a: 'Panel jest po polsku i wygląda jak formularz: zdjęcia, cena, metraż, liczba pokoi, status. Jest w pełnym pakiecie za 2997 zł i dostajesz do niego instrukcję. Jeśli coś przestanie być oczywiste, przez okres wsparcia po prostu piszesz do nas.',
   },
   {
     q: 'Mam już oferty na portalu — będę je wpisywał drugi raz?',

@@ -279,9 +279,9 @@ export default function PremiumAnimations() {
       // Decorative depth only — never reveal targets, never elements that
       // carry a hover/zoom transform (would be clobbered). Big faint section
       // numbers drifting against their cards reads as real parallax depth.
-      push('[data-parallax-slow]', -30)
-      push('[data-parallax-media]', 18)
-      push('[data-parallax-fast]', 90)
+      push('[data-parallax-slow]', isMobile ? -12 : -36)
+      push('[data-parallax-media]', isMobile ? 8 : 22)
+      push('[data-parallax-fast]', isMobile ? 28 : 96)
       if (parallaxItems.length) {
         runParallax()
         window.addEventListener('scroll', onScroll, { passive: true })
@@ -479,7 +479,8 @@ export default function PremiumAnimations() {
       if (!reduce) initScenes()
     }
 
-    // Pointer effects and parallax are enhancements for real interaction.
+    // Ambient parallax is deliberately lighter on touch screens; pointer-only
+    // glare remains a desktop enhancement.
     // Loading anime.js and measuring the full page during initial hydration
     // creates avoidable long tasks, so it's deferred past first paint — but
     // gating it behind the user's first scroll/pointermove meant the dynamic
@@ -489,23 +490,36 @@ export default function PremiumAnimations() {
     // to ~12fps with 1900ms+ stalls on a cold first scroll, vs ~24fps once
     // warm). Warming it on idle instead keeps the same "don't block first
     // paint" benefit without janking the user's first interaction.
-    let desktopMotionStarted = false
-    const startDesktopMotion = () => {
-      if (desktopMotionStarted || reduce || isMobile || !finePointer) return
-      desktopMotionStarted = true
+    let ambientMotionStarted = false
+    const startAmbientMotion = () => {
+      if (ambientMotionStarted || reduce) return
+      ambientMotionStarted = true
       initParallax()
+    }
+
+    let pointerMotionStarted = false
+    const startPointerMotion = () => {
+      if (pointerMotionStarted || reduce || isMobile || !finePointer) return
+      pointerMotionStarted = true
       initAnime()
     }
 
     let idle = 0
     let motionIdle = 0
     let bootT = 0
+    let motionT = 0
     if (typeof requestIdleCallback !== 'undefined') {
       idle = requestIdleCallback(() => boot(), { timeout: 1800 })
-      motionIdle = requestIdleCallback(() => startDesktopMotion(), { timeout: 2500 })
+      motionIdle = requestIdleCallback(() => {
+        startAmbientMotion()
+        startPointerMotion()
+      }, { timeout: 1800 })
     } else {
       bootT = window.setTimeout(boot, 400)
-      window.setTimeout(startDesktopMotion, 1200)
+      motionT = window.setTimeout(() => {
+        startAmbientMotion()
+        startPointerMotion()
+      }, 900)
     }
 
     return () => {
@@ -518,6 +532,7 @@ export default function PremiumAnimations() {
       domObserver?.disconnect()
       if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
       clearTimeout(bootT)
+      clearTimeout(motionT)
       if (typeof cancelIdleCallback !== 'undefined' && idle) cancelIdleCallback(idle)
       if (typeof cancelIdleCallback !== 'undefined' && motionIdle) cancelIdleCallback(motionIdle)
       if (sceneRaf) cancelAnimationFrame(sceneRaf)

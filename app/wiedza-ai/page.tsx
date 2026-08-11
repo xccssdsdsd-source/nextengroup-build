@@ -205,7 +205,7 @@ export default function WiedzaAI() {
           </h2>
           <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
-              Ceny wdrożenia są jasno podane w pakietach: Wizytówka agenta kosztuje 1997 zł, Agent z obsługą 24/7 kosztuje 2299 zł, a Biuro z panelem ofert 3099 zł. Pierwszą wizualizację strony wykonujemy w 24 godziny bez zobowiązań.
+              Ceny wdrożenia są jasno podane w pakietach: Wizytówka agenta kosztuje 1997 zł, Agent z obsługą 24/7 kosztuje 2299 zł, a Biuro z panelem ofert 2997 zł. Pierwszą wizualizację strony wykonujemy w 24 godziny bez zobowiązań.
             </p>
           </div>
         </div>

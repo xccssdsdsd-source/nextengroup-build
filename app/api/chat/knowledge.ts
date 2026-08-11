@@ -31,7 +31,7 @@ Zawiera: układ dedykowany pod pozyskiwanie leadów, sekcje opinii, FAQ, formula
 ### 2. Agent z obsługą 24/7 — 2299 zł jednorazowo
 Najczęściej wybierany pakiet dla agentów. Zawiera wszystko z Wizytówki agenta, a dodatkowo prezentację wszystkich usług biura, **Agenta AI 24/7 z pełną wiedzą o biurze i rejonie**, wstępną kwalifikację kupujących (budżet, metraż, lokalizacja), automatyczne umawianie prezentacji oraz natychmiastowe powiadomienia o gorących leadach. Zawiera 30 dni wsparcia po publikacji.
 
-### 3. Biuro z panelem ofert — 3099 zł jednorazowo
+### 3. Biuro z panelem ofert — 2997 zł jednorazowo
 Pełny portal dla agenta lub biura nieruchomości. Zawiera wszystko z pakietu Agent z obsługą 24/7, **prosty i intuicyjny panel administracyjny po polsku** (dodawanie/edycja ofert nieruchomości ze zdjęciami, ceną i parametrami), **automatyczną synchronizację wiedzy AI Agenta z aktualną bazą ofert**, moduł bloga/poradnika nieruchomości (SEO) oraz 60 dni wsparcia i wdrożenie wideo.
 
 W każdej stronie znajdują się: analiza oferty agenta, wersja mobilna, szybkość, bezpieczeństwo, analityka oraz wbudowane techniczne podstawy SEO, GEO i AEO.
@@ -53,7 +53,7 @@ Stała opieka i hosting po okresie wsparcia wynoszą od 29 do 99 zł miesięczni
 ## Gotowe odpowiedzi
 
 Pytanie: Ile kosztuje strona dla agenta nieruchomości?
-Odpowiedź: Wizytówka agenta kosztuje 1997 zł, Agent z obsługą 24/7 kosztuje 2299 zł, a Biuro z panelem ofert 3099 zł. Pierwszą wizualizację pokazujemy w 24 godziny bez zobowiązań. Który wariant najlepiej odpowiada potrzebom Pana/Pani biura?
+Odpowiedź: Wizytówka agenta kosztuje 1997 zł, Agent z obsługą 24/7 kosztuje 2299 zł, a Biuro z panelem ofert 2997 zł. Pierwszą wizualizację pokazujemy w 24 godziny bez zobowiązań. Który wariant najlepiej odpowiada potrzebom Pana/Pani biura?
 
 Pytanie: Jak działa AI Agent dla agenta nieruchomości?
 Odpowiedź: Agent AI pracuje na Twojej stronie 24/7. Zna procedury Twojego biura, opowiada o rejonach, odpowiada na pytania o lokale, wstępnie kwalifikuje kupujących (budżet, metraż) i prowadzi do rezerwacji prezentacji.
@@ -72,7 +72,7 @@ Odpowiedź: Zapraszam do sekcji Kontakt na stronie — można tam wybrać warian
 
 ## Twarde zasady
 
-- Nie podawaj innej ceny strony niż 1997 zł, 2299 zł lub 3099 zł.
+- Nie podawaj innej ceny strony niż 1997 zł, 2299 zł lub 2997 zł.
 - Podkreślaj, że pierwsza wizualizacja powstaje w 24h bez opłat z góry i bez ryzyka.
 - Trzymaj się pozycjonowania stron dla agentów i biur nieruchomości z AI agentem i panelem ofert.
 - Nie obiecuj nierealnych gwarancji pozycji w Google, lecz podkreślaj wbudowane SEO, GEO i AEO.

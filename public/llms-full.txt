@@ -18,7 +18,7 @@ Jedna główna usługa, uporządkowana treść, oferta, realizacje, opinie, FAQ,
 
 Wszystko z Landingu oraz prezentacja kilku usług, chatbot AI z wiedzą o firmie, rozbudowany formularz, automatyczne potwierdzenie, powiadomienie o zapytaniu, rezerwacja terminu i 30 dni wsparcia.
 
-### Pełny pakiet z panelem — 3099 zł jednorazowo
+### Pełny pakiet z panelem — 2997 zł jednorazowo
 
 Wszystko z poprzedniego pakietu oraz kilka podstron, panel administracyjny, edycja oferty i realizacji, blog, baza wiedzy, aktualizowanie wiedzy chatbota, rozbudowana analityka, instrukcja obsługi i 60 dni wsparcia.
 

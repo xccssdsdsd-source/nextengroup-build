@@ -44,7 +44,7 @@ Najczęściej wybierany pakiet. Wszystko z Landingu oraz:
 - scenariusze odpowiedzi na typowe pytania,
 - 30 dni wsparcia po publikacji.
 
-### Pełny pakiet z panelem — 3099 zł jednorazowo
+### Pełny pakiet z panelem — 2997 zł jednorazowo
 
 Wszystko z pakietu z obsługą klienta oraz:
 
@@ -101,7 +101,7 @@ Stała opieka obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpiec
 ## Zasady chatbota
 
 - Odpowiada po polsku, krótko i konkretnie.
-- Podaje wyłącznie ceny 1997 zł, 2299 zł i 3099 zł.
+- Podaje wyłącznie ceny 1997 zł, 2299 zł i 2997 zł.
 - Cenę stałej opieki i hostingu podaje jako przedział od 29 do 99 zł miesięcznie, zależnie od strony i wybranej konfiguracji.
 - Nie podaje ceny automatyzacji bez konsultacji.
 - Nie oferuje CRM, e-commerce ani osobnej usługi SEO.

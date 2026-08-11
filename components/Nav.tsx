@@ -144,7 +144,7 @@ export default function Nav() {
       <div className="nav-read" aria-hidden="true">
         <span ref={progressRef} className="nav-read__bar" />
       </div>
-      <nav className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
+      <nav className="site-nav fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
         <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
           <a href="/" className="nav-island flex max-w-[calc(100vw-5.75rem)] min-w-0 items-center gap-2 rounded-full py-2 pl-2 pr-3 sm:gap-3 sm:pr-4">
             <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="h-9 w-9 flex-shrink-0 rounded-full object-contain" priority />

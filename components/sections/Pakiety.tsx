@@ -37,7 +37,7 @@ const packages = [
   },
   {
     name: 'Biuro z panelem ofert',
-    price: '3099 zł',
+    price: '2997 zł',
     for: 'Biuro nieruchomości i agent z własną bazą',
     features: [
       'Wszystko z pakietu obok',

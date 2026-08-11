@@ -46,6 +46,7 @@ export default function Hero() {
   const copyRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
   const colRef = useRef<HTMLDivElement>(null)
+  const signalRef = useRef<HTMLSpanElement>(null)
   const captionRefs = useRef<Array<HTMLDivElement | null>>([])
 
   useEffect(() => {
@@ -57,7 +58,8 @@ export default function Hero() {
     const copy = copyRef.current
     const device = deviceRef.current
     const col = colRef.current
-    if (!track || !copy || !device || !col) return
+    const signal = signalRef.current
+    if (!track || !copy || !device || !col || !signal) return
 
     let travel = 0
     let panelH = 0
@@ -86,6 +88,10 @@ export default function Hero() {
       // scroll directly — a slow diagonal drift plus a faint zoom, so the
       // otherwise-static hero ground reads as alive under the pinned copy.
       stage.style.setProperty('--mesh-p', p.toFixed(4))
+      const compact = window.innerWidth <= 768
+      const signalX = (compact ? 72 : 180) - p * (compact ? 144 : 360)
+      const signalY = (compact ? 42 : 92) - p * (compact ? 84 : 184)
+      signal.style.transform = `translate3d(${signalX.toFixed(1)}px, ${signalY.toFixed(1)}px, 0) rotate(-18deg)`
 
       // Beat 1 → 2: the headline hands the stage over to the product. It has
       // to be fully gone well before the sticky block would carry it into the
@@ -150,6 +156,9 @@ export default function Hero() {
     <section id="hero" ref={stageRef} className="pin-stage hero-stage" data-no-reveal>
       <div className="pin-sticky">
         <span className="section-mesh hero-mesh" aria-hidden="true" />
+        <span ref={signalRef} className="hero-scroll-signal" aria-hidden="true">
+          <span className="hero-scroll-signal__node" />
+        </span>
         <div className="container hero-stack">
           <div ref={copyRef} className="hero-copy">
             <h1 className="hero-h1">

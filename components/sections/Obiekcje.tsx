@@ -53,11 +53,11 @@ export default function Obiekcje() {
           </p>
         </div>
 
-        <div className="faq" data-stagger-group>
+        <div className="faq" data-stagger-group data-reveal-pattern="soft">
           {items.map((it, i) => {
             const isOpen = open === i
             return (
-              <div key={it.q} className={`faq__item${isOpen ? ' is-open' : ''}`}>
+              <div key={it.q} className="faq__item" data-open={isOpen ? 'true' : 'false'}>
                 <h3>
                   <button
                     type="button"

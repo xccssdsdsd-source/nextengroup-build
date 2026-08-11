@@ -13,7 +13,7 @@ export default function AgentAI() {
       <span className="section-mesh section-mesh--navy" data-parallax-slow aria-hidden="true" />
       <div className="container">
         <div className="ai-grid">
-          <div>
+          <div className="ai-copy">
             <span className="section-kicker">
               Agent AI <span className="counter-247 tnum">24/7</span>
             </span>

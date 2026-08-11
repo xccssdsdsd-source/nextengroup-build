@@ -82,6 +82,11 @@ export default function Hero() {
       if (Math.abs(p - last) < 0.0004) return
       last = p
 
+      // The backdrop grid is the one thing in the scene allowed to answer the
+      // scroll directly — a slow diagonal drift plus a faint zoom, so the
+      // otherwise-static hero ground reads as alive under the pinned copy.
+      stage.style.setProperty('--mesh-p', p.toFixed(4))
+
       // Beat 1 → 2: the headline hands the stage over to the product. It has
       // to be fully gone well before the sticky block would carry it into the
       // nav — the old scene let it slide underneath the pills.
@@ -144,7 +149,7 @@ export default function Hero() {
   return (
     <section id="hero" ref={stageRef} className="pin-stage hero-stage" data-no-reveal>
       <div className="pin-sticky">
-        <span className="section-mesh hero-mesh" data-parallax-slow aria-hidden="true" />
+        <span className="section-mesh hero-mesh" aria-hidden="true" />
         <div className="container hero-stack">
           <div ref={copyRef} className="hero-copy">
             <h1 className="hero-h1">

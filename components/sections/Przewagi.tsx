@@ -16,15 +16,15 @@ const cols = ['Getbuild', 'Kreator (Wix, WordPress)', 'Generator AI (Lovable, v0
 const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number[] }[] = [
   {
     label: 'Widzisz gotową stronę, zanim zapłacisz',
-    cells: [mark('yes'), mark('partial'), mark('partial'), mark('no'), mark('depends')],
+    cells: [mark('yes'), mark('partial'), mark('partial'), mark('no'), mark('no')],
   },
   {
     label: 'Pierwsza wersja w 24 godziny',
-    cells: [mark('yes'), mark('no'), mark('partial'), mark('no'), mark('depends')],
+    cells: [mark('yes'), mark('no'), mark('partial'), mark('no'), mark('no')],
   },
   {
     label: 'Cała Twoja rola to dwa rekordy DNS i podpis',
-    cells: [mark('yes'), mark('no'), mark('no'), mark('yes'), mark('depends')],
+    cells: [mark('yes'), mark('no'), mark('no'), mark('yes'), mark('partial')],
   },
   {
     label: 'Panel ofert nieruchomości po polsku',
@@ -32,15 +32,15 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
   },
   {
     label: 'Agent AI nauczony Twoich ofert',
-    cells: [mark('yes'), mark('no'), mark('partial'), mark('depends'), mark('depends')],
+    cells: [mark('yes'), mark('no'), mark('partial'), mark('no'), mark('no')],
   },
   {
     label: 'Poprawki bez limitu do akceptacji',
-    cells: [mark('yes'), mark('no'), mark('no'), mark('no'), mark('depends')],
+    cells: [mark('yes'), mark('no'), mark('no'), mark('no'), mark('no')],
   },
   {
     label: 'Techniczne SEO i przygotowanie pod wyszukiwarki AI',
-    cells: [mark('yes'), mark('partial'), mark('no'), mark('yes'), mark('depends')],
+    cells: [mark('yes'), mark('partial'), mark('no'), mark('yes'), mark('partial')],
   },
   {
     label: 'Lighthouse 90+ na starcie',
@@ -48,25 +48,25 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
   },
   {
     label: 'Wiadomo, kto odbierze telefon za pół roku',
-    cells: [mark('yes'), mark('no'), mark('no'), mark('partial'), mark('depends')],
+    cells: [mark('yes'), mark('no'), mark('no'), mark('partial'), mark('no')],
   },
   {
     label: 'Koszt startowy',
     cells: [
       text('1997–3099 zł jednorazowo'),
       text('od ok. 300 zł rocznie + Twój czas'),
-      text('od ok. 100 zł miesięcznie + Twój czas'),
+      text('ok. 100 zł mies. → ok. 1500 zł rocznie'),
       text('zwykle od 8000 zł'),
       text('zwykle 2000–6000 zł'),
     ],
-    win: [1, 2],
+    win: [1],
   },
   {
     label: 'Twój czas potrzebny na projekt',
     cells: [
       text('ok. 1 godzina'),
       text('kilkadziesiąt godzin'),
-      text('kilkanaście do kilkudziesięciu godzin'),
+      text('kilkadziesiąt godzin'),
       text('kilka godzin spotkań'),
       text('kilka godzin'),
     ],
@@ -95,7 +95,8 @@ export default function Przewagi() {
           <span className="section-kicker">Dlaczego my</span>
           <h2 className="section-title">Pięć dróg do strony. Cztery z nich już znasz.</h2>
           <p className="section-copy">
-            Nie wygrywamy każdego wiersza — kreator i generator AI są tańsze, jeśli masz czas.
+            Nie wygrywamy każdego wiersza — kreator jest tańszy, jeśli masz czas, a generator AI
+            kosztuje mało na start i około 1500 zł rocznie, gdy doliczyć abonament i całą resztę.
             Wygrywamy tam, gdzie to naprawdę się liczy: czasem, jakością i tym, jak mało pracy
             zostaje po Twojej stronie.
           </p>

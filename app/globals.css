@@ -531,9 +531,9 @@ h4 {
 }
 
 .btn-primary {
-  background: linear-gradient(180deg, var(--brand-600), var(--brand) 62%, var(--brand-hover));
+  background: linear-gradient(180deg, var(--brand-500), var(--brand) 58%, var(--brand-hover));
   color: #fff;
-  box-shadow: var(--shadow-brand), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  box-shadow: var(--shadow-brand), inset 0 1px 0 rgba(255, 255, 255, 0.26);
 }
 
 .btn-ghost {
@@ -559,8 +559,8 @@ h4 {
   }
 
   .btn-primary:hover {
-    background: linear-gradient(180deg, var(--brand-500), var(--brand-600) 62%, var(--brand));
-    box-shadow: var(--shadow-brand-hi), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    background: linear-gradient(180deg, var(--brand-400), var(--brand-500) 58%, var(--brand));
+    box-shadow: var(--shadow-brand-hi), inset 0 1px 0 rgba(255, 255, 255, 0.32);
   }
 
   .btn-ghost:hover {
@@ -825,26 +825,27 @@ h4 {
 }
 
 .nav-island {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-md), var(--edge-hi);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition:
     background-color 220ms ease,
     border-color 220ms ease,
     color 220ms ease,
-    box-shadow 220ms var(--ease-out);
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
 }
 
 /* Past the fold the pills tighten up: more opaque, stronger blur, a real
    shadow. Content used to run straight through the gaps between them. */
 [data-nav-scrolled='true'] .nav-island {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.98);
   border-color: var(--line-strong);
-  box-shadow: var(--shadow-md), var(--edge-hi);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: var(--shadow-lg), var(--edge-hi);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
 }
 
 /* Over a navy section the white pills read as pasted on. The dark variant
@@ -883,6 +884,15 @@ h4 {
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover {
     color: var(--brand);
+  }
+
+  .nav-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md), var(--edge-hi);
+  }
+
+  .nav-cta:hover {
+    box-shadow: var(--shadow-brand-hi), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -1286,6 +1296,17 @@ html.motion-ready [data-no-reveal] .section-divider {
 .hero-mesh {
   inset: 0;
   opacity: 0.7;
+  background-position: calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px);
+  transform: scale(calc(1 + var(--mesh-p, 0) * 0.06));
+  transition: opacity 400ms ease;
+  will-change: background-position, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh {
+    background-position: 0 0;
+    transform: none;
+  }
 }
 
 .hero-sub {
@@ -2215,9 +2236,14 @@ h4,
 
 .ai-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: stretch;
+}
+
+.ai-copy {
+  display: flex;
+  flex-direction: column;
 }
 
 .ai-timeline {
@@ -2343,6 +2369,7 @@ h4,
 
 .ai-chat {
   min-width: 0;
+  display: flex;
 }
 
 @media (max-width: 900px) {
@@ -3055,25 +3082,44 @@ h4,
   bottom: 1.15rem;
   width: 2px;
   border-radius: 2px;
-  background: var(--brand);
+  background: linear-gradient(180deg, var(--brand-500), var(--brand));
+  box-shadow: 0 0 14px -2px rgba(11, 79, 209, 0.55);
   transform: scaleY(0);
   transform-origin: 50% 0;
   opacity: 0;
   transition:
-    transform 380ms var(--ease-out),
+    transform 420ms var(--ease-out),
     opacity 200ms ease;
 }
 
-.faq__item.is-open::before {
+.faq__item::after {
+  content: '';
+  position: absolute;
+  inset: 0.35rem -1.15rem;
+  z-index: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--brand-50), rgba(238, 244, 255, 0));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms var(--ease-out);
+}
+
+.faq__item[data-open='true']::before {
   transform: scaleY(1);
   opacity: 1;
 }
 
-.faq__item.is-open .faq__idx {
+.faq__item[data-open='true']::after {
+  opacity: 1;
+}
+
+.faq__item[data-open='true'] .faq__idx {
   color: var(--brand);
 }
 
 .faq__q {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3118,18 +3164,33 @@ h4,
 
 .faq__icon {
   flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+  border-radius: 50%;
   color: var(--brand);
-  transition: transform 240ms var(--ease-out);
+  background: var(--brand-50);
+  box-shadow: inset 0 0 0 1px rgba(11, 79, 209, 0.12);
+  transition:
+    transform 380ms var(--ease-snap),
+    background-color 220ms ease,
+    box-shadow 220ms var(--ease-out),
+    color 200ms ease;
 }
 
-.faq__item.is-open .faq__icon {
-  transform: rotate(45deg);
+.faq__item[data-open='true'] .faq__icon {
+  transform: rotate(135deg);
+  color: #fff;
+  background: var(--brand);
+  box-shadow: var(--shadow-brand);
 }
 
 /* The panel stays mounted and animates its own track height, so opening and
    closing are the same interruptible transition — a hidden/unhidden swap
    snapped the layout and had nothing to reverse when closed mid-flight. */
 .faq__panel {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
@@ -3138,11 +3199,11 @@ h4,
     opacity 200ms ease;
 }
 
-.faq__item.is-open .faq__panel {
+.faq__item[data-open='true'] .faq__panel {
   grid-template-rows: 1fr;
   opacity: 1;
   transition:
-    grid-template-rows 380ms var(--ease-out),
+    grid-template-rows 420ms var(--ease-out),
     opacity 280ms ease 60ms;
 }
 
@@ -3155,11 +3216,22 @@ h4,
   max-width: 68ch;
   padding-bottom: 1.4rem;
   font-size: 0.95rem;
+  transform: translate3d(0, -6px, 0);
+  transition: transform 460ms var(--ease-out);
+}
+
+.faq__item[data-open='true'] .faq__panel .t-body {
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .faq__panel {
     transition: opacity 160ms ease;
+  }
+
+  .faq__panel .t-body {
+    transform: none;
+    transition: none;
   }
 }
 
@@ -3470,14 +3542,42 @@ h4,
 
 /* ── Chat widget (lives on the navy Agent AI section) ───── */
 
-.hero-chat__interactive-bg {
+.hero-chat {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  border-radius: var(--radius-lg);
-  background: #0d1b33;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+  flex: 1;
+  min-width: 0;
+  min-height: min(640px, 74vh);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #0e1e39, #0b1729 62%, #0a1526);
+  border: 1px solid rgba(148, 183, 240, 0.18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 40px 90px -40px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+  transition:
+    border-color 260ms ease,
+    box-shadow 320ms var(--ease-out),
+    transform 320ms var(--ease-out);
+}
+
+.hero-chat--focused {
+  border-color: rgba(107, 157, 244, 0.42);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 0 4px rgba(63, 125, 238, 0.12),
+    0 46px 100px -40px rgba(0, 0, 0, 0.95);
+}
+
+.hero-chat__interactive-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   overflow: hidden;
 }
 
@@ -3489,7 +3589,15 @@ h4,
 }
 
 .hero-chat__interactive-glow {
-  background: radial-gradient(60% 45% at 78% 0%, rgba(63, 125, 238, 0.22), transparent 72%);
+  background:
+    radial-gradient(60% 45% at 78% 0%, rgba(63, 125, 238, 0.24), transparent 72%),
+    radial-gradient(50% 40% at 8% 100%, rgba(63, 125, 238, 0.12), transparent 76%);
+  opacity: 0.85;
+  transition: opacity 420ms var(--ease-out);
+}
+
+.hero-chat--focused .hero-chat__interactive-glow {
+  opacity: 1;
 }
 
 .hero-chat__interactive-grid {
@@ -3502,11 +3610,14 @@ h4,
 }
 
 .hero-chat__bar {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  flex-shrink: 0;
 }
 
 .hero-chat__bar > span {
@@ -3518,15 +3629,16 @@ h4,
 
 .hero-chat__thread {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
   padding: 1.15rem;
-  min-height: 260px;
+  flex: 1;
+  min-height: 0;
 }
 
 .hero-chat__thread--scroll {
-  max-height: 340px;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -3618,10 +3730,12 @@ h4,
 
 .hero-chat__suggestions {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
   padding: 0 1.15rem 0.9rem;
+  margin-top: auto;
 }
 
 .hero-chat__chip {
@@ -3654,10 +3768,12 @@ h4,
 
 .hero-chat__composer {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 1.15rem 1.15rem;
+  flex-shrink: 0;
 }
 
 .hero-chat__field {

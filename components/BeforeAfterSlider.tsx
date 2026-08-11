@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { m, animate, useMotionValue, useTransform, type AnimationPlaybackControls } from 'framer-motion'
-import { MoveHorizontal } from 'lucide-react'
+import { PiArrowsLeftRightBold } from 'react-icons/pi'
 
 type BeforeAfterSliderProps = {
   beforeSrc: string
@@ -208,13 +208,13 @@ export default function BeforeAfterSlider({
 
         {/* Labels */}
         <m.span
-          className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm"
+          className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink)] backdrop-blur-sm"
           style={{ opacity: beforeLabelOpacity }}
         >
           {beforeLabel}
         </m.span>
         <m.span
-          className="pointer-events-none absolute right-3 top-3 z-30 rounded-full bg-[#3AAFE8]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A] backdrop-blur-sm"
+          className="pointer-events-none absolute right-3 top-3 z-30 rounded-full bg-[var(--brand)]/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#fff] backdrop-blur-sm"
           style={{ opacity: afterLabelOpacity }}
         >
           {afterLabel}
@@ -234,23 +234,23 @@ export default function BeforeAfterSlider({
             aria-valuemax={100}
             aria-valuenow={Math.round(mode === 'after' ? 0 : mode === 'before' ? 100 : 50)}
             onKeyDown={onKeyDown}
-            className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0D0D0D] shadow-[0_4px_14px_rgba(0,0,0,0.5)] ring-1 ring-black/10 transition-transform duration-150 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8]"
+            className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0D0D0D] shadow-[0_4px_14px_rgba(0,0,0,0.5)] ring-1 ring-black/10 transition-transform duration-150 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
             style={{ cursor: 'ew-resize', touchAction: 'none' }}
           >
-            <MoveHorizontal size={20} strokeWidth={2.4} />
+            <PiArrowsLeftRightBold size={20} />
           </button>
         </m.div>
       </div>
 
       {/* PRZED / PO toggle */}
       <div className="flex items-center justify-center">
-        <div className="inline-flex items-center rounded-full bg-[#161C28] p-1 ring-1 ring-[rgba(255,255,255,0.08)]">
+        <div className="inline-flex items-center rounded-full bg-[var(--bg-card)] p-1 ring-1 ring-[rgba(255,255,255,0.08)]">
           <button
             type="button"
             onClick={() => goTo('before')}
             aria-pressed={mode === 'before'}
             className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-[color,background-color,box-shadow,transform] duration-200 ease-out ${
-              mode === 'before' ? 'bg-[#1C2433] text-[#EAF0F7] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
+              mode === 'before' ? 'bg-[#1C2433] text-[var(--ink)] shadow-sm' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
             }`}
           >
             {beforeLabel}
@@ -260,7 +260,7 @@ export default function BeforeAfterSlider({
             onClick={() => goTo('after')}
             aria-pressed={mode === 'after'}
             className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-[color,background-color,box-shadow,transform] duration-200 ease-out ${
-              mode === 'after' ? 'bg-[#3AAFE8] text-[#06141A] shadow-sm' : 'text-[#A6B2C4] hover:text-[#EAF0F7]'
+              mode === 'after' ? 'bg-[var(--brand)] text-[#fff] shadow-sm' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
             }`}
           >
             {afterLabel}

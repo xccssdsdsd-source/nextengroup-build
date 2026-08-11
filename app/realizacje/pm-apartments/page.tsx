@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
+import { PiArrowUpRightBold } from 'react-icons/pi'
 
 const Nav = dynamic(() => import('@/components/Nav'))
 const Contact = dynamic(() => import('@/components/Contact'))
@@ -45,7 +45,7 @@ export default function PMApartamentsCase() {
         { name: 'PM Apartments' },
       ]} />
 
-      <section className="relative pt-28 pb-20 px-6 sm:px-8 bg-[#0A0E14] overflow-hidden">
+      <section className="relative pt-28 pb-20 px-6 sm:px-8 bg-[var(--bg-base)] overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0"
           style={{ background: 'radial-gradient(ellipse 60% 40% at 80% 20%, rgba(58,175,232,0.12) 0%, transparent 60%)' }}
@@ -53,19 +53,19 @@ export default function PMApartamentsCase() {
         <div className="relative max-w-4xl mx-auto">
           <a
             href="/realizacje"
-            className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7C879B] hover:text-[#3AAFE8] transition-[color] duration-200 mb-8"
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--ink-3)] hover:text-[var(--brand)] transition-[color] duration-200 mb-8"
           >
             ← Realizacje
           </a>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3AAFE8] mb-4">Wykończenia wnętrz · Wrocław</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--brand)] mb-4">Wykończenia wnętrz · Wrocław</p>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[#EAF0F7] leading-[1.05] mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[var(--ink)] leading-[1.05] mb-6"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Strona dla firmy wykończeniowej. Wdrożona w&nbsp;72h.
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] max-w-2xl">
+          <p className="text-lg leading-[1.7] text-[var(--ink-2)] max-w-2xl">
             PM Apartments robi wykończenia mieszkań pod klucz we Wrocławiu. Klient potrzebował miejsca, które pokaże jakość pracy i zbiera zapytania od nowych klientów. Zamiast czekać tygodniami na agencję, miał działającą stronę w trzy dni robocze. Formularz kontaktowy działa automatycznie. Galeria realizacji mówi sama za siebie.
           </p>
 
@@ -74,9 +74,9 @@ export default function PMApartamentsCase() {
               href="https://pm-apartments.pl/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#3AAFE8] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-[#fff] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
             >
-              Zobacz stronę <ArrowUpRight size={15} strokeWidth={2.5} />
+              Zobacz stronę <PiArrowUpRightBold size={15} />
             </a>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function PMApartamentsCase() {
 
       <section className="px-6 sm:px-8 pb-4">
         <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#161C28]" style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
+          <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-card)]" style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
             <div className="p-4 border-b border-white/[0.08]">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
@@ -112,16 +112,16 @@ export default function PMApartamentsCase() {
             {metrics.map(m => (
               <div
                 key={m.label}
-                className="rounded-2xl border border-white/10 bg-[#161C28] p-6 text-center"
+                className="rounded-2xl border border-[var(--line)] bg-[var(--bg-card)] p-6 text-center"
                 style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
               >
                 <div
-                  className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[#3AAFE8] mb-1"
+                  className="text-3xl sm:text-4xl font-black tracking-[-0.04em] text-[var(--brand)] mb-1"
                   style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   {m.value}
                 </div>
-                <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#7C879B]">{m.label}</div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--ink-3)]">{m.label}</div>
               </div>
             ))}
           </div>
@@ -130,23 +130,23 @@ export default function PMApartamentsCase() {
 
       <section className="px-6 sm:px-8 pb-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3AAFE8] mb-8">Co dostarczyliśmy</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--brand)] mb-8">Co dostarczyliśmy</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {deliverables.map((d, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-white/10 bg-[#161C28] p-6"
+                className="rounded-2xl border border-[var(--line)] bg-[var(--bg-card)] p-6"
                 style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
               >
                 <div
-                  className="text-[11px] font-black uppercase tracking-[0.15em] text-[#3AAFE8] mb-3"
+                  className="text-[11px] font-black uppercase tracking-[0.15em] text-[var(--brand)] mb-3"
                 >
                   {String(i + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-[0.95rem] font-bold tracking-[-0.02em] text-[#EAF0F7] mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+                <h3 className="text-[0.95rem] font-bold tracking-[-0.02em] text-[var(--ink)] mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
                   {d.title}
                 </h3>
-                <p className="text-[13px] leading-[1.65] text-[#A6B2C4]">{d.body}</p>
+                <p className="text-[13px] leading-[1.65] text-[var(--ink-2)]">{d.body}</p>
               </div>
             ))}
           </div>
@@ -156,18 +156,18 @@ export default function PMApartamentsCase() {
       <section className="px-6 sm:px-8 pb-24">
         <div className="max-w-4xl mx-auto">
           <div
-            className="rounded-2xl border border-white/10 bg-[#161C28] p-8 sm:p-10 text-center"
+            className="rounded-2xl border border-[var(--line)] bg-[var(--bg-card)] p-8 sm:p-10 text-center"
             style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
           >
-            <p className="text-lg sm:text-xl leading-[1.65] text-[#EAF0F7] font-medium mb-4">
+            <p className="text-lg sm:text-xl leading-[1.65] text-[var(--ink)] font-medium mb-4">
               Chcesz podobną stronę dla swojej firmy?
             </p>
-            <p className="text-[14px] leading-[1.7] text-[#A6B2C4] mb-6">
+            <p className="text-[14px] leading-[1.7] text-[var(--ink-2)] mb-6">
               Wdrożenie w 72h, automatyczne potwierdzenia zapytań i galeria realizacji gotowa do rozbudowy.
             </p>
             <a
               href="/#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-[#3AAFE8] px-6 py-3 text-sm font-semibold text-[#06141A] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3AAFE8]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-[#fff] shadow-[0_4px_16px_rgba(58,175,232,0.3)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(58,175,232,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
             >
               Umów bezpłatną rozmowę
             </a>

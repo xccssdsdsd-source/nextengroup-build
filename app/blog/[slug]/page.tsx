@@ -132,7 +132,7 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="relative bg-[#0A0E14] pt-24 pb-10 md:pt-32 md:pb-16 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] pt-24 pb-10 md:pt-32 md:pb-16 px-6 md:px-12">
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
@@ -143,17 +143,17 @@ export default async function ArticlePage({ params }: Props) {
         <div className="mx-auto max-w-3xl relative z-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-[#A6B2C4] hover:text-[#3AAFE8] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-[var(--ink-2)] hover:text-[var(--brand)] transition-colors mb-6"
           >
             ← Wróć do bloga
           </Link>
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6 leading-[1.15]"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6 leading-[1.15]"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {article.title}
           </h1>
-          <p className="text-sm text-[#A6B2C4] flex flex-wrap gap-3 items-center">
+          <p className="text-sm text-[var(--ink-2)] flex flex-wrap gap-3 items-center">
             <span>{formattedDate}</span>
             <span aria-hidden="true">•</span>
             <span>{article.readTime} min czytania</span>
@@ -164,7 +164,7 @@ export default async function ArticlePage({ params }: Props) {
       </section>
 
       {/* Article body */}
-      <article className="px-6 pb-20 md:pb-32 bg-[#0A0E14]">
+      <article className="px-6 pb-20 md:pb-32 bg-[var(--bg-base)]">
         <div className="mx-auto max-w-3xl">
           <div className="prose-custom">
             {article.sections.map((section, i) => {
@@ -172,7 +172,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#EAF0F7] mt-12 mb-4"
+                    className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[var(--ink)] mt-12 mb-4"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {section.text}
@@ -183,7 +183,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <h3
                     key={i}
-                    className="text-xl font-bold text-[#EAF0F7] mt-8 mb-3"
+                    className="text-xl font-bold text-[var(--ink)] mt-8 mb-3"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {section.text}
@@ -194,7 +194,7 @@ export default async function ArticlePage({ params }: Props) {
                 return (
                   <p
                     key={i}
-                    className="text-[#A6B2C4] leading-[1.8] text-base md:text-[1.0625rem] mb-5"
+                    className="text-[var(--ink-2)] leading-[1.8] text-base md:text-[1.0625rem] mb-5"
                   >
                     {section.text}
                   </p>
@@ -206,10 +206,10 @@ export default async function ArticlePage({ params }: Props) {
                     {section.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
+                        className="flex gap-3 text-[var(--ink-2)] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
                         <span
-                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#3AAFE8]"
+                          className="mt-[0.4em] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[var(--brand)]"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -224,9 +224,9 @@ export default async function ArticlePage({ params }: Props) {
                     {section.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-3 text-[#A6B2C4] leading-[1.7] text-base md:text-[1.0625rem]"
+                        className="flex gap-3 text-[var(--ink-2)] leading-[1.7] text-base md:text-[1.0625rem]"
                       >
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1C2433] text-[#8CD8FF] text-xs font-bold flex items-center justify-center mt-[0.15em]">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1C2433] text-[var(--brand-400)] text-xs font-bold flex items-center justify-center mt-[0.15em]">
                           {j + 1}
                         </span>
                         <span>{item}</span>
@@ -243,10 +243,10 @@ export default async function ArticlePage({ params }: Props) {
           {article.related && article.related.length > 0 && (
             <nav
               aria-label="Powiązane treści"
-              className="mt-16 rounded-2xl border border-white/10 bg-[#11161F] px-8 py-7"
+              className="mt-16 rounded-2xl border border-[var(--line)] bg-[var(--bg-card)] px-8 py-7"
             >
               <p
-                className="text-sm font-bold uppercase tracking-[0.08em] text-[#8CD8FF] mb-4"
+                className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--brand-400)] mb-4"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 Zobacz również
@@ -256,9 +256,9 @@ export default async function ArticlePage({ params }: Props) {
                   <li key={i}>
                     <Link
                       href={link.href}
-                      className="inline-flex items-center gap-2 text-[#A6B2C4] hover:text-[#3AAFE8] transition-colors text-base"
+                      className="inline-flex items-center gap-2 text-[var(--ink-2)] hover:text-[var(--brand)] transition-colors text-base"
                     >
-                      <span aria-hidden="true" className="text-[#3AAFE8]">→</span>
+                      <span aria-hidden="true" className="text-[var(--brand)]">→</span>
                       {link.label}
                     </Link>
                   </li>
@@ -268,29 +268,29 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {/* CTA block */}
-          <div className="mt-16 rounded-2xl border border-white/10 bg-[#161C28] px-8 py-8">
+          <div className="mt-16 rounded-2xl border border-[var(--line)] bg-[var(--bg-card)] px-8 py-8">
             <p
-              className="text-lg font-bold text-[#EAF0F7] mb-2"
+              className="text-lg font-bold text-[var(--ink)] mb-2"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               Masz pytania? Napisz do nas.
             </p>
-            <p className="text-[#A6B2C4] mb-5 text-sm leading-relaxed">
+            <p className="text-[var(--ink-2)] mb-5 text-sm leading-relaxed">
               Getbuild to studio z Trójmiasta obsługujące firmy z całej Polski. Oferujemy pierwszą wizualizację strony przed płatnością oraz bezpłatną analizę procesu przed wyceną automatyzacji.
             </p>
             <a
               href="mailto:getbuild.pl@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#3AAFE8] px-5 py-2.5 text-sm font-semibold text-[#06141A] hover:bg-[#8CD8FF] transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand)] px-5 py-2.5 text-sm font-semibold text-[#fff] hover:bg-[var(--brand-400)] transition-colors"
             >
               getbuild.pl@gmail.com
             </a>
           </div>
 
           {/* Back link */}
-          <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="mt-12 pt-8 border-t border-[var(--line)]">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[#8CD8FF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out text-sm"
+              className="inline-flex items-center gap-2 text-[var(--brand-400)] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out text-sm"
             >
               ← Wszystkie artykuły
             </Link>

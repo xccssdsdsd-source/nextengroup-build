@@ -36,16 +36,16 @@ export default function CookieConsent() {
 
   return (
     <div className="cookie-consent fixed bottom-4 left-4 right-4 z-[70]" role="dialog" aria-label="Ustawienia plików cookie" aria-live="polite">
-      <div className="max-w-4xl mx-auto bg-[#11161F] border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex-1 text-sm leading-relaxed text-[#A6B2C4]">
+      <div className="max-w-4xl mx-auto bg-white border border-[var(--line)] rounded-2xl p-4 shadow-[var(--shadow-lg)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex-1 text-sm leading-relaxed text-[var(--ink-2)]">
           <span className="inline-block">Niezbędne cookies obsługują stronę i formularze.</span>{' '}
           <span className="inline-block">Dodatkową analitykę uruchomimy</span>{' '}
           <span className="inline-block">tylko za Twoją zgodą.</span>
         </div>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 whitespace-nowrap">
-          <button onClick={reject} className="text-sm font-semibold rounded-xl border border-white/12 text-[#A6B2C4] bg-transparent px-6 py-3.5 transition-colors hover:bg-white/5 hover:text-[#EAF0F7]">Odrzuć</button>
+          <button onClick={reject} className="text-sm font-semibold rounded-xl border border-[var(--line-strong)] text-[var(--ink-2)] bg-transparent px-6 py-3.5 transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--ink)]">Odrzuć</button>
           <button onClick={accept} className="btn btn-primary text-sm">Akceptuję</button>
-          <Link href="/polityka-prywatnosci" className="text-xs sm:text-sm text-[#7C879B] hover:text-[#EAF0F7] underline text-center sm:text-left">Polityka prywatności</Link>
+          <Link href="/polityka-prywatnosci" className="text-xs sm:text-sm text-[var(--ink-3)] hover:text-[var(--brand)] underline text-center sm:text-left">Polityka prywatności</Link>
         </div>
       </div>
     </div>

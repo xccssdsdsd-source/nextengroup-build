@@ -4,206 +4,30 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #050505;
-  isolation: isolate;
+  background: #ffffff;
   contain: strict;
 }
 
-.mobileFallback {
-  display: none;
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.025;
+  mix-blend-mode: multiply;
 }
 
 .field {
   position: absolute;
-  inset: -18%;
+  inset: 0;
   background-image:
-    radial-gradient(38% 46% at 16% 8%, rgba(140, 216, 255, 0.18), transparent 72%),
-    radial-gradient(32% 40% at 88% 22%, rgba(93, 202, 245, 0.12), transparent 76%),
-    radial-gradient(46% 52% at 78% 68%, rgba(43, 104, 218, 0.13), transparent 78%),
-    radial-gradient(40% 46% at 10% 62%, rgba(58, 175, 232, 0.06), transparent 78%),
-    radial-gradient(34% 40% at 15% 92%, rgba(245, 181, 71, 0.02), transparent 78%),
-    linear-gradient(158deg, #050608 0%, #060a12 32%, #030508 64%, #000000 100%);
-  filter: blur(60px);
-  opacity: 0.5;
-  transition: translate 900ms cubic-bezier(0.23, 1, 0.32, 1);
-  animation: field-drift 72s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  will-change: translate, transform;
-}
-
-@keyframes field-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(1%, -0.8%, 0) scale(1.03); }
-}
-
-.scrollBand {
-  position: absolute;
-  width: min(70rem, 108vw);
-  height: clamp(6rem, 13vw, 11rem);
-  border: 1px solid rgba(141, 208, 255, 0.06);
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, transparent 4%, rgba(77, 156, 226, 0.055) 32%, rgba(133, 218, 255, 0.075) 54%, transparent 94%);
-  box-shadow:
-    inset 0 1px rgba(206, 239, 255, 0.035),
-    0 0 72px rgba(31, 99, 190, 0.08);
-  filter: blur(0.2px);
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-.bandA {
-  top: 24%;
-  left: -24%;
-  transform: rotate(-8deg);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 72%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 72%, transparent);
-  opacity: 0.28;
-  animation: band-a-drift 64s linear infinite;
-}
-
-.bandB {
-  right: -30%;
-  bottom: 15%;
-  transform: rotate(7deg);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 26%, #000 84%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 26%, #000 84%, transparent);
-  opacity: 0.2;
-  animation: band-b-drift 78s linear infinite;
-}
-
-@keyframes band-a-drift {
-  0% { transform: translate3d(-4%, 2%, 0) rotate(-8deg) scale(1); opacity: 0.2; }
-  50% { transform: translate3d(4%, -3%, 0) rotate(-8deg) scale(1.03); opacity: 0.32; }
-  100% { transform: translate3d(-4%, 2%, 0) rotate(-8deg) scale(1); opacity: 0.2; }
-}
-
-@keyframes band-b-drift {
-  0% { transform: translate3d(3%, -2%, 0) rotate(7deg) scale(1); opacity: 0.14; }
-  50% { transform: translate3d(-3%, 3%, 0) rotate(7deg) scale(1.02); opacity: 0.22; }
-  100% { transform: translate3d(3%, -2%, 0) rotate(7deg) scale(1); opacity: 0.14; }
-}
-
-.scrollGrain {
-  position: absolute;
-  width: min(66rem, 116vw);
-  height: min(30rem, 54vh);
-  left: 14%;
-  top: 42%;
-  background-image:
-    radial-gradient(circle, rgba(189, 230, 255, 0.6) 0 0.45px, transparent 0.75px),
-    radial-gradient(circle, rgba(61, 137, 207, 0.42) 0 0.4px, transparent 0.72px);
-  background-position: 11px 17px, 43px 29px;
-  background-size: 6px 6px, 9px 9px;
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse, #000 0%, rgba(0, 0, 0, 0.52) 38%, transparent 74%);
-  mask-image: radial-gradient(ellipse, #000 0%, rgba(0, 0, 0, 0.52) 38%, transparent 74%);
-  opacity: 0.12;
-}
-
-.stars {
-  position: absolute;
-  inset: 0;
-  opacity: 0.055;
-  background-image:
-    radial-gradient(circle, rgba(196, 231, 255, 0.62) 0 0.55px, transparent 0.8px),
-    radial-gradient(circle, rgba(116, 190, 235, 0.5) 0 0.45px, transparent 0.72px);
-  background-position: 17px 11px, 61px 43px;
-  background-size: 137px 137px, 211px 211px;
-  -webkit-mask-image: radial-gradient(ellipse 78% 54% at 58% 10%, #000 0%, transparent 82%);
-  mask-image: radial-gradient(ellipse 78% 54% at 58% 10%, #000 0%, transparent 82%);
-}
-
-.ambientGrain {
-  position: absolute;
-  inset: -8%;
-  opacity: 0.18;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: overlay;
-  -webkit-mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse 130% 100% at 56% 38%, #000 0%, rgba(0, 0, 0, 0.72) 60%, transparent 100%);
-  animation: ambient-grain-drift 12s steps(6) infinite;
-  will-change: transform;
-}
-
-.fineGrain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.13;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='fn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.7' numOctaves='3' stitchTiles='stitch' seed='23'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fn)'/%3E%3C/svg%3E");
-  background-size: 120px 120px;
-  mix-blend-mode: soft-light;
-}
-
-/* Third, coarser noise layer at a different frequency and scale than
-   ambientGrain/fineGrain — real film grain reads as detailed because it
-   layers multiple noise frequencies, not one turbulence pass scaled up. */
-.coarseGrain {
-  position: absolute;
-  inset: -8%;
-  opacity: 0.1;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='cn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='2' stitchTiles='stitch' seed='41'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cn)'/%3E%3C/svg%3E");
-  background-size: 300px 300px;
-  mix-blend-mode: overlay;
-  -webkit-mask-image: radial-gradient(ellipse 120% 90% at 50% 42%, #000 0%, rgba(0, 0, 0, 0.6) 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 120% 90% at 50% 42%, #000 0%, rgba(0, 0, 0, 0.6) 62%, transparent 100%);
-}
-
-@keyframes ambient-grain-drift {
-  0% { transform: translate3d(0, 0, 0); }
-  16% { transform: translate3d(-2%, 1%, 0); }
-  33% { transform: translate3d(1.5%, -2%, 0); }
-  50% { transform: translate3d(-1%, 2%, 0); }
-  66% { transform: translate3d(2%, 1%, 0); }
-  83% { transform: translate3d(-1.5%, -1%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-.sheen {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(72% 22rem at 60% 0%, rgba(140, 210, 245, 0.07), transparent 74%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.6), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.6));
-}
-
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(135% 110% at 50% 42%, transparent 48%, rgba(0, 0, 0, 0.78) 100%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scrollBand,
-  .ambientGrain,
-  .field {
-    animation: none;
-  }
+    radial-gradient(52% 38% at 82% 2%, rgba(11, 79, 209, 0.07), transparent 70%),
+    radial-gradient(46% 34% at 6% 26%, rgba(63, 125, 238, 0.05), transparent 72%);
 }
 
 @media (max-width: 768px) {
-  /* Mobile ambience is static post-load (no scroll/mousemove drivers run
-     below 768px, see AnimatedBackground.tsx) — a pre-rendered pixel match
-     of the same layers replaces the live blur/mix-blend-mode stack, which
-     is one of the most expensive paint patterns on mobile GPUs. Same look,
-     no runtime filter/blend cost. Regenerate via scripts/gen-mobile-bg.mjs. */
-  .mobileFallback {
-    display: block;
-    position: absolute;
-    inset: 0;
-    background-image: url('/bg-mobile.webp');
-    background-size: cover;
-    background-position: center;
-  }
-
-  .field,
-  .scrollBand,
-  .scrollGrain,
-  .stars,
-  .ambientGrain,
-  .fineGrain,
-  .coarseGrain,
-  .sheen {
-    display: none;
+  .field {
+    background-image: radial-gradient(70% 32% at 78% 0%, rgba(11, 79, 209, 0.06), transparent 70%);
   }
 }

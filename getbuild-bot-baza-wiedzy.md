@@ -88,7 +88,7 @@ Dobieramy najprostsze rozwiązanie wystarczające do danego zadania. Chatbot nie
 
 ## Opieka
 
-Landing i strona z obsługą klienta zawierają 30 dni wsparcia. Pełny pakiet z panelem zawiera 60 dni wsparcia. Później klient może korzystać ze stałej opieki i hostingu za 99 zł miesięcznie tak długo, jak ich potrzebuje.
+Landing i strona z obsługą klienta zawierają 30 dni wsparcia. Pełny pakiet z panelem zawiera 60 dni wsparcia. Później klient może korzystać ze stałej opieki i hostingu za od 29 do 99 zł miesięcznie, zależnie od konfiguracji strony, tak długo, jak ich potrzebuje.
 
 Stała opieka obejmuje hosting, monitoring, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki bez limitu zgłoszeń oraz aktualizację treści, oferty i wiedzy chatbota. Nowe podstrony, funkcje i większą rozbudowę wyceniamy osobno. Poprawki bez limitu na etapie projektowania dotyczą uzgodnionego zakresu strony.
 

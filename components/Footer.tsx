@@ -51,15 +51,15 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-6">
             <Image src="/getbuild-logo.webp" alt="Getbuild agencja usług cyfrowych" width={36} height={36} className="h-9 w-9 rounded-lg object-contain" />
             <div>
-              <div className="text-sm font-bold uppercase tracking-[0.2em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>
+              <div className="text-sm font-bold uppercase tracking-[0.2em] text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Getbuild
               </div>
-              <div className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-[#7C879B]">
+              <div className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-3)]">
                 Agencja usług cyfrowych
               </div>
             </div>
           </div>
-          <p className="text-[12.5px] leading-[1.7] text-[#A6B2C4]">
+          <p className="text-[12.5px] leading-[1.7] text-[var(--ink-2)]">
             Projektujemy i wdrażamy strony WWW oraz agentów AI wspierających Twój biznes.
           </p>
         </m.div>
@@ -72,7 +72,7 @@ export default function Footer() {
         >
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#7C879B] mb-4">Nawigacja</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ink-3)] mb-4">Nawigacja</p>
               <div className="space-y-2">
                 {footerLinks.map(([label, href], i) => (
                   <m.a
@@ -82,7 +82,7 @@ export default function Footer() {
                     initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.18 + i * 0.06, ease }}
-                    className="footer-link block text-[13px] font-medium text-[#A6B2C4]"
+                    className="footer-link block text-[13px] font-medium text-[var(--ink-2)]"
                   >
                     {label}
                   </m.a>
@@ -90,8 +90,8 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#7C879B] mb-4">Kontakt i prawne</p>
-              <p className="text-[12px] text-[#7C879B] mb-3 tracking-[0.04em]">Polska</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ink-3)] mb-4">Kontakt i prawne</p>
+              <p className="text-[12px] text-[var(--ink-3)] mb-3 tracking-[0.04em]">Polska</p>
               <div className="space-y-2">
                 {footerLegal.map(([label, href], i) => (
                   <m.a
@@ -102,7 +102,7 @@ export default function Footer() {
                     initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, delay: 0.24 + i * 0.06, ease }}
-                    className="footer-link block text-[13px] font-medium text-[#A6B2C4]"
+                    className="footer-link block text-[13px] font-medium text-[var(--ink-2)]"
                   >
                     {label}
                   </m.a>
@@ -119,7 +119,7 @@ export default function Footer() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease }}
       >
-        <p className="text-[11.5px] tracking-[0.02em] text-[#7C879B]">
+        <p className="text-[11.5px] tracking-[0.02em] text-[var(--ink-3)]">
           © {new Date().getFullYear()} Getbuild. Wszystkie prawa zastrzeżone.
         </p>
       </m.div>

@@ -116,23 +116,23 @@ export default function WiedzaAI() {
         { name: 'Getbuild', url: 'https://getbuild.pl' },
         { name: 'Wiedza AI' },
       ]} />
-      <article className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+      <article className="relative bg-[var(--bg-base)] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             AI dla firm — co warto wiedzieć przed wdrożeniem
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4]">
+          <p className="text-lg leading-[1.7] text-[var(--ink-2)]">
             Praktyczne wyjaśnienia, które pomogą Ci zrozumieć, jak automatyzacja i agenci AI mogą wspierać Twój biznes.
           </p>
         </div>
       </article>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czym jest automatyzacja AI dla firmy?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Automatyzacja AI łączy narzędzia sztucznej inteligencji z procesami firmy — odpowiedzi na maile, przypomnienia, kwalifikacja leadów czy generowanie dokumentów dzieją się bez ręcznej pracy. Dobry kandydat to każda czynność, która powtarza się codziennie w ten sam sposób.
             </p>
@@ -143,12 +143,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czym jest agent AI i czym różni się od zwykłej automatyzacji?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Agent AI nie tylko wykonuje zadania, ale podejmuje decyzje i obsługuje wieloetapowe procesy 24/7. W przeciwieństwie do prostej automatyzacji może prowadzić rozmowę z klientem, kwalifikować leady, proponować rozwiązania i eskalować sprawę do człowieka, gdy to konieczne.
             </p>
@@ -159,12 +159,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile kosztuje automatyzacja AI lub agent AI?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Koszty są zmienne — proste automatyzacje to zwykle kilkaset złotych jednorazowo, bardziej złożone systemy wymagają więcej pracy. Ważniejsze pytanie niż „ile kosztuje" to „ile zaoszczędzi": zaczynamy od jednego procesu, mierzymy efekt i dopiero potem rozwijamy dalej.
             </p>
@@ -172,12 +172,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Kiedy firma jest gotowa na automatyzacje AI?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Nie musisz być dużą firmą ani mieć własnego IT. Wystarczy, że zespół codziennie wykonuje te same czynności ręcznie: odpowiada na powtarzalne pytania, kopiuje dane między systemami, generuje oferty czy zarządza kalendarzem.
             </p>
@@ -185,12 +185,12 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Czy strona internetowa może być zintegrowana z automatyzacją AI?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Tak. Formularz kontaktowy może kwalifikować zapytania i wysyłać spersonalizowaną odpowiedź, a chat z agentem AI odpowiada 24/7. Stronę projektujemy tak, by dobrze współpracowała z automatyzacją od początku — strona i automatyzacja działają razem jako jeden system.
             </p>
@@ -198,25 +198,25 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile kosztuje strona dla agenta nieruchomości?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
-              Ceny wdrożenia są jasno podane w pakietach: Strona na jedną usługę kosztuje 1997 zł, strona z chatbotem AI 2397 zł, a strona z panelem do zarządzania 2997 zł. Pierwszą wizualizację strony wykonujemy w 24 godziny bez zobowiązań.
+              Ceny wdrożenia są jasno podane w pakietach: Wizytówka agenta kosztuje 1997 zł, Agent z obsługą 24/7 kosztuje 2299 zł, a Biuro z panelem ofert 3099 zł. Pierwszą wizualizację strony wykonujemy w 24 godziny bez zobowiązań.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Ile czasu trwa stworzenie strony internetowej?
           </h2>
-          <div className="space-y-6 text-[#A6B2C4] leading-[1.7]">
+          <div className="space-y-6 text-[var(--ink-2)] leading-[1.7]">
             <p>
               Podstawowa strona może być gotowa w 72 godziny od zebrania materiałów — bardziej złożone projekty zajmują więcej czasu. Najpierw powstaje bezpłatny mockup, a wdrożenie następuje po jego akceptacji.
             </p>
@@ -224,17 +224,17 @@ export default function WiedzaAI() {
         </div>
       </section>
 
-      <section className="relative bg-[#0A0E14] py-12 md:py-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] py-12 md:py-20 px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             Masz pytanie o AI lub stronę WWW?
           </h2>
-          <p className="text-lg text-[#A6B2C4] mb-8">
+          <p className="text-lg text-[var(--ink-2)] mb-8">
             Odpiszę tego samego dnia. Umów bezpłatną rozmowę lub napisz bezpośrednio.
           </p>
           <a
             href="/#kontakt"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#3AAFE8] px-8 py-4 text-[15px] font-semibold text-[#06141A] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[#8CD8FF] hover:shadow-[0 8px 24px rgba(58,175,232,0.22)] hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 rounded-xl bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[#fff] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[var(--brand-400)] hover:shadow-[0 8px 24px rgba(58,175,232,0.22)] hover:-translate-y-0.5"
           >
             Skontaktuj się
           </a>

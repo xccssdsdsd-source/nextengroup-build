@@ -59,37 +59,37 @@ export default function Blog() {
         { name: 'Blog' },
       ]} />
 
-      <section className="relative bg-[#0A0E14] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
+      <section className="relative bg-[var(--bg-base)] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
         <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)' }} />
         <div className="mx-auto max-w-3xl relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[#EAF0F7] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Blog Getbuild
           </h1>
-          <p className="text-lg leading-[1.7] text-[#A6B2C4] mb-8">
+          <p className="text-lg leading-[1.7] text-[var(--ink-2)] mb-8">
             Artykuły o SEO dla firm B2B, tworzeniu stron WWW, automatyzacjach AI i strategiach marketingowych. Praktyczne poradniki i wnioski z naszych projektów.
           </p>
         </div>
       </section>
 
-      <section className="px-6 py-16 bg-[#11161F] sm:px-8 lg:py-24">
+      <section className="px-6 py-16 bg-[var(--bg-card)] sm:px-8 lg:py-24">
         <div className="max-w-4xl mx-auto">
           <div className="grid gap-8">
             {articles.map((article) => (
-              <article key={article.slug} className="border border-white/10 rounded-lg p-8 bg-[#161C28] hover:shadow-lg transition-shadow">
+              <article key={article.slug} className="border border-[var(--line)] rounded-lg p-8 bg-[var(--bg-card)] hover:shadow-lg transition-shadow">
                 <Link href={`/blog/${article.slug}`}>
-                  <h2 className="text-2xl font-bold text-[#EAF0F7] mb-3 hover:text-[#3AAFE8] transition-colors">
+                  <h2 className="text-2xl font-bold text-[var(--ink)] mb-3 hover:text-[var(--brand)] transition-colors">
                     {article.title}
                   </h2>
                 </Link>
-                <p className="text-sm text-[#A6B2C4] mb-4 flex gap-4">
+                <p className="text-sm text-[var(--ink-2)] mb-4 flex gap-4">
                   <span>{new Date(article.date).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                   <span>•</span>
                   <span>{article.readTime} min czytania</span>
                 </p>
-                <p className="text-[#A6B2C4] mb-6">
+                <p className="text-[var(--ink-2)] mb-6">
                   {article.excerpt}
                 </p>
-                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[#8CD8FF] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out">
+                <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-[var(--brand-400)] font-semibold hover:gap-3 transition-[gap] duration-200 ease-out">
                   Czytaj artykuł
                   <span>→</span>
                 </Link>

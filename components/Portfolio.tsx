@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { m, AnimatePresence, useInView } from 'framer-motion'
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { PiArrowUpRightBold, PiCaretLeftBold, PiCaretRightBold } from 'react-icons/pi'
 import { useRef, useState, useCallback, useEffect, useId, type CSSProperties } from 'react'
 import BeforeAfterSlider from './BeforeAfterSlider'
 import LiveSiteButton from './ui/LiveSiteButton'
@@ -199,19 +199,19 @@ function AnimatedLines() {
             }
           `}</style>
           <linearGradient id={`${uid}-ga`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
-            <stop offset="40%" stopColor="#3AAFE8" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0b4fd1" stopOpacity="0" />
+            <stop offset="40%" stopColor="#0b4fd1" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#3f7dee" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gb`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8CD8FF" stopOpacity="0" />
-            <stop offset="50%" stopColor="#8CD8FF" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#3AAFE8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#3f7dee" stopOpacity="0" />
+            <stop offset="50%" stopColor="#3f7dee" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#0b4fd1" stopOpacity="0" />
           </linearGradient>
           <linearGradient id={`${uid}-gc`} x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#3AAFE8" stopOpacity="0" />
-            <stop offset="45%" stopColor="#3AAFE8" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#8CD8FF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0b4fd1" stopOpacity="0" />
+            <stop offset="45%" stopColor="#0b4fd1" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#3f7dee" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -302,7 +302,7 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
         <div className="portfolio-case__eyebrow"><span>0{index + 1}</span><span>Wdrożenie {project.time}</span></div>
         <a href={project.href} target="_blank" rel="noreferrer" className="portfolio-case__title">
           {asH1 ? <h2>{project.name}</h2> : <h3>{project.name}</h3>}
-          <ArrowUpRight size={20} strokeWidth={1.8} aria-hidden="true" />
+          <PiArrowUpRightBold size={20} aria-hidden="true" />
         </a>
         <p className="portfolio-case__tagline">{project.tagline}</p>
         <p className="portfolio-case__body">{bodyPreview}</p>
@@ -402,15 +402,15 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
           <div>
             <span className="section-kicker" suppressHydrationWarning>Nasze realizacje</span>
             {asH1 ? (
-              <h1 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h1>
+              <h1 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h1>
             ) : (
-              <h2 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
+              <h2 data-motion-title className="mt-4 text-[clamp(28px,4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em] text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }} suppressHydrationWarning>Nasze strony internetowe</h2>
             )}
           </div>
           <div className="hidden sm:flex items-center gap-2.5">
-            <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><ChevronLeft size={22} strokeWidth={2.2} /></button>
-            <span className="font-mono text-[13px] tabular-nums text-[#A6B2C4]"><span className="text-[#EAF0F7] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(portfolioProjects.length).padStart(2, '0')}</span>
-            <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><ChevronRight size={22} strokeWidth={2.2} /></button>
+            <button onClick={prevProject} className="carousel-arrow" aria-label="Poprzednia realizacja"><PiCaretLeftBold size={22} /></button>
+            <span className="font-mono text-[13px] tabular-nums text-[var(--ink-2)]"><span className="text-[var(--ink)] font-semibold">{String(currentIndex + 1).padStart(2, '0')}</span> / {String(portfolioProjects.length).padStart(2, '0')}</span>
+            <button onClick={nextProject} className="carousel-arrow" aria-label="Następna realizacja"><PiCaretRightBold size={22} /></button>
           </div>
         </m.div>
 
@@ -454,8 +454,8 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
-                          <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
-                          <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
+                          <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
+                          <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
                         </div>
                       </div>
                       <a
@@ -489,8 +489,8 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
-                          <p className="text-[13px] font-semibold leading-tight text-[#EAF0F7]">{project.owner.name}</p>
-                          <p className="text-[11px] text-[#7C879B]">{project.owner.role}</p>
+                          <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
+                          <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
                         </div>
                       </div>
                       <div className="relative flex items-center justify-center overflow-hidden">
@@ -512,21 +512,21 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 )}
 
                 <div className="portfolio-mobile-content flex flex-col justify-center p-6 sm:p-8">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#06141A]" style={{ background: '#3AAFE8', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#fff]" style={{ background: 'var(--brand)', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     {asH1 ? (
-                      <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h2>
+                      <h2 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h2>
                     ) : (
-                      <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[#EAF0F7]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
+                      <h3 className="text-[24px] sm:text-[28px] font-extrabold tracking-[-0.035em] text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }}>{project.name}</h3>
                     )}
-                    <ArrowUpRight size={22} strokeWidth={2.2} className="text-[#A6B2C4] transition-[color,transform] duration-200 ease-out group-hover:text-[#3AAFE8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <PiArrowUpRightBold size={22} className="text-[var(--ink-2)] transition-[color,transform] duration-200 ease-out group-hover:text-[var(--brand)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
-                  <p className="mt-1 text-[14px] font-medium text-[#A6B2C4]">{project.tagline}</p>
-                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[#A6B2C4]">
+                  <p className="mt-1 text-[14px] font-medium text-[var(--ink-2)]">{project.tagline}</p>
+                  <p className="mt-3 text-[14.5px] leading-[1.6] text-[var(--ink-2)]">
                     {bodyExpanded ? project.body : bodyPreview}
                     {bodyRest && !bodyExpanded && (
-                      <> <button onClick={() => setBodyExpanded(true)} className="text-[#3AAFE8] underline hover:text-[#3AAFE8]">Zobacz więcej</button></>
+                      <> <button onClick={() => setBodyExpanded(true)} className="text-[var(--brand)] underline hover:text-[var(--brand)]">Zobacz więcej</button></>
                     )}
                   </p>
 
@@ -559,11 +559,11 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2, ease }}
-                  className="flex items-center gap-1.5 text-[11px] text-[#7C879B] select-none"
+                  className="flex items-center gap-1.5 text-[11px] text-[var(--ink-3)] select-none"
                 >
-                  <ChevronLeft size={11} strokeWidth={2.5} />
+                  <PiCaretLeftBold size={11} />
                   <span>Przesuń, by zobaczyć kolejną realizację</span>
-                  <ChevronRight size={11} strokeWidth={2.5} />
+                  <PiCaretRightBold size={11} />
                 </m.p>
               )}
             </AnimatePresence>
@@ -572,10 +572,10 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               <m.button
                 onClick={prevProject}
                 whileTap={{ scale: 0.97 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Poprzednia realizacja"
               >
-                <ChevronLeft size={22} strokeWidth={2.5} />
+                <PiCaretLeftBold size={22} />
               </m.button>
 
               <div className="flex items-center gap-2">
@@ -587,7 +587,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     style={{
                       width: i === currentIndex ? 22 : 8,
                       height: 8,
-                      background: i === currentIndex ? '#3AAFE8' : 'rgba(255,255,255,0.14)',
+                      background: i === currentIndex ? 'var(--brand)' : 'rgba(255,255,255,0.14)',
                     }}
                     aria-label={`Realizacja ${i + 1}`}
                   />
@@ -597,10 +597,10 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               <m.button
                 onClick={nextProject}
                 whileTap={{ scale: 0.97 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[#161C28] text-[#EAF0F7] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Następna realizacja"
               >
-                <ChevronRight size={22} strokeWidth={2.5} />
+                <PiCaretRightBold size={22} />
               </m.button>
             </div>
           </div>

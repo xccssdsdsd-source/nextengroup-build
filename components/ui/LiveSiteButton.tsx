@@ -1,7 +1,7 @@
 'use client'
 
 import { m } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { PiArrowUpRightBold } from 'react-icons/pi'
 
 type LiveSiteButtonProps = {
   href: string
@@ -17,7 +17,7 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
       rel="noreferrer"
       whileTap={{ scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 22 }}
-      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#0D0D0D] px-5 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_6px_20px_rgba(13,13,13,0.22)] ${className}`}
+      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#0D0D0D] px-5 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.08em] text-[var(--ink)] shadow-[0_6px_20px_rgba(13,13,13,0.22)] ${className}`}
       style={{ fontFamily: 'var(--font-heading)' }}
     >
       {/* Automatic shine sweep that loops periodically */}
@@ -30,9 +30,8 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
         style={{ background: 'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.32) 50%, transparent 65%)' }}
       />
       <span className="relative z-10">{label}</span>
-      <ArrowUpRight
+      <PiArrowUpRightBold
         size={16}
-        strokeWidth={2.6}
         className="relative z-10 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
     </m.a>

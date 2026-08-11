@@ -104,7 +104,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0B0F16',
+  themeColor: '#ffffff',
 }
 
 export default function RootLayout({
@@ -155,7 +155,7 @@ export default function RootLayout({
             '@type': 'Country',
             name: 'Polska',
           },
-          priceRange: '1997–2997 PLN',
+          priceRange: '1997–3099 PLN',
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Gdańsk',
@@ -286,7 +286,7 @@ export default function RootLayout({
       <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
           <AnimatedBackground />
           <PremiumAnimations />
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#3AAFE8] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#06141A] focus:shadow-lg">Przejdź do treści</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[var(--brand)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#fff] focus:shadow-lg">Przejdź do treści</a>
           <MotionProvider>
             <div id="main-content" className="relative" style={{ zIndex: 1 }}>
               {children}

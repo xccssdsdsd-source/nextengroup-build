@@ -3287,10 +3287,12 @@ h4,
   }
 
   .case__link {
+    display: flex;
     width: 100%;
     margin-left: 0;
     padding-top: 0.85rem;
     border-top: 1px solid var(--line);
+    white-space: nowrap;
   }
 }
 

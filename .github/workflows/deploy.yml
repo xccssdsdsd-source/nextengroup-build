@@ -5,9 +5,9 @@ name: Deploy to Cloudflare (production)
 #
 # WYMAGANE SEKRETY REPO (Settings → Secrets and variables → Actions):
 #   CLOUDFLARE_API_TOKEN   — token z uprawnieniem "Edit Cloudflare Workers"
-#   CLOUDFLARE_ACCOUNT_ID  — (opcjonalnie) ID konta Cloudflare
+#   CLOUDFLARE_ACCOUNT_ID  — ID konta Cloudflare (z panelu Cloudflare)
 #
-# Bez tych sekretów krok deployu zakończy się błędem autoryzacji.
+# Build i deploy są osobnymi krokami, żeby w logu było widać, który etap padł.
 
 on:
   push:
@@ -29,14 +29,26 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
+      - name: Sprawdź sekrety Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Brak sekretu CLOUDFLARE_API_TOKEN w repozytorium. Settings → Secrets and variables → Actions → New repository secret."
+            exit 1
+          fi
+
       - name: Install dependencies
         run: npm ci
         env:
           # Nie pobieraj Chromium dla puppeteer — niepotrzebny przy deployu.
           PUPPETEER_SKIP_DOWNLOAD: 'true'
 
-      - name: Build (OpenNext) and deploy (Wrangler)
-        run: npm run deploy
+      - name: Build (OpenNext)
+        run: npm run pages:build
+
+      - name: Deploy (Wrangler)
+        run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

@@ -3282,10 +3282,6 @@ h4,
     row-gap: 0.85rem;
   }
 
-  .case__owner span {
-    display: block;
-  }
-
   .case__link {
     display: flex;
     width: 100%;

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import Link from 'next/link'
 import { PiCalendarBold, PiCheckBold, PiEnvelopeSimpleBold } from 'react-icons/pi'
+import StatefulButton from '@/components/ui/StatefulButton'
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
@@ -34,11 +35,14 @@ export default function Kontakt() {
   const [phone, setPhone] = useState('')
   const [link, setLink] = useState('')
   const [consent, setConsent] = useState(false)
-  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'done' | 'error'>('idle')
+  const handoff = useRef(0)
+
+  useEffect(() => () => clearTimeout(handoff.current), [])
 
   async function submit(e: FormEvent) {
     e.preventDefault()
-    if (state === 'sending') return
+    if (state === 'sending' || state === 'sent') return
     setState('sending')
 
     const message = [
@@ -47,14 +51,26 @@ export default function Kontakt() {
       `Link do profilu/oferty: ${link || '—'}`,
     ].join('\n')
 
+    // A request that returns in 80ms would flash the spinner and read as a
+    // glitch, so the loading state is held long enough to be legible before the
+    // tick is drawn, and the tick is left on screen before the panel takes over.
+    const floor = new Promise((r) => setTimeout(r, 620))
+
     try {
       const res = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, phone, subject: 'Wizualizacja — nieruchomości', message }),
       })
-      setState(res.ok ? 'sent' : 'error')
+      await floor
+      if (!res.ok) {
+        setState('error')
+        return
+      }
+      setState('sent')
+      handoff.current = window.setTimeout(() => setState('done'), 1050)
     } catch {
+      await floor
       setState('error')
     }
   }
@@ -76,7 +92,7 @@ export default function Kontakt() {
 
         <div className="contact" data-stagger-group data-reveal-pattern="split">
           <div className="contact__form-wrap">
-            {state === 'sent' ? (
+            {state === 'done' ? (
               <div className="contact__done" role="status">
                 <span className="contact__done-icon"><PiCheckBold size={22} aria-hidden="true" /></span>
                 <h3 className="t-h3">Mamy Twoje zgłoszenie</h3>
@@ -141,9 +157,15 @@ export default function Kontakt() {
                   </p>
                 ) : null}
 
-                <button type="submit" className="btn btn-primary btn-sheen contact__submit" data-magnetic disabled={state === 'sending'}>
-                  {state === 'sending' ? 'Wysyłam…' : 'Chcę zobaczyć wizualizację'}
-                </button>
+                <StatefulButton
+                  className="contact__submit"
+                  data-magnetic
+                  status={state === 'sending' ? 'loading' : state === 'sent' ? 'success' : 'idle'}
+                  loadingLabel="Wysyłam…"
+                  successLabel="Wysłane"
+                >
+                  Chcę zobaczyć wizualizację
+                </StatefulButton>
                 <p className="contact__micro">Bez zaliczki · Odpowiadamy w 24h · Nie wysyłamy newslettera</p>
               </form>
             )}

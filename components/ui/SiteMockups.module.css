@@ -1,0 +1,1056 @@
+/* Four screens from the product, drawn in CSS instead of described in prose.
+   Every length is a multiple of --u, and --u is a container unit — so one
+   component reads the same in a 660px bento tile and on a 360px phone, and a
+   single line in the container query below re-scales the whole screen.
+
+   The base styles below are the *finished* state of each demo. The keyframes
+   only supply the "before". That is what reduced motion, a failed hydration
+   and a reader who scrolls past too fast all fall back to: the end of the
+   story, never a blank card. */
+
+.frame {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fbfcfe;
+  box-shadow:
+    inset 0 0 0 1px rgba(20, 24, 31, 0.09),
+    0 20px 38px -30px rgba(6, 17, 41, 0.55);
+  color: #14181f;
+  font-family: var(--font-body);
+  line-height: 1.3;
+  text-align: left;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.stage {
+  --u: 1cqw;
+  --line: rgba(20, 24, 31, 0.08);
+  --muted: #7c8798;
+  --brand: #0b4fd1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Parked on the first frame until the card is actually on screen — a demo that
+   plays to an empty room is worse than no demo. Both declarations have to be
+   !important: every rule below sets `animation` as a shorthand, and a shorthand
+   resets play-state to running no matter where this block sits. */
+.frame * {
+  animation-play-state: paused !important;
+}
+
+[data-play='on'] .frame * {
+  animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame * {
+    animation: none !important;
+  }
+}
+
+/* On a phone the two full-width screens are the ones that break first: they were
+   drawn for a 660px bento tile, so at 320px their type lands around 6px. They
+   get a bigger unit and a stripped layout; the chat and the form were already
+   drawn narrow and only need a nudge. */
+@container (max-width: 430px) {
+  .stage {
+    --u: 1.36cqw;
+  }
+
+  .stageWide {
+    --u: 1.55cqw;
+  }
+}
+
+/* ── Browser chrome ─────────────────────────────────────── */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: calc(1 * var(--u));
+  flex: none;
+  height: calc(3.4 * var(--u));
+  padding: 0 calc(1.6 * var(--u));
+  background: linear-gradient(180deg, #fdfdfe, #f3f5f9);
+  border-bottom: 1px solid var(--line);
+}
+
+.dot {
+  flex: none;
+  width: calc(0.72 * var(--u));
+  height: calc(0.72 * var(--u));
+  border-radius: 50%;
+  background: rgba(20, 24, 31, 0.16);
+}
+
+.url {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(2.1 * var(--u));
+  margin: 0 calc(5 * var(--u));
+  border-radius: calc(1.05 * var(--u));
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(20, 24, 31, 0.06);
+  font-size: calc(1.05 * var(--u));
+  letter-spacing: 0.01em;
+  color: var(--muted);
+}
+
+/* ── 1. Panel ───────────────────────────────────────────── */
+
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(21 * var(--u)) 1fr;
+  flex: 1;
+}
+
+.side {
+  padding: calc(2.4 * var(--u)) calc(1.4 * var(--u));
+  border-right: 1px solid var(--line);
+  background: #f6f8fc;
+  animation: slideIn 480ms var(--ease-out, ease-out) 60ms both;
+}
+
+.sideBrand {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--u));
+  padding-left: calc(0.6 * var(--u));
+  font-size: calc(1.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sideMark {
+  width: calc(2 * var(--u));
+  height: calc(2 * var(--u));
+  border-radius: calc(0.55 * var(--u));
+  background: linear-gradient(140deg, #1a5ee0, #041d4b);
+}
+
+.sideNav {
+  display: grid;
+  gap: calc(0.4 * var(--u));
+  margin-top: calc(2.6 * var(--u));
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--u));
+  height: calc(3.4 * var(--u));
+  padding: 0 calc(1 * var(--u));
+  border-radius: calc(0.7 * var(--u));
+  font-size: calc(1.25 * var(--u));
+  color: #6b7684;
+}
+
+.navOn {
+  background: #fff;
+  color: var(--brand);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(6, 17, 41, 0.08), inset 0 0 0 1px rgba(11, 79, 209, 0.14);
+}
+
+.navGlyph {
+  width: calc(1.1 * var(--u));
+  height: calc(1.1 * var(--u));
+  border-radius: calc(0.22 * var(--u));
+  background: currentColor;
+  opacity: 0.42;
+}
+
+.navOn .navGlyph {
+  opacity: 1;
+}
+
+.navBadge {
+  margin-left: auto;
+  padding: 0 calc(0.6 * var(--u));
+  border-radius: calc(1 * var(--u));
+  background: #eaf1ff;
+  font-size: calc(1 * var(--u));
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: calc(2.6 * var(--u)) calc(2.6 * var(--u)) 0;
+}
+
+.mainHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+  animation: rise 420ms var(--ease-out, ease-out) 120ms both;
+}
+
+.mainTitle {
+  font-family: var(--font-heading);
+  font-size: calc(2.3 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.addBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(0.7 * var(--u));
+  padding: calc(1.15 * var(--u)) calc(1.7 * var(--u));
+  border-radius: calc(0.8 * var(--u));
+  background: var(--brand);
+  box-shadow: 0 1px 2px rgba(4, 29, 75, 0.24), 0 6px 14px -8px rgba(11, 79, 209, 0.6);
+  color: #fff;
+  font-size: calc(1.25 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  animation: press 340ms var(--ease-out, ease-out) 2560ms both;
+}
+
+.addPlus {
+  font-size: calc(1.6 * var(--u));
+  line-height: 0.8;
+}
+
+/* The ring is the only thing that says the click landed — the button itself
+   moves 6% and is back before the eye can confirm it. */
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(11, 79, 209, 0.45);
+  opacity: 0;
+  animation: ripple 720ms var(--ease-out, ease-out) 2580ms both;
+}
+
+.rowsWrap {
+  position: relative;
+  flex: 1;
+  min-height: calc(38 * var(--u));
+  margin-top: calc(2.4 * var(--u));
+  overflow: hidden;
+}
+
+.rows {
+  display: grid;
+  gap: calc(0.9 * var(--u));
+  animation: rowsDrop 620ms var(--ease-out, ease-out) 2680ms both;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: calc(7 * var(--u)) 1fr auto calc(13 * var(--u));
+  align-items: center;
+  gap: calc(1.4 * var(--u));
+  height: calc(8.6 * var(--u));
+  padding: 0 calc(1.4 * var(--u));
+  border-radius: calc(0.9 * var(--u));
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(6, 17, 41, 0.07), inset 0 0 0 1px rgba(20, 24, 31, 0.06);
+}
+
+.row:nth-child(2) { animation: rise 420ms var(--ease-out, ease-out) 200ms both; }
+.row:nth-child(3) { animation: rise 420ms var(--ease-out, ease-out) 270ms both; }
+.row:nth-child(4) { animation: rise 420ms var(--ease-out, ease-out) 340ms both; }
+.row:nth-child(5) { animation: rise 420ms var(--ease-out, ease-out) 410ms both; }
+
+.rowNew {
+  animation: rise 440ms var(--ease-out, ease-out) 2700ms both;
+}
+
+.rowThumb {
+  height: calc(5.4 * var(--u));
+  border-radius: calc(0.5 * var(--u));
+  background: linear-gradient(150deg, #e9e5de, #d8d3ca);
+}
+
+.row:nth-child(3) .rowThumb { background: linear-gradient(150deg, #e4e7ec, #d0d5dd); }
+.row:nth-child(4) .rowThumb { background: linear-gradient(150deg, #e8e6e0, #d6d2c9); }
+.row:nth-child(5) .rowThumb { background: linear-gradient(150deg, #e3e6ea, #cfd4dc); }
+
+.rowMain {
+  display: grid;
+  gap: calc(0.35 * var(--u));
+  min-width: 0;
+}
+
+.rowAddr {
+  font-size: calc(1.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowSpec {
+  font-size: calc(1.2 * var(--u));
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rowPrice {
+  font-family: var(--font-heading);
+  font-size: calc(1.7 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pillWrap {
+  display: grid;
+  justify-items: end;
+}
+
+.pill {
+  grid-area: 1 / 1;
+  padding: calc(0.5 * var(--u)) calc(1.1 * var(--u));
+  border-radius: calc(2 * var(--u));
+  font-size: calc(1.05 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  background: #e7f5ee;
+  color: #0f7a4d;
+}
+
+.pillHold { background: #fdf2e2; color: #a35a00; }
+.pillSold { background: #eef0f4; color: #5b6474; }
+
+.pillWork {
+  background: #eaf1ff;
+  color: var(--brand);
+  opacity: 0;
+  animation: flash 1400ms linear 2760ms both;
+}
+
+.pillLive {
+  animation: fade 300ms var(--ease-out, ease-out) 4000ms both;
+}
+
+/* Pointer-only by design: there is no cursor to draw on a phone, and the row
+   still arrives with the button press carrying it. */
+.cursor {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: calc(4.6 * var(--u));
+  filter: drop-shadow(0 calc(0.5 * var(--u)) calc(0.9 * var(--u)) rgba(6, 17, 41, 0.34));
+  animation: cursorRun 3400ms linear 900ms both;
+}
+
+@container (min-width: 431px) {
+  .cursor { display: block; }
+}
+
+@container (max-width: 430px) {
+  .side,
+  .rowThumb { display: none; }
+
+  .main {
+    padding: calc(2.2 * var(--u)) calc(1.8 * var(--u)) 0;
+  }
+
+  .mainHead {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: calc(1.2 * var(--u));
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: calc(0.6 * var(--u));
+    height: auto;
+    padding: calc(1.6 * var(--u));
+  }
+
+  .rowPrice,
+  .pillWrap {
+    grid-column: 1;
+  }
+
+  .pillWrap {
+    justify-items: start;
+  }
+}
+
+/* The target is the button's centre minus the arrow's own tip offset — the
+   path's tip sits at 21%/10% of the box, so aiming the box corner at the
+   button would land the click a cursor-width short of it. */
+@keyframes cursorRun {
+  0% { opacity: 0; transform: translate3d(calc(50 * var(--u)), calc(46 * var(--u)), 0) scale(1); }
+  8% { opacity: 1; transform: translate3d(calc(50 * var(--u)), calc(46 * var(--u)), 0) scale(1); animation-timing-function: cubic-bezier(0.62, 0.02, 0.2, 1); }
+  46% { opacity: 1; transform: translate3d(calc(88.6 * var(--u)), calc(4.1 * var(--u)), 0) scale(1); }
+  50% { transform: translate3d(calc(88.6 * var(--u)), calc(4.1 * var(--u)), 0) scale(0.84); }
+  56% { opacity: 1; transform: translate3d(calc(88.6 * var(--u)), calc(4.1 * var(--u)), 0) scale(1); animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  84%, 100% { opacity: 0; transform: translate3d(calc(94 * var(--u)), calc(24 * var(--u)), 0) scale(1); }
+}
+
+@keyframes rowsDrop {
+  from { transform: translate3d(0, calc(-9.5 * var(--u)), 0); }
+  to { transform: none; }
+}
+
+@keyframes ripple {
+  0% { opacity: 0.9; box-shadow: 0 0 0 0 rgba(11, 79, 209, 0.4); }
+  100% { opacity: 0; box-shadow: 0 0 0 calc(3 * var(--u)) rgba(11, 79, 209, 0); }
+}
+
+@keyframes press {
+  0%, 40% { transform: none; }
+  55% { transform: scale(0.94); }
+  100% { transform: none; }
+}
+
+/* ── 2. Katalog ─────────────────────────────────────────── */
+
+.cat {
+  padding: calc(3.2 * var(--u)) calc(4 * var(--u)) calc(4 * var(--u));
+}
+
+.catHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+  animation: rise 420ms var(--ease-out, ease-out) 80ms both;
+}
+
+.catTitle {
+  font-family: var(--font-heading);
+  font-size: calc(2.8 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.swap {
+  display: grid;
+  justify-items: end;
+  font-size: calc(1.35 * var(--u));
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.swapOut { animation: fadeOut 240ms var(--ease-out, ease-out) 2300ms both; }
+.swapIn { animation: fade 300ms var(--ease-out, ease-out) 2400ms both; }
+
+.catFilters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+  margin-top: calc(2.4 * var(--u));
+  animation: rise 420ms var(--ease-out, ease-out) 160ms both;
+}
+
+.chips {
+  --chip-w: 13;
+  position: relative;
+  display: flex;
+  gap: calc(1 * var(--u));
+  padding: calc(0.5 * var(--u));
+  border-radius: calc(1.5 * var(--u));
+  background: #edf0f5;
+}
+
+/* The active state slides rather than swapping colour: the eye follows the
+   move and reads it as a choice being made, not as a repaint. */
+.ink {
+  position: absolute;
+  top: calc(0.5 * var(--u));
+  left: calc(0.5 * var(--u));
+  width: calc(var(--chip-w) * var(--u));
+  height: calc(4 * var(--u));
+  border-radius: calc(1.05 * var(--u));
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(6, 17, 41, 0.12);
+  transform: translate3d(calc((var(--chip-w) + 1) * var(--u)), 0, 0);
+  animation: inkSlide 520ms var(--ease-out, ease-out) 1500ms both;
+}
+
+.chip {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--chip-w) * var(--u));
+  height: calc(4 * var(--u));
+  font-size: calc(1.25 * var(--u));
+  font-weight: 500;
+  color: #3f4a5a;
+}
+
+.range {
+  display: flex;
+  align-items: center;
+  gap: calc(1.4 * var(--u));
+  font-size: calc(1.25 * var(--u));
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.track {
+  --track-w: 15;
+  position: relative;
+  width: calc(var(--track-w) * var(--u));
+  height: calc(0.45 * var(--u));
+  border-radius: calc(1 * var(--u));
+  background: #dbe2ec;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--brand);
+  transform-origin: left;
+  transform: scaleX(0.52);
+  animation: fillShrink 620ms var(--ease-out, ease-out) 1780ms both;
+}
+
+.knob {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: calc(2.1 * var(--u));
+  height: calc(2.1 * var(--u));
+  margin: calc(-1.05 * var(--u)) 0 0 calc(-1.05 * var(--u));
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(6, 17, 41, 0.3), inset 0 0 0 1px rgba(11, 79, 209, 0.45);
+  transform: translate3d(calc(var(--track-w) * 0.52 * var(--u)), 0, 0);
+  animation: knobSlide 620ms var(--ease-out, ease-out) 1780ms both;
+}
+
+.tilesWrap {
+  position: relative;
+  margin-top: calc(3 * var(--u));
+  height: calc(36 * var(--u));
+}
+
+.tiles {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: start;
+  gap: calc(2.2 * var(--u));
+}
+
+.tilesOut {
+  opacity: 0;
+  animation: tilesOut 300ms var(--ease-out, ease-out) 2280ms both;
+}
+
+.tile {
+  display: grid;
+  gap: calc(0.55 * var(--u));
+}
+
+.tilesOut .tile:nth-child(1) { animation: rise 420ms var(--ease-out, ease-out) 240ms both; }
+.tilesOut .tile:nth-child(2) { animation: rise 420ms var(--ease-out, ease-out) 300ms both; }
+.tilesOut .tile:nth-child(3) { animation: rise 420ms var(--ease-out, ease-out) 360ms both; }
+.tilesOut .tile:nth-child(4) { animation: rise 420ms var(--ease-out, ease-out) 420ms both; }
+.tilesOut .tile:nth-child(5) { animation: rise 420ms var(--ease-out, ease-out) 480ms both; }
+.tilesOut .tile:nth-child(6) { animation: rise 420ms var(--ease-out, ease-out) 540ms both; }
+
+.tilesIn .tile:nth-child(1) { animation: rise 460ms var(--ease-out, ease-out) 2560ms both; }
+.tilesIn .tile:nth-child(2) { animation: rise 460ms var(--ease-out, ease-out) 2630ms both; }
+.tilesIn .tile:nth-child(3) { animation: rise 460ms var(--ease-out, ease-out) 2700ms both; }
+.tilesIn .tile:nth-child(4) { animation: rise 460ms var(--ease-out, ease-out) 2770ms both; }
+.tilesIn .tile:nth-child(5) { animation: rise 460ms var(--ease-out, ease-out) 2840ms both; }
+.tilesIn .tile:nth-child(6) { animation: rise 460ms var(--ease-out, ease-out) 2910ms both; }
+
+.thumb {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: calc(0.7 * var(--u));
+  background: linear-gradient(158deg, #e9e5de, #d7d2c9);
+}
+
+.tile:nth-child(2) .thumb { background: linear-gradient(158deg, #e4e7ec, #cfd4dc); }
+.tile:nth-child(3) .thumb { background: linear-gradient(158deg, #e8e6e0, #d5d1c8); }
+.tile:nth-child(4) .thumb { background: linear-gradient(158deg, #e2e6ea, #ccd2da); }
+.tile:nth-child(5) .thumb { background: linear-gradient(158deg, #eae7e1, #d9d4cb); }
+.tile:nth-child(6) .thumb { background: linear-gradient(158deg, #e5e8ec, #d1d6de); }
+
+.tag {
+  position: absolute;
+  top: calc(0.8 * var(--u));
+  left: calc(0.8 * var(--u));
+  padding: calc(0.35 * var(--u)) calc(0.8 * var(--u));
+  border-radius: calc(0.4 * var(--u));
+  background: rgba(255, 255, 255, 0.94);
+  font-size: calc(0.95 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tPrice {
+  margin-top: calc(0.6 * var(--u));
+  font-family: var(--font-heading);
+  font-size: calc(1.75 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tSpec {
+  font-size: calc(1.2 * var(--u));
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@container (max-width: 430px) {
+  .tiles { grid-template-columns: repeat(2, 1fr); }
+
+  .chips { --chip-w: 8; }
+
+  .catFilters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(1.8 * var(--u));
+  }
+
+  .range { justify-content: space-between; }
+  .track { flex: 1; width: auto; }
+}
+
+@keyframes inkSlide {
+  from { transform: none; }
+  to { transform: translate3d(calc((var(--chip-w) + 1) * var(--u)), 0, 0); }
+}
+
+@keyframes fillShrink {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0.52); }
+}
+
+@keyframes knobSlide {
+  from { transform: translate3d(calc(var(--track-w) * var(--u)), 0, 0); }
+  to { transform: translate3d(calc(var(--track-w) * 0.52 * var(--u)), 0, 0); }
+}
+
+@keyframes tilesOut {
+  0%, 60% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translate3d(0, calc(-1 * var(--u)), 0); }
+}
+
+/* ── 3. Agent AI ────────────────────────────────────────── */
+
+.chatBar {
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--u));
+  flex: none;
+  padding: calc(3 * var(--u));
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: calc(7.4 * var(--u));
+  height: calc(7.4 * var(--u));
+  border-radius: 50%;
+  background: linear-gradient(140deg, #1a5ee0, #041d4b);
+  color: #fff;
+  font-size: calc(2.6 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.chatWho {
+  display: grid;
+  gap: calc(0.3 * var(--u));
+  min-width: 0;
+}
+
+.chatName {
+  font-size: calc(2.9 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.chatStatus {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--u));
+  font-size: calc(2.3 * var(--u));
+  color: var(--muted);
+}
+
+.live {
+  width: calc(1.1 * var(--u));
+  height: calc(1.1 * var(--u));
+  border-radius: 50%;
+  background: #16a34a;
+}
+
+.chatBody {
+  display: grid;
+  align-content: start;
+  gap: calc(2.2 * var(--u));
+  flex: 1;
+  min-height: calc(50 * var(--u));
+  padding: calc(3 * var(--u));
+  background: #f5f7fb;
+}
+
+.msg {
+  max-width: 82%;
+  padding: calc(2 * var(--u)) calc(2.4 * var(--u));
+  border-radius: calc(2.4 * var(--u));
+  font-size: calc(2.55 * var(--u));
+  line-height: 1.4;
+}
+
+.msgUser {
+  justify-self: end;
+  border-bottom-right-radius: calc(0.7 * var(--u));
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 2px 8px -4px rgba(11, 79, 209, 0.7);
+  animation: pop 400ms var(--ease-out, ease-out) 300ms both;
+}
+
+.msgBot {
+  justify-self: start;
+  border-bottom-left-radius: calc(0.7 * var(--u));
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(6, 17, 41, 0.08), inset 0 0 0 1px rgba(20, 24, 31, 0.05);
+}
+
+.botCell {
+  position: relative;
+  display: grid;
+}
+
+.msgBot1 { animation: pop 400ms var(--ease-out, ease-out) 2150ms both; }
+.msgBot2 { animation: pop 400ms var(--ease-out, ease-out) 3000ms both; }
+
+.typing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: calc(0.8 * var(--u));
+  padding: calc(2.4 * var(--u));
+  border-radius: calc(2.4 * var(--u));
+  border-bottom-left-radius: calc(0.7 * var(--u));
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(6, 17, 41, 0.08), inset 0 0 0 1px rgba(20, 24, 31, 0.05);
+  opacity: 0;
+  animation: flash 1500ms linear 800ms both;
+}
+
+.typing i {
+  width: calc(1.1 * var(--u));
+  height: calc(1.1 * var(--u));
+  border-radius: 50%;
+  background: #b3bcc9;
+  animation: bounce 900ms var(--ease-in-out, ease-in-out) 900ms 2 both;
+}
+
+.typing i:nth-child(2) { animation-delay: 1040ms; }
+.typing i:nth-child(3) { animation-delay: 1180ms; }
+
+.slot {
+  display: flex;
+  align-items: center;
+  gap: calc(1.8 * var(--u));
+  padding: calc(2.2 * var(--u)) calc(2.4 * var(--u));
+  border-radius: calc(1.6 * var(--u));
+  background: #fff;
+  box-shadow: 0 2px 6px -3px rgba(6, 17, 41, 0.18), inset 0 0 0 1px rgba(11, 79, 209, 0.16);
+  animation: pop 480ms var(--ease-out, ease-out) 3900ms both;
+}
+
+.slotTick {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: calc(5.4 * var(--u));
+  height: calc(5.4 * var(--u));
+  border-radius: 50%;
+  background: #e7f5ee;
+  color: #0f7a4d;
+  animation: pop 420ms var(--ease-snap, ease-out) 4180ms both;
+}
+
+.slotTick svg {
+  width: calc(2.8 * var(--u));
+  height: calc(2.8 * var(--u));
+}
+
+.slotText {
+  display: grid;
+  gap: calc(0.3 * var(--u));
+  min-width: 0;
+}
+
+.slotWhen {
+  font-size: calc(2.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.slotWhat {
+  font-size: calc(2.2 * var(--u));
+  color: var(--muted);
+}
+
+.chatInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+  flex: none;
+  padding: calc(2.6 * var(--u)) calc(3 * var(--u));
+  border-top: 1px solid var(--line);
+  background: #fff;
+  font-size: calc(2.5 * var(--u));
+  color: #a2abb8;
+}
+
+.send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: calc(6.4 * var(--u));
+  height: calc(6.4 * var(--u));
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+}
+
+.send svg {
+  width: calc(2.8 * var(--u));
+  height: calc(2.8 * var(--u));
+}
+
+@keyframes bounce {
+  0%, 100% { transform: none; }
+  50% { transform: translate3d(0, calc(-0.9 * var(--u)), 0); }
+}
+
+/* ── 4. Formularz ───────────────────────────────────────── */
+
+/* The toast lands in a band of its own under the button rather than on top of
+   it — a notification covering the control that fired it reads as a mistake. */
+.form {
+  position: relative;
+  padding: calc(3.2 * var(--u)) calc(3.2 * var(--u)) calc(12 * var(--u));
+}
+
+.formHead {
+  display: grid;
+  gap: calc(0.5 * var(--u));
+  animation: rise 420ms var(--ease-out, ease-out) 80ms both;
+}
+
+.formTitle {
+  font-family: var(--font-heading);
+  font-size: calc(3.2 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.formSub {
+  font-size: calc(2.3 * var(--u));
+  color: var(--muted);
+}
+
+.fields {
+  display: grid;
+  gap: calc(2.2 * var(--u));
+  margin-top: calc(3 * var(--u));
+}
+
+.field {
+  position: relative;
+  display: grid;
+  gap: calc(0.4 * var(--u));
+  padding: calc(1.6 * var(--u)) calc(2.2 * var(--u));
+  border-radius: calc(1.4 * var(--u));
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(20, 24, 31, 0.11);
+}
+
+.fLabel {
+  font-size: calc(2 * var(--u));
+  color: var(--muted);
+}
+
+.fVal {
+  font-size: calc(2.6 * var(--u));
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 calc(0.2 * var(--u)) rgba(11, 79, 209, 0.55), 0 0 0 calc(0.9 * var(--u)) rgba(11, 79, 209, 0.12);
+  opacity: 0;
+}
+
+.ring1 { animation: flash 900ms linear 500ms both; }
+.ring2 { animation: flash 850ms linear 1450ms both; }
+.ring3 { animation: flash 1150ms linear 2300ms both; }
+
+.type1 { animation: type 620ms steps(11) 620ms both; }
+.type2 { animation: type 560ms steps(12) 1560ms both; }
+.type3 { animation: type 900ms steps(26) 2400ms both; }
+
+.submit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: calc(9.6 * var(--u));
+  margin-top: calc(0.8 * var(--u));
+  border-radius: calc(1.4 * var(--u));
+  background: var(--brand);
+  box-shadow: 0 1px 2px rgba(4, 29, 75, 0.24), 0 8px 18px -10px rgba(11, 79, 209, 0.7);
+  color: #fff;
+  font-size: calc(2.7 * var(--u));
+  font-weight: 600;
+  animation: press 340ms var(--ease-out, ease-out) 3480ms both;
+}
+
+.submit > * {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  gap: calc(1.2 * var(--u));
+}
+
+.subIdle {
+  animation: fadeOut 220ms var(--ease-out, ease-out) 3620ms both;
+}
+
+.subWait {
+  opacity: 0;
+  animation: flash 700ms linear 3700ms both;
+}
+
+.spinner {
+  width: calc(2.8 * var(--u));
+  height: calc(2.8 * var(--u));
+  border-radius: 50%;
+  border: calc(0.4 * var(--u)) solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: spin 620ms linear 3700ms 2 both;
+}
+
+.subDone {
+  animation: pop 320ms var(--ease-out, ease-out) 4380ms both;
+}
+
+.subDone svg {
+  width: calc(2.6 * var(--u));
+  height: calc(2.6 * var(--u));
+}
+
+/* Sits over the form rather than under it: the point is that the message has
+   already left the page and landed somewhere the agent will see it. */
+.toast {
+  position: absolute;
+  right: calc(3.2 * var(--u));
+  bottom: calc(3.2 * var(--u));
+  display: flex;
+  align-items: center;
+  gap: calc(1.6 * var(--u));
+  padding: calc(2 * var(--u)) calc(2.4 * var(--u));
+  border-radius: calc(1.4 * var(--u));
+  background: #0b1220;
+  box-shadow: 0 calc(1.4 * var(--u)) calc(3 * var(--u)) calc(-1.4 * var(--u)) rgba(6, 17, 41, 0.6);
+  color: #fff;
+  font-size: calc(2.2 * var(--u));
+  animation: toastIn 480ms var(--ease-out, ease-out) 4600ms both;
+}
+
+.toast svg {
+  width: calc(2.6 * var(--u));
+  height: calc(2.6 * var(--u));
+  color: #6b9df4;
+}
+
+@keyframes type {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translate3d(0, calc(2.4 * var(--u)), 0) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Shared keyframes ───────────────────────────────────── */
+
+@keyframes rise {
+  from { opacity: 0; transform: translate3d(0, calc(1.8 * var(--u)), 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translate3d(calc(-2 * var(--u)), 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translate3d(0, calc(1.2 * var(--u)), 0) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  10%, 88% { opacity: 1; }
+  100% { opacity: 0; }
+}

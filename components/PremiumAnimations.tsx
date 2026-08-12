@@ -27,9 +27,9 @@ export default function PremiumAnimations() {
     /* ── Injected reveal states not covered by the pre-hydration globals block ── */
     const style = document.createElement('style')
     style.textContent = `
-      html.motion-ready .section-kicker { opacity: 0; transform: translateX(-8px); transition: opacity 460ms cubic-bezier(0.16,1,0.3,1), transform 460ms cubic-bezier(0.16,1,0.3,1); }
+      html.motion-ready .section-kicker { opacity: 0; transform: translateX(-8px); transition: opacity 300ms var(--ease-apple), transform 420ms var(--ease-apple); }
       html.motion-ready .section-kicker.io-visible { opacity: 1; transform: none; }
-      html.motion-ready .section-divider { opacity: 0; transform: scaleX(0); transform-origin: left; transition: opacity 700ms ease, transform 900ms cubic-bezier(0.16,1,0.3,1); }
+      html.motion-ready .section-divider { opacity: 0; transform: scaleX(0); transform-origin: left; transition: opacity 400ms ease, transform 720ms var(--ease-apple); }
       html.motion-ready .section-divider.io-visible { opacity: 1; transform: scaleX(1); }
       @media (prefers-reduced-motion: reduce) {
         html.motion-ready .section-kicker, html.motion-ready .section-divider { transform: none !important; transition: opacity 200ms ease !important; }
@@ -131,32 +131,35 @@ export default function PremiumAnimations() {
         const r = rects[i]!
         const rel = (r.left + r.width / 2 - gcx) / half
         let tx = 0
-        let ty = isMobile ? 34 : 78
-        let scale = isMobile ? 0.985 : 0.93
+        let ty = isMobile ? 20 : 34
+        let scale = isMobile ? 0.994 : 0.986
         if (!isMobile && pattern === 'split') {
-          tx = i % 2 === 0 ? -84 : 84
-          ty = 22
-          scale = 0.97
+          tx = i % 2 === 0 ? -30 : 30
+          ty = 18
+          scale = 0.99
         } else if (!isMobile && pattern === 'portfolio') {
-          tx = i === 0 ? -46 : i === 1 ? 46 : 0
-          ty = i === 2 ? 54 : 24
-          scale = 0.975
+          tx = i === 0 ? -18 : i === 1 ? 18 : 0
+          ty = i === 2 ? 28 : 18
+          scale = 0.99
         } else if (!isMobile && pattern === 'rise') {
           tx = 0
-          ty = 52 + (i % 2) * 14
-          scale = 0.975
+          ty = 28 + (i % 2) * 8
+          scale = 0.99
         } else if (!isMobile && pattern === 'fan') {
-          tx = (i - 1) * 48
-          ty = i === 1 ? 58 : 38
-          scale = 0.975
+          tx = (i - 1) * 18
+          ty = i === 1 ? 30 : 22
+          scale = 0.99
         } else if (!isMobile && pattern === 'soft') {
           tx = 0
-          ty = 18 + i * 4
-          scale = 0.992
-        } else if (!isMobile && rel < -0.33) { tx = -96; ty = 40 }
-        else if (!isMobile && rel > 0.33) { tx = 96; ty = 40 }
+          ty = 14 + i * 3
+          scale = 0.995
+        } else if (!isMobile && rel < -0.33) { tx = -32; ty = 24 }
+        else if (!isMobile && rel > 0.33) { tx = 32; ty = 24 }
         el.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${scale})`
-        el.style.transitionDelay = i ? `${Math.min(i, 7) * 0.1}s` : ''
+        // 100ms a card put the last tile of a six-up grid 700ms behind the
+        // first — the grid finished assembling long after the reader had
+        // arrived. 55ms keeps the cascade legible without making them wait.
+        el.style.transitionDelay = i ? `${Math.min(i, 6) * 0.055}s` : ''
       })
     }
 
@@ -221,7 +224,7 @@ export default function PremiumAnimations() {
             mask.className = 'w-mask'
             const inner = document.createElement('span')
             inner.className = 'w-in'
-            inner.style.transitionDelay = `${Math.min(word, 14) * 42}ms`
+            inner.style.transitionDelay = `${Math.min(word, 12) * 30}ms`
             inner.textContent = part
             mask.appendChild(inner)
             frag.appendChild(mask)

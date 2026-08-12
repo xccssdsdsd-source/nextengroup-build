@@ -81,8 +81,8 @@
   --shadow-md: 0 2px 4px rgba(6, 17, 41, 0.1), 0 10px 22px -8px rgba(6, 17, 41, 0.14);
   --shadow-lg: 0 3px 6px rgba(6, 17, 41, 0.11), 0 22px 44px -14px rgba(6, 17, 41, 0.2);
   --shadow-xl: 0 5px 10px rgba(6, 17, 41, 0.12), 0 44px 84px -24px rgba(6, 17, 41, 0.26);
-  --shadow-brand: 0 1px 2px rgba(4, 29, 75, 0.24), 0 8px 20px -6px rgba(11, 79, 209, 0.42);
-  --shadow-brand-hi: 0 1px 2px rgba(4, 29, 75, 0.28), 0 14px 30px -8px rgba(11, 79, 209, 0.5);
+  --shadow-brand: 0 1px 2px rgba(4, 29, 75, 0.2), 0 6px 16px -8px rgba(11, 79, 209, 0.44);
+  --shadow-brand-hi: 0 1px 2px rgba(4, 29, 75, 0.22), 0 10px 22px -10px rgba(11, 79, 209, 0.52);
   --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.92);
 
   --radius-sm: 8px;
@@ -98,6 +98,10 @@
      of the travel in the first 150ms, which reads as a fade rather than motion. */
   --ease-travel: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-snap: cubic-bezier(0.34, 1.2, 0.64, 1);
+  /* Apple's own interface curve. Unlike the front-loaded easings above it
+     leaves a little acceleration at the head, so a short travel still reads as
+     movement instead of collapsing into a fade. */
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
 
   --measure: 68ch;
   --container: 1200px;
@@ -334,8 +338,17 @@ h4 {
     linear-gradient(rgba(7, 16, 35, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(7, 16, 35, 0.055) 1px, transparent 1px);
   background-size: auto, auto, 64px 64px, 64px 64px;
-  mask-image: radial-gradient(78% 70% at 50% 20%, #000 46%, transparent 92%);
-  -webkit-mask-image: radial-gradient(78% 70% at 50% 20%, #000 46%, transparent 92%);
+  /* The radial alone is opaque where it meets the top edge, so the grid began
+     on a hard horizontal line at every section seam. The linear term fades the
+     first and last 12% so one section's texture dissolves into the next. */
+  mask-image:
+    radial-gradient(78% 70% at 50% 20%, #000 46%, transparent 92%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    radial-gradient(78% 70% at 50% 20%, #000 46%, transparent 92%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
 }
 
 .section-mesh--navy {
@@ -345,6 +358,25 @@ h4 {
     linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: auto, auto, 56px 56px, 56px 56px;
+}
+
+/* Grain. A perfectly clean white ground is what reads as "template" — every
+   surface the reference sites use has a little tooth in it. Kept under 4%
+   and multiplied so it darkens the paper rather than fogging it. */
+.section-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.036;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+
+.section-mesh--navy::before {
+  opacity: 0.05;
+  mix-blend-mode: screen;
 }
 
 /* ── Pointer-lit grid (contract with PremiumAnimations.tsx) ──
@@ -463,60 +495,6 @@ h4 {
   background: var(--brand-400);
 }
 
-/* ── Card header row ────────────────────────────────────────
-   Replaces the rounded blue icon tile — the most templated element on the
-   page. The row does structural work instead: mark, category, a rule that
-   spans the gap, and the card's index. */
-
-/* The rule inside the row already divides the header from the body — adding a
-   border underneath as well put two hairlines 25px apart. */
-.card-head {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.card-head__icon {
-  display: inline-flex;
-  flex: none;
-  color: var(--ink);
-  transition: color 200ms ease;
-}
-
-.card-head__label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-.card-head__rule {
-  flex: 1;
-  height: 1px;
-  min-width: 0.75rem;
-  background: linear-gradient(90deg, var(--line-strong), var(--line) 45%, transparent);
-}
-
-.card-head__idx {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  flex: none;
-  transition: color 200ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .card--interactive:hover .card-head__icon,
-  .card--interactive:hover .card-head__idx {
-    color: var(--brand);
-  }
-}
-
 .section-title,
 .section-heading {
   font-family: var(--font-heading);
@@ -585,10 +563,14 @@ h4 {
   outline-offset: 3px;
 }
 
+/* Flat fill, not a three-stop gradient: the gradient read as a plastic pill and
+   fought the flat brand colour used everywhere else. Depth is one hairline of
+   top light plus a contact shadow; hover brightens the fill rather than
+   re-lighting it. */
 .btn-primary {
-  background: linear-gradient(180deg, var(--brand-500), var(--brand) 58%, var(--brand-hover));
+  background: var(--brand);
   color: #fff;
-  box-shadow: var(--shadow-brand), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+  box-shadow: var(--shadow-brand);
 }
 
 .btn-ghost {
@@ -622,8 +604,8 @@ h4 {
   }
 
   .btn-primary:hover {
-    background: linear-gradient(180deg, var(--brand-400), var(--brand-500) 58%, var(--brand));
-    box-shadow: var(--shadow-brand-hi), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    background: var(--brand-600);
+    box-shadow: var(--shadow-brand-hi);
   }
 
   .btn-ghost:hover {
@@ -667,13 +649,13 @@ h4 {
   inset: -40% -20%;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(74deg, transparent 38%, rgba(255, 255, 255, 0.42) 50%, transparent 62%);
+  background: linear-gradient(74deg, transparent 38%, rgba(255, 255, 255, 0.28) 50%, transparent 62%);
   transform: translate3d(-115%, 0, 0);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .btn-sheen:hover::after {
-    transition: transform 620ms var(--ease-out);
+    transition: transform 520ms var(--ease-apple);
     transform: translate3d(115%, 0, 0);
   }
 }
@@ -698,6 +680,83 @@ h4 {
   .btn svg,
   .btn:hover svg {
     transform: none;
+  }
+}
+
+/* ── Stateful button ────────────────────────────────────────
+   The submit button reports its own progress instead of handing the page over
+   to a different screen the moment the request resolves: an icon slot opens,
+   the spinner is replaced by a drawn tick, and only then does the confirmation
+   panel take the form's place. Busy and finished are working states, so they
+   must not inherit the dimmed [disabled] look. */
+
+/* The button's own gap is dropped and carried inside the slot instead —
+   with a 0.5rem gap still holding space at width 0 the idle label sat 8px off
+   centre, which is exactly the kind of thing nobody names but everybody sees. */
+.sbtn {
+  gap: 0;
+}
+
+.sbtn__slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  flex: none;
+}
+
+.sbtn__icon {
+  display: inline-flex;
+  width: 17px;
+  height: 17px;
+  margin-right: 6px;
+}
+
+.sbtn__icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Off the main thread, so the spin holds its rate while the request and the
+   React re-render compete for the same frame. */
+.sbtn__spinner {
+  animation: sbtn-spin 640ms linear infinite;
+}
+
+@keyframes sbtn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sbtn__label {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.sbtn[data-status='loading'],
+.sbtn[data-status='success'] {
+  opacity: 1;
+  cursor: default;
+}
+
+.sbtn[data-status='success'] {
+  background: var(--ok);
+  box-shadow: 0 1px 2px rgba(4, 40, 25, 0.2), 0 6px 16px -8px rgba(15, 122, 77, 0.44);
+  transition:
+    background-color 260ms var(--ease-apple),
+    box-shadow 260ms var(--ease-apple);
+}
+
+/* The lift and the icon nudge belong to a button that is still an invitation. */
+.sbtn[data-status='loading'] svg,
+.sbtn[data-status='success'] svg {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbtn__spinner {
+    animation-duration: 1400ms;
   }
 }
 
@@ -966,7 +1025,7 @@ h4 {
   }
 
   .nav-cta:hover {
-    box-shadow: var(--shadow-brand-hi), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-brand-hi);
   }
 }
 
@@ -1072,141 +1131,46 @@ h4 {
   overflow: clip;
 }
 
-/* ── Device: aluminium chassis, seated display, glass ─────
-   A screen drawn as one light gradient reads as clipart. Real hardware gives
-   the eye four cues, and all four are cheap in CSS: a machined edge (bright
-   top hairline, dark bottom), a display recessed into a black well, a glass
-   plane catching light off-axis, and a contact shadow that pins it to the
-   floor. The wide diffuse shadow alone made it hover in fog. */
+/* ── Device: a floating browser card, not a computer ──────
+   A literal iMac — chassis, neck, foot, aluminium gradients — is a costume
+   worn by the thing that actually matters, and it dates the page instantly.
+   The reference sites (Eleos, Kononenko) show the work with no hardware
+   around it at all. So the card IS the object: a hairline edge, a shadow in
+   three terms (contact, mid, floor) and a single off-axis sheen. */
+
+.device-card {
+  position: relative;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(6, 17, 41, 0.11),
+    0 1px 1px rgba(6, 17, 41, 0.05),
+    0 4px 10px -3px rgba(6, 17, 41, 0.11),
+    0 24px 44px -16px rgba(6, 17, 41, 0.22),
+    0 60px 100px -36px rgba(6, 17, 41, 0.32);
+}
 
 .scrub-frame {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: inherit;
   background: #fff;
-  /* The black well: display glass sits below the chassis face, so the ring
-     around it is in shadow and the top inner edge catches none of the light. */
-  box-shadow:
-    0 0 0 1px #0a0e16,
-    inset 0 1px 3px rgba(0, 0, 0, 0.42),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.22);
 }
 
-/* Glass plane — a single off-axis band, low alpha. Sits above the mockup and
-   below nothing, so it reads as the sheet of glass rather than a highlight
-   painted on the content. */
+/* One low-alpha band across the top-left corner. Enough to say "a pane of
+   something is in front of this", not enough to wash the photography. */
 .scrub-frame::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 4;
   pointer-events: none;
-  background:
-    linear-gradient(104deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 26%, transparent 42%),
-    linear-gradient(180deg, rgba(214, 228, 250, 0.14), transparent 18%);
+  background: linear-gradient(104deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.04) 24%, transparent 40%);
 }
 
 .scrub-track {
   will-change: transform;
   transform: translate3d(0, 0, 0);
-}
-
-.device-imac {
-  position: relative;
-  width: 100%;
-}
-
-.device-imac__screen {
-  position: relative;
-  border-radius: 18px 18px 14px 14px;
-  padding: 15px 15px 34px;
-  background:
-    linear-gradient(96deg, rgba(9, 20, 44, 0.07) 0%, transparent 9%, transparent 91%, rgba(9, 20, 44, 0.09) 100%),
-    linear-gradient(180deg, #f6f8fb 0%, #e6eaf1 42%, #d3d9e3 78%, #c0c7d4 100%);
-  box-shadow:
-    0 0 0 1px rgba(6, 17, 41, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(6, 17, 41, 0.14),
-    var(--shadow-contact),
-    0 18px 30px -14px rgba(6, 17, 41, 0.22),
-    0 54px 90px -40px rgba(6, 17, 41, 0.34);
-}
-
-/* Chin: the band below the display is a separate machined face on the real
-   product, slightly brighter than the wrap-around. */
-.device-imac__screen::after {
-  content: '';
-  position: absolute;
-  inset: auto 1px 1px;
-  height: 34px;
-  border-radius: 0 0 13px 13px;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 62%);
-}
-
-.device-imac__logo {
-  position: absolute;
-  left: 50%;
-  bottom: 13px;
-  z-index: 1;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(160deg, #aab1bf 0%, #868e9d 52%, #b6bcc8 100%);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -1px 1px rgba(6, 17, 41, 0.28),
-    0 1px 1px rgba(255, 255, 255, 0.8);
-}
-
-/* Neck: a flat trapezoid reads as paper. The cross-gradient (dark edge → lit
-   centre → dark edge) is what turns the same silhouette into a formed surface. */
-.device-imac__neck {
-  position: relative;
-  width: 12.5%;
-  height: clamp(30px, 4.2vw, 50px);
-  margin: 0 auto;
-  background: linear-gradient(90deg, #9aa2b1 0%, #c8cedb 18%, #eef1f6 42%, #dfe4ed 62%, #a8b0be 88%, #8f97a6 100%);
-  clip-path: polygon(31% 0%, 69% 0%, 88% 100%, 12% 100%);
-}
-
-/* Ambient occlusion where the neck meets the chassis — without it the two
-   parts read as stacked cutouts rather than a joint. */
-.device-imac__neck::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 40%;
-  background: linear-gradient(180deg, rgba(6, 17, 41, 0.3), transparent);
-}
-
-.device-imac__foot {
-  position: relative;
-  width: clamp(170px, 23vw, 300px);
-  height: 13px;
-  margin: -1px auto 0;
-  border-radius: 4px 4px 7px 7px / 3px 3px 11px 11px;
-  background: linear-gradient(180deg, #e9edf3 0%, #cfd5e0 44%, #aab2c0 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 1px 1px rgba(6, 17, 41, 0.18);
-}
-
-/* Contact shadow: tight, dark, directly beneath the base — this is the cue
-   that makes the device stand on the page instead of floating above it. */
-.device-imac__foot::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  width: 118%;
-  height: 20px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(6, 17, 41, 0.34), rgba(6, 17, 41, 0.12) 52%, transparent 76%);
-  filter: blur(5px);
-  z-index: -1;
 }
 
 /* ── Reveal engine (contract with PremiumAnimations.tsx) ── */
@@ -1222,10 +1186,13 @@ html.motion-ready .section-copy,
 html.motion-ready .section-kicker,
 html.motion-ready .section-divider {
   opacity: 0;
-  transform: translate3d(0, 40px, 0);
+  transform: translate3d(0, 28px, 0);
+  /* Opacity lands well before the transform does. That gap is what keeps a
+     short travel readable as movement: the element is already solid while it
+     is still settling, so the eye tracks it instead of watching a fade. */
   transition:
-    opacity 720ms var(--ease-out),
-    transform 880ms cubic-bezier(0.33, 1, 0.68, 1);
+    opacity 420ms var(--ease-apple),
+    transform 640ms var(--ease-apple);
 }
 
 html.motion-ready .io-visible,
@@ -1263,7 +1230,7 @@ html.motion-ready [data-split-title][data-split] {
 .w-in {
   display: inline-block;
   transform: translate3d(0, 108%, 0);
-  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 620ms var(--ease-apple);
 }
 
 [data-split].io-visible .w-in {
@@ -1281,10 +1248,10 @@ html.motion-ready [data-split-title][data-split] {
    block nested inside its own [data-fade-in] card reads as a second,
    distinct depth layer rather than compounding the same vertical offset. */
 html.motion-ready [data-img-reveal] {
-  transform: scale(1.055);
+  transform: scale(1.03);
   transition:
-    opacity 640ms var(--ease-out),
-    transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
+    opacity 400ms var(--ease-apple),
+    transform 720ms var(--ease-apple);
 }
 
 html.motion-ready [data-img-reveal].io-visible {
@@ -1360,6 +1327,62 @@ html.motion-ready [data-no-reveal] .section-divider {
 
 .hero-heading-line {
   display: block;
+}
+
+/* ── Flipping headline word ─────────────────────────────────
+   The slot is sized by an invisible copy of the longest phrase and the live
+   word is absolutely positioned inside it, so nothing on the line moves when
+   the word changes. Without that the h1 is centred, `text-wrap: balance`
+   re-runs on every flip and the whole headline twitches sideways. */
+
+.flip-words {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  white-space: nowrap;
+  opacity: 0;
+  animation: hero-word 820ms var(--ease-out) forwards;
+}
+
+.flip-words__sizer {
+  visibility: hidden;
+}
+
+/* Read once by assistive tech; the animated layer is aria-hidden so the
+   headline is not re-announced every 2.6s. */
+.flip-words__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.flip-words__live {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.flip-words__word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.flip-words__char {
+  display: inline-block;
+  white-space: pre;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-words {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 /* ── Hero stage ─────────────────────────────────────────── */
@@ -1579,10 +1602,12 @@ html.motion-ready [data-no-reveal] .section-divider {
   }
 }
 
+/* Sized to fill the frame rather than sit politely inside it. Losing the
+   chassis freed ~100px of height, which buys the extra width back. */
 .hero-device-col {
   position: relative;
   width: 100%;
-  max-width: 52rem;
+  max-width: 61rem;
   min-width: 0;
   will-change: transform;
 }
@@ -1653,11 +1678,11 @@ html.motion-ready [data-no-reveal] .section-divider {
   gap: 0.4rem;
   padding: 0.5rem 0.85rem;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: var(--shadow-md), var(--edge-hi);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--ink-2);
@@ -1672,37 +1697,59 @@ html.motion-ready [data-no-reveal] .section-divider {
   letter-spacing: -0.01em;
 }
 
-/* Overhang rather than overlay: the badge hangs off the chassis edge and only
-   clips it by --badge-overhang, so it never covers the screen content it is
-   supposed to be vouching for. */
-.hero-device-col {
-  --badge-overhang: 2.75rem;
+/* The only live pixel in the scene. One pulse is a heartbeat; two would be
+   decoration competing with the scroll scene for the same attention. */
+.hero-float-badge__pulse {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 0 rgba(11, 79, 209, 0.5);
+  animation: hero-badge-pulse 2.2s var(--ease-out) infinite;
 }
 
-.hero-float-badge--a {
-  top: 18%;
-  right: calc(100% - var(--badge-overhang));
-  animation: hero-badge-float 6s ease-in-out infinite;
+@keyframes hero-badge-pulse {
+  70% { box-shadow: 0 0 0 7px rgba(11, 79, 209, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(11, 79, 209, 0); }
 }
 
-.hero-float-badge--b {
-  bottom: 26%;
-  left: calc(100% - var(--badge-overhang));
-  animation: hero-badge-float 6s ease-in-out infinite -3s;
-}
-
-@keyframes hero-badge-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -8px, 0); }
-}
-
-@media (max-width: 1320px) {
-  .hero-device-col {
-    --badge-overhang: 5.5rem;
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-badge__pulse {
+    animation: none;
   }
 }
 
-@media (max-width: 900px) {
+/* Overhang rather than overlay: the badge hangs off the chassis edge and only
+   clips it by --badge-overhang, so it never covers the screen content it is
+   supposed to be vouching for. */
+/* Pinned to the corners with most of the pill outside the card. Anywhere else
+   they sit on top of the listing content they are supposed to be vouching for
+   — at this card size there is no interior left to cover. */
+.hero-device-col {
+  --badge-overhang: 2.25rem;
+}
+
+.hero-float-badge--a {
+  top: 7%;
+  right: calc(100% - var(--badge-overhang));
+}
+
+.hero-float-badge--b {
+  bottom: 7%;
+  left: calc(100% - var(--badge-overhang));
+}
+
+/* Below 1320 the card is close to full-bleed, so the pills have to move back
+   inside it or they get cut off by the viewport edge. Below 1080 there is no
+   margin left to hang off at all. */
+@media (max-width: 1320px) {
+  .hero-device-col {
+    --badge-overhang: 6.5rem;
+  }
+}
+
+@media (max-width: 1080px) {
   .hero-float-badge {
     display: none;
   }
@@ -1710,7 +1757,7 @@ html.motion-ready [data-no-reveal] .section-divider {
 
 .hero-device {
   will-change: transform;
-  transform: perspective(1500px) rotateX(9deg) scale(1.045);
+  transform: perspective(1500px) rotateX(7deg) scale(1.045);
   transform-origin: 50% 34%;
 }
 
@@ -1772,11 +1819,13 @@ html.motion-ready [data-no-reveal] .section-divider {
     background-size: auto, auto, 48px 48px, 48px 48px;
   }
 
+  /* At 46% it crossed the caption as a distinct blue diagonal and read as a
+     stray artifact rather than as texture. */
   .hero-scroll-signal {
     left: 9%;
     top: 48%;
     width: 82vw;
-    opacity: 0.46;
+    opacity: 0.26;
     transform: translate3d(72px, 42px, 0) rotate(-18deg);
   }
 
@@ -1802,8 +1851,11 @@ html.motion-ready [data-no-reveal] .section-divider {
     margin-inline: calc(var(--gutter) * -1 + 0.5rem);
   }
 
+  /* Ceiling is the crop itself: the mockup renders 168% wide at 16/10, so the
+     frame can grow to 1/1.05 before white appears under it. 5/4 left the card
+     floating in ~200px of void top and bottom. */
   .scrub-frame {
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 1 / 1;
   }
 
   /* Scoped through .hero-device rather than `.scrub-frame > *`: the mockup's
@@ -1818,27 +1870,28 @@ html.motion-ready [data-no-reveal] .section-divider {
     transform: translateX(-50%);
   }
 
+  /* The crop is centred, so each panel has to be nudged to put its own
+     argument inside the window: panel 1 its left-set headline, panel 2 the
+     first two listings, panel 3 the price column with the agent's name on it. */
+  .hero-device [data-scrub-track] > :first-child {
+    transform: translateX(16%);
+  }
+
   .hero-device [data-scrub-track] > :nth-child(2) {
-    transform: translateX(-15.5%);
+    transform: translateX(15%);
   }
 
   .hero-device [data-scrub-track] > :last-child {
-    transform: translateX(-19.5%);
+    transform: translateX(-8%);
   }
 
-  .device-imac__screen {
-    padding: 9px 9px 24px;
-    border-radius: 14px 14px 11px 11px;
-  }
-
-  .device-imac__screen::after {
-    height: 24px;
-  }
-
-  .device-imac__logo {
-    bottom: 9px;
-    width: 10px;
-    height: 10px;
+  .device-card {
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 1px rgba(6, 17, 41, 0.075),
+      0 1px 1px rgba(6, 17, 41, 0.04),
+      0 2px 6px -2px rgba(6, 17, 41, 0.1),
+      0 16px 30px -14px rgba(6, 17, 41, 0.2);
   }
 }
 
@@ -2293,94 +2346,85 @@ h4,
   }
 }
 
-/* ── Solution pillars ───────────────────────────────────── */
+/* ── Product showcase ───────────────────────────────────────
+   The old version of this section argued in three paragraphs. Nobody reads a
+   paragraph to find out what a panel looks like — so the card is now mostly
+   screen, and the words underneath are a caption, not the argument. */
 
-.pillars {
+.showcase {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   align-items: start;
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-@media (min-width: 901px) {
-  .pillar:nth-child(2) {
-    margin-top: clamp(1.5rem, 3vw, 2.75rem);
-  }
-}
-
-.pillar {
-  position: relative;
+.showcase-card {
   display: flex;
   flex-direction: column;
-  padding: clamp(1.5rem, 2.6vw, 2rem);
+  gap: clamp(1.1rem, 1.8vw, 1.5rem);
+  padding: clamp(0.85rem, 1.4vw, 1.15rem);
   overflow: hidden;
 }
 
-/* The three cards solve equally real problems, but Panel ofert is the one
-   that turns into recurring work if it's missing — a shade more weight
-   without knocking the trio out of alignment. */
-.pillar--featured {
-  border-color: var(--brand-100);
-  box-shadow: var(--shadow-lg);
+.showcase-card--wide {
+  grid-column: span 7;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .pillar--featured:hover {
-    border-color: var(--brand-200);
-  }
+.showcase-card--narrow {
+  grid-column: span 5;
 }
 
-.pillar > :not(.tilt-glare) {
-  position: relative;
-  z-index: 1;
+.showcase-visual {
+  display: block;
 }
 
-.pillar__title {
-  margin-top: 1.35rem;
+.showcase-copy {
+  display: block;
+  padding: 0 clamp(0.4rem, 0.8vw, 0.75rem) clamp(0.35rem, 0.8vw, 0.6rem);
 }
 
-.pillar__body {
-  margin-top: 0.75rem;
-  font-size: 0.9375rem;
-}
-
-.pillar__list {
-  margin-top: 1.35rem;
-  display: grid;
-  gap: 0.6rem;
-}
-
-.pillar__list li {
-  position: relative;
-  padding-left: 1.35rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--ink-2);
-}
-
-/* A precise hairline reads as a spec sheet; a blue dot reads as a template. */
-.pillar__list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 0.75rem;
-  height: 1px;
-  background: var(--brand-300);
-}
-
-.pillar__solves {
-  margin-top: auto;
-  padding-top: 1.35rem;
+.showcase-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--ink-3);
 }
 
+.showcase-label::before {
+  content: '';
+  width: 3px;
+  height: 0.75rem;
+  border-radius: 1px;
+  background: var(--brand);
+  flex: none;
+}
+
+.showcase-title {
+  margin-top: 0.7rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 620;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.showcase-line {
+  margin-top: 0.4rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
 @media (max-width: 900px) {
-  .pillars {
-    grid-template-columns: 1fr;
+  .showcase-card--wide,
+  .showcase-card--narrow {
+    grid-column: 1 / -1;
   }
 }
 
@@ -3467,8 +3511,8 @@ h4,
   transform: translateX(-50%);
   padding: 0.36rem 0.85rem;
   border-radius: var(--radius-pill);
-  background: linear-gradient(180deg, var(--brand-600), var(--brand-hover));
-  box-shadow: var(--shadow-brand), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  background: var(--brand);
+  box-shadow: var(--shadow-brand);
   color: #fff;
   font-family: var(--font-mono);
   font-size: 0.6563rem;
@@ -3857,9 +3901,39 @@ h4,
   text-align: center;
 }
 
+/* The panel sits on the white form card inside a navy section, so it has to
+   restate its own colours — inherited, the heading came out white on white and
+   the copy at #b8c6dc, which is a 1.9:1 contrast on that card. */
 .contact__done {
   text-align: center;
   padding: 1.5rem 0;
+  animation: contact-done-in 480ms var(--ease-apple) both;
+}
+
+.contact__done .t-h3 {
+  color: var(--ink);
+}
+
+.contact__done .t-body {
+  color: var(--ink-2);
+}
+
+.contact__done .t-body strong {
+  color: var(--ink);
+}
+
+@keyframes contact-done-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+}
+
+@keyframes contact-done-icon-in {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
 }
 
 .contact__done-icon {
@@ -3872,6 +3946,14 @@ h4,
   border-radius: 50%;
   background: var(--brand-50);
   color: var(--brand);
+  animation: contact-done-icon-in 420ms var(--ease-apple) 90ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__done,
+  .contact__done-icon {
+    animation: none;
+  }
 }
 
 .contact__done .t-body {

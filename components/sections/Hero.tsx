@@ -1,7 +1,8 @@
 'use client'
 
-import { Fragment, useEffect, useRef, type MouseEvent } from 'react'
-import { PiClockCountdownBold, PiGaugeBold } from 'react-icons/pi'
+import { Fragment, useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
+import { PiGaugeBold } from 'react-icons/pi'
+import FlipWords from '@/components/ui/FlipWords'
 import RealEstateMockup from '@/components/ui/RealEstateMockup'
 import { subscribeScroll } from '@/lib/scrollTicker'
 import { scrollToSection } from '@/lib/scrollToSection'
@@ -9,7 +10,14 @@ import { scrollToSection } from '@/lib/scrollToSection'
 type Word = { text: string; accent?: boolean }
 
 const line1: Word[] = [{ text: 'Twoje' }, { text: 'oferty' }, { text: 'zasługują' }, { text: 'na' }]
-const line2: Word[] = [{ text: 'lepsze' }, { text: 'miejsce' }, { text: 'niż' }, { text: 'portal', accent: true }, { text: 'ogłoszeniowy.', accent: true }]
+const line2: Word[] = [{ text: 'lepsze' }, { text: 'miejsce' }, { text: 'niż' }]
+
+// Every one of these is an objection an agent actually has, so the rotation
+// widens the argument instead of just moving. Lengths are held within one
+// character: the slot reserves the longest phrase, and on a 390px screen the
+// headline is narrow enough that a three-character spread visibly pulls the
+// last line off centre.
+const rivals = ['portal ogłoszeniowy.', 'profil obok innych.', 'szablon z kreatora.', 'wizytówka bez zdjęć.']
 
 // Each caption is pinned to the panel the mockup is scrubbing through, so the
 // scroll reads as one argument being answered three times rather than a
@@ -24,7 +32,7 @@ const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v)
 const range = (v: number, a: number, b: number) => clamp((v - a) / (b - a))
 const smooth = (t: number) => t * t * (3 - 2 * t)
 
-const HeadlineLine = ({ words, start }: { words: Word[]; start: number }) => (
+const HeadlineLine = ({ words, start, tail }: { words: Word[]; start: number; tail?: ReactNode }) => (
   <span className="hero-heading-line">
     {words.map((w, i) => (
       <Fragment key={w.text}>
@@ -38,6 +46,7 @@ const HeadlineLine = ({ words, start }: { words: Word[]; start: number }) => (
         </span>
       </Fragment>
     ))}
+    {tail ? <> {tail}</> : null}
   </span>
 )
 
@@ -113,7 +122,7 @@ export default function Hero() {
       // park the device further down so the lowered hero copy keeps its room.
       const rest = compact ? 88 : 76
       col.style.transform = `translate3d(0, ${(rest - rest * settle - 2.2 * drift).toFixed(2)}%, 0)`
-      device.style.transform = `perspective(1500px) rotateX(${(9 - 4.6 * settle).toFixed(2)}deg) scale(${(1.045 - 0.045 * settle).toFixed(4)})`
+      device.style.transform = `perspective(1500px) rotateX(${(7 - 4.6 * settle).toFixed(2)}deg) scale(${(1.045 - 0.045 * settle).toFixed(4)})`
 
       const reveal = smooth(range(p, 0.3, 0.42))
       col.style.setProperty('--badge-in', reveal.toFixed(3))
@@ -169,7 +178,17 @@ export default function Hero() {
           <div ref={copyRef} className="hero-copy">
             <h1 className="hero-h1">
               <HeadlineLine words={line1} start={60} />
-              <HeadlineLine words={line2} start={60 + line1.length * 45} />
+              <HeadlineLine
+                words={line2}
+                start={60 + line1.length * 45}
+                tail={
+                  <FlipWords
+                    words={rivals}
+                    className="serif-accent"
+                    style={{ animationDelay: `${60 + (line1.length + line2.length) * 45}ms` }}
+                  />
+                }
+              />
             </h1>
 
             <p className="hero-sub hero-from-right" style={{ animationDelay: '160ms' }}>
@@ -219,32 +238,27 @@ export default function Hero() {
               <PiGaugeBold size={14} aria-hidden="true" /> Lighthouse <strong>96+</strong>
             </span>
             <span className="hero-float-badge hero-float-badge--b" aria-hidden="true">
-              <PiClockCountdownBold size={14} aria-hidden="true" /> Wizualizacja w <strong>24h</strong>
+              <span className="hero-float-badge__pulse" /> Wizualizacja w <strong>24h</strong>
             </span>
 
             <div ref={deviceRef} className="hero-device">
-              <div className="device-imac">
-                <div className="device-imac__screen">
-                  <div className="scrub-frame">
-                    <RealEstateMockup
-                      photos={{
-                        hero: '/mockup/listing-hero.jpg',
-                        side1: '/mockup/listing-side1.jpg',
-                        side2: '/mockup/listing-side2.jpg',
-                        'Sopot, Dolny Sopot': '/mockup/listing-sopot.jpg',
-                        'Gdynia, Orłowo': '/mockup/listing-orlowo.jpg',
-                        'Gdańsk, Oliwa': '/mockup/listing-oliwa.jpg',
-                        detail: '/mockup/listing-detail.jpg',
-                        t1: '/mockup/listing-thumb-1.jpg',
-                        t2: '/mockup/listing-thumb-2.jpg',
-                        t3: '/mockup/listing-thumb-3.jpg',
-                      }}
-                    />
-                  </div>
-                  <span className="device-imac__logo" aria-hidden="true" />
+              <div className="device-card">
+                <div className="scrub-frame">
+                  <RealEstateMockup
+                    photos={{
+                      hero: '/mockup/listing-hero.jpg',
+                      side1: '/mockup/listing-side1.jpg',
+                      side2: '/mockup/listing-side2.jpg',
+                      'Sopot, Dolny Sopot': '/mockup/listing-sopot.jpg',
+                      'Gdynia, Orłowo': '/mockup/listing-thumb-1.jpg',
+                      'Gdańsk, Oliwa': '/mockup/listing-thumb-2.jpg',
+                      detail: '/mockup/listing-detail.jpg',
+                      t1: '/mockup/listing-side1.jpg',
+                      t2: '/mockup/listing-thumb-2.jpg',
+                      t3: '/mockup/listing-thumb-3.jpg',
+                    }}
+                  />
                 </div>
-                <div className="device-imac__neck" />
-                <div className="device-imac__foot" />
               </div>
             </div>
           </div>

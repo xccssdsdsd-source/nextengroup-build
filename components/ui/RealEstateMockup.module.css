@@ -7,8 +7,11 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #fbfbfa;
-  border-radius: 8px;
+  border-radius: inherit;
   font-family: var(--font-body);
+  /* `.hero-stack` centres everything inside it, and that cascaded into the
+     mockup — an index with centred prices reads as a template. */
+  text-align: left;
   color: #14181f;
 }
 
@@ -36,20 +39,24 @@
 
 /* ── Chrome ─────────────────────────────────────────────── */
 
+/* Candy traffic lights are the loudest thing in the frame and they say
+   "screenshot of a Mac", not "your website". Desaturated dots still read as a
+   browser while letting the photography own the colour. */
 .bar {
   display: flex;
   align-items: center;
-  gap: 1.2cqw;
-  height: 3.4cqw;
-  padding: 0 1.6cqw;
-  background: #f1f2f3;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  gap: 1.05cqw;
+  height: 3.2cqw;
+  padding: 0 1.5cqw;
+  background: linear-gradient(180deg, #fdfdfe 0%, #f4f5f7 100%);
+  border-bottom: 1px solid rgba(20, 24, 31, 0.075);
 }
 
 .dot {
-  width: 0.85cqw;
-  height: 0.85cqw;
+  width: 0.72cqw;
+  height: 0.72cqw;
   border-radius: 50%;
+  background: rgba(20, 24, 31, 0.17);
 }
 
 .urlbar {
@@ -57,12 +64,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6cqw;
-  height: 2.1cqw;
+  gap: 0.55cqw;
+  height: 2cqw;
   margin: 0 6cqw;
   border-radius: 1cqw;
   background: #fff;
-  font-size: 1.05cqw;
+  box-shadow: inset 0 0 0 1px rgba(20, 24, 31, 0.06);
+  font-size: 1.02cqw;
   letter-spacing: 0.01em;
   color: #6b7280;
 }
@@ -73,14 +81,71 @@
   color: #16a34a;
 }
 
-/* ── Demo site nav ──────────────────────────────────────── */
+/* ── Panel 1: full-bleed hero ───────────────────────────────
+   The old version led with small grey type over white and put three shadowed
+   thumbnails underneath — a wireframe with photos dropped into it. This is the
+   whole promise of the page ("your listings deserve better"), so it has to be
+   the strongest image on the screen: one photograph edge to edge, type over
+   it, nav floating in white. */
 
-.nav {
+.panelHero {
+  padding: 0;
+  background: #0d1014;
+}
+
+.heroShot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.94) contrast(1.04);
+  transform: scale(1.04);
+  animation: kenburns 26s var(--ease-in-out, ease-in-out) infinite alternate;
+}
+
+@keyframes kenburns {
+  to {
+    transform: scale(1.12) translate3d(-1.4%, -1%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroShot {
+    animation: none;
+  }
+}
+
+/* Two terms, not one. The vertical scrim alone left the headline sitting on a
+   bright travertine wall in the middle of the frame; the horizontal term
+   guarantees the copy column is always darker than the type on it, whatever
+   photograph the client eventually supplies. */
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(9, 12, 17, 0.5) 0%, rgba(9, 12, 17, 0.14) 46%, transparent 74%),
+    linear-gradient(180deg, rgba(9, 12, 17, 0.55) 0%, rgba(9, 12, 17, 0.08) 24%, rgba(9, 12, 17, 0.3) 54%, rgba(9, 12, 17, 0.86) 100%);
+}
+
+.navOver {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 7cqw;
-  border-bottom: 1px solid rgba(20, 24, 31, 0.09);
+  padding: 0 5cqw;
+  color: #fff;
+}
+
+.navOver::after {
+  content: '';
+  position: absolute;
+  inset: auto 5cqw 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .navLinks {
@@ -90,7 +155,7 @@
   font-weight: 500;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #4a5262;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .navRight {
@@ -99,221 +164,276 @@
 
 .brand {
   font-family: var(--font-heading);
-  font-size: 1.65cqw;
+  font-size: 1.7cqw;
   font-weight: 620;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-indent: 0.3em;
-  color: #14181f;
+  color: #fff;
 }
 
-/* ── Panel 1: hero ──────────────────────────────────────── */
+.heroCopy {
+  position: absolute;
+  inset: auto 5cqw 4.6cqw;
+  z-index: 2;
+  color: #fff;
+}
 
-.heroWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 3.2cqw;
+.heroKicker {
+  display: block;
+  margin-bottom: 1.5cqw;
+  font-size: 0.95cqw;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .heroTitle {
   font-family: var(--font-heading);
-  font-size: 4.8cqw;
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: #14181f;
-  text-wrap: balance;
+  /* Ceiling is the phone crop, not the desktop frame: at 6.4cqw the line runs
+     65cqw wide and the 168% centred crop can only ever show 59.5cqw of it, so
+     the headline was clipped at both ends no matter how the panel is nudged. */
+  font-size: 5.8cqw;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: #fff;
+  text-shadow: 0 0.15cqw 1.6cqw rgba(9, 12, 17, 0.34);
 }
 
-.heroSub {
-  margin-top: 1.4cqw;
-  font-size: 1.25cqw;
-  line-height: 1.5;
-  color: #5b6474;
-  text-align: center;
+.heroFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3cqw;
 }
 
 .heroCta {
   display: inline-flex;
   align-items: center;
-  gap: 0.8cqw;
-  margin-top: 2.4cqw;
-  padding: 1.1cqw 2.2cqw;
-  border-radius: 0.4cqw;
-  background: #14181f;
-  color: #fff;
+  padding: 1.15cqw 2.4cqw;
+  border-radius: 6cqw;
+  background: rgba(255, 255, 255, 0.94);
+  color: #14181f;
   font-size: 1.02cqw;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-.heroCta span {
-  opacity: 0.55;
-  font-weight: 400;
+.heroMeta {
+  font-size: 1.05cqw;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1.75fr 1fr;
-  align-items: end;
-  gap: 1.4cqw;
-  width: 100%;
-  margin-top: 2.6cqw;
-}
-
-.gallerySide {
-  aspect-ratio: 4 / 3;
-}
-
-.galleryMain {
-  aspect-ratio: 16 / 10;
-}
-
-/* ── Panel 2: listings ──────────────────────────────────── */
+/* ── Panel 2: index ─────────────────────────────────────────
+   Cards with borders and drop shadows read as a dashboard template. An index
+   is images on the page with type under them — the separation comes from the
+   photograph's own edge, nothing else. */
 
 .sectionRow {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
-  padding-top: 4.4cqw;
-  padding-bottom: 2.4cqw;
+  padding-top: 5.4cqw;
+  padding-bottom: 2.6cqw;
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: 2.9cqw;
+  font-size: 3.4cqw;
   font-weight: 500;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #14181f;
 }
 
 .filters {
   display: flex;
-  gap: 0.7cqw;
+  gap: 1.9cqw;
+  padding-bottom: 0.4cqw;
 }
 
 .filter {
-  padding: 0.65cqw 1.25cqw;
-  border-radius: 2cqw;
-  border: 1px solid rgba(20, 24, 31, 0.14);
-  font-size: 0.95cqw;
+  position: relative;
+  font-size: 1cqw;
   font-weight: 500;
-  color: #4a5262;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b93a3;
 }
 
 .filterOn {
+  color: #14181f;
+}
+
+.filterOn::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -0.9cqw;
+  height: 1px;
   background: #14181f;
-  border-color: #14181f;
-  color: #fff;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.6cqw;
-}
-
-.listing {
-  background: #fff;
-  border: 1px solid rgba(20, 24, 31, 0.09);
-  border-radius: 0.7cqw;
-  overflow: hidden;
+  gap: 2.2cqw;
 }
 
 .listingImg {
   position: relative;
-  aspect-ratio: 3 / 2;
+}
+
+.listingShot {
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
 }
 
 .badge {
   position: absolute;
-  top: 1cqw;
-  left: 1cqw;
-  padding: 0.42cqw 0.85cqw;
-  border-radius: 0.3cqw;
-  background: rgba(255, 255, 255, 0.94);
-  font-size: 0.85cqw;
+  top: 1.1cqw;
+  left: 1.1cqw;
+  z-index: 2;
+  padding: 0.5cqw 1cqw;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.8cqw;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #14181f;
 }
 
 .badgeSold {
-  background: rgba(20, 24, 31, 0.9);
+  background: rgba(20, 24, 31, 0.88);
   color: #fff;
 }
 
 .listingBody {
-  padding: 1.2cqw 1.3cqw 1.4cqw;
-}
-
-.price {
-  font-family: var(--font-heading);
-  font-size: 1.75cqw;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  color: #14181f;
+  padding-top: 1.3cqw;
 }
 
 .addr {
-  margin-top: 0.35cqw;
-  font-size: 1.02cqw;
-  color: #5b6474;
-}
-
-.specs {
-  display: flex;
-  gap: 1.2cqw;
-  margin-top: 1cqw;
-  padding-top: 1cqw;
-  border-top: 1px solid rgba(20, 24, 31, 0.08);
   font-size: 0.95cqw;
-  color: #4a5262;
-  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b93a3;
 }
 
-/* ── Panel 3: detail ────────────────────────────────────── */
-
-.detail {
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: 2.2cqw;
-  padding-top: 4.4cqw;
-}
-
-.detailImg {
-  aspect-ratio: 4 / 3;
-  border-radius: 0.7cqw;
-}
-
-.detailThumbs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8cqw;
-  margin-top: 0.8cqw;
-}
-
-.detailThumb {
-  aspect-ratio: 3 / 2;
-  border-radius: 0.4cqw;
-}
-
-.detailPrice {
+.price {
+  margin-top: 0.55cqw;
   font-family: var(--font-heading);
-  font-size: 3.1cqw;
+  font-size: 2.1cqw;
   font-weight: 600;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   color: #14181f;
 }
 
+.price span {
+  font-size: 0.62em;
+  font-weight: 500;
+  color: #5b6474;
+}
+
+.specs {
+  margin-top: 0.9cqw;
+  padding-top: 0.9cqw;
+  border-top: 1px solid rgba(20, 24, 31, 0.1);
+  font-size: 0.98cqw;
+  color: #5b6474;
+  font-variant-numeric: tabular-nums;
+}
+
+.gridFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3.4cqw;
+  padding-top: 1.8cqw;
+  border-top: 1px solid rgba(20, 24, 31, 0.1);
+  font-size: 1cqw;
+  letter-spacing: 0.06em;
+  color: #8b93a3;
+}
+
+.gridMore {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #14181f;
+}
+
+.gridMore::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -0.6cqw;
+  height: 1px;
+  background: #14181f;
+}
+
+/* ── Panel 3: listing detail ────────────────────────────── */
+
+.detail {
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 3cqw;
+  padding-top: 5cqw;
+}
+
+.detailImg {
+  aspect-ratio: 4 / 3;
+  border-radius: 0;
+}
+
+.detailThumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9cqw;
+  margin-top: 0.9cqw;
+}
+
+.detailThumb {
+  aspect-ratio: 3 / 2;
+  border-radius: 0;
+}
+
+.detailSide {
+  padding-top: 0.4cqw;
+}
+
+.detailTag {
+  display: inline-block;
+  margin-bottom: 1.4cqw;
+  font-size: 0.92cqw;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: #8b93a3;
+}
+
+.detailPrice {
+  font-family: var(--font-heading);
+  font-size: 3.6cqw;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #14181f;
+}
+
+.detailPrice span {
+  font-size: 0.55em;
+  font-weight: 500;
+  color: #5b6474;
+}
+
 .detailAddr {
-  margin-top: 0.5cqw;
+  margin-top: 0.9cqw;
   font-size: 1.15cqw;
   color: #5b6474;
 }
@@ -321,23 +441,25 @@
 .specGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1cqw;
-  margin-top: 1.8cqw;
-  padding-top: 1.8cqw;
-  border-top: 1px solid rgba(20, 24, 31, 0.1);
+  gap: 1.6cqw 1cqw;
+  margin-top: 2.2cqw;
+  padding-top: 2.2cqw;
+  border-top: 1px solid rgba(20, 24, 31, 0.12);
 }
 
 .specKey {
-  font-size: 0.92cqw;
-  letter-spacing: 0.09em;
+  font-size: 0.88cqw;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #8b93a3;
 }
 
 .specVal {
-  margin-top: 0.2cqw;
-  font-size: 1.35cqw;
+  margin-top: 0.35cqw;
+  font-family: var(--font-heading);
+  font-size: 1.55cqw;
   font-weight: 600;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   color: #14181f;
 }
@@ -345,10 +467,10 @@
 .agent {
   display: flex;
   align-items: center;
-  gap: 1cqw;
-  margin-top: 1.8cqw;
-  padding-top: 1.8cqw;
-  border-top: 1px solid rgba(20, 24, 31, 0.1);
+  gap: 1.1cqw;
+  margin-top: 2.2cqw;
+  padding-top: 2.2cqw;
+  border-top: 1px solid rgba(20, 24, 31, 0.12);
 }
 
 .agentInitials {
@@ -362,7 +484,7 @@
   background: linear-gradient(135deg, #14181f 0%, #3a4256 100%);
   color: #fff;
   font-family: var(--font-heading);
-  font-size: 1.35cqw;
+  font-size: 1.3cqw;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -374,87 +496,41 @@
 }
 
 .agentRole {
-  font-size: 0.98cqw;
-  color: #5b6474;
+  margin-top: 0.15cqw;
+  font-size: 0.95cqw;
+  color: #8b93a3;
 }
 
 .detailCta {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.4cqw;
-  padding: 1.2cqw;
-  border-radius: 0.4cqw;
+  margin-top: 1.8cqw;
+  padding: 1.35cqw;
   background: #14181f;
   color: #fff;
-  font-size: 1.05cqw;
+  font-size: 1.02cqw;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
-/* ── Photo placeholders ─────────────────────────────────── */
+/* ── Photography ────────────────────────────────────────── */
 
+/* The placeholder is a flat tonal skeleton, never a drawn "building". A
+   clip-path silhouette behind a real photo reads as clipart the moment a
+   thumbnail is small or an image is still decoding. */
 .ph {
   position: relative;
   overflow: hidden;
-  border-radius: 0.5cqw;
-  background: #dfe3e8;
-  box-shadow: inset 0 0 0 1px rgba(20, 24, 31, 0.07);
+  background: linear-gradient(180deg, #e7e3dc 0%, #dcd7ce 100%);
 }
 
-.listing {
-  box-shadow: 0 2px 4px rgba(20, 24, 31, 0.04), 0 10px 22px rgba(20, 24, 31, 0.07);
-}
-
-.detailImg,
-.gallerySide,
-.galleryMain {
-  box-shadow:
-    inset 0 0 0 1px rgba(20, 24, 31, 0.07),
-    0 2px 4px rgba(20, 24, 31, 0.04),
-    0 10px 22px rgba(20, 24, 31, 0.07);
-}
-
+/* One grade across every frame so a stock library reads as a single shoot. */
 .ph img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-.ph::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, #8fb4d8 0%, #b9d0e4 38%, #d8e2e6 58%, #cfd3c9 59%, #b9bfae 100%);
-}
-
-.ph::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(58, 66, 48, 0.28) 100%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0 8%, rgba(255, 255, 255, 0) 8% 17%),
-    linear-gradient(180deg, #f2f0ea 0%, #ddd8cd 62%, #c6c0b3 100%);
-  clip-path: polygon(16% 100%, 16% 44%, 50% 20%, 84% 44%, 84% 100%);
-}
-
-.phB::after {
-  clip-path: polygon(10% 100%, 10% 52%, 34% 52%, 34% 34%, 72% 34%, 72% 62%, 90% 62%, 90% 100%);
-}
-
-.phC::after {
-  clip-path: polygon(20% 100%, 20% 38%, 44% 26%, 44% 50%, 80% 50%, 80% 100%);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(58, 66, 48, 0.24) 100%),
-    repeating-linear-gradient(90deg, rgba(120, 150, 175, 0.42) 0 6%, rgba(255, 255, 255, 0) 6% 14%),
-    linear-gradient(180deg, #eceae4 0%, #d3cec3 100%);
-}
-
-.ph img {
-  position: relative;
-  z-index: 2;
+  filter: saturate(0.94) contrast(1.03);
 }

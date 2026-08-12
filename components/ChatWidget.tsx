@@ -8,14 +8,27 @@ type Message = { role: 'user' | 'assistant'; content: string }
 type ChatWidgetProps = {
   compact?: boolean
   demoStep?: number
+  interactiveReady?: boolean
   onUserInteraction?: () => void
 }
 
-const suggestions = [
+const propertySuggestions = [
   'Czy apartament na Mokotowie ma balkon?',
   'Pokaż oferty do 1,5 mln zł',
   'Czy AI umówi prezentację za mnie?',
   'Jak działa taki asystent na mojej stronie?',
+] as const
+
+const implementationSuggestions = [
+  'Ile trwa wdrożenie?',
+  'Czy AI pozna moje oferty?',
+  'Czy taki asystent zwiększy liczbę zapytań?',
+] as const
+
+const readyPlaceholders = [
+  'Sprawdź, co potrafię…',
+  'Zapytaj o wdrożenie na Twojej stronie…',
+  'Czy taki asystent pasuje do Twojego biura?',
 ] as const
 
 const SendIcon = () => (
@@ -36,7 +49,7 @@ const Avatar = () => (
   </span>
 )
 
-export default function ChatWidget({ compact = false, demoStep = 0, onUserInteraction }: ChatWidgetProps = {}) {
+export default function ChatWidget({ compact = false, demoStep = 0, interactiveReady = false, onUserInteraction }: ChatWidgetProps = {}) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -47,7 +60,8 @@ export default function ChatWidget({ compact = false, demoStep = 0, onUserIntera
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
-  const visibleDemoStep = userEngaged ? 0 : demoStep
+  const visibleDemoStep = userEngaged || interactiveReady ? 0 : demoStep
+  const suggestions = interactiveReady ? implementationSuggestions : propertySuggestions
 
   const engageUser = () => {
     setUserEngaged(true)
@@ -65,22 +79,40 @@ export default function ChatWidget({ compact = false, demoStep = 0, onUserIntera
 
   useEffect(() => {
     if (isFocused || input || loading) return
-    const phrase = 'Zadaj mi dowolne pytanie…'
+    const phrases = interactiveReady ? readyPlaceholders : ['Zadaj mi dowolne pytanie…']
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setPlaceholder(phrase)
+      setPlaceholder(phrases[0])
       return
     }
+    let phraseIndex = 0
     let index = 0
     let timer = 0
+    let deleting = false
     setPlaceholder('')
     const type = () => {
-      index += 1
+      const phrase = phrases[phraseIndex]
+      index += deleting ? -1 : 1
       setPlaceholder(phrase.slice(0, index))
-      if (index < phrase.length) timer = window.setTimeout(type, 52)
+
+      if (!deleting && index === phrase.length) {
+        if (phrases.length === 1) return
+        deleting = true
+        timer = window.setTimeout(type, 1450)
+        return
+      }
+
+      if (deleting && index === 0) {
+        deleting = false
+        phraseIndex = (phraseIndex + 1) % phrases.length
+        timer = window.setTimeout(type, 260)
+        return
+      }
+
+      timer = window.setTimeout(type, deleting ? 24 : 46)
     }
-    timer = window.setTimeout(type, 280)
+    timer = window.setTimeout(type, 320)
     return () => clearTimeout(timer)
-  }, [isFocused, input, loading])
+  }, [interactiveReady, isFocused, input, loading])
 
   const send = async (text: string) => {
     const trimmed = text.trim()
@@ -169,8 +201,14 @@ export default function ChatWidget({ compact = false, demoStep = 0, onUserIntera
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              <span className="inline-block">Cześć, jestem Asystentem Anny. Znam jej oferty i pomogę Ci znaleźć nieruchomość albo umówić prezentację.</span>{' '}
-              <span className="inline-block">Sprawdź mnie — o co chcesz zapytać?</span>
+              {interactiveReady ? (
+                <span className="inline-block">Gotowe. Teraz zapytaj mnie o wdrożenie takiego asystenta na Twojej stronie.</span>
+              ) : (
+                <>
+                  <span className="inline-block">Cześć, jestem Asystentem Anny. Znam jej oferty i pomogę Ci znaleźć nieruchomość albo umówić prezentację.</span>{' '}
+                  <span className="inline-block">Sprawdź mnie — o co chcesz zapytać?</span>
+                </>
+              )}
             </div>
           </div>
         )}

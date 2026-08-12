@@ -4390,7 +4390,7 @@ h4,
 }
 
 .hero-chat__pop {
-  animation: chat-pop 320ms var(--ease-out) both;
+  animation: chat-pop 240ms var(--ease-out) both;
 }
 
 @keyframes chat-pop {

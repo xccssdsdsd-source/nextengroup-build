@@ -347,6 +347,45 @@ h4 {
   background-size: auto, auto, 56px 56px, 56px 56px;
 }
 
+/* ── Pointer-lit grid (contract with PremiumAnimations.tsx) ──
+   A second copy of the same grid at full strength, revealed only through a
+   soft disc travelling with the cursor. The lines are already there — the
+   pointer just decides which ones are worth seeing, so the effect reads as
+   the surface responding rather than as a blob laid over it. Nothing here
+   runs without a cursor: touch devices never resolve the media query, and
+   --mesh-hover stays 0 until a pointer actually enters the section. */
+@media (hover: hover) and (pointer: fine) {
+  .section-mesh::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--mesh-hover, 0);
+    transition: opacity 420ms var(--ease-out);
+    background-image:
+      radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(11, 79, 209, 0.13), transparent 54%),
+      linear-gradient(rgba(11, 79, 209, 0.44) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 79, 209, 0.44) 1px, transparent 1px);
+    background-size: auto, 64px 64px, 64px 64px;
+    -webkit-mask-image: radial-gradient(16rem 16rem at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 76%);
+    mask-image: radial-gradient(16rem 16rem at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 76%);
+  }
+
+  .section-mesh--navy::after {
+    background-image:
+      radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(96, 150, 255, 0.2), transparent 54%),
+      linear-gradient(rgba(255, 255, 255, 0.26) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.26) 1px, transparent 1px);
+    background-size: auto, 56px 56px, 56px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-mesh::after {
+    display: none;
+  }
+}
+
 .section-shell > .container {
   position: relative;
   z-index: 1;
@@ -523,12 +562,27 @@ h4 {
   line-height: 1;
   cursor: pointer;
   border: 1px solid transparent;
+  /* Every button offset goes through --bx/--by so the magnetic pull, the
+     hover lift and the press can compose instead of overwriting each other —
+     writing a whole transform inline from JS killed the other two. */
+  transform: translate3d(var(--bx, 0px), var(--by, 0px), 0);
   transition:
-    transform 160ms var(--ease-out),
+    transform 220ms var(--ease-out),
     background-color 160ms ease,
     border-color 160ms ease,
     color 160ms ease,
     box-shadow 200ms var(--ease-out);
+}
+
+/* The icon leads the movement by a couple of pixels — the label stays put, so
+   the button reads as pointing somewhere rather than just lighting up. */
+.btn svg {
+  transition: transform 260ms var(--ease-snap);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
 
 .btn-primary {
@@ -556,7 +610,15 @@ h4 {
 
 @media (hover: hover) and (pointer: fine) {
   .btn:hover {
-    transform: translateY(-2px);
+    transform: translate3d(var(--bx, 0px), calc(var(--by, 0px) - 2px), 0);
+  }
+
+  .btn:hover svg {
+    transform: translate3d(3px, 0, 0);
+  }
+
+  .btn[data-magnetic]:hover {
+    transition-duration: 90ms;
   }
 
   .btn-primary:hover {
@@ -583,7 +645,8 @@ h4 {
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: translate3d(var(--bx, 0px), var(--by, 0px), 0) scale(0.97);
+  transition-duration: 90ms;
 }
 
 .btn-primary:active {
@@ -626,6 +689,16 @@ h4 {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover,
+  .btn:active,
+  .btn svg,
+  .btn:hover svg {
+    transform: none;
+  }
 }
 
 .link-arrow {
@@ -1161,6 +1234,49 @@ html.motion-ready [data-stagger-group] > .io-visible {
   transform: translate3d(0, 0, 0);
 }
 
+/* ── Split-word headings (contract with PremiumAnimations.tsx) ──
+   Once a heading has been split, the block-level rise is handed over to the
+   words: two offsets stacked on the same element read as a lurch. The mask is
+   padded top and bottom because Polish sets both accents and descenders — an
+   unpadded overflow clip eats the tail of every ą, ę and y. */
+.section-title[data-split],
+[data-split-title][data-split] {
+  opacity: 1;
+  transform: none;
+}
+
+html.motion-ready .section-title[data-split],
+html.motion-ready [data-split-title][data-split] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.w-mask {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.06em 0.05em 0.16em;
+  margin: -0.06em -0.05em -0.16em;
+  vertical-align: bottom;
+}
+
+.w-in {
+  display: inline-block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-split].io-visible .w-in {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-in {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Images get a focus-pull scale instead of the generic rise, so a media
    block nested inside its own [data-fade-in] card reads as a second,
    distinct depth layer rather than compounding the same vertical offset. */
@@ -1313,6 +1429,16 @@ html.motion-ready [data-no-reveal] .section-divider {
   transform: scale(calc(1 + var(--mesh-p, 0) * 0.06));
   transition: opacity 400ms ease;
   will-change: background-position, transform;
+}
+
+/* The lit copy has to drift with the base grid or the two sets of lines slide
+   apart by up to 46px on the way down. The cursor glow is the first layer and
+   is positioned inside its own gradient, so it stays put at 0 0. */
+.hero-mesh::after {
+  background-position:
+    0 0,
+    calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px),
+    calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px);
 }
 
 /* A single tracked signal gives the grid a job: it records scroll progress
@@ -1619,9 +1745,27 @@ html.motion-ready [data-no-reveal] .section-divider {
     height: 178svh;
   }
 
+  /* `safe center` is the whole fix for the headline sliding under the nav:
+     plain centring keeps the block centred even once it is taller than the
+     column, which pushes the first line up past the top padding and behind
+     the pills. `safe` falls back to start-alignment exactly in that case, and
+     browsers that do not know the keyword drop the line and keep the plain
+     `center` above. The bottom reserve comes down with it: the copy was
+     paying 8rem of clearance to a device that only arrives once it has faded
+     out, and the title carried the cost by sitting too high. */
   .hero-copy {
+    justify-content: center;
+    justify-content: safe center;
+    padding-top: calc(var(--nav-h) + 0.75rem);
     padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
-    padding-bottom: min(8rem, 16svh);
+    padding-bottom: min(6.5rem, 13svh);
+  }
+
+  /* Pushed further off the fold than on desktop, both to give the lowered
+     copy its room back and because a third of an iMac parked under the CTA is
+     a crop, not a preview. The scene JS reads the same value. */
+  .hero-device-col {
+    transform: translate3d(0, 88%, 0);
   }
 
   .hero-mesh {
@@ -3459,17 +3603,24 @@ h4,
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
+  /* Held visible for the length of the collapse, then dropped out of the
+     accessibility tree entirely — a closed answer that screen readers still
+     announce is eight paragraphs of noise between the questions. */
+  visibility: hidden;
   transition:
     grid-template-rows 340ms var(--ease-out),
-    opacity 200ms ease;
+    opacity 200ms ease,
+    visibility 0s linear 340ms;
 }
 
 .faq__item[data-open='true'] .faq__panel {
   grid-template-rows: 1fr;
   opacity: 1;
+  visibility: visible;
   transition:
     grid-template-rows 420ms var(--ease-out),
-    opacity 280ms ease 60ms;
+    opacity 280ms ease 60ms,
+    visibility 0s linear 0s;
 }
 
 .faq__panel-inner {

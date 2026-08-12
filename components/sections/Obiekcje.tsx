@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { PiPlusBold } from 'react-icons/pi'
+import { requestScrollFlush } from '@/lib/scrollTicker'
 
 const items = [
   {
@@ -41,6 +42,15 @@ const items = [
 export default function Obiekcje() {
   const [open, setOpen] = useState<number | null>(0)
 
+  // Opening or closing an answer moves every row below it without a scroll
+  // event ever firing, which is how rows that had not been revealed yet ended
+  // up stranded at opacity 0 — present, clickable and invisible. Poking the
+  // shared ticker re-runs the reveal sweep against the new layout.
+  const toggle = (i: number) => {
+    setOpen((current) => (current === i ? null : i))
+    requestScrollFlush()
+  }
+
   return (
     <section id="faq" className="section-shell defer-paint">
       <div className="container">
@@ -64,7 +74,7 @@ export default function Obiekcje() {
                     className="faq__q"
                     aria-expanded={isOpen}
                     aria-controls={`faq-p-${i}`}
-                    onClick={() => setOpen(isOpen ? null : i)}
+                    onClick={() => toggle(i)}
                   >
                     <span className="faq__q-text">
                       <span className="faq__idx tnum" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
@@ -73,7 +83,12 @@ export default function Obiekcje() {
                     <PiPlusBold size={18} className="faq__icon" aria-hidden="true" />
                   </button>
                 </h3>
-                <div id={`faq-p-${i}`} className="faq__panel" inert={!isOpen}>
+                {/* React 18 drops a boolean `inert` with a warning instead of
+                    writing it, so the collapsed answer was still exposed to
+                    assistive tech. `visibility: hidden` in the stylesheet does
+                    the same job, transitions with the panel and needs no
+                    attribute at all. */}
+                <div id={`faq-p-${i}`} className="faq__panel">
                   <div className="faq__panel-inner">
                     <p className="t-body">{it.a}</p>
                   </div>

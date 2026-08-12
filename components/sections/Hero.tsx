@@ -88,7 +88,10 @@ export default function Hero() {
       // scroll directly — a slow diagonal drift plus a faint zoom, so the
       // otherwise-static hero ground reads as alive under the pinned copy.
       stage.style.setProperty('--mesh-p', p.toFixed(4))
-      const compact = window.innerWidth <= 768
+      // 640, not 768: this has to be the same breakpoint the stylesheet uses
+      // for the compact resting states, or the first scroll frame snaps the
+      // signal and the device away from where CSS parked them.
+      const compact = window.innerWidth <= 640
       const signalX = (compact ? 72 : 180) - p * (compact ? 144 : 360)
       const signalY = (compact ? 42 : 92) - p * (compact ? 84 : 184)
       signal.style.transform = `translate3d(${signalX.toFixed(1)}px, ${signalY.toFixed(1)}px, 0) rotate(-18deg)`
@@ -106,7 +109,10 @@ export default function Hero() {
       // frame — the arrival is the motion, not a 5% scale nudge.
       const settle = smooth(range(p, 0, 0.34))
       const drift = smooth(range(p, 0.86, 1))
-      col.style.transform = `translate3d(0, ${(76 - 76 * settle - 2.2 * drift).toFixed(2)}%, 0)`
+      // Resting offset matches the CSS pre-scene state per breakpoint — phones
+      // park the device further down so the lowered hero copy keeps its room.
+      const rest = compact ? 88 : 76
+      col.style.transform = `translate3d(0, ${(rest - rest * settle - 2.2 * drift).toFixed(2)}%, 0)`
       device.style.transform = `perspective(1500px) rotateX(${(9 - 4.6 * settle).toFixed(2)}deg) scale(${(1.045 - 0.045 * settle).toFixed(4)})`
 
       const reveal = smooth(range(p, 0.3, 0.42))
@@ -171,10 +177,15 @@ export default function Hero() {
             </p>
 
             <div className="hero-actions hero-from-left" style={{ animationDelay: '240ms' }}>
-              <a href="#kontakt" onClick={(e) => go(e, 'kontakt')} className="btn btn-primary">
+              <a
+                href="#kontakt"
+                onClick={(e) => go(e, 'kontakt')}
+                className="btn btn-primary btn-sheen"
+                data-magnetic
+              >
                 Zobacz wizualizację w 24h
               </a>
-              <a href="#proces" onClick={(e) => go(e, 'proces')} className="btn btn-ghost">
+              <a href="#proces" onClick={(e) => go(e, 'proces')} className="btn btn-ghost" data-magnetic>
                 Jak to działa
               </a>
             </div>

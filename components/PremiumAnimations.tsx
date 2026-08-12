@@ -56,6 +56,13 @@ export default function PremiumAnimations() {
       el.style.transform = ''
       el.classList.add('io-visible')
       revealed.push(el)
+      // A stagger group is read as one block, so it must never stop dead at the
+      // fold: the FAQ list showed four of its eight rows and left the rest at
+      // opacity 0 — still occupying space and still answering clicks, so a tap
+      // toggled a row nobody could see. Once a group starts revealing, the rows
+      // just past the fold come with it.
+      const group = el.parentElement
+      if (group?.matches('[data-stagger-group]')) revealGroupNeighbours(group)
       // Debounced from the reveal itself rather than from the scroll handler:
       // an element revealed by the observer after the reader stopped scrolling
       // would otherwise never be checked by the backstop below.
@@ -81,6 +88,20 @@ export default function PremiumAnimations() {
         }
         revealed.splice(i, 1)
       }
+    }
+
+    // Bounded to ~1.25 viewports: a group that continues well past the fold
+    // keeps its own scroll-triggered entrance rather than spending it
+    // off-screen, but nothing within reach of the next flick stays blank.
+    function revealGroupNeighbours(group: HTMLElement) {
+      const limit = window.innerHeight * 1.25
+      Array.from(group.children).forEach((child) => {
+        const el = child as HTMLElement
+        if (!pending.has(el)) return
+        if (el.getBoundingClientRect().top > limit) return
+        io.unobserve(el)
+        reveal(el)
+      })
     }
 
     const io = new IntersectionObserver(
@@ -172,7 +193,55 @@ export default function PremiumAnimations() {
       staggerIo.unobserve(group)
     }
 
+    /* ── TITLE WORD REVEAL ──────────────────────────────────────────────
+       A heading that fades in as one block is the tell of a template. Split
+       it into words behind their own masks and the line assembles itself,
+       which is the difference the eye actually registers. Done in the effect
+       rather than in markup so the SSR HTML a crawler reads stays plain text. */
+    const splitTitle = (title: HTMLElement) => {
+      let word = 0
+      const walk = (el: HTMLElement) => {
+        Array.from(el.childNodes).forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            walk(node as HTMLElement)
+            return
+          }
+          if (node.nodeType !== Node.TEXT_NODE) return
+          const parts = (node.textContent || '').split(/(\s+)/)
+          const frag = document.createDocumentFragment()
+          parts.forEach((part) => {
+            if (!part) return
+            // Whitespace stays a real text node: masked words are inline-block,
+            // so a space swallowed into a mask would collapse the word spacing.
+            if (!part.trim()) {
+              frag.appendChild(document.createTextNode(part))
+              return
+            }
+            const mask = document.createElement('span')
+            mask.className = 'w-mask'
+            const inner = document.createElement('span')
+            inner.className = 'w-in'
+            inner.style.transitionDelay = `${Math.min(word, 14) * 42}ms`
+            inner.textContent = part
+            mask.appendChild(inner)
+            frag.appendChild(mask)
+            word += 1
+          })
+          node.parentNode?.replaceChild(frag, node)
+        })
+      }
+      walk(title)
+      if (word) title.dataset.split = 'true'
+    }
+
+    const splitTitles = () => {
+      document
+        .querySelectorAll<HTMLElement>('.section-title:not([data-split]), [data-split-title]:not([data-split])')
+        .forEach(splitTitle)
+    }
+
     const scan = () => {
+      if (!reduce) splitTitles()
       // Directional starts require layout reads. Prepare each group shortly
       // before it reaches the viewport instead of measuring the full page at boot.
       document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach(observeStaggerGroup)
@@ -222,6 +291,22 @@ export default function PremiumAnimations() {
     let sweepTimers: number[] = []
     let unsubscribeSweep: (() => void) | undefined
     let domObserver: MutationObserver | undefined
+    let layoutObserver: ResizeObserver | undefined
+    let layoutRaf = 0
+
+    // Scrolling is not the only thing that moves a pending element into view.
+    // Opening an FAQ answer, a late-loading image and the font swap all reflow
+    // the page without firing a single scroll event — and inside a
+    // `content-visibility: auto` subtree the IntersectionObserver can miss the
+    // crossing outright. Re-sweeping on every document resize is what stops an
+    // element from being stranded at opacity 0 for the rest of the session.
+    const onLayoutChange = () => {
+      if (layoutRaf || (!pending.size && !pendingGroups.size)) return
+      layoutRaf = requestAnimationFrame(() => {
+        layoutRaf = 0
+        sweep()
+      })
+    }
 
     if (reduce) {
       revealAllNow()
@@ -236,6 +321,12 @@ export default function PremiumAnimations() {
       // is not enough — rescan when the DOM grows and again after layout settles.
       domObserver = new MutationObserver(() => {
         scan()
+        // Deferred sections mount after the pointer bindings were installed,
+        // so their mesh and CTAs have to be picked up on the way in.
+        if (pointerMotionStarted) {
+          initMeshPointer()
+          initMagnetic()
+        }
       })
       domObserver.observe(document.body, { childList: true, subtree: true })
       sweepTimers = [300, 900, 2000].map((ms) =>
@@ -245,6 +336,11 @@ export default function PremiumAnimations() {
         }, ms),
       )
       unsubscribeSweep = subscribeScroll(sweep)
+      if (typeof ResizeObserver !== 'undefined') {
+        layoutObserver = new ResizeObserver(onLayoutChange)
+        layoutObserver.observe(document.documentElement)
+      }
+      window.addEventListener('resize', onLayoutChange, { passive: true })
     }
 
     /* ── LIGHTWEIGHT PARALLAX (desktop, transform-only, single rAF loop) ── */
@@ -401,6 +497,114 @@ export default function PremiumAnimations() {
     }
     let counterIo: IntersectionObserver | undefined
 
+    /* ── DESKTOP: the grid answers the pointer ──────────────────────────
+       The mesh behind the hero and the navy sections was a static texture, so
+       every one of those screens was a still image with copy on it. Lighting
+       the grid under the cursor costs two custom properties per frame — the
+       brightened lines and the mask that limits them are pure CSS — and it is
+       the one thing on the page that only exists because someone is looking
+       at it. Pointer-only by design: on a phone there is no cursor to answer,
+       and the ambient parallax already carries those screens. */
+    const initMeshPointer = () => {
+      document.querySelectorAll<HTMLElement>('.section-mesh').forEach((mesh) => {
+        const host = mesh.parentElement
+        if (!host || host.dataset.meshPointer === 'on') return
+        host.dataset.meshPointer = 'on'
+
+        let raf = 0
+        let cx = 0
+        let cy = 0
+
+        // The rect is measured inside the frame, not in the event: pointermove
+        // arrives faster than the display refreshes, and a getBoundingClientRect
+        // per event forces a synchronous layout the frame is about to redo.
+        const onMove = (e: PointerEvent) => {
+          cx = e.clientX
+          cy = e.clientY
+          if (raf) return
+          raf = requestAnimationFrame(() => {
+            raf = 0
+            const r = mesh.getBoundingClientRect()
+            if (!r.width || !r.height) return
+            mesh.style.setProperty('--mx', `${(((cx - r.left) / r.width) * 100).toFixed(2)}%`)
+            mesh.style.setProperty('--my', `${(((cy - r.top) / r.height) * 100).toFixed(2)}%`)
+          })
+        }
+        const onEnter = (e: PointerEvent) => {
+          onMove(e)
+          mesh.style.setProperty('--mesh-hover', '1')
+        }
+        const onLeave = () => mesh.style.setProperty('--mesh-hover', '0')
+
+        host.addEventListener('pointerenter', onEnter)
+        host.addEventListener('pointermove', onMove)
+        host.addEventListener('pointerleave', onLeave)
+        animeCleanups.push(() => {
+          host.removeEventListener('pointerenter', onEnter)
+          host.removeEventListener('pointermove', onMove)
+          host.removeEventListener('pointerleave', onLeave)
+          if (raf) cancelAnimationFrame(raf)
+          mesh.style.removeProperty('--mesh-hover')
+          delete host.dataset.meshPointer
+        })
+      })
+    }
+
+    /* ── DESKTOP: magnetic pull on the primary calls to action ── */
+    const initMagnetic = () => {
+      document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+        if (el.dataset.magneticBound === 'on') return
+        el.dataset.magneticBound = 'on'
+
+        let raf = 0
+        let cx = 0
+        let cy = 0
+        let home = false
+
+        const write = () => {
+          raf = 0
+          if (home) {
+            el.style.setProperty('--bx', '0px')
+            el.style.setProperty('--by', '0px')
+            return
+          }
+          const r = el.getBoundingClientRect()
+          // The rect already includes the offset written last frame, so it is
+          // subtracted back out — measuring against the moved button feeds the
+          // pull into itself and the lean settles short of where it was aimed.
+          const bx = parseFloat(el.style.getPropertyValue('--bx')) || 0
+          const by = parseFloat(el.style.getPropertyValue('--by')) || 0
+          // Capped rather than proportional: the button leans toward the
+          // cursor, it does not chase it off its own baseline.
+          const dx = Math.max(-9, Math.min(9, (cx - (r.left - bx + r.width / 2)) * 0.28))
+          const dy = Math.max(-5, Math.min(5, (cy - (r.top - by + r.height / 2)) * 0.28))
+          el.style.setProperty('--bx', `${dx.toFixed(2)}px`)
+          el.style.setProperty('--by', `${dy.toFixed(2)}px`)
+        }
+        const onMove = (e: PointerEvent) => {
+          cx = e.clientX
+          cy = e.clientY
+          home = false
+          if (!raf) raf = requestAnimationFrame(write)
+        }
+        const onLeave = () => {
+          home = true
+          if (!raf) raf = requestAnimationFrame(write)
+        }
+
+        el.addEventListener('pointermove', onMove)
+        el.addEventListener('pointerleave', onLeave)
+        animeCleanups.push(() => {
+          el.removeEventListener('pointermove', onMove)
+          el.removeEventListener('pointerleave', onLeave)
+          if (raf) cancelAnimationFrame(raf)
+          el.style.removeProperty('--bx')
+          el.style.removeProperty('--by')
+          delete el.dataset.magneticBound
+        })
+      })
+    }
+
     /* ── DESKTOP: Anime.js pointer response, loaded only when the browser is idle ── */
     const initAnime = async () => {
       const { animate } = await import('animejs')
@@ -501,6 +705,8 @@ export default function PremiumAnimations() {
     const startPointerMotion = () => {
       if (pointerMotionStarted || reduce || isMobile || !finePointer) return
       pointerMotionStarted = true
+      initMeshPointer()
+      initMagnetic()
       initAnime()
     }
 
@@ -530,6 +736,9 @@ export default function PremiumAnimations() {
       clearTimeout(settleTimer)
       unsubscribeSweep?.()
       domObserver?.disconnect()
+      layoutObserver?.disconnect()
+      window.removeEventListener('resize', onLayoutChange)
+      if (layoutRaf) cancelAnimationFrame(layoutRaf)
       if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
       clearTimeout(bootT)
       clearTimeout(motionT)

@@ -141,7 +141,7 @@ export default function Kontakt() {
                   </p>
                 ) : null}
 
-                <button type="submit" className="btn btn-primary contact__submit" disabled={state === 'sending'}>
+                <button type="submit" className="btn btn-primary btn-sheen contact__submit" data-magnetic disabled={state === 'sending'}>
                   {state === 'sending' ? 'Wysyłam…' : 'Chcę zobaczyć wizualizację'}
                 </button>
                 <p className="contact__micro">Bez zaliczki · Odpowiadamy w 24h · Nie wysyłamy newslettera</p>
@@ -158,7 +158,7 @@ export default function Kontakt() {
             </ol>
 
             <div className="contact__alt">
-              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-on-navy contact__alt-btn">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-on-navy btn-sheen contact__alt-btn" data-magnetic>
                 <PiCalendarBold size={17} aria-hidden="true" />
                 Wybierz termin rozmowy
               </a>

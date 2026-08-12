@@ -26,6 +26,12 @@ const nextConfig = {
                 { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
               ],
             },
+            {
+              source: '/((?!_next/|api/|.*\\.(?:svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2|hdr)$).*)',
+              headers: [
+                { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=120, stale-while-revalidate=86400' },
+              ],
+            },
           ]),
       {
         source: '/:path*',

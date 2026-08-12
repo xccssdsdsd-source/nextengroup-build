@@ -278,6 +278,12 @@ h4 {
   background: linear-gradient(180deg, var(--bg-base) 0%, var(--brand-50) 40%, var(--brand-50) 62%, var(--bg-base) 100%);
 }
 
+.section-shell--studio {
+  background:
+    radial-gradient(70% 54% at 50% 48%, rgba(201, 219, 255, 0.3), transparent 76%),
+    linear-gradient(180deg, var(--bg-base) 0%, #f8faff 42%, #f7faff 62%, var(--bg-base) 100%);
+}
+
 /* The white → navy handoff was a single-pixel cut. A blade of light along the
    top edge plus an accent bloom rising from below makes the dark section read
    as the same room with the lights turned down. */
@@ -3816,6 +3822,59 @@ h4,
   gap: 1.15rem;
 }
 
+.contact__brief-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.contact__brief-head > span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--brand-50);
+  color: var(--brand);
+}
+
+.contact__brief-head > div {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.contact__brief-head strong {
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.contact__brief-head small {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+}
+
+.contact__field-icon {
+  position: relative;
+}
+
+.contact__field-icon > svg {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 0.9rem;
+  color: var(--ink-3);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.contact__field-icon .field {
+  padding-left: 2.7rem;
+}
+
 .contact__roles {
   border: 0;
   padding: 0;
@@ -4237,11 +4296,39 @@ h4,
   flex-shrink: 0;
 }
 
-.hero-chat__bar > span {
+.hero-chat__dots > i {
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
+}
+
+.hero-chat__identity {
+  display: grid;
+  gap: 0.08rem;
+  margin-left: 0.35rem;
+}
+
+.hero-chat__identity strong {
+  color: #f4f7fc;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.hero-chat__identity small {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #8fa3c2;
+  font-size: 0.62rem;
+}
+
+.hero-chat__identity small i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #39cf91;
+  box-shadow: 0 0 8px rgba(57, 207, 145, 0.55);
 }
 
 .hero-chat__thread {
@@ -4324,7 +4411,7 @@ h4,
   gap: 4px;
 }
 
-.hero-chat__dots > span {
+.hero-chat__typing > i {
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -4332,11 +4419,11 @@ h4,
   animation: chat-dot 1.1s ease-in-out infinite;
 }
 
-.hero-chat__dots > span:nth-child(2) {
+.hero-chat__typing > i:nth-child(2) {
   animation-delay: 0.16s;
 }
 
-.hero-chat__dots > span:nth-child(3) {
+.hero-chat__typing > i:nth-child(3) {
   animation-delay: 0.32s;
 }
 
@@ -4456,6 +4543,52 @@ h4,
   padding: 0 1.15rem 0.9rem;
   font-size: 0.8rem;
   color: #ff9d9d;
+}
+
+.hero-chat--compact {
+  min-height: 420px;
+}
+
+.hero-chat--compact .hero-chat__bar {
+  padding: 0.7rem 0.85rem;
+}
+
+.hero-chat--compact .hero-chat__thread {
+  gap: 0.62rem;
+  padding: 0.85rem;
+}
+
+.hero-chat--compact .hero-chat__bubble {
+  padding: 0.58rem 0.72rem;
+  font-size: 0.75rem;
+  line-height: 1.48;
+}
+
+.hero-chat--compact .hero-chat__suggestions {
+  gap: 0.35rem;
+  padding: 0 0.85rem 0.7rem;
+}
+
+.hero-chat--compact .hero-chat__chip {
+  padding: 0.38rem 0.62rem;
+  font-size: 0.66rem;
+}
+
+.hero-chat--compact .hero-chat__composer {
+  padding: 0.65rem 0.85rem 0.85rem;
+}
+
+.hero-chat--compact .hero-chat__field {
+  padding: 0.58rem 0.75rem;
+}
+
+.hero-chat--compact .hero-chat__input {
+  font-size: 0.78rem;
+}
+
+.hero-chat--compact .hero-chat__send {
+  width: 36px;
+  height: 36px;
 }
 
 /* ── Nav mobile menu + CTA plumbing ─────────────────────── */

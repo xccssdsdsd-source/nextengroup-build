@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import Link from 'next/link'
-import { PiCalendarBold, PiCheckBold, PiEnvelopeSimpleBold } from 'react-icons/pi'
+import { PiBuildingsBold, PiCalendarBold, PiCheckBold, PiEnvelopeSimpleBold, PiMapPinBold } from 'react-icons/pi'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -33,6 +33,7 @@ export default function Kontakt() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [region, setRegion] = useState('')
   const [link, setLink] = useState('')
   const [consent, setConsent] = useState(false)
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'done' | 'error'>('idle')
@@ -48,6 +49,7 @@ export default function Kontakt() {
     const message = [
       `Imię: ${name || '—'}`,
       `Typ: ${role === 'agent' ? 'Agent indywidualny' : 'Biuro nieruchomości'}`,
+      `Rynek / obszar działania: ${region || '—'}`,
       `Link do profilu/oferty: ${link || '—'}`,
     ].join('\n')
 
@@ -103,6 +105,10 @@ export default function Kontakt() {
               </div>
             ) : (
               <form className="contact__form" onSubmit={submit} noValidate>
+                <div className="contact__brief-head">
+                  <span><PiBuildingsBold size={18} aria-hidden="true" /></span>
+                  <div><strong>Krótki brief Twojego biura</strong><small>4 pola · około 60 sekund</small></div>
+                </div>
                 <fieldset className="contact__roles">
                   <legend className="field-label">Kim jesteś?</legend>
                   <div className="contact__role-row">
@@ -135,6 +141,14 @@ export default function Kontakt() {
                   <label className="field-label" htmlFor="k-email">Email</label>
                   <input id="k-email" type="email" required className="field" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" placeholder="anna@biuro.pl" />
                   <span className="field-hint">Tu wyślemy link do wizualizacji.</span>
+                </div>
+
+                <div>
+                  <label className="field-label" htmlFor="k-region">Rynek lub obszar działania <span className="field-opt">opcjonalnie</span></label>
+                  <div className="contact__field-icon">
+                    <PiMapPinBold size={17} aria-hidden="true" />
+                    <input id="k-region" className="field" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="np. Trójmiasto, Warszawa, cała Polska" />
+                  </div>
                 </div>
 
                 <div>

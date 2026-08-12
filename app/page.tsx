@@ -6,7 +6,6 @@ import StickyCta from '@/components/StickyCta'
 import Problem from '@/components/sections/Problem'
 import Solution from '@/components/sections/Solution'
 import Proces from '@/components/sections/Proces'
-import AgentAI from '@/components/sections/AgentAI'
 import Przewagi from '@/components/sections/Przewagi'
 import Realizacje from '@/components/sections/Realizacje'
 import Opinie from '@/components/sections/Opinie'
@@ -24,7 +23,6 @@ export default function Home() {
       <InView minHeight="700px"><Problem /></InView>
       <InView minHeight="720px"><Solution /></InView>
       <InView minHeight="760px"><Proces /></InView>
-      <InView minHeight="700px"><AgentAI /></InView>
       <InView minHeight="760px"><Przewagi /></InView>
       <InView minHeight="900px"><Realizacje /></InView>
       <InView minHeight="520px"><Opinie /></InView>

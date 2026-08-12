@@ -40,7 +40,7 @@ export default function Realizacje() {
 
         <a href={lead.href} target="_blank" rel="noopener noreferrer" className="case" data-fade-in>
           <div className="case__media" data-parallax-media>
-            <Image src={lead.preview} alt={`Strona ${lead.name}`} width={lead.width} height={lead.height} sizes="(max-width: 900px) 100vw, 640px" className="case__img" data-img-reveal />
+            <Image src={lead.preview} alt={`Strona ${lead.name}`} width={lead.width} height={lead.height} sizes="(max-width: 900px) 100vw, 640px" className="case__img" />
           </div>
           <div className="case__body">
             <div className="case__head">
@@ -75,7 +75,7 @@ export default function Realizacje() {
         <div className="cases-row" data-stagger-group>
           {others.map((o) => (
             <a key={o.name} href={o.href} target="_blank" rel="noopener noreferrer" className="card card--interactive case-mini" data-anime-card>
-              <Image src={o.preview} alt={`Strona ${o.name}`} width={o.width} height={o.height} sizes="(max-width: 900px) 100vw, 480px" className="case-mini__img" data-img-reveal />
+              <Image src={o.preview} alt={`Strona ${o.name}`} width={o.width} height={o.height} sizes="(max-width: 900px) 100vw, 480px" className="case-mini__img" />
               <div className="case-mini__body">
                 <h3 className="case-mini__name">{o.name}</h3>
                 <p className="t-small">{o.tagline}</p>

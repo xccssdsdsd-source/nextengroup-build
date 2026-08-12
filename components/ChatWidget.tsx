@@ -5,11 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
+type ChatWidgetProps = {
+  compact?: boolean
+  demoStep?: number
+  onUserInteraction?: () => void
+}
+
 const suggestions = [
-  'Ile kosztuje strona dla agenta?',
-  'Jak działa AI Agent 24/7?',
-  'Jak działa panel dodawania ofert?',
-  'Darmowa wizualizacja w 24h',
+  'Czy apartament na Mokotowie ma balkon?',
+  'Pokaż oferty do 1,5 mln zł',
+  'Czy AI umówi prezentację za mnie?',
+  'Jak działa taki asystent na mojej stronie?',
 ] as const
 
 const SendIcon = () => (
@@ -30,27 +36,56 @@ const Avatar = () => (
   </span>
 )
 
-export default function ChatWidget() {
+export default function ChatWidget({ compact = false, demoStep = 0, onUserInteraction }: ChatWidgetProps = {}) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [isFocused, setIsFocused] = useState(false)
+  const [userEngaged, setUserEngaged] = useState(false)
+  const [placeholder, setPlaceholder] = useState('Zadaj mi dowolne pytanie…')
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
+  const visibleDemoStep = userEngaged ? 0 : demoStep
+
+  const engageUser = () => {
+    setUserEngaged(true)
+    onUserInteraction?.()
+  }
 
   useEffect(() => {
-    threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior: 'smooth' })
-  }, [messages, loading])
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior })
+  }, [messages, loading, visibleDemoStep])
 
   useEffect(() => () => {
     abortRef.current?.abort()
   }, [])
 
+  useEffect(() => {
+    if (isFocused || input || loading) return
+    const phrase = 'Zadaj mi dowolne pytanie…'
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setPlaceholder(phrase)
+      return
+    }
+    let index = 0
+    let timer = 0
+    setPlaceholder('')
+    const type = () => {
+      index += 1
+      setPlaceholder(phrase.slice(0, index))
+      if (index < phrase.length) timer = window.setTimeout(type, 52)
+    }
+    timer = window.setTimeout(type, 280)
+    return () => clearTimeout(timer)
+  }, [isFocused, input, loading])
+
   const send = async (text: string) => {
     const trimmed = text.trim()
     if (!trimmed || loading) return
+    engageUser()
 
     const nextMessages: Message[] = [...messages, { role: 'user', content: trimmed }]
     setMessages(nextMessages)
@@ -105,7 +140,7 @@ export default function ChatWidget() {
 
   return (
     <div
-      className={`hero-chat hero-chat--live ${isFocused ? 'hero-chat--focused' : ''}`}
+      className={`hero-chat hero-chat--live ${compact ? 'hero-chat--compact' : ''} ${isFocused ? 'hero-chat--focused' : ''}`}
       onClick={focusInput}
     >
       <div className="hero-chat__interactive-bg" aria-hidden="true">
@@ -117,6 +152,10 @@ export default function ChatWidget() {
         <span className="hero-chat__dots" aria-hidden="true">
           <i /><i /><i />
         </span>
+        <span className="hero-chat__identity">
+          <strong>Asystent Anny</strong>
+          <small><i /> online · odpowiada od razu</small>
+        </span>
       </div>
 
       <div
@@ -126,12 +165,29 @@ export default function ChatWidget() {
         aria-live="polite"
         aria-relevant="additions"
       >
-        {messages.length === 0 && (
+        {messages.length === 0 && visibleDemoStep === 0 && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
-              <span className="inline-block">Cześć! Tworzymy dedykowane strony dla agentów nieruchomości z AI agentem 24/7 i panelem do dodawania ofert.</span>{' '}
-              <span className="inline-block">Darmową wizualizację otrzymujesz w 24h. O co chcesz zapytać?</span>
+              <span className="inline-block">Cześć, jestem Asystentem Anny. Znam jej oferty i pomogę Ci znaleźć nieruchomość albo umówić prezentację.</span>{' '}
+              <span className="inline-block">Sprawdź mnie — o co chcesz zapytać?</span>
+            </div>
+          </div>
+        )}
+
+        {messages.length === 0 && visibleDemoStep > 0 && (
+          <div className="hero-chat__row hero-chat__row--user hero-chat__pop">
+            <div className="hero-chat__bubble hero-chat__bubble--user">
+              Czy apartament na Mokotowie ma balkon i garaż?
+            </div>
+          </div>
+        )}
+
+        {messages.length === 0 && visibleDemoStep >= 3 && (
+          <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
+            <Avatar />
+            <div className="hero-chat__bubble hero-chat__bubble--ai">
+              Tak — ma balkon 8 m² i miejsce w garażu podziemnym. Mogę od razu pomóc umówić prezentację.
             </div>
           </div>
         )}
@@ -145,7 +201,7 @@ export default function ChatWidget() {
           </div>
         ))}
 
-        {messages.length === 0 && !loading && (
+        {messages.length === 0 && visibleDemoStep === 0 && !loading && (
           <div className="hero-chat__suggestions" aria-label="Przykładowe pytania">
             {suggestions.map(s => (
               <button key={s} type="button" className="hero-chat__chip" onClick={() => send(s)}>{s}</button>
@@ -153,7 +209,7 @@ export default function ChatWidget() {
           </div>
         )}
 
-        {loading && (
+        {(loading || (messages.length === 0 && visibleDemoStep === 2)) && (
           <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
             <Avatar />
             <div className="hero-chat__bubble hero-chat__bubble--ai">
@@ -181,14 +237,15 @@ export default function ChatWidget() {
             type="text"
             name="question"
             value={input}
-            onChange={e => setInput(e.target.value)}
-            onFocus={() => setIsFocused(true)}
+            onChange={e => { engageUser(); setInput(e.target.value) }}
+            onFocus={() => { engageUser(); setIsFocused(true) }}
             onBlur={() => setIsFocused(false)}
-            placeholder="Zadaj pytanie…"
-            aria-label="Pytanie do asystenta Getbuild"
+            placeholder={placeholder}
+            aria-label="Pytanie do Asystenta Anny"
             {...{ toolparamdescription: 'Question about Getbuild services, pricing, delivery, websites, chatbots, or automations.' }}
             disabled={loading}
             className="hero-chat__input"
+            data-chat-input
           />
         </div>
         {loading ? (

@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ reply: 'Asystent jest chwilowo niedostępny. Napisz do nas przez formularz kontaktowy.' }, noStore)
     }
 
-    const systemInstruction = `Jesteś asystentem sprzedażowym AI firmy Getbuild.pl osadzonym na stronie głównej. Odpowiadasz wyłącznie na podstawie poniższej bazy wiedzy o firmie. Nie odpowiadasz na pytania niezwiązane z ofertą Getbuild (polityka, inne firmy, tematy prywatne) — w takim wypadku grzecznie kierujesz rozmówcę z powrotem do tematu strony/automatyzacji i proponujesz kontakt. Trzymaj się tonu i zasad opisanych w bazie wiedzy.\n\n${KNOWLEDGE_BASE}`
+    const systemInstruction = `Jesteś „Asystentem Anny” — demonstracyjnym asystentem AI agenta nieruchomości, osadzonym na stronie Getbuild.pl. Odpowiadasz na pytania o przykładowe nieruchomości Anny oraz o to, jak taki asystent może działać na stronie agenta. Nie odpowiadasz na tematy niezwiązane z nieruchomościami ani ofertą Getbuild. Trzymaj się tonu, danych i zasad opisanych w bazie wiedzy.\n\n${KNOWLEDGE_BASE}`
 
     const contents = [
       ...history

@@ -38,7 +38,6 @@ const demoLead: Lead = {
 function BrowserBar({ path }: { path: string }) {
   return (
     <div className={s.browserBar} aria-hidden="true">
-      <span><i /><i /><i /></span>
       <em>anna-nieruchomosci.pl/{path}</em>
     </div>
   )
@@ -198,14 +197,20 @@ export default function InteractiveSiteShowcase() {
   return (
     <div className={s.story} data-phase={phase}>
       <div className={s.storyIntro}>
-        <span>Jedna oferta. Jedna droga klienta.</span>
+        <div className={s.storyPath} aria-label="Od oferty do kontaktu">
+          <span><i>1</i> Dodajesz</span>
+          <PiArrowRightBold aria-hidden="true" />
+          <span><i>2</i> Publikujesz</span>
+          <PiArrowRightBold aria-hidden="true" />
+          <span><i>3</i> Pozyskujesz kontakt</span>
+        </div>
         <button type="button" onClick={replay}><PiArrowClockwiseBold /> Odtwórz</button>
       </div>
 
       <div ref={firstActRef} className={s.firstAct}>
         <div className={s.actCaption}>
           <span>01</span>
-          <div><b>Publikujesz ofertę</b><small>Panel sam przenosi ją na stronę.</small></div>
+          <div><b>Dodajesz raz</b><small>Oferta od razu trafia na Twoją stronę.</small></div>
         </div>
 
         <div className={s.screenPair}>
@@ -213,7 +218,7 @@ export default function InteractiveSiteShowcase() {
             <BrowserBar path="panel" />
             <div className={s.adminNav}>
               <b>AN</b>
-              <span>Oferty</span><span>Zapytania</span><span>Ustawienia</span>
+              <span>Oferty</span>
               <button type="button" onClick={addListing}><PiPlusBold /> Dodaj</button>
             </div>
             <div className={s.adminBody}>
@@ -225,7 +230,7 @@ export default function InteractiveSiteShowcase() {
                     <label>Dzielnica<input aria-label="Dzielnica" value={listing.district} onChange={(event) => setListing({ ...listing, district: event.target.value })} placeholder="Mokotów" /></label>
                   </div>
                   <label>Cena<input aria-label="Cena" value={listing.price} onChange={(event) => setListing({ ...listing, price: event.target.value })} placeholder="1 240 000 zł" /></label>
-                  <span className={s.photoInput}><Image src="/mockup/listing-detail.jpg" alt="Nowoczesny apartament" width={78} height={54} /><small>apartament-mokotow.jpg</small><PiCheckBold /></span>
+                  <span className={s.photoInput}><Image src="/mockup/listing-detail.jpg" alt="Nowoczesny apartament" width={78} height={54} /><small>Zdjęcie dodane</small><PiCheckBold /></span>
                   <button type="submit" disabled={!listing.city || !listing.price}>{phase === 3 ? 'Publikuję…' : 'Opublikuj'} <PiArrowRightBold /></button>
                 </form>
               ) : (
@@ -242,7 +247,7 @@ export default function InteractiveSiteShowcase() {
 
           <article className={s.liveScreen}>
             <BrowserBar path="oferty" />
-            <div className={s.liveNav}><b>ANNA <i>nieruchomości</i></b><span>Oferty</span><span>Kontakt</span></div>
+            <div className={s.liveNav}><b>ANNA <i>nieruchomości</i></b><span>Podgląd strony</span></div>
             <div className={s.liveBody}>
               {phase < 4 ? (
                 <div className={s.liveEmpty}><PiHouseLineBold /><span>Oferta pojawi się tutaj</span></div>
@@ -252,8 +257,8 @@ export default function InteractiveSiteShowcase() {
                   <span><small>{location}</small><b>{publishedListing.price}</b><p>74 m² · 3 pokoje · balkon</p></span>
                 </div>
               )}
-              {phase === 4 && <span className={s.saved}><PiCheckBold /> Oferta online w 0,8 s</span>}
-              {visitorCount > 0 && <span className={s.visitor}><i /> Klientka właśnie ogląda ofertę</span>}
+              {phase === 4 && <span className={s.saved}><PiCheckBold /> Opublikowano w 0,8 s</span>}
+              {visitorCount > 0 && <span className={s.visitor}><i /> 1 osoba ogląda teraz</span>}
             </div>
           </article>
         </div>
@@ -262,29 +267,28 @@ export default function InteractiveSiteShowcase() {
       <div ref={secondActRef} className={s.secondAct}>
         <div className={s.actCaption}>
           <span>02</span>
-          <div><b>Oferta zamienia się w kontakt</b><small>AI odpowiada. Klientka zostawia numer.</small></div>
+          <div><b>Strona pracuje za Ciebie</b><small>AI odpowiada. Kontakt trafia do Ciebie.</small></div>
         </div>
 
         <div className={s.conversationFlow}>
           <article className={`${s.chatStage} ${phase >= 11 ? s.chatReady : ''}`}>
             <div className={s.chatStageHead}>
-              <span className={s.aiMark}>AI</span>
+              <span className={s.aiMark}><Image src="/getbuild-logo.webp" alt="" width={36} height={36} /></span>
               <div><b>Asystent Anny</b><small><i /> online</small></div>
-              {phase >= 11 && <em>Teraz Ty</em>}
             </div>
             <div className={s.demoConversation} aria-live="polite">
               {phase < 11 && (
                 <>
-                  {phase >= 6 && <p className={s.messageUser}>Widzę nową ofertę na Mokotowie. Mogę dowiedzieć się więcej?</p>}
+                  {phase >= 6 && <p className={s.messageUser}>Czy mogę zobaczyć ofertę na Mokotowie?</p>}
                   {phase === 7 && <span className={s.typing}><i /><i /><i /></span>}
-                  {phase >= 8 && <p className={s.messageAi}>Jasne. To apartament 74 m² z balkonem. Cena: 1 240 000 zł.</p>}
-                  {phase >= 9 && <p className={s.messageAi}>Najlepiej umówić prezentację. Zostaw kontakt obok.</p>}
+                  {phase >= 8 && <p className={s.messageAi}>Tak. 74 m², balkon, 1 240 000 zł.</p>}
+                  {phase >= 9 && <p className={s.messageAi}>Zostaw numer — umówimy prezentację.</p>}
                 </>
               )}
             </div>
             {phase >= 11 && (
               <div className={s.liveAssistant}>
-                <span className={s.readyCopy}><b>Sprawdź mnie</b><small>Zapytaj o wdrożenie na Twojej stronie.</small></span>
+                <span className={s.readyCopy}><b>Teraz zapytaj mnie</b><small>O wdrożenie AI na Twojej stronie.</small></span>
                 <ChatWidget interactiveReady onUserInteraction={stopDemo} />
               </div>
             )}
@@ -292,14 +296,14 @@ export default function InteractiveSiteShowcase() {
 
           <article className={`${s.leadStage} ${phase >= 11 ? s.leadComplete : ''}`}>
             <form onSubmit={submitLead} onFocusCapture={stopDemo}>
-              <span>Umów prezentację</span>
+              <span>Zarezerwuj prezentację</span>
               <label>Imię<input aria-label="Imię i nazwisko" value={lead.name} onChange={(event) => setLead({ ...lead, name: event.target.value })} placeholder="Marta Nowak" /></label>
               <label>Telefon<input aria-label="Telefon" value={lead.phone} onChange={(event) => setLead({ ...lead, phone: event.target.value })} placeholder="+48 601 204 118" /></label>
               <label>Wiadomość<textarea aria-label="Wiadomość" rows={2} value={lead.message} onChange={(event) => setLead({ ...lead, message: event.target.value })} placeholder="Chcę zobaczyć mieszkanie…" /></label>
               <button type="submit" disabled={!lead.name || !lead.phone}>{phase === 10 ? 'Wysyłam…' : 'Wyślij'} <PiPaperPlaneTiltBold /></button>
             </form>
             <div className={s.mailPreview}>
-              {phase < 11 ? <><PiEnvelopeSimpleBold /><span>Czekamy na kontakt</span></> : <><PiCheckBold /><span><b>Nowy kontakt: Marta Nowak</b><small>Prezentacja · {location}</small></span></>}
+              {phase < 11 ? <><PiEnvelopeSimpleBold /><span>Kontakt pojawi się tutaj</span></> : <><PiCheckBold /><span><b>Kontakt zapisany</b><small>Marta · {location}</small></span></>}
             </div>
           </article>
         </div>

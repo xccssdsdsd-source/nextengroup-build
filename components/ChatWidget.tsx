@@ -180,16 +180,6 @@ export default function ChatWidget({ compact = false, demoStep = 0, interactiveR
         <div className="hero-chat__interactive-glow" />
       </div>
 
-      <div className="hero-chat__bar">
-        <span className="hero-chat__dots" aria-hidden="true">
-          <i /><i /><i />
-        </span>
-        <span className="hero-chat__identity">
-          <strong>Asystent Anny</strong>
-          <small><i /> online · odpowiada od razu</small>
-        </span>
-      </div>
-
       <div
         className="hero-chat__thread hero-chat__thread--scroll"
         ref={threadRef}

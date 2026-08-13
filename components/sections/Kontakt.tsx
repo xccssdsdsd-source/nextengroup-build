@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import Link from 'next/link'
-import { PiBuildingsBold, PiCalendarBold, PiCheckBold, PiCopyBold, PiEnvelopeSimpleBold, PiUserBold } from 'react-icons/pi'
+import { PiCalendarBold, PiCheckBold, PiCopyBold, PiEnvelopeSimpleBold } from 'react-icons/pi'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -26,15 +26,7 @@ const next = [
   'Decydujesz. Dopiero Twoje „tak" uruchamia płatność.',
 ]
 
-type Role = 'agent' | 'biuro'
-
-const roles: { id: Role; title: string; sub: string; Icon: typeof PiUserBold }[] = [
-  { id: 'agent', title: 'Agent indywidualny', sub: 'Pracuję na własną markę', Icon: PiUserBold },
-  { id: 'biuro', title: 'Biuro nieruchomości', sub: 'Mam zespół agentów', Icon: PiBuildingsBold },
-]
-
 export default function Kontakt() {
-  const [role, setRole] = useState<Role>('agent')
   const [copied, setCopied] = useState(false)
   const copyTimer = useRef(0)
   const [name, setName] = useState('')
@@ -85,7 +77,6 @@ export default function Kontakt() {
 
     const message = [
       `Imię: ${name || '—'}`,
-      `Typ: ${role === 'agent' ? 'Agent indywidualny' : 'Biuro nieruchomości'}`,
       `Rynek / obszar działania: ${region || '—'}`,
       `Link do profilu/oferty: ${link || '—'}`,
     ].join('\n')
@@ -142,29 +133,6 @@ export default function Kontakt() {
               </div>
             ) : (
               <form className="contact__form" onSubmit={submit} noValidate>
-                <div className="contact__brief-head">
-                  <span><PiBuildingsBold size={18} aria-hidden="true" /></span>
-                  <div><strong>Krótki brief Twojego biura</strong><small>4 pola · około 60 sekund</small></div>
-                </div>
-                <fieldset className="contact__roles">
-                  <legend className="ifield__legend">Kim jesteś?</legend>
-                  <div className="contact__role-row">
-                    {roles.map(({ id, title, sub, Icon }) => (
-                      <button
-                        key={id}
-                        type="button"
-                        className={`role-card${role === id ? ' is-on' : ''}`}
-                        aria-pressed={role === id}
-                        onClick={() => setRole(id)}
-                      >
-                        <span className="role-card__icon"><Icon size={17} aria-hidden="true" /></span>
-                        <span className="role-card__text"><b>{title}</b><small>{sub}</small></span>
-                        <span className="role-card__tick" aria-hidden="true"><PiCheckBold size={11} /></span>
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-
                 <div className="contact__row">
                   <label className="ifield">
                     <span className="ifield__label">Imię</span>

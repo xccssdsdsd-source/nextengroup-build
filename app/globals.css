@@ -2095,107 +2095,6 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
   }
 }
 
-/* ── Role cards ─────────────────────────────────────────── */
-
-.role-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  min-height: 72px;
-  padding: 0.75rem 2.2rem 0.75rem 0.85rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-lg);
-  background: #fff;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 150ms var(--ease-out),
-    border-color 160ms ease,
-    background-color 160ms ease,
-    box-shadow 160ms var(--ease-out);
-}
-
-.role-card:active {
-  transform: scale(0.985);
-}
-
-.role-card:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 3px;
-}
-
-.role-card__icon {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
-  background: var(--bg-card-hi);
-  color: var(--ink-3);
-  transition: background-color 160ms ease, color 160ms ease;
-}
-
-.role-card__text {
-  display: grid;
-  gap: 0.05rem;
-  min-width: 0;
-}
-
-.role-card__text b {
-  color: var(--ink);
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 620;
-  letter-spacing: -0.02em;
-}
-
-.role-card__text small {
-  color: var(--ink-3);
-  font-size: 0.76rem;
-}
-
-.role-card__tick {
-  position: absolute;
-  top: 50%;
-  right: 0.85rem;
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  background: #fff;
-  color: transparent;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-
-.role-card.is-on {
-  border-color: var(--brand);
-  background: var(--brand-50);
-  box-shadow: 0 0 0 3px rgba(11, 79, 209, 0.1);
-}
-
-.role-card.is-on .role-card__icon {
-  background: rgba(11, 79, 209, 0.12);
-  color: var(--brand);
-}
-
-.role-card.is-on .role-card__tick {
-  border-color: var(--brand);
-  background: var(--brand);
-  color: #fff;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .role-card:hover:not(.is-on) {
-    border-color: #a9b9d1;
-    background: var(--bg-card-hi);
-  }
-}
-
 /* ── Utilities ──────────────────────────────────────────── */
 
 .stack > * + * {
@@ -3984,41 +3883,6 @@ h4,
   gap: 1.15rem;
 }
 
-.contact__brief-head {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0 0 1rem;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.contact__brief-head > span {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 11px;
-  background: var(--brand-50);
-  color: var(--brand);
-}
-
-.contact__brief-head > div {
-  display: grid;
-  gap: 0.05rem;
-}
-
-.contact__brief-head strong {
-  color: var(--ink);
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  letter-spacing: -0.02em;
-}
-
-.contact__brief-head small {
-  color: var(--ink-3);
-  font-size: 0.7rem;
-}
-
 .contact__field-icon {
   position: relative;
 }
@@ -4040,19 +3904,6 @@ h4,
 
 .contact__field-icon .field {
   padding-left: 2.7rem;
-}
-
-.contact__roles {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.contact__role-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
 }
 
 .role-btn {
@@ -4362,8 +4213,7 @@ h4,
 }
 
 @media (max-width: 520px) {
-  .contact__row,
-  .contact__role-row {
+  .contact__row {
     grid-template-columns: 1fr;
   }
 

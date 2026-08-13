@@ -15,10 +15,14 @@
   color: #14181f;
 }
 
+/* `size`, not `inline-size`: the panels take their height from the viewport
+   itself, so one frame always holds exactly one panel whatever aspect the
+   hero crops the card to. */
 .viewport {
   position: relative;
   flex: 1;
   overflow: hidden;
+  container-type: size;
 }
 
 .track {
@@ -32,7 +36,7 @@
 .panel {
   position: relative;
   width: 100%;
-  height: 59.1cqw;
+  height: 100cqh;
   padding: 0 5cqw;
   overflow: hidden;
 }
@@ -91,6 +95,15 @@
 .panelHero {
   padding: 0;
   background: #0d1014;
+}
+
+/* The photograph gets its own layer with bleed top and bottom so the parallax
+   lag can never drag an edge into the frame. */
+.heroShotWrap {
+  position: absolute;
+  inset: -6% 0;
+  display: block;
+  overflow: hidden;
 }
 
 .heroShot {

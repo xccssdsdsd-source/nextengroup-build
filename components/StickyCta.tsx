@@ -14,7 +14,10 @@ export default function StickyCta() {
       const viewportHeight = window.innerHeight ?? 600
       const contact = document.getElementById('kontakt')
       const rect = contact?.getBoundingClientRect()
-      setVisible(window.scrollY > viewportHeight * 0.9)
+      // The hero's full-bleed phase covers the whole screen well before the
+      // fold threshold, and it is the one stretch of the page with no other
+      // way to convert — so the button comes early and stays.
+      setVisible(window.scrollY > viewportHeight * 0.9 || document.body.classList.contains('hero-immersive'))
       setContactInView(Boolean(rect && rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12))
     }
     onScroll()

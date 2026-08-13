@@ -1,7 +1,7 @@
 import styles from './RealEstateMockup.module.css'
 
 const Frame = ({ src, className }: { src?: string; className?: string }) => (
-  <div className={`${styles.ph} ${className ?? ''}`}>
+  <div className={`${styles.ph} ${className ?? ''}`} data-parallax>
     {src ? <img src={src} alt="" loading="lazy" decoding="async" /> : null}
   </div>
 )
@@ -22,7 +22,7 @@ const spec = [
 export default function RealEstateMockup({ photos = {} }: { photos?: Record<string, string> }) {
   return (
     <div className={styles.screen}>
-      <div className={styles.bar}>
+      <div className={styles.bar} data-mock-bar>
         <span className={styles.dot} />
         <span className={styles.dot} />
         <span className={styles.dot} />
@@ -35,7 +35,9 @@ export default function RealEstateMockup({ photos = {} }: { photos?: Record<stri
       <div className={styles.viewport}>
       <div className={styles.track} data-scrub-track>
         <section className={`${styles.panel} ${styles.panelHero}`}>
-          {photos.hero ? <img className={styles.heroShot} src={photos.hero} alt="" decoding="async" /> : null}
+          <span className={styles.heroShotWrap} data-parallax>
+            {photos.hero ? <img className={styles.heroShot} src={photos.hero} alt="" decoding="async" fetchPriority="high" /> : null}
+          </span>
           <span className={styles.heroScrim} aria-hidden="true" />
           <div className={styles.navOver}>
             <div className={styles.navLinks}><span>Oferty</span><span>O nas</span><span>Sprzedaj</span></div>

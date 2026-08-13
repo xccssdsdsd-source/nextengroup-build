@@ -1135,6 +1135,7 @@ h4 {
   display: flex;
   align-items: center;
   overflow: clip;
+  contain: paint;
 }
 
 /* ── Device: a floating browser card, not a computer ──────
@@ -1146,32 +1147,61 @@ h4 {
 
 .device-card {
   position: relative;
-  border-radius: 15px;
+  border-radius: var(--radius, 15px);
+  border: 1px solid rgba(15, 23, 42, 0.07);
   background: #fff;
+  /* The one static light in the material: a hairline of white along the top
+     edge, which is the whole difference between a rectangle and a pane. */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Four terms — contact, mid, floor, ambient — carried on a pseudo-element so
+   the phase can fade the whole stack with opacity instead of animating blur. */
+.device-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: calc(1 - var(--full, 0));
   box-shadow:
-    0 0 0 1px rgba(6, 17, 41, 0.11),
-    0 1px 1px rgba(6, 17, 41, 0.05),
-    0 4px 10px -3px rgba(6, 17, 41, 0.11),
-    0 24px 44px -16px rgba(6, 17, 41, 0.22),
-    0 60px 100px -36px rgba(6, 17, 41, 0.32);
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 10px 28px rgba(15, 23, 42, 0.07),
+    0 44px 88px rgba(15, 23, 42, 0.11),
+    0 130px 170px rgba(15, 23, 42, 0.09);
 }
 
 .scrub-frame {
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   border-radius: inherit;
   background: #fff;
 }
 
-/* One low-alpha band across the top-left corner. Enough to say "a pane of
-   something is in front of this", not enough to wash the photography. */
+/* Off-axis specular. It says a pane of something is in front of this — and it
+   has to be gone by the time the pane becomes the whole screen. */
 .scrub-frame::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 5;
   pointer-events: none;
-  background: linear-gradient(104deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.04) 24%, transparent 40%);
+  mix-blend-mode: overlay;
+  opacity: calc(0.5 * (1 - var(--full, 0)));
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%);
+}
+
+/* Vignette belongs to the full-bleed phase only: inside the card it would read
+   as a filter, across the viewport it reads as a lens. */
+.scrub-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: var(--full, 0);
+  box-shadow: inset 0 0 220px rgba(9, 14, 26, 0.28);
 }
 
 .scrub-track {
@@ -1393,8 +1423,29 @@ html.motion-ready [data-no-reveal] .section-divider {
 
 /* ── Hero stage ─────────────────────────────────────────── */
 
+/* 280vh of scroll for one scene. The length is the point: every beat gets room
+   to arrive, hold and leave, and nothing in the frame is ever moving because
+   the reader happens to be moving. */
 .hero-stage {
-  height: 232vh;
+  height: 280vh;
+}
+
+.hero-stage .pin-sticky {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+}
+
+/* Grain. A perfectly clean white ground is what reads as template — this is
+   the tooth in the paper, and it never moves. */
+.hero-stage .pin-sticky::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
 }
 
 /* The copy is taken out of flow so its exit frees the whole viewport for the
@@ -1422,11 +1473,18 @@ html.motion-ready [data-no-reveal] .section-divider {
   align-items: center;
   padding-top: var(--nav-h);
   padding-inline: var(--gutter);
+  padding-bottom: 7rem;
   will-change: transform, opacity;
 }
 
 .hero-copy > * {
   max-width: 58rem;
+}
+
+/* Every line leaves under its own mask, so the block reads as a curtain of
+   type going up rather than a paragraph dissolving. */
+[data-hero-exit] {
+  will-change: transform, clip-path;
 }
 
 .hero-h1 {
@@ -1442,39 +1500,17 @@ html.motion-ready [data-no-reveal] .section-divider {
   font-size: 1.06em;
 }
 
-/* Same grid+blob texture as the navy sections, tuned down for a white
-   ground — pinned to the sticky frame so it stays put for the whole
-   scroll-scrubbed sequence instead of scrolling away with the 232vh stage. */
+/* Five hairlines, full height, nothing else. The grid is the only thing under
+   the product, and it steps aside the moment the product owns the screen. */
 .hero-mesh {
+  position: absolute;
   inset: 0;
-  opacity: 0.9;
-  background-image:
-    radial-gradient(34% 42% at 82% 16%, rgba(11, 79, 209, 0.13), transparent 72%),
-    radial-gradient(26% 30% at 8% 86%, rgba(63, 125, 238, 0.08), transparent 76%),
-    linear-gradient(rgba(7, 16, 35, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(7, 16, 35, 0.075) 1px, transparent 1px);
-  background-size: auto, auto, 64px 64px, 64px 64px;
-  background-position: calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px);
-  transform: scale(calc(1 + var(--mesh-p, 0) * 0.06));
-  transition: opacity 400ms ease;
-  will-change: background-position, transform;
-}
-
-/* The lit copy has to drift with the base grid or the two sets of lines slide
-   apart by up to 46px on the way down. The cursor glow is the first layer and
-   is positioned inside its own gradient, so it stays put at 0 0. */
-.hero-mesh::after {
-  background-position:
-    0 0,
-    calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px),
-    calc(var(--mesh-p, 0) * -46px) calc(var(--mesh-p, 0) * 30px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-mesh {
-    background-position: 0 0;
-    transform: none;
-  }
+  z-index: 0;
+  pointer-events: none;
+  opacity: calc(1 - var(--full, 0));
+  background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 20% 100%;
+  background-position: 10% 0;
 }
 
 .hero-sub {
@@ -1506,7 +1542,7 @@ html.motion-ready [data-no-reveal] .section-divider {
 }
 
 /* The hero is a pinned scene: nothing in it moves until the reader scrolls, so
-   it has to say so. The cue rides out with the rest of the copy. */
+   it has to say so. It is gone the moment the device starts arriving. */
 .hero-cue {
   display: inline-flex;
   align-items: center;
@@ -1565,204 +1601,209 @@ html.motion-ready [data-no-reveal] .section-divider {
   }
 }
 
-/* Sized to fill the frame rather than sit politely inside it. Losing the
-   chassis freed ~100px of height, which buys the extra width back. */
+/* The column is the layout box the card never leaves: the full-bleed phase is
+   a transform on the card inside it, so nothing reflows and the frame's height
+   is reserved from first paint. */
 .hero-device-col {
   position: relative;
   width: 100%;
   max-width: 61rem;
   min-width: 0;
-  will-change: transform;
-}
-
-.hero-device-col::before {
-  content: '';
-  position: absolute;
-  inset: -10% -8% -16%;
-  background:
-    radial-gradient(52% 52% at 50% 42%, rgba(11, 79, 209, 0.13), transparent 72%),
-    radial-gradient(30% 30% at 10% 6%, rgba(46, 143, 255, 0.11), transparent 74%);
-  filter: blur(52px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ── Beat captions ──────────────────────────────────────── */
-
-.hero-captions {
-  position: relative;
-  height: 3.6rem;
-  margin-bottom: 1.1rem;
-  opacity: var(--caption-in, 0);
-  transition: opacity 200ms linear;
-}
-
-.hero-caption {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  opacity: 0;
-  transform: translate3d(0, 10px, 0);
-  transition:
-    opacity 340ms var(--ease-out),
-    transform 420ms var(--ease-travel);
-}
-
-.hero-caption[data-on='true'] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.hero-caption strong {
-  font-family: var(--font-heading);
-  font-size: 1.0625rem;
-  font-weight: 620;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.hero-caption span {
-  font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--ink-3);
-}
-
-/* Anchored to the chassis edge with a small overhang, not to the viewport —
-   pinned to the window they floated hundreds of pixels away in empty margin
-   and read as stray tooltips rather than part of the object. */
-.hero-float-badge {
-  position: absolute;
-  z-index: 6;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: var(--shadow-md), var(--edge-hi);
-  backdrop-filter: blur(14px) saturate(1.5);
-  -webkit-backdrop-filter: blur(14px) saturate(1.5);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ink-2);
-  white-space: nowrap;
-  opacity: var(--badge-in, 0);
-  transition: opacity 260ms var(--ease-out);
-}
-
-.hero-float-badge strong {
-  font-family: var(--font-mono);
-  color: var(--brand);
-  letter-spacing: -0.01em;
-}
-
-/* The only live pixel in the scene. One pulse is a heartbeat; two would be
-   decoration competing with the scroll scene for the same attention. */
-.hero-float-badge__pulse {
-  flex: none;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 0 0 rgba(11, 79, 209, 0.5);
-  animation: hero-badge-pulse 2.2s var(--ease-out) infinite;
-}
-
-@keyframes hero-badge-pulse {
-  70% { box-shadow: 0 0 0 7px rgba(11, 79, 209, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(11, 79, 209, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-float-badge__pulse {
-    animation: none;
-  }
-}
-
-/* Overhang rather than overlay: the badge hangs off the chassis edge and only
-   clips it by --badge-overhang, so it never covers the screen content it is
-   supposed to be vouching for. */
-/* Pinned to the corners with most of the pill outside the card. Anywhere else
-   they sit on top of the listing content they are supposed to be vouching for
-   — at this card size there is no interior left to cover. */
-.hero-device-col {
-  --badge-overhang: 2.25rem;
-}
-
-.hero-float-badge--a {
-  top: 7%;
-  right: calc(100% - var(--badge-overhang));
-}
-
-.hero-float-badge--b {
-  bottom: 7%;
-  left: calc(100% - var(--badge-overhang));
-}
-
-/* Below 1320 the card is close to full-bleed, so the pills have to move back
-   inside it or they get cut off by the viewport edge. Below 1080 there is no
-   margin left to hang off at all. */
-@media (max-width: 1320px) {
-  .hero-device-col {
-    --badge-overhang: 6.5rem;
-  }
-}
-
-@media (max-width: 1080px) {
-  .hero-float-badge {
-    display: none;
-  }
+  margin-top: 24px;
+  perspective: 1800px;
 }
 
 .hero-device {
-  will-change: transform;
-  transform: perspective(1500px) rotateX(7deg) scale(1.045);
-  transform-origin: 50% 34%;
+  transform-origin: 50% 120%;
 }
 
-/* Pre-scene resting state: the device waits below the fold so the headline
-   owns the first screen on its own. */
-.hero-device-col {
-  transform: translate3d(0, 76%, 0);
+html.motion-ready .hero-device {
+  opacity: 0;
+  transform: translate3d(0, 16%, 0) scale(0.82) rotateX(8deg);
 }
 
-/* Beat 1 lifts the copy off dead centre so the rising device has clearance
-   under the CTA row instead of cutting through it. */
-.hero-copy {
-  padding-bottom: 12rem;
+[data-live] .hero-device,
+[data-live] .scrub-frame {
+  will-change: transform, clip-path;
+}
+
+/* Zero CLS: the frame reserves its box by ratio, and the mockup is laid into
+   it absolutely — the browser bar can then collapse without a single px of
+   height being animated. */
+.scrub-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.hero-device .scrub-frame > * {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: calc(100% + var(--bar-h, 0px));
+  aspect-ratio: auto;
+  transform: translate3d(-50%, calc(var(--bar-out, 0) * var(--bar-h, 0px) * -1), 0);
+}
+
+.hero-device [data-mock-bar] {
+  transform-origin: 50% 0;
+  transform: translate3d(0, calc(var(--bar-out, 0) * -100%), 0) scaleY(calc(1 - var(--bar-out, 0)));
+  opacity: calc(1 - var(--bar-out, 0));
+}
+
+/* Photography trails the layout by a hair. Scaled up first so the lag can
+   never pull an edge into frame. */
+.hero-device [data-parallax] img,
+.hero-device [data-parallax] {
+  transform: translate3d(0, var(--mock-par, 0px), 0);
+}
+
+.hero-device [data-parallax] img {
+  transform: translate3d(0, var(--mock-par, 0px), 0) scale(1.12);
+}
+
+/* ── In-frame micro copy ────────────────────────────────── */
+
+/* One line naming whatever the frame currently holds, and one hairline saying
+   how far through the sequence it is. Nothing else lives in the kadr. */
+.hero-mark,
+.hero-rail {
+  position: absolute;
+  z-index: 7;
+  pointer-events: none;
+  opacity: var(--progress-in, 1);
+}
+
+.hero-mark {
+  left: calc(var(--card-l, 0px) + 28px);
+  top: calc(var(--card-b, 0px) + 20px);
+  height: 1em;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.55);
+  transform: translate3d(calc(var(--hud-x, 0px) * -1), var(--hud-y, 0px), 0);
+}
+
+.hero-mark > span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 180ms linear;
+}
+
+.hero-mark > span[data-on='true'] {
+  opacity: 1;
+}
+
+.hero-rail {
+  right: calc(var(--card-l, 0px) - 22px);
+  top: calc(var(--card-b, 0px) - 140px);
+  width: 1px;
+  height: 140px;
+  background: rgba(15, 23, 42, 0.18);
+  transform: translate3d(var(--hud-rx, 0px), var(--hud-ry, 0px), 0);
+}
+
+.hero-rail > i {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.55);
+  transform: scaleY(var(--progress, 0));
+  transform-origin: 50% 100%;
+}
+
+/* The marks read against whatever the frame currently holds — photograph one
+   moment, white interface the next — so they are not given a colour at all:
+   difference blending inverts them against their own backdrop. Contrast is
+   then a property of the material rather than a value someone has to keep in
+   sync with the panel underneath. */
+.hero-mark,
+.hero-rail {
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.hero-rail {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.hero-rail > i {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.hero-mark {
+  transform: translate3d(calc(var(--hud-mx, 0px) * -1), var(--hud-my, 0px), 0);
+}
+
+/* ── Nav and the persistent CTA over the full frame ─────── */
+
+body.hero-immersive .nav-veil,
+body.hero-immersive .nav-read {
+  opacity: 0;
+}
+
+body.hero-immersive .nav-island,
+body.hero-immersive .nav-island:hover {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* The frame hangs from under the nav rather than running behind it, so the band
+   above it stays white and the links keep their ink. Nothing up there is dark
+   enough to need white type, and white on white is not a style choice. */
+
+/* The one fixed point of conversion on the page, so it never leaves — over the
+   photograph it changes material, over an interface it stays the blue button
+   that reads at a glance. */
+body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff;
+  box-shadow: none;
+  transform: scale(0.94);
+}
+
+/* ── Hand-off to the stats below ────────────────────────── */
+
+.trust-strip {
+  opacity: var(--hero-out, 1);
+  transform: translate3d(0, calc((1 - var(--hero-out, 1)) * 40px), 0);
 }
 
 @media (max-width: 1023px) {
   .hero-stage {
-    height: 200vh;
+    height: 190vh;
   }
 
   .hero-device-col {
     max-width: 40rem;
   }
 
-  .hero-captions {
-    height: 4.2rem;
+  .hero-mesh {
+    display: none;
+  }
+
+  /* The rail measures a journey the phone does not take — two rest points and
+     no full-bleed phase. The name of the panel still earns its line. */
+  .hero-rail {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-stage {
-    height: 178svh;
-  }
-
   /* `safe center` is the whole fix for the headline sliding under the nav:
      plain centring keeps the block centred even once it is taller than the
      column, which pushes the first line up past the top padding and behind
      the pills. `safe` falls back to start-alignment exactly in that case, and
      browsers that do not know the keyword drop the line and keep the plain
-     `center` above. The bottom reserve comes down with it: the copy was
-     paying 8rem of clearance to a device that only arrives once it has faded
-     out, and the title carried the cost by sitting too high. */
+     `center` above. */
   .hero-copy {
     justify-content: center;
     justify-content: safe center;
@@ -1771,56 +1812,25 @@ html.motion-ready [data-no-reveal] .section-divider {
     padding-bottom: min(6.5rem, 13svh);
   }
 
-  /* Pushed further off the fold than on desktop, both to give the lowered
-     copy its room back and because a third of an iMac parked under the CTA is
-     a crop, not a preview. The scene JS reads the same value. */
-  .hero-device-col {
-    transform: translate3d(0, 88%, 0);
-  }
-
-  .hero-mesh {
-    background-size: auto, auto, 48px 48px, 48px 48px;
-  }
-
   .hero-actions .btn {
     width: 100%;
   }
 
-  .hero-caption strong {
-    font-size: 0.9375rem;
-  }
-
-  .hero-caption span {
-    font-size: 0.8125rem;
-  }
-
   /* A whole desktop layout scaled down to 358px puts every price and filter
-     below the legibility threshold — the phone user scrolls a full screen to
-     look at a blurred rectangle. Crop into the mockup instead of shrinking it:
-     the inner container query then sizes type against the wider box, so the
-     same markup renders at readable size and reads as a real site seen close up. */
+     below the legibility threshold. Crop into the mockup instead of shrinking
+     it: the inner container query then sizes type against the wider box, so
+     the same markup renders at readable size. */
   .hero-device-col {
     max-width: none;
     margin-inline: calc(var(--gutter) * -1 + 0.5rem);
   }
 
-  /* Ceiling is the crop itself: the mockup renders 168% wide at 16/10, so the
-     frame can grow to 1/1.05 before white appears under it. 5/4 left the card
-     floating in ~200px of void top and bottom. */
   .scrub-frame {
     aspect-ratio: 1 / 1;
   }
 
-  /* Scoped through .hero-device rather than `.scrub-frame > *`: the mockup's
-     own module sets `width: 100%` at equal specificity and, being a CSS module,
-     lands after this file — so the flat selector lost, the crop never applied,
-     and the 16/10 mockup sat in a 5/4 frame leaving a white band under it. */
   .hero-device .scrub-frame > * {
-    position: absolute;
-    top: 0;
-    left: 50%;
     width: 168%;
-    transform: translateX(-50%);
   }
 
   /* The crop is centred, so each panel has to be nudged to put its own
@@ -1840,11 +1850,6 @@ html.motion-ready [data-no-reveal] .section-divider {
 
   .device-card {
     border-radius: 12px;
-    box-shadow:
-      0 0 0 1px rgba(6, 17, 41, 0.075),
-      0 1px 1px rgba(6, 17, 41, 0.04),
-      0 2px 6px -2px rgba(6, 17, 41, 0.1),
-      0 16px 30px -14px rgba(6, 17, 41, 0.2);
   }
 }
 
@@ -1898,29 +1903,49 @@ html.motion-ready [data-no-reveal] .section-divider {
     position: relative;
     inset: auto;
     padding-top: 0;
-    opacity: 1;
-    transform: none;
-    filter: none;
+    padding-bottom: 0;
   }
 
   .hero-device-col {
-    transform: none;
     max-width: 46rem;
   }
 
+  html.motion-ready .hero-device,
   .hero-device {
-    transform: perspective(1500px) rotateX(3deg) scale(1);
-  }
-
-  .hero-captions,
-  .hero-float-badge {
     opacity: 1;
+    transform: perspective(1800px) rotateX(3deg);
   }
 
-  .hero-float-badge {
-    animation: none;
+  /* The name of the panel is information, so it stays; the rail measures a
+     journey that no longer happens, so it goes. */
+  .hero-mark {
+    position: static;
+    display: block;
+    height: auto;
+    margin: 1.25rem auto 0;
+    text-align: center;
+    transform: none;
+  }
+
+  .hero-mark > span {
+    position: static;
+    display: none;
+  }
+
+  .hero-mark > span[data-on='true'] {
+    display: inline;
+  }
+
+  .hero-rail {
+    display: none;
+  }
+
+  .trust-strip {
+    opacity: 1;
+    transform: none;
   }
 }
+
 
 /* ── Forms ──────────────────────────────────────────────── */
 

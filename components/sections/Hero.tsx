@@ -1,10 +1,9 @@
 'use client'
 
 import { Fragment, useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
-import { PiGaugeBold } from 'react-icons/pi'
 import FlipWords from '@/components/ui/FlipWords'
 import RealEstateMockup from '@/components/ui/RealEstateMockup'
-import { subscribeScroll } from '@/lib/scrollTicker'
+import { requestScrollFlush } from '@/lib/scrollTicker'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 type Word = { text: string; accent?: boolean }
@@ -19,21 +18,22 @@ const line2: Word[] = [{ text: 'lepsze' }, { text: 'miejsce' }, { text: 'niż' }
 // last line off centre.
 const rivals = ['portal ogłoszeniowy.', 'profil obok innych.', 'szablon z kreatora.', 'wizytówka bez zdjęć.']
 
-// Each caption is pinned to the panel the mockup is scrubbing through, so the
-// scroll reads as one argument being answered three times rather than a
-// carousel running on its own clock.
-const captions = [
-  { t: 'Strona zbudowana wokół Ciebie', s: 'Nie profil w portalu obok trzydziestu innych agentów.' },
-  { t: 'Panel ofert', s: 'Dodajesz nieruchomość sam, w kilka minut. Bez programisty.' },
-  { t: 'Karta oferty', s: 'Twoje nazwisko, Twój telefon, Twoja prowizja.' },
-]
+// One line of monospace inside the frame, changing only on the rest points.
+// Naming the panel is the whole job — anything longer competes with the
+// product it is supposed to be labelling.
+const marks = ['Strona agenta', 'Panel ofert', 'Karta oferty i lead']
 
 const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v)
 const range = (v: number, a: number, b: number) => clamp((v - a) / (b - a))
-const smooth = (t: number) => t * t * (3 - 2 * t)
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+// The phase easing is the CSS curve written out: every beat boundary lands on
+// the same deceleration, so consecutive beats read as one camera move.
+const easeOutExpoish = (t: number) => 1 - Math.pow(1 - t, 3.2)
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
 const HeadlineLine = ({ words, start, tail }: { words: Word[]; start: number; tail?: ReactNode }) => (
-  <span className="hero-heading-line">
+  <span className="hero-heading-line" data-hero-exit>
     {words.map((w, i) => (
       <Fragment key={w.text}>
         {i > 0 && ' '}
@@ -52,108 +52,286 @@ const HeadlineLine = ({ words, start, tail }: { words: Word[]; start: number; ta
 
 export default function Hero() {
   const stageRef = useRef<HTMLElement>(null)
+  const stickyRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
   const colRef = useRef<HTMLDivElement>(null)
-  const captionRefs = useRef<Array<HTMLDivElement | null>>([])
+  const frameRef = useRef<HTMLDivElement>(null)
+  const markRefs = useRef<Array<HTMLSpanElement | null>>([])
 
   useEffect(() => {
     const stage = stageRef.current
-    if (!stage) return
+    const sticky = stickyRef.current
+    const copy = copyRef.current
+    const device = deviceRef.current
+    const card = cardRef.current
+    const col = colRef.current
+    const frame = frameRef.current
+    if (!stage || !sticky || !copy || !device || !card || !col || !frame) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const track = stage.querySelector<HTMLElement>('[data-scrub-track]')
-    const copy = copyRef.current
-    const device = deviceRef.current
-    const col = colRef.current
-    if (!track || !copy || !device || !col) return
+    const bar = stage.querySelector<HTMLElement>('[data-mock-bar]')
+    if (!track) return
 
+    // Everything the scene needs to know about the page is measured once per
+    // layout and read from these — a getBoundingClientRect per property inside
+    // the frame loop is what turns a scrub into a stutter.
+    let span = 1
+    let cardH = 0
+    let centerDelta = 0
+    let edgeX = 0
+    let edgeY = 0
+    let scaleTarget = 1
     let travel = 0
-    let panelH = 0
-    let span = 0
-    let last = -1
-    let lastCaption = -1
+    let wide = true
 
-    // Travel is read off the track itself instead of assuming "two frames".
-    // The mockup is cropped differently per breakpoint, so a hard-coded
-    // multiple scrolled past the end of the content on phones and left the
-    // bottom of the screen blank.
+    const exits = Array.from(copy.querySelectorAll<HTMLElement>('[data-hero-exit]'))
+    const cue = copy.querySelector<HTMLElement>('.hero-cue')
+
     const measure = () => {
-      const viewport = track.parentElement
-      const frameH = viewport ? viewport.clientHeight : 0
-      travel = Math.max(track.scrollHeight - frameH, 0)
-      panelH = track.children.length ? track.scrollHeight / track.children.length : frameH
+      wide = window.innerWidth >= 1024
       span = Math.max(stage.offsetHeight - window.innerHeight, 1)
+
+      device.style.transform = ''
+      const colRect = col.getBoundingClientRect()
+      const stickyRect = sticky.getBoundingClientRect()
+      cardH = colRect.height
+      // Sticky is exactly one viewport tall, so its own box is the frame the
+      // full-bleed phase has to centre into — no scroll position enters here.
+      // The frame covers the viewport plus the height of the nav, and is then
+      // pushed down by half of it: the product's own header lands clear of the
+      // site's pills instead of underneath them.
+      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 84
+      edgeX = colRect.left
+      edgeY = stickyRect.bottom - colRect.bottom
+      // Width sets the bleed, with a floor that carries the frame a little past
+      // the bottom of the screen — panel furniture that would otherwise be
+      // sliced in half by the viewport edge falls cleanly out of shot instead.
+      scaleTarget = colRect.width > 0 && cardH > 0
+        ? Math.max(window.innerWidth / colRect.width, (stickyRect.height - navH + 145) / cardH)
+        : 1
+      // The frame hangs from under the nav rather than sitting centred: the
+      // product has a header of its own, and two headers on one line is the
+      // one thing this phase cannot afford.
+      centerDelta = navH + (cardH * scaleTarget) / 2 - (colRect.top - stickyRect.top + cardH / 2)
+
+      // The two marks live on the sticky, so they are given the card's own
+      // edges to hang from.
+      sticky.style.setProperty('--card-l', `${(colRect.left - stickyRect.left).toFixed(1)}px`)
+      sticky.style.setProperty('--card-b', `${(colRect.bottom - stickyRect.top).toFixed(1)}px`)
+
+      const barH = bar ? bar.getBoundingClientRect().height : 0
+      frame.style.setProperty('--bar-h', `${barH.toFixed(2)}px`)
+
+      const viewport = track.parentElement
+      travel = Math.max(track.scrollHeight - (viewport ? viewport.clientHeight : 0), 0)
     }
 
-    const update = () => {
-      const p = clamp(-stage.getBoundingClientRect().top / span)
-      if (Math.abs(p - last) < 0.0004) return
-      last = p
+    // Three rest points with real dwell on each: the frame is genuinely still
+    // while the reader reads it, and every move between them is eased on both
+    // ends so nothing ever starts or stops at speed.
+    const scrubAt = (u: number) => {
+      const stops = wide ? 3 : 2
+      const dwell = 0.13
+      const move = (1 - stops * dwell) / (stops - 1)
+      let t = 0
+      for (let i = 0; i < stops; i += 1) {
+        const holdStart = i * (dwell + move)
+        if (u < holdStart + dwell) {
+          t = i / (stops - 1)
+          break
+        }
+        if (u < holdStart + dwell + move) {
+          t = (i + easeInOutCubic((u - holdStart - dwell) / move)) / (stops - 1)
+          break
+        }
+        t = (i + 1) / (stops - 1)
+      }
+      return t
+    }
 
-      // The backdrop grid is the one thing in the scene allowed to answer the
-      // scroll directly — a slow diagonal drift plus a faint zoom, so the
-      // otherwise-static hero ground reads as alive under the pinned copy.
-      stage.style.setProperty('--mesh-p', p.toFixed(4))
-      // 640, not 768: this has to be the same breakpoint the stylesheet uses
-      // for the compact resting states, or the first scroll frame snaps the
-      // device away from where CSS parked it.
-      const compact = window.innerWidth <= 640
+    let target = 0
+    let value = 0
+    let painted = -1
+    let raf = 0
+    let live = false
+    let lastMark = -1
+    let lastTone = ''
+    let immersive = false
 
-      // Beat 1 → 2: the headline hands the stage over to the product. It has
-      // to be fully gone well before the sticky block would carry it into the
-      // nav — the old scene let it slide underneath the pills.
-      const exit = smooth(range(p, 0.06, 0.3))
-      copy.style.opacity = `${1 - exit}`
-      copy.style.transform = `translate3d(0, ${(-58 * exit).toFixed(1)}px, 0) scale(${(1 - 0.03 * exit).toFixed(4)})`
-      copy.style.filter = exit > 0.01 ? `blur(${(4 * exit).toFixed(2)}px)` : ''
-      copy.style.visibility = exit > 0.985 ? 'hidden' : ''
+    const render = (p: number) => {
+      sticky.style.setProperty('--p', p.toFixed(4))
 
-      // The device rises from below the fold and settles into its resting
-      // frame — the arrival is the motion, not a 5% scale nudge.
-      const settle = smooth(range(p, 0, 0.34))
-      const drift = smooth(range(p, 0.86, 1))
-      // Resting offset matches the CSS pre-scene state per breakpoint — phones
-      // park the device further down so the lowered hero copy keeps its room.
-      const rest = compact ? 88 : 76
-      col.style.transform = `translate3d(0, ${(rest - rest * settle - 2.2 * drift).toFixed(2)}%, 0)`
-      device.style.transform = `perspective(1500px) rotateX(${(7 - 4.6 * settle).toFixed(2)}deg) scale(${(1.045 - 0.045 * settle).toFixed(4)})`
+      const enter = easeOutExpoish(range(p, 0, 0.14))
+      const settle = easeOutExpoish(range(p, 0.14, 0.3))
+      const full = wide ? easeOutExpoish(range(p, 0.3, 0.42)) : 0
+      // The curtain accelerates instead of decelerating. An ease-out here empties
+      // the screen a third of a viewport early and the reader scrolls through
+      // nothing; this way the frame is alive until the section actually ends.
+      const out = Math.pow(range(p, 0.84, 1), 2.6)
 
-      const reveal = smooth(range(p, 0.3, 0.42))
-      col.style.setProperty('--badge-in', reveal.toFixed(3))
+      // The copy leaves under a mask travelling up rather than by fading: a
+      // fade reads as the page giving up, a wipe reads as a cut. Bottom line
+      // first, so the last thing standing is the promise and nothing is ever
+      // left sitting on top of the frame.
+      exits.forEach((el, i) => {
+        const k = exits.length - 1 - i
+        const from = 0.1 + k * 0.018
+        const e = easeOutExpoish(range(p, from, from + 0.12))
+        el.style.clipPath = e > 0.001 ? `inset(0 0 ${(e * 100).toFixed(2)}% 0)` : ''
+        el.style.transform = `translate3d(0, ${(-48 * e).toFixed(2)}px, 0)`
+      })
+      // The copy climbs while the product rises, so the two share the screen
+      // for the hand-over instead of stacking on the same centre line, and it
+      // is already thinning by the time the mask starts eating the lines.
+      copy.style.transform = `translate3d(0, ${(-90 * enter).toFixed(1)}px, 0)`
+      copy.style.opacity = (1 - 0.55 * easeOutExpoish(range(p, 0.08, 0.26))).toFixed(3)
+      copy.style.visibility = p > 0.33 ? 'hidden' : ''
+      if (cue) {
+        // The entrance keyframe holds opacity forwards, so only an important
+        // declaration can take the cue back off the screen.
+        const c = 1 - range(p, 0.03, 0.13)
+        cue.style.setProperty('opacity', c.toFixed(3), 'important')
+        cue.style.visibility = c < 0.01 ? 'hidden' : ''
+      }
 
-      // Mockup scrub starts only once the device has arrived, so the two
-      // motions read as consecutive beats instead of competing for attention.
-      const scrub = range(p, 0.32, 1)
-      const offset = scrub * travel
+      const rot = wide ? 8 - 5 * enter - 3 * settle : 0
+      const base = 0.82 + 0.11 * enter + 0.07 * settle
+      const scale = base * lerp(1, scaleTarget, full)
+      // Two offsets, not one: the entry brings the card on screen, the settle
+      // beat walks it the last stretch up to centre — which is what keeps the
+      // headline clear of the frame while both are still on screen. The third
+      // term pays back the drift that transform-origin (below the card, so the
+      // tilt pivots off the floor) introduces once the card scales up.
+      const ty = 0.16 * cardH * (1 - enter) + 0.4 * cardH * (1 - settle)
+        + full * (centerDelta + 0.7 * cardH * (scale - 1))
+      const blur = wide ? 14 * (1 - enter) : 0
+
+      device.style.transform = `translate3d(0, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rot.toFixed(2)}deg)`
+      device.style.opacity = enter.toFixed(3)
+      device.style.filter = blur > 0.08 ? `blur(${blur.toFixed(2)}px)` : ''
+      device.style.clipPath = out > 0.001 ? `inset(0 0 ${(out * 100).toFixed(2)}% 0)` : ''
+      card.style.transform = out > 0.001
+        ? `translate3d(0, ${(-10 * out).toFixed(2)}%, 0) scale(${(1 + 0.03 * out).toFixed(4)})`
+        : ''
+
+      col.style.setProperty('--full', full.toFixed(3))
+      col.style.setProperty('--radius', `${(15 * (1 - full)).toFixed(2)}px`)
+      // Both marks live beside the card while it is an object on a page and
+      // travel into its corners once it becomes the screen. The mark clears the
+      // assistant bubble that owns the same corner of every page.
+      sticky.style.setProperty('--hud-mx', `${(Math.max(edgeX - 44, 0) * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-my', `${((edgeY - 60) * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-rx', `${((edgeX - 50) * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-ry', `${((edgeY - 28) * full).toFixed(1)}px`)
+      sticky.style.setProperty('--progress-in', (enter * (1 - out)).toFixed(3))
+      sticky.style.setProperty('--full', full.toFixed(3))
+      frame.style.setProperty('--bar-out', full.toFixed(3))
+
+      // Without a full-bleed phase there is no reason to hold the scrub back:
+      // on a phone the scrub is the scene, so it takes the room the transition
+      // would otherwise have used.
+      const u = wide ? range(p, 0.42, 0.84) : range(p, 0.3, 0.9)
+      const t = scrubAt(u)
+      // The two interface panels ride 30px higher once the frame is full-bleed,
+      // which lifts their last row of small type off the line the in-frame mark
+      // sits on. The photograph panel keeps its own framing.
+      const offset = t * travel + 30 * full * clamp(t * 2)
       track.style.transform = `translate3d(0, ${(-offset).toFixed(2)}px, 0)`
+      // The photography rides at 0.92 of the content's rate. The whole point is
+      // that you cannot name it — you only notice the frame has depth.
+      frame.style.setProperty('--mock-par', `${(18 - 36 * t).toFixed(2)}px`)
+      sticky.style.setProperty('--progress', t.toFixed(4))
 
-      // The caption names whichever panel currently owns the frame, derived
-      // from the real offset rather than from fixed scrub thresholds that only
-      // happened to line up at one breakpoint.
-      const index = panelH ? Math.min(2, Math.max(0, Math.round(offset / panelH))) : 0
-      if (index !== lastCaption) {
-        lastCaption = index
-        captionRefs.current.forEach((el, i) => {
-          if (el) el.dataset.on = i === index ? 'true' : 'false'
+      const mark = Math.min(marks.length - 1, Math.round(t * (marks.length - 1)))
+      if (mark !== lastMark) {
+        lastMark = mark
+        markRefs.current.forEach((el, i) => {
+          if (el) el.dataset.on = i === mark ? 'true' : 'false'
         })
       }
-      col.style.setProperty('--caption-in', smooth(range(p, 0.34, 0.46)).toFixed(3))
+
+      // Light type only where the frame is actually dark: over the photograph
+      // at full bleed. Beside the card, and over both interface panels, the
+      // ground is white and the marks stay ink.
+      const tone = full > 0.5 && mark === 0 ? 'dark' : 'light'
+      if (tone !== lastTone) {
+        lastTone = tone
+        document.body.dataset.heroTone = tone
+      }
+
+      const wantImmersive = wide && p > 0.38 && p < 0.92
+      if (wantImmersive !== immersive) {
+        immersive = wantImmersive
+        document.body.classList.toggle('hero-immersive', wantImmersive)
+        // The persistent CTA reads this class off a scroll tick, and the phase
+        // can flip on a frame where no scroll event fires — without the nudge
+        // the button is missing for exactly the stretch that needs it.
+        requestScrollFlush()
+      }
+
+      document.documentElement.style.setProperty('--hero-out', easeOutExpoish(range(p, 0.88, 1)).toFixed(3))
+    }
+
+    // One loop, one smoothed value. Reading the rect here rather than in a
+    // scroll handler is what keeps the scene at the compositor's clock instead
+    // of the input device's.
+    const frameLoop = () => {
+      raf = 0
+      target = clamp(-stage.getBoundingClientRect().top / span)
+      value = lerp(value, target, 0.085)
+      if (Math.abs(target - value) < 0.0002) value = target
+      // A pinned scene spends a lot of its life standing still. Once the
+      // smoothed value has caught up, the loop keeps ticking but writes
+      // nothing — no styles, no blend groups, no compositing work.
+      if (Math.abs(value - painted) > 0.00015) {
+        painted = value
+        render(value)
+      }
+      if (live) raf = window.requestAnimationFrame(frameLoop)
+    }
+
+    const start = () => {
+      if (live) return
+      live = true
+      sticky.dataset.live = 'true'
+      raf = window.requestAnimationFrame(frameLoop)
+    }
+
+    const stop = () => {
+      if (!live) return
+      live = false
+      if (raf) window.cancelAnimationFrame(raf)
+      raf = 0
+      delete sticky.dataset.live
     }
 
     measure()
-    update()
+    target = clamp(-stage.getBoundingClientRect().top / span)
+    value = target
+    render(value)
 
-    const unsubscribe = subscribeScroll(update)
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { rootMargin: '20% 0px' }
+    )
+    io.observe(stage)
+
     const onResize = () => {
       measure()
-      last = -1
-      update()
+      render(value)
     }
     window.addEventListener('resize', onResize)
+
     return () => {
-      unsubscribe()
+      io.disconnect()
+      stop()
       window.removeEventListener('resize', onResize)
+      document.body.classList.remove('hero-immersive')
+      delete document.body.dataset.heroTone
+      document.documentElement.style.removeProperty('--hero-out')
     }
   }, [])
 
@@ -164,8 +342,8 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={stageRef} className="pin-stage hero-stage" data-no-reveal>
-      <div className="pin-sticky">
-        <span className="section-mesh hero-mesh" aria-hidden="true" />
+      <div ref={stickyRef} className="pin-sticky">
+        <span className="hero-mesh" aria-hidden="true" />
         <div className="container hero-stack">
           <div ref={copyRef} className="hero-copy">
             <h1 className="hero-h1">
@@ -183,11 +361,11 @@ export default function Hero() {
               />
             </h1>
 
-            <p className="hero-sub hero-from-right" style={{ animationDelay: '160ms' }}>
+            <p className="hero-sub hero-from-right" data-hero-exit style={{ animationDelay: '160ms' }}>
               Strony i panele ofert dla agentów nieruchomości — widzisz efekt, zanim zapłacisz.
             </p>
 
-            <div className="hero-actions hero-from-left" style={{ animationDelay: '240ms' }}>
+            <div className="hero-actions hero-from-left" data-hero-exit style={{ animationDelay: '240ms' }}>
               <a
                 href="#kontakt"
                 onClick={(e) => go(e, 'kontakt')}
@@ -201,7 +379,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <p className="hero-note hero-from-left" style={{ animationDelay: '300ms' }}>
+            <p className="hero-note hero-from-left" data-hero-exit style={{ animationDelay: '300ms' }}>
               Bez zaliczki · Poprawki bez limitu do akceptacji · Odpowiadamy w 24h
             </p>
 
@@ -212,30 +390,9 @@ export default function Hero() {
           </div>
 
           <div ref={colRef} className="hero-device-col">
-            <div className="hero-captions" aria-hidden="true">
-              {captions.map((c, i) => (
-                <div
-                  key={c.t}
-                  ref={(el) => { captionRefs.current[i] = el }}
-                  className="hero-caption"
-                  data-on={i === 0 ? 'true' : 'false'}
-                >
-                  <strong>{c.t}</strong>
-                  <span>{c.s}</span>
-                </div>
-              ))}
-            </div>
-
-            <span className="hero-float-badge hero-float-badge--a" aria-hidden="true">
-              <PiGaugeBold size={14} aria-hidden="true" /> Lighthouse <strong>96+</strong>
-            </span>
-            <span className="hero-float-badge hero-float-badge--b" aria-hidden="true">
-              <span className="hero-float-badge__pulse" /> Wizualizacja w <strong>24h</strong>
-            </span>
-
             <div ref={deviceRef} className="hero-device">
-              <div className="device-card">
-                <div className="scrub-frame">
+              <div ref={cardRef} className="device-card">
+                <div ref={frameRef} className="scrub-frame">
                   <RealEstateMockup
                     photos={{
                       hero: '/mockup/listing-hero.jpg',
@@ -255,6 +412,23 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Outside the device column on purpose: the column carries the scene's
+            perspective and therefore its own stacking context, and these two
+            have to blend against the card itself. */}
+        <span className="hero-mark" aria-hidden="true">
+          {marks.map((m, i) => (
+            <span
+              key={m}
+              ref={(el) => { markRefs.current[i] = el }}
+              data-on={i === 0 ? 'true' : 'false'}
+            >
+              {m}
+            </span>
+          ))}
+        </span>
+
+        <span className="hero-rail" aria-hidden="true"><i /></span>
       </div>
     </section>
   )

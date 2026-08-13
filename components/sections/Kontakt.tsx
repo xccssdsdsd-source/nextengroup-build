@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import Link from 'next/link'
-import { PiBuildingsBold, PiCalendarBold, PiCheckBold, PiEnvelopeSimpleBold, PiMapPinBold } from 'react-icons/pi'
+import { PiBuildingsBold, PiCalendarBold, PiCheckBold, PiCopyBold, PiEnvelopeSimpleBold, PiUserBold } from 'react-icons/pi'
 import StatefulButton from '@/components/ui/StatefulButton'
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaRedditAlien, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -28,8 +28,15 @@ const next = [
 
 type Role = 'agent' | 'biuro'
 
+const roles: { id: Role; title: string; sub: string; Icon: typeof PiUserBold }[] = [
+  { id: 'agent', title: 'Agent indywidualny', sub: 'Pracuję na własną markę', Icon: PiUserBold },
+  { id: 'biuro', title: 'Biuro nieruchomości', sub: 'Mam zespół agentów', Icon: PiBuildingsBold },
+]
+
 export default function Kontakt() {
   const [role, setRole] = useState<Role>('agent')
+  const [copied, setCopied] = useState(false)
+  const copyTimer = useRef(0)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -42,7 +49,17 @@ export default function Kontakt() {
   const emailRef = useRef<HTMLInputElement>(null)
   const handoff = useRef(0)
 
-  useEffect(() => () => clearTimeout(handoff.current), [])
+  useEffect(() => () => {
+    clearTimeout(handoff.current)
+    clearTimeout(copyTimer.current)
+  }, [])
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(CONTACT_EMAIL)
+    setCopied(true)
+    clearTimeout(copyTimer.current)
+    copyTimer.current = window.setTimeout(() => setCopied(false), 2000)
+  }
 
   const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
 
@@ -130,52 +147,55 @@ export default function Kontakt() {
                   <div><strong>Krótki brief Twojego biura</strong><small>4 pola · około 60 sekund</small></div>
                 </div>
                 <fieldset className="contact__roles">
-                  <legend className="field-label">Kim jesteś?</legend>
+                  <legend className="ifield__legend">Kim jesteś?</legend>
                   <div className="contact__role-row">
-                    {(['agent', 'biuro'] as Role[]).map((r) => (
+                    {roles.map(({ id, title, sub, Icon }) => (
                       <button
-                        key={r}
+                        key={id}
                         type="button"
-                        className={`role-btn${role === r ? ' is-on' : ''}`}
-                        aria-pressed={role === r}
-                        onClick={() => setRole(r)}
+                        className={`role-card${role === id ? ' is-on' : ''}`}
+                        aria-pressed={role === id}
+                        onClick={() => setRole(id)}
                       >
-                        {r === 'agent' ? 'Agent indywidualny' : 'Biuro nieruchomości'}
+                        <span className="role-card__icon"><Icon size={17} aria-hidden="true" /></span>
+                        <span className="role-card__text"><b>{title}</b><small>{sub}</small></span>
+                        <span className="role-card__tick" aria-hidden="true"><PiCheckBold size={11} /></span>
                       </button>
                     ))}
                   </div>
                 </fieldset>
 
                 <div className="contact__row">
-                  <div>
-                    <label className="field-label" htmlFor="k-name">Imię</label>
-                    <input id="k-name" className="field" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" placeholder="Anna" />
-                  </div>
-                  <div>
-                    <label className="field-label" htmlFor="k-phone">Telefon <span className="field-opt">opcjonalnie</span></label>
-                    <input id="k-phone" type="tel" className="field" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+48 600 000 000" />
-                  </div>
+                  <label className="ifield">
+                    <span className="ifield__label">Imię</span>
+                    <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" placeholder="Anna" />
+                  </label>
+                  <label className="ifield">
+                    <span className="ifield__label">Telefon <i>opcjonalnie</i></span>
+                    <input id="k-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+48 600 000 000" />
+                  </label>
                 </div>
 
                 <div>
-                  <label className="field-label" htmlFor="k-email">Email</label>
-                  <input
-                    id="k-email"
-                    ref={emailRef}
-                    type="email"
-                    required
-                    className="field"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value)
-                      if (emailError && emailValid(e.target.value)) setEmailError('')
-                    }}
-                    onBlur={checkEmail}
-                    aria-invalid={emailError ? 'true' : undefined}
-                    aria-describedby={emailError ? 'k-email-error' : 'k-email-hint'}
-                    autoComplete="email"
-                    placeholder="anna@biuro.pl"
-                  />
+                  <label className="ifield" data-invalid={emailError ? 'true' : undefined}>
+                    <span className="ifield__label">Email</span>
+                    <input
+                      id="k-email"
+                      ref={emailRef}
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value)
+                        if (emailError && emailValid(e.target.value)) setEmailError('')
+                      }}
+                      onBlur={checkEmail}
+                      aria-invalid={emailError ? 'true' : undefined}
+                      aria-describedby={emailError ? 'k-email-error' : 'k-email-hint'}
+                      autoComplete="email"
+                      placeholder="anna@biuro.pl"
+                    />
+                  </label>
                   {emailError ? (
                     <span id="k-email-error" className="field-error" role="alert">{emailError}</span>
                   ) : (
@@ -183,19 +203,15 @@ export default function Kontakt() {
                   )}
                 </div>
 
-                <div>
-                  <label className="field-label" htmlFor="k-region">Rynek lub obszar działania <span className="field-opt">opcjonalnie</span></label>
-                  <div className="contact__field-icon">
-                    <PiMapPinBold size={17} aria-hidden="true" />
-                    <input id="k-region" className="field" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="np. Trójmiasto, Warszawa, cała Polska" />
-                  </div>
-                </div>
+                <label className="ifield">
+                  <span className="ifield__label">Rynek lub obszar działania <i>opcjonalnie</i></span>
+                  <input id="k-region" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="np. Trójmiasto, Warszawa, cała Polska" />
+                </label>
 
-                <div>
-                  <label className="field-label" htmlFor="k-link">Link do Twojego profilu lub obecnej strony <span className="field-opt">opcjonalnie</span></label>
-                  <input id="k-link" className="field" value={link} onChange={(e) => setLink(e.target.value)} placeholder="otodom.pl/… albo twojastrona.pl" />
-                  <span className="field-hint">Im więcej zobaczymy, tym trafniejsza będzie pierwsza wersja.</span>
-                </div>
+                <label className="ifield">
+                  <span className="ifield__label">Link do profilu lub obecnej strony <i>opcjonalnie</i></span>
+                  <input id="k-link" value={link} onChange={(e) => setLink(e.target.value)} placeholder="otodom.pl/… albo twojastrona.pl" />
+                </label>
 
                 <div>
                   <label className={`contact__consent${consentError ? ' is-invalid' : ''}`}>
@@ -248,20 +264,36 @@ export default function Kontakt() {
             </ol>
 
             <div className="contact__alt">
+              <div className="contact__alt-head">
+                <b>Wolisz najpierw porozmawiać?</b>
+                <span>Umów krótką rozmowę telefoniczną albo spotkanie online. Piętnaście minut, bez prezentacji sprzedażowej.</span>
+              </div>
               <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-on-navy btn-sheen contact__alt-btn" data-magnetic>
-                <PiCalendarBold size={17} aria-hidden="true" />
+                <PiCalendarBold size={18} aria-hidden="true" />
                 Wybierz termin rozmowy
               </a>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="contact__mail">
-                <PiEnvelopeSimpleBold size={16} aria-hidden="true" />
-                {CONTACT_EMAIL}
-              </a>
+
+              <div className="contact__mail-row">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="contact__mail">
+                  <PiEnvelopeSimpleBold size={17} aria-hidden="true" />
+                  {CONTACT_EMAIL}
+                </a>
+                <button
+                  type="button"
+                  className="contact__mail-copy"
+                  onClick={copyEmail}
+                  aria-label={copied ? 'Adres skopiowany' : 'Skopiuj adres email'}
+                >
+                  {copied ? <PiCheckBold size={15} aria-hidden="true" /> : <PiCopyBold size={15} aria-hidden="true" />}
+                  <span>{copied ? 'Skopiowano' : 'Kopiuj'}</span>
+                </button>
+              </div>
             </div>
 
             <div className="contact__social">
               {socials.map(({ label, href, Icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="social-btn" aria-label={label}>
-                  <Icon size={17} aria-hidden="true" />
+                  <Icon size={20} aria-hidden="true" />
                 </a>
               ))}
             </div>

@@ -11,7 +11,7 @@ const browser = await puppeteer.launch({ headless: true })
 const page = await browser.newPage()
 await page.setViewport({ width: 1440, height: 900 })
 await page.evaluateOnNewDocument(() => localStorage.setItem('getbuild_cookie_consent_v1', 'rejected'))
-await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 90000 })
+await page.goto('http://localhost:3456', { waitUntil: 'networkidle0', timeout: 90000 })
 
 const sel = '#uslugi [class*="story"]'
 await page.waitForSelector(sel, { timeout: 60000 })

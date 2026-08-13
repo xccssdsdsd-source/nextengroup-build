@@ -22,7 +22,7 @@ const spec = [
 export default function RealEstateMockup({ photos = {} }: { photos?: Record<string, string> }) {
   return (
     <div className={styles.screen}>
-      <div className={styles.bar} data-mock-bar>
+      <div className={styles.bar}>
         <span className={styles.dot} />
         <span className={styles.dot} />
         <span className={styles.dot} />

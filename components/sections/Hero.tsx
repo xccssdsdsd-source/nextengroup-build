@@ -3,7 +3,6 @@
 import { Fragment, useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
 import FlipWords from '@/components/ui/FlipWords'
 import RealEstateMockup from '@/components/ui/RealEstateMockup'
-import { requestScrollFlush } from '@/lib/scrollTicker'
 import { scrollToSection } from '@/lib/scrollToSection'
 
 type Word = { text: string; accent?: boolean }
@@ -72,7 +71,6 @@ export default function Hero() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const track = stage.querySelector<HTMLElement>('[data-scrub-track]')
-    const bar = stage.querySelector<HTMLElement>('[data-mock-bar]')
     if (!track) return
 
     // Everything the scene needs to know about the page is measured once per
@@ -80,10 +78,6 @@ export default function Hero() {
     // the frame loop is what turns a scrub into a stutter.
     let span = 1
     let cardH = 0
-    let centerDelta = 0
-    let edgeX = 0
-    let edgeY = 0
-    let scaleTarget = 1
     let travel = 0
     let wide = true
 
@@ -98,32 +92,11 @@ export default function Hero() {
       const colRect = col.getBoundingClientRect()
       const stickyRect = sticky.getBoundingClientRect()
       cardH = colRect.height
-      // Sticky is exactly one viewport tall, so its own box is the frame the
-      // full-bleed phase has to centre into — no scroll position enters here.
-      // The frame covers the viewport plus the height of the nav, and is then
-      // pushed down by half of it: the product's own header lands clear of the
-      // site's pills instead of underneath them.
-      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 84
-      edgeX = colRect.left
-      edgeY = stickyRect.bottom - colRect.bottom
-      // Width sets the bleed, with a floor that carries the frame a little past
-      // the bottom of the screen — panel furniture that would otherwise be
-      // sliced in half by the viewport edge falls cleanly out of shot instead.
-      scaleTarget = colRect.width > 0 && cardH > 0
-        ? Math.max(window.innerWidth / colRect.width, (stickyRect.height - navH + 145) / cardH)
-        : 1
-      // The frame hangs from under the nav rather than sitting centred: the
-      // product has a header of its own, and two headers on one line is the
-      // one thing this phase cannot afford.
-      centerDelta = navH + (cardH * scaleTarget) / 2 - (colRect.top - stickyRect.top + cardH / 2)
 
-      // The two marks live on the sticky, so they are given the card's own
+      // The two marks live on the sticky, so they are given the device's own
       // edges to hang from.
       sticky.style.setProperty('--card-l', `${(colRect.left - stickyRect.left).toFixed(1)}px`)
       sticky.style.setProperty('--card-b', `${(colRect.bottom - stickyRect.top).toFixed(1)}px`)
-
-      const barH = bar ? bar.getBoundingClientRect().height : 0
-      frame.style.setProperty('--bar-h', `${barH.toFixed(2)}px`)
 
       const viewport = track.parentElement
       travel = Math.max(track.scrollHeight - (viewport ? viewport.clientHeight : 0), 0)
@@ -158,19 +131,16 @@ export default function Hero() {
     let raf = 0
     let live = false
     let lastMark = -1
-    let lastTone = ''
-    let immersive = false
 
     const render = (p: number) => {
       sticky.style.setProperty('--p', p.toFixed(4))
 
       const enter = easeOutExpoish(range(p, 0, 0.14))
       const settle = easeOutExpoish(range(p, 0.14, 0.3))
-      const full = wide ? easeOutExpoish(range(p, 0.3, 0.42)) : 0
       // The curtain accelerates instead of decelerating. An ease-out here empties
       // the screen a third of a viewport early and the reader scrolls through
       // nothing; this way the frame is alive until the section actually ends.
-      const out = Math.pow(range(p, 0.84, 1), 2.6)
+      const out = Math.pow(range(p, 0.86, 1), 2.6)
 
       // The copy leaves under a mask travelling up rather than by fading: a
       // fade reads as the page giving up, a wipe reads as a cut. Bottom line
@@ -198,15 +168,14 @@ export default function Hero() {
       }
 
       const rot = wide ? 8 - 5 * enter - 3 * settle : 0
-      const base = 0.82 + 0.11 * enter + 0.07 * settle
-      const scale = base * lerp(1, scaleTarget, full)
-      // Two offsets, not one: the entry brings the card on screen, the settle
+      // The scene ends where the object ends: the laptop arrives, settles at
+      // its own size and stays there. Nothing after this beat makes it bigger,
+      // so the reader keeps a page around it the whole way through.
+      const scale = 0.82 + 0.11 * enter + 0.07 * settle
+      // Two offsets, not one: the entry brings the device on screen, the settle
       // beat walks it the last stretch up to centre — which is what keeps the
-      // headline clear of the frame while both are still on screen. The third
-      // term pays back the drift that transform-origin (below the card, so the
-      // tilt pivots off the floor) introduces once the card scales up.
+      // headline clear of the frame while both are still on screen.
       const ty = 0.16 * cardH * (1 - enter) + 0.4 * cardH * (1 - settle)
-        + full * (centerDelta + 0.7 * cardH * (scale - 1))
       const blur = wide ? 14 * (1 - enter) : 0
 
       device.style.transform = `translate3d(0, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rot.toFixed(2)}deg)`
@@ -217,29 +186,14 @@ export default function Hero() {
         ? `translate3d(0, ${(-10 * out).toFixed(2)}%, 0) scale(${(1 + 0.03 * out).toFixed(4)})`
         : ''
 
-      col.style.setProperty('--full', full.toFixed(3))
-      col.style.setProperty('--radius', `${(15 * (1 - full)).toFixed(2)}px`)
-      // Both marks live beside the card while it is an object on a page and
-      // travel into its corners once it becomes the screen. The mark clears the
-      // assistant bubble that owns the same corner of every page.
-      sticky.style.setProperty('--hud-mx', `${(Math.max(edgeX - 44, 0) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-my', `${((edgeY - 60) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-rx', `${((edgeX - 50) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-ry', `${((edgeY - 28) * full).toFixed(1)}px`)
       sticky.style.setProperty('--progress-in', (enter * (1 - out)).toFixed(3))
-      sticky.style.setProperty('--full', full.toFixed(3))
-      frame.style.setProperty('--bar-out', full.toFixed(3))
 
-      // Without a full-bleed phase there is no reason to hold the scrub back:
-      // on a phone the scrub is the scene, so it takes the room the transition
-      // would otherwise have used.
-      const u = wide ? range(p, 0.42, 0.84) : range(p, 0.3, 0.9)
+      // The device stops moving at 0.3, so the scrub inside the screen takes
+      // every turn of the wheel from there on — the scene's whole second half
+      // is the product being used, not the frame being animated.
+      const u = range(p, 0.3, 0.82)
       const t = scrubAt(u)
-      // The two interface panels ride 30px higher once the frame is full-bleed,
-      // which lifts their last row of small type off the line the in-frame mark
-      // sits on. The photograph panel keeps its own framing.
-      const offset = t * travel + 30 * full * clamp(t * 2)
-      track.style.transform = `translate3d(0, ${(-offset).toFixed(2)}px, 0)`
+      track.style.transform = `translate3d(0, ${(-t * travel).toFixed(2)}px, 0)`
       // The photography rides at 0.92 of the content's rate. The whole point is
       // that you cannot name it — you only notice the frame has depth.
       frame.style.setProperty('--mock-par', `${(18 - 36 * t).toFixed(2)}px`)
@@ -251,25 +205,6 @@ export default function Hero() {
         markRefs.current.forEach((el, i) => {
           if (el) el.dataset.on = i === mark ? 'true' : 'false'
         })
-      }
-
-      // Light type only where the frame is actually dark: over the photograph
-      // at full bleed. Beside the card, and over both interface panels, the
-      // ground is white and the marks stay ink.
-      const tone = full > 0.5 && mark === 0 ? 'dark' : 'light'
-      if (tone !== lastTone) {
-        lastTone = tone
-        document.body.dataset.heroTone = tone
-      }
-
-      const wantImmersive = wide && p > 0.38 && p < 0.92
-      if (wantImmersive !== immersive) {
-        immersive = wantImmersive
-        document.body.classList.toggle('hero-immersive', wantImmersive)
-        // The persistent CTA reads this class off a scroll tick, and the phase
-        // can flip on a frame where no scroll event fires — without the nudge
-        // the button is missing for exactly the stretch that needs it.
-        requestScrollFlush()
       }
 
       document.documentElement.style.setProperty('--hero-out', easeOutExpoish(range(p, 0.88, 1)).toFixed(3))
@@ -329,8 +264,6 @@ export default function Hero() {
       io.disconnect()
       stop()
       window.removeEventListener('resize', onResize)
-      document.body.classList.remove('hero-immersive')
-      delete document.body.dataset.heroTone
       document.documentElement.style.removeProperty('--hero-out')
     }
   }, [])
@@ -391,23 +324,27 @@ export default function Hero() {
 
           <div ref={colRef} className="hero-device-col">
             <div ref={deviceRef} className="hero-device">
-              <div ref={cardRef} className="device-card">
-                <div ref={frameRef} className="scrub-frame">
-                  <RealEstateMockup
-                    photos={{
-                      hero: '/mockup/listing-hero.jpg',
-                      side1: '/mockup/listing-side1.jpg',
-                      side2: '/mockup/listing-side2.jpg',
-                      'Sopot, Dolny Sopot': '/mockup/listing-sopot.jpg',
-                      'Gdynia, Orłowo': '/mockup/listing-thumb-1.jpg',
-                      'Gdańsk, Oliwa': '/mockup/listing-thumb-2.jpg',
-                      detail: '/mockup/listing-detail.jpg',
-                      t1: '/mockup/listing-side1.jpg',
-                      t2: '/mockup/listing-thumb-2.jpg',
-                      t3: '/mockup/listing-thumb-3.jpg',
-                    }}
-                  />
+              <div ref={cardRef} className="laptop">
+                <div className="laptop-lid">
+                  <span className="laptop-cam" aria-hidden="true" />
+                  <div ref={frameRef} className="scrub-frame">
+                    <RealEstateMockup
+                      photos={{
+                        hero: '/mockup/listing-hero.jpg',
+                        side1: '/mockup/listing-side1.jpg',
+                        side2: '/mockup/listing-side2.jpg',
+                        'Sopot, Dolny Sopot': '/mockup/listing-sopot.jpg',
+                        'Gdynia, Orłowo': '/mockup/listing-thumb-1.jpg',
+                        'Gdańsk, Oliwa': '/mockup/listing-thumb-2.jpg',
+                        detail: '/mockup/listing-detail.jpg',
+                        t1: '/mockup/listing-side1.jpg',
+                        t2: '/mockup/listing-thumb-2.jpg',
+                        t3: '/mockup/listing-thumb-3.jpg',
+                      }}
+                    />
+                  </div>
                 </div>
+                <span className="laptop-base" aria-hidden="true" />
               </div>
             </div>
           </div>
@@ -415,7 +352,7 @@ export default function Hero() {
 
         {/* Outside the device column on purpose: the column carries the scene's
             perspective and therefore its own stacking context, and these two
-            have to blend against the card itself. */}
+            have to blend against the laptop itself. */}
         <span className="hero-mark" aria-hidden="true">
           {marks.map((m, i) => (
             <span

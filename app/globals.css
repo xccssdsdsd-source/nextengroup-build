@@ -1138,49 +1138,104 @@ h4 {
   contain: paint;
 }
 
-/* ── Device: a floating browser card, not a computer ──────
-   A literal iMac — chassis, neck, foot, aluminium gradients — is a costume
-   worn by the thing that actually matters, and it dates the page instantly.
-   The reference sites (Eleos, Kononenko) show the work with no hardware
-   around it at all. So the card IS the object: a hairline edge, a shadow in
-   three terms (contact, mid, floor) and a single off-axis sheen. */
+/* ── Device: the work, shown on a laptop ──────────────────
+   The product is a website, and a website is something people meet on a
+   screen — so it is given one. The hardware stays deliberately thin: even
+   graphite bezels, a hairline of aluminium for the deck, one floor shadow.
+   No chunky chassis, no neck, no foot. The machine is a frame around the
+   work, never a second thing competing with it. */
 
-.device-card {
+.laptop {
   position: relative;
-  border-radius: var(--radius, 15px);
-  border: 1px solid rgba(15, 23, 42, 0.07);
-  background: #fff;
-  /* The one static light in the material: a hairline of white along the top
-     edge, which is the whole difference between a rectangle and a pane. */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  z-index: 1;
 }
 
-/* Four terms — contact, mid, floor, ambient — carried on a pseudo-element so
-   the phase can fade the whole stack with opacity instead of animating blur. */
-.device-card::after {
+/* The floor. One soft ellipse under the deck is what puts the whole object in
+   the room instead of on top of the page. */
+.laptop::after {
   content: '';
   position: absolute;
-  inset: 0;
   z-index: -1;
-  border-radius: inherit;
+  right: 4%;
+  bottom: -26px;
+  left: 4%;
+  height: 52px;
   pointer-events: none;
-  opacity: calc(1 - var(--full, 0));
+  border-radius: 50%;
+  background: radial-gradient(52% 50% at 50% 50%, rgba(15, 23, 42, 0.26) 0%, rgba(15, 23, 42, 0) 72%);
+}
+
+.laptop-lid {
+  position: relative;
+  padding: 11px 11px 13px;
+  border-radius: 19px;
+  background: linear-gradient(176deg, #2a3143 0%, #1a2030 52%, #10141e 100%);
   box-shadow:
-    0 1px 2px rgba(15, 23, 42, 0.05),
-    0 10px 28px rgba(15, 23, 42, 0.07),
-    0 44px 88px rgba(15, 23, 42, 0.11),
-    0 130px 170px rgba(15, 23, 42, 0.09);
+    inset 0 1px 0 rgba(255, 255, 255, 0.17),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(15, 23, 42, 0.14),
+    0 12px 26px rgba(15, 23, 42, 0.10),
+    0 44px 84px rgba(15, 23, 42, 0.13);
+}
+
+.laptop-cam {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, rgba(190, 214, 255, 0.42) 0%, rgba(120, 145, 190, 0.14) 55%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+/* Seen head-on the deck is barely wider than the lid — a sliver of aluminium
+   and the hinge shadow across it. Anything broader stops being a laptop and
+   starts being a shelf. */
+.laptop-base {
+  position: relative;
+  display: block;
+  width: 103%;
+  height: 11px;
+  margin-inline: -1.5%;
+  border-radius: 0 0 9px 9px;
+  background: linear-gradient(180deg, #e3e8ef 0%, #c6cedb 44%, #a3adbd 82%, #8792a4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 16px -9px rgba(15, 23, 42, 0.34);
+}
+
+/* The hinge: a dark line where the lid meets the deck, nothing more. */
+.laptop-base::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(180deg, rgba(14, 18, 27, 0.42) 0%, rgba(14, 18, 27, 0) 100%);
+}
+
+/* The finger groove on the front edge. */
+.laptop-base::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 7.5%;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 5px 5px 0 0;
+  background: rgba(112, 123, 142, 0.55);
 }
 
 .scrub-frame {
   position: relative;
   overflow: clip;
-  border-radius: inherit;
+  border-radius: 7px;
   background: #fff;
 }
 
-/* Off-axis specular. It says a pane of something is in front of this — and it
-   has to be gone by the time the pane becomes the whole screen. */
+/* Off-axis specular — the one thing that says a pane of glass is in front of
+   the work rather than the work being printed on the page. */
 .scrub-frame::after {
   content: '';
   position: absolute;
@@ -1188,20 +1243,8 @@ h4 {
   z-index: 5;
   pointer-events: none;
   mix-blend-mode: overlay;
-  opacity: calc(0.5 * (1 - var(--full, 0)));
+  opacity: 0.5;
   background: linear-gradient(115deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%);
-}
-
-/* Vignette belongs to the full-bleed phase only: inside the card it would read
-   as a filter, across the viewport it reads as a lens. */
-.scrub-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-  opacity: var(--full, 0);
-  box-shadow: inset 0 0 220px rgba(9, 14, 26, 0.28);
 }
 
 .scrub-track {
@@ -1423,11 +1466,11 @@ html.motion-ready [data-no-reveal] .section-divider {
 
 /* ── Hero stage ─────────────────────────────────────────── */
 
-/* 280vh of scroll for one scene. The length is the point: every beat gets room
-   to arrive, hold and leave, and nothing in the frame is ever moving because
-   the reader happens to be moving. */
+/* 235vh of scroll for one scene: enough that every beat gets room to arrive,
+   hold and leave, and short enough that the hero hands the page over instead
+   of holding it. */
 .hero-stage {
-  height: 280vh;
+  height: 235vh;
 }
 
 .hero-stage .pin-sticky {
@@ -1501,13 +1544,12 @@ html.motion-ready [data-no-reveal] .section-divider {
 }
 
 /* Five hairlines, full height, nothing else. The grid is the only thing under
-   the product, and it steps aside the moment the product owns the screen. */
+   the product, and it is what the laptop is standing on. */
 .hero-mesh {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: calc(1 - var(--full, 0));
   background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
   background-size: 20% 100%;
   background-position: 10% 0;
@@ -1601,13 +1643,15 @@ html.motion-ready [data-no-reveal] .section-divider {
   }
 }
 
-/* The column is the layout box the card never leaves: the full-bleed phase is
-   a transform on the card inside it, so nothing reflows and the frame's height
-   is reserved from first paint. */
+/* The column is the layout box the laptop never leaves, and the cap is the
+   promise the scene keeps: whatever the reader does with the wheel, the
+   object stays an object on a page. The second term keeps the whole machine —
+   lid, deck and the air under it — inside a short viewport instead of letting
+   it grow into the fold. */
 .hero-device-col {
   position: relative;
   width: 100%;
-  max-width: 61rem;
+  max-width: min(55rem, calc((100svh - var(--nav-h) - 196px) * 1.6));
   min-width: 0;
   margin-top: 24px;
   perspective: 1800px;
@@ -1634,20 +1678,16 @@ html.motion-ready .hero-device {
   aspect-ratio: 16 / 10;
 }
 
+/* The bar is part of the screen now that it never collapses, so it takes its
+   height out of the window and every panel is shown whole. */
 .hero-device .scrub-frame > * {
   position: absolute;
   top: 0;
   left: 50%;
   width: 100%;
-  height: calc(100% + var(--bar-h, 0px));
+  height: 100%;
   aspect-ratio: auto;
-  transform: translate3d(-50%, calc(var(--bar-out, 0) * var(--bar-h, 0px) * -1), 0);
-}
-
-.hero-device [data-mock-bar] {
-  transform-origin: 50% 0;
-  transform: translate3d(0, calc(var(--bar-out, 0) * -100%), 0) scaleY(calc(1 - var(--bar-out, 0)));
-  opacity: calc(1 - var(--bar-out, 0));
+  transform: translate3d(-50%, 0, 0);
 }
 
 /* Photography trails the layout by a hair. Scaled up first so the lag can
@@ -1673,16 +1713,17 @@ html.motion-ready .hero-device {
   opacity: var(--progress-in, 1);
 }
 
+/* Both marks stand on the white page beside the machine, never over the work,
+   so they are given ink and left alone. */
 .hero-mark {
   left: calc(var(--card-l, 0px) + 28px);
-  top: calc(var(--card-b, 0px) + 20px);
+  top: calc(var(--card-b, 0px) + 34px);
   height: 1em;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.55);
-  transform: translate3d(calc(var(--hud-x, 0px) * -1), var(--hud-y, 0px), 0);
+  color: rgba(15, 23, 42, 0.5);
 }
 
 .hero-mark > span {
@@ -1700,74 +1741,19 @@ html.motion-ready .hero-device {
 
 .hero-rail {
   right: calc(var(--card-l, 0px) - 22px);
-  top: calc(var(--card-b, 0px) - 140px);
+  top: calc(var(--card-b, 0px) - 154px);
   width: 1px;
   height: 140px;
-  background: rgba(15, 23, 42, 0.18);
-  transform: translate3d(var(--hud-rx, 0px), var(--hud-ry, 0px), 0);
+  background: rgba(15, 23, 42, 0.14);
 }
 
 .hero-rail > i {
   position: absolute;
   inset: auto 0 0 0;
   height: 100%;
-  background: rgba(15, 23, 42, 0.55);
+  background: rgba(15, 23, 42, 0.48);
   transform: scaleY(var(--progress, 0));
   transform-origin: 50% 100%;
-}
-
-/* The marks read against whatever the frame currently holds — photograph one
-   moment, white interface the next — so they are not given a colour at all:
-   difference blending inverts them against their own backdrop. Contrast is
-   then a property of the material rather than a value someone has to keep in
-   sync with the panel underneath. */
-.hero-mark,
-.hero-rail {
-  color: #fff;
-  mix-blend-mode: difference;
-}
-
-.hero-rail {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.hero-rail > i {
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.hero-mark {
-  transform: translate3d(calc(var(--hud-mx, 0px) * -1), var(--hud-my, 0px), 0);
-}
-
-/* ── Nav and the persistent CTA over the full frame ─────── */
-
-body.hero-immersive .nav-veil,
-body.hero-immersive .nav-read {
-  opacity: 0;
-}
-
-body.hero-immersive .nav-island,
-body.hero-immersive .nav-island:hover {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-/* The frame hangs from under the nav rather than running behind it, so the band
-   above it stays white and the links keep their ink. Nothing up there is dark
-   enough to need white type, and white on white is not a style choice. */
-
-/* The one fixed point of conversion on the page, so it never leaves — over the
-   photograph it changes material, over an interface it stays the blue button
-   that reads at a glance. */
-body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: #fff;
-  box-shadow: none;
-  transform: scale(0.94);
 }
 
 /* ── Hand-off to the stats below ────────────────────────── */
@@ -1783,15 +1769,15 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
   }
 
   .hero-device-col {
-    max-width: 40rem;
+    max-width: min(40rem, calc((100svh - var(--nav-h) - 170px) * 1.6));
   }
 
   .hero-mesh {
     display: none;
   }
 
-  /* The rail measures a journey the phone does not take — two rest points and
-     no full-bleed phase. The name of the panel still earns its line. */
+  /* The rail measures a journey the phone does not take — two rest points
+     instead of three. The name of the panel still earns its line. */
   .hero-rail {
     display: none;
   }
@@ -1822,11 +1808,28 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
      the same markup renders at readable size. */
   .hero-device-col {
     max-width: none;
-    margin-inline: calc(var(--gutter) * -1 + 0.5rem);
+  }
+
+  /* No hinge and no deck at this width — a laptop cannot be drawn convincingly
+     in 358px. The bezel alone still says screen, which is all it has to say. */
+  .laptop-lid {
+    padding: 6px;
+    border-radius: 13px;
+  }
+
+  .laptop-cam,
+  .laptop-base {
+    display: none;
+  }
+
+  .laptop::after {
+    bottom: -16px;
+    height: 34px;
   }
 
   .scrub-frame {
     aspect-ratio: 1 / 1;
+    border-radius: 6px;
   }
 
   .hero-device .scrub-frame > * {
@@ -1846,10 +1849,6 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
 
   .hero-device [data-scrub-track] > :last-child {
     transform: translateX(-8%);
-  }
-
-  .device-card {
-    border-radius: 12px;
   }
 }
 
@@ -1908,6 +1907,7 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
 
   .hero-device-col {
     max-width: 46rem;
+    margin-inline: auto;
   }
 
   html.motion-ready .hero-device,

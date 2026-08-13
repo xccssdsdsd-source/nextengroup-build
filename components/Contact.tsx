@@ -35,9 +35,16 @@ export default function Contact() {
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [gdprAccepted, setGdprAccepted] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [emailError, setEmailError] = useState('')
+  const [messageError, setMessageError] = useState(false)
+  const [consentError, setConsentError] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const messageRef = useRef<HTMLTextAreaElement>(null)
   const copyTimer = useRef(0)
   const router = useRouter()
+
+  const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
 
   useEffect(() => () => clearTimeout(copyTimer.current), [])
 
@@ -69,12 +76,31 @@ export default function Contact() {
   const subjects = ['Strona internetowa', 'Chatbot AI', 'Inne']
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+    if (name === 'email' && emailError && emailValid(value)) setEmailError('')
+    if (name === 'message' && messageError && value.trim()) setMessageError(false)
+  }
+
+  const checkEmail = () => {
+    if (!formData.email.trim()) setEmailError('Podaj adres email — tam wyślemy odpowiedź.')
+    else if (!emailValid(formData.email)) setEmailError('Ten adres wygląda na niepełny. Sprawdź literówkę.')
+    else setEmailError('')
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (state === 'sending' || state === 'sent') return
+
+    const badEmail = !emailValid(formData.email)
+    const badMessage = !formData.message.trim()
+    if (badEmail) setEmailError(formData.email.trim() ? 'Ten adres wygląda na niepełny. Sprawdź literówkę.' : 'Podaj adres email — tam wyślemy odpowiedź.')
+    if (badMessage) setMessageError(true)
+    if (!gdprAccepted) setConsentError(true)
+    if (badEmail) emailRef.current?.focus()
+    else if (badMessage) messageRef.current?.focus()
+    if (badEmail || badMessage || !gdprAccepted) return
+
     setState('sending')
 
     // A sub-100ms response would flash the spinner, so the loading state is
@@ -225,6 +251,7 @@ export default function Contact() {
               <div className="contact-form-card rounded-2xl border border-[var(--line)] bg-white p-6 sm:p-8" style={{ boxShadow: 'var(--shadow-lg)' }}>
                 <form
                   onSubmit={handleSubmit}
+                  noValidate
                   className="space-y-5"
                   {...{
                     toolname: 'send_business_inquiry',
@@ -233,7 +260,8 @@ export default function Contact() {
                 >
                   <div>
                     <label htmlFor="email" className="field-label">Email</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jan@firma.pl" className="field" autoComplete="email" {...{ toolparamdescription: 'Email address where Getbuild should send the reply.' }} />
+                    <input type="email" id="email" name="email" ref={emailRef} value={formData.email} onChange={handleChange} onBlur={checkEmail} required aria-invalid={emailError ? 'true' : undefined} aria-describedby={emailError ? 'contact-email-error' : undefined} placeholder="jan@firma.pl" className="field" autoComplete="email" {...{ toolparamdescription: 'Email address where Getbuild should send the reply.' }} />
+                    {emailError && <span id="contact-email-error" className="field-error" role="alert">{emailError}</span>}
                   </div>
                   <div>
                     <label htmlFor="phone" className="field-label">Telefon <span className="field-opt">opcjonalnie</span></label>
@@ -313,15 +341,30 @@ export default function Contact() {
                   </div>
                   <div>
                     <label htmlFor="message" className="field-label">Wiadomość</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="field resize-none" {...{ toolparamdescription: 'Short description of the company, project, and help needed.' }} />
+                    <textarea id="message" name="message" ref={messageRef} value={formData.message} onChange={handleChange} required aria-invalid={messageError ? 'true' : undefined} aria-describedby={messageError ? 'contact-message-error' : undefined} placeholder="Napisz krótko, czym zajmuje się firma i czego potrzebujesz. Wystarczą 2-3 zdania." rows={5} className="field resize-none" {...{ toolparamdescription: 'Short description of the company, project, and help needed.' }} />
+                    {messageError && <span id="contact-message-error" className="field-error" role="alert">Napisz krótko, czego potrzebujesz — wystarczą dwa zdania.</span>}
                   </div>
-                  <label className="contact__consent">
-                    <input type="checkbox" name="privacy_consent" checked={gdprAccepted} onChange={(e) => setGdprAccepted(e.target.checked)} required {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }} />
-                    <span>
-                      Wyrażam zgodę na przetwarzanie moich danych osobowych (w tym numeru telefonu, jeśli został podany) przez Getbuild w celu odpowiedzi na zapytanie, w tym drogą mailową oraz telefoniczną (rozmowa, SMS), zgodnie z{' '}
-                      <a href="/polityka-prywatnosci">Polityką prywatności</a>.
-                    </span>
-                  </label>
+                  <div>
+                    <label className={`contact__consent${consentError ? ' is-invalid' : ''}`}>
+                      <input
+                        type="checkbox"
+                        name="privacy_consent"
+                        checked={gdprAccepted}
+                        required
+                        aria-invalid={consentError ? 'true' : undefined}
+                        onChange={(e) => {
+                          setGdprAccepted(e.target.checked)
+                          if (e.target.checked) setConsentError(false)
+                        }}
+                        {...{ toolparamdescription: 'Confirms consent to process personal data in order to answer the inquiry.' }}
+                      />
+                      <span>
+                        Zgadzam się na przetwarzanie moich danych, w tym kontakt mailowy i telefoniczny, w celu odpowiedzi na zapytanie.{' '}
+                        <a href="/polityka-prywatnosci">Polityka prywatności</a>
+                      </span>
+                    </label>
+                    {consentError && <span className="field-error" role="alert">Zaznacz zgodę, żebyśmy mogli odpisać.</span>}
+                  </div>
                   {state === 'error' && (
                     <p className="field-error" role="alert">
                       Nie udało się wysłać. Spróbuj ponownie lub napisz na {contactEmail} — odpowiemy tak samo szybko.

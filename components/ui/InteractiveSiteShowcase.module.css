@@ -16,6 +16,59 @@
   margin-inline: auto;
 }
 
+/* ── Guided pointer ───────────────────────────────────────
+   Without it the panel opened itself and the fields filled themselves, which
+   reads as a video. The pointer arrives first, the button goes down, and only
+   then does anything change — so every beat has a visible cause. */
+
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 20px;
+  height: 22px;
+  margin: -2px 0 0 -2px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 8px rgba(11, 26, 51, 0.28));
+  transition:
+    transform 480ms var(--ease-in-out),
+    opacity 220ms var(--ease-out);
+}
+
+.cursor[data-on] {
+  opacity: 1;
+}
+
+.cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 3px 3px;
+  transition: transform 130ms var(--ease-out);
+}
+
+.cursor[data-tap] svg {
+  transform: scale(0.8);
+}
+
+.cursor i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  margin: -10px 0 0 -10px;
+  border: 1.5px solid rgba(18, 88, 216, 0.5);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.cursor[data-tap] i {
+  animation: cursor-ring 460ms var(--ease-out);
+}
+
 .storyIntro {
   display: flex;
   align-items: center;
@@ -67,13 +120,27 @@
   align-items: center;
   gap: 0.35rem;
   min-height: 36px;
-  padding: 0 0.75rem;
-  border: 0;
+  padding: 0 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
   background: transparent;
   color: var(--ink);
   font: 600 0.75rem var(--font-body);
   cursor: pointer;
-  transition: transform 140ms var(--ease-out);
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.storyIntro button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.storyIntro button svg {
+  transition: transform 460ms var(--ease-apple);
 }
 
 .storyIntro button:active,
@@ -81,6 +148,14 @@
 .editor > button:active,
 .leadStage form > button:active {
   transform: scale(0.97);
+}
+
+.adminNav button[data-press],
+.editor > button[data-press],
+.leadStage form > button[data-press] {
+  transform: scale(0.93);
+  background: #0b45ae;
+  transition-duration: 90ms;
 }
 
 .firstAct,
@@ -250,6 +325,7 @@
 .editor input,
 .leadStage input,
 .leadStage textarea {
+  display: block;
   width: 100%;
   border: 1px solid #dfe3e9;
   border-radius: 6px;
@@ -269,14 +345,60 @@
 .leadStage textarea {
   min-height: 58px;
   padding: 0.55rem 0.65rem;
+  line-height: 1.35;
   resize: none;
 }
 
 .editor input:focus,
 .leadStage input:focus,
-.leadStage textarea:focus {
+.leadStage textarea:focus,
+.editor input[data-typing],
+.leadStage input[data-typing],
+.leadStage textarea[data-typing] {
   border-color: rgba(18, 88, 216, 0.65);
   box-shadow: 0 0 0 3px rgba(18, 88, 216, 0.08);
+}
+
+/* ── Autoplay caret ───────────────────────────────────────
+   The layer sits over the field and repeats the value in transparent text, so
+   the bar lands after the last glyph with no measuring and no stolen focus. It
+   must mirror the field's box exactly — hence the transparent border. */
+
+.fieldBox {
+  position: relative;
+  display: block;
+}
+
+.caretLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  border: 1px solid transparent;
+  color: transparent;
+  font: 500 0.68rem var(--font-body);
+  pointer-events: none;
+}
+
+.caretLayerSingle {
+  padding: 0 0.65rem;
+  line-height: 35px;
+  white-space: pre;
+}
+
+.caretLayerMulti {
+  padding: 0.55rem 0.65rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
+.caretLayer i {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.95em;
+  vertical-align: -0.15em;
+  background: var(--blue);
+  animation: caret-blink 1.06s steps(1, end) infinite;
 }
 
 .photoInput {
@@ -395,10 +517,11 @@
 
 .transfer i {
   position: absolute;
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--blue);
+  box-shadow: 0 0 12px rgba(18, 88, 216, 0.6);
   opacity: 0;
 }
 
@@ -416,6 +539,11 @@
 .story[data-phase='4'] .transfer i {
   opacity: 1;
   animation: transfer-dot 680ms var(--ease-in-out) both;
+}
+
+.story[data-phase='3'] .transfer svg,
+.story[data-phase='4'] .transfer svg {
+  animation: transfer-pop 680ms var(--ease-out);
 }
 
 .liveNav {
@@ -474,15 +602,26 @@
   grid-template-columns: 1.18fr 0.82fr;
   gap: 1rem;
   align-items: end;
-  animation: listing-enter 620ms var(--ease-out) both;
+  animation: listing-enter 300ms linear both;
 }
 
+/* The offer wipes in from the top rather than sliding in as a finished block —
+   it reads as the page being built, which is the claim the section is making. */
 .liveListing > div {
   position: relative;
   min-height: 242px;
   overflow: hidden;
   background: #ebe7df;
+  animation: media-reveal 700ms var(--ease-apple) both;
 }
+
+.liveListing > span > * {
+  animation: text-rise 460ms var(--ease-out) both;
+}
+
+.liveListing > span > small { animation-delay: 210ms; }
+.liveListing > span > b { animation-delay: 290ms; }
+.liveListing > span > p { animation-delay: 370ms; }
 
 .liveListing img {
   object-fit: cover;
@@ -546,6 +685,12 @@
   animation: toast-enter 420ms var(--ease-out) both;
 }
 
+/* Both badges own the same corner, so the arriving one waits until the leaving
+   one has cleared it — otherwise the swap reads as one badge printed twice. */
+.visitor {
+  animation: toast-enter 380ms var(--ease-out) 220ms both;
+}
+
 .visitor i {
   width: 6px;
   height: 6px;
@@ -554,8 +699,12 @@
   box-shadow: 0 0 0 4px rgba(45, 181, 121, 0.12);
 }
 
-.story[data-phase='5'] .saved {
-  display: none;
+/* The confirmation used to be switched off with display:none the moment the
+   visitor pill arrived. It leaves upward as the pill rises into the same slot,
+   so the two read as one badge changing its mind. */
+.saved[data-out] {
+  pointer-events: none;
+  animation: toast-exit 210ms var(--ease-out) both;
 }
 
 .conversationFlow {
@@ -681,16 +830,26 @@
   position: relative;
   display: grid;
   min-height: 455px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr auto;
   border-radius: 13px;
   background: #fff;
+  transition:
+    grid-template-rows 460ms var(--ease-in-out),
+    background-color 380ms ease,
+    border-color 380ms ease;
 }
 
 .leadStage form {
   display: grid;
+  align-content: start;
   gap: 0.68rem;
+  min-height: 0;
   padding: 1rem;
-  transition: opacity 180ms var(--ease-out), transform 220ms var(--ease-out);
+  overflow: hidden;
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    padding 460ms var(--ease-in-out);
 }
 
 .leadStage form > span {
@@ -734,23 +893,61 @@
   font-size: 0.54rem;
 }
 
-.leadComplete .mailPreview {
-  min-height: 104px;
-  border-top: 0;
-  background: transparent;
-  color: #267354;
+.mailPreview em {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(35, 111, 81, 0.16);
+  color: #3f7f65;
+  font-size: 0.55rem;
+  font-style: normal;
 }
 
+/* The form collapses its own row to nothing and the confirmation grows into the
+   space it leaves. Cutting it with display:none dropped the column to the height
+   of one small card and left a void beside the chat panel. */
 .leadComplete {
-  min-height: 0;
-  align-self: center;
+  grid-template-rows: 0fr auto;
   border-color: rgba(35, 111, 81, 0.13);
   background: #effaf5;
-  animation: success-enter 520ms var(--ease-out) both;
 }
 
 .leadComplete form {
-  display: none;
+  opacity: 0;
+  transform: scale(0.97);
+  padding-block: 0;
+  pointer-events: none;
+}
+
+.leadComplete .mailPreview {
+  flex-direction: column;
+  gap: 0.9rem;
+  min-height: 0;
+  padding: 1.5rem;
+  border-top: 0;
+  background: transparent;
+  color: #267354;
+  text-align: center;
+}
+
+.leadComplete .mailPreview > span {
+  justify-items: center;
+}
+
+.leadComplete .mailPreview > svg {
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-radius: 50%;
+  background: rgba(35, 131, 93, 0.12);
+}
+
+.leadComplete .mailPreview > svg,
+.leadComplete .mailPreview > span {
+  animation: text-rise 440ms var(--ease-out) 220ms both;
+}
+
+.leadComplete .mailPreview > span {
+  animation-delay: 300ms;
 }
 
 .chatReady {
@@ -813,13 +1010,43 @@
 }
 
 @keyframes listing-enter {
-  from { transform: translate3d(0, 12px, 0) scale(0.985); opacity: 0; }
-  to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes media-reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes text-rise {
+  from { transform: translate3d(0, 9px, 0); opacity: 0; }
+  to { transform: translate3d(0, 0, 0); opacity: 1; }
 }
 
 @keyframes toast-enter {
   from { transform: translate3d(0, 8px, 0) scale(0.97); opacity: 0; }
   to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+}
+
+@keyframes toast-exit {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+  to { transform: translate3d(0, -8px, 0) scale(0.96); opacity: 0; }
+}
+
+@keyframes transfer-pop {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.16); }
+}
+
+@keyframes cursor-ring {
+  from { transform: scale(0.35); opacity: 0.85; }
+  to { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 @keyframes message-enter {
@@ -843,10 +1070,21 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .storyIntro button:hover { color: var(--blue); }
+  .storyIntro button:hover {
+    border-color: rgba(18, 88, 216, 0.2);
+    background: rgba(18, 88, 216, 0.07);
+    color: var(--blue);
+  }
+
+  .storyIntro button:hover svg { transform: rotate(-180deg); }
+
   .adminNav button:hover,
   .editor > button:hover,
   .leadStage form > button:hover { background: #0d4fc7; }
+
+  .editor input:hover:not(:focus),
+  .leadStage input:hover:not(:focus),
+  .leadStage textarea:hover:not(:focus) { border-color: #c2cad6; }
 }
 
 @media (max-width: 840px) {

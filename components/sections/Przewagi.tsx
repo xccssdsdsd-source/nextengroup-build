@@ -96,10 +96,8 @@ export default function Przewagi() {
           <span className="section-kicker">Dlaczego my</span>
           <h2 className="section-title">Pięć dróg do strony. Cztery z nich już znasz.</h2>
           <p className="section-copy">
-            Nie wygrywamy każdego wiersza — kreator jest tańszy, jeśli masz czas, a generator AI
-            kosztuje mało na start i około 1500 zł rocznie, gdy doliczyć abonament i całą resztę.
-            Wygrywamy tam, gdzie to naprawdę się liczy: czasem, jakością i tym, jak mało pracy
-            zostaje po Twojej stronie.
+            Nie wygrywamy każdego wiersza — kreator jest tańszy, jeśli masz czas. Wygrywamy tam,
+            gdzie to się liczy: w czasie, jakości i w tym, ile pracy zostaje po Twojej stronie.
           </p>
         </div>
 

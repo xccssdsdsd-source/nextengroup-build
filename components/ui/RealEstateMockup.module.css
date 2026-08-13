@@ -129,16 +129,18 @@
   }
 }
 
-/* Two terms, not one. The vertical scrim alone left the headline sitting on a
-   bright travertine wall in the middle of the frame; the horizontal term
-   guarantees the copy column is always darker than the type on it, whatever
-   photograph the client eventually supplies. */
+/* Two terms, and the horizontal one darkens both edges rather than just the
+   left. The composition puts type in all four corners — wordmark and links on
+   the nav line, categories and headline low left, the sentence and the city
+   list low right — so every edge has to be guaranteed darker than white type,
+   whatever photograph the client eventually supplies. The middle stays open:
+   that is where the building is. */
 .heroScrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(9, 12, 17, 0.5) 0%, rgba(9, 12, 17, 0.14) 46%, transparent 74%),
-    linear-gradient(180deg, rgba(9, 12, 17, 0.55) 0%, rgba(9, 12, 17, 0.08) 24%, rgba(9, 12, 17, 0.3) 54%, rgba(9, 12, 17, 0.86) 100%);
+    linear-gradient(90deg, rgba(9, 12, 17, 0.52) 0%, rgba(9, 12, 17, 0.14) 40%, rgba(9, 12, 17, 0.1) 58%, rgba(9, 12, 17, 0.46) 100%),
+    linear-gradient(180deg, rgba(9, 12, 17, 0.58) 0%, rgba(9, 12, 17, 0.08) 24%, rgba(9, 12, 17, 0.32) 54%, rgba(9, 12, 17, 0.88) 100%);
 }
 
 .navOver {
@@ -146,24 +148,18 @@
   inset: 0 0 auto 0;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr;
   align-items: center;
+  gap: 4cqw;
   height: 7cqw;
   padding: 0 5cqw;
   color: #fff;
 }
 
-.navOver::after {
-  content: '';
-  position: absolute;
-  inset: auto 5cqw 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.22);
-}
-
 .navLinks {
   display: flex;
-  gap: 2.2cqw;
+  justify-content: flex-end;
+  gap: 2.4cqw;
   font-size: 1.02cqw;
   font-weight: 500;
   letter-spacing: 0.13em;
@@ -171,17 +167,13 @@
   color: rgba(255, 255, 255, 0.82);
 }
 
-.navRight {
-  justify-self: end;
-}
-
 .brand {
   font-family: var(--font-heading);
-  font-size: 1.7cqw;
+  font-size: 1.55cqw;
   font-weight: 620;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  text-indent: 0.3em;
+  text-indent: 0.32em;
   color: #fff;
 }
 
@@ -192,25 +184,66 @@
   color: #fff;
 }
 
-.heroKicker {
-  display: block;
-  margin-bottom: 1.5cqw;
+/* Stopping just short of the right margin rather than running to it: the two
+   quiet columns then sit inside the composition instead of being pinned to its
+   edges. The phone crop narrows this band further — see the bottom of the
+   file, where the whole panel is re-proportioned for it. */
+.heroRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4cqw;
+  width: 82cqw;
+  margin-bottom: 2.6cqw;
+}
+
+.heroTags {
+  display: grid;
+  gap: 0.5cqw;
   font-size: 0.95cqw;
   font-weight: 500;
   letter-spacing: 0.19em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.82);
 }
 
+/* The one warm mark in an otherwise white-on-photograph frame. A rule under
+   the sentence rather than a colour on the type: coloured text over
+   photography is a contrast problem waiting for the client's own images. */
+.heroBlurb {
+  position: relative;
+  padding-bottom: 1.1cqw;
+  font-size: 0.95cqw;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.heroBlurb::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: 7cqw;
+  height: 2px;
+  background: var(--gold-200, #e3c485);
+}
+
+/* The headline is the object in this frame — set as large as the crop allows,
+   in caps, on two lines, with the tracking pulled in until the block reads as
+   one shape rather than a sentence. Ceiling is the phone crop, not the desktop
+   frame: the 168% centred crop can only ever show about 59cqw of the panel, so
+   the longer of the two lines has to measure inside that or the headline is
+   clipped no matter how the panel is nudged. */
 .heroTitle {
   font-family: var(--font-heading);
-  /* Ceiling is the phone crop, not the desktop frame: at 6.4cqw the line runs
-     65cqw wide and the 168% centred crop can only ever show 59.5cqw of it, so
-     the headline was clipped at both ends no matter how the panel is nudged. */
-  font-size: 5.8cqw;
+  font-size: 6.2cqw;
   font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.035em;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
   color: #fff;
   text-shadow: 0 0.15cqw 1.6cqw rgba(9, 12, 17, 0.34);
 }
@@ -219,26 +252,33 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 3cqw;
+  gap: 2.4cqw;
+  width: 82cqw;
+  margin-top: 2.8cqw;
 }
 
+/* An outline pill, not a filled white one. A solid white button in the corner
+   of a photograph is the loudest object in the frame and it drags the eye off
+   the headline the whole thing was built around. */
 .heroCta {
   display: inline-flex;
   align-items: center;
-  padding: 1.15cqw 2.4cqw;
+  padding: 1.15cqw 2.6cqw;
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 6cqw;
-  background: rgba(255, 255, 255, 0.94);
-  color: #14181f;
-  font-size: 1.02cqw;
+  color: #fff;
+  font-size: 0.95cqw;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .heroMeta {
-  font-size: 1.05cqw;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95cqw;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* ── Panel 2: index ─────────────────────────────────────────
@@ -546,4 +586,136 @@
   height: 100%;
   object-fit: cover;
   filter: saturate(0.94) contrast(1.03);
+}
+
+/* ── Phone crop ─────────────────────────────────────────────
+   On a phone the hero crops into this layout rather than scaling it down —
+   the frame shows about 59% of the panel at 168%, so every size below is
+   quoted against a container almost twice the frame's width. Left at the
+   desktop values the whole interface renders at four to six pixels, which is
+   a picture of a website rather than a website. These are the same
+   proportions a real site would reach for at this width: the type comes up,
+   the composition narrows to the band the crop can actually show. */
+@media (max-width: 640px) {
+  .bar {
+    height: 4.6cqw;
+    gap: 1.4cqw;
+  }
+
+  .dot {
+    width: 1cqw;
+    height: 1cqw;
+  }
+
+  .urlbar {
+    height: 2.9cqw;
+    font-size: 1.45cqw;
+  }
+
+  .lock {
+    width: 1.3cqw;
+    height: 1.3cqw;
+  }
+
+  .navOver {
+    height: 9cqw;
+  }
+
+  .brand {
+    font-size: 2.4cqw;
+  }
+
+  .heroRow,
+  .heroFoot {
+    width: 52cqw;
+  }
+
+  .heroTags,
+  .heroBlurb,
+  .heroCta,
+  .heroMeta {
+    font-size: 1.5cqw;
+  }
+
+  .heroTags {
+    gap: 0.75cqw;
+  }
+
+  .heroCta {
+    padding: 1.6cqw 3.2cqw;
+  }
+
+  .heroBlurb {
+    padding-bottom: 1.5cqw;
+  }
+
+  .heroBlurb::after {
+    width: 10cqw;
+  }
+
+  .heroTitle {
+    font-size: 6.4cqw;
+  }
+
+  .sectionTitle {
+    font-size: 5cqw;
+  }
+
+  .filter,
+  .gridFoot {
+    font-size: 1.5cqw;
+  }
+
+  .badge {
+    font-size: 1.2cqw;
+    padding: 0.7cqw 1.4cqw;
+  }
+
+  .addr,
+  .specs {
+    font-size: 1.4cqw;
+  }
+
+  .price {
+    font-size: 3cqw;
+  }
+
+  .detailTag {
+    font-size: 1.4cqw;
+  }
+
+  .detailPrice {
+    font-size: 4.4cqw;
+  }
+
+  .detailAddr {
+    font-size: 1.6cqw;
+  }
+
+  .specKey {
+    font-size: 1.3cqw;
+  }
+
+  .specVal {
+    font-size: 2.2cqw;
+  }
+
+  .agentInitials {
+    width: 4.6cqw;
+    height: 4.6cqw;
+    font-size: 1.8cqw;
+  }
+
+  .agentName {
+    font-size: 1.7cqw;
+  }
+
+  .agentRole {
+    font-size: 1.4cqw;
+  }
+
+  .detailCta {
+    font-size: 1.5cqw;
+    padding: 1.8cqw;
+  }
 }

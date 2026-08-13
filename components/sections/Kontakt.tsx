@@ -20,10 +20,9 @@ const socials = [
 ]
 
 const next = [
-  'Odpowiadamy w ciągu 24 godzin — mailem albo telefonem, jak wolisz.',
-  'Piętnaście minut rozmowy o tym, jak pracujesz i czego potrzebujesz.',
-  'W ciągu 24 godzin od zebrania materiałów widzisz pierwszą wizualizację.',
-  'Decydujesz. Dopiero Twoje „tak" uruchamia płatność.',
+  'Odzywamy się w ciągu 24 godzin.',
+  'Krótka rozmowa — piętnaście minut, bez prezentacji sprzedażowej.',
+  'Widzisz wizualizację. Dopiero Twoje „tak" uruchamia płatność.',
 ]
 
 export default function Kontakt() {
@@ -32,8 +31,6 @@ export default function Kontakt() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [region, setRegion] = useState('')
-  const [link, setLink] = useState('')
   const [consent, setConsent] = useState(false)
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'done' | 'error'>('idle')
   const [emailError, setEmailError] = useState('')
@@ -75,11 +72,7 @@ export default function Kontakt() {
 
     setState('sending')
 
-    const message = [
-      `Imię: ${name || '—'}`,
-      `Rynek / obszar działania: ${region || '—'}`,
-      `Link do profilu/oferty: ${link || '—'}`,
-    ].join('\n')
+    const message = `Imię: ${name || '—'}`
 
     // A request that returns in 80ms would flash the spinner and read as a
     // glitch, so the loading state is held long enough to be legible before the
@@ -133,25 +126,24 @@ export default function Kontakt() {
               </div>
             ) : (
               <form className="contact__form" onSubmit={submit} noValidate>
-                <div className="contact__row">
-                  <label className="ifield">
-                    <span className="ifield__label">Imię</span>
-                    <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" placeholder="Anna" />
-                  </label>
-                  <label className="ifield">
-                    <span className="ifield__label">Telefon <i>opcjonalnie</i></span>
-                    <input id="k-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+48 600 000 000" />
-                  </label>
-                </div>
+                {/* Two questions, stacked, one per row. Every field the sales
+                    brief used to ask for — rynek, link do profilu, opis biura —
+                    is something we can just as easily ask on the call, and each
+                    one of them was a reason to close the tab instead. */}
+                <label className="ifield ifield--lg">
+                  <span className="ifield__label">Imię</span>
+                  <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" />
+                </label>
 
                 <div>
-                  <label className="ifield" data-invalid={emailError ? 'true' : undefined}>
+                  <label className="ifield ifield--lg" data-invalid={emailError ? 'true' : undefined}>
                     <span className="ifield__label">Email</span>
                     <input
                       id="k-email"
                       ref={emailRef}
                       type="email"
                       required
+                      inputMode="email"
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value)
@@ -161,7 +153,6 @@ export default function Kontakt() {
                       aria-invalid={emailError ? 'true' : undefined}
                       aria-describedby={emailError ? 'k-email-error' : 'k-email-hint'}
                       autoComplete="email"
-                      placeholder="anna@biuro.pl"
                     />
                   </label>
                   {emailError ? (
@@ -171,14 +162,9 @@ export default function Kontakt() {
                   )}
                 </div>
 
-                <label className="ifield">
-                  <span className="ifield__label">Rynek lub obszar działania <i>opcjonalnie</i></span>
-                  <input id="k-region" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="np. Trójmiasto, Warszawa, cała Polska" />
-                </label>
-
-                <label className="ifield">
-                  <span className="ifield__label">Link do profilu lub obecnej strony <i>opcjonalnie</i></span>
-                  <input id="k-link" value={link} onChange={(e) => setLink(e.target.value)} placeholder="otodom.pl/… albo twojastrona.pl" />
+                <label className="ifield ifield--lg">
+                  <span className="ifield__label">Telefon <i>opcjonalnie</i></span>
+                  <input id="k-phone" type="tel" inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
                 </label>
 
                 <div>

@@ -72,7 +72,6 @@ export default function Hero() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const track = stage.querySelector<HTMLElement>('[data-scrub-track]')
-    const bar = stage.querySelector<HTMLElement>('[data-mock-bar]')
     if (!track) return
 
     // Everything the scene needs to know about the page is measured once per
@@ -80,9 +79,13 @@ export default function Hero() {
     // the frame loop is what turns a scrub into a stutter.
     let span = 1
     let cardH = 0
+    let cardW = 0
+    let colLeft = 0
+    let cardBottom = 0
+    let boxW = 0
+    let boxH = 0
+    let navH = 84
     let centerDelta = 0
-    let edgeX = 0
-    let edgeY = 0
     let scaleTarget = 1
     let travel = 0
     let wide = true
@@ -98,32 +101,36 @@ export default function Hero() {
       const colRect = col.getBoundingClientRect()
       const stickyRect = sticky.getBoundingClientRect()
       cardH = colRect.height
+      cardW = colRect.width
+      boxW = stickyRect.width
+      boxH = stickyRect.height
+      colLeft = colRect.left - stickyRect.left
+      cardBottom = colRect.bottom - stickyRect.top
       // Sticky is exactly one viewport tall, so its own box is the frame the
-      // full-bleed phase has to centre into — no scroll position enters here.
-      // The frame covers the viewport plus the height of the nav, and is then
-      // pushed down by half of it: the product's own header lands clear of the
-      // site's pills instead of underneath them.
-      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 84
-      edgeX = colRect.left
-      edgeY = stickyRect.bottom - colRect.bottom
-      // Width sets the bleed, with a floor that carries the frame a little past
-      // the bottom of the screen — panel furniture that would otherwise be
-      // sliced in half by the viewport edge falls cleanly out of shot instead.
-      scaleTarget = colRect.width > 0 && cardH > 0
-        ? Math.max(window.innerWidth / colRect.width, (stickyRect.height - navH + 145) / cardH)
+      // showcase phase has to centre into — no scroll position enters here.
+      navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 84
+
+      // The frame grows into the room under the nav and stops there — it does
+      // not bleed off the edges. Cropping the product against the viewport is
+      // what made this beat read as oversized: the browser card stopped being
+      // an object being shown and became a second page laid over the first,
+      // with its own furniture sliced by the screen. A margin all the way
+      // round keeps it a thing on a page, which is what every agency site
+      // worth copying does with its own screenshot.
+      const margin = Math.min(Math.max(window.innerWidth * 0.05, 26), 80)
+      const roomW = boxW - margin * 2
+      const roomH = boxH - navH - margin * 1.7
+      scaleTarget = cardW > 0 && cardH > 0
+        ? Math.max(Math.min(roomW / cardW, roomH / cardH), 1)
         : 1
-      // The frame hangs from under the nav rather than sitting centred: the
-      // product has a header of its own, and two headers on one line is the
-      // one thing this phase cannot afford.
-      centerDelta = navH + (cardH * scaleTarget) / 2 - (colRect.top - stickyRect.top + cardH / 2)
+      // Centred in the band under the nav, now that the card has edges on all
+      // four sides and no header of its own to keep clear of the pills.
+      centerDelta = navH + (boxH - navH) / 2 - (colRect.top - stickyRect.top + cardH / 2)
 
       // The two marks live on the sticky, so they are given the card's own
       // edges to hang from.
-      sticky.style.setProperty('--card-l', `${(colRect.left - stickyRect.left).toFixed(1)}px`)
-      sticky.style.setProperty('--card-b', `${(colRect.bottom - stickyRect.top).toFixed(1)}px`)
-
-      const barH = bar ? bar.getBoundingClientRect().height : 0
-      frame.style.setProperty('--bar-h', `${barH.toFixed(2)}px`)
+      sticky.style.setProperty('--card-l', `${colLeft.toFixed(1)}px`)
+      sticky.style.setProperty('--card-b', `${cardBottom.toFixed(1)}px`)
 
       const viewport = track.parentElement
       travel = Math.max(track.scrollHeight - (viewport ? viewport.clientHeight : 0), 0)
@@ -158,7 +165,6 @@ export default function Hero() {
     let raf = 0
     let live = false
     let lastMark = -1
-    let lastTone = ''
     let immersive = false
 
     const render = (p: number) => {
@@ -218,17 +224,21 @@ export default function Hero() {
         : ''
 
       col.style.setProperty('--full', full.toFixed(3))
-      col.style.setProperty('--radius', `${(15 * (1 - full)).toFixed(2)}px`)
-      // Both marks live beside the card while it is an object on a page and
-      // travel into its corners once it becomes the screen. The mark clears the
-      // assistant bubble that owns the same corner of every page.
-      sticky.style.setProperty('--hud-mx', `${(Math.max(edgeX - 44, 0) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-my', `${((edgeY - 60) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-rx', `${((edgeX - 50) * full).toFixed(1)}px`)
-      sticky.style.setProperty('--hud-ry', `${((edgeY - 28) * full).toFixed(1)}px`)
+      // The corner opens up rather than squaring off. A radius that runs to
+      // zero is the tell of a frame that has become the window; this one stays
+      // a card the whole way through, so it keeps its edge.
+      col.style.setProperty('--radius', `${(15 + 5 * full).toFixed(2)}px`)
+      // Both marks are pinned to the card's own bottom-left and bottom-right
+      // corners, so they travel exactly as far as the corner does — measured
+      // from the live scale rather than from a full-bleed assumption.
+      const gx = (boxW - cardW * scale) / 2 - colLeft
+      const gy = navH + (boxH - navH) / 2 + (cardH * scale) / 2 - cardBottom
+      sticky.style.setProperty('--hud-mx', `${(-gx * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-my', `${(gy * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-rx', `${(-gx * full).toFixed(1)}px`)
+      sticky.style.setProperty('--hud-ry', `${(gy * full).toFixed(1)}px`)
       sticky.style.setProperty('--progress-in', (enter * (1 - out)).toFixed(3))
       sticky.style.setProperty('--full', full.toFixed(3))
-      frame.style.setProperty('--bar-out', full.toFixed(3))
 
       // Without a full-bleed phase there is no reason to hold the scrub back:
       // on a phone the scrub is the scene, so it takes the room the transition
@@ -251,15 +261,6 @@ export default function Hero() {
         markRefs.current.forEach((el, i) => {
           if (el) el.dataset.on = i === mark ? 'true' : 'false'
         })
-      }
-
-      // Light type only where the frame is actually dark: over the photograph
-      // at full bleed. Beside the card, and over both interface panels, the
-      // ground is white and the marks stay ink.
-      const tone = full > 0.5 && mark === 0 ? 'dark' : 'light'
-      if (tone !== lastTone) {
-        lastTone = tone
-        document.body.dataset.heroTone = tone
       }
 
       const wantImmersive = wide && p > 0.38 && p < 0.92
@@ -330,7 +331,6 @@ export default function Hero() {
       stop()
       window.removeEventListener('resize', onResize)
       document.body.classList.remove('hero-immersive')
-      delete document.body.dataset.heroTone
       document.documentElement.style.removeProperty('--hero-out')
     }
   }, [])

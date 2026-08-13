@@ -1214,24 +1214,27 @@ h4 {
   background: linear-gradient(180deg, rgba(14, 18, 27, 0.42) 0%, rgba(14, 18, 27, 0) 100%);
 }
 
-/* The finger groove on the front edge. */
+/* The finger groove on the front edge — a dip in the light, not a panel. */
 .laptop-base::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 7.5%;
+  width: 6.5%;
   height: 4px;
   transform: translateX(-50%);
   border-radius: 5px 5px 0 0;
-  background: rgba(112, 123, 142, 0.55);
+  background: linear-gradient(180deg, rgba(83, 93, 111, 0.34) 0%, rgba(83, 93, 111, 0.1) 100%);
 }
 
+/* The glass sits a hair proud of the bezel: one dark hairline around the
+   window is what keeps the screen from looking painted onto the lid. */
 .scrub-frame {
   position: relative;
   overflow: clip;
   border-radius: 7px;
   background: #fff;
+  box-shadow: 0 0 0 1px rgba(4, 8, 16, 0.55);
 }
 
 /* Off-axis specular — the one thing that says a pane of glass is in front of
@@ -1668,7 +1671,7 @@ html.motion-ready .hero-device {
 
 [data-live] .hero-device,
 [data-live] .scrub-frame {
-  will-change: transform, clip-path;
+  will-change: transform;
 }
 
 /* Zero CLS: the frame reserves its box by ratio, and the mockup is laid into
@@ -1886,10 +1889,13 @@ html.motion-ready .hero-device {
     height: auto;
   }
 
+  /* The sticky is a flex row, so a static mark lands beside the column instead
+     of under it. Wrapping is what puts it back on its own line. */
   .pin-sticky {
     position: relative;
     height: auto;
     padding-block: calc(var(--nav-h) + 2rem) 4rem;
+    flex-wrap: wrap;
   }
 
   .hero-stack {
@@ -1921,10 +1927,10 @@ html.motion-ready .hero-device {
   .hero-mark {
     position: static;
     display: block;
+    width: 100%;
     height: auto;
-    margin: 1.25rem auto 0;
+    margin: 1.25rem 0 0;
     text-align: center;
-    transform: none;
   }
 
   .hero-mark > span {

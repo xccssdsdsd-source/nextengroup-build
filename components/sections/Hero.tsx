@@ -54,7 +54,6 @@ export default function Hero() {
   const stickyRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
   const deviceRef = useRef<HTMLDivElement>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
   const colRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
   const markRefs = useRef<Array<HTMLSpanElement | null>>([])
@@ -64,10 +63,9 @@ export default function Hero() {
     const sticky = stickyRef.current
     const copy = copyRef.current
     const device = deviceRef.current
-    const card = cardRef.current
     const col = colRef.current
     const frame = frameRef.current
-    if (!stage || !sticky || !copy || !device || !card || !col || !frame) return
+    if (!stage || !sticky || !copy || !device || !col || !frame) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const track = stage.querySelector<HTMLElement>('[data-scrub-track]')
@@ -137,10 +135,10 @@ export default function Hero() {
 
       const enter = easeOutExpoish(range(p, 0, 0.14))
       const settle = easeOutExpoish(range(p, 0.14, 0.3))
-      // The curtain accelerates instead of decelerating. An ease-out here empties
+      // The exit accelerates instead of decelerating. An ease-out here empties
       // the screen a third of a viewport early and the reader scrolls through
-      // nothing; this way the frame is alive until the section actually ends.
-      const out = Math.pow(range(p, 0.86, 1), 2.6)
+      // nothing; this way the machine is alive until the section actually ends.
+      const out = Math.pow(range(p, 0.9, 1), 2.6)
 
       // The copy leaves under a mask travelling up rather than by fading: a
       // fade reads as the page giving up, a wipe reads as a cut. Bottom line
@@ -171,22 +169,21 @@ export default function Hero() {
       // The scene ends where the object ends: the laptop arrives, settles at
       // its own size and stays there. Nothing after this beat makes it bigger,
       // so the reader keeps a page around it the whole way through.
-      const scale = 0.82 + 0.11 * enter + 0.07 * settle
+      const scale = (0.82 + 0.11 * enter + 0.07 * settle) * (1 - 0.05 * out)
       // Two offsets, not one: the entry brings the device on screen, the settle
       // beat walks it the last stretch up to centre — which is what keeps the
-      // headline clear of the frame while both are still on screen.
-      const ty = 0.16 * cardH * (1 - enter) + 0.4 * cardH * (1 - settle)
+      // headline clear of the frame while both are still on screen. The last
+      // term takes it away again: a machine cannot be wiped off in slices the
+      // way a flat card could, so it recedes and lifts instead of being cut.
+      const ty = 0.16 * cardH * (1 - enter) + 0.4 * cardH * (1 - settle) - 70 * out
       const blur = wide ? 14 * (1 - enter) : 0
+      const shown = enter * (1 - out)
 
       device.style.transform = `translate3d(0, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rot.toFixed(2)}deg)`
-      device.style.opacity = enter.toFixed(3)
+      device.style.opacity = shown.toFixed(3)
       device.style.filter = blur > 0.08 ? `blur(${blur.toFixed(2)}px)` : ''
-      device.style.clipPath = out > 0.001 ? `inset(0 0 ${(out * 100).toFixed(2)}% 0)` : ''
-      card.style.transform = out > 0.001
-        ? `translate3d(0, ${(-10 * out).toFixed(2)}%, 0) scale(${(1 + 0.03 * out).toFixed(4)})`
-        : ''
 
-      sticky.style.setProperty('--progress-in', (enter * (1 - out)).toFixed(3))
+      sticky.style.setProperty('--progress-in', shown.toFixed(3))
 
       // The device stops moving at 0.3, so the scrub inside the screen takes
       // every turn of the wheel from there on — the scene's whole second half
@@ -324,7 +321,7 @@ export default function Hero() {
 
           <div ref={colRef} className="hero-device-col">
             <div ref={deviceRef} className="hero-device">
-              <div ref={cardRef} className="laptop">
+              <div className="laptop">
                 <div className="laptop-lid">
                   <span className="laptop-cam" aria-hidden="true" />
                   <div ref={frameRef} className="scrub-frame">

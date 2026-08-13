@@ -37,13 +37,33 @@ export default function Kontakt() {
   const [link, setLink] = useState('')
   const [consent, setConsent] = useState(false)
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'done' | 'error'>('idle')
+  const [emailError, setEmailError] = useState('')
+  const [consentError, setConsentError] = useState(false)
+  const emailRef = useRef<HTMLInputElement>(null)
   const handoff = useRef(0)
 
   useEffect(() => () => clearTimeout(handoff.current), [])
 
+  const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
+
+  function checkEmail() {
+    if (!email.trim()) setEmailError('Podaj adres email — tu wyślemy wizualizację.')
+    else if (!emailValid(email)) setEmailError('Ten adres wygląda na niepełny. Sprawdź literówkę.')
+    else setEmailError('')
+  }
+
   async function submit(e: FormEvent) {
     e.preventDefault()
     if (state === 'sending' || state === 'sent') return
+
+    const badEmail = !emailValid(email)
+    if (badEmail) {
+      setEmailError(email.trim() ? 'Ten adres wygląda na niepełny. Sprawdź literówkę.' : 'Podaj adres email — tu wyślemy wizualizację.')
+      emailRef.current?.focus()
+    }
+    if (!consent) setConsentError(true)
+    if (badEmail || !consent) return
+
     setState('sending')
 
     const message = [
@@ -139,8 +159,28 @@ export default function Kontakt() {
 
                 <div>
                   <label className="field-label" htmlFor="k-email">Email</label>
-                  <input id="k-email" type="email" required className="field" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" placeholder="anna@biuro.pl" />
-                  <span className="field-hint">Tu wyślemy link do wizualizacji.</span>
+                  <input
+                    id="k-email"
+                    ref={emailRef}
+                    type="email"
+                    required
+                    className="field"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      if (emailError && emailValid(e.target.value)) setEmailError('')
+                    }}
+                    onBlur={checkEmail}
+                    aria-invalid={emailError ? 'true' : undefined}
+                    aria-describedby={emailError ? 'k-email-error' : 'k-email-hint'}
+                    autoComplete="email"
+                    placeholder="anna@biuro.pl"
+                  />
+                  {emailError ? (
+                    <span id="k-email-error" className="field-error" role="alert">{emailError}</span>
+                  ) : (
+                    <span id="k-email-hint" className="field-hint">Tu wyślemy link do wizualizacji.</span>
+                  )}
                 </div>
 
                 <div>
@@ -157,13 +197,27 @@ export default function Kontakt() {
                   <span className="field-hint">Im więcej zobaczymy, tym trafniejsza będzie pierwsza wersja.</span>
                 </div>
 
-                <label className="contact__consent">
-                  <input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-                  <span>
-                    Zgadzam się na przetwarzanie danych w celu odpowiedzi na zapytanie.{' '}
-                    <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
-                  </span>
-                </label>
+                <div>
+                  <label className={`contact__consent${consentError ? ' is-invalid' : ''}`}>
+                    <input
+                      type="checkbox"
+                      required
+                      checked={consent}
+                      aria-invalid={consentError ? 'true' : undefined}
+                      onChange={(e) => {
+                        setConsent(e.target.checked)
+                        if (e.target.checked) setConsentError(false)
+                      }}
+                    />
+                    <span>
+                      Zgadzam się na przetwarzanie danych w celu odpowiedzi na zapytanie.{' '}
+                      <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+                    </span>
+                  </label>
+                  {consentError ? (
+                    <span className="field-error" role="alert">Zaznacz zgodę, żebyśmy mogli odpisać.</span>
+                  ) : null}
+                </div>
 
                 {state === 'error' ? (
                   <p className="field-error" role="alert">

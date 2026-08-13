@@ -2016,8 +2016,18 @@ html.motion-ready [data-no-reveal] .section-divider {
   box-shadow: 0 0 0 3px rgba(11, 79, 209, 0.14);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .field:hover:not(:focus) {
+    border-color: #a9b9d1;
+  }
+}
+
 .field[aria-invalid='true'] {
   border-color: var(--danger);
+}
+
+.field[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(192, 38, 38, 0.13);
 }
 
 .field-error {
@@ -2025,6 +2035,20 @@ html.motion-ready [data-no-reveal] .section-divider {
   margin-top: 0.375rem;
   font-size: 0.8125rem;
   color: var(--danger);
+  animation: field-error-in 200ms var(--ease-out) both;
+}
+
+@keyframes field-error-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-error {
+    animation: none;
+  }
 }
 
 .field-hint {
@@ -3869,6 +3893,11 @@ h4,
   color: var(--ink-3);
   transform: translateY(-50%);
   pointer-events: none;
+  transition: color 160ms ease;
+}
+
+.contact__field-icon:focus-within > svg {
+  color: var(--brand);
 }
 
 .contact__field-icon .field {
@@ -3903,6 +3932,14 @@ h4,
     border-color 160ms ease,
     background-color 160ms ease,
     color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .role-btn:hover:not(.is-on) {
+    border-color: #a9b9d1;
+    background: var(--bg-card-hi);
+    color: var(--ink);
+  }
 }
 
 .role-btn:active {
@@ -3941,6 +3978,12 @@ h4,
   height: 1.05rem;
   accent-color: var(--brand);
   cursor: pointer;
+}
+
+.contact__consent.is-invalid input {
+  outline: 2px solid var(--danger);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 .contact__consent a {

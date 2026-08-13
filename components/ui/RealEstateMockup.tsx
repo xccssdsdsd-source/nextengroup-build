@@ -12,6 +12,8 @@ const listings = [
   { price: '3 120 000', addr: 'Gdańsk, Oliwa', specs: '226 m² · 6 pokoi · dz. 880 m²', tag: 'Sprzedane' },
 ]
 
+const segments = ['Domy', 'Apartamenty', 'Działki']
+
 const spec = [
   ['Powierzchnia', '184 m²'],
   ['Działka', '620 m²'],
@@ -39,14 +41,27 @@ export default function RealEstateMockup({ photos = {} }: { photos?: Record<stri
             {photos.hero ? <img className={styles.heroShot} src={photos.hero} alt="" decoding="async" fetchPriority="high" /> : null}
           </span>
           <span className={styles.heroScrim} aria-hidden="true" />
+          {/* Wordmark left, three links right, and nothing else. A centred
+              brand with links flanking it is a template convention; every
+              editorial property site worth copying puts its name in the corner
+              and lets the photograph have the rest of the band. */}
           <div className={styles.navOver}>
-            <div className={styles.navLinks}><span>Oferty</span><span>O nas</span><span>Sprzedaj</span></div>
             <div className={styles.brand}>Atrium</div>
-            <div className={`${styles.navLinks} ${styles.navRight}`}><span>Kontakt</span><span>PL</span></div>
+            <div className={styles.navLinks}><span>Oferty</span><span>O nas</span><span>Kontakt</span></div>
           </div>
           <div className={styles.heroCopy}>
-            <span className={styles.heroKicker}>Trójmiasto · rynek premium</span>
-            <h1 className={styles.heroTitle}>Domy i apartamenty<br />na Wybrzeżu</h1>
+            {/* Two quiet columns above the headline: what the office sells on
+                the left, what it does on the right, held to a band the phone
+                crop can show whole. */}
+            <div className={styles.heroRow}>
+              <div className={styles.heroTags}>
+                {segments.map((s) => <span key={s}>{s}</span>)}
+              </div>
+              <p className={styles.heroBlurb}>
+                Sprzedajemy i wyceniamy<br />nieruchomości premium<br />na Wybrzeżu
+              </p>
+            </div>
+            <h1 className={styles.heroTitle}>Wybrzeże zna<br />swoją wartość</h1>
             <div className={styles.heroFoot}>
               <span className={styles.heroCta}>Zobacz 48 ofert</span>
               <span className={styles.heroMeta}>Sopot · Gdynia · Gdańsk</span>

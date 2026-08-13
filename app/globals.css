@@ -1164,7 +1164,10 @@ h4 {
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  opacity: calc(1 - var(--full, 0));
+  /* The card keeps most of its shadow at full size — it is still an object
+     standing off the page, and dropping the shadow was only ever there to
+     stop a full-bleed frame from casting one onto nothing. */
+  opacity: calc(1 - 0.3 * var(--full, 0));
   box-shadow:
     0 1px 2px rgba(15, 23, 42, 0.05),
     0 10px 28px rgba(15, 23, 42, 0.07),
@@ -1192,16 +1195,17 @@ h4 {
   background: linear-gradient(115deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%);
 }
 
-/* Vignette belongs to the full-bleed phase only: inside the card it would read
-   as a filter, across the viewport it reads as a lens. */
+/* A trace of vignette, and only once the frame is large enough to carry one.
+   At full strength on a card this size it stopped reading as a lens and
+   started reading as a filter applied to the client's own website. */
 .scrub-frame::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 6;
   pointer-events: none;
-  opacity: var(--full, 0);
-  box-shadow: inset 0 0 220px rgba(9, 14, 26, 0.28);
+  opacity: calc(0.4 * var(--full, 0));
+  box-shadow: inset 0 0 180px rgba(9, 14, 26, 0.22);
 }
 
 .scrub-track {
@@ -1607,7 +1611,7 @@ html.motion-ready [data-no-reveal] .section-divider {
 .hero-device-col {
   position: relative;
   width: 100%;
-  max-width: 61rem;
+  max-width: 54rem;
   min-width: 0;
   margin-top: 24px;
   perspective: 1800px;
@@ -1634,20 +1638,19 @@ html.motion-ready .hero-device {
   aspect-ratio: 16 / 10;
 }
 
+/* The browser chrome stays for the whole scene. It used to peel away at the
+   top of the showcase phase, back when the frame went edge to edge and the
+   bar would have read as a second interface over the site's own. The frame
+   stays a card now, and the one line of chrome is what says the thing inside
+   it is a live website rather than a picture of a layout. */
 .hero-device .scrub-frame > * {
   position: absolute;
   top: 0;
   left: 50%;
   width: 100%;
-  height: calc(100% + var(--bar-h, 0px));
+  height: 100%;
   aspect-ratio: auto;
-  transform: translate3d(-50%, calc(var(--bar-out, 0) * var(--bar-h, 0px) * -1), 0);
-}
-
-.hero-device [data-mock-bar] {
-  transform-origin: 50% 0;
-  transform: translate3d(0, calc(var(--bar-out, 0) * -100%), 0) scaleY(calc(1 - var(--bar-out, 0)));
-  opacity: calc(1 - var(--bar-out, 0));
+  transform: translate3d(-50%, 0, 0);
 }
 
 /* Photography trails the layout by a hair. Scaled up first so the lag can
@@ -1757,18 +1760,10 @@ body.hero-immersive .nav-island:hover {
    above it stays white and the links keep their ink. Nothing up there is dark
    enough to need white type, and white on white is not a style choice. */
 
-/* The one fixed point of conversion on the page, so it never leaves — over the
-   photograph it changes material, over an interface it stays the blue button
-   that reads at a glance. */
-body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: #fff;
-  box-shadow: none;
-  transform: scale(0.94);
-}
+/* The one fixed point of conversion on the page, so it never leaves. It used
+   to swap to glass while the frame was full-bleed and the photograph was under
+   it; the frame is inset now, the button sits on the page's own white ground
+   for the whole scene, and white glass on white is not a button. */
 
 /* ── Hand-off to the stats below ────────────────────────── */
 
@@ -1783,7 +1778,7 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
   }
 
   .hero-device-col {
-    max-width: 40rem;
+    max-width: 38rem;
   }
 
   .hero-mesh {
@@ -1825,8 +1820,12 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
     margin-inline: calc(var(--gutter) * -1 + 0.5rem);
   }
 
+  /* Taller than square. The phone never runs the showcase phase, so this is
+     the only size the frame ever has, and a square card left a third of the
+     screen empty above and below it. A portrait frame also shows more of each
+     panel's own column, which is what the crop is for. */
   .scrub-frame {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 5 / 6;
   }
 
   .hero-device .scrub-frame > * {
@@ -2092,6 +2091,36 @@ body.hero-immersive[data-hero-tone='dark'] .sticky-cta {
 @media (hover: hover) and (pointer: fine) {
   .ifield:hover:not(:focus-within) {
     border-color: #a9b9d1;
+  }
+}
+
+/* The two-question variant. A form this short has no reason to be economical
+   with height: the field is a thumb-sized slab, the label sits quietly above
+   the value, and there is no placeholder at all — a greyed example address is
+   one more thing to read, and half the time it gets read as a filled field. */
+.ifield--lg {
+  gap: 0.15rem;
+  min-height: 76px;
+  padding: 0.85rem 1.15rem;
+  border-radius: 16px;
+}
+
+.ifield--lg .ifield__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.ifield--lg input {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 640px) {
+  .ifield--lg {
+    min-height: 72px;
+    padding-inline: 1rem;
   }
 }
 
@@ -3880,7 +3909,16 @@ h4,
 
 .contact__form {
   display: grid;
-  gap: 1.15rem;
+  gap: 0.85rem;
+}
+
+/* The submit is the end of a two-field form, so it gets air above it rather
+   than sitting in the same rhythm as the fields. */
+.contact__form .contact__submit {
+  margin-top: 0.35rem;
+  min-height: 60px;
+  border-radius: 16px;
+  font-size: 1.0625rem;
 }
 
 .contact__field-icon {

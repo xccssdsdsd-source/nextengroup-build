@@ -1,13 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
 type ChatWidgetProps = {
-  compact?: boolean
-  demoStep?: number
   interactiveReady?: boolean
   onUserInteraction?: () => void
 }
@@ -16,108 +13,54 @@ const propertySuggestions = [
   'Czy apartament na Mokotowie ma balkon?',
   'Pokaż oferty do 1,5 mln zł',
   'Czy AI umówi prezentację za mnie?',
-  'Jak działa taki asystent na mojej stronie?',
 ] as const
 
 const implementationSuggestions = [
   'Ile trwa wdrożenie?',
   'Czy AI pozna moje oferty?',
-  'Czy taki asystent zwiększy liczbę zapytań?',
-] as const
-
-const readyPlaceholders = [
-  'Sprawdź, co potrafię…',
-  'Zapytaj o wdrożenie na Twojej stronie…',
-  'Czy taki asystent pasuje do Twojego biura?',
+  'Ile to kosztuje?',
 ] as const
 
 const SendIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
-    <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+    <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
 const StopIcon = () => (
-  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-    <rect x="6" y="6" width="12" height="12" rx="2" />
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+    <rect x="6" y="6" width="12" height="12" rx="2.5" />
   </svg>
 )
 
-const Avatar = () => (
-  <span className="hero-chat__avatar">
-    <Image src="/getbuild-logo.webp" alt="" width={30} height={30} />
-  </span>
-)
-
-export default function ChatWidget({ compact = false, demoStep = 0, interactiveReady = false, onUserInteraction }: ChatWidgetProps = {}) {
+export default function ChatWidget({ interactiveReady = false, onUserInteraction }: ChatWidgetProps = {}) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [isFocused, setIsFocused] = useState(false)
-  const [userEngaged, setUserEngaged] = useState(false)
-  const [placeholder, setPlaceholder] = useState('Zadaj mi dowolne pytanie…')
   const threadRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
-  const visibleDemoStep = userEngaged || interactiveReady ? 0 : demoStep
+  const idle = messages.length === 0 && !loading
   const suggestions = interactiveReady ? implementationSuggestions : propertySuggestions
-
-  const engageUser = () => {
-    setUserEngaged(true)
-    onUserInteraction?.()
-  }
+  const opening = interactiveReady
+    ? 'Gotowe. Teraz zapytaj mnie o wdrożenie takiego asystenta u siebie.'
+    : 'Cześć, jestem Asystentem Anny. Znam jej oferty — zapytaj mnie o dowolną z nich.'
 
   useEffect(() => {
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
     threadRef.current?.scrollTo({ top: threadRef.current.scrollHeight, behavior })
-  }, [messages, loading, visibleDemoStep])
+  }, [messages, loading])
 
   useEffect(() => () => {
     abortRef.current?.abort()
   }, [])
 
-  useEffect(() => {
-    if (isFocused || input || loading) return
-    const phrases = interactiveReady ? readyPlaceholders : ['Zadaj mi dowolne pytanie…']
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setPlaceholder(phrases[0])
-      return
-    }
-    let phraseIndex = 0
-    let index = 0
-    let timer = 0
-    let deleting = false
-    setPlaceholder('')
-    const type = () => {
-      const phrase = phrases[phraseIndex]
-      index += deleting ? -1 : 1
-      setPlaceholder(phrase.slice(0, index))
-
-      if (!deleting && index === phrase.length) {
-        if (phrases.length === 1) return
-        deleting = true
-        timer = window.setTimeout(type, 1450)
-        return
-      }
-
-      if (deleting && index === 0) {
-        deleting = false
-        phraseIndex = (phraseIndex + 1) % phrases.length
-        timer = window.setTimeout(type, 260)
-        return
-      }
-
-      timer = window.setTimeout(type, deleting ? 24 : 46)
-    }
-    timer = window.setTimeout(type, 320)
-    return () => clearTimeout(timer)
-  }, [interactiveReady, isFocused, input, loading])
-
   const send = async (text: string) => {
     const trimmed = text.trim()
     if (!trimmed || loading) return
-    engageUser()
+    onUserInteraction?.()
 
     const nextMessages: Message[] = [...messages, { role: 'user', content: trimmed }]
     setMessages(nextMessages)
@@ -171,83 +114,41 @@ export default function ChatWidget({ compact = false, demoStep = 0, interactiveR
   }
 
   return (
-    <div
-      className={`hero-chat hero-chat--live ${compact ? 'hero-chat--compact' : ''} ${isFocused ? 'hero-chat--focused' : ''}`}
-      onClick={focusInput}
-    >
-      <div className="hero-chat__interactive-bg" aria-hidden="true">
-        <div className="hero-chat__interactive-grid" />
-        <div className="hero-chat__interactive-glow" />
-      </div>
-
+    <div className={`hero-chat${isFocused ? ' hero-chat--focused' : ''}${idle ? ' hero-chat--idle' : ''}`} onClick={focusInput}>
       <div
-        className="hero-chat__thread hero-chat__thread--scroll"
+        className="hero-chat__thread"
         ref={threadRef}
         role="log"
         aria-live="polite"
         aria-relevant="additions"
       >
-        {messages.length === 0 && visibleDemoStep === 0 && (
-          <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
-            <Avatar />
-            <div className="hero-chat__bubble hero-chat__bubble--ai">
-              {interactiveReady ? (
-                <span className="inline-block">Gotowe. Teraz zapytaj mnie o wdrożenie takiego asystenta na Twojej stronie.</span>
-              ) : (
-                <>
-                  <span className="inline-block">Cześć, jestem Asystentem Anny. Znam jej oferty i pomogę Ci znaleźć nieruchomość albo umówić prezentację.</span>{' '}
-                  <span className="inline-block">Sprawdź mnie — o co chcesz zapytać?</span>
-                </>
-              )}
-            </div>
-          </div>
-        )}
-
-        {messages.length === 0 && visibleDemoStep > 0 && (
-          <div className="hero-chat__row hero-chat__row--user hero-chat__pop">
-            <div className="hero-chat__bubble hero-chat__bubble--user">
-              Czy apartament na Mokotowie ma balkon i garaż?
-            </div>
-          </div>
-        )}
-
-        {messages.length === 0 && visibleDemoStep >= 3 && (
-          <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
-            <Avatar />
-            <div className="hero-chat__bubble hero-chat__bubble--ai">
-              Tak — ma balkon 8 m² i miejsce w garażu podziemnym. Mogę od razu pomóc umówić prezentację.
-            </div>
-          </div>
-        )}
+        {/* The opening line is set as a lede, not as a chat bubble: it is the
+            assistant introducing itself, and it is the only sentence in the
+            panel that has the room to be read as a statement. */}
+        <p className="hero-chat__lede hero-chat__pop">{opening}</p>
 
         {messages.map((m, i) => (
-          <div key={i} className={`hero-chat__row hero-chat__row--${m.role === 'user' ? 'user' : 'ai'} hero-chat__pop`}>
-            {m.role === 'assistant' && <Avatar />}
-            <div className={`hero-chat__bubble hero-chat__bubble--${m.role === 'user' ? 'user' : 'ai'}`}>
-              {m.content}
-            </div>
+          <div key={i} className={`hero-chat__msg hero-chat__msg--${m.role === 'user' ? 'user' : 'ai'} hero-chat__pop`}>
+            {m.content}
           </div>
         ))}
 
-        {messages.length === 0 && visibleDemoStep === 0 && !loading && (
-          <div className="hero-chat__suggestions" aria-label="Przykładowe pytania">
-            {suggestions.map(s => (
-              <button key={s} type="button" className="hero-chat__chip" onClick={() => send(s)}>{s}</button>
-            ))}
-          </div>
-        )}
-
-        {(loading || (messages.length === 0 && visibleDemoStep === 2)) && (
-          <div className="hero-chat__row hero-chat__row--ai hero-chat__pop">
-            <Avatar />
-            <div className="hero-chat__bubble hero-chat__bubble--ai">
-              <span className="hero-chat__typing" aria-label="AI pisze">
-                <i /><i /><i />
-              </span>
-            </div>
+        {loading && (
+          <div className="hero-chat__msg hero-chat__msg--ai hero-chat__pop">
+            <span className="hero-chat__typing" aria-label="Asystent pisze">
+              <i /><i /><i />
+            </span>
           </div>
         )}
       </div>
+
+      {idle && (
+        <div className="hero-chat__suggestions" aria-label="Przykładowe pytania">
+          {suggestions.map(s => (
+            <button key={s} type="button" className="hero-chat__chip" onClick={() => send(s)}>{s}</button>
+          ))}
+        </div>
+      )}
 
       {error && <p className="hero-chat__error">{error}</p>}
 
@@ -259,23 +160,21 @@ export default function ChatWidget({ compact = false, demoStep = 0, interactiveR
           tooldescription: 'Asks the Getbuild assistant a question about services, pricing, delivery, or business automation.',
         }}
       >
-        <div className="hero-chat__field">
-          <input
-            ref={inputRef}
-            type="text"
-            name="question"
-            value={input}
-            onChange={e => { engageUser(); setInput(e.target.value) }}
-            onFocus={() => { engageUser(); setIsFocused(true) }}
-            onBlur={() => setIsFocused(false)}
-            placeholder={placeholder}
-            aria-label="Pytanie do Asystenta Anny"
-            {...{ toolparamdescription: 'Question about Getbuild services, pricing, delivery, websites, chatbots, or automations.' }}
-            disabled={loading}
-            className="hero-chat__input"
-            data-chat-input
-          />
-        </div>
+        <input
+          ref={inputRef}
+          type="text"
+          name="question"
+          value={input}
+          onChange={e => { onUserInteraction?.(); setInput(e.target.value) }}
+          onFocus={() => { onUserInteraction?.(); setIsFocused(true) }}
+          onBlur={() => setIsFocused(false)}
+          placeholder="Napisz wiadomość…"
+          aria-label="Pytanie do asystenta"
+          {...{ toolparamdescription: 'Question about Getbuild services, pricing, delivery, websites, chatbots, or automations.' }}
+          disabled={loading}
+          className="hero-chat__input"
+          data-chat-input
+        />
         {loading ? (
           <button
             type="button"
@@ -288,7 +187,7 @@ export default function ChatWidget({ compact = false, demoStep = 0, interactiveR
         ) : (
           <button
             type="submit"
-            className={`hero-chat__send ${input.trim() ? 'hero-chat__send--active' : ''}`}
+            className={`hero-chat__send${input.trim() ? ' hero-chat__send--active' : ''}`}
             disabled={!input.trim()}
             aria-label="Wyślij wiadomość"
           >

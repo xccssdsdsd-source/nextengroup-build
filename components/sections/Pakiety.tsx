@@ -10,11 +10,11 @@ const packages = [
     price: '1997 zł',
     for: 'Agent indywidualny, jedna główna usługa',
     features: [
-      'Struktura oparta na tym, jak pracujesz',
+      'Link, który wygrywa rozmowę o wyłączność',
       'Oferta, realizacje, opinie, FAQ, kontakt',
-      'Formularz z powiadomieniem',
-      'Wersja mobilna i szybkie ładowanie',
-      'Analityka',
+      'Zapytania lądują w Twojej skrzynce',
+      'Czyta się na telefonie klienta w sekundę',
+      'Widoczność w Google i w odpowiedziach AI',
       '30 dni wsparcia po publikacji',
     ],
     featured: false,
@@ -24,12 +24,12 @@ const packages = [
     price: '2299 zł',
     for: 'Agent, do którego dzwonią po godzinach',
     features: [
-      'Wszystko z pakietu niżej',
-      'Agent AI z wiedzą o Twoim biurze',
-      'Rozbudowany formularz kwalifikujący',
-      'Automatyczne potwierdzenie dla klienta',
-      'Natychmiastowe powiadomienie o zapytaniu',
-      'Rezerwacja terminu prezentacji',
+      'Wszystko z pakietu obok',
+      'Agent AI odpowiada, kiedy Ty śpisz',
+      'Pyta o budżet i termin — dostajesz gotowy lead',
+      'Klient dostaje potwierdzenie od razu',
+      'Ty dostajesz powiadomienie w tej samej chwili',
+      'Klient sam rezerwuje termin prezentacji',
       '30 dni wsparcia po publikacji',
     ],
     featured: true,
@@ -40,12 +40,12 @@ const packages = [
     price: '2997 zł',
     for: 'Biuro nieruchomości i agent z własną bazą',
     features: [
-      'Wszystko z pakietu obok',
+      'Wszystko z pakietów obok',
       'Pełna strona z kilkoma podstronami',
-      'Panel ofert nieruchomości po polsku',
-      'Samodzielna edycja ofert i realizacji',
-      'Blog i baza wiedzy',
-      'Aktualizowanie wiedzy agenta AI',
+      'Panel ofert po polsku — dodajesz sam, w minutę',
+      'Nie płacisz nikomu za zmianę ceny w ofercie',
+      'Blog, który pracuje na Twoją widoczność',
+      'Aktualizujemy wiedzę agenta AI',
       '60 dni wsparcia po publikacji',
     ],
     featured: false,
@@ -61,12 +61,13 @@ export default function Pakiety() {
   return (
     <section id="pakiety" className="section-shell section-shell--tint defer-paint">
       <div className="container">
-        <div className="section-head section-head--center">
-          <span className="section-kicker">Ile to kosztuje</span>
-          <h2 className="section-title">Cena jest na stronie, bo nie mamy jej po co ukrywać</h2>
+        <div className="section-head">
+          <h2 className="section-title">
+            Cena jest na stronie, bo nie mamy jej <span className="serif-accent">po co ukrywać</span>
+          </h2>
           <p className="section-copy">
-            Jedna płatność, bez abonamentu za samą stronę. Po okresie wsparcia możesz zostać
-            na stałej opiece i hostingu za 29–99 zł miesięcznie — tak długo, jak jej potrzebujesz.
+            Jedna płatność, bez abonamentu za samą stronę. Opieka i hosting później — 29–99 zł
+            miesięcznie, tylko jeśli chcesz.
           </p>
         </div>
 
@@ -90,8 +91,8 @@ export default function Pakiety() {
         </div>
 
         <p className="pkgs__note">
-          W każdym pakiecie: analiza Twojej oferty, responsywność, szybkość, bezpieczeństwo
-          i techniczne podstawy SEO. Nie gwarantujemy konkretnej pozycji w Google.
+          W każdym pakiecie: szybkość, bezpieczeństwo, wersja mobilna i techniczne podstawy SEO
+          oraz GEO. Nie gwarantujemy konkretnej pozycji w Google.
         </p>
       </div>
     </section>

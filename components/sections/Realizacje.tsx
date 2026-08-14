@@ -9,7 +9,6 @@ const lead = {
   width: 1852,
   height: 916,
   time: '72 godziny',
-  body: 'Poprzednia strona nie działała na telefonie i nie była widoczna w wyszukiwarce. Nowa powstała w 72 godziny: galeria realizacji, opis usług, portfolio i formularz kontaktowy. Klient zobaczył pierwszy kierunek w ciągu doby.',
   scores: [
     { label: 'Wydajność', v: 96 },
     { label: 'Dostępność', v: 93 },
@@ -29,13 +28,7 @@ export default function Realizacje() {
     <section id="portfolio" className="section-shell defer-paint">
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Realizacje</span>
-          <h2 className="section-title">Trzy wdrożenia z branży nieruchomości i wnętrz</h2>
-          <p className="section-copy">
-            Mówimy wprost: to nie są strony biur nieruchomości — to firmy z sąsiedniej półki,
-            które sprzedają nieruchomość albo to, co jest w środku. Terminy i wyniki są prawdziwe
-            i możesz je sprawdzić sam, klikając w każdą z nich.
-          </p>
+          <h2 className="section-title">Już takie strony <span className="serif-accent">zrobiliśmy</span></h2>
         </div>
 
         <a href={lead.href} target="_blank" rel="noopener noreferrer" className="case" data-fade-in>
@@ -50,12 +43,11 @@ export default function Realizacje() {
               </div>
               <span className="chip">Wdrożone w {lead.time}</span>
             </div>
-            <p className="t-body">{lead.body}</p>
             <dl className="case__scores">
               {lead.scores.map((s) => (
                 <div key={s.label}>
                   <dt>{s.label}</dt>
-                  <dd className="tnum" data-counter-final={s.v} data-counter-suffix="">{s.v}</dd>
+                  <dd className="tnum">{s.v}</dd>
                 </div>
               ))}
             </dl>

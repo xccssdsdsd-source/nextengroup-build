@@ -36,8 +36,8 @@ export default function Stopka() {
         <div className="footer__brand">
           <Image src="/getbuild-logo.webp" alt="Getbuild" width={36} height={36} className="footer__logo" />
           <p className="t-small footer__tag">
-            Strony i panele ofert dla agentów oraz biur nieruchomości. Pierwsza wizualizacja
-            w 24 godziny, płatność po akceptacji.
+            Strony i panele ofert dla agentów nieruchomości. Wizualizacja w 24 godziny,
+            płatność po Twoim „tak”.
           </p>
         </div>
 

@@ -236,12 +236,27 @@ h4 {
   color: var(--ink-3);
 }
 
+/* Emphasis inside a heading is carried by colour and a drawn rule, not by a
+   flip to italic serif. An italicised word inside an upright headline is the
+   most reliable "generated" tell there is, and it was on every section title
+   of this site. Same face, same weight, brand ink, one hairline under the
+   phrase — the landmark survives, the tell goes. */
 .serif-accent {
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
   color: var(--brand);
+  box-shadow: inset 0 -0.09em 0 var(--brand-200);
+}
+
+.section-shell--navy .serif-accent,
+.contact .serif-accent {
+  box-shadow: inset 0 -0.09em 0 rgba(107, 157, 244, 0.42);
+}
+
+/* The opening quotation mark is a glyph, not a heading — the serif face is
+   what makes it read as a quotation mark at all. */
+.review__mark {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: normal;
+  box-shadow: none;
 }
 
 .tnum {
@@ -435,21 +450,27 @@ h4 {
    has to *tint* the surface, not lighten it — a low-alpha brand wash tracking
    the cursor, multiplied into the card. On navy the original screen blend is
    correct, so that branch stays. */
-.tilt-glare {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(58% 78% at var(--glare-x, 50%) var(--glare-y, 0%), rgba(11, 79, 209, 0.1), rgba(11, 79, 209, 0.03) 42%, transparent 70%);
-  mix-blend-mode: multiply;
-  transition: opacity 220ms var(--ease-out);
+/* One signal, one property. The pointer-tracking wash that used to sit on top
+   of every card is gone; what is left is the 2px lift that says "this is a
+   link", and the border warming to brand so the signal survives on the cards
+   whose shadow is already soft. */
+@media (hover: hover) and (pointer: fine) {
+  .card-lift {
+    transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out);
+  }
+
+  .card-lift:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: var(--brand-300);
+  }
 }
 
-.section-shell--navy .tilt-glare {
-  background: radial-gradient(58% 78% at var(--glare-x, 50%) var(--glare-y, 0%), rgba(107, 157, 244, 0.3), transparent 66%);
-  mix-blend-mode: screen;
+@media (prefers-reduced-motion: reduce) {
+  .card-lift,
+  .card-lift:hover {
+    transform: none;
+    transition: border-color 160ms linear;
+  }
 }
 
 .section-head {
@@ -546,10 +567,7 @@ h4 {
   line-height: 1;
   cursor: pointer;
   border: 1px solid transparent;
-  /* Every button offset goes through --bx/--by so the magnetic pull, the
-     hover lift and the press can compose instead of overwriting each other —
-     writing a whole transform inline from JS killed the other two. */
-  transform: translate3d(var(--bx, 0px), var(--by, 0px), 0);
+  transform: translate3d(0, 0, 0);
   transition:
     transform 220ms var(--ease-out),
     background-color 160ms ease,
@@ -598,15 +616,7 @@ h4 {
 
 @media (hover: hover) and (pointer: fine) {
   .btn:hover {
-    transform: translate3d(var(--bx, 0px), calc(var(--by, 0px) - 2px), 0);
-  }
-
-  .btn:hover svg {
-    transform: translate3d(3px, 0, 0);
-  }
-
-  .btn[data-magnetic]:hover {
-    transition-duration: 90ms;
+    transform: translate3d(0, -2px, 0);
   }
 
   .btn-primary:hover {
@@ -633,7 +643,7 @@ h4 {
 }
 
 .btn:active {
-  transform: translate3d(var(--bx, 0px), var(--by, 0px), 0) scale(0.97);
+  transform: translate3d(0, 0, 0) scale(0.97);
   transition-duration: 90ms;
 }
 
@@ -641,35 +651,12 @@ h4 {
   background: var(--brand-active);
 }
 
-/* A specular band sweeps the face on hover. It is clipped by the pill, runs
-   on transform only, and never plays on its own — an idle shimmer in the
-   corner of the eye is noise, the same gesture answering a hover is craft. */
+/* The gloss sweep across the primary button is gone. A gradient that slides
+   through a button on hover says nothing about the button — the colour shift
+   and the 1px lift already do the whole job, and one signal per element is the
+   rule. The class stays so the markup does not have to be swept. */
 .btn-sheen {
-  overflow: hidden;
   isolation: isolate;
-}
-
-.btn-sheen::after {
-  content: '';
-  position: absolute;
-  inset: -40% -20%;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(74deg, transparent 38%, rgba(255, 255, 255, 0.28) 50%, transparent 62%);
-  transform: translate3d(-115%, 0, 0);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btn-sheen:hover::after {
-    transition: transform 520ms var(--ease-apple);
-    transform: translate3d(115%, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-sheen::after {
-    display: none;
-  }
 }
 
 .btn[disabled],
@@ -1527,6 +1514,7 @@ html.motion-ready [data-no-reveal] .section-divider {
   max-width: 58rem;
 }
 
+
 /* Every line leaves under its own mask, so the block reads as a curtain of
    type going up rather than a paragraph dissolving. */
 [data-hero-exit] {
@@ -1542,8 +1530,10 @@ html.motion-ready [data-no-reveal] .section-divider {
   text-wrap: balance;
 }
 
+/* The rotating rival is the one place the underline would strobe — it redraws
+   at a different width every four seconds. The word carries itself on colour. */
 .hero-h1 .serif-accent {
-  font-size: 1.06em;
+  box-shadow: none;
 }
 
 /* Five hairlines, full height, nothing else. The grid is the only thing under
@@ -1584,6 +1574,39 @@ html.motion-ready [data-no-reveal] .section-divider {
   margin-top: 1.125rem;
   font-size: 0.8125rem;
   color: var(--ink-3);
+}
+
+/* Desktop breaks the centre axis. Headline, lede, buttons, note and cue all
+   stacked on one centred column is the shape every generated landing page
+   ships; the laptop stays centred underneath, so an off-axis copy block reads
+   as a composition instead of a template. */
+@media (min-width: 1024px) {
+  .hero-stack {
+    text-align: left;
+  }
+
+  .hero-copy {
+    align-items: flex-start;
+  }
+
+  .hero-copy > * {
+    width: 100%;
+    max-width: var(--container);
+  }
+
+  .hero-h1 {
+    max-width: 44rem;
+    margin-inline: 0;
+  }
+
+  .hero-sub {
+    margin-inline: 0;
+    max-width: 34rem;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
 }
 
 /* The hero is a pinned scene: nothing in it moves until the reader scrolls, so
@@ -3825,8 +3848,7 @@ h4,
   bottom: 1.15rem;
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(180deg, var(--brand-500), var(--brand));
-  box-shadow: 0 0 14px -2px rgba(11, 79, 209, 0.55);
+  background: var(--brand);
   transform: scaleY(0);
   transform-origin: 50% 0;
   opacity: 0;
@@ -3841,7 +3863,7 @@ h4,
   inset: 0.35rem -1.15rem;
   z-index: 0;
   border-radius: var(--radius);
-  background: linear-gradient(180deg, var(--brand-50), rgba(238, 244, 255, 0));
+  background: var(--brand-50);
   opacity: 0;
   pointer-events: none;
   transition: opacity 320ms var(--ease-out);

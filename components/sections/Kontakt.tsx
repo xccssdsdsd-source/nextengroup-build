@@ -20,10 +20,10 @@ const socials = [
 ]
 
 const next = [
-  'Odpowiadamy w ciągu 24 godzin — mailem albo telefonem, jak wolisz.',
-  'Piętnaście minut rozmowy o tym, jak pracujesz i czego potrzebujesz.',
-  'W ciągu 24 godzin od zebrania materiałów widzisz pierwszą wizualizację.',
-  'Decydujesz. Dopiero Twoje „tak" uruchamia płatność.',
+  'Odpowiadamy w ciągu 24 godzin — mailem albo telefonem.',
+  'Piętnaście minut rozmowy o tym, jak pracujesz.',
+  'W 24 godziny od materiałów widzisz pierwszą wizualizację.',
+  'Decydujesz. Dopiero Twoje „tak” uruchamia płatność.',
 ]
 
 export default function Kontakt() {
@@ -110,13 +110,12 @@ export default function Kontakt() {
       <span className="section-mesh section-mesh--navy" data-parallax-slow aria-hidden="true" />
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Ostatni krok</span>
           <h2 className="section-title">
             Zobacz swoją stronę, zanim <span className="serif-accent">wydasz złotówkę</span>
           </h2>
           <p className="section-copy">
-            Zostaw kontakt, a przygotujemy wizualizację strony dla Ciebie. Bez zaliczki,
-            bez umowy na tym etapie i bez zobowiązania, że cokolwiek zamówisz.
+            Zostaw kontakt — wizualizację przygotujemy my. Bez zaliczki, bez umowy
+            i bez zobowiązania, że cokolwiek zamówisz.
           </p>
         </div>
 
@@ -211,7 +210,7 @@ export default function Kontakt() {
 
                 <StatefulButton
                   className="contact__submit"
-                  data-magnetic
+                 
                   status={state === 'sending' ? 'loading' : state === 'sent' ? 'success' : 'idle'}
                   loadingLabel="Wysyłam…"
                   successLabel="Wysłane"
@@ -234,9 +233,9 @@ export default function Kontakt() {
             <div className="contact__alt">
               <div className="contact__alt-head">
                 <b>Wolisz najpierw porozmawiać?</b>
-                <span>Umów krótką rozmowę telefoniczną albo spotkanie online. Piętnaście minut, bez prezentacji sprzedażowej.</span>
+                <span>Piętnaście minut, bez prezentacji sprzedażowej.</span>
               </div>
-              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-on-navy btn-sheen contact__alt-btn" data-magnetic>
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn-on-navy contact__alt-btn">
                 <PiCalendarBold size={18} aria-hidden="true" />
                 Wybierz termin rozmowy
               </a>

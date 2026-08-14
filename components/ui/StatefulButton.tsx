@@ -33,7 +33,7 @@ export default function StatefulButton({
       data-status={status}
       aria-busy={status === 'loading'}
       disabled={busy}
-      className={`btn btn-primary btn-sheen sbtn${className ? ` ${className}` : ''}`}
+      className={`btn btn-primary sbtn${className ? ` ${className}` : ''}`}
       {...props}
     >
       <m.span

@@ -45,9 +45,9 @@ export default function StickyCta() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 14, scale: 0.92 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            whileHover={{ y: -1, scale: 1.01 }}
+            whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
-            className="btn btn-primary btn-sheen sticky-cta"
+            className="btn btn-primary sticky-cta"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <rect x="1.5" y="2.5" width="13" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />
@@ -70,7 +70,7 @@ export default function StickyCta() {
                 Wizualizacja w 24h
                 <strong>Bez zaliczki</strong>
               </span>
-              <a href="#kontakt" onClick={handleClick} className="btn btn-primary btn-sheen mobile-bar__cta">
+              <a href="#kontakt" onClick={handleClick} className="btn btn-primary mobile-bar__cta">
                 Zobacz wizualizację
               </a>
             </div>

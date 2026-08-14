@@ -3,16 +3,6 @@
 import { useEffect } from 'react'
 import { subscribeScroll } from '@/lib/scrollTicker'
 
-const counterTargets = [
-  { selector: '.counter-247', final: 24, suffix: '/7' },
-  { selector: '.counter-24h', final: 24, suffix: 'h' },
-  { selector: '.counter-72h', final: 72, suffix: 'h' },
-  { selector: '.counter-96', final: 96 },
-  { selector: '.counter-97', final: 97 },
-  { selector: '.counter-100', final: 100 },
-  { selector: '.counter-93', final: 93 },
-]
-
 const REVEAL_SELECTOR =
   '[data-fade-in], [data-stat-block], [data-stagger-group] > *, .section-title, [data-motion-title], .section-copy, [data-motion-copy], [data-img-reveal], .section-kicker, .section-divider'
 
@@ -328,7 +318,6 @@ export default function PremiumAnimations() {
         // so their mesh and CTAs have to be picked up on the way in.
         if (pointerMotionStarted) {
           initMeshPointer()
-          initMagnetic()
         }
       })
       domObserver.observe(document.body, { childList: true, subtree: true })
@@ -463,42 +452,13 @@ export default function PremiumAnimations() {
       window.addEventListener('resize', onSceneResize, { passive: true })
     }
 
-    /* ── COUNTERS ── */
-    const runCounters = () => {
-      const counterIo = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return
-            const el = entry.target as HTMLElement
-            counterIo.unobserve(el)
-            const final = Number(el.dataset.cf)
-            const suffix = el.dataset.cs || ''
-            const start = performance.now()
-            const step = (now: number) => {
-              const p = Math.min((now - start) / 1400, 1)
-              const eased = 1 - Math.pow(1 - p, 2)
-              el.textContent = Math.round(final * eased) + suffix
-              if (p < 1) requestAnimationFrame(step)
-            }
-            requestAnimationFrame(step)
-          })
-        },
-        { threshold: 0, rootMargin: '0px 0px -12% 0px' },
-      )
-      const register = (el: HTMLElement, final: number, suffix: string) => {
-        el.dataset.cf = String(final)
-        el.dataset.cs = suffix
-        counterIo.observe(el)
-      }
-      counterTargets.forEach(({ selector, final, suffix = '' }) => {
-        document.querySelectorAll<HTMLElement>(selector).forEach((el) => register(el, final, suffix))
-      })
-      document.querySelectorAll<HTMLElement>('[data-counter-final]').forEach((el) =>
-        register(el, Number(el.dataset.counterFinal), el.dataset.counterSuffix || ''),
-      )
-      return counterIo
-    }
-    let counterIo: IntersectionObserver | undefined
+    /* Counters removed. Every number on this page is a claim — a Lighthouse
+       score, a delivery time, a price. Rolling them up from zero meant that for
+       1.4 seconds after each section came into view the page displayed numbers
+       that were simply wrong (95 for 96, 71h for 72h), and a reader scrolling
+       at speed only ever saw the wrong ones. The markup already carries the
+       real figures; they are now what renders. */
+
 
     /* ── DESKTOP: the grid answers the pointer ──────────────────────────
        The mesh behind the hero and the navy sections was a static texture, so
@@ -553,141 +513,39 @@ export default function PremiumAnimations() {
       })
     }
 
-    /* ── DESKTOP: magnetic pull on the primary calls to action ── */
-    const initMagnetic = () => {
-      document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-        if (el.dataset.magneticBound === 'on') return
-        el.dataset.magneticBound = 'on'
-
-        let raf = 0
-        let cx = 0
-        let cy = 0
-        let home = false
-
-        const write = () => {
-          raf = 0
-          if (home) {
-            el.style.setProperty('--bx', '0px')
-            el.style.setProperty('--by', '0px')
-            return
-          }
-          const r = el.getBoundingClientRect()
-          // The rect already includes the offset written last frame, so it is
-          // subtracted back out — measuring against the moved button feeds the
-          // pull into itself and the lean settles short of where it was aimed.
-          const bx = parseFloat(el.style.getPropertyValue('--bx')) || 0
-          const by = parseFloat(el.style.getPropertyValue('--by')) || 0
-          // Capped rather than proportional: the button leans toward the
-          // cursor, it does not chase it off its own baseline.
-          const dx = Math.max(-9, Math.min(9, (cx - (r.left - bx + r.width / 2)) * 0.28))
-          const dy = Math.max(-5, Math.min(5, (cy - (r.top - by + r.height / 2)) * 0.28))
-          el.style.setProperty('--bx', `${dx.toFixed(2)}px`)
-          el.style.setProperty('--by', `${dy.toFixed(2)}px`)
-        }
-        const onMove = (e: PointerEvent) => {
-          cx = e.clientX
-          cy = e.clientY
-          home = false
-          if (!raf) raf = requestAnimationFrame(write)
-        }
-        const onLeave = () => {
-          home = true
-          if (!raf) raf = requestAnimationFrame(write)
-        }
-
-        el.addEventListener('pointermove', onMove)
-        el.addEventListener('pointerleave', onLeave)
-        animeCleanups.push(() => {
-          el.removeEventListener('pointermove', onMove)
-          el.removeEventListener('pointerleave', onLeave)
-          if (raf) cancelAnimationFrame(raf)
-          el.style.removeProperty('--bx')
-          el.style.removeProperty('--by')
-          delete el.dataset.magneticBound
-        })
-      })
-    }
+    /* The magnetic pull on the primary buttons is gone. A control that leans
+       toward the cursor is the same family of trick as a trailing cursor dot:
+       it moves the target the reader is aiming at, and it appears on every
+       generated landing page of the last three years. */
 
     /* ── DESKTOP: Anime.js pointer response, loaded only when the browser is idle ── */
+    /* ── DESKTOP: one signal per card on hover ──────────────────────────
+       Was: a 2px lift plus an anime.js-driven wash that tracked the pointer
+       across the card. Two effects on one element, and the wash is the
+       "premium" gloss every generated card ships with. The lift stays — it is
+       the only thing that tells the reader the card is a link — and it is a CSS
+       transition now, so the page does not pull a motion library down the wire
+       to move something four pixels. */
     const initAnime = async () => {
-      const { animate } = await import('animejs')
-      if (disposed) return
-
-      const tiltCards = document.querySelectorAll<HTMLElement>(
-        '[data-anime-card]',
-      )
-
-      tiltCards.forEach((el) => {
-        let glare = el.querySelector<HTMLElement>('.tilt-glare')
-        if (!glare) {
-          glare = document.createElement('span')
-          glare.className = 'tilt-glare'
-          glare.setAttribute('aria-hidden', 'true')
-          if (getComputedStyle(el).position === 'static') el.style.position = 'relative'
-          el.appendChild(glare)
-        }
-
-        let cardMotion: ReturnType<typeof animate> | null = null
-        let glareMotion: ReturnType<typeof animate> | null = null
-        let moveRaf = 0
-        let px = 0
-        let py = 0
-
-        const onEnter = () => {
-          cardMotion?.revert()
-          glareMotion?.revert()
-          cardMotion = animate(el, { y: -2, duration: 220, ease: 'outQuart' })
-          glareMotion = animate(glare, { opacity: 1, duration: 180, ease: 'outQuart' })
-        }
-
-        // The wash follows the pointer instead of sitting at a fixed 50%/0 —
-        // without this the glare element was inert and the card looked the
-        // same wherever the cursor was.
-        const onMove = (e: PointerEvent) => {
-          const r = el.getBoundingClientRect()
-          px = ((e.clientX - r.left) / r.width) * 100
-          py = ((e.clientY - r.top) / r.height) * 100
-          if (moveRaf) return
-          moveRaf = requestAnimationFrame(() => {
-            moveRaf = 0
-            glare.style.setProperty('--glare-x', `${px.toFixed(1)}%`)
-            glare.style.setProperty('--glare-y', `${py.toFixed(1)}%`)
-          })
-        }
-
-        const onLeave = () => {
-          cardMotion?.revert()
-          glareMotion?.revert()
-          cardMotion = animate(el, { y: 0, duration: 180, ease: 'outQuart' })
-          glareMotion = animate(glare, { opacity: 0, duration: 140, ease: 'outQuart' })
-        }
-
-        el.style.transformStyle = 'preserve-3d'
-        el.addEventListener('mouseenter', onEnter)
-        el.addEventListener('pointermove', onMove)
-        el.addEventListener('mouseleave', onLeave)
+      document.querySelectorAll<HTMLElement>('[data-anime-card]').forEach((el) => {
+        if (el.dataset.hoverBound === 'on') return
+        el.dataset.hoverBound = 'on'
+        el.classList.add('card-lift')
         animeCleanups.push(() => {
-          el.removeEventListener('mouseenter', onEnter)
-          el.removeEventListener('pointermove', onMove)
-          el.removeEventListener('mouseleave', onLeave)
-          if (moveRaf) cancelAnimationFrame(moveRaf)
-          cardMotion?.revert()
-          glareMotion?.revert()
-          glare.remove()
+          el.classList.remove('card-lift')
+          delete el.dataset.hoverBound
         })
       })
     }
 
     /* ── boot ── */
     const boot = () => {
-      counterIo = runCounters()
       // Scenes are transform/opacity driven off one shared rAF, so they are
       // cheap enough to keep on phones — that is where the page is mostly read.
       if (!reduce) initScenes()
     }
 
-    // Ambient parallax is deliberately lighter on touch screens; pointer-only
-    // glare remains a desktop enhancement.
+    // Ambient parallax is deliberately lighter on touch screens.
     // Loading anime.js and measuring the full page during initial hydration
     // creates avoidable long tasks, so it's deferred past first paint — but
     // gating it behind the user's first scroll/pointermove meant the dynamic
@@ -709,7 +567,6 @@ export default function PremiumAnimations() {
       if (pointerMotionStarted || reduce || isMobile || !finePointer) return
       pointerMotionStarted = true
       initMeshPointer()
-      initMagnetic()
       initAnime()
     }
 
@@ -754,7 +611,6 @@ export default function PremiumAnimations() {
       window.removeEventListener('resize', onScroll)
       io.disconnect()
       staggerIo.disconnect()
-      counterIo?.disconnect()
       animeCleanups.forEach((cleanup) => cleanup())
       parallaxItems = []
       style.remove()

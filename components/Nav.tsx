@@ -182,7 +182,7 @@ export default function Nav() {
               <a
                 href={anchorHref('#kontakt')}
                 onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                className="btn btn-primary btn-sheen nav-tap nav-cta h-[52px] flex-none px-5 py-2 text-[13px]"
+                className="btn btn-primary nav-tap nav-cta h-[52px] flex-none px-5 py-2 text-[13px]"
               >
                 {CTA_LABEL}
               </a>
@@ -226,7 +226,7 @@ export default function Nav() {
                 <a
                   href={anchorHref('#kontakt')}
                   onClick={(e) => handleAnchorClick(e, '#kontakt')}
-                  className="btn btn-primary btn-sheen nav-tap flex w-full justify-center px-5 py-3 text-sm"
+                  className="btn btn-primary nav-tap flex w-full justify-center px-5 py-3 text-sm"
                   style={{ transitionDelay: open ? `${allLinks.length * 0.055}s` : '0s' }}
                 >
                   {CTA_LABEL}

@@ -24,7 +24,7 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
     cells: [mark('yes'), mark('no'), mark('partial'), mark('no'), mark('no')],
   },
   {
-    label: 'Cała Twoja rola to dwa rekordy DNS i podpis',
+    label: 'Twoja rola to dwa rekordy DNS i podpis',
     cells: [mark('yes'), mark('no'), mark('no'), mark('yes'), mark('partial')],
   },
   {
@@ -40,7 +40,7 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
     cells: [mark('yes'), mark('no'), mark('no'), mark('no'), mark('no')],
   },
   {
-    label: 'Techniczne SEO i przygotowanie pod wyszukiwarki AI',
+    label: 'Widoczność w Google i w odpowiedziach AI (GEO)',
     cells: [mark('yes'), mark('partial'), mark('no'), mark('yes'), mark('partial')],
   },
   {
@@ -48,7 +48,7 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
     cells: [mark('yes'), mark('partial'), mark('partial'), mark('yes'), mark('depends')],
   },
   {
-    label: 'Wiadomo, kto odbierze telefon za pół roku',
+    label: 'Ktoś odbierze telefon za pół roku',
     cells: [mark('yes'), mark('no'), mark('no'), mark('partial'), mark('no')],
   },
   {
@@ -93,11 +93,10 @@ export default function Przewagi() {
     <section id="przewagi" className="section-shell defer-paint">
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Dlaczego my</span>
           <h2 className="section-title">Pięć dróg do strony. Cztery z nich już znasz.</h2>
           <p className="section-copy">
-            Nie wygrywamy każdego wiersza — kreator jest tańszy, jeśli masz czas. Wygrywamy tam,
-            gdzie to się liczy: w czasie, jakości i w tym, ile pracy zostaje po Twojej stronie.
+            Nie wygrywamy każdego wiersza. Wygrywamy tam, gdzie to Cię kosztuje: w czasie,
+            w jakości i w tym, ile pracy zostaje po Twojej stronie.
           </p>
         </div>
 
@@ -107,7 +106,7 @@ export default function Przewagi() {
             <caption className="sr-only">Porównanie Getbuild z kreatorem, generatorem AI, agencją i freelancerem</caption>
             <thead>
               <tr>
-                <th scope="col">Co jest ważne dla agenta</th>
+                <th scope="col">Co realnie zyskujesz</th>
                 {cols.map((c, i) => (
                   <th key={c} scope="col" className={i === 0 ? 'compare__own' : undefined}>
                     {i === 0 ? <span className="compare__badge">To my</span> : null}
@@ -189,10 +188,8 @@ export default function Przewagi() {
         </p>
 
         <p className="compare__verdict">
-          <span className="serif-accent">
-            Kreator jest tańszy. Agencja jest większa. My jesteśmy jedyni, którzy pokażą Ci gotową
-            stronę, zanim poproszą o pieniądze.
-          </span>
+          Kreator jest tańszy. Agencja jest większa. Tylko u nas{' '}
+          <span className="serif-accent">zobaczysz gotową stronę, zanim zapłacisz</span>.
         </p>
       </div>
     </section>

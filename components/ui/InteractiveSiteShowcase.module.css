@@ -221,20 +221,27 @@
 
 .adminCard:not([data-active]) { transform: translate3d(0, -18px, 0) scale(0.975); }
 
+/* Was a centred URL pill imitating a browser address bar. The reader already
+   has a browser; drawing them a second one is the tell. It is a figure label
+   now — left-aligned, mono, naming what the panel is instead of pretending to
+   be Chrome. */
 .chrome {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
   height: 34px;
+  padding-inline: 0.9rem;
   border-bottom: 1px solid #e8ebf0;
   background: #f5f6f8;
 }
 
 .chrome em {
   overflow: hidden;
-  max-width: 80%;
+  max-width: 100%;
   color: #8b93a2;
-  font: 500 0.55rem var(--font-body);
+  font: 500 0.55rem var(--font-mono);
   font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

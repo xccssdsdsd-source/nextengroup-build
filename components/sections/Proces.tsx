@@ -2,7 +2,7 @@ const steps = [
   {
     time: 'Dzień 0',
     title: 'Piętnaście minut rozmowy',
-    body: 'Mówisz, jak pracujesz i w jakim rejonie. Nie pytamy o kolory ani o technologię.',
+    body: 'Mówisz, jak pracujesz i w jakim rejonie. Bez pytań o kolory i technologię.',
     cost: '0 zł',
   },
   {
@@ -14,13 +14,13 @@ const steps = [
   {
     time: 'Kolejne dni',
     title: 'Poprawiamy, aż będzie Twoja',
-    body: 'Tyle razy, ile trzeba. Kończymy dopiero, gdy powiesz „tak".',
+    body: 'Tyle razy, ile trzeba. Kończymy, gdy powiesz „tak”.',
     cost: '0 zł',
   },
   {
     time: 'Od 72 godzin',
-    title: 'Strona rusza',
-    body: 'Ty wklejasz dwa rekordy w domenie. Hosting, certyfikat i publikację robimy my. Dostajesz panel, instrukcję i wsparcie.',
+    title: 'Strona zarabia',
+    body: 'Wklejasz dwa rekordy w domenie — resztę robimy my. Dostajesz panel, instrukcję i wsparcie.',
     cost: 'Teraz płacisz',
   },
 ]
@@ -30,11 +30,11 @@ export default function Proces() {
     <section id="proces" className="section-shell section-shell--tint defer-paint">
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Jak to robimy</span>
+          <span className="section-kicker">Cztery kroki</span>
           <h2 className="section-title">
-            Płacisz dopiero wtedy, gdy <span className="serif-accent">powiesz „tak"</span>
+            Płacisz dopiero wtedy, gdy <span className="serif-accent">powiesz „tak”</span>
           </h2>
-          <p className="section-copy">Najpierw widzisz efekt. Potem decydujesz. Cztery kroki, jedna Twoja decyzja.</p>
+          <p className="section-copy">Najpierw widzisz efekt. Potem decydujesz.</p>
         </div>
 
         <ol className="steps" data-stagger-group data-scene data-scene-marks=".step__dot" data-scene-from="0.72">

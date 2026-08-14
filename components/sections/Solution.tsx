@@ -6,11 +6,10 @@ export default function Solution() {
       <span className="section-mesh" data-parallax-slow aria-hidden="true" />
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Co dostajesz</span>
           <h2 className="section-title">
-            Co tworzymy na <span className="serif-accent">Twojej stronie internetowej</span>
+            Dodajesz ofertę. Klient pyta. <span className="serif-accent">Masz kontakt.</span>
           </h2>
-          <p className="section-copy">Kliknij i sprawdź każdy element tak, jak zrobi to Twój klient.</p>
+          <p className="section-copy">Kliknij i przejdź tę drogę tak, jak przejdzie ją Twój klient.</p>
         </div>
         <InteractiveSiteShowcase />
       </div>

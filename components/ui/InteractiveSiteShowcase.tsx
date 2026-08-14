@@ -307,7 +307,7 @@ export default function InteractiveSiteShowcase() {
 
       <div ref={stageRef} className={s.stage}>
         <article className={s.adminCard} data-active={scene === 0 || undefined}>
-          <div className={s.chrome}><em>anna-nieruchomosci.pl/panel</em></div>
+          <div className={s.chrome}><em>Twój panel</em></div>
           <div className={s.adminNav}>
             <b>AN</b>
             <span>Twoje oferty</span>
@@ -345,7 +345,7 @@ export default function InteractiveSiteShowcase() {
         </article>
 
         <article className={s.siteCard} data-active={scene >= 1 || undefined} data-live={scene === 4 || undefined}>
-          <div className={s.chrome}><em>anna-nieruchomosci.pl/oferty/mokotow</em></div>
+          <div className={s.chrome}><em>Twoja strona — to widzi klient</em></div>
           <div className={s.siteNav}><b>ANNA <i>nieruchomości</i></b><span>Oferty · O mnie · Kontakt</span></div>
           <div className={s.siteBody}>
             <div className={s.siteMedia}>

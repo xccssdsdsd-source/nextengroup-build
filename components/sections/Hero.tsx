@@ -292,25 +292,25 @@ export default function Hero() {
             </h1>
 
             <p className="hero-sub hero-from-right" data-hero-exit style={{ animationDelay: '160ms' }}>
-              Strony i panele ofert dla agentów nieruchomości — widzisz efekt, zanim zapłacisz.
+              Strona i panel ofert, które klient znajdzie w Google i w ChatGPT.
+              Gotowe do obejrzenia w 24 godziny — płacisz po Twoim „tak”.
             </p>
 
             <div className="hero-actions hero-from-left" data-hero-exit style={{ animationDelay: '240ms' }}>
               <a
                 href="#kontakt"
                 onClick={(e) => go(e, 'kontakt')}
-                className="btn btn-primary btn-sheen"
-                data-magnetic
+                className="btn btn-primary"
               >
                 Zobacz wizualizację w 24h
               </a>
-              <a href="#proces" onClick={(e) => go(e, 'proces')} className="btn btn-ghost" data-magnetic>
+              <a href="#proces" onClick={(e) => go(e, 'proces')} className="btn btn-ghost">
                 Jak to działa
               </a>
             </div>
 
             <p className="hero-note hero-from-left" data-hero-exit style={{ animationDelay: '300ms' }}>
-              Bez zaliczki · Poprawki bez limitu do akceptacji · Odpowiadamy w 24h
+              Bez zaliczki · Poprawki bez limitu · Odpowiadamy w 24h
             </p>
 
             <span className="hero-cue" aria-hidden="true">

@@ -22,8 +22,7 @@ export default function Opinie() {
     <section id="opinie" className="section-shell section-shell--tint defer-paint">
       <div className="container">
         <div className="section-head">
-          <span className="section-kicker">Opinie</span>
-          <h2 className="section-title">Dwie opinie. Obie podpisane imieniem i firmą.</h2>
+          <h2 className="section-title">Podpisane imieniem, nazwiskiem i <span className="serif-accent">firmą</span></h2>
         </div>
 
         <div className="reviews" data-stagger-group>

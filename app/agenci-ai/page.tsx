@@ -123,7 +123,7 @@ export default function AgenciAI() {
           <span className="section-kicker">Agenci AI</span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Agent AI działa samodzielnie.<br className="hidden md:block" />
-            <span className="serif-accent"> Bez reguł, bez nadzoru.</span>
+             <span className="serif-accent">Bez reguł, bez nadzoru.</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[var(--ink-2)] mb-10 max-w-2xl" data-speakable>
             Nie chatbot. Nie skrypt. Agent AI dostaje zadanie i sam decyduje, jak je wykonać. Działa w tle, przez całą dobę, bez żadnych instrukcji krok po kroku.

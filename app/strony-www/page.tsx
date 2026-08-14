@@ -148,7 +148,7 @@ export default function StonyWWW() {
           <span className="section-kicker">Strony WWW dla firm</span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony WWW, które<br className="hidden md:block" />
-            <span className="serif-accent"> pracują dla Twojego biznesu</span>
+             <span className="serif-accent">pracują dla Twojego biznesu</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[var(--ink-2)] mb-10 max-w-2xl" data-speakable>
             Nowoczesne strony internetowe budują wiarygodność Twojej firmy i aktywnie kierują klientów do kontaktu. Każdy element projektujemy z myślą o Twoich celach biznesowych.

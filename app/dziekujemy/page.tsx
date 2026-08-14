@@ -19,10 +19,10 @@ export default function Dziekujemy() {
       <Nav />
 
       <section className="relative bg-[var(--bg-base)] pt-20 pb-16 sm:pt-28 sm:pb-24 min-h-[70vh] flex items-center">
-        <div className="pointer-events-none absolute inset-0 z-0" style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107,157,244,0.16), transparent 60%)' }} />
 
         <div className="relative z-10 max-w-2xl mx-auto px-6 sm:px-8 text-center">
-          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-[rgba(58,175,232,0.3)] bg-[rgba(58,175,232,0.08)]">
+          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-[var(--brand-200)] bg-[var(--brand-50)]">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0b4fd1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M20 6 9 17l-5-5" />
             </svg>

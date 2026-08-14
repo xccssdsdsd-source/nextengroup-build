@@ -137,7 +137,7 @@ export default async function ArticlePage({ params }: Props) {
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)',
+              'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107,157,244,0.16), transparent 60%)',
           }}
         />
         <div className="mx-auto max-w-3xl relative z-10">

@@ -215,19 +215,19 @@ function AnimatedLines() {
           </linearGradient>
         </defs>
 
-        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(58,175,232,0.065)" strokeWidth="1.1" />
+        <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke="rgba(11,79,209,0.065)" strokeWidth="1.1" />
         <path d="M -160 -80 C 120 40 340 168 620 312 S 1120 560 1600 820" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="1.1" strokeDasharray="520 2080" className="pf-a" />
 
-        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(58,175,232,0.05)" strokeWidth="0.75" />
+        <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke="rgba(11,79,209,0.05)" strokeWidth="0.75" />
         <path d="M -220 80 C 80 124 360 250 650 402 S 1100 640 1520 760" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.75" strokeDasharray="460 2340" className="pf-b" />
 
-        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(58,175,232,0.055)" strokeWidth="0.95" />
+        <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke="rgba(11,79,209,0.055)" strokeWidth="0.95" />
         <path d="M 10 -120 C 220 82 480 236 800 392 S 1230 560 1600 690" fill="none" stroke={`url(#${uid}-gc)`} strokeWidth="0.95" strokeDasharray="500 1900" className="pf-c" />
 
-        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.68" />
+        <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke="rgba(11,79,209,0.045)" strokeWidth="0.68" />
         <path d="M -260 250 C 50 270 350 384 680 536 S 1120 735 1540 890" fill="none" stroke={`url(#${uid}-ga)`} strokeWidth="0.68" strokeDasharray="440 2560" className="pf-d" />
 
-        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(58,175,232,0.045)" strokeWidth="0.8" />
+        <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke="rgba(11,79,209,0.045)" strokeWidth="0.8" />
         <path d="M 280 -140 C 430 58 680 220 960 354 S 1260 500 1580 600" fill="none" stroke={`url(#${uid}-gb)`} strokeWidth="0.8" strokeDasharray="480 2120" className="pf-e" />
       </svg>
     </div>
@@ -392,7 +392,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
   return (
     <section id="portfolio" className="section-shell relative overflow-hidden" data-no-entrance suppressHydrationWarning>
       <SectionGlow variant="portfolio" />
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl px-[var(--gutter)]">
         <m.div
           className="portfolio-heading flex flex-wrap items-end justify-between gap-4"
           initial={false}
@@ -434,7 +434,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className="tilt-glare" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0%, transparent 60%)', opacity: 0, zIndex: 1 }} />
+            <div className="tilt-glare" style={{ zIndex: 1 }} />
             <AnimatePresence mode="wait" initial={false} custom={direction}>
               <m.div
                 key={currentIndex}
@@ -450,7 +450,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -472,7 +472,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                           height={project.imgHeight}
                           sizes="(min-width: 768px) 720px, 100vw"
                           data-parallax-image
-                          className="w-full h-auto rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)] ring-1 ring-[rgba(255,255,255,0.08)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                          className="w-full h-auto rounded-xl shadow-[0_3px_6px_rgba(6,17,41,0.11),0_22px_44px_-14px_rgba(6,17,41,0.2)] ring-1 ring-[var(--line)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                           loading="lazy"
                           placeholder="blur"
                           blurDataURL={project.blurDataURL}
@@ -485,7 +485,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[rgba(58,175,232,0.3)]">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
                           <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
                         </div>
                         <div>
@@ -512,7 +512,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 )}
 
                 <div className="portfolio-mobile-content flex flex-col justify-center p-6 sm:p-8">
-                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#fff]" style={{ background: 'var(--brand)', boxShadow: '0 2px 8px rgba(58,175,232,0.22)' }}>Wdrożenie {project.time}</span>
+                  <span className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#fff]" style={{ background: 'var(--brand)', boxShadow: 'var(--shadow-brand)' }}>Wdrożenie {project.time}</span>
 
                   <a href={project.href} target="_blank" rel="noreferrer" onClick={handleCardClick} className="group mt-4 inline-flex items-center gap-1.5">
                     {asH1 ? (
@@ -535,7 +535,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                   </div>
 
                   {project.lighthouse && (
-                    <div className="portfolio-mobile-audit mt-5 border-t border-[rgba(255,255,255,0.08)] pt-5">
+                    <div className="portfolio-mobile-audit mt-5 border-t border-[var(--line)] pt-5">
                       <div className="portfolio-case__audit-head">
                         <span>Audyt techniczny</span>
                         <small>Google Lighthouse · wynik /100</small>
@@ -572,7 +572,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               <m.button
                 onClick={prevProject}
                 whileTap={{ scale: 0.97 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Poprzednia realizacja"
               >
                 <PiCaretLeftBold size={22} />
@@ -587,7 +587,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                     style={{
                       width: i === currentIndex ? 22 : 8,
                       height: 8,
-                      background: i === currentIndex ? 'var(--brand)' : 'rgba(255,255,255,0.14)',
+                      background: i === currentIndex ? 'var(--brand)' : 'var(--line-strong)',
                     }}
                     aria-label={`Realizacja ${i + 1}`}
                   />
@@ -597,7 +597,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
               <m.button
                 onClick={nextProject}
                 whileTap={{ scale: 0.97 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.14)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--bg-card)] text-[var(--ink)] shadow-sm transition-[transform,box-shadow] duration-200 ease-out active:scale-95"
                 aria-label="Następna realizacja"
               >
                 <PiCaretRightBold size={22} />

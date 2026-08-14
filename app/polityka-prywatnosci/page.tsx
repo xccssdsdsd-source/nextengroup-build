@@ -23,7 +23,7 @@ export default function PolitykaPrywatnosci() {
       ]} />
 
       <section className="relative bg-[var(--bg-base)] pt-20 pb-16 sm:pt-28 sm:pb-24">
-        <div className="pointer-events-none absolute inset-0 z-0" style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.12), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107,157,244,0.16), transparent 60%)' }} />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8">
           <div className="mb-12">

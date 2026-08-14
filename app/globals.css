@@ -3262,6 +3262,132 @@ h4,
   margin-left: 0;
 }
 
+/* ── Portfolio (/realizacje) ─────────────────────────────
+   The carousel on the realizacje page kept its class contract
+   (realizacja-card, audit-metric, carousel-arrow…) but lost its stylesheet in
+   the dark→light migration, so the audit numbers ran together and the card
+   had no surface. Rebuilt here on the same tokens as the home sections. */
+
+.portfolio-heading {
+  margin-bottom: 0.25rem;
+}
+
+.realizacja-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.portfolio-preview-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-soft);
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-base);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 220ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .carousel-arrow:hover {
+    border-color: var(--brand-300);
+    color: var(--brand);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.portfolio-case__audit-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.6rem;
+  row-gap: 0.1rem;
+}
+
+.portfolio-case__audit-head span {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.portfolio-case__audit-head small {
+  font-family: var(--font-mono);
+  font-size: 0.6563rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.score-badge-grid,
+.portfolio-case__scores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.25rem;
+  margin-top: 0.9rem;
+}
+
+@media (min-width: 480px) {
+  .score-badge-grid,
+  .portfolio-case__scores {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Same register as the audit strip on the home realizacje cards: mono
+   uppercase label above, brand-blue number with a muted /100. */
+.audit-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.audit-metric small {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.audit-metric strong {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 620;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+
+.audit-metric strong i {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  margin-left: 0.25rem;
+}
+
 /* ── Cases ──────────────────────────────────────────────── */
 
 .case {

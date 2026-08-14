@@ -145,13 +145,10 @@ export default function StonyWWW() {
 
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <div className="relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--brand)]/20 bg-[var(--brand)]/5 px-4 py-1.5 mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] animate-pulse" />
-            <span className="text-xs font-medium text-[var(--brand)] tracking-wide uppercase">Strony WWW dla firm</span>
-          </div>
+          <span className="section-kicker">Strony WWW dla firm</span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony WWW, które<br className="hidden md:block" />
-            <span className="text-[var(--brand)]"> pracują dla Twojego biznesu</span>
+            <span className="serif-accent"> pracują dla Twojego biznesu</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[var(--ink-2)] mb-10 max-w-2xl" data-speakable>
             Nowoczesne strony internetowe budują wiarygodność Twojej firmy i aktywnie kierują klientów do kontaktu. Każdy element projektujemy z myślą o Twoich celach biznesowych.
@@ -159,13 +156,13 @@ export default function StonyWWW() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/#kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[#fff] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[var(--brand-400)] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              className="btn btn-primary"
             >
               Umów bezpłatną konsultację
             </a>
             <a
               href="#co-zyskujesz"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--line)] px-8 py-4 text-[15px] font-medium text-[var(--ink-2)] hover:border-[var(--line-strong)] hover:text-[var(--ink)] transition-colors duration-200"
+              className="btn btn-ghost"
             >
               Co zyskujesz
             </a>
@@ -182,7 +179,7 @@ export default function StonyWWW() {
                   <span className="text-4xl font-bold text-[var(--ink)]" style={{ fontFamily: 'var(--font-heading)' }}>{stat.val}</span>
                   {stat.unit && <span className="text-xl font-bold text-[var(--brand)]">{stat.unit}</span>}
                 </div>
-                <p className="text-sm text-[#7E8CA2]">{stat.label}</p>
+                <p className="text-sm text-[var(--ink-3)]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -216,7 +213,7 @@ export default function StonyWWW() {
                       <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <span className="text-[15px] text-[#8A96A8] leading-[1.6]">{item}</span>
+                  <span className="text-[15px] text-[var(--ink-2)] leading-[1.6]">{item}</span>
                 </div>
               ))}
               <p className="text-xs text-[var(--brand)]/70 pt-2 border-t border-[var(--line)]">Wszystko w jednym, spójnym projekcie.</p>
@@ -230,7 +227,7 @@ export default function StonyWWW() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Twoja strona będzie
           </h2>
-          <p className="text-[#7E8CA2] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
+          <p className="text-[var(--ink-3)] mb-10 text-[15px]">Cztery rzeczy, które dostajesz w każdym projekcie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {features.map((f, i) => (
               <div key={i} className="group rounded-2xl bg-[var(--bg-surface)] border border-[var(--line)] p-6 hover:border-[var(--brand)]/20 transition-colors duration-300">
@@ -242,7 +239,7 @@ export default function StonyWWW() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-[var(--ink)] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{f.title}</h3>
-                    <p className="text-[#7A8699] text-[14px] leading-[1.7]">{f.desc}</p>
+                    <p className="text-[var(--ink-3)] text-[14px] leading-[1.7]">{f.desc}</p>
                   </div>
                 </div>
               </div>
@@ -260,7 +257,7 @@ export default function StonyWWW() {
             {faqItems.map((item) => (
               <div key={item.name} className="py-6">
                 <h3 className="font-semibold text-[var(--ink)] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{item.name}</h3>
-                <p className="text-[#7A8699] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
+                <p className="text-[var(--ink-3)] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
               </div>
             ))}
           </div>
@@ -275,12 +272,12 @@ export default function StonyWWW() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Gotów na stronę, która pracuje?
               </h2>
-              <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">
+              <p className="text-[var(--ink-3)] leading-[1.7] mb-8 max-w-lg mx-auto">
                 Umów bezpłatną konsultację — pierwszą wizualizację zobaczysz zwykle w ciągu 24 godzin. Zero zobowiązań.
               </p>
               <a
                 href="/#kontakt"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[#fff] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[var(--brand-400)] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="btn btn-primary"
               >
                 Umów spotkanie
               </a>

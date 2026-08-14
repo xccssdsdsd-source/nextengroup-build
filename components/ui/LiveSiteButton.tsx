@@ -17,7 +17,7 @@ export default function LiveSiteButton({ href, label = 'Zobacz stronę na żywo'
       rel="noreferrer"
       whileTap={{ scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 22 }}
-      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#0D0D0D] px-5 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.08em] text-[var(--ink)] shadow-[0_6px_20px_rgba(13,13,13,0.22)] ${className}`}
+      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--brand)] px-5 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.08em] text-[#fff] shadow-[var(--shadow-brand)] transition-colors duration-200 hover:bg-[var(--brand-hover)] ${className}`}
       style={{ fontFamily: 'var(--font-heading)' }}
     >
       {/* Automatic shine sweep that loops periodically */}

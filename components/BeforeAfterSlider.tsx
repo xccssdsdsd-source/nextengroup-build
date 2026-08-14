@@ -182,7 +182,7 @@ export default function BeforeAfterSlider({
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  'linear-gradient(rgba(58,175,232,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(58,175,232,0.18) 1px, transparent 1px)',
+                  'linear-gradient(rgba(46,143,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(46,143,255,0.2) 1px, transparent 1px)',
                 backgroundSize: '28px 28px',
                 maskImage: 'linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)',
               }}
@@ -208,7 +208,7 @@ export default function BeforeAfterSlider({
 
         {/* Labels */}
         <m.span
-          className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink)] backdrop-blur-sm"
+          className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#fff] backdrop-blur-sm"
           style={{ opacity: beforeLabelOpacity }}
         >
           {beforeLabel}
@@ -224,7 +224,7 @@ export default function BeforeAfterSlider({
         <m.div className="pointer-events-none absolute inset-y-0 z-30" style={{ left: handleLeft, x: '-50%' }}>
           <div
             className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white shadow-[0_0_8px_rgba(0,0,0,0.35)]"
-            style={building ? { boxShadow: '0 0 14px 2px rgba(58,175,232,0.8)' } : undefined}
+            style={building ? { boxShadow: '0 0 14px 2px rgba(46,143,255,0.8)' } : undefined}
           />
           <button
             type="button"
@@ -244,13 +244,13 @@ export default function BeforeAfterSlider({
 
       {/* PRZED / PO toggle */}
       <div className="flex items-center justify-center">
-        <div className="inline-flex items-center rounded-full bg-[var(--bg-card)] p-1 ring-1 ring-[rgba(255,255,255,0.08)]">
+        <div className="inline-flex items-center rounded-full bg-[var(--bg-surface)] p-1 ring-1 ring-[var(--line-strong)]">
           <button
             type="button"
             onClick={() => goTo('before')}
             aria-pressed={mode === 'before'}
             className={`rounded-full px-5 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition-[color,background-color,box-shadow,transform] duration-200 ease-out ${
-              mode === 'before' ? 'bg-[#1C2433] text-[var(--ink)] shadow-sm' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
+              mode === 'before' ? 'bg-[var(--navy-2)] text-[#fff] shadow-sm' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
             }`}
           >
             {beforeLabel}

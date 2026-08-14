@@ -36,10 +36,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="site-footer relative overflow-hidden bg-[#05080d] px-6 py-8 sm:px-8 sm:py-16 border-t border-[rgba(255,255,255,0.08)]">
+    <footer className="site-footer relative overflow-hidden bg-[var(--bg-veil)] px-6 py-8 sm:px-8 sm:py-16 border-t border-[var(--line)]">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(58,175,232,0.22) 35%, rgba(58,175,232,0.14) 65%, transparent 100%)' }}
+        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(11,79,209,0.28) 35%, rgba(11,79,209,0.16) 65%, transparent 100%)' }}
       />
 
       <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
@@ -114,7 +114,7 @@ export default function Footer() {
       </div>
 
       <m.div
-        className="relative mx-auto max-w-7xl border-t border-[rgba(255,255,255,0.08)] mt-10 pt-6"
+        className="relative mx-auto max-w-7xl border-t border-[var(--line)] mt-10 pt-6"
         initial={false}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease }}

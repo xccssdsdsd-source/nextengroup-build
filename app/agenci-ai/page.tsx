@@ -120,13 +120,10 @@ export default function AgenciAI() {
 
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 px-6 md:px-12">
         <div className="relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--brand)]/20 bg-[var(--brand)]/5 px-4 py-1.5 mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] animate-pulse" />
-            <span className="text-xs font-medium text-[var(--brand)] tracking-wide uppercase">Agenci AI</span>
-          </div>
+          <span className="section-kicker">Agenci AI</span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6 leading-[1.1]" style={{ fontFamily: 'var(--font-heading)' }}>
             Agent AI działa samodzielnie.<br className="hidden md:block" />
-            <span className="text-[var(--brand)]"> Bez reguł, bez nadzoru.</span>
+            <span className="serif-accent"> Bez reguł, bez nadzoru.</span>
           </h1>
           <p className="text-lg md:text-xl leading-[1.7] text-[var(--ink-2)] mb-10 max-w-2xl" data-speakable>
             Nie chatbot. Nie skrypt. Agent AI dostaje zadanie i sam decyduje, jak je wykonać. Działa w tle, przez całą dobę, bez żadnych instrukcji krok po kroku.
@@ -134,13 +131,13 @@ export default function AgenciAI() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/#kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[#fff] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[var(--brand-400)] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+              className="btn btn-primary"
             >
               Umów bezpłatną rozmowę
             </a>
             <a
               href="#co-przejmuje"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--line)] px-8 py-4 text-[15px] font-medium text-[var(--ink-2)] hover:border-[var(--line-strong)] hover:text-[var(--ink)] transition-colors duration-200"
+              className="btn btn-ghost"
             >
               Co przejmuje agent
             </a>
@@ -153,14 +150,14 @@ export default function AgenciAI() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Chatbot kontra agent AI
           </h2>
-          <p className="text-[#7E8CA2] mb-10 text-[15px]">Różnica, która ma znaczenie w praktyce.</p>
+          <p className="text-[var(--ink-3)] mb-10 text-[15px]">Różnica, która ma znaczenie w praktyce.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {diff.map((col) => (
               <div
                 key={col.label}
                 className={`rounded-2xl border p-8 ${col.accent
-                  ? 'bg-[#0F1A24] border-[var(--brand)]/25'
-                  : 'bg-[#0C1018] border-[var(--line)]'
+                  ? 'bg-[var(--brand-50)] border-[var(--brand-200)]'
+                  : 'bg-[var(--bg-surface)] border-[var(--line)]'
                 }`}
               >
                 <div className={`text-sm font-semibold mb-6 tracking-wide ${col.accent ? 'text-[var(--brand)]' : 'text-[var(--ink-3)]'}`} style={{ fontFamily: 'var(--font-heading)' }}>
@@ -169,10 +166,10 @@ export default function AgenciAI() {
                 <ul className="space-y-4">
                   {col.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className={`mt-1 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${col.accent ? 'bg-[var(--brand)]/15' : 'bg-[var(--bg-surface)]'}`}>
+                      <span className={`mt-1 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${col.accent ? 'bg-[var(--brand)]/15' : 'bg-[var(--bg-sunk)]'}`}>
                         {col.accent
                           ? <svg className="h-2.5 w-2.5 text-[var(--brand)]" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                          : <svg className="h-2 w-2 text-[#3B4455]" viewBox="0 0 8 8" fill="none"><path d="M2 4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                          : <svg className="h-2 w-2 text-[var(--ink-3)]" viewBox="0 0 8 8" fill="none"><path d="M2 4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                         }
                       </span>
                       <span className={`text-[14px] leading-[1.6] ${col.accent ? 'text-[var(--ink-2)]' : 'text-[var(--ink-3)]'}`}>{pt}</span>
@@ -191,10 +188,10 @@ export default function AgenciAI() {
             <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
               Jak to działa w praktyce
             </h2>
-            <p className="text-[#7A8699] leading-[1.7] mb-6 text-[15px]">
+            <p className="text-[var(--ink-3)] leading-[1.7] mb-6 text-[15px]">
               Dajesz agentowi zadanie: "Sprawdź, czy przyszły nowe zapytania ofertowe, odpowiedz na proste, te bardziej skomplikowane prześlij do mnie z podsumowaniem."
             </p>
-            <p className="text-[#7A8699] leading-[1.7] mb-6 text-[15px]">
+            <p className="text-[var(--ink-3)] leading-[1.7] mb-6 text-[15px]">
               Agent analizuje kontekst, wykonuje kolejne kroki i przygotowuje odpowiedzi w ramach ustalonych celów oraz uprawnień. To, co wymaga Twojej uwagi, przekazuje dalej z podsumowaniem. Nie musisz opisywać ręcznie każdego wariantu, ale zakres decyzji i bezpieczne ścieżki eskalacji trzeba zaprojektować przed wdrożeniem.
             </p>
             <p className="text-[var(--ink-2)] leading-[1.7] text-[15px]">
@@ -209,7 +206,7 @@ export default function AgenciAI() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-3 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
             Co agent może przejąć od Twojego zespołu
           </h2>
-          <p className="text-[#7E8CA2] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
+          <p className="text-[var(--ink-3)] mb-10 text-[15px]">Konkretne obszary, które agent obsługuje autonomicznie.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {capabilities.map((c, i) => (
               <div key={i} className="group rounded-2xl bg-[var(--bg-surface)] border border-[var(--line)] p-6 hover:border-[var(--brand)]/20 transition-colors duration-300">
@@ -221,7 +218,7 @@ export default function AgenciAI() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-[var(--ink)] mb-2 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{c.title}</h3>
-                    <p className="text-[#7A8699] text-[14px] leading-[1.7]">{c.desc}</p>
+                    <p className="text-[var(--ink-3)] text-[14px] leading-[1.7]">{c.desc}</p>
                   </div>
                 </div>
               </div>
@@ -239,7 +236,7 @@ export default function AgenciAI() {
             {faqItems.map((item) => (
               <div key={item.name} className="py-6">
                 <h3 className="font-semibold text-[var(--ink)] mb-3 text-[15px]" style={{ fontFamily: 'var(--font-heading)' }}>{item.name}</h3>
-                <p className="text-[#7A8699] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
+                <p className="text-[var(--ink-3)] leading-[1.7] text-[14px]">{item.acceptedAnswer.text}</p>
               </div>
             ))}
           </div>
@@ -254,12 +251,12 @@ export default function AgenciAI() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-4 leading-[1.2]" style={{ fontFamily: 'var(--font-heading)' }}>
                 Powiedz nam, co chcesz oddać agentowi
               </h2>
-              <p className="text-[#7A8699] leading-[1.7] mb-8 max-w-lg mx-auto">
+              <p className="text-[var(--ink-3)] leading-[1.7] mb-8 max-w-lg mx-auto">
                 Na rozmowie pokażemy, jak agent działałby w Twoim przypadku. Demo masz w kilka dni.
               </p>
               <a
                 href="/#kontakt"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[#fff] tracking-[-0.01em] transition-[background,box-shadow,transform] duration-200 hover:bg-[var(--brand-400)] hover:shadow-[0_8px_24px_rgba(58,175,232,0.25)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="btn btn-primary"
               >
                 Umów rozmowę
               </a>

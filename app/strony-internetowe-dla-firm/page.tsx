@@ -66,7 +66,7 @@ export default function StronyInternetoweDlaFirm() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
       <section className="relative bg-[var(--bg-base)] pt-24 pb-12 md:pt-32 md:pb-20 px-6 md:px-12">
-        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(58,175,232,0.22), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,219,255,0.5), transparent 60%)' }} />
         <div className="mx-auto max-w-3xl relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[var(--ink)] mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
             Strony internetowe dla firm B2B

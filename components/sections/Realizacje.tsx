@@ -28,7 +28,7 @@ export default function Realizacje() {
     <section id="portfolio" className="section-shell defer-paint">
       <div className="container">
         <div className="section-head">
-          <h2 className="section-title">Już takie strony <span className="serif-accent">zrobiliśmy</span></h2>
+          <h2 className="section-title">Nasze <span className="serif-accent">realizacje</span></h2>
         </div>
 
         <a href={lead.href} target="_blank" rel="noopener noreferrer" className="case" data-fade-in>

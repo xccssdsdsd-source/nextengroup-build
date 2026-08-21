@@ -6,47 +6,49 @@ import { scrollToSection } from '@/lib/scrollToSection'
 
 const packages = [
   {
-    name: 'Biuro z panelem ofert',
-    price: '2997 zł',
-    for: 'Biuro nieruchomości i agent z własną bazą',
-    features: [
-      'Wszystko z pakietów obok',
-      'Pełna strona z kilkoma podstronami',
-      'Panel ofert po polsku — dodajesz sam, w minutę',
-      'Nie płacisz nikomu za zmianę ceny w ofercie',
-      'Blog, który pracuje na Twoją widoczność',
-      'Aktualizujemy wiedzę agenta AI',
-      '60 dni wsparcia po publikacji',
-    ],
-    featured: true,
-    badge: 'Najczęściej wybierany',
-  },
-  {
-    name: 'Wizytówka agenta',
-    price: '1997 zł',
+    name: 'Strona agenta z AI',
+    pre: 'około',
+    price: '2000 zł',
     for: 'Agent indywidualny, jedna główna usługa',
     features: [
       'Link, który wygrywa rozmowę o wyłączność',
       'Oferta, realizacje, opinie, FAQ, kontakt',
-      'Zapytania lądują w Twojej skrzynce',
-      'Czyta się na telefonie klienta w sekundę',
+      'Agent AI odpowiada, kiedy Ty śpisz',
+      'Pyta o budżet i termin — dostajesz gotowy lead',
+      'Klient sam rezerwuje termin prezentacji',
       'Widoczność w Google i w odpowiedziach AI',
       '30 dni wsparcia po publikacji',
     ],
     featured: false,
   },
   {
-    name: 'Agent z obsługą 24/7',
-    price: '2299 zł',
-    for: 'Agent, do którego dzwonią po godzinach',
+    name: 'Biuro z panelem ofert',
+    price: '2997 zł',
+    for: 'Biuro nieruchomości i agent z własną bazą',
     features: [
       'Wszystko z pakietu obok',
-      'Agent AI odpowiada, kiedy Ty śpisz',
-      'Pyta o budżet i termin — dostajesz gotowy lead',
-      'Klient dostaje potwierdzenie od razu',
-      'Ty dostajesz powiadomienie w tej samej chwili',
-      'Klient sam rezerwuje termin prezentacji',
-      '30 dni wsparcia po publikacji',
+      'Pełna strona z kilkoma podstronami',
+      'Panel ofert po polsku — dodajesz sam, w minutę',
+      'Nie płacisz nikomu za zmianę ceny w ofercie',
+      'Blog, który pracuje na Twoją widoczność',
+      'Agent AI zna Twoje aktualne oferty',
+      '60 dni wsparcia po publikacji',
+    ],
+    featured: true,
+    badge: 'Najczęściej wybierany',
+  },
+  {
+    name: 'Biuro z automatyzacją',
+    pre: 'około',
+    price: '5000 zł',
+    for: 'Biuro, które chce odciążyć zespół',
+    features: [
+      'Wszystko z pakietów obok',
+      'Potwierdzenie zgłoszenia leci do klienta automatycznie',
+      'Powiadomienie o gorącym leadzie — do Ciebie i do zespołu',
+      'Przypomnienia o prezentacjach idą bez Twojego udziału',
+      'Prośba o opinię wychodzi sama po transakcji',
+      'Zakres automatyzacji i wycenę ustalamy przed startem',
     ],
     featured: false,
   },
@@ -77,7 +79,11 @@ export default function Pakiety() {
               {p.badge ? <span className="pkg__badge">{p.badge}</span> : null}
               <h3 className="pkg__name">{p.name}</h3>
               <p className="pkg__for">{p.for}</p>
-              <p className="pkg__price tnum">{p.price}<span>jednorazowo</span></p>
+              <p className="pkg__price tnum">
+                {p.pre ? <span className="pkg__price-pre">{p.pre}</span> : null}
+                {p.price}
+                <span>jednorazowo</span>
+              </p>
               <a href="#kontakt" onClick={go} className={`btn ${p.featured ? 'btn-primary' : 'btn-ghost'} pkg__cta`}>
                 Zobacz wizualizację
               </a>

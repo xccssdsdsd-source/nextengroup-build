@@ -3897,11 +3897,14 @@ h4,
   letter-spacing: -0.026em;
 }
 
+/* Two lines' worth, not one. Card subtitles run one or two lines depending on
+   viewport, and 2.6em only reserved a single line — so whichever card wrapped
+   first pushed its price and CTA out of line with the other two. */
 .pkg__for {
   margin-top: 0.35rem;
   font-size: 0.85rem;
   color: var(--ink-3);
-  min-height: 2.6em;
+  min-height: 3.4em;
 }
 
 .pkg__price {
@@ -3924,6 +3927,47 @@ h4,
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
+}
+
+/* "około" rides as a mono lead-in rather than inside the 2.4rem number, so all
+   three prices stay optically aligned on the same baseline and no card's price
+   row outgrows its third of the grid. */
+.pkg__price-pre {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Between the three-column breakpoint and ~1200px a column is too narrow to
+   hold "OKOŁO 2000 ZŁ JEDNORAZOWO" on one line, and the two approximate prices
+   wrapped while the fixed middle one did not — three cards, two price-row
+   heights. Shrink the whole row in that band so all three stay on one line. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  /* "Biuro z automatyzacją" is the longest name and broke to a second line just
+     above the single-column breakpoint, dropping only that card's CTA. */
+  .pkg__name {
+    font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+  }
+  .pkg__price {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    row-gap: 0.1rem;
+    font-size: clamp(1.7rem, 2.9vw, 2.1rem);
+  }
+  /* Break "jednorazowo" onto its own line for every card, rather than letting
+     it wrap only on whichever card happens to run out of room. Fitting by luck
+     gave three cards two different price-row heights. */
+  .pkg__price > span:not(.pkg__price-pre) {
+    flex-basis: 100%;
+  }
+  .pkg__price span,
+  .pkg__price-pre {
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+  }
 }
 
 .pkg__cta {
@@ -3967,6 +4011,19 @@ h4,
   }
   .pkg__for {
     min-height: 0;
+  }
+}
+
+/* Below 375px the column can no longer hold "OKOŁO 2000 ZŁ JEDNORAZOWO" on one
+   line, so the two approximate prices wrapped while the fixed one did not.
+   Break the note for all three instead of two of them. */
+@media (max-width: 374px) {
+  .pkg__price {
+    flex-wrap: wrap;
+    row-gap: 0.1rem;
+  }
+  .pkg__price > span:not(.pkg__price-pre) {
+    flex-basis: 100%;
   }
 }
 

@@ -44,7 +44,7 @@ export default function AgentAI() {
             </ol>
 
             <p className="ai-note">
-              Agent AI jest w pakietach od 2299 zł. Poniżej działa ten sam mechanizm —
+              Agent AI jest w każdym pakiecie. Poniżej działa ten sam mechanizm —
               tylko nauczony naszej oferty zamiast Twojej. Zadaj mu pytanie.
             </p>
           </div>

@@ -1456,7 +1456,10 @@ html.motion-ready [data-no-reveal] .section-divider {
 .flip-words {
   position: relative;
   display: inline-block;
-  text-align: left;
+  /* The slot is as wide as the longest rival, so a short phrase pinned left
+     would hang off the axis of a centred headline. Centring inside the slot
+     keeps the line optically centred without letting the slot resize. */
+  text-align: center;
   white-space: nowrap;
   opacity: 0;
   animation: hero-word 820ms var(--ease-out) forwards;
@@ -1486,6 +1489,7 @@ html.motion-ready [data-no-reveal] .section-divider {
 .flip-words__word {
   position: absolute;
   left: 0;
+  right: 0;
   top: 0;
   white-space: nowrap;
   will-change: transform, opacity;
@@ -1625,19 +1629,11 @@ html.motion-ready [data-no-reveal] .section-divider {
   color: var(--ink-3);
 }
 
-/* Desktop breaks the centre axis. Headline, lede, buttons, note and cue all
-   stacked on one centred column is the shape every generated landing page
-   ships; the laptop stays centred underneath, so an off-axis copy block reads
-   as a composition instead of a template. */
+/* The copy column stays on the centre axis at every width, on the client's
+   call — the headline is the thing the section is built to land, and the
+   laptop below shares the same axis. Only the measures are held down on
+   desktop so the lines do not run the full container width. */
 @media (min-width: 1024px) {
-  .hero-stack {
-    text-align: left;
-  }
-
-  .hero-copy {
-    align-items: flex-start;
-  }
-
   .hero-copy > * {
     width: 100%;
     max-width: var(--container);
@@ -1645,16 +1641,16 @@ html.motion-ready [data-no-reveal] .section-divider {
 
   .hero-h1 {
     max-width: 44rem;
-    margin-inline: 0;
   }
 
   .hero-sub {
-    margin-inline: 0;
     max-width: 34rem;
   }
 
-  .hero-actions {
-    justify-content: flex-start;
+  /* The cue is an inline-flex stretched to the container by the rule above,
+     so its content needs centring explicitly or it hangs off the left edge. */
+  .hero-cue {
+    justify-content: center;
   }
 }
 
@@ -1951,6 +1947,16 @@ html.motion-ready .hero-device {
 @media (max-width: 640px) and (max-height: 620px) {
   .hero-copy { padding-top: calc(var(--nav-h) + 1.4rem); }
   .hero-cue { display: none; }
+}
+
+/* The rotating rival is one nowrap run sized to the longest phrase, so on the
+   narrowest phones it runs wider than the text column and drags the centred
+   headline a few pixels off the axis. Dropping the size is what puts the
+   longest of the four back inside the column. */
+@media (max-width: 380px) {
+  .hero-h1 {
+    font-size: 1.62rem;
+  }
 }
 
 /* Reduced motion / no JS: the stage collapses to an ordinary static hero.
@@ -3499,12 +3505,35 @@ h4,
 .case__img {
   width: 100%;
   height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: top center;
   display: block;
   transition: transform 600ms var(--ease-out);
 }
 
 .case__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+
+.case__blurb {
+  margin-top: 0.25rem;
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+
+.case-mini__blurb {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 52ch;
 }
 
 .case__head {
@@ -3515,11 +3544,24 @@ h4,
   margin-bottom: 1rem;
 }
 
+/* The chip is one nowrap run, so on a narrow card it is pushed past the edge
+   by the wrapping title and clipped by the card's own overflow. Below this
+   width it drops onto its own line instead. */
+@media (max-width: 600px) {
+  .case__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
 .case__scores {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
-  margin: 1.5rem 0;
+  /* `auto` on top: the two lead cards run blurbs of different lengths, and
+     this is what keeps their score rails and footers on a shared line. */
+  margin: auto 0 1.5rem;
   padding: 1rem 0;
   border-block: 1px solid var(--line);
 }
@@ -3623,9 +3665,18 @@ h4,
   }
 }
 
+/* Two property cases carry the section, so they share a row at full weight
+   instead of one running the whole width. The studio and the tour operator
+   sit under them at half the height — the hierarchy is the argument. */
+.cases-lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
 .cases-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 2vw, 1.5rem);
   margin-top: clamp(1rem, 2vw, 1.5rem);
 }
@@ -3638,6 +3689,9 @@ h4,
 .case-mini__img {
   width: 100%;
   height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: top center;
   display: block;
   border-bottom: 1px solid var(--line);
   transition: transform 600ms var(--ease-out);
@@ -3680,13 +3734,8 @@ h4,
   margin-top: 0.9rem;
 }
 
-@media (max-width: 1100px) {
-  .cases-row {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 @media (max-width: 900px) {
+  .cases-lead,
   .cases-row {
     grid-template-columns: 1fr;
   }

@@ -46,7 +46,10 @@ export default function RealEstateMockup({ photos = {} }: { photos?: Record<stri
           </div>
           <div className={styles.heroCopy}>
             <span className={styles.heroKicker}>Trójmiasto · rynek premium</span>
-            <h1 className={styles.heroTitle}>Domy i apartamenty<br />na Wybrzeżu</h1>
+            {/* Not an <h1>: this is a mock of a client site rendered inside our page.
+                A real heading here gave the homepage two <h1>s and put "Domy i
+                apartamenty na Wybrzeżu" into our own document outline. */}
+            <div className={styles.heroTitle}>Domy i apartamenty<br />na Wybrzeżu</div>
             <div className={styles.heroFoot}>
               <span className={styles.heroCta}>Zobacz 48 ofert</span>
               <span className={styles.heroMeta}>Sopot · Gdynia · Gdańsk</span>
@@ -56,7 +59,7 @@ export default function RealEstateMockup({ photos = {} }: { photos?: Record<stri
 
         <section className={styles.panel}>
           <div className={styles.sectionRow}>
-            <h2 className={styles.sectionTitle}>Aktualne oferty</h2>
+            <div className={styles.sectionTitle}>Aktualne oferty</div>
             <div className={styles.filters}>
               <span className={`${styles.filter} ${styles.filterOn}`}>Wszystkie</span>
               <span className={styles.filter}>Domy</span>

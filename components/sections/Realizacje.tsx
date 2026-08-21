@@ -21,6 +21,7 @@ const lead = {
 const others = [
   { name: 'MS Design Studio', tagline: 'Wizualizacje 3D wnętrz i architektury', href: 'https://msdesignstudio.pl/', preview: '/portfolio/msdesignstudio-preview.webp', width: 1440, height: 900, time: '24 godziny', best: 'Lighthouse 97' },
   { name: 'Dorimari', tagline: 'Wnętrza i wyposażenie', href: 'https://dorimari.pl/', preview: '/portfolio/dorimari-preview.webp', width: 1849, height: 929, time: 'Przebudowa', best: 'Lighthouse 97' },
+  { name: 'Chodkiewicza 2', tagline: 'Apartament i lokal użytkowy, Sieradz', href: 'https://chodkiewicza2.pl/', preview: '/portfolio/chodkiewicza2-preview.webp', width: 1440, height: 900, time: 'Tydzień', best: 'Lighthouse 97' },
 ]
 
 export default function Realizacje() {
@@ -67,7 +68,7 @@ export default function Realizacje() {
         <div className="cases-row" data-stagger-group>
           {others.map((o) => (
             <a key={o.name} href={o.href} target="_blank" rel="noopener noreferrer" className="card card--interactive case-mini" data-anime-card>
-              <Image src={o.preview} alt={`Strona ${o.name}`} width={o.width} height={o.height} sizes="(max-width: 900px) 100vw, 480px" className="case-mini__img" />
+              <Image src={o.preview} alt={`Strona ${o.name}`} width={o.width} height={o.height} sizes="(max-width: 900px) 100vw, 380px" className="case-mini__img" />
               <div className="case-mini__body">
                 <h3 className="case-mini__name">{o.name}</h3>
                 <p className="t-small">{o.tagline}</p>

@@ -51,6 +51,7 @@ Automatyzacja wykonuje stałe kroki. Automatyzacja z AI rozumie treść. Agent A
 ## Realizacje
 
 - [PM Apartments](https://getbuild.pl/realizacje/pm-apartments): wdrożenie w 72 godziny.
+- [Chodkiewicza 2](https://chodkiewicza2.pl/): strona dwóch nieruchomości w Sieradzu (apartament 105 m² na sprzedaż, lokal 86 m² na wynajem), wdrożenie w tydzień.
 - [Portfolio](https://getbuild.pl/realizacje): pełna lista realizacji.
 
 ## Kontakt

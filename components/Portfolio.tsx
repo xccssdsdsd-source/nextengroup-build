@@ -30,7 +30,7 @@ type RegularProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
-  owner: { name: string; role: string; photo: string }
+  owner?: { name: string; role: string; photo: string }
 }
 
 type SliderProject = {
@@ -47,7 +47,7 @@ type SliderProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
-  owner: { name: string; role: string; photo: string }
+  owner?: { name: string; role: string; photo: string }
 }
 
 type Project = RegularProject | SliderProject
@@ -112,11 +112,29 @@ const projects: Project[] = [
     ],
     owner: { name: 'Dori', role: 'Właścicielka, Dorimari', photo: '/owner-dorimari.webp' },
   },
+  {
+    kind: 'image',
+    name: 'Chodkiewicza 2',
+    tagline: 'Apartament i lokal użytkowy, Sieradz',
+    href: 'https://chodkiewicza2.pl/',
+    preview: '/portfolio/chodkiewicza2-preview.webp',
+    blurDataURL: 'data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACQAQCdASoIAAUABUB8JZwAAlJTCgAA/sxjKgOGT8wqoXnyGn/5doUAAAA=',
+    imgWidth: 1440,
+    imgHeight: 900,
+    body: 'Strona dla dwóch konkretnych nieruchomości przy ul. Chodkiewicza 2 w Sieradzu: apartamentu 105 m² na sprzedaż i lokalu użytkowego 86 m² na wynajem. Zamiast ogólnego katalogu ofert zbudowaliśmy jedną stronę, na której komplet danych — metraż, cena, piętro, rzuty, ogrzewanie podłogowe, parking, światłowód — widać bez klikania. Każda z nieruchomości ma własny opis, galerię zdjęć i rzuty, a całość uzupełnia mapa Osiedla Hetmańskiego, sekcja pytań i odpowiedzi oraz formularz umówienia obejrzenia. Dane ofert opisaliśmy schematem RealEstateListing, żeby cena i metraż trafiały do wyników wyszukiwania i odpowiedzi AI.',
+    time: 'tydzień',
+    lighthouse: [
+      { label: 'Wydajność', value: 97 },
+      { label: 'Dostępność', value: 96 },
+      { label: 'Dobre praktyki', value: 100 },
+      { label: 'SEO', value: 92 },
+    ],
+  },
 ]
 
 // The desktop composition reads best with two compact cases followed by the
 // panoramic PM Apartments showcase. Keep the same order in the mobile carousel.
-const portfolioProjects: Project[] = [projects[1], projects[2], projects[0]]
+const portfolioProjects: Project[] = [projects[1], projects[2], projects[0], projects[3]]
 
 function splitAtSentences(text: string, count: number): [string, string] {
   const regex = /[.!?]\s+/g
@@ -245,15 +263,17 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
       style={{ '--reveal-delay': `${index * 130}ms` } as CSSProperties}
     >
       <div className="portfolio-case__visual">
-        <div className="portfolio-case__owner">
-          <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/10">
-            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+        {project.owner && (
+          <div className="portfolio-case__owner">
+            <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/10">
+              <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+            </div>
+            <div>
+              <p>{project.owner.name}</p>
+              <span>{project.owner.role}</span>
+            </div>
           </div>
-          <div>
-            <p>{project.owner.name}</p>
-            <span>{project.owner.role}</span>
-          </div>
-        </div>
+        )}
 
         {project.kind === 'image' ? (
           <a
@@ -449,15 +469,17 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 {project.kind === 'image' ? (
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
-                          <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                      {project.owner && (
+                        <div className="flex items-center gap-3">
+                          <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
+                            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                          </div>
+                          <div>
+                            <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
+                            <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
-                          <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
-                        </div>
-                      </div>
+                      )}
                       <a
                         href={project.href}
                         target="_blank"
@@ -484,15 +506,17 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                 ) : (
                   <div className="flex flex-col gap-3">
                     <div className="portfolio-preview-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
-                          <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                      {project.owner && (
+                        <div className="flex items-center gap-3">
+                          <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
+                            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                          </div>
+                          <div>
+                            <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
+                            <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
-                          <p className="text-[11px] text-[var(--ink-3)]">{project.owner.role}</p>
-                        </div>
-                      </div>
+                      )}
                       <div className="relative flex items-center justify-center overflow-hidden">
                         <div style={{ width: 'clamp(160px, 46%, 240px)' }}>
                           <BeforeAfterSlider

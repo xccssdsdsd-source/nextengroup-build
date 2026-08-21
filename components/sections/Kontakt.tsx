@@ -135,11 +135,11 @@ export default function Kontakt() {
                 <div className="contact__row">
                   <label className="ifield">
                     <span className="ifield__label">Imię</span>
-                    <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" placeholder="Anna" />
+                    <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" />
                   </label>
                   <label className="ifield">
                     <span className="ifield__label">Telefon <i>opcjonalnie</i></span>
-                    <input id="k-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+48 600 000 000" />
+                    <input id="k-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
                   </label>
                 </div>
 
@@ -160,7 +160,6 @@ export default function Kontakt() {
                       aria-invalid={emailError ? 'true' : undefined}
                       aria-describedby={emailError ? 'k-email-error' : 'k-email-hint'}
                       autoComplete="email"
-                      placeholder="anna@biuro.pl"
                     />
                   </label>
                   {emailError ? (
@@ -172,12 +171,12 @@ export default function Kontakt() {
 
                 <label className="ifield">
                   <span className="ifield__label">Rynek lub obszar działania <i>opcjonalnie</i></span>
-                  <input id="k-region" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="np. Trójmiasto, Warszawa, cała Polska" />
+                  <input id="k-region" value={region} onChange={(e) => setRegion(e.target.value)} />
                 </label>
 
                 <label className="ifield">
                   <span className="ifield__label">Link do profilu lub obecnej strony <i>opcjonalnie</i></span>
-                  <input id="k-link" value={link} onChange={(e) => setLink(e.target.value)} placeholder="otodom.pl/… albo twojastrona.pl" />
+                  <input id="k-link" value={link} onChange={(e) => setLink(e.target.value)} />
                 </label>
 
                 <div>

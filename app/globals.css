@@ -240,15 +240,43 @@ h4 {
    flip to italic serif. An italicised word inside an upright headline is the
    most reliable "generated" tell there is, and it was on every section title
    of this site. Same face, same weight, brand ink, one hairline under the
-   phrase — the landmark survives, the tell goes. */
+   phrase — the landmark survives, the tell goes.
+
+   The rule is drawn by the text, not by the box: an inset shadow hangs off the
+   bottom of the inline box, which the reveal engine's word masks stretch, so it
+   drifted a long way under the baseline and ran a bar straight through every
+   descender the language has (j, ą, ę). A text decoration hangs off the
+   baseline itself and skips the ink. */
 .serif-accent {
+  --rule: var(--brand-300);
   color: var(--brand);
-  box-shadow: inset 0 -0.09em 0 var(--brand-200);
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 0.068em;
+  text-underline-offset: 0.14em;
+  text-decoration-skip-ink: auto;
 }
 
 .section-shell--navy .serif-accent,
 .contact .serif-accent {
-  box-shadow: inset 0 -0.09em 0 rgba(107, 157, 244, 0.42);
+  --rule: rgba(107, 157, 244, 0.5);
+}
+
+/* Once the reveal engine has split the heading, each word sits inside its own
+   atomic inline box and the parent's decoration is no longer painted through
+   it — so the rule is handed to the words, which is also what makes it rise
+   with them. The mask needs the extra clearance or it clips the rule off. */
+.serif-accent .w-in {
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 0.068em;
+  text-underline-offset: 0.14em;
+  text-decoration-skip-ink: auto;
+}
+
+.serif-accent .w-mask {
+  padding-bottom: 0.34em;
+  margin-bottom: -0.34em;
 }
 
 /* The opening quotation mark is a glyph, not a heading — the serif face is
@@ -256,7 +284,7 @@ h4 {
 .review__mark {
   font-family: var(--font-serif), Georgia, serif;
   font-style: normal;
-  box-shadow: none;
+  text-decoration-line: none;
 }
 
 .tnum {
@@ -1100,6 +1128,27 @@ h4 {
   padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
 }
 
+/* The hero assembles itself on load — headline, lede, buttons, cue — while the
+   pills above it were simply there from the first frame. Eight pixels and a
+   fade is enough to make the nav part of the same arrival instead of a fixture
+   the page loaded around. */
+@media (prefers-reduced-motion: no-preference) {
+  .site-nav {
+    animation: nav-arrive 620ms var(--ease-apple) both;
+  }
+}
+
+@keyframes nav-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-pill::after {
     transition: opacity 150ms ease;
@@ -1533,7 +1582,7 @@ html.motion-ready [data-no-reveal] .section-divider {
 /* The rotating rival is the one place the underline would strobe — it redraws
    at a different width every four seconds. The word carries itself on colour. */
 .hero-h1 .serif-accent {
-  box-shadow: none;
+  text-decoration-line: none;
 }
 
 /* Five hairlines, full height, nothing else. The grid is the only thing under
@@ -3432,6 +3481,13 @@ h4,
   .case:hover .case__img {
     transform: scale(1.015);
   }
+  /* The arrow belongs to the card, not to the little run of text it sits in:
+     the pointer is almost never on the label itself, so the lean has to be
+     driven from the card that is actually being hovered — and it leans the way
+     the glyph points, off the page rather than along it. */
+  .case:hover .case__link svg {
+    transform: translate3d(3px, -3px, 0);
+  }
 }
 
 .case__media {
@@ -3542,6 +3598,14 @@ h4,
   white-space: nowrap;
 }
 
+/* `.case__owner span` outranks `.link-arrow`, so the one call to action in the
+   card was rendering in the same muted ink as the owner's job title — the class
+   asking for the brand colour was being quietly overruled. Colour only: the
+   layout above stays where the narrow-screen override can still reach it. */
+.case__owner .case__link {
+  color: var(--brand);
+}
+
 @media (max-width: 600px) {
   .case__owner {
     flex-wrap: wrap;
@@ -3575,6 +3639,27 @@ h4,
   height: auto;
   display: block;
   border-bottom: 1px solid var(--line);
+  transition: transform 600ms var(--ease-out);
+}
+
+/* The two smaller cases are links whose picture is the whole point, and they
+   were the only ones on the page not answering the pointer with it. */
+@media (hover: hover) and (pointer: fine) {
+  .case-mini:hover .case-mini__img {
+    transform: scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-mini__img,
+  .case__img {
+    transition: none;
+  }
+
+  .case-mini:hover .case-mini__img,
+  .case:hover .case__img {
+    transform: none;
+  }
 }
 
 .case-mini__body {
@@ -3628,12 +3713,17 @@ h4,
 .review__mark {
   position: absolute;
   z-index: 0;
-  top: -1.35rem;
-  left: -0.5rem;
+  /* The glyph's ink sits at the foot of its em box, so the old offset put the
+     mark three lines into the quote, beside a word in the middle of the
+     paragraph — it read as a smudge rather than as the opening of a quotation.
+     The box is raised until the ink lands where a quotation mark belongs:
+     above and to the left of the first line. */
+  top: -6.2rem;
+  left: -0.35rem;
   font-size: 7.5rem;
   line-height: 1;
   color: var(--brand);
-  opacity: 0.06;
+  opacity: 0.07;
 }
 
 .review__quote-text {
@@ -4109,30 +4199,84 @@ h4,
 
 .contact__consent {
   display: grid;
-  grid-template-columns: 1.1rem 1fr;
+  grid-template-columns: 1.15rem 1fr;
   gap: 0.6rem;
   font-size: 0.82rem;
   line-height: 1.5;
   color: var(--ink-2);
 }
 
+/* The one control on the page the reader has to tick before anything can be
+   sent, and it was the only one still drawn by the operating system: a 13px
+   square with sharp corners sitting under 14px radii everywhere else. Styled
+   on the input itself, so it stays a real checkbox for the keyboard, the
+   screen reader and the form's own `required`. */
 .contact__consent input {
-  margin-top: 0.2em;
-  width: 1.05rem;
-  height: 1.05rem;
-  accent-color: var(--brand);
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: 0.15em;
+  display: grid;
+  place-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--white);
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 220ms var(--ease-out);
+}
+
+.contact__consent input::before {
+  content: '';
+  width: 0.68rem;
+  height: 0.68rem;
+  background: var(--accent-on);
+  clip-path: polygon(14% 46%, 2% 60%, 38% 96%, 98% 22%, 86% 10%, 37% 70%);
+  transform: scale(0.4);
+  opacity: 0;
+  transition:
+    transform 200ms var(--ease-snap),
+    opacity 120ms linear;
+}
+
+.contact__consent input:checked {
+  background: var(--brand);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-brand);
+}
+
+.contact__consent input:checked::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact__consent:hover input:not(:checked) {
+    border-color: var(--brand-300);
+  }
 }
 
 .contact__consent.is-invalid input {
   outline: 2px solid var(--danger);
   outline-offset: 2px;
-  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__consent input,
+  .contact__consent input::before {
+    transition: none;
+  }
 }
 
 .contact__consent a {
   color: var(--brand);
-  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-color: var(--brand-300);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .contact__submit {
@@ -4432,10 +4576,22 @@ h4,
   transition: color 150ms ease;
 }
 
+/* A text link in a list of text links says it is a link by underlining when
+   the pointer is on it — a colour shift alone leaves the reader guessing which
+   of the two blues in the footer is clickable. */
 @media (hover: hover) and (pointer: fine) {
-  .footer__cols a:hover {
+  .footer__cols a:hover,
+  .footer__bottom a:hover {
     color: var(--brand);
+    text-decoration-line: underline;
+    text-decoration-color: var(--brand-300);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
   }
+}
+
+.footer__bottom a {
+  transition: color 150ms ease;
 }
 
 .footer__bottom {

@@ -6,6 +6,22 @@ import { scrollToSection } from '@/lib/scrollToSection'
 
 const packages = [
   {
+    name: 'Biuro z panelem ofert',
+    price: '2997 zł',
+    for: 'Biuro nieruchomości i agent z własną bazą',
+    features: [
+      'Wszystko z pakietów obok',
+      'Pełna strona z kilkoma podstronami',
+      'Panel ofert po polsku — dodajesz sam, w minutę',
+      'Nie płacisz nikomu za zmianę ceny w ofercie',
+      'Blog, który pracuje na Twoją widoczność',
+      'Aktualizujemy wiedzę agenta AI',
+      '60 dni wsparcia po publikacji',
+    ],
+    featured: true,
+    badge: 'Najczęściej wybierany',
+  },
+  {
     name: 'Wizytówka agenta',
     price: '1997 zł',
     for: 'Agent indywidualny, jedna główna usługa',
@@ -31,22 +47,6 @@ const packages = [
       'Ty dostajesz powiadomienie w tej samej chwili',
       'Klient sam rezerwuje termin prezentacji',
       '30 dni wsparcia po publikacji',
-    ],
-    featured: true,
-    badge: 'Najczęściej wybierany',
-  },
-  {
-    name: 'Biuro z panelem ofert',
-    price: '2997 zł',
-    for: 'Biuro nieruchomości i agent z własną bazą',
-    features: [
-      'Wszystko z pakietów obok',
-      'Pełna strona z kilkoma podstronami',
-      'Panel ofert po polsku — dodajesz sam, w minutę',
-      'Nie płacisz nikomu za zmianę ceny w ofercie',
-      'Blog, który pracuje na Twoją widoczność',
-      'Aktualizujemy wiedzę agenta AI',
-      '60 dni wsparcia po publikacji',
     ],
     featured: false,
   },

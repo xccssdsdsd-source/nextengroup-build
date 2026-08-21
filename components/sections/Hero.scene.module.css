@@ -1,0 +1,291 @@
+/* ── Hero scene: depth, reveals, buttons ───────────────────
+   Every rule here is `:global()`. The hero's classes are global — globals.css
+   owns the scene's layout and its base look — and this file owns the layer
+   depth, the way photography arrives, and the detail on the two buttons the
+   reader meets first. It lives beside the component so tuning one section does
+   not mean editing a stylesheet eleven other sections share.
+
+   The contract with [[Hero.tsx]]: the scene writes `--p`, `--progress-in`
+   (the object arriving), `--chrome-in` (the frame standing still), `--gloss`,
+   `--mock-par`, and the four reveal clocks `--rev-shot`, `--rev-copy`,
+   `--rev-2` and `--rev-3` onto the pin. Every one of them defaults to the
+   finished state here, so with JavaScript off, or under
+   `prefers-reduced-motion` where the scene never runs, nothing in this file
+   hides anything — except the panel mark, which is given back explicitly at
+   the bottom of the file. */
+
+/* Which clock each panel runs on. Panel one is the only one with two: its
+   photograph fills in while the machine is still rising, its type sets itself
+   afterwards, on the still frame. */
+:global(.hero-stage [data-rev='1']) {
+  --rev: var(--rev-shot, 1);
+  --rise: var(--rev-copy, 1);
+}
+
+:global(.hero-stage [data-rev='2']) {
+  --rev: var(--rev-2, 1);
+  --rise: var(--rev-2, 1);
+}
+
+:global(.hero-stage [data-rev='3']) {
+  --rev: var(--rev-3, 1);
+  --rise: var(--rev-3, 1);
+}
+
+/* ── Photography ──────────────────────────────────────────
+   Two things happen to every frame in the mockup: it is uncovered downward as
+   its panel travels, and it holds a little scale while it is uncovered so the
+   image settles into place rather than simply appearing. `--d` staggers the
+   frames inside one panel; the window is deliberately wide (0.62) so the last
+   frame in a stagger still finishes before the panel comes to rest. */
+:global(.hero-stage .hero-device [data-parallax]) {
+  --e: clamp(0, calc((var(--rev, 1) - var(--d, 0) * 0.13) / 0.62), 1);
+  /* 100.5%, not 100%: a clip edge landing exactly on the box edge leaves a
+     sub-pixel hairline of image on a fractional device ratio. */
+  clip-path: inset(0 0 calc((1 - var(--e)) * 100.5%) 0);
+  /* globals.css moves the frame as well as the image — two travels stacked on
+     one photograph. The frame is the one that has to stay put. */
+  transform: none;
+}
+
+/* The frame stays where the layout put it and the photograph moves inside it.
+   Moving the frame itself is what used to shear a listing photo off the price
+   printed under it. The scale is the overscan the travel needs. */
+:global(.hero-stage .hero-device [data-parallax] > img) {
+  transform:
+    translate3d(0, calc(var(--mock-par, 0px) * var(--pz, 1)), 0)
+    scale(calc(1.12 + 0.05 * (1 - var(--e, 1))));
+}
+
+/* Panel one is the exception: its photograph is already bleeding 6% past the
+   panel top and bottom and is carrying its own slow push-in, so the layer that
+   travels is the bleed box, not the image. */
+:global(.hero-stage .hero-device [data-parallax='bleed']) {
+  transform: translate3d(0, calc(var(--mock-par, 0px) * var(--pz, 1)), 0);
+}
+
+/* ── Type inside the frame ────────────────────────────────
+   The client's own page setting itself: kicker, headline, footer, then the
+   index and the listing card. Travel is in `cqw` so it stays proportional to
+   the frame at every crop — 14px of rise on a 1440px laptop and on a 358px
+   phone are two completely different gestures. */
+:global(.hero-stage [data-rise]) {
+  --r: clamp(0, calc((var(--rise, 1) - var(--d, 0) * 0.12) / 0.6), 1);
+  opacity: var(--r);
+  transform: translate3d(0, calc((1 - var(--r)) * 1.7cqw), 0);
+}
+
+/* ── The glass ────────────────────────────────────────────
+   The lid arrives tilted eight degrees and flattens as it settles, so the
+   reflection on it cannot be a fixed diagonal. It is broad and bright while
+   the screen is angled away, then narrows and dims as the glass turns to face
+   the reader — which is the one detail that says there is a pane in front of
+   the work rather than the work being printed on the page. */
+:global(.hero-stage .scrub-frame::after) {
+  opacity: calc(0.64 - 0.22 * var(--gloss, 1));
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.24) 0%,
+    rgba(255, 255, 255, 0.06) calc(20% + var(--gloss, 1) * 12%),
+    transparent calc(44% + var(--gloss, 1) * 16%)
+  );
+}
+
+/* ── The ground ───────────────────────────────────────────
+   The floor shadow belongs to the object, so it arrives with it: while the
+   machine is still a defocused shape below the fold it casts almost nothing,
+   and it spreads to full width only once the machine has landed. */
+:global(.hero-stage .laptop::after) {
+  opacity: calc(0.22 + 0.78 * var(--progress-in, 1));
+  transform: scaleX(calc(0.84 + 0.16 * var(--progress-in, 1)));
+}
+
+/* ── The background layer ─────────────────────────────────
+   The hairline grid is the furthest thing away, so it is the slowest thing on
+   screen — a fifth of the copy's travel. The overscan is what keeps its
+   bottom edge off the fold while it drifts. */
+:global(.hero-stage .hero-mesh) {
+  inset: -10% 0;
+  transform: translate3d(0, calc(var(--p, 0) * -44px), 0);
+}
+
+/* ── Panel marks ──────────────────────────────────────────
+   The numeral is the only thing telling the reader the sequence has a length.
+   The outgoing mark drops a few pixels as it goes, so the label reads as being
+   replaced rather than cross-faded. */
+:global(.hero-stage .hero-mark > span) {
+  display: flex;
+  align-items: baseline;
+  gap: 0.95em;
+  transition:
+    opacity 200ms linear,
+    transform 340ms var(--ease-out);
+}
+
+:global(.hero-stage .hero-mark > span[data-on='false']) {
+  transform: translate3d(0, 5px, 0);
+}
+
+:global(.hero-stage .hero-mark i) {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+}
+
+:global(.hero-stage .hero-rail > i) {
+  background: linear-gradient(180deg, rgba(11, 79, 209, 0.85) 0%, rgba(11, 79, 209, 0.32) 100%);
+}
+
+/* ── The two buttons ──────────────────────────────────────
+   No sweep, no gradient fill — the flat brand colour is the system, and one
+   signal per element is the rule. What the pair was missing is direction: the
+   primary sends you down to the form, the secondary further down the page, and
+   now each says so with the one element that moves on hover. */
+:global(.hero-stage .hero-actions) {
+  gap: 0.8rem;
+  margin-top: 2.1rem;
+}
+
+:global(.hero-stage .hero-btn) {
+  padding: 1rem 1.65rem;
+  font-size: 0.9375rem;
+}
+
+:global(.hero-stage .hero-btn svg) {
+  flex: none;
+  opacity: 0.85;
+  transition:
+    transform 260ms var(--ease-snap),
+    opacity 200ms ease;
+}
+
+/* The contact term keeps the pill on the page; the wide brand term is the
+   halo. Both are tighter and darker than a single spread shadow, which on a
+   white ground reads as fog. */
+:global(.hero-stage .btn-primary.hero-btn) {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 1px 2px rgba(4, 29, 75, 0.24),
+    0 14px 32px -14px rgba(11, 79, 209, 0.6);
+}
+
+:global(.hero-stage .btn-ghost.hero-btn) {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(6, 17, 41, 0.07),
+    0 8px 20px -12px rgba(6, 17, 41, 0.22);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(.hero-stage .btn-primary.hero-btn:hover) {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(4, 29, 75, 0.24),
+      0 20px 40px -16px rgba(11, 79, 209, 0.68);
+  }
+
+  :global(.hero-stage .btn-primary.hero-btn:hover svg) {
+    transform: translate3d(4px, 0, 0);
+    opacity: 1;
+  }
+
+  :global(.hero-stage .btn-ghost.hero-btn:hover svg) {
+    transform: translate3d(0, 3px, 0);
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: the scene never runs, so every clock is already at its end
+   value. Only the two hover transforms need silencing, and the frames need
+   their clip taken off explicitly — a `clip-path` computed from a variable
+   that was never written is still a clip-path. */
+@media (prefers-reduced-motion: reduce) {
+  :global(.hero-stage .hero-device [data-parallax]) {
+    clip-path: none;
+  }
+
+  :global(.hero-stage .hero-device [data-parallax] > img) {
+    transform: scale(1.12);
+  }
+
+  :global(.hero-stage [data-rise]) {
+    opacity: 1;
+    transform: none;
+  }
+
+  :global(.hero-stage .hero-mesh) {
+    transform: none;
+  }
+
+  :global(.hero-stage .hero-mark > span),
+  :global(.hero-stage .hero-btn svg) {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ── Phones ───────────────────────────────────────────────
+   Two things were wrong with the scene at 390px: the rotating rival is a
+   nowrap run as wide as the longest of the four, so on the last line it left
+   "niż" pinned against the left edge of a centred headline; and the frame was
+   a square in a very tall viewport, which left the product looking like a
+   thumbnail in a field of white. */
+@media (max-width: 640px) {
+  :global(.hero-stage .hero-h1 .flip-words) {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  :global(.hero-stage .scrub-frame) {
+    aspect-ratio: 4 / 5;
+  }
+
+  /* The taller frame gives the detail panel more height than its content
+     needs, and the slack all lands under the last thumbnail. globals.css
+     already nudges this panel sideways to put the price column in the crop —
+     the vertical term centres what is left. */
+  :global(.hero-stage .hero-device [data-scrub-track] > :last-child) {
+    transform: translate(-8%, 6%);
+  }
+}
+
+/* ── Arrival ──────────────────────────────────────────────
+   The machine used to be simply present the moment the scene's first frame
+   ran. Everything else in the hero assembles on load — nav, headline, lede,
+   buttons, cue — so the last thing in the sequence is the product rising into
+   the bottom of the frame. It runs on the column, not on the device: the
+   device's own transform belongs to the scroll and the two would fight. */
+@keyframes hero-device-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.motion-ready .hero-stage .hero-device-col) {
+    animation: hero-device-arrive 1150ms var(--ease-out) 460ms both;
+  }
+}
+
+/* Until the scene has measured the machine, `--card-l` and `--card-b` are both
+   zero, which parks the panel mark in the top-left corner of the viewport —
+   under the navigation, for about a second of every cold load. It is chrome
+   for a frame that is not on screen yet, so it starts dark and the scene
+   raises it. Reduced motion never runs the scene, so it is given the mark
+   back explicitly. */
+:global(.hero-stage .hero-mark),
+:global(.hero-stage .hero-rail) {
+  opacity: var(--chrome-in, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.hero-stage .hero-mark) {
+    opacity: 1;
+  }
+}

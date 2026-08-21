@@ -48,7 +48,7 @@ const sample = async (p, from) => page.evaluate(async (p, from) => {
   await new Promise(r => setTimeout(r, 500))
   window.scrollTo(0, Math.round(p * span))
   await new Promise(r => setTimeout(r, 2200))
-  const r = stage.querySelector('.device-card').getBoundingClientRect()
+  const r = stage.querySelector('.hero-device').getBoundingClientRect()
   return [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)]
 }, p, from)
 

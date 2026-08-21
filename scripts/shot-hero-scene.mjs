@@ -16,7 +16,7 @@ for (const p of points) {
     window.scrollTo(0, Math.round(p * span))
     await new Promise(r => setTimeout(r, 1400))
     const sticky = stage.querySelector('.pin-sticky')
-    const card = stage.querySelector('.device-card')
+    const card = stage.querySelector('.hero-device')
     const r = card.getBoundingClientRect()
     const cta = document.querySelector('.sticky-cta')
     const c = cta?.getBoundingClientRect()

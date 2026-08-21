@@ -54,7 +54,7 @@ const rows: { label: string; cells: [Cell, Cell, Cell, Cell, Cell]; win?: number
   {
     label: 'Koszt startowy',
     cells: [
-      text('od około 2000 zł jednorazowo'),
+      text('od około 1997 zł jednorazowo'),
       text('od ok. 300 zł rocznie + Twój czas'),
       text('ok. 100 zł mies. → ok. 1500 zł rocznie'),
       text('zwykle od 8000 zł'),

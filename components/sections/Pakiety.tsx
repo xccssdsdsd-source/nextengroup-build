@@ -6,9 +6,9 @@ import { scrollToSection } from '@/lib/scrollToSection'
 
 const packages = [
   {
-    name: 'Strona agenta z AI',
+    name: 'Landing page agenta',
     pre: 'około',
-    price: '2000 zł',
+    price: '1997 zł',
     for: 'Agent indywidualny, jedna główna usługa',
     features: [
       'Link, który wygrywa rozmowę o wyłączność',
@@ -24,7 +24,7 @@ const packages = [
   {
     name: 'Biuro z panelem ofert',
     price: '2997 zł',
-    for: 'Biuro nieruchomości i agent z własną bazą',
+    for: 'Biuro lub agent z własną bazą ofert',
     features: [
       'Wszystko z pakietu obok',
       'Pełna strona z kilkoma podstronami',
@@ -38,17 +38,17 @@ const packages = [
     badge: 'Najczęściej wybierany',
   },
   {
-    name: 'Biuro z automatyzacją',
-    pre: 'około',
-    price: '5000 zł',
-    for: 'Biuro, które chce odciążyć zespół',
+    name: 'Deweloper i biuro',
+    price: '4997 zł',
+    for: 'Deweloper i biuro nieruchomości',
     features: [
       'Wszystko z pakietów obok',
+      'Strona inwestycji — mieszkania dodajesz w tym samym panelu',
       'Potwierdzenie zgłoszenia leci do klienta automatycznie',
       'Powiadomienie o gorącym leadzie — do Ciebie i do zespołu',
       'Przypomnienia o prezentacjach idą bez Twojego udziału',
       'Prośba o opinię wychodzi sama po transakcji',
-      'Zakres automatyzacji i wycenę ustalamy przed startem',
+      'Zakres automatyzacji i harmonogram ustalamy przed startem',
     ],
     featured: false,
   },

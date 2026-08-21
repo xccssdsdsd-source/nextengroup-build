@@ -23,7 +23,12 @@ const nextConfig = {
             {
               source: '/((?!_next/|api/|.*\\.(?:svg|jpg|jpeg|png|gif|ico|webp|avif|woff|woff2|hdr)$).*)',
               headers: [
-                { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=120, stale-while-revalidate=86400' },
+                // stale-while-revalidate was 86400: the edge could hand out a day-old
+                // document, and every deploy renames the /_next/static hashes that
+                // document points at. Ten minutes keeps the latency win and bounds
+                // how long a stale-HTML miss can happen after a deploy; the reload
+                // guard in app/layout.tsx covers the rest.
+                { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=120, stale-while-revalidate=600' },
               ],
             },
           ]),

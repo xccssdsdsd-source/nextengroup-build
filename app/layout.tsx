@@ -124,6 +124,18 @@ export default function RootLayout({
             __html: "document.documentElement.classList.add('motion-ready')",
           }}
         />
+        {/* A deploy replaces every /_next/static hash, so an HTML document older than
+            the current deployment asks for chunks that no longer exist and the page
+            never boots. Reload once — the fresh document points at the assets that are
+            actually there. The sessionStorage flag caps this at one attempt per tab so
+            a genuinely broken deploy cannot loop, and it re-arms only after a page view
+            in which every asset loaded cleanly. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var K='gb_chunk_reload',failed=false;function recover(){failed=true;try{if(sessionStorage.getItem(K))return;sessionStorage.setItem(K,'1')}catch(e){return}location.reload()}addEventListener('error',function(e){var t=e.target;if(!t)return;var u=t.src||t.href||'';if((t.tagName==='SCRIPT'||t.tagName==='LINK')&&u.indexOf('/_next/static/')>-1)recover()},true);addEventListener('unhandledrejection',function(e){var r=e.reason,m=r&&((r.name||'')+' '+(r.message||''));if(m&&/ChunkLoadError|Loading chunk|dynamically imported module/i.test(m))recover()});addEventListener('load',function(){if(!failed){try{sessionStorage.removeItem(K)}catch(e){}}})})()",
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: "try{if(/^(accepted|rejected)$/.test(localStorage.getItem('getbuild_cookie_consent_v1')||''))document.documentElement.dataset.cookieConsent='saved'}catch(e){}",

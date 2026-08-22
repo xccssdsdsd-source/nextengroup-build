@@ -18,6 +18,11 @@ const slideVariants = {
 
 type LighthouseScore = { label: string; value: number }
 
+// A client who has not sent a photograph gets their initials. The alternative
+// — a stock face standing in for a named real person — is the one thing a
+// portfolio page cannot print.
+type Owner = { name: string; role: string; photo?: string; initials?: string }
+
 type RegularProject = {
   kind: 'image'
   name: string
@@ -30,7 +35,7 @@ type RegularProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
-  owner?: { name: string; role: string; photo: string }
+  owner?: Owner
 }
 
 type SliderProject = {
@@ -47,10 +52,17 @@ type SliderProject = {
   body: string
   time: string
   lighthouse: LighthouseScore[]
-  owner?: { name: string; role: string; photo: string }
+  owner?: Owner
 }
 
 type Project = RegularProject | SliderProject
+
+// Three frames draw the owner at three different sizes and radii, so the frame
+// stays with the caller and only what goes inside it lives here.
+function OwnerFace({ owner }: { owner: Owner }) {
+  if (!owner.photo) return <span className="owner-mono">{owner.initials}</span>
+  return <Image src={owner.photo} alt={owner.name} fill className="object-cover object-top" sizes="36px" />
+}
 
 const projects: Project[] = [
   {
@@ -129,6 +141,7 @@ const projects: Project[] = [
       { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 92 },
     ],
+    owner: { name: 'Robert Sieradz', role: 'Właściciel, Chodkiewicza 2', initials: 'RS' },
   },
 ]
 
@@ -266,7 +279,7 @@ function DesktopProjectCard({ project, index, asH1, inView }: { project: Project
         {project.owner && (
           <div className="portfolio-case__owner">
             <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/10">
-              <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+              <OwnerFace owner={project.owner} />
             </div>
             <div>
               <p>{project.owner.name}</p>
@@ -472,7 +485,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                       {project.owner && (
                         <div className="flex items-center gap-3">
                           <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
-                            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                            <OwnerFace owner={project.owner} />
                           </div>
                           <div>
                             <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>
@@ -509,7 +522,7 @@ export default function Portfolio({ asH1 = false }: { asH1?: boolean }) {
                       {project.owner && (
                         <div className="flex items-center gap-3">
                           <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-[var(--brand-200)]">
-                            <Image src={project.owner.photo} alt={project.owner.name} fill className="object-cover object-top" sizes="36px" />
+                            <OwnerFace owner={project.owner} />
                           </div>
                           <div>
                             <p className="text-[13px] font-semibold leading-tight text-[var(--ink)]">{project.owner.name}</p>

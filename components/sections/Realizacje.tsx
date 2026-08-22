@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { PiArrowUpRightBold } from 'react-icons/pi'
 
-type Owner = { name: string; role: string; photo: string }
+// A client who has not sent a photograph gets their initials rather than a
+// stand-in face — see the same fallback in the reviews and the hero strip.
+type Owner = { name: string; role: string; photo?: string; initials?: string }
 
 type Lead = {
   name: string
@@ -35,6 +37,7 @@ const leads: Lead[] = [
       { label: 'Dobre praktyki', v: 100 },
       { label: 'SEO', v: 92 },
     ],
+    owner: { name: 'Robert Sieradz', role: 'Właściciel, Chodkiewicza 2', initials: 'RS' },
   },
   {
     name: 'PM Apartments',
@@ -114,7 +117,11 @@ export default function Realizacje() {
                 <div className="case__owner">
                   {lead.owner && (
                     <>
-                      <Image src={lead.owner.photo} alt="" width={40} height={40} className="case__avatar" />
+                      {lead.owner.photo ? (
+                        <Image src={lead.owner.photo} alt="" width={40} height={40} className="case__avatar" />
+                      ) : (
+                        <span className="case__avatar case__avatar--mono" aria-hidden="true">{lead.owner.initials}</span>
+                      )}
                       <div>
                         <strong>{lead.owner.name}</strong>
                         <span>{lead.owner.role}</span>

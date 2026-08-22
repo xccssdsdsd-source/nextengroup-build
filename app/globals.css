@@ -3765,8 +3765,33 @@ h4,
 }
 
 .case__avatar {
+  width: 40px;
+  height: 40px;
+  flex: none;
   border-radius: 50%;
   object-fit: cover;
+}
+
+/* Initials in place of a photograph the client has not sent. Same treatment as
+   the review card's monogram, so a reader meets one convention, not two. */
+.case__avatar--mono,
+.owner-mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-100);
+  color: var(--brand-700);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* The portfolio page draws its owner inside an absolutely-positioned frame, so
+   the monogram fills that frame the way next/image's `fill` would. */
+.owner-mono {
+  position: absolute;
+  inset: 0;
+  font-size: 0.6875rem;
 }
 
 .case__link {

@@ -1452,6 +1452,14 @@ html.motion-ready [data-no-reveal] .section-divider {
   display: block;
 }
 
+/* The rival's line is nothing but the rival, so it carries the leading rather
+   than the clause above it — otherwise the two lines sit at the tight heading
+   spacing and read as one wrapped sentence instead of a statement and its
+   answer. */
+.hero-heading-line--rival {
+  margin-top: 0.08em;
+}
+
 /* ── Flipping headline word ─────────────────────────────────
    The slot is sized by an invisible copy of the longest phrase and the live
    word is absolutely positioned inside it, so nothing on the line moves when
@@ -1772,12 +1780,10 @@ html.motion-ready [data-no-reveal] .section-divider {
   }
 
   /* Both measures are set by the line count, not by a reading ideal: the
-     headline has to hold "lepsze miejsce niż" plus the longest of the four
-     rivals on one line, and the subhead has to close in two. Narrower and the
-     block runs to six lines, which is a paragraph where it should be a
-     statement. */
+     headline has to hold the whole fixed clause on one line so the rival can
+     have the next one to itself, and the subhead has to close in two. */
   .hero-h1 {
-    max-width: 58rem;
+    max-width: 70rem;
   }
 
   .hero-sub {

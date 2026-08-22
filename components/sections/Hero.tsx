@@ -14,8 +14,13 @@ import './Hero.scene.module.css'
 
 type Word = { text: string; accent?: boolean }
 
-const line1: Word[] = [{ text: 'Twoje' }, { text: 'oferty' }, { text: 'zasługują' }, { text: 'na' }]
-const line2: Word[] = [{ text: 'lepsze' }, { text: 'miejsce' }, { text: 'niż' }]
+// The whole fixed clause is one line and the rival gets the line under it. It
+// is the rival that changes, so it is the rival that should have a line of its
+// own to change on — split across a wrap it took the sentence with it.
+const line1: Word[] = [
+  { text: 'Twoje' }, { text: 'oferty' }, { text: 'zasługują' }, { text: 'na' },
+  { text: 'lepsze' }, { text: 'miejsce' }, { text: 'niż' },
+]
 
 // Every one of these is an objection an agent actually has, so the rotation
 // widens the argument instead of just moving. Lengths are held within one
@@ -389,17 +394,13 @@ export default function Hero() {
 
             <h1 className="hero-h1">
               <HeadlineLine words={line1} start={60} />
-              <HeadlineLine
-                words={line2}
-                start={60 + line1.length * 45}
-                tail={
-                  <FlipWords
-                    words={rivals}
-                    className="serif-accent"
-                    style={{ animationDelay: `${60 + (line1.length + line2.length) * 45}ms` }}
-                  />
-                }
-              />
+              <span className="hero-heading-line hero-heading-line--rival" data-hero-exit>
+                <FlipWords
+                  words={rivals}
+                  className="serif-accent"
+                  style={{ animationDelay: `${60 + line1.length * 45}ms` }}
+                />
+              </span>
             </h1>
 
             <p className="hero-sub hero-from-right" data-hero-exit style={{ animationDelay: '160ms' }}>

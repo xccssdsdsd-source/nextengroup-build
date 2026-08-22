@@ -141,7 +141,7 @@ const projects: Project[] = [
       { label: 'Dobre praktyki', value: 100 },
       { label: 'SEO', value: 92 },
     ],
-    owner: { name: 'Robert Sieradz', role: 'Właściciel, Chodkiewicza 2', initials: 'RS' },
+    owner: { name: 'Robert', role: 'Właściciel, Chodkiewicza 2', initials: 'R' },
   },
 ]
 

@@ -37,7 +37,7 @@ const leads: Lead[] = [
       { label: 'Dobre praktyki', v: 100 },
       { label: 'SEO', v: 92 },
     ],
-    owner: { name: 'Robert Sieradz', role: 'Właściciel, Chodkiewicza 2', initials: 'RS' },
+    owner: { name: 'Robert', role: 'Właściciel, Chodkiewicza 2', initials: 'R' },
   },
   {
     name: 'PM Apartments',

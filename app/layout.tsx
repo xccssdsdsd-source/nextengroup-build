@@ -196,9 +196,9 @@ export default function RootLayout({
             },
             {
               '@type': 'Review',
-              author: { '@type': 'Person', name: 'Robert Sieradz' },
+              author: { '@type': 'Person', name: 'Robert' },
               reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-              reviewBody: 'Z pełnym przekonaniem polecam współpracę z twórcą mojej strony internetowej. Cały proces przebiegł sprawnie, szybko i bez żadnych problemów. Wszystkie moje uwagi i sugestie były na bieżąco uwzględniane, a w razie potrzeby mogłem liczyć na fachową poradę i pomoc. Bardzo doceniam uczciwość i terminowość — wszystko zostało wykonane tak, jak się umawialiśmy, bez niepotrzebnych komplikacji i przeciągania terminów.',
+              reviewBody: 'Z pełnym przekonaniem polecam współpracę z twórcą mojej strony internetowej. Cały proces przebiegł naprawdę sprawnie, szybko i bez żadnych problemów. Od samego początku bardzo dobry kontakt, konkretne podejście do klienta i przede wszystkim pełne zaangażowanie w realizację projektu. Strona została wykonana rzetelnie, fachowo i zgodnie z wcześniejszymi ustaleniami. Wszystkie moje uwagi i sugestie były na bieżąco uwzględniane, a w razie potrzeby mogłem liczyć na fachową poradę i pomoc. Widać duże doświadczenie, znajomość tematu i dbałość o każdy szczegół. Bardzo doceniam również uczciwość i terminowość. Wszystko zostało wykonane tak, jak się umawialiśmy, bez niepotrzebnych komplikacji i przeciągania terminów. Współpraca była naprawdę przyjemna i profesjonalna, co nie zawsze jest oczywiste przy tego typu projektach. Jestem bardzo zadowolony z efektu końcowego i z czystym sumieniem mogę polecić tę osobę każdemu, kto szuka kogoś rzetelnego, uczciwego, fachowego i zaangażowanego w swoją pracę. Jeśli będę w przyszłości potrzebował kolejnych zmian lub nowych rozwiązań, na pewno ponownie skorzystam z tej współpracy. Polecam z pełnym przekonaniem!',
             },
           ],
           hasOfferCatalog: {

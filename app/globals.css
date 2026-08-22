@@ -3901,46 +3901,41 @@ h4,
 
 /* ── Reviews ────────────────────────────────────────────── */
 
-/* Three cards, three columns — a two-column grid with a third card orphaned
-   under it is the layout telling the reader one of the three matters less. */
+/* Rows, not a row of cards. Every review is printed in full and they are
+   nowhere near the same length, so a grid of columns would have to either
+   stretch the short ones to the tallest or cut the longest down. Each review
+   gets a row: who said it on the left, what they said on the right, and the
+   row is as tall as the words are. */
 .reviews {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-/* The three quotes are different lengths, so the cards are made columns and
-   the signature is pushed to the floor of each — the three name lines then sit
-   on one baseline across the row instead of stepping down it. */
 .review {
-  display: flex;
-  flex-direction: column;
-  padding: clamp(1.5rem, 2.6vw, 2.25rem);
-}
-
-/* Above the quote, not below the name: the rating is what buys the paragraph
-   the second of attention it needs to be read at all — and the delivery time
-   rides up here with it, off the signature line, where at a third of the row
-   width it had nowhere to sit. */
-.review__top {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  align-items: start;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 .review__quote {
   position: relative;
-  padding-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  line-height: 1.62;
+  /* The measure is held at reading width whatever the container does — the
+     long review would otherwise run past 100 characters to the line. The `ch`
+     of this face is wider than its average lowercase, so 52 of them lands the
+     line at about 70 characters, which is where it should be. */
+  max-width: 52ch;
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   letter-spacing: -0.008em;
   color: var(--ink);
   text-wrap: pretty;
+}
+
+.review__para + .review__para {
+  margin-top: 1.05rem;
 }
 
 /* A watermark, not a decoration: big enough to sit behind the opening lines
@@ -3949,35 +3944,51 @@ h4,
 .review__mark {
   position: absolute;
   z-index: 0;
-  /* The glyph's ink sits at the foot of its em box, so the old offset put the
-     mark three lines into the quote, beside a word in the middle of the
-     paragraph — it read as a smudge rather than as the opening of a quotation.
-     The box is raised until the ink lands where a quotation mark belongs:
-     above and to the left of the first line. */
-  top: -6.2rem;
-  left: -0.35rem;
-  font-size: 7.5rem;
+  /* The glyph's ink sits at the foot of its em box, so the box has to be
+     raised until the mark lands where a quotation mark belongs: above and to
+     the left of the first line. */
+  top: -5.6rem;
+  left: -1.4rem;
+  font-size: 7rem;
   line-height: 1;
   color: var(--brand);
   opacity: 0.07;
 }
 
-.review__quote-text {
+.review__para {
   position: relative;
   z-index: 1;
 }
 
+/* The identity column. Vertical, because it has a column to itself and
+   stacking reads as a byline where a row would read as a toolbar. */
 .review__by {
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0;
+}
+
+.review__id {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  /* Pushed to the floor of the card so the three signatures share a baseline;
-     the quote keeps its own clearance below the last line either way. */
-  margin-top: auto;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
+}
+
+.review__name {
+  display: block;
+}
+
+.review__name strong {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.review__name span {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
 }
 
 .review__case {
@@ -4012,9 +4023,8 @@ h4,
   object-fit: cover;
 }
 
-/* Stands in for a photograph the client has not sent. It is deliberately not a
-   silhouette or a stock face — a monogram says "no photo yet" instead of
-   quietly claiming to be someone. */
+/* Initials in place of a photograph the client has not sent. Same treatment as
+   the portfolio's monogram, so a reader meets one convention, not two. */
 .review__avatar--mono {
   display: inline-flex;
   align-items: center;
@@ -4026,29 +4036,45 @@ h4,
   font-weight: 600;
 }
 
-.review__by strong {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--ink);
-}
-
-.review__by span {
-  font-size: 0.8rem;
-  color: var(--ink-3);
-}
-
-/* Below three columns it goes straight to one. Two columns and a third card
-   sitting alone underneath is worse than a stack, and a stacked card allowed
-   to run the full tablet width gives the quote a 100-character measure — the
-   column is capped instead. */
-@media (max-width: 1080px) {
-  .reviews {
+/* Under the two-column width the byline goes back on top of the quote as a
+   single line, which is the only shape that does not waste a phone's width. */
+@media (max-width: 860px) {
+  .review {
     grid-template-columns: 1fr;
-    max-width: 42rem;
-    margin-inline: auto;
+    gap: 1.25rem;
+  }
+
+  .review__by {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+
+  .review__case {
+    margin-left: auto;
+  }
+
+  .review__quote {
+    max-width: none;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* The quote now sits under a rule, so the mark has to hang inside the
+     padding rather than above it — over the line it read as a smudge. */
+  .review__mark {
+    top: -3.5rem;
+    left: -0.3rem;
+    font-size: 5rem;
   }
 }
 
+@media (max-width: 460px) {
+  .review__case {
+    margin-left: 0;
+  }
+}
 
 /* ── Packages ───────────────────────────────────────────── */
 

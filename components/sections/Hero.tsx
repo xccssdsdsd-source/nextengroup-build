@@ -375,7 +375,7 @@ export default function Hero() {
                       original is a wide shot of the coast with the client in
                       it, and at 28px that reads as a landscape, not a person. */}
                   <Image src="/owner-dorimari-avatar.webp" alt="" width={28} height={28} className="hero-proof__face" />
-                  <span className="hero-proof__face hero-proof__face--mono">RS</span>
+                  <span className="hero-proof__face hero-proof__face--mono">R</span>
                 </span>
                 <Stars className="hero-proof__stars" label="Ocena 5 na 5" size={13} />
                 <span className="hero-proof__text">

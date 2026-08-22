@@ -2376,6 +2376,10 @@ html.motion-ready .hero-device {
 
 /* ── Utilities ──────────────────────────────────────────── */
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .stack > * + * {
   margin-top: var(--stack-gap, 1rem);
 }
@@ -3962,14 +3966,39 @@ h4,
 
 /* ── Reviews ────────────────────────────────────────────── */
 
-/* Rows, not a row of cards. Every review is printed in full and they are
-   nowhere near the same length, so a grid of columns would have to either
-   stretch the short ones to the tallest or cut the longest down. Each review
-   gets a row: who said it on the left, what they said on the right, and the
-   row is as tall as the words are. */
+/* One review at a time, sliding. The three are nowhere near the same length —
+   four paragraphs against three sentences — so the viewport is sized to the
+   slide on show rather than to the tallest: the long one is never cropped and
+   the short ones never sit in a half-empty box. */
 .reviews {
-  display: grid;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  position: relative;
+}
+
+.reviews__viewport {
+  position: relative;
+  overflow: hidden;
+  /* No height until the script has measured one. Until then the first slide is
+     the only one in flow, so the box is already exactly its height and the
+     measurement that follows changes nothing. */
+  transition: height 560ms var(--ease-out);
+}
+
+.reviews__track {
+  position: relative;
+  transition: transform 640ms var(--ease-out);
+  will-change: transform;
+}
+
+/* Every slide but the first is taken out of flow and parked one viewport width
+   further along, so the track has the height of whichever one is showing. */
+.reviews__slide {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.reviews__slide:first-child {
+  position: relative;
 }
 
 .review {
@@ -3978,6 +4007,91 @@ h4,
   gap: clamp(1.5rem, 4vw, 3.25rem);
   align-items: start;
   padding: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+/* The card lifts on hover everywhere else on the site; here it would fight the
+   slide it is riding on. */
+.reviews__slide.testimonial-card:hover {
+  transform: none;
+}
+
+.reviews__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.reviews__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reviews__arrow:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand-300);
+    color: var(--brand);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.reviews__dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The tap target is 32px square; the mark inside it is a 7px dot that stretches
+   into a bar for the slide on show, so the row reads as a position in a
+   sequence rather than three identical dots. */
+.reviews__dot {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.reviews__dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: var(--line-strong);
+  transform: translate(-50%, -50%);
+  transition: width 320ms var(--ease-out), background-color 320ms var(--ease-out);
+}
+
+.reviews__dot[data-on]::after {
+  width: 24px;
+  background: var(--brand);
+}
+
+/* The carousel does not autoplay under reduced motion — the script checks the
+   same query — and the two moves it can still be asked to make happen at once
+   rather than sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .reviews__track,
+  .reviews__viewport,
+  .reviews__dot::after {
+    transition: none;
+  }
 }
 
 .review__quote {

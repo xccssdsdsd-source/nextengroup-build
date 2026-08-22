@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'Ile kosztuje strona internetowa dla małej firmy?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Landing i strona z obsługą klienta zawierają 30 dni wsparcia, pełny pakiet z panelem 60 dni. Później opieka i hosting kosztują od 29 do 99 zł miesięcznie, zależnie od konfiguracji.',
+        text: 'Wdrożenie to jedna płatność, bez abonamentu za sam projekt. Opieka i hosting kosztują od 30 do 99 zł miesięcznie od dnia publikacji, zależnie od konfiguracji strony.',
       },
     },
     {

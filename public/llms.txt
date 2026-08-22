@@ -22,9 +22,9 @@ Getbuild analizuje ofertę, klientów i sposób pracy firmy, a następnie projek
 
 ## Aktualne pakiety
 
-- [Landing — 1997 zł](https://getbuild.pl/#pakiety): jedna główna usługa, treść sprzedażowa, formularz, analityka i 30 dni wsparcia.
+- [Landing — 1997 zł](https://getbuild.pl/#pakiety): jedna główna usługa, treść sprzedażowa, formularz i analityka.
 - [Strona z obsługą klienta — 2299 zł](https://getbuild.pl/#pakiety): rozbudowana prezentacja usług, chatbot AI, formularz i rezerwacja terminu.
-- [Pełny pakiet z panelem — 2997 zł](https://getbuild.pl/#pakiety): podstrony, panel administracyjny, blog, baza wiedzy i 60 dni wsparcia.
+- [Pełny pakiet z panelem — 2997 zł](https://getbuild.pl/#pakiety): podstrony, panel administracyjny, blog i baza wiedzy.
 - [Automatyzacja procesu — wycena indywidualna](https://getbuild.pl/#automatyzacje): zakres i cena po bezpłatnej analizie konkretnego procesu.
 
 ## Informacje formalne

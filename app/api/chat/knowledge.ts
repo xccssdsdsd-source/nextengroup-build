@@ -32,16 +32,16 @@ Darmową pierwszą wizualizację nowej strony dla agenta pokazujemy w ciągu 24 
 - Intuicyjny panel po polsku do samodzielnego dodawania ofert nieruchomości w 2 minuty.
 - Poprawki bez limitu do momentu akceptacji projektu.
 - Płatność następuje dopiero po zaakceptowaniu gotowego efektu.
-- Po publikacji zapewniamy opiekę techniczną i wsparcie.
+- Po publikacji strona jest objęta stałą opieką techniczną (30–99 zł miesięcznie).
 
 ## Pakiety stron i dokładne ceny
 
 ### 1. Landing page agenta — około 1997 zł jednorazowo
-Zwykły landing page dla agenta, który chce skutecznie pozyskiwać umowy na wyłączność, promować darmową wycenę lub konkretny rejon/inwestycję. Zawiera: układ dedykowany pod pozyskiwanie leadów, sekcje opinii, FAQ, formularz zgłoszenia nieruchomości z powiadomieniem, **Agenta AI 24/7 z wiedzą o biurze i rejonie**, wstępną kwalifikację kupujących (budżet, metraż, lokalizacja), automatyczne umawianie prezentacji, pełną wersję mobilną, szybkie ładowanie, analitykę oraz 30 dni wsparcia po publikacji.
+Zwykły landing page dla agenta, który chce skutecznie pozyskiwać umowy na wyłączność, promować darmową wycenę lub konkretny rejon/inwestycję. Zawiera: układ dedykowany pod pozyskiwanie leadów, sekcje opinii, FAQ, formularz zgłoszenia nieruchomości z powiadomieniem, **Agenta AI 24/7 z wiedzą o biurze i rejonie**, wstępną kwalifikację kupujących (budżet, metraż, lokalizacja), automatyczne umawianie prezentacji, pełną wersję mobilną, szybkie ładowanie i analitykę.
 Cena jest orientacyjna — zależy od liczby sekcji i zakresu materiałów, więc może być niższa lub wyższa. Dokładną kwotę podajemy po zapoznaniu się z ofertą agenta.
 
 ### 2. Biuro z panelem ofert — 2997 zł jednorazowo
-Najczęściej wybierany pakiet, dla biura nieruchomości lub agenta z własną bazą ofert. Pełny portal. Zawiera wszystko z Landing page agenta, a dodatkowo pełną stronę z kilkoma podstronami, **prosty i intuicyjny panel administracyjny po polsku** (dodawanie/edycja ofert nieruchomości ze zdjęciami, ceną i parametrami), **automatyczną synchronizację wiedzy Agenta AI z aktualną bazą ofert**, moduł bloga/poradnika nieruchomości (SEO) oraz 60 dni wsparcia i wdrożenie wideo. Cena sztywna.
+Najczęściej wybierany pakiet, dla biura nieruchomości lub agenta z własną bazą ofert. Pełny portal. Zawiera wszystko z Landing page agenta, a dodatkowo pełną stronę z kilkoma podstronami, **prosty i intuicyjny panel administracyjny po polsku** (dodawanie/edycja ofert nieruchomości ze zdjęciami, ceną i parametrami), **automatyczną synchronizację wiedzy Agenta AI z aktualną bazą ofert**, moduł bloga/poradnika nieruchomości (SEO) oraz wdrożenie wideo. Cena sztywna.
 
 ### 3. Deweloper i biuro — 4997 zł jednorazowo
 Dla deweloperów i biur nieruchomości. Zawiera wszystko z pakietu Biuro z panelem ofert, a dodatkowo stronę inwestycji (mieszkania dodawane w tym samym panelu co oferty) oraz wdrożenie automatyzacji procesu: automatyczne potwierdzenia zgłoszenia dla klienta, natychmiastowe powiadomienia o gorącym leadzie do agenta i zespołu, przypomnienia o prezentacjach lokali oraz automatyczne zbieranie opinii po transakcji. Cena sztywna, a zakres automatyzacji i harmonogram ustalamy w rozmowie przed startem.
@@ -60,7 +60,7 @@ Automatyzacje szyte na miarę wykraczające poza ten zakres wyceniamy po konsult
 
 ## Co dokładnie obejmuje stała opieka
 
-Stała opieka i hosting po okresie wsparcia wynoszą od 29 do 99 zł miesięcznie w zależności od konfiguracji strony. Obejmują: hosting, monitoring 24/7, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki treści bez limitu zgłoszeń oraz aktualizację bazy wiedzy chatbota.
+Stała opieka i hosting wynoszą od 30 do 99 zł miesięcznie od dnia publikacji strony, w zależności od jej konfiguracji. Obejmują: hosting, monitoring 24/7, kopie zapasowe, aktualizacje bezpieczeństwa, drobne poprawki treści bez limitu zgłoszeń oraz aktualizację bazy wiedzy chatbota.
 
 ## Gotowe odpowiedzi
 

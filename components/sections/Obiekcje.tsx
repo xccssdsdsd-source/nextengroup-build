@@ -19,7 +19,7 @@ const items = [
   },
   {
     q: 'Czy dam radę sam dodawać oferty?',
-    a: 'Panel jest po polsku i wygląda jak formularz: zdjęcia, cena, metraż, pokoje, status. Dostajesz instrukcję, a przez okres wsparcia po prostu do nas piszesz.',
+    a: 'Panel jest po polsku i wygląda jak formularz: zdjęcia, cena, metraż, pokoje, status. Dostajesz instrukcję, a w ramach opieki po prostu do nas piszesz.',
   },
   {
     q: 'Mam już oferty na portalu — będę je wpisywał drugi raz?',
@@ -27,7 +27,7 @@ const items = [
   },
   {
     q: 'Zostanę sam ze stroną po wdrożeniu?',
-    a: 'Masz 30 dni wsparcia (60 przy pełnym pakiecie). Potem opcjonalna opieka za 29–99 zł miesięcznie: hosting, kopie, aktualizacje i drobne poprawki bez limitu.',
+    a: 'Nie. Opieka i hosting kosztują 30–99 zł miesięcznie od dnia publikacji, zależnie od konfiguracji strony: hosting, kopie, aktualizacje bezpieczeństwa i drobne poprawki bez limitu zgłoszeń.',
   },
   {
     q: 'Ile to trwa od początku do końca?',

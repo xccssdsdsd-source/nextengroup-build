@@ -17,7 +17,6 @@ const packages = [
       'Pyta o budżet i termin — dostajesz gotowy lead',
       'Klient sam rezerwuje termin prezentacji',
       'Widoczność w Google i w odpowiedziach AI',
-      '30 dni wsparcia po publikacji',
     ],
     featured: false,
   },
@@ -32,7 +31,6 @@ const packages = [
       'Nie płacisz nikomu za zmianę ceny w ofercie',
       'Blog, który pracuje na Twoją widoczność',
       'Agent AI zna Twoje aktualne oferty',
-      '60 dni wsparcia po publikacji',
     ],
     featured: true,
     badge: 'Najczęściej wybierany',
@@ -68,8 +66,9 @@ export default function Pakiety() {
             Cena jest na stronie, bo nie mamy jej <span className="serif-accent">po co ukrywać</span>
           </h2>
           <p className="section-copy">
-            Jedna płatność, bez abonamentu za samą stronę. Opieka i hosting później — 29–99 zł
-            miesięcznie, tylko jeśli chcesz.
+            Jedna płatność za stronę, bez abonamentu za sam projekt. Opieka i hosting —{' '}
+            <span className="nowrap">30–99 zł miesięcznie</span> od dnia publikacji,
+            zależnie od konfiguracji.
           </p>
         </div>
 

@@ -371,11 +371,15 @@ export default function Hero() {
                 <span className="hero-proof__faces" aria-hidden="true">
                   <Image src="/owner-pm-apartments.webp" alt="" width={28} height={28} className="hero-proof__face" />
                   <Image src="/owner-msdesignstudio.webp" alt="" width={28} height={28} className="hero-proof__face" />
+                  {/* A crop of the same photograph the portfolio uses. The
+                      original is a wide shot of the coast with the client in
+                      it, and at 28px that reads as a landscape, not a person. */}
+                  <Image src="/owner-dorimari-avatar.webp" alt="" width={28} height={28} className="hero-proof__face" />
                   <span className="hero-proof__face hero-proof__face--mono">RS</span>
                 </span>
                 <Stars className="hero-proof__stars" label="Ocena 5 na 5" size={13} />
                 <span className="hero-proof__text">
-                  <strong>5,0</strong> z 3 opinii klientów
+                  <strong>5,0</strong> z opinii klientów
                 </span>
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="hero-proof__go">
                   <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

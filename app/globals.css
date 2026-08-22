@@ -1656,15 +1656,18 @@ html.motion-ready [data-no-reveal] .section-divider {
   margin-left: -9px;
 }
 
+/* The monogram stands in for a photograph, so it has to read as the quietest
+   thing in the stack — a blue disc among three faces pulls the eye to the one
+   client who has no picture. Neutral ground, muted ink, no weight. */
 .hero-proof__face--mono {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--brand-100);
-  color: var(--brand-700);
+  background: var(--bg-surface);
+  color: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -3832,11 +3835,11 @@ h4,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--brand-100);
-  color: var(--brand-700);
+  background: var(--bg-surface);
+  color: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* The portfolio page draws its owner inside an absolutely-positioned frame, so
@@ -4082,11 +4085,11 @@ h4,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--brand-100);
-  color: var(--brand-700);
+  background: var(--bg-surface);
+  color: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Under the two-column width the byline goes back on top of the quote as a

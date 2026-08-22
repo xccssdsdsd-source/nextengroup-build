@@ -1771,12 +1771,17 @@ html.motion-ready [data-no-reveal] .section-divider {
     max-width: var(--container);
   }
 
+  /* Both measures are set by the line count, not by a reading ideal: the
+     headline has to hold "lepsze miejsce niż" plus the longest of the four
+     rivals on one line, and the subhead has to close in two. Narrower and the
+     block runs to six lines, which is a paragraph where it should be a
+     statement. */
   .hero-h1 {
-    max-width: 44rem;
+    max-width: 58rem;
   }
 
   .hero-sub {
-    max-width: 34rem;
+    max-width: 42rem;
   }
 
   /* The cue is an inline-flex stretched to the container by the rule above,

@@ -177,7 +177,7 @@ export default function RootLayout({
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: '5',
-            reviewCount: '2',
+            reviewCount: '3',
             bestRating: '5',
             worstRating: '1',
           },
@@ -193,6 +193,12 @@ export default function RootLayout({
               author: { '@type': 'Person', name: 'Magdalena Sioła' },
               reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
               reviewBody: 'Z pełnym przekonaniem polecam współpracę z Getbuild.pl. Firma stworzyła dla mnie stronę internetową MS Design Studio. Cały proces przebiegał sprawnie, komunikacja była na bardzo wysokim poziomie, a wszelkie uwagi były szybko wdrażane. Efekt końcowy spełnił moje oczekiwania zarówno pod względem estetyki, jak i funkcjonalności.',
+            },
+            {
+              '@type': 'Review',
+              author: { '@type': 'Person', name: 'Właściciel Chodkiewicza 2' },
+              reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+              reviewBody: 'Z pełnym przekonaniem polecam współpracę z twórcą mojej strony internetowej. Cały proces przebiegł sprawnie, szybko i bez żadnych problemów. Wszystkie moje uwagi i sugestie były na bieżąco uwzględniane, a w razie potrzeby mogłem liczyć na fachową poradę i pomoc. Bardzo doceniam uczciwość i terminowość — wszystko zostało wykonane tak, jak się umawialiśmy, bez niepotrzebnych komplikacji i przeciągania terminów.',
             },
           ],
           hasOfferCatalog: {

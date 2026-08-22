@@ -1,7 +1,9 @@
 'use client'
 
 import { Fragment, useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
+import Image from 'next/image'
 import FlipWords from '@/components/ui/FlipWords'
+import Stars from '@/components/ui/Stars'
 import RealEstateMockup from '@/components/ui/RealEstateMockup'
 import { scrollToSection } from '@/lib/scrollToSection'
 // Side-effect import: the file is all `:global()` rules. It lives beside the
@@ -357,6 +359,30 @@ export default function Hero() {
         <span className="hero-mesh" aria-hidden="true" />
         <div className="container hero-stack">
           <div ref={copyRef} className="hero-copy">
+            {/* The first thing above the headline is other people. It arrives
+                last of everything in the block — the promise still leads the
+                reading order — and it is a link, because the only useful thing
+                a reader can do with a rating is go and read the sentences it
+                came from. The third face is a monogram, not a photograph: that
+                client has not sent one, and a stock headshot standing in for a
+                real person is the one thing a proof strip cannot afford. */}
+            <div className="hero-proof-row hero-from-left" data-hero-exit style={{ animationDelay: '380ms' }}>
+              <a href="#opinie" onClick={(e) => go(e, 'opinie')} className="hero-proof">
+                <span className="hero-proof__faces" aria-hidden="true">
+                  <Image src="/owner-pm-apartments.webp" alt="" width={28} height={28} className="hero-proof__face" />
+                  <Image src="/owner-msdesignstudio.webp" alt="" width={28} height={28} className="hero-proof__face" />
+                  <span className="hero-proof__face hero-proof__face--mono">C2</span>
+                </span>
+                <Stars className="hero-proof__stars" label="Ocena 5 na 5" size={13} />
+                <span className="hero-proof__text">
+                  <strong>5,0</strong> z 3 opinii klientów
+                </span>
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="hero-proof__go">
+                  <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+
             <h1 className="hero-h1">
               <HeadlineLine words={line1} start={60} />
               <HeadlineLine

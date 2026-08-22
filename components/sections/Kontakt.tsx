@@ -135,11 +135,11 @@ export default function Kontakt() {
                 <div className="contact__row">
                   <label className="ifield">
                     <span className="ifield__label">Imię</span>
-                    <input id="k-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" />
+                    <input id="k-name" placeholder=" " value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" />
                   </label>
                   <label className="ifield">
                     <span className="ifield__label">Telefon <i>opcjonalnie</i></span>
-                    <input id="k-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
+                    <input id="k-phone" placeholder=" " type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
                   </label>
                 </div>
 
@@ -148,6 +148,7 @@ export default function Kontakt() {
                     <span className="ifield__label">Email</span>
                     <input
                       id="k-email"
+                      placeholder=" "
                       ref={emailRef}
                       type="email"
                       required
@@ -171,12 +172,12 @@ export default function Kontakt() {
 
                 <label className="ifield">
                   <span className="ifield__label">Rynek lub obszar działania <i>opcjonalnie</i></span>
-                  <input id="k-region" value={region} onChange={(e) => setRegion(e.target.value)} />
+                  <input id="k-region" placeholder=" " value={region} onChange={(e) => setRegion(e.target.value)} />
                 </label>
 
                 <label className="ifield">
-                  <span className="ifield__label">Link do profilu lub obecnej strony <i>opcjonalnie</i></span>
-                  <input id="k-link" value={link} onChange={(e) => setLink(e.target.value)} />
+                  <span className="ifield__label">Link do profilu lub strony <i>opcjonalnie</i></span>
+                  <input id="k-link" placeholder=" " value={link} onChange={(e) => setLink(e.target.value)} />
                 </label>
 
                 <div>

@@ -2244,15 +2244,17 @@ html.motion-ready .hero-device {
 
 /* ── Inset-label fields ─────────────────────────────────────
    The label lives inside the control instead of stacked above it, so each field
-   is one large tap target carrying its own question. Nothing floats on focus —
-   an empty field reads the same as a filled one, which is the point. */
+   is one large tap target carrying its own question. While the field is empty
+   the label sits centred at full reading size — an empty pill reads as one
+   clean line — and lifts to a small caption only once there is a value under
+   it. The lift is transform-only so it stays cheap and never reflows the row. */
 
 .ifield {
-  display: grid;
-  gap: 0.05rem;
-  align-content: center;
-  min-height: clamp(46px, 4.6vw, 52px);
-  padding: 0.42rem clamp(0.85rem, 1.2vw, 1rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(52px, 5vw, 58px);
+  padding: 0 clamp(1.05rem, 1.5vw, 1.35rem);
   background: #fff;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
@@ -2262,22 +2264,51 @@ html.motion-ready .hero-device {
     box-shadow 160ms var(--ease-out);
 }
 
-.ifield__legend,
-.ifield__label {
+.ifield__legend {
   font-size: 0.7rem;
   font-weight: 500;
   color: var(--ink-3);
   letter-spacing: 0;
 }
 
+.ifield__label {
+  position: absolute;
+  left: clamp(1.05rem, 1.5vw, 1.35rem);
+  right: clamp(1.05rem, 1.5vw, 1.35rem);
+  top: 50%;
+  font-size: clamp(0.88rem, 3.6vw, 1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink-3);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition:
+    transform 200ms var(--ease-out),
+    color 160ms ease;
+}
+
 .ifield__label i {
   font-style: normal;
+  font-size: 0.86em;
   font-weight: 400;
   color: var(--ink-3);
-  opacity: 0.75;
+  opacity: 0.7;
+}
+
+.ifield:focus-within .ifield__label,
+.ifield:has(input:not(:placeholder-shown)) .ifield__label {
+  transform: translateY(calc(-50% - 0.7rem)) scale(0.7);
 }
 
 .ifield input {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
   width: 100%;
   padding: 0;
   border: 0;
@@ -2285,13 +2316,19 @@ html.motion-ready .hero-device {
   background: transparent;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.3;
+  transition: padding-top 200ms var(--ease-out);
+}
+
+.ifield:focus-within input,
+.ifield input:not(:placeholder-shown) {
+  padding-top: 1.05rem;
 }
 
 .ifield input::placeholder {
-  color: #9dabc0;
+  color: transparent;
 }
 
 .ifield:focus-within {
@@ -2310,6 +2347,22 @@ html.motion-ready .hero-device {
 @media (hover: hover) and (pointer: fine) {
   .ifield:hover:not(:focus-within) {
     border-color: #a9b9d1;
+  }
+}
+
+/* The label sheds a little size on phones so the optional-hint tail fits on one
+   line instead of ellipsing; the lift then scales less so the caption stays legible. */
+@media (max-width: 520px) {
+  .ifield:focus-within .ifield__label,
+  .ifield:has(input:not(:placeholder-shown)) .ifield__label {
+    transform: translateY(calc(-50% - 0.66rem)) scale(0.78);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ifield__label,
+  .ifield input {
+    transition: none;
   }
 }
 

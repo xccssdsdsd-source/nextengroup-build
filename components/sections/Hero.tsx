@@ -371,7 +371,7 @@ export default function Hero() {
                 <span className="hero-proof__faces" aria-hidden="true">
                   <Image src="/owner-pm-apartments.webp" alt="" width={28} height={28} className="hero-proof__face" />
                   <Image src="/owner-msdesignstudio.webp" alt="" width={28} height={28} className="hero-proof__face" />
-                  <span className="hero-proof__face hero-proof__face--mono">C2</span>
+                  <span className="hero-proof__face hero-proof__face--mono">RS</span>
                 </span>
                 <Stars className="hero-proof__stars" label="Ocena 5 na 5" size={13} />
                 <span className="hero-proof__text">

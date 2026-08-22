@@ -29,9 +29,9 @@ const reviews: Review[] = [
   },
   {
     quote: 'Cały proces przebiegł sprawnie, szybko i bez żadnych problemów. Wszystkie moje uwagi i sugestie były na bieżąco uwzględniane, a w razie potrzeby mogłem liczyć na fachową poradę i pomoc. Bardzo doceniam uczciwość i terminowość — wszystko zostało wykonane tak, jak się umawialiśmy, bez przeciągania terminów.',
-    name: 'Właściciel Chodkiewicza 2',
-    role: 'Apartament i lokal użytkowy, Sieradz',
-    initials: 'C2',
+    name: 'Robert Sieradz',
+    role: 'Właściciel, Chodkiewicza 2',
+    initials: 'RS',
     case: 'Wdrożone w tydzień',
   },
 ]

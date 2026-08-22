@@ -196,7 +196,7 @@ export default function RootLayout({
             },
             {
               '@type': 'Review',
-              author: { '@type': 'Person', name: 'Właściciel Chodkiewicza 2' },
+              author: { '@type': 'Person', name: 'Robert Sieradz' },
               reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
               reviewBody: 'Z pełnym przekonaniem polecam współpracę z twórcą mojej strony internetowej. Cały proces przebiegł sprawnie, szybko i bez żadnych problemów. Wszystkie moje uwagi i sugestie były na bieżąco uwzględniane, a w razie potrzeby mogłem liczyć na fachową poradę i pomoc. Bardzo doceniam uczciwość i terminowość — wszystko zostało wykonane tak, jak się umawialiśmy, bez niepotrzebnych komplikacji i przeciągania terminów.',
             },
